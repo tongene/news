@@ -34,20 +34,29 @@ export const updateSession = async (request: NextRequest) => {
         },
       },
     );
-
-    // This will refresh session if expired - required for Server Components
-    // https://supabase.com/docs/guides/auth/server-side/nextjs
-    const user = await supabase.auth.getUser();
-
-    // protected routes
+ 
+    const user = await supabase.auth.getUser();  
+    const path = new URL(request.url).pathname ;
+  
+    if (path === "/") return response ;
+    const unprotectedPaths = ["/sign-in", "/forgot-password"]; 
     if (request.nextUrl.pathname.startsWith("/protected") && user.error) {
       return NextResponse.redirect(new URL("/sign-in", request.url));
     }
+    // protected routes
+    // if (request.nextUrl.pathname.startsWith("/protected") && user.error) {
+    //   return NextResponse.redirect(new URL("/sign-in", request.url));
+    // }
 
-    if (request.nextUrl.pathname === "/" && !user.error) {
-      return NextResponse.redirect(new URL("/protected", request.url));
-    }
-
+    // if (request.nextUrl.pathname === "/" && !user.error) {
+    //   return NextResponse.redirect(new URL("/protected", request.url));
+    // }
+    const isUnprotectedPath = unprotectedPaths.some((up) => path.startsWith(up));
+    if (user.data.user && isUnprotectedPath) { 
+      return NextResponse.redirect(new URL("/", request.url));
+       } 
+       response.headers.set('confirm',request.nextUrl.searchParams.toString() ) 
+       response.headers.set('x-url',request.nextUrl.pathname) 
     return response;
   } catch (e) {
     // If you are here, a Supabase client could not be created!

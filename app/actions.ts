@@ -4,6 +4,7 @@ import { encodedRedirect } from "@/utils/utils";
 import { createClient } from "@/utils/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import {createClient as deleteClient} from "@/utils/supabase/accountDelete" 
 
 export const signUpAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
@@ -132,3 +133,37 @@ export const signOutAction = async () => {
   await supabase.auth.signOut();
   return redirect("/sign-in");
 };
+export const handleOauthLogin = async () => { 
+  const origin = (await headers()).get("origin"); 
+  const supabase =await createClient(); 
+  const referer = (await headers()).get("x-url");  
+  const redirectTo = referer 
+  ? `${origin}/auth/callback?redirect_to=${encodeURIComponent('/forum')}`
+  : `${origin}/auth/callback`; 
+    const { data, error } = await supabase.auth.signInWithOAuth({
+   provider: 'google',  
+   options: { 
+   redirectTo ,
+  }, 
+    })
+   if (error instanceof Error) {
+      console.error(error); 
+     //return error.message       
+  }
+  return redirect(data.url as string);
+ };
+ 
+ export async function deleteProfile(id:string){ 
+   const supabase =await deleteClient();
+   const auth_ =await createClient()
+   const { error}= await auth_.auth.signOut()
+   if (error) {
+     throw error
+   }
+   const { error:deleteErr }= 
+   await supabase.admin.deleteUser(id)
+   if (deleteErr ) {
+       return deleteErr
+     }
+   return redirect('/')
+ } 
