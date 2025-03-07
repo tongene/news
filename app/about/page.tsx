@@ -1,5 +1,5 @@
-// import AboutUs from "@/components/AboutUs"  
-// import { usersList } from "../data/usershandle";
+import AboutUs from "@/components/AboutUs"  
+import { usersList } from "../data/usershandle";
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}/about` 
@@ -12,12 +12,11 @@ export const metadata = {
 }; 
 
 const AboutUsPage =async () => {
- //const listedUsers= await usersList()
-   return ( 
-    <></>
-//  <AboutUs  
-//  listedUsers={listedUsers}
-// />  
+const listedUsers= await usersList()
+   return (  
+ <AboutUs  
+ listedUsers={listedUsers}
+/>  
 
 )
 }

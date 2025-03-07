@@ -1,5 +1,3 @@
-
-// import HeaderAuth from "@/components/header-auth";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import { Geist } from "next/font/google";
@@ -16,7 +14,7 @@ import Footer from "@/components/Footer";
 // import Latests from "@/components/Latests";
 // import TabNav from "@/components/TabNav";
 // import SearchItems from "@/components/SearchItems";
-// import Header from "@/components/Header";
+import Header from "@/components/Header";
 // import Nav from "@/components/Nav";
 // import SocialNav from "@/components/SociaNav"; 
 import { Suspense } from "react";
@@ -220,8 +218,8 @@ dangerouslySetInnerHTML={{
         >          
           <main className="m-auto"style={{maxWidth:'100%'}} >
             <div> 
-    {/* <Header/> 
- <SocialNav/>  
+   <Header/> 
+ {/*  <SocialNav/>  
   <HeaderAuth />  
    <Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense> */}
 <div className="flex flex-col">{children}  

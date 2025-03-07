@@ -2,13 +2,14 @@
 import { ThemeSwitcher } from "./theme-switcher" 
 import Image from "next/image";
 import Link from "next/link";
-// import ContactUs from "./ContactUs";
+import ContactUs from "./ContactUs";
+
 const Footer = async() => {
 
   return (
     <footer className="bg-culturaysBg p-4 text-white flex flex-col justify-between w-full border-t border-t-foreground/10 dark:bg-gray-300 dark:text-gray-900">
-    <div className="font-bold"> 
-{/* <Link href='/' prefetch={false}><Image
+    {/* <div className="font-bold"> 
+ <Link href='/' prefetch={false}><Image
 className="rounded-full cursor-pointer bg-white"
 width={50}
 height={50}
@@ -23,12 +24,12 @@ Culturays</h2></Link>
 <Link href='/naija-wiki'prefetch={false}><li className="text list-disc p-3 mx-11 hover:text-gray-500">Naija Wiki</li></Link> 
 <Link href='/naija-events'prefetch={false}><li className="text list-disc p-3 mx-11 hover:text-gray-500 ">Naija Events</li></Link> 
 <Link href='/naija-birthdays'prefetch={false}><li className="text list-disc p-3 mx-11 hover:text-gray-500 ">Naija Birthdays</li></Link>   
-</ul> */}
-{/* <ContactUs />  */}
+</ul> 
+  <ContactUs />  
 
-</div>
-{/* <div className="m-auto font-bold"> 
-<Link href= "https://culturays.com/privacy-policy" >
+</div> */}
+ <div className="m-auto font-bold"> 
+<Link href= "/privacy-policy" >
 <p className="p-1 hover:opacity-70 text-center">Privacy Policy </p>
 </Link> 
 <Link href="/about">
@@ -41,7 +42,7 @@ Copyright{" "}
 </p>
 </Link>
 
-</div> */}
+</div>  
 <ThemeSwitcher /> 
 </footer>
 

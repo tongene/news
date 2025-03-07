@@ -1,70 +1,60 @@
-import { signOutAction } from "@/app/actions";
-import { hasEnvVars } from "@/utils/supabase/check-env-vars";
-import Link from "next/link";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
+ 
+import Link from "next/link"; 
 import { createClient } from "@/utils/supabase/server";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
+import { faUser } from "@fortawesome/free-solid-svg-icons"; 
+import SignOutBtn from "./SignOutBtn";   
 export default async function AuthButton() {
   const supabase = await createClient();
 
-  const {
+  const { 
     data: { user },
   } = await supabase.auth.getUser();
-
-  if (!hasEnvVars) {
-    return (
-      <>
-        <div className="flex gap-4 items-center">
-          <div>
-            <Badge
-              variant={"default"}
-              className="font-normal pointer-events-none"
-            >
-              Please update .env.local file with anon key and url
-            </Badge>
-          </div>
-          <div className="flex gap-2">
-            <Button
-              asChild
-              size="sm"
-              variant={"outline"}
-              disabled
-              className="opacity-75 cursor-none pointer-events-none"
-            >
-              <Link href="/sign-in">Sign in</Link>
-            </Button>
-            <Button
-              asChild
-              size="sm"
-              variant={"default"}
-              disabled
-              className="opacity-75 cursor-none pointer-events-none"
-            >
-              <Link href="/sign-up">Sign up</Link>
-            </Button>
-          </div>
-        </div>
-      </>
-    );
-  }
+  
   return user ? (
-    <div className="flex items-center gap-4">
-      Hey, {user.email}!
-      <form action={signOutAction}>
-        <Button type="submit" variant={"outline"}>
-          Sign out
-        </Button>
-      </form>
-    </div>
-  ) : (
-    <div className="flex gap-2">
-      <Button asChild size="sm" variant={"outline"}>
-        <Link href="/sign-in">Sign in</Link>
-      </Button>
-      <Button asChild size="sm" variant={"default"}>
-        <Link href="/sign-up">Sign up</Link>
-      </Button>
-    </div>
+  <> 
+ 
+ <div className="flex flex-col items-center pb-2 leading-none"> 
+<div className="flex items-center"> 
+<Link href={`/profile/${user.id}`}><p className="m-1 text-lg hover:scale-105">Hey, {user.email}!</p></Link>  
+</div>
+
+<div className="m-1 flex m-auto justify-center">  
+{!user.user_metadata.picture && <Link href={`/profile/${user.id}`}>
+ <FontAwesomeIcon 
+ width={15}
+ height={15} 
+ className="p-3 m-1 cursor-pointer border rounded-full"icon={faUser}/></Link> } 
+  {user.user_metadata.picture&& 
+   <Link href={`/profile/${user.id}`}>
+   <div > 
+      <Image
+ src={user.user_metadata.picture} 
+ width={50}
+ height={50}
+ className="cursor-pointer border rounded-full hover:scale-105 h-10 w-10"
+ alt={user.user_metadata.full_name}
+ /> 
+ </div></Link> }
+ <SignOutBtn/>  
+</div>
+</div> 
+</> ) : (  
+  <>
+<div className="flex flex-col items-center pb-2 leading-none text-xs my-6">
+<Link
+href="/sign-in"
+className="flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover text-xs"
+>
+<button className="text-lg rounded-md no-underline bg-btn-background hover:bg-btn-background-hover border border-4 py-3 px-6">
+  Login
+</button>
+</Link> 
+                     
+</div>
+    
+    </>
   );
 }
+
