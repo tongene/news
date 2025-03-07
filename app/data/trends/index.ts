@@ -1,4 +1,3 @@
- 
 import googleTrends from 'google-trends-api'
 import { CronJob } from 'cron'; 
 import axios from 'axios';
