@@ -1,37 +1,26 @@
 import { resetPasswordAction } from "@/app/actions";
 import { FormMessage, Message } from "@/components/form-message";
-import { SubmitButton } from "@/components/submit-button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { SubmitButton } from "@/components/submit-button"; 
+import ResetForm from "./reset-form"; 
 
 export default async function ResetPassword(props: {
   searchParams: Promise<Message>;
-}) {
-  const searchParams = await props.searchParams;
-  return (
-    <form className="flex flex-col w-full max-w-md p-4 gap-2 [&>input]:mb-4">
+ }) { 
+ const searchParams = await props.searchParams;
+
+  return (  
+    <div className='login_form flex flex-col items-center justify-center bg-gray-800 m-auto max-w-7xl'> 
+     <form className="w-96 flex flex-col gap-2.5 p-5 rounded tracking-wider" noValidate>
       <h1 className="text-2xl font-medium">Reset password</h1>
       <p className="text-sm text-foreground/60">
         Please enter your new password below.
       </p>
-      <Label htmlFor="password">New password</Label>
-      <Input
-        type="password"
-        name="password"
-        placeholder="New password"
-        required
-      />
-      <Label htmlFor="confirmPassword">Confirm password</Label>
-      <Input
-        type="password"
-        name="confirmPassword"
-        placeholder="Confirm password"
-        required
-      />
-      <SubmitButton formAction={resetPasswordAction}> 
+   <ResetForm/>
+   <SubmitButton formAction={resetPasswordAction} className="w-max">
         Reset password
       </SubmitButton>
       <FormMessage message={searchParams} />
-    </form>
-  );
+    </form>  
+    </div>
+ );
 }
