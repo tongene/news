@@ -87,15 +87,15 @@ const { ref, inView } = useInView()
        const titleXIntialPosts = initialPosts.filter((xy)=> xy.article_title===null)
       const title_X=xIntialPosts.filter((xy)=>xy.article_title===titlesX)
       const titleXIntialPosts2 = initialPosts.filter((xy)=> xy.title!==null) 
-      const btTitlesA=titleXIntialPosts.concat( titleXIntialPosts2) 
-      
+      const btTitlesA=xIntialPosts.concat( titleXIntialPosts2) 
+     
       if(!titlesX){
-          setScrolledPosts( btTitlesA )  
+          setScrolledPosts( [...btTitlesA] )  
       }else{
            setScrolledPosts(title_X )
       } 
      
-      }, []);  
+      }, [titlesX]);  
     
 
     const loadMorePosts = async () => {
@@ -128,6 +128,7 @@ const { ref, inView } = useInView()
  
     const opTitles=scrolledPosts?.sort(sortAscending) 
 
+ 
     function enlargeImgs(i:number, ix: number) {
       const files = (scrolledPosts[i]?.files ??[]).filter((xy:string)=>!xy?.includes('undefined'))
           setImgIndex(files[ix])
@@ -368,7 +369,7 @@ router.push(pathname+'?message=Like Updated', {scroll:false})
         });
   const [titleOpens,setTitlesOpen]= useState(false)
   const [arrowOpens,setArrowOpen]= useState({})
-
+ 
   const rotateArrow=()=>{ 
     if(titleOpens){
       setTitlesOpen(prev=>!prev)
@@ -384,7 +385,7 @@ router.push(pathname+'?message=Like Updated', {scroll:false})
     }) 
   }
   }
- 
+  
   return (  
 <div>    
 <div className="w-24 m-auto "> 
@@ -433,8 +434,7 @@ setEditId={setEditId}
 <div className={opTitles.length===0?'hidden':"block relative top-20 z-30 w-max"}style={arrowOpens}onClick={rotateArrow}>
 <div >  
   <div className="flex border-b border-gray-200 hover:bg-gray-900 dark:bg-gray-800 w-80 bg-white" > 
-    {gnrItx.length>0 && <h2 className="text-2xl font-bold  dark:bg-gray-800 bg-white  text-center text-2xl font-bold dark:bg-gray-800 px-5 py-3 bg-white w-full">Articles</h2>}
- 
+    {gnrItx.length>0 && <h2 className="text-2xl font-bold dark:bg-gray-800 bg-white  text-center text-2xl font-bold dark:bg-gray-800 px-5 py-3 bg-white w-full">Articles</h2>} 
  <div className="relative "> 
 {titleOpens&& <p className="text-2xl p-4 cursor-pointer w-max hover:scale-100 hover:bg-gray-400 dark:bg-gray-800 hover:dark:bg-gray-900" > 
 <FontAwesomeIcon icon={faAngleRight}/>
@@ -459,13 +459,14 @@ setEditId={setEditId}
 </div>
  
  {userActions &&<LoginModal setUserActions={setUserActions}/>}  
-    {opTitles?.map((xx , i)=> (
-       xx.title&&   
+    {opTitles?.filter((xy)=>xy.title!==null).filter((xy)=>xy.article_title===null).map((xx , i)=> (
+       xx.slug &&   
     <div key={xx.title +  ' ' + i }className="sm:max-w-lg md:max-w-xl m-auto p-4 border my-1 border-t-4 border-gray-900 hover:bg-gray-900 cursor-pointer">  
    <div className="w-full overflow-hidden md:block justify-center" >
     
   <div ref={createRef}> 
-  <Link href={`/forum/post/${xx.slug}/${xx.id}`}><h3 className="text-white opacity-70 text-2xl cursor-pointer px-4 text-center underline">{xx?.title}</h3></Link> 
+{xx?.title&&!xx?.article_title&&  <Link href={`/forum/post/${xx.slug}/${xx.id}`}><h3 className="text-white opacity-70 text-2xl cursor-pointer px-4 text-center underline">{xx?.title}</h3></Link>}
+ 
    <p className="text-white font-bold text-center text-lg my-1">Genres:</p>
    {xx?.genre?.slice(0,3)?.map((xy, vi)=>
    <div className="text-white text-center" key={vi}>
@@ -659,9 +660,7 @@ onChange={handleImageUpload}
     />   }
     </div> 
    )
-     )}   
- 
- 
+     )}  
    </main>  
    }
  
@@ -694,13 +693,13 @@ onChange={handleImageUpload}
 </div>
  
  {userActions &&<LoginModal setUserActions={setUserActions}/>} 
-    {opTitles?.filter((xy)=>xy.article_title!==null).map((xx, i) =>(
+  <h3 className="text-white capitalize opacity-70 text-2xl cursor-pointer px-4 text-center underline">{titlesX.replace(/-/g, ' ')}</h3>  
+    {opTitles?.filter((xy)=>xy.article_title===titlesX).map((xx, i) =>(
    
     <div key={xx.article_title +  ' ' + i }className="sm:max-w-lg md:max-w-xl m-auto p-4 border my-1 border-t-4 border-gray-900 hover:bg-gray-900 cursor-pointer">  
    <div className="w-full overflow-hidden md:block justify-center"> 
 
-  <div ref={createRef}> 
-  <Link href={`/forum/post/${xx.slug}/${xx.id}`}><h3 className="text-white opacity-70 text-2xl cursor-pointer px-4 text-center underline">{xx?.title}</h3></Link> 
+  <div ref={createRef}>   
    <p className="text-white font-bold text-center text-lg my-1">Genres:</p>
    {xx?.genre?.slice(0,3)?.map((xy, vi)=>
    <div className="text-white text-center" key={vi}>

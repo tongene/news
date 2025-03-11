@@ -61,6 +61,12 @@ const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotI
       .from('cinema_titles') 
       .select('*')
       if(error)throw new Error('An Error has occured!')
+        const post_data = await postCategories()
+      const posts_notIn_newsPosts= await nextNewsPosts()
+const xtCategories= posts_notIn_newsPosts?.categories?.edges
+  setPosts_notIn_newsPosts(xtCategories) 
+const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
+setTopPostsCa(postCategory_Children ) 
 setComingTitles(cinemax_titles) 
   }
       const coming_titles= cinema_titles?.filter((ex)=> ex.genre?.includes('Coming Soon'))
@@ -70,21 +76,17 @@ setComingTitles(cinemax_titles)
       },[])
 
 // const postsTop = async()=>{  
-// const post_data = await postCategories()
-// const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
-// setTopPostsCa(postCategory_Children ) 
+
 
 // }
 // useEffect(()=>{
 //   postsTop()
 
 // },[top_PostsCa])
-// const postCategory_cursor =(top_PostsCa?.map((xy)=> xy.node?.posts?.edges as InnerEdges ))?.flat()?.map((t)=> t?.cursor)??[]  
+const postCategory_cursor =(top_PostsCa?.map((xy)=> xy.node?.posts?.edges as InnerEdges ))?.flat()?.map((t)=> t?.cursor)??[]  
 
 // const postsNotinPosts =async()=>{  
-// const posts_notIn_newsPosts= await nextNewsPosts()
-// const xtCategories= posts_notIn_newsPosts?.categories?.edges
-//   setPosts_notIn_newsPosts(xtCategories) 
+
 //   }
 
 //   useEffect(()=>{
@@ -128,7 +130,7 @@ setComingTitles(cinemax_titles)
     setCategoryName(name) 
   
     }; 
-  // const posts_all= top_Posts_notIn_newsPosts?.map((xy)=> xy?.node.posts).filter((vx)=> vx.nodes.length>0)
+ const posts_all= top_Posts_notIn_newsPosts?.map((xy)=> xy?.node.posts).filter((vx)=> vx.nodes.length>0)
 // useEffect(()=>{
 //   const newxTitles=async()=>{
 //     await getGoogleNewsTitles(location) 

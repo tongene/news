@@ -115,7 +115,7 @@ name='story'
 maxLength={1000}
 className='post-view shadow-3xl bg-inherit focus:outline-none resize-none inherit border-none mt-1 w-full p-6 leading-normal text-gray-300 text-lg rounded'
 placeholder="Tell your story. . . !"
-defaultValue={post?.story}
+defaultValue={post?.story||''}
 />
 <label className="myFile edit-view m-5 block text-2xl text-white" htmlFor="file_input">
 <p className="cursor-pointer"> 
@@ -166,8 +166,7 @@ name="entertainment"
   <input
 className="p-1 rounded-lg cursor-pointer"
 name="school"
- 
-  type="checkbox"
+type="checkbox"
   />
   <label htmlFor="school" className="text-text font-bold mx-1">School</label>
   </div>

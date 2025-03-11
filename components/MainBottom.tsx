@@ -53,8 +53,7 @@ const MainBottom = ({posts_all, top_Posts_notIn_newsPosts, postCategory_cursor }
       useEffect(()=>{
         postsEnd()
      
-     },[]) 
-     
+     },[])  
   
     const [end_post_cursor, setEnd_post_cursor] = useState(post_end_cursor);
   

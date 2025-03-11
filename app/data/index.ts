@@ -347,9 +347,9 @@ import { newsByLatest } from "../page-data";
    
   export async function nextNewsPosts(){
     const latestPosts=await newsByLatest() 
-    const postX = latestPosts.resp.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts.pageInfo.endCursor).flat()  
+    const postX = latestPosts.resp.categories.nodes.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts.pageInfo.endCursor).flat()  
    
-  const wprest =   fetch('https://content.culturays.com/graphql',{
+  const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{
           'Content-Type':'application/json'
