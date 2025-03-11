@@ -14,6 +14,7 @@ import { getGoogleNewsTitles } from '@/app/data/news-data'
 import { replaceSpecialCharacters } from "@/utils/replacechars"; 
 import { processImgs } from "@/utils/process_imgs";
  import { processSbImages } from "@/utils/processImages";
+import { createClient } from '@/utils/supabase/client';
 const location = 'Lagos, Nigeria'; 
 interface ObjType { 
   title: string[];
@@ -38,7 +39,17 @@ type EvObjType= {
    titleAObj:any ; 
 }
 
-const Main = ({top_PostsData, sidebarItems, news_outline, coming_titles}:{top_PostsData:InnerEdges[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => { 
+const naija_wiki =async ()=>{  
+ const supabase =await createClient() 
+ const { data:cinema_titles , error } = await supabase 
+ .from('cinema_titles') 
+ .select('*')
+ if(error)throw new Error('An Error has occured!')
+return cinema_titles
+     
+ } 
+
+const Main = ({top_PostsData }:{top_PostsData:InnerEdges[]}) => { 
 const [activeSet, setActiveSet]=useState(true)
 const [actIdx ,setActIdx]=useState(-1)
 const [categoryPost,setCategoryPost]=useState<InnerEdges[]>([])
@@ -96,7 +107,10 @@ const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotI
 // }
 
 // },[lastPost])
-
+// const sidebarItems=await sidePlusViews()       
+// const news_outline=await postsOutline()
+// const xTitltes= await naija_wiki()
+// const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon')) 
   const changeSet = () => {
      setActiveSet(true)
      setActIdx(-1);
@@ -406,7 +420,7 @@ className='rounded-xl h-44 object-cover'
 </div> 
 
 <div className=""> 
-     <SideBar sidebarItems={sidebarItems}news_outline={news_outline} coming_titles={coming_titles}/>  
+     {/* <SideBar sidebarItems={sidebarItems}news_outline={news_outline} coming_titles={coming_titles}/>   */}
   </div> </div>
   {/* <MainBottom 
    posts_all={posts_all} 
