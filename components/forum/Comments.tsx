@@ -61,11 +61,8 @@ const [activeCommentReply, setActiveCommentReply]=useState(false)
 const dropperRef=useRef<HTMLDivElement | null>(null);
 const replyRef=useRef<HTMLDivElement | null>(null);
 const elRef=useRef<HTMLDivElement | null>(null);
-const observerRef= useRef() 
-const txRef=useRef()  
-const imgRef = useRef()
-const router = useRouter() 
-const { ref, inView } = useInView()  
+ 
+const router = useRouter()   
 const searchParams= useSearchParams(); 
 const val = searchParams.get('message') as string;
 const pathname = usePathname() 

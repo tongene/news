@@ -47,8 +47,7 @@ setSelectedImages
 
 const [deleteBtn,setDeleteBtn]=useState(false)
 const [editBtn,setEditBtn]=useState(false)
-const router= useRouter()
-const imgRef = useRef()
+const router= useRouter() 
 const elRef = useRef<HTMLDivElement | null>(null);
 const editingRef = useRef<HTMLDivElement | null>(null);
 const replyRef=useRef<HTMLDivElement | null>(null);
