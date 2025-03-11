@@ -21,7 +21,7 @@ const todayMonth = today.getMonth();
 const filteredDates = bdaysData?.filter((dateStr) => {
     const date = new Date(dateStr.info);
     const dateDay = date.getDate();  
-    const dateMonth = date.getMonth();
+    const dateMonth = date.getMonth(); 
     return dateMonth === todayMonth&&dateDay === todayDay;
 });
   const forumBdays =async ()=>{
@@ -50,7 +50,7 @@ const filteredDates = bdaysData?.filter((dateStr) => {
  useEffect(()=>{   
    forumBdays()
 
-  },[isLoading])
+  },[])
 
   const prevSlide=()=> { 
     const slide =activeSlide - 1 < 0
@@ -69,10 +69,11 @@ const filteredDates = bdaysData?.filter((dateStr) => {
     <div>  
        {filteredDates?.length === 0&&bdaysData.length===0&&<small className='m-1'>Checking for Birthdays...</small>}
        {error&& <small className='ml-1'>{error}</small>}
-       {bdaysData.length>0&&
-  <section className="">  
-  <h2 className="border-dotted border-b-2 py-2 text-2xl my-4 font-bold text-center">Naija Birthdays Today {new Date().toLocaleDateString()} 
-</h2>  
+       <h2 className="border-dotted border-b-2 py-2 text-2xl my-4 font-bold text-center">Naija Birthdays Today {new Date().toLocaleDateString()} 
+</h2>
+       {filteredDates.length===0&&  isLoading&&
+  <p className='m-1 text-center'>No Birthdays Today...</p>  }
+ <section className="">   
 {filteredDates?.length >0
 &&
 <div className="card-data overflow-hidden flex bg-slate-100 p-4 justify-center relative"> 
@@ -103,12 +104,11 @@ alt='Naija Birthdays'/>
 
 </div>} 
  </section>  
-} 
-{filteredDates.length>0&&!isLoading&&<div className="card-data overflow-hidden flex flex-col items-center bg-slate-100 p-4 justify-center text-black font-bold">
 
-<small className='m-1'>No Birthdays Today...</small>
+ <div className="card-data overflow-hidden flex flex-col items-center bg-slate-100 p-4 justify-center text-black font-bold">
+
  <Link href='/naija-birthdays'><small className='text-green-600 py-2 hover:text-black'>See all Birthdays in {new Date().toLocaleString('en-US', { month: 'long' })}</small></Link> 
-</div>}
+</div> 
  </div>
   );
 };

@@ -259,26 +259,12 @@ type EvObjType= {
        }); 
 export default async function Home() {
 const latestPosts=await newsByLatest() 
-  const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat()
- const sidebarItems=await sidePlusViews()       
-     const news_outline=await postsOutline()
-     const naija_wiki =async ()=>{  
-      const supabase =await createClient() 
-      const { data:cinema_titles , error } = await supabase 
-      .from('cinema_titles') 
-      .select('*')
-      if(error)throw new Error('An Error has occured!')
-return cinema_titles
-          
-      }   
- const xTitltes= await naija_wiki()
-   const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
-
+  const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
+     const news_outline=await postsOutline() 
 return (
     <div> 
 <MainSlider livesNews={latestPosts.resp1Live}latestPosts={latestPosts.resp}/>
-    <Main top_PostsData={postData} sidebarItems={sidebarItems}
-news_outline={news_outline} coming_titles={coming_titles}/> 
+    <Main top_PostsData={postData} news_outline={news_outline} /> 
     </div>
   ); 
 }

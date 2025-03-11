@@ -54,8 +54,7 @@ type Cursors={
 const SideBar = ({sidebarItems, news_outline, coming_titles}:{sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => { 
  
   return (
- <div className='side_view_lg py-3 px-3 m-auto lg:m-0 border-l-4 max-w-lg h-max'> 
- 
+ <div className='side_view_lg py-3 px-3 m-auto lg:m-0 border-l-4 max-w-lg h-max'>  
  <div className='py-3 px-3 m-auto lg:m-0 border-l-4 max-w-sm '>
   <div className="flex justify-between flex-wrap"> 
 <h2 className='text-gray-600 font-bold text-4xl text-center lg:text-left py-4 dark:text-gray-300 summary-side'>Summary</h2>

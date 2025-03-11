@@ -14,6 +14,8 @@ import { getGoogleNewsTitles } from '@/app/data/news-data'
 import { replaceSpecialCharacters } from "@/utils/replacechars"; 
 import { processImgs } from "@/utils/process_imgs";
  import { processSbImages } from "@/utils/processImages";
+import { sidePlusViews } from '@/app/page-data';
+import { createClient } from '@/utils/supabase/client';
 const location = 'Lagos, Nigeria'; 
 interface ObjType { 
   title: string[];
@@ -38,18 +40,35 @@ type EvObjType= {
    titleAObj:any ; 
 }
 
-const Main = ({top_PostsData, sidebarItems, news_outline, coming_titles}:{top_PostsData:InnerEdges[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => { 
+const Main = ({top_PostsData, news_outline }:{top_PostsData:InnerEdges[],  news_outline:SideNode[] }) => { 
 const [activeSet, setActiveSet]=useState(true)
 const [actIdx ,setActIdx]=useState(-1)
 const [categoryPost,setCategoryPost]=useState<InnerEdges[]>([])
 const [categoryName,setCategoryName]=useState('') 
 const [top_PostsCa, setTopPostsCa]=useState<PostXNode[]>([])
- 
+const [cinema_titles,setComingTitles]=useState<CineProps[]>([])
 const [top_SidePanelCursors, setSidePanelCursors]=useState<PostXNode[]>([])
 const [top_SidebarItems, setSidebarItems]=useState<PostXNode[]>([])
+const [sidebarItems, setSidebarxItems]=useState<Cursors[]>([])
 const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotInPost[]>([])
 // const [top_Last_categories, setLast_categories]=useState([])   
- 
+  
+     const naija_wiki =async ()=>{
+      const sidebarxItems= await sidePlusViews()
+      setSidebarxItems(sidebarxItems)
+      const supabase =await createClient() 
+      const { data:cinemax_titles , error } = await supabase 
+      .from('cinema_titles') 
+      .select('*')
+      if(error)throw new Error('An Error has occured!')
+setComingTitles(cinemax_titles) 
+  }
+      const coming_titles= cinema_titles?.filter((ex)=> ex.genre?.includes('Coming Soon'))
+      useEffect(()=>{
+        
+       naija_wiki()
+      },[])
+
 // const postsTop = async()=>{  
 // const post_data = await postCategories()
 // const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
