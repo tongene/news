@@ -50,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified:new Date(post.created_at as string),
         changeFrequency:'always', 
         priority:0.8,
-        images: [post?.files?.length as number>0?`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}{(post?.files as PostProps[])[0]}`:'']
+        images: [post?.files?.length as number>0?`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(post?.files as PostProps[])[0]}`:'']
 
      }) )
  

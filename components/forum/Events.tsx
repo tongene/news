@@ -36,7 +36,7 @@ const Events: React.FC<EvProps>  = ({user, setActive, active, events} ) => {
 <div className="sm:flex-row flex flex-col justify-center items-center sm:w-3/4 sm:justify-between md:w-1/2 md:justify-evenly m-auto">  
  <Image 
 className="rounded-xl mt-5"
-src={xx.img_url &&xx.img_url.endsWith('.jpg')||xx.img_url.endsWith('.jpeg')||xx.img_url.endsWith('.png')?`${process.env.SUPABASE_PUBLIC_EVENT_AVATARS_URL}/${xx.img_url}`:'/assets/images/culturays_events.png'}
+src={xx.img_url &&xx.img_url.endsWith('.jpg')||xx.img_url.endsWith('.jpeg')||xx.img_url.endsWith('.png')?`${process.env.SUPABASE_PUBLIC_EVENT_AVATARS_URL}${xx.img_url}`:'/assets/images/culturays_events.png'}
 width={150} 
 height={150} 
 alt={xx.title}

@@ -309,7 +309,7 @@ alt={comment.user_name as string}/></Link> }
 <div className={!imgMode? 'w-1/2': 'w-full'}>
 <Image
 onClick={openImg}
-src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}/${xy}`}
+src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${xy}`}
 width={600}
 height={600}
 className='animate-in cursor-pointer rounded-lg mx-1 my-2 border-2 border-gray-300'

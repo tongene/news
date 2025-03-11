@@ -843,7 +843,7 @@ null
     <Image 
    onClick={()=>enlargeImgs( i, ix)}  
    className={imgIndex===itx?'animate-in cursor-pointer mx-1 w-full h-40 my-4':'cursor-pointer mx-1 w-full h-40 my-4'} 
-   src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}/${itx}`} 
+   src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${itx}`} 
    width={150} 
    height={150}
    style={imgIndex===itx?imgZoom:{} }

@@ -75,35 +75,20 @@ setComingTitles(cinemax_titles)
        naija_wiki()
       },[])
 
-// const postsTop = async()=>{  
-
-
-// }
-// useEffect(()=>{
-//   postsTop()
-
-// },[top_PostsCa])
 const postCategory_cursor =(top_PostsCa?.map((xy)=> xy.node?.posts?.edges as InnerEdges ))?.flat()?.map((t)=> t?.cursor)??[]  
 
-// const postsNotinPosts =async()=>{  
-
-//   }
-
-//   useEffect(()=>{
-//    postsNotinPosts() 
-//  },[]) 
   
-// useEffect(()=>{
-// //setCategoryPost(top_PostsData)
+useEffect(()=>{
+//setCategoryPost(top_PostsData)
   
-// const currentPosts= top_PostsCa?.flat()?.filter((ex)=> ex?.node?.name=== categoryName)?.map((xy)=> xy?.node?.posts).map((ex)=> ex?.edges as InnerEdges).flat()
-// setCategoryPost(currentPosts)
+const currentPosts= top_PostsCa?.flat()?.filter((ex)=> ex?.node?.name=== categoryName)?.map((xy)=> xy?.node?.posts).map((ex)=> ex?.edges as InnerEdges).flat()
+setCategoryPost(currentPosts)
  
-// // else { 
-// // setCategoryPost(top_PostsData)  
-// // }
+// else { 
+// setCategoryPost(top_PostsData)  
+// }
 
-// },[categoryName])
+},[categoryName])
 
 // const lastPost= async()=>{
 //   const next_categories_posts= await postNextCategories(postCategory_cursor)

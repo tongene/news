@@ -244,19 +244,19 @@ type EvObjType= {
         } 
 
         
-   CronJob.from({
-    cronTime: '10 8 * * *', 
-    onTick: dailyEv3(),
-    start: true,
-    timeZone: 'Africa/Lagos'
-    });
+  //  CronJob.from({
+  //   cronTime: '10 8 * * *', 
+  //   onTick: dailyEv3(),
+  //   start: true,
+  //   timeZone: 'Africa/Lagos'
+  //   });
   
-       CronJob.from({
-        cronTime: '10 8 * * *',  
-        onTick: dailyWiki(),
-        start: true,
-        timeZone: 'Africa/Lagos'
-       }); 
+  //      CronJob.from({
+  //       cronTime: '10 8 * * *',  
+  //       onTick: dailyWiki(),
+  //       start: true,
+  //       timeZone: 'Africa/Lagos'
+  //      }); 
 export default async function Home() {
 const latestPosts=await newsByLatest() 
   const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
@@ -264,7 +264,8 @@ const latestPosts=await newsByLatest()
 return (
     <div> 
 <MainSlider livesNews={latestPosts.resp1Live}latestPosts={latestPosts.resp}/>
-    <Main top_PostsData={postData} news_outline={news_outline} /> 
+    <Main top_PostsData={postData} 
+news_outline={news_outline} /> 
     </div>
   ); 
 }

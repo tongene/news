@@ -561,7 +561,7 @@ postData?.suggested_tags?.map((ex, xi)=>
 <div className=' '>
 <Image 
 onClick={openImg}
-src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}/${xy}`}  
+src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${xy}`}  
 width={805} 
 height={605} 
 className='animate-in cursor-pointer rounded-lg mx-1 my-2 border-2 border-gray-300'

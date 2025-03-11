@@ -28,7 +28,7 @@ setFakeNewsData(filteredTrends)
 
  <div className="px-2 cursor-pointer flex justify-between py-8 items-center hover:bg-opacity-70 hover:bg-green-50"> 
  <p className="p-2 text-lg">{i+1}.</p> 
- <h3 className="px-2 text-lg w-72"><a target='_blank' href={xy.url}>{xy.title}</a></h3>  
+ <h3 className="px-2 text-lg w-72"><a target='_blank' href={xy.url}>{fakeNewsData[i].text}</a></h3>  
  <p className="p-1 mt-2 xl:mt-0 text-xl opacity-70"><a target='_blank' href={xy.url}><FontAwesomeIcon icon={faAngleRight}/></a></p>  
 
  </div> 
