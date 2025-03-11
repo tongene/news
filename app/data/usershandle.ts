@@ -1,12 +1,14 @@
-import { agent, fetchWithRetry } from "@/utils/fetchWithRetry";
+
+import axios from "axios";
 
 export async function usersList(){
-    const wprest = await fetchWithRetry('https://content.culturays.com/graphql',{
+    const wprest = axios({
+      url:'https://content.culturays.com/graphql',
         method: 'POST',
         headers:{
             'Content-Type':'application/json'
         },
-        body: JSON.stringify({
+        data: JSON.stringify({
           query:`
           query WPUSERS {
         users {
@@ -24,20 +26,20 @@ export async function usersList(){
         
         })
         
-        }).then(response => response)   
-        .then(data =>data) 
+        }).then(response => response.data.data.users.edges) 
         .catch(error => console.error('Error:', error));
-        const response = wprest?.data.users.edges
-        return response
+    // const response = wprest?.data.users.edges
+        return wprest 
 }
 
 export async function userItem(slug:string){
-    const wprest = await fetchWithRetry('https://content.culturays.com/graphql',{
+    const wprest = axios({
+      url:'https://content.culturays.com/graphql',
         method: 'POST',
         headers:{
             'Content-Type':'application/json'
         },
-        body: JSON.stringify({
+        data: JSON.stringify({
     query:`
     query WPUSER($id: ID!, $idType: UserNodeIdTypeEnum!){
      user(id: $id, idType: $idType) {
@@ -60,9 +62,9 @@ export async function userItem(slug:string){
         
         })
         
-        .then(response =>  response) 
+        .then(response => response.data.data.user) 
         .then(data =>data) 
         .catch(error => console.error('Error:', error));
-         const response = wprest.data.user
-        return response
+        // const response = wprest.data.user
+        return wprest 
 }

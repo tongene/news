@@ -1,0 +1,669 @@
+"use server"
+import { agent, fetchWithRetry } from "@/utils/fetchWithRetry"; 
+
+export async function newchars(){ 
+  
+  try {
+    const wprest =fetch('https://content.culturays.com/graphql',{
+        method: 'POST',
+        headers:{
+        'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query: `
+          query WPChars {
+           naijaWikis(last: 100) {
+                nodes {
+                  content
+                  excerpt
+                  title
+                   id
+                  slug
+                  date
+                  
+      featuredImage {
+        node {
+        altText
+        sourceUrl
+        }
+        }
+      
+        contentTags {
+          nodes {
+          name
+          slug
+          naijaWikis {
+              nodes {
+                date
+                excerpt
+                id
+                title
+                slug
+              }
+            }
+          }
+        }
+        charactertitles{  
+          series
+          movie
+          shorts
+          portrayedby
+          genre
+          filmname
+          filmDirector
+          actorsUpcomingMovie
+          releaseDate
+          country
+          characterWiki
+          charBios
+          actorsBios
+          actorWiki
+          filmAbout
+          characterOtherName
+          prequel
+          sequel
+          filmProducer
+          filmMedia
+          filmFamily
+          filmFamilyAbout
+           actorImgs {
+            node{
+              altText
+           sourceUrl 
+            }
+           
+        }
+        actorImgs2 {
+          node{
+             altText
+           sourceUrl   
+          }
+          
+        }
+          charRel {
+            edges {
+              node {
+                ... on NaijaWiki {
+                  id
+                  featuredImage {
+                    node {
+                      altText
+                      sourceUrl
+                    }
+                  }
+              id
+              slug
+              title
+              excerpt
+              content
+              charactertitles {
+                shorts
+                series
+                portrayedby
+                movie
+                genre
+                actorsUpcomingMovie
+                filmname
+                filmDirector
+                characterWiki
+                actorWiki
+              }
+                }
+              }
+            }
+          }
+          filmImg1 {
+            node{
+              altText
+           sourceUrl
+           }
+          }
+          filmImg2 {
+            node{
+               altText
+            sourceUrl
+            }
+           
+          }
+
+          actorImgs {
+            node{
+              altText
+           sourceUrl 
+            }
+           
+        }
+        actorImgs2 {
+          node{
+             altText
+           sourceUrl   
+          }
+          
+        }
+          
+        } }}
+
+         }  
+         ` 
+        
+        })
+        
+        }).then(response => response.json())  
+       .then(data =>data?.data.naijaWikis.nodes) 
+       .catch(error => console.error('Error:', error));
+       const response = wprest
+       return wprest
+      } catch (error) {
+        console.error('Error fetching posts:', error); 
+      }
+} 
+
+export async function relatedChars(){ 
+  
+  try {
+    const wprest = fetch('https://content.culturays.com/graphql',{
+        method: 'POST',
+        headers:{
+        'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query: `
+          query WPChars {
+            naijaWikis {
+                nodes {
+                  content
+                  excerpt
+                  title
+                   id
+                  slug
+                  date
+                  
+      featuredImage {
+        node {
+        altText
+        sourceUrl
+        }
+        }
+      
+        contentTags {
+          nodes {
+          name
+          slug
+          naijaWikis {
+              nodes {
+                date
+                excerpt
+                id
+                title
+                slug
+              }
+            }
+          }
+        }
+        charactertitles{  
+          series
+          movie
+          shorts
+          portrayedby
+          genre
+          filmname
+          filmDirector
+          actorsUpcomingMovie
+          releaseDate
+          country
+          characterWiki
+          charBios
+          actorsBios
+          actorWiki
+          filmAbout
+          characterOtherName
+          prequel
+          sequel
+          filmProducer
+          filmMedia
+          filmFamily
+          filmFamilyAbout
+         
+          charRel {
+            edges {
+              node {
+                ... on NaijaWiki {
+                  id
+                  featuredImage {
+                    node {
+                      altText
+                      sourceUrl
+                    }
+                  }
+              id
+              slug
+              title
+              excerpt
+              content
+              charactertitles {
+                shorts
+                series
+                portrayedby
+                movie
+                genre
+                actorsUpcomingMovie
+                filmname
+                filmDirector
+                characterWiki
+                actorWiki
+              }
+                }
+              }
+            }
+          }
+          filmImg1 {
+            node{
+              altText
+           sourceUrl
+           }
+          }
+          filmImg2 {
+            node{
+               altText
+            sourceUrl
+            }
+           
+          }
+
+          actorImgs {
+            node{
+              altText
+           sourceUrl 
+            }
+           
+        }
+        actorImgs2 {
+          node{
+             altText
+           sourceUrl   
+          }
+          
+        }
+          
+        } }}
+
+         }  
+         ` 
+        
+        })
+        
+        }).then(response => response.json())  
+       .then(data =>data?.data.naijaWikis.nodes) 
+       .catch(error => console.error('Error:', error));
+       const response = wprest
+        return wprest 
+      } catch (error) {
+        console.error('Error fetching posts:', error); 
+      }
+} 
+
+export async function newcharCall(slug:string){
+ 
+      const wprest = fetch('https://content.culturays.com/graphql',{
+        method: 'POST',
+        headers:{
+        'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query: `
+          query WPChar($id: ID!, $idType: NaijaWikiIdType){
+            naijaWiki(id: $id, idType:$idType) {
+              id
+              date               
+             featuredImage {
+                        node {
+                          sourceUrl
+                          altText
+                          caption
+                       
+                      }
+                 }
+                  charactertitles { 
+                    actorImgs {
+                      node{
+                         altText
+                      sourceUrl
+                       caption
+                      }
+                     
+                    }
+                    actorImgs2 {
+                      node{
+                        altText
+                     sourceUrl
+                      caption
+                     }
+                    }
+                    actorWiki
+                    actorsBios
+                    charBios
+                    filmImg1{
+                    node{
+                      altText
+                      sourceUrl
+                      caption
+                    }
+                    }
+                    releaseDate
+                    characterWiki
+                    country
+                    filmDirector
+                    filmname
+                    genre
+                    filmFamily
+                    filmFamilyAbout 
+                    portrayedby
+                    series
+                    characterOtherName
+                  }
+                  title
+                  slug
+                  contentTags {
+                    nodes {
+                      slug
+                      name
+                      naijaWikis {
+                        nodes {
+                          title
+                          slug
+                        }
+                      }
+                    }
+                  }
+                  charCategories {
+                    nodes {
+                      name
+                      slug
+                      naijaWikis {
+                        nodes {
+                          date
+                          excerpt
+                          title
+                          slug
+                        }
+                      }
+                    }
+                  }
+                  excerpt 
+                  content 
+                }
+              } 
+         ` 
+         ,
+     variables:{
+       id: slug,
+       idType: 'SLUG'
+     }
+        })
+        
+        })
+    
+    .then(response => response.json())  
+    .then(data =>data?.data.naijaWiki) 
+    .catch(error => console.error('Error:', error)); 
+    const response = wprest
+    return wprest 
+} 
+  
+export const contentFeed = async()=>{  
+  const wprest =fetch('https://content.culturays.com/graphql',{
+     method: 'POST',
+     headers:{ 
+     'Content-Type':'application/json'
+     },
+     body: JSON.stringify({
+       query: `query CONTENTFEED{
+     contentNodes(first:100) {
+     nodes {
+       date
+       contentTypeName
+        ... on NetflixNaija {
+         id
+         title
+         slug
+          author {
+         node {
+          name
+           slug
+         }
+       }
+             featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       } 
+
+           ... on Live {
+          id
+           databaseId
+         title
+         slug
+       featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+         author {
+         node {
+         name
+           slug
+         }
+     }
+         }
+       ... on Technology {
+          id
+         title
+         slug
+         author {
+         node {
+         name
+           slug
+         }
+       }
+             featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       }   ... on Video {
+          id
+         title
+         slug
+         excerpt
+         author {
+         node {
+         name
+           slug
+         }
+       }
+             featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       }   ... on Post {
+          id
+         title
+         slug
+         author {
+         node {
+         name
+           slug
+         }
+       }
+             featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       }   ... on Nollywood {
+          id
+         title
+         slug   
+         author {
+         node {
+           name
+           slug
+         }
+       }
+             featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       }    ... on Article {
+          id
+         title
+         slug  
+          author {
+         node {
+        name
+           slug
+         }
+       }
+             featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       }    ... on Society {
+         id
+         title
+         slug   
+         author {
+         node {
+        name
+           slug
+         }
+       } 
+         featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       }  ... on Health {
+         id
+         title
+         slug 
+          author {
+         node {
+         name
+           slug
+         }
+       }
+             featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       }  ... on Economy {
+         id
+         title
+         slug 
+          author {
+         node {
+         name
+           slug
+         }
+       } 
+         featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       }  ... on Trending {
+         id
+         title
+         slug 
+          author {
+         node {
+         name
+           slug
+         }
+       } 
+         featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       }  ... on Environment {
+         id
+         title
+         slug 
+          author {
+         node {
+          name
+           slug
+         }
+       }
+             featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       } 
+       
+        ... on Char {
+         id
+         title
+         slug 
+          author {
+         node {
+          name
+           slug
+         }
+       }
+             featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       } 
+       ... on Business {
+         id
+         title
+         slug 
+          author {
+         node {
+           name
+           slug
+         }
+       }
+             featuredImage {
+         node {
+           altText
+           sourceUrl
+         }
+       }
+       }  
+     }
+   }
+       
+       }`})
+     
+     }).then(response => response.json())   
+     .then(data => data.data.contentNodes.nodes )
+     .catch(error => console.error('Error:', error));
+    // const response = wprest?.data.contentNodes.nodes 
+     return wprest 
+ 
+ }

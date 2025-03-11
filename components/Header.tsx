@@ -30,7 +30,7 @@ setBarState(prev=> !prev)
 <p className="opacity-70 mx-2" >
 <FontAwesomeIcon icon={faXmark} className="text-white w-6 h-11 cursor-pointer"/>
 </p>
-{/* <div className="animate-in">       
+  <div className="animate-in">       
 <ul className="text-white p-3 flex flex-col text-center justify-center items-center h-max">
 <Link href='/news/economy'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full">
  Economy
@@ -54,7 +54,7 @@ Society
  
 </ul>
 
-</div> */}
+</div>  
 </div>
 
 } 
@@ -70,9 +70,8 @@ height={35} />
 </header> 
 {!barState&&
   <nav className="absolute top-0 w-full md:block hidden">
-{/* <div className="m-2">       
-<ul className="flex justify-center">
- 
+  <div className="m-2">       
+<ul className="flex justify-center"> 
 <Link href='/news/economy'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg w-max">
  Economy
 </li></Link>
@@ -93,7 +92,7 @@ Society
 </li></Link> 
 </ul>
 
-</div> */}
+</div> 
 </nav>
 }
 </>

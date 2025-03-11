@@ -10,18 +10,17 @@ import "./globals.css";
 import localFont from 'next/font/local';
 // import GoogleAnalytics from "@/components/Analytics";
 import Footer from "@/components/Footer";
-// import TagManager from "@/components/TagManager";
-// import Latests from "@/components/Latests";
-// import TabNav from "@/components/TabNav";
-// import SearchItems from "@/components/SearchItems";
+import Latests from "@/components/Latests";
+import TabNav from "@/components/TabNav";
+import SearchItems from "@/components/SearchItems";
 import Header from "@/components/Header";
-// import Nav from "@/components/Nav";
-// import SocialNav from "@/components/SociaNav"; 
+import Nav from "@/components/Nav";
+import SocialNav from "@/components/SociaNav"; 
 import { Suspense } from "react";
 import type { Metadata } from 'next'
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
+const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
+  ? `https://${process.env.NEXT_PUBLIC_BASE_URL}`
   : "http://localhost:3000";
  
   const geistSans = Geist({
@@ -175,10 +174,15 @@ export default function RootLayout({
   // const searchParams = Object.fromEntries(
   //   new URLSearchParams(headerStore.get("confirm") || "")
   // ); <pre>{JSON.stringify(searchParams, null, 2)}</pre>
- {/* <TagManager/> */}  {/* <GoogleAnalytics/> */} 
+ {/* <TagManager/> */}  {/* <GoogleAnalytics/> 
+          <noscript
+    dangerouslySetInnerHTML={{
+      __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ6RQP9V" height="0" width="0" style="display: none; visibility: hidden;" />`,
+    }}
+  />*/} 
   return (
     <html lang="en" className={geistSans.className} suppressHydrationWarning> 
-       <Script async type="text/javascript"strategy="afterInteractive" src="//clickiocmp.com/t/consent_234292.js"/><Script
+       <Script async strategy="afterInteractive" src="//clickiocmp.com/t/consent_234292.js"/><Script
 id='gt-manager'
 strategy="afterInteractive"
 dangerouslySetInnerHTML={{
@@ -202,15 +206,13 @@ dangerouslySetInnerHTML={{
                 gtag('config', 'G-P51WG5SXDB', {
                     page_path: window.location.pathname,
                 });
-                `,
-
-                
+                `, 
                 }}
-            /><body className="bg-background text-foreground"><noscript
-    dangerouslySetInnerHTML={{
-      __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ6RQP9V" height="0" width="0" style="display: none; visibility: hidden;" />`,
-    }}
-  /><ThemeProvider
+            /><body className="bg-background text-foreground"><Script
+            id="gtm-script"
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtm.js?id=GTM-PJ6RQP9V`}
+          /><ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
@@ -219,12 +221,12 @@ dangerouslySetInnerHTML={{
           <main className="m-auto"style={{maxWidth:'100%'}} >
             <div> 
    <Header/> 
- {/*  <SocialNav/>  
-  <HeaderAuth />  
-   <Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense> */}
+  <SocialNav/>  
+<HeaderAuth />  
+   <Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense>
 <div className="flex flex-col">{children}  
              </div>
-              {/* <Latests/>*/} 
+             <Latests/> 
                <Footer/>   
             </div>
           </main> 

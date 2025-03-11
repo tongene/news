@@ -1,0 +1,87 @@
+"use client"
+import { useEffect, useState } from "react";
+import Pagination from "./Pagination";
+import Image from "next/image";
+import Link from "next/link";
+import moment from "moment";
+import { usePathname } from "next/navigation";
+ 
+const Paginate = ({content}:{content:any[]}) => {
+    const [posts, setPosts]=useState<any[]>([]) 
+    const [currPg, setCurrPg]=useState(1)
+    const [postPerPage, setPostPerP]=useState(10)  
+  const path = usePathname() 
+    function decrement() {
+     setCurrPg(currPg - 1); 
+   }
+   function increment() {
+     setCurrPg(currPg + 1); 
+   }
+    
+   useEffect(()=>{
+     const fetchPs= async()=>{ 
+       setPosts([...content])  
+     }
+     fetchPs()
+   },[content]) 
+  
+   const idxLastPs= currPg * postPerPage
+   const idxFsPage = idxLastPs - postPerPage
+   const currentPosts = posts.slice(idxFsPage, idxLastPs)  
+   const paginating=(pageNumber:number)=>{  
+   setCurrPg(pageNumber) 
+   }
+   const replaceHTMLTags=(string:string)=>{
+    const regex = /(<([^>]+)>)/gi;
+    //(/<\/?[^>]+(>|$)/g, "")
+    const newString = string?.replace(regex, "");
+    return newString
+     }
+     
+  return (
+    <div>       
+   <section>
+   <div className="pages_shadow border-b-2 border-black p-5 max-w-6xl h-max">
+   {currentPosts.map((itx,index)=> 
+   <div key={index} className="border-b xs:flex" > 
+   <div className="xs:w-3/4 m-1 sm:m-4"> 
+        <p className="italic text-red-600 text-right py-2">{moment(itx.date).fromNow()}</p> 
+  <Image  
+        width={1200}
+        height={675}
+       src={itx.featuredImage?.node?.sourceUrl}
+       alt={itx.title}
+       />
+         
+           </div>   
+         <div className="w-full m-1 sm:m-3 py-5">    
+           <div className="py-2"><Link href={`/news/${path.split('/')[2]}/${itx.slug}`}><h2 className="text-2xl overflow-hidden text-ellipsis font-bold hover:text-gray-600" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical', lineHeight:'35px' }}>{itx.title}</h2></Link></div> 
+         <Link href={`/news/${path.split('/')[2]}/${itx.slug}`}><p className="text-lg hover:text-gray-600 overflow-hidden text-ellipsis" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical', lineHeight:'35px' }} >{replaceHTMLTags(itx.excerpt)} </p></Link>       
+       <div className="max-w-max flex flex-wrap"> {itx.contentTags.nodes.map((tx:{name:string, slug:string} ,index:number)=> 
+       <div key={index}>
+   <Link href={`/topic/${tx.slug}`}><p className="text-lg bg-gray-600 px-6 py-2 m-1 text-gray-200 hover:bg-red-600"> {tx.name }</p></Link></div>)} 
+       </div>    
+     
+        </div>  
+   </div>)}
+
+    <div> 
+  <div className="text-right flex justify-end items-end my-2" >
+  {currPg === 1 ? 
+  '':<button onClick={decrement} className="text-xl rounded p-4 cursor-pointer font-bold bg-gray-600 text-white">
+        <span>&#x226A;</span> Previous Page 
+      </button> }
+     <div> {currPg === postPerPage ?'': <button onClick={increment}className="text-xl text-gray-200 hover:text-gray-50 rounded-sm p-4 cursor-pointer font-bold bg-gray-600">
+       Next Page <span>&#x226B;</span> 
+        </button> }</div>
+      </div>
+      </div>  
+   </div>
+  
+    </section>  
+  <Pagination postPerPage={postPerPage} totalPosts={posts.length} paginating={paginating} />  
+    </div>
+  ) 
+}
+
+export default Paginate

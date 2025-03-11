@@ -23,8 +23,7 @@ const ConfirmModal = () => {
   },[params])
   return ( 
     
-    <div>
- 
+    <div> 
      {prX?.includes('logout')? 
      <div className="p-8 bg-gray-800 bg-opacity-40 m-auto z-50 h-full -top-1 fixed w-full left-0 text-center flex items-center justify-center"> 
      <div className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl place-self-center ">

@@ -20,7 +20,7 @@ export type FakeObj={
 } 
 
 export const getNaijaTrends1=async ()=> { 
-  const titleObj:Obj[]= [] 
+const titleObj:Obj[]= [] 
 await googleTrends.dailyTrends({
   geo: 'NG',
   category: 'all',
@@ -37,7 +37,7 @@ await googleTrends.dailyTrends({
            //  titleObj.push({ title: search.title.query });
               });
           } else {
-   //console.log("No trending data available.");
+  //console.log("No trending data available.");
               return []
           }
       } catch (error) {

@@ -1797,7 +1797,75 @@ edges:[]
           endCursor:string
           hasNextPage:boolean
         }
-     
+        respPosts:{
+          nodes:{      
+          slug:string,
+          title:string,
+          excerpt:string
+          date:string
+          modified:Date
+          contentTypeName:string
+          author:{
+            node:{
+              slug:string,
+              name:string
+            }
+          },
+          featuredImage:{
+        node:{
+          sourceUrl:string,
+          altText:string
+        }
+          } 
+          posts:{
+              edges:{
+                cursor:string[]
+                node:{
+                  slug:string,
+              title:string,
+              excerpt:string
+              date:string
+              contentTypeName:string
+              databaseId:string
+              modified:Date
+              author:{
+                node:{
+                  slug:string,
+                  name:string
+                }
+              },
+              featuredImage:{
+            node:{
+              sourceUrl:string,
+              altText:string
+            }
+              }
+              }
+            
+              }[]
+              nodes:{
+                id:string
+                databaseId:string
+                slug:string,
+                title:string,
+                contentTypeName:string
+                date:string 
+                featuredImage:{
+              node:{
+                sourceUrl:string,
+                altText:string
+              }
+                }
+              }
+              pageInfo:{
+                endCursor:string
+              }
+             }
+             
+      }[]
+   
+    
+   }
    }
    export interface PostXNode {
     cursor:string
@@ -1981,3 +2049,58 @@ edges:[]
   }]
    
   }
+
+export type CineProps={
+  genre:string
+  title:string
+  url:string
+  release_date:string
+  featuredImage:{
+    node:{
+      sourceUrl:string
+      caption:string
+      altText:string
+     }
+   }
+}
+  export type SideNode ={
+    node:{
+        title:string;
+        featuredImage:{node:{altText:string,sourceUrl:string}};
+        excerpt:string;
+        slug:string
+    
+    };
+    outlineGroup:{outlineVideos:{node:{altText:string,mediaItemUrl:string}}}
+    cursor: string
+    content:string
+    featuredImage:{
+      node:{
+        sourceUrl:string
+        caption:string
+        altText:string
+       }
+     }
+  }
+  export type Cursors={
+    cursor: string 
+    node:{
+      title:string
+      slug:string
+      date:string
+      featuredImage:{
+        node:{
+          sourceUrl:string
+          caption:string
+          altText:string
+         }
+       }
+       author:{
+        node:{
+          name:string
+          slug:string 
+         }
+       }
+    }
+  }
+  

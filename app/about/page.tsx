@@ -12,7 +12,7 @@ export const metadata = {
 }; 
 
 const AboutUsPage =async () => {
-const listedUsers= await usersList()
+const listedUsers= await usersList() 
    return (  
  <AboutUs  
  listedUsers={listedUsers}
