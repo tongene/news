@@ -1,6 +1,5 @@
 import axios from 'axios';
 import http from 'http'
-import fetch from 'node-fetch'
 export const agent = new http.Agent({
   keepAlive: true,
 });
