@@ -1,6 +1,4 @@
 "use server"
-import { agent, fetchWithRetry } from "@/utils/fetchWithRetry"; 
-
 export async function newchars(){ 
   
   try {

@@ -1,5 +1,6 @@
 "use client"
-import { fetchNewPosts, nextNewsPosts,  postLastAndScrolledCategories} from '@/app/data'
+ 
+import { fetchNewPosts, postLastAndScrolledCategories } from '@/app/page-bottom'
 import { InnerEdges, LatestProps, PostsNotInPost, PostXNode } from '@/app/types'
 import { dateFormatter } from '@/utils/dateformat'
 import Image from 'next/image'
