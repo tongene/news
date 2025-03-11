@@ -2,10 +2,11 @@
 import Link from "next/link"
 import moment from "moment/moment"
 import Image from "next/image"  
-import Paginate from "../Paginate"
 import SideBar from "../Side" 
+import { CineProps, Cursors, SideNode } from "@/app/types"
+import Paginate from "../Paginate"
 
-type PostProps={
+type PostProps={ 
   title:string
   slug:string
   excerpt:string
@@ -40,7 +41,7 @@ type PostProps={
     }[]
     }
 }
-const Nollywood = ({nollywood_news}:{nollywood_news:PostProps[]}) => {
+const Nollywood = ({nollywood_news, sidebarItems, news_outline, coming_titles}:{nollywood_news:PostProps[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => {
  
  const replaceHTMLTags=(string:string)=>{
   const regex = /(<([^>]+)>)/gi;
@@ -110,7 +111,8 @@ const Nollywood = ({nollywood_news}:{nollywood_news:PostProps[]}) => {
 </div> 
 <div className="md:flex justify-between max-w-max"> 
 <Paginate content={nollywood_news?.slice(4)}/>
-<SideBar/>
+<SideBar sidebarItems={sidebarItems}
+news_outline={news_outline} coming_titles={coming_titles}/>
  </div>  
  </div>
  )

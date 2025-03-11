@@ -1,4 +1,6 @@
+import { postsOutline, sidePlusViews } from "@/app/page-data";
 import Videos from "@/components/News/Videos";
+import { createClient } from "@/utils/supabase/server";
 const vids = async()=>{  
  
   const wprest = fetch('https://content.culturays.com/graphql',{
@@ -86,11 +88,25 @@ export const metadata = {
 }; 
 const VideosPage = async () => {
 const content_videos = await vids(); 
-  
+  const sidebarItems=await sidePlusViews()       
+         const news_outline=await postsOutline()
+         const naija_wiki =async ()=>{  
+          const supabase =await createClient() 
+          const { data:cinema_titles , error } = await supabase 
+          .from('cinema_titles') 
+          .select('*')
+          if(error)throw new Error('An Error has occured!')
+    return cinema_titles
+              
+          }   
+     const xTitltes= await naija_wiki()
+       const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon')) 
    return (  
     <> 
 <Videos
   content_videos={content_videos}
+  sidebarItems={sidebarItems}
+ news_outline={news_outline} coming_titles={coming_titles}
   />  
  
    </>

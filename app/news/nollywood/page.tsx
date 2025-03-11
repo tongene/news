@@ -1,4 +1,6 @@
+import { postsOutline, sidePlusViews } from "@/app/page-data";
 import Nollywood from "@/components/News/Nollywood";
+import { createClient } from "@/utils/supabase/server";
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}/nollywood` 
@@ -68,11 +70,25 @@ export const metadata = {
 
 const NollywoodPage =async () => {
  const nollywood_news = await nollywoodBlog()
- 
+ const sidebarItems=await sidePlusViews()       
+       const news_outline=await postsOutline()
+       const naija_wiki =async ()=>{  
+        const supabase =await createClient() 
+        const { data:cinema_titles , error } = await supabase 
+        .from('cinema_titles') 
+        .select('*')
+        if(error)throw new Error('An Error has occured!')
+  return cinema_titles
+            
+        }   
+   const xTitltes= await naija_wiki()
+     const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
   return (
     <div>
   <Nollywood
      nollywood_news={nollywood_news}
+     sidebarItems={sidebarItems}
+ news_outline={news_outline} coming_titles={coming_titles}
   />  
     </div>
   )

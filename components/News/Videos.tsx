@@ -1,15 +1,13 @@
  
 import Image from 'next/image'
 import moment from 'moment' 
-import Link from 'next/link'
-import Paginate from "../Paginate" 
+import Link from 'next/link' 
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SideBar from '../Side'
-import { VidProps } from '@/app/types' 
-
-
-const Videos = ({content_videos}:{content_videos:VidProps[]}) => { 
+import { CineProps, Cursors, SideNode, VidProps } from '@/app/types' 
+import Paginate from '../Paginate'
+const Videos = ({content_videos, sidebarItems, news_outline, coming_titles}:{content_videos:VidProps[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => { 
  const replaceHTMLTags=(string:string)=>{
   const regex = /(<([^>]+)>)/gi;
   //(/<\/?[^>]+(>|$)/g, "")
@@ -85,7 +83,8 @@ const Videos = ({content_videos}:{content_videos:VidProps[]}) => {
 </div> 
 <div className="md:flex justify-between max-w-max bg-white m-auto"> 
 <Paginate content={content_videos.slice(4)}/>
-  <SideBar/>  
+  <SideBar sidebarItems={sidebarItems}
+news_outline={news_outline} coming_titles={coming_titles}/>  
  </div>  
  </div>
  )

@@ -4,6 +4,7 @@ import Link from "next/link"
 import { dateFormatter } from "@/utils/dateformat"
 import SlideFxn from "../SlideFxn"  
 import SideBar from "../Side"  
+import { CineProps, Cursors, SideNode } from "@/app/types"
 type PostProps={
   title:string
   slug:string
@@ -28,7 +29,7 @@ type PostProps={
     }
     contentTypeName:string
 }
-const Awards = ({awards_content}:{awards_content:PostProps[]}) => {  
+const Awards = ({awards_content, sidebarItems, news_outline, coming_titles}:{awards_content:PostProps[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => {  
     const replaceHTMLTags=(string:string)=>{
       const regex = /(<([^>]+)>)/gi;
       //(/<\/?[^>]+(>|$)/g, "") 
@@ -99,9 +100,10 @@ height={675}
 </div>
   </div>
   <div className=" md:mt-8"> 
- <SideBar/>
+ <SideBar sidebarItems={sidebarItems}
+news_outline={news_outline} coming_titles={coming_titles}/>
   </div> 
-</div>
+</div> 
 
  
   <div className="bg-white m-auto" style={{maxWidth:'1750px'}}> 
