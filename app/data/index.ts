@@ -1,4 +1,7 @@
-"use server" 
+"use server"
+import { newsByLatest } from "../page-data";
+
+ 
 
 //   export async function newsPosts(){  
 //     const wprest = fetch('https://content.culturays.com/graphql',{     
@@ -342,78 +345,78 @@
   
      } 
    
-//   export async function nextNewsPosts(){
-//     const latestPosts=await newsPosts() 
-//     const postX = latestPosts.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts.pageInfo.endCursor).flat()  
+  export async function nextNewsPosts(){
+    const latestPosts=await newsByLatest() 
+    const postX = latestPosts.resp.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts.pageInfo.endCursor).flat()  
    
-//   const wprest =   fetch('https://content.culturays.com/graphql',{
-//       method: 'POST',
-//       headers:{
-//           'Content-Type':'application/json'
-//       },
-//       body: JSON.stringify({
-//         query:`
-//         query WPPOSTS { 
-//        categories(where:{name: "News"}){          
-//        edges {
-//         cursor      
-//         node {
-//       name
-//       slug
-//        posts(after:"${postX[0]}",first:20 ){ 
-//           nodes {
-//             author {
-//               node {
-//                 name
-//                 slug
-//               }
-//             }
-//                categories {
-//               nodes {
-//                 name
-//                 slug
-//               }
-//             }
+  const wprest =   fetch('https://content.culturays.com/graphql',{
+      method: 'POST',
+      headers:{
+          'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query:`
+        query WPPOSTS { 
+       categories(where:{name: "News"}){          
+       edges {
+        cursor      
+        node {
+      name
+      slug
+       posts(after:"${postX[0]}",first:20 ){ 
+          nodes {
+            author {
+              node {
+                name
+                slug
+              }
+            }
+               categories {
+              nodes {
+                name
+                slug
+              }
+            }
               
-//                 postsTags {
-//               nodes {
-//                 name
-//                 slug
-//               }
-//             }  tags {
-//               nodes {  id
-//                 name
-//                 slug
-//               }
-//             }
-//             date
-//             excerpt
-//              slug
-//             title
-//             featuredImage {
-//               node {
-//                 altText
-//                 sourceUrl
-//               }
-//             }
+                postsTags {
+              nodes {
+                name
+                slug
+              }
+            }  tags {
+              nodes {  id
+                name
+                slug
+              }
+            }
+            date
+            excerpt
+             slug
+            title
+            featuredImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
            
            
-//           }
-//         } 
-//     }
-//   }
-// }
-//   } ` 
+          }
+        } 
+    }
+  }
+}
+  } ` 
       
-//       })
+      })
       
-//       }).then(response => response.json())
-//       .then(data => data.data)
-//       .catch(error => console.error('Error:', error));
-//       const response = wprest 
-//       return wprest
+      }).then(response => response.json())
+      .then(data => data.data)
+      .catch(error => console.error('Error:', error));
+      const response = wprest 
+      return wprest
   
-//   }
+  }
 
  
 //   export async function postLastAndScrolledCategories (string:string[]){

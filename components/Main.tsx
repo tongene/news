@@ -6,7 +6,7 @@ import { CronJob } from "cron";
 import { dateFormatter } from '@/utils/dateformat'
 import Link from 'next/link'  
 import moment from 'moment'
-//import { nextNewsPosts, postCategories, postNextCategories } from '@/app/data'
+import { nextNewsPosts, postCategories, postNextCategories } from '@/app/data'
 import { CineProps, Cursors, InnerEdges, PostsNotInPost, PostXNode, SideNode } from '@/app/types'  
 import MainBottom from './MainBottom'
 import SideBar from './Side'
@@ -109,7 +109,7 @@ const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotI
     setCategoryName(name) 
   
     }; 
-//  const posts_all= top_Posts_notIn_newsPosts?.map((xy)=> xy?.node.posts).filter((vx)=> vx.nodes.length>0)
+  // const posts_all= top_Posts_notIn_newsPosts?.map((xy)=> xy?.node.posts).filter((vx)=> vx.nodes.length>0)
 // useEffect(()=>{
 //   const newxTitles=async()=>{
 //     await getGoogleNewsTitles(location) 
@@ -408,7 +408,7 @@ className='rounded-xl h-44 object-cover'
 <div className=""> 
      <SideBar sidebarItems={sidebarItems}news_outline={news_outline} coming_titles={coming_titles}/>  
   </div> </div>
-   {/* <MainBottom 
+  {/* <MainBottom 
    posts_all={posts_all} 
    top_Posts_notIn_newsPosts={top_Posts_notIn_newsPosts}
    postCategory_cursor={postCategory_cursor}

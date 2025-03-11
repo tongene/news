@@ -1,5 +1,6 @@
 import Trending from "@/components/News/Trending" 
-async function trending(slug:string){  const wprest = fetch('https://content.culturays.com/graphql',{
+async function trending(slug:string){
+const wprest = fetch('https://content.culturays.com/graphql',{
 method: 'POST',
 headers:{
 'Content-Type':'application/json'
@@ -111,7 +112,7 @@ idType: 'SLUG'
  
 }
 
-export async function similarTrending(notIn:string[]){
+async function similarTrending(notIn:string[]){
  
   const wprest = fetch('https://content.culturays.com/graphql',{
  method: 'POST', 

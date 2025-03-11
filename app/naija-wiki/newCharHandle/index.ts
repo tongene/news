@@ -667,3 +667,78 @@ export const contentFeed = async()=>{
      return wprest 
  
  }
+
+
+ export const vids = async()=>{  
+ 
+  const wprest = fetch('https://content.culturays.com/graphql',{
+    method: 'POST',
+    headers:{ 
+    'Content-Type':'application/json'
+    },
+    body: JSON.stringify({
+      query: `
+       query WPVIDEOS {
+      videos { 
+    nodes {
+      videosGroup {
+        videoUrl {
+          node {
+            title
+            slug
+            mediaItemUrl
+            date
+            altText
+          }
+        }
+          related{
+          nodes{
+          ... on Video{
+          id
+           title
+          slug
+          }
+         
+          }
+          }
+      }
+      content 
+      date
+      excerpt
+      slug
+      title
+        contentTags{
+         nodes{
+         slug
+         name
+         }
+         
+         } 
+         videoCategories{
+         nodes{
+         slug
+         name
+         }
+         
+         }   
+      featuredImage{
+      node{
+      sourceUrl
+      altText
+      }
+      
+      }
+    }
+  }
+    }
+    `
+    })
+ 
+    }) 
+    .then(response => response.json())   
+    .then(data => data.data.videos.nodes)
+    .catch(error => console.error('Error:', error));
+   // const response = wprest?.data.videos.nodes 
+    return wprest 
+ 
+  }
