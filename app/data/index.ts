@@ -1,5 +1,6 @@
 "use server"
 import { newsByLatest } from "../page-data";
+import { InnerEdges } from "../types";
 
  
 
@@ -266,8 +267,10 @@ import { newsByLatest } from "../page-data";
      return wprest
   }  
 
-  export async function postNextCategories (notIn:string[]){ 
-  
+  export async function postNextCategories (){ 
+    const post_data = await postCategories()
+    const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
+    const postCategory_cursor = postCategory_Children?.map((xy:InnerEdges)=> xy.node?.posts?.edges)?.flat()?.map((t)=> t?.cursor)??[] 
  const wprest = fetch('https://content.culturays.com/graphql',{
            method: 'POST',
            headers:{
@@ -275,7 +278,7 @@ import { newsByLatest } from "../page-data";
            },
            body: JSON.stringify({
              query:`
-             query WPPOSTS($notIn:[ID]){ 
+             query WPPOSTS { 
              categories( where: {name: "Topics"}) {          
          edges {
           cursor      
@@ -288,7 +291,7 @@ import { newsByLatest } from "../page-data";
           node {
           name
           slug
-         posts(where: {notIn:$notIn} ) { 
+         posts(where: {notIn:[${postCategory_cursor.map(id => `"${id}"`).join(", ")}]} ) { 
             nodes {
               author {
                 node {
@@ -333,7 +336,7 @@ import { newsByLatest } from "../page-data";
         }}
       }  }}
   }
-       } `, variables:{notIn:notIn} 
+       } ` 
            
            })
            
@@ -347,8 +350,10 @@ import { newsByLatest } from "../page-data";
    
   export async function nextNewsPosts(){
     const latestPosts=await newsByLatest() 
-    const postX = latestPosts.resp.categories.nodes.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts.pageInfo.endCursor).flat()  
-   
+    const postX = latestPosts.resp.categories.nodes.map((xy:{posts:{edges:any[] }})=> xy.posts.edges).flat().map((vx:any )=> vx.cursor)
+    const postsXY = latestPosts.resp2Post.map((xy:{posts:{edges:any[] }})=> xy.posts.edges).flat().map((vx:any)=> vx.cursor) 
+   const postsXcursors= postsXY.concat(postX) 
+ 
   const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{
@@ -363,7 +368,7 @@ import { newsByLatest } from "../page-data";
         node {
       name
       slug
-       posts(after:"${postX[0]}",first:20 ){ 
+       posts(where:{notIn:[${postsXcursors.map((id:string) => `"${id}"`).join(", ")}]},first:20 ){ 
           nodes {
             author {
               node {
@@ -377,14 +382,14 @@ import { newsByLatest } from "../page-data";
                 slug
               }
             }
-              
-                postsTags {
+             postsTags {
               nodes {
                 name
                 slug
               }
             }  tags {
-              nodes {  id
+              nodes { 
+              id
                 name
                 slug
               }
@@ -410,16 +415,14 @@ import { newsByLatest } from "../page-data";
       
       })
       
-      }).then(response => response.json())
+      }).then(response =>response.json())
       .then(data => data.data)
       .catch(error => console.error('Error:', error));
-      const response = wprest 
+      const response = await wprest  
       return wprest
   
-  }
-
+  } 
  
-// 
 //   export async function sideBarNewsItems(notIn:string[]){
     
 //   const wprest =   fetch('https://content.culturays.com/graphql',{

@@ -1,5 +1,6 @@
 "use client"
  
+import { nextNewsPosts } from '@/app/data'
 import { fetchNewPosts, postLastAndScrolledCategories } from '@/app/page-bottom'
 import { InnerEdges, LatestProps, PostsNotInPost, PostXNode } from '@/app/types'
 import { dateFormatter } from '@/utils/dateformat'
@@ -36,17 +37,23 @@ nodes:{
 }[]
 }
 
-const MainBottom = ({posts_all, top_Posts_notIn_newsPosts, postCategory_cursor }:{posts_all:PostAll[], postCategory_cursor:string[],top_Posts_notIn_newsPosts:PostsNotInPost[]}) => {
+const MainBottom = ({top_PostsCa}:{top_PostsCa:PostXNode[] }) => {
     const [scrolledContent, setScrolledContent]=useState<LatestProps[]>([])
     const {ref, inView } =useInView(); 
-    const [debouncedValue, setDebouncedValue] = useState('') 
-    const [top_Last_categories, setLast_categories]=useState<PostXNode[]>([]) 
-     const last_two_categories = top_Posts_notIn_newsPosts?.map((xt)=>xt.cursor)
-     const last_cursors=postCategory_cursor?.concat(last_two_categories)??[]
-     const post_end_cursor=top_Last_categories&&top_Last_categories[0]?.node.posts.pageInfo.endCursor
-     
-    const postsEnd =async()=>{ 
-     const last_categories = await postLastAndScrolledCategories( last_cursors)
+    const [debouncedValue, setDebouncedValue] = useState('')    
+    const [top_Last_categories, setLast_categories]=useState<PostXNode[]>([])
+    const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotInPost[]>([])
+    
+  const post_end_cursor=top_Last_categories&&top_Last_categories[0]?.node.posts.pageInfo.endCursor
+ const [end_post_cursor, setEnd_post_cursor] = useState(post_end_cursor);  
+    const postsEnd =async()=>{
+       const posts_notIn_newsPosts= await nextNewsPosts()  
+      const xtCategories= posts_notIn_newsPosts?.categories?.edges 
+      setPosts_notIn_newsPosts(xtCategories)
+   
+      const postCategory_cursor =(top_PostsCa?.map((xy)=> xy.node?.posts?.edges as InnerEdges ))?.flat()?.map((t)=> t?.cursor)??[]
+
+     const last_categories = await postLastAndScrolledCategories(postCategory_cursor)
      setLast_categories(last_categories)
      
       }
@@ -54,10 +61,14 @@ const MainBottom = ({posts_all, top_Posts_notIn_newsPosts, postCategory_cursor }
         postsEnd()
      
      },[])  
-  
-    const [end_post_cursor, setEnd_post_cursor] = useState(post_end_cursor);
+    
   
     const loadMorePosts = useCallback(async () => {
+      const posts_notIn_newsPosts= await nextNewsPosts() 
+      const xtCategories= posts_notIn_newsPosts?.categories?.edges 
+      const last_two_categories = xtCategories?.map((xt:{cursor:string})=>xt.cursor)
+      const postCategory_cursor =(top_PostsCa?.map((xy)=> xy.node?.posts?.edges as InnerEdges ))?.flat()?.map((t)=> t?.cursor)??[]  
+      const last_cursors=postCategory_cursor?.concat(last_two_categories)??[]
       if(last_cursors.length>0){
            const apiP = await fetchNewPosts(2, debouncedValue, last_cursors );
            const post_res=apiP?.categories?.nodes.map((xy:{ posts:{edges: InnerEdges[]}})=> xy.posts) 
@@ -82,7 +93,7 @@ const MainBottom = ({posts_all, top_Posts_notIn_newsPosts, postCategory_cursor }
            } 
           if( scrolledContent.length===20 )setEnd_post_cursor('');
           }
-         }, [debouncedValue, inView, last_cursors]);  
+         }, [debouncedValue, inView ]);  
            
          useEffect(() => { 
            if (inView&& debouncedValue !== null ) {
@@ -99,10 +110,9 @@ const MainBottom = ({posts_all, top_Posts_notIn_newsPosts, postCategory_cursor }
         clearTimeout(handler)
       }
     }, [end_post_cursor , 500])
-
+    const posts_all = top_Posts_notIn_newsPosts?.map((xy )=> xy?.node.posts).filter((vx )=> vx.nodes.length>0)
   return (
-    <div>
-       
+    <div>       
  <div className='xl:w-11/12 m-auto px-3'>
 <div className='flex justify-around items-center py-4'> 
 <h2 className='text-5xl font-bold w-max mx-4 font-mono py-6 italic'>News Bin</h2>

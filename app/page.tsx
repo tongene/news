@@ -127,12 +127,16 @@ interface CineType {
 type EvObjType= {
    titleAObj:any ; 
 }
+ 
   const dailyEv3 =async()=>{ 
-     const eventExp:EvObjType | undefined= await getNaijaEvents3();
+     const eventExp= await getNaijaEvents3();
+
     const result= await Promise.all(eventExp?.titleAObj.map(async( one:{atitle:string})=> {  
     const evData = await events3Details(one.atitle)
+    
      return evData 
       })) 
+
       const grouped: ObjType = { 
         title: [], 
         slug:'', 
@@ -144,10 +148,11 @@ type EvObjType= {
         genre_slug:'' ,
         location:''
       };
-     
-      const data = result.map((ex)=> ex.data) 
-     for (const ez of data ) {
-       for (const ex of ez ) { 
+       
+      const data = result.map((ex)=> ex.data)
+ 
+     for (const ez of data ) {      
+       for (const ex of ez ) {
          if (ex.title !== undefined){
          grouped['title']||=[]
         grouped.title=ex.title.replace(/\t/g, '').replace(/\n/g, '')
@@ -157,7 +162,7 @@ type EvObjType= {
         grouped.slug=replaceSpecialCharacters(ex.slug.replace(/’/g, "-").replace(/&/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/ /g,"-") )  
          
        } 
-   
+       
       //&& (ex.imgMime.includes('.jpg')|| ex.imgMime.includes('.png'))
        if (ex.img !== undefined ){ 
          const imgMime  =await processImgs(ex.img, 'event_avatars') 
@@ -192,7 +197,7 @@ type EvObjType= {
           
         } 
        } 
-    
+   
         const supabase =await createClient()
         const { data, error } = await supabase
           .from('events')
@@ -205,6 +210,7 @@ type EvObjType= {
      }  
     }
   
+export default async function Home() {  
  
       const dailyWiki =async()=>{
         const silverBTitles= await scrapeSilverBird()
@@ -242,25 +248,23 @@ type EvObjType= {
     
        // return () => clearTimeout(fxnTimeout);
         } 
-
-        
-  //  CronJob.from({
-  //   cronTime: '10 8 * * *', 
-  //   onTick: dailyEv3(),
-  //   start: true,
-  //   timeZone: 'Africa/Lagos'
-  //   });
-  
-  //      CronJob.from({
-  //       cronTime: '10 8 * * *',  
-  //       onTick: dailyWiki(),
-  //       start: true,
-  //       timeZone: 'Africa/Lagos'
-  //      }); 
-export default async function Home() {
 const latestPosts=await newsByLatest() 
   const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
-     const news_outline=await postsOutline() 
+     const news_outline=await postsOutline()
+  
+     CronJob.from({
+      cronTime: '10 8 * * *', 
+      onTick: dailyEv3(),
+      start: true,
+      timeZone: 'Africa/Lagos'
+      });
+    
+         CronJob.from({
+          cronTime: '10 8 * * *',  
+          onTick: dailyWiki(),
+          start: true,
+          timeZone: 'Africa/Lagos'
+         }); 
 return (
     <div> 
 <MainSlider livesNews={latestPosts.resp1Live}latestPosts={latestPosts.resp}/>

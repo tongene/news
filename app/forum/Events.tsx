@@ -8,7 +8,7 @@ import {Event, EventsProps } from "../types"
 nlp.plugin(plg)
  
 const Events= ({ events }:{events:EventsProps[] } ) => { 
- 
+  
   return (   
 <div> 
   <section className="m-1">

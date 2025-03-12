@@ -16,7 +16,8 @@ import { processImgs } from "@/utils/process_imgs";
  import { processSbImages } from "@/utils/processImages";
 import { sidePlusViews } from '@/app/page-data';
 import { createClient } from '@/utils/supabase/client';
-const location = 'Lagos, Nigeria'; 
+import MainPosts from './MainPosts';
+
 interface ObjType { 
   title: string[];
   slug:string  
@@ -52,7 +53,7 @@ const [top_SidebarItems, setSidebarItems]=useState<PostXNode[]>([])
 const [sidebarItems, setSidebarxItems]=useState<Cursors[]>([])
 const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotInPost[]>([])
 // const [top_Last_categories, setLast_categories]=useState([])   
-  
+const rmMain =top_PostsData.map((xy)=> xy.cursor)
      const naija_wiki =async ()=>{
       const sidebarxItems= await sidePlusViews()
       setSidebarxItems(sidebarxItems)
@@ -62,7 +63,7 @@ const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotI
       .select('*')
       if(error)throw new Error('An Error has occured!')
         const post_data = await postCategories()
-      const posts_notIn_newsPosts= await nextNewsPosts()
+      const posts_notIn_newsPosts= await nextNewsPosts() 
 const xtCategories= posts_notIn_newsPosts?.categories?.edges
   setPosts_notIn_newsPosts(xtCategories) 
 const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
@@ -73,14 +74,10 @@ setComingTitles(cinemax_titles)
       useEffect(()=>{
         
        naija_wiki()
-      },[])
-
-const postCategory_cursor =(top_PostsCa?.map((xy)=> xy.node?.posts?.edges as InnerEdges ))?.flat()?.map((t)=> t?.cursor)??[]  
-
-  
+      },[top_PostsData])
+    
 useEffect(()=>{
-//setCategoryPost(top_PostsData)
-  
+//setCategoryPost(top_PostsData)  
 const currentPosts= top_PostsCa?.flat()?.filter((ex)=> ex?.node?.name=== categoryName)?.map((xy)=> xy?.node?.posts).map((ex)=> ex?.edges as InnerEdges).flat()
 setCategoryPost(currentPosts)
  
@@ -89,19 +86,6 @@ setCategoryPost(currentPosts)
 // }
 
 },[categoryName])
-
-// const lastPost= async()=>{
-//   const next_categories_posts= await postNextCategories(postCategory_cursor)
-//  const xtCategories= next_categories_posts?.categories?.edges.map((xy:{node:{children:{edges:[]}}})=> xy.node.children.edges).flat() 
-//  const xpostx= top_Posts_notIn_newsPosts.concat(xtCategories) 
-// setPosts_notIn_newsPosts(xpostx)
-// }
-// useEffect(()=>{ 
-// if(top_Posts_notIn_newsPosts.length> 0){
-//   lastPost()
-// }
-
-// },[lastPost])
 
   const changeSet = () => {
      setActiveSet(true)
@@ -115,29 +99,8 @@ setCategoryPost(currentPosts)
     setCategoryName(name) 
   
     }; 
- const posts_all= top_Posts_notIn_newsPosts?.map((xy)=> xy?.node.posts).filter((vx)=> vx.nodes.length>0)
-// useEffect(()=>{
-//   const newxTitles=async()=>{
-//     await getGoogleNewsTitles(location) 
-//   }
-//   newxTitles()
-
-// },[])
-// useEffect(()=>{
-//   CronJob.from({
-//     cronTime: '10 8 * * *', 
-//     onTick: dailyEv3(),
-//     start: true,
-//     timeZone: 'Africa/Lagos'
-//     });
-  
-//       CronJob.from({
-//         cronTime: '10 8 * * *',  
-//         onTick: dailyWiki(),
-//         start: true,
-//         timeZone: 'Africa/Lagos'
-//       }); 
-// },[])
+     
+ 
   return ( 
     <div> 
     <div className="lg:flex justify-center sm:px-11 px-4 m-auto" style={{maxWidth:'1700px'}}> 
@@ -275,150 +238,19 @@ setCategoryPost(currentPosts)
 
 </div>   
  <hr className='h-1 w-4/5 m-auto my-4'/>
- {/* <div className="bg-white w-full my-8 dark:bg-black">   
-  <div className="xs:grid grid-cols-2 justify-center xs:items-start items-center xl:grid-cols-4 max-w-2xl lg:max-w-max m-auto py-8"> 
-
-  <div className='max-w-sm m-auto border-r xs:m-0'>   
- { posts_all?.length>0&& posts_all[0]?.nodes.slice(0,5).map((it, index:number)=> 
- <div key={index} className="px-4">  
- { index === 0 &&
-<div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
-   <Image
-className='rounded-xl h-44 object-cover'
-  width={1200} 
-  height={675}    
-  src={it.featuredImage?.node.sourceUrl}     
-  alt={it?.featuredImage?.node.altText } 
-  /> 
-<div className='my-3 sm:my-0 md:px-1 py-4'>
-<Link href={`/news/topic/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-base md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
-
- <div className="flex flex-wrap py-2"> 
-<Link href={`/topic/${it.tags.nodes[0]?.slug}`}><h4 className='md:text-end underline hover:text-gray-500'>{it.tags.nodes[0]?.name } | </h4></Link> 
-<span className='text-sm italic text-red-600 px-1'>{moment(it.date).fromNow()}</span>
-</div>    
-</div>  
- </div>}
-   {index !==0&&
- <div className='my-3 md:px-1 border-b py-4'>
-<Link href={`/news/topic/${it?.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-base md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
-<Link href={`/topic/${it.tags.nodes[0]?.slug}`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-500'>{it.tags.nodes[0]?.name }</h4></Link> 
-<span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
-</div>} 
+   <MainPosts  
+ /> 
  
- </div>
- )} 
-  
-</div>   
-
- <div className='max-w-sm m-auto border-r xs:m-0'>   
- { posts_all?.length>0&&posts_all[1]?.nodes.slice(0,5).map((it, index:number)=> 
- <div key={index} className="px-4"> 
- { index === 0 &&
-<div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '> 
-     <Image
-className='rounded-xl h-44 object-cover'
-  width={1200} 
-  height={675}    
-  src={it.featuredImage?.node.sourceUrl}     
-  alt={it?.featuredImage?.node.altText } 
-  />   
-<div className='my-3 sm:my-0 md:px-1 py-4'>
-<Link href={`/news/topic/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-base md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
-<div className="flex flex-wrap py-2"> 
-<Link href={`/topic/${it.tags.nodes[0].slug}`}><h4 className='md:text-end underline hover:text-gray-500'>{it.tags.nodes[0].name } | </h4></Link> 
-<span className='text-sm italic text-red-600 px-1'>{moment(it.date).fromNow()}</span>
 </div>  
-</div>  
- </div>}
- {index !==0&&
- <div className='my-3 md:px-1 border-b py-4'>
-<Link href={`/news/topic/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-base md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
-<Link href={`/topic/${it.tags.nodes[0]?.slug}`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-500'>{it.tags.nodes[0]?.name }</h4></Link> 
-<span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
-</div>}
- 
- </div>
- )} 
-  
-</div> 
- 
-<div className='max-w-sm m-auto xs:m-0 border-r'>   
- { posts_all?.length>0&&posts_all[2]?.nodes.slice(0,5).map((it, index:number)=> 
- <div key={index} className="px-4"> 
- { index === 0 &&
-<div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '> 
-     <Image
-className='rounded-xl h-44 object-cover'
-  width={1200} 
-  height={675}    
-  src={it.featuredImage?.node.sourceUrl}     
-  alt={it?.featuredImage?.node.altText } 
-  />   
-<div className='my-3 sm:my-0 md:px-1 py-4'>
-<Link href={`/news/topic/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-base md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
-<div className="flex flex-wrap py-2"> 
-<Link href={`/topic/${it.tags.nodes[0].slug}`}><h4 className='md:text-end underline hover:text-gray-500'>{it.tags.nodes[0].name } | </h4></Link> 
-<span className='text-sm italic text-red-600 px-1'>{moment(it.date).fromNow()}</span>
-</div>  
-</div>  
- </div>}
- {index !==0&&
- <div className='my-3 md:px-1 border-b py-4'>
-<Link href={`/news/topic/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-base md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
-<Link href={`/topic/${it.tags.nodes[0].slug}`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-500'>{it.tags.nodes[0].name }</h4></Link> 
-<span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
-</div>}
- 
- </div>
- )} 
-  
-</div>  
-
- <div className='max-w-sm m-auto xs:m-0 border-r'>   
- { posts_all?.length>0&&posts_all[3]?.nodes.slice(0,5).map((it, index:number)=> 
- <div key={index} className="px-4"> 
- { index === 0 &&
-<div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '> 
-     <Image
-className='rounded-xl h-44 object-cover'
-  width={1200} 
-  height={675}    
-  src={it.featuredImage?.node.sourceUrl}     
-  alt={it?.featuredImage?.node.altText } 
-  />   
-<div className='my-3 sm:my-0 md:px-1 py-4'>
-<Link href={`/news/topic/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-base md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
-<div className="flex flex-wrap py-2"> 
-<Link href={`/topic/${it.tags.nodes[0].slug}`}><h4 className='md:text-end underline hover:text-gray-500'>{it.tags.nodes[0].name } | </h4></Link> 
-<span className='text-sm italic text-red-600 px-1'>{moment(it.date).fromNow()}</span>
-</div>  
-</div>  
- </div>}
- {index !==0&&
- <div className='my-3 md:px-1 border-b py-4'>
-<Link href={`/news/topic/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-base md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
-<Link href={`/topic/${it.tags.nodes[0].slug}`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-500'>{it.tags.nodes[0].name }</h4></Link> 
-<span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
-</div>}
- 
- </div>
- )} 
-  
-</div>  
-</div>  
-
-</div>*/}
-</div> 
-
-<div className=""> 
-     <SideBar sidebarItems={sidebarItems}news_outline={news_outline} coming_titles={coming_titles}/>  
+<div > 
+     <SideBar 
+     sidebarItems={sidebarItems}
+     news_outline={news_outline}
+     coming_titles={coming_titles}/>  
   </div> </div>
-  {/* <MainBottom 
-   posts_all={posts_all} 
-   top_Posts_notIn_newsPosts={top_Posts_notIn_newsPosts}
-   postCategory_cursor={postCategory_cursor}
-   />   */}
+    <MainBottom
+   top_PostsCa={top_PostsCa}
+   />   
    </div>
   )
 }

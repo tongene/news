@@ -1,3 +1,6 @@
+import { nextNewsPosts } from "./data";
+import { PostsNotInPost } from "./types";
+
   export const fetchNewPosts = async (first:number, after:string, exclude:string[]) => { 
 const wp_naija = fetch('https://content.culturays.com/graphql',{
       method: 'POST', 
@@ -101,8 +104,11 @@ const wp_naija = fetch('https://content.culturays.com/graphql',{
    
   }
  
-export async function postLastAndScrolledCategories (string:string[]){
-  
+export async function postLastAndScrolledCategories ( notIn:string[]){
+    const posts_notIn_newsPosts= await nextNewsPosts()  
+        const xtCategories= posts_notIn_newsPosts?.categories?.edges
+         const last_two_categories = xtCategories?.map((xt:PostsNotInPost)=>xt.cursor).concat(["YXJyYXljb25uZWN0aW9uOjUwMQ=="])
+       
      const wprest = fetch('https://content.culturays.com/graphql',{
                method: 'POST',
                headers:{
@@ -110,14 +116,14 @@ export async function postLastAndScrolledCategories (string:string[]){
                },
                body: JSON.stringify({
                  query:`
-                 query WPPOSTS( $exclude:[ID])  { 
-                categories(last:1, where:{exclude: $exclude, "YXJyYXljb25uZWN0aW9uOjUwMQ=="}) {
+                 query WPPOSTS( $notIn:[ID]) { 
+                categories(last:1, where:{exclude: "${last_two_categories}"}) {
                 edges {
                 cursor
                  node {
                name
                slug
-                posts(first:2) {
+                posts(where:{notIn:$notIn},first:2) {
                pageInfo {
                 startCursor
                 endCursor
@@ -198,12 +204,12 @@ export async function postLastAndScrolledCategories (string:string[]){
              }
            }
          }
-           } ` ,variables:{exclude:string }
+           } ` ,variables:{  notIn:notIn }
                
                })
                
                }).then(response => response.json() )            
-               .then(data => data.data?.categories.edges) 
+               .then(data =>data.data?.categories.edges) 
                .catch(error => console.error('Error:', error));
               // const response = wprest?.data.categories.edges 
                return wprest 

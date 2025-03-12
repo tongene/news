@@ -305,13 +305,13 @@ icon={faTags}/>{xy.contentTags.nodes[0].name}</h4></Link>
    icon={faArrowRight}
    width={18}/></span></button></Link>
    </div>
-    <p className='text-white text-lg px-8'>Videos from our newest collection</p>
-  <div className='grid xs:grid-cols-2 lg:grid-cols-4 gap-2 justify-center py-14 h-fit px-8'>   
+    <h3 className='text-white text-2xl px-8'>Videos from our newest collection</h3>
+  <div className='grid xs:grid-cols-2 lg:grid-cols-4 gap-2 justify-center p-8'>   
   {naijaWikiVideos.slice(0,4).map((it, index)=>  
      <div 
-     key={index}className='border my-1'>
+     key={index}className='border'>
       <video
-      className='h-max'
+      className='h-52'
       width={1200} 
       height={675} 
          loop
@@ -321,14 +321,14 @@ icon={faTags}/>{xy.contentTags.nodes[0].name}</h4></Link>
          <source src={it.videosGroup.videoUrl.node.mediaItemUrl} type="video/mp4"/>
   <source src={it.videosGroup.videoUrl.node.mediaItemUrl} type="video/mp4" /> 
 </video> 
- <div > 
+ <div className='py-3'> 
   <div className='flex xs:my-4 px-2 justify-between w-full'> 
-   <Link href={`/news/video/${it.slug }`} ><h3 className='text-gray-300 mx-1 text-xl my-2'>{it.title}</h3></Link>
+   <Link href={`/news/video/${it.slug }`} ><h3 className='text-gray-300 mx-1 text-xl my-2 overflow-hidden text-ellipsis' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
    <button> 
-    <Link href={`/news/video/${it.slug}`}><span className="rounded-full border py-2 px-4 text-gray-300 hover:text-gray-50 text-4xl cursor-pointer"><FontAwesomeIcon icon={faPlay}/></span></Link>  
+    <Link href={`/news/video/${it.slug}`}><span className="rounded-full border py-2 px-5 text-gray-300 hover:text-gray-50 text-4xl cursor-pointer"><FontAwesomeIcon icon={faPlay}/></span></Link>  
         </button>
    </div> 
- <Link href={`/news/video/${it.slug }`} ><div dangerouslySetInnerHTML={{__html:it.excerpt}} className='text-gray-300 hover:text-gray-500 text-base overflow-hidden text-ellipsis leading-8 ' style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link> 
+ <Link href={`/news/video/${it.slug }`} ><div dangerouslySetInnerHTML={{__html:it.excerpt}} className='text-gray-300 hover:text-gray-500 overflow-hidden text-ellipsis leading-7 px-3' style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link> 
      </div>
     </div> )}  
    
