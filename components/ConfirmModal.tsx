@@ -25,7 +25,7 @@ const ConfirmModal = () => {
     
     <div> 
      {prX?.includes('logout')? 
-     <div className="p-8 bg-gray-800 bg-opacity-40 m-auto z-50 h-full -top-1 fixed w-full left-0 text-center flex items-center justify-center"> 
+     <div className="p-7 bg-gray-800 bg-opacity-40 m-auto z-50 h-full -top-1 fixed w-full left-0 text-center flex items-center justify-center"> 
      <div className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl place-self-center ">
      <p className="text-2xl p-4 font-bold opacity-70 text-black">Do you want to logout?</p>   
     <button onClick={()=> router.back()}className="cursor-pointer hover:bg-opacity-70 m-1 text-xl bg-gray-900 px-3 py-2 w-1/2 text-white">Return</button>  
