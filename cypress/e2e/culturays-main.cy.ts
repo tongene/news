@@ -3,7 +3,6 @@ describe('Culturays Main Test', () => {
     cy.visit('https://culturays.com')
   });
 
-
   it('passes', () => {
     cy.visit('https://culturays.com/naija-wiki')
   });
