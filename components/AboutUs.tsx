@@ -44,8 +44,8 @@ alt="christina-ngene"/>
 <p className="leading-relaxed mt-4">I am the originator of Culturays and I have years of experience programming and writing content. I intend to enable young people like me who may have challenges getting jobs, are out of jobs or even unemployed learn useful skills that will be beneficial to them through Ngenet Studio. I want to bring everyone with me into this process beginning from here - <Link href='/'><b>Culturays</b></Link>.</p>
  
 <div className="w-1/2 m-auto">
-<a target="_blank" href="https://chat.whatsapp.com/Fj7udgVONab515BzVk72zU"><button className="hover:border hover:border-yellow-600 p-4 text-white text-center cursor-pointer bg-black w-full my-4 hover:text-gray-400 font-bold">Contact</button></a> 
-</div>
+<a target="_blank" href="https://chat.whatsapp.com/KmcOzsBGSW96QS8aGs1FJ9"><button className="hover:border hover:border-yellow-600 p-4 text-white text-center cursor-pointer bg-black w-full my-4 hover:text-gray-400 font-bold">Contact</button></a> 
+</div> 
 </div>
 </div>
  

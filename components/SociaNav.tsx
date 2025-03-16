@@ -16,7 +16,7 @@ height={20}
 icon={faFacebookF}></FontAwesomeIcon></p>
 </Link>
 
-<Link target= "_blank" href= "https://whatsapp.com/channel/0029VaH6uMMFsn0dN8Vzwr2v">
+<Link target= "_blank" href= "https://whatsapp.com/channel/0029Vb5TkBULNSaCbp48jd1e">
 < p className="m-1 p-2">
 <FontAwesomeIcon
 width={20}
