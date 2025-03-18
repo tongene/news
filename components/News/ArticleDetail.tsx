@@ -114,14 +114,14 @@ alt={news_detail?.featuredImage?.node?.altText}
 <div className='max-w-5xl'>
    <h2 className='text-2xl font-bold py-4'>Next</h2>
      </div>
-    
+  
   <div className="overflow-auto pt-4 px-1 hidden-scroll lg:max-w-4xl xl:max-w-6xl" > 
    <div className='flex' style={{width:'1100px'}}> 
-   {next_top_news.filter((vx)=> vx.contentTypeName!=='post').filter((xx)=> xx.contentTypeName!=="netflix-naija").filter((x1)=> x1.contentTypeName!=="trending").filter((x1)=> x1.contentTypeName!=="char").filter((xy)=> xy.contentTypeName !== 'post')?.filter((xy)=> xy.contentTypeName !== 'anticpated-nollywood')?.filter((xy)=> xy.contentTypeName !== 'anticpated-african')?.filter((xy)=> xy.contentTypeName !== 'anticpated-foreign')?.filter((xy)=> xy.contentTypeName !== 'netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'what-to-watch').filter((xy)=> xy.contentTypeName !== 'list-netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'char')?.filter((xy)=> xy.contentTypeName !== 'naija-wiki')?.filter((xy)=> xy.contentTypeName !== 'latest')?.filter((xy)=> xy.contentTypeName !== 'outline')?.filter((xy)=> xy.contentTypeName!== 'page').filter((xy)=> xy.contentTypeName!== 'live').filter((xy)=> xy.contentTypeName!== 'added-netflix-naija').slice(0,3).map((xy,i)=>   
+   {next_top_news.filter((vx)=> vx.contentTypeName!=='post').filter((xx)=> xx.contentTypeName!=="netflix-naija").filter((x1)=> x1.contentTypeName!=="trending").filter((x1)=> x1.contentTypeName!=="char")?.filter((xy)=> xy.contentTypeName !== 'anticpated-nollywood')?.filter((xy)=> xy.contentTypeName !== 'anticpated-african')?.filter((xy)=> xy.contentTypeName !== 'anticpated-foreign')?.filter((xy)=> xy.contentTypeName !== 'netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'what-to-watch').filter((xy)=> xy.contentTypeName !== 'list-netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'char')?.filter((xy)=> xy.contentTypeName !== 'naija-wiki')?.filter((xy)=> xy.contentTypeName !== 'latest')?.filter((xy)=> xy.contentTypeName !== 'outline')?.filter((xy)=> xy.contentTypeName!== 'page').filter((xy)=> xy.contentTypeName!== 'live').filter((xy)=> xy.contentTypeName!== 'added-netflix-naija').slice(0,3).map((xy,i)=>   
    <div className='border pt-5 px-3 w-96' key={i + ' ' + Math.random()}> 
-   
-    <Link href={`/topic/${xy.tags.nodes[0]?.slug}`}></Link> <h3 className='font-bold text-red-500 text-sm italic py-2'>{xy.tags.nodes[0]?.name} </h3>
-    <Link href={`/news/topic/${xy.slug}`}><h2 className="text-gray-800 hover:text-gray-700 text-lg font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer "style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>            
+    
+    <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}`}></Link> <h3 className='font-bold text-red-500 text-sm italic py-2'>{xy?.contentTags?.nodes[0]?.name} </h3>
+    <Link href={`/news/${xy.contentTypeName}/${xy.slug}`}><h2 className="text-gray-800 hover:text-gray-700 text-lg font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer "style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>            
       <div className='py-2 text-sm'> 
         <p className='text-gray-600 dark:text-red-600'>{moment(xy.date).fromNow()}</p> 
   

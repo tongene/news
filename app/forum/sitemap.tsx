@@ -49,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 lastModified:new Date(post.created_at as string),
                 changeFrequency:'always', 
                 priority:0.8,              
-               images: [`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(post?.files as PostProps[])[0]}`], 
+               images: [`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(post?.files as PostProps[])[0]}`||'/assets/images/culturays.png'], 
    
          } ))
  
@@ -62,6 +62,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         //      images: [post?.files?.length as number>0?`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(post?.files as PostProps[])[0]}`:'']
      
         //   }) )
+       
+{/* <url> <loc>https://culturays.com/forum/post/dangote-refinery-crude-oil-production/225</loc>
+<image:image>
+<image:loc>https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/posts_imgs/1741716108102-Copy-of-brics.jpg</image:loc>
+</image:image>
+<lastmod>2025-03-11T18:01:49.007Z</lastmod>
+<changefreq>always</changefreq>
+<priority>0.8</priority>
+</url> */}
     return [ 
      ...forumPosts
     ] as SitemapFile
