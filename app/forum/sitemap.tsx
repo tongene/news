@@ -43,17 +43,25 @@ type SitemapFile = Array<{
 }>;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
  
-     const initialPostsD = await getPosts(0, 100)  
-      const forumPosts = (initialPostsD as PostProps[]).map((post)=>({
-       title:post.title,
-        url:`https://culturays.com/forum/post/${post.slug}/${post.id}`,
-        lastModified:new Date(post.created_at as string),
-        changeFrequency:'always', 
-        priority:0.8,
-        images: [post?.files?.length as number>0?`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(post?.files as PostProps[])[0]}`:'']
-
-     }) )
+     const initialPostsD = await getPosts(0, 100) 
+     const forumPosts = (initialPostsD as PostProps[]).map((post)=>({
+                url:`https://culturays.com/forum/post/${post.slug}/${post.id}`,
+                lastModified:new Date(post.created_at as string),
+                changeFrequency:'always', 
+                priority:0.8,              
+               images: [`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(post?.files as PostProps[])[0]}`], 
+   
+         } ))
  
+        // (initialPostsD as PostProps[]).map((post)=>({
+        //     title:post.title,
+        //      url:`https://culturays.com/forum/post/${post.slug}/${post.id}`,
+        //      lastModified:new Date(post.created_at as string),
+        //      changeFrequency:'always', 
+        //      priority:0.8,
+        //      images: [post?.files?.length as number>0?`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(post?.files as PostProps[])[0]}`:'']
+     
+        //   }) )
     return [ 
      ...forumPosts
     ] as SitemapFile
