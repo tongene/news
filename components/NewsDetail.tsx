@@ -90,7 +90,8 @@ const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_t
  <Link href={`/creator/${post?.author.node.slug}`}><h2 className="text-lg px-2 text-orange-600 font-bold hover:text-gray-600 cursor-pointer">{post.author.node.name}</h2></Link>
   </div>
 
-  <div className="[&_.share-view]:relative [&_.share-view]:bg-white [&_.share-view]:dark:bg-transparent text-xl [&_.shadow-sharebtn]:m-2 [&_.share-view]:text-gray-800 [&_.share-view]:dark:text-gray-200"> 
+  <div className="
+  [&_.share-view]:relative [&_.share-view]:bg-white [&_.share-view]:dark:bg-transparent [&_.shadow-sharebtn]:my-2 [&_.share-view]:text-gray-800 [&_.share-view] [&_.share-view]:dark:text-gray-200 [&_.share-view]:w-64 [&_.share-view]:left-0 [&_.share-view]:right-0 text-xl sm:my-11 [&_.share-view]:p-1"> 
  <ShareButtons 
  item={post} 
  shareOptions={true} 

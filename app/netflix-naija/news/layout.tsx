@@ -1,5 +1,4 @@
- 
-import NewsLetter from '@/components/NewsLetter';
+  
 import Top10 from '@/components/Top10El';
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
@@ -13,6 +12,10 @@ alternates: {
   canonical: 'https://culturays.com/naija-wiki',
  
 },
+openGraph: {
+  title:  "Culturays | Naija Wiki, Netflix Naija News",    
+    
+}
 }; 
 const Layout = ({children}: {
   children: React.ReactNode;

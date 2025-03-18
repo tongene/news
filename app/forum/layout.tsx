@@ -12,6 +12,10 @@ export const metadata = {
     canonical: 'https://culturays.com/forum',
  
   },
+  openGraph: {
+    title: 'Culturays | Forum, People, Nigeria',    
+      
+} 
 };  
 interface Props {
   children?: ReactNode 

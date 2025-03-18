@@ -15,6 +15,10 @@ export const metadata = {
     canonical: 'https://culturays.com/naija-events',
   
   },
+  openGraph: {
+    title: 'Culturays | Naija Events',    
+      
+  } 
 }; 
  
 const Layout = ({children}: {

@@ -10,15 +10,12 @@ export const metadata = {
     canonical: 'https://culturays.com/news',
  
   },
+  openGraph: {
+    title: 'Culturays | News in Nigeria, Business, Economy, Nollywood, Netflix Naija', 
+      
+  }
 };
- //The news outlet for Nigeria
- //Legitimate news across Nigeria
- //Fast new trends & conversations
- //Dedicated to positive information
- //What's on Netflix Naija
- //The best of Netflix Naija News
- //The best of Nollywood news
- //Topics on Nollywood favourites
+ 
 const Layout = ({children}: {
   children: React.ReactNode;
 }) => {

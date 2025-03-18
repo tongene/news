@@ -12,6 +12,10 @@ alternates: {
   canonical: 'https://culturays.com/live',
  
 },
+openGraph: {
+  title: 'Culturays | Live News, Nigeria',    
+    
+} 
 }; 
 
  const openSans = Open_Sans({ 

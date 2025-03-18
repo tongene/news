@@ -85,7 +85,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
 export const metadata:Metadata = {
   title:{
     template:"%s | Culturays",
-    default: 'Culturays - News',   
+    default: 'Culturays | News in Nigeria, Business, Economy, Nollywood, Netflix Naija',   
    },
   description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
   generator: 'Culturays',
@@ -97,9 +97,9 @@ export const metadata:Metadata = {
   publisher: 'Christina Ngene',
   metadataBase: new URL('https://culturays.com'),
   openGraph: {
-  title: 'Culturays',
+  title: 'Culturays | News in Nigeria, Business, Economy, Nollywood, Netflix Naija',
   description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
-  url: 'https://culturays.com',
+  url: 'https://culturays.com', 
   siteName: 'Culturays',
   images: [
   {
@@ -114,7 +114,7 @@ export const metadata:Metadata = {
           height: 1600,
           alt: 'Culturays Image & Logo',
         },
-      ],
+      ], 
       locale: 'en_NG',
       type: 'website',
     },

@@ -12,6 +12,10 @@ alternates: {
   canonical: 'https://culturays.com/naija-birthdays',
  
 },
+openGraph: {
+  title: 'Culturays | Naija Birthdays',    
+    
+} 
 }; 
 
  const openSans = Open_Sans({ 

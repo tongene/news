@@ -43,15 +43,14 @@ alt={news_detail?.featuredImage?.node?.altText}
     alt={news_detail?.author?.node?.name}
     />
 
-   </div> 
- 
+   </div>  
 <Link href={`/creator/${news_detail?.author?.node?.slug}`}><p className='text-lg p-3 underline font-bold dark:text-gray-900'>{news_detail?.author?.node?.name} </p></Link> </div>
 <p className='text-sm dark:text-gray-900 text-red-600 italic my-1 px-2'>{moment(news_detail?.date).fromNow()} </p>
 </div> 
 <hr className='bg-black p-0.5 m-0.5'/>
 <hr className='bg-black p-0.5 m-0.5'/>
 </div>  
-<div className="[&_.share-view]:bg-white [&_.share-view]:sm:absolute [&_.share-view]:relative [&_.share-view]:max-w-max [&_.share-view]:sm:flex-col [&_.share-view]:items-stretch [&_.share-view]:w-full [&_.share-view]:text-gray-800 text-xl [&_.shadow-sharebtn]:px-3 [&_.shadow-sharebtn]:sm:py-3 sm:my-11">
+<div className="[&_.share-view]:bg-white [&_.share-view]:sm:absolute [&_.share-view]:relative [&_.share-view]:max-w-max [&_.share-view]:m-auto [&_.share-view]:left-0 [&_.share-view]:right-0 [&_.share-view]:sm:flex-col [&_.share-view]:items-stretch [&_.share-view]:w-full [&_.share-view]:text-gray-800 text-xl [&_.shadow-sharebtn]:px-3 [&_.shadow-sharebtn]:sm:py-3 sm:my-11 [&_.share-view]:p-1 [&_.share-view]:sm:left-20 [&_.share-view]:sm:right-0 [&_.share-view]:xl:left-32">
  <ShareButtons 
  item={news_detail} 
  activeIdx={news_detail?.id}

@@ -14,6 +14,10 @@ alternates: {
   canonical: 'https://culturays.com/naija-wiki',
 
 },
+ openGraph: {
+  title: 'Culturays | Naija Wiki',    
+    
+}
 }; 
  
   const noko =Nokora({

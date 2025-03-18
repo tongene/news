@@ -51,7 +51,8 @@ height={500}
 alt={ex}
 />
  <ul> 
- <Link href={`/naija-events/event/${ux.slug}`}><li title='view event'className="absolute bottom-4 cursor-pointer text-white hover:text-gray-200 px-3 z-10 font-bold text-xl sm:text-2xl underline overflow-hidden text-ellipsis" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{ux.title }</li></Link>
+  {ux.title ==="[]"?'':
+  <Link href={`/naija-events/event/${ux.slug}`}><li title='view event'className="absolute bottom-4 cursor-pointer text-white hover:text-gray-200 px-3 z-10 font-bold text-xl sm:text-2xl underline overflow-hidden text-ellipsis" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{ux.title }</li></Link> } 
  </ul>
 </div>  
 )}
@@ -81,7 +82,8 @@ height={500}
 alt={ex}
 /> 
  <ul> 
- <Link href={`/naija-events/event/${ux.slug }`}><li title='view event'className="absolute bottom-4 cursor-pointer text-white hover:text-gray-200 px-3 z-10 font-bold left-0 right-0 sm:text-2xl text-xl text-center underline overflow-hidden text-ellipsis"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{ux.title }</li></Link>
+ {ux.title ==="[]"?'':
+  <Link href={`/naija-events/event/${ux.slug }`}><li title='view event'className="absolute bottom-4 cursor-pointer text-white hover:text-gray-200 px-3 z-10 font-bold left-0 right-0 sm:text-2xl text-xl text-center underline overflow-hidden text-ellipsis"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{ux.title }</li></Link>}
   </ul></div>
 )}
  
