@@ -860,9 +860,10 @@ export async function generateMetadata(
 const ArticleDetailPage = async ({params}: Props) => {
 const slug =(await params).slug
  const news_detail= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/${slug[1]}/`)
- const news_related = news_detail?.newsGroup.related?.edges
+ const news_related = news_detail?.newsGroup.related?.edges.map((tx:{node:{id:string}})=> tx.node.id)
+ 
  const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
- const next_top_news = await readNextContent([news_detail.id, exitinginrelated ].flat())
+ const next_top_news = await readNextContent([news_detail.id, news_related ].flat())
  const sidebarItems=await sidePlusViews()       
      const news_outline=await postsOutline()
      const naija_wiki =async ()=>{  

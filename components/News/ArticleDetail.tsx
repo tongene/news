@@ -81,7 +81,7 @@ alt={news_detail?.featuredImage?.node?.altText}
        <div key={ex?.node?.title + ' ' + Math.random()} className="py-4 first:border-b border px-3 max-w-xs m-auto sm:m-0"> 
        <div className="sm:flex justify-center"> 
        <div className="px-1 sm:w-4/5">
-         <Link href={`/news/${news_detail?.contentTypeName}/${ex?.node?.slug}`}><h2 className="text-gray-600 hover:text-red-300 text-lg py-2">{ex?.node?.title} </h2></Link>  
+         <Link href={`/news/${news_detail?.contentTypeName}/${ex?.node?.slug}`}><h2 className="text-gray-600 hover:text-red-300 text-lg font-bold text-xl py-2">{ex?.node?.title} </h2></Link>  
        </div> 
        
      <div className="px-4 py-2 sm:w-2/3 sm:px-0 sm:m-0 m-auto">      
@@ -95,7 +95,7 @@ alt={news_detail?.featuredImage?.node?.altText}
       </div> 
      
        </div>
-        <Link href={`/news/${ex?.node?.slug}`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
+        <Link href={`/news/${ex?.node?.slug}`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black  rounded-lg">Read</button></Link> 
         </div>  
        )} 
  </div>} 
