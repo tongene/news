@@ -9,9 +9,10 @@ export async function generateMetadata({ params }: {
   const {slug} =await params 
   const news_details = await netflixDetails(slug)  
   const previousImages = (await parent).openGraph?.images || []
-   
+  const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name)
   return {
     title:`Culturays | Netflix Naija News - ${news_details?.title}`,
+    keywords:tags,
     openGraph: {  
       images: [news_details?.featuredImage.node.sourceUrl],
     },

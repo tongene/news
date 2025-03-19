@@ -37,6 +37,7 @@ export async function generateMetadata(
 
   return {
     title:`Culturays Forum - ${post?.title || post?.article_title?.toUpperCase().replace(/-/g," ")}`,
+    keywords: post.genre,
     openGraph: { 
       images: [post?.files,...previousImages],
     },

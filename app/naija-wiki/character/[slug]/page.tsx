@@ -16,6 +16,7 @@ export async function generateMetadata(
  
   return {
     title:`Movie Character - ${char_details?.title} | Culturays`,
+    keywords:[char_details?.title, char_details.charactertitles.portrayeby],
     openGraph: { 
       images: [char_details?.featuredImage.node.sourceUrl,...previousImages],
     },

@@ -6,8 +6,8 @@ export const liveNewsFeed =async(id:string)=>{
       },
       body: JSON.stringify({
         query: `
-        query LiveContent($id: ID!, $idType: LiveIdType){
-           live(id: $id, idType: $idType) {
+  query LiveContent($id: ID!, $idType: LiveIdType){
+   live(id: $id, idType: $idType) {
    author{node{avatar{url} name slug}}
    featuredImage{node{sourceUrl, caption, altText}}
     date

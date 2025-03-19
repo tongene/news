@@ -30,6 +30,7 @@ import type { Metadata, ResolvingMetadata } from 'next'
    
     return {
       title: `${charactertitles?.charactertitles.filmname} | Characters`,
+      keywords:[charactertitles?.charactertitles.filmname],
       openGraph: {
         images: [charactertitles.charactertitles.filmImg1.node.sourceUrl, ...previousImages],
       },

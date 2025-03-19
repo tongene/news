@@ -27,6 +27,7 @@ import ActorsMovie from "@/components/NaijaWiki/Movie";
    
     return {
       title: `Culturays - ${charactertitles?.charactertitles.portrayedby} | Movies `,
+      keywords:[charactertitles?.charactertitles.portrayedby],
       openGraph: {
         images: [charactertitles.charactertitles.actorImgs.node.sourceUrl, ...previousImages],
       },

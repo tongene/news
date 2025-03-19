@@ -19,9 +19,10 @@ export async function generateMetadata(
   const slug=(await params).slug
   const news_details= await liveNewsFeed(slug[0])
   const previousImages = (await parent).openGraph?.images || []
- 
+ const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name)
   return {
     title: `${news_details?.title||'' } `,
+    keywords: tags,
     openGraph: {
       images: [news_details?.featuredImage.node.sourceUrl,...previousImages],
     },

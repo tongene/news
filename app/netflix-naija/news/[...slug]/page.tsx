@@ -82,10 +82,12 @@ export async function generateMetadata({ params  }: {
   const {slug} =await params 
   const news_details = await netflixNewsDets(slug[0]) 
   const previousImages = (await parent).openGraph?.images || []
- 
+  const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name)
+  
   return {
     title:`Culturays | Naija Wiki News- ${news_details?.title}`,
     description: "All titles Coming to or on Netflix Naija weekly, monthly and yearly are first published here. The best of Netflix Naija News and movies are all available.",
+    keywords:tags,
     openGraph: { 
       images: [news_details?.featuredImage.node.sourceUrl],
     },
