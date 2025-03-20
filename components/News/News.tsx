@@ -401,7 +401,7 @@ className='h-32 xl:h-36 rounded-xl object-cover'
 </div>
 <div className="">
  <div className="bg-white dark:bg-black rounded-xl my-1 px-2 md:mx-1 overflow-hidden py-4 my-4 max-w-xs xs:max-w-sm m-auto">
-<h2 className='text-3xl font-bold text-center text-slate-800 dark:text-slate-200 opacity-80 border-b'>{news7_name} </h2>
+<h2 className='text-3xl font-bold text-center  opacity-80 border-b'>{news7_name} </h2>
 <div className='flex md:block xl:flex justify-between'>
  { news7.slice(0,2).map((it, index)=>
  activeIndices.includes(index) &&
@@ -437,14 +437,14 @@ className='overflow-hidden first:border-r first:md:border-r-0 first:md:border-b 
 
 </div>
 
-  <div className='bg-white max-w-xs xs:max-w-sm m-auto xl:m-1'>
+  <div className='bg-white dark:bg-black max-w-xs xs:max-w-sm m-auto xl:m-1'>
  { news7.slice(2).map((it, index)=>
 
 <div
 key={index}
 className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3'>
 <div className='my-3 sm:my-0 md:px-1 '>
-<Link href={`/news/article/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
+<Link href={`/news/article/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold text-xl'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/${it.contentTags.nodes[0].id}`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-700'>{it.contentTags.nodes[0].name }</h4></Link>
 <span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
 </div>
