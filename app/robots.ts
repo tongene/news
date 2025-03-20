@@ -29,7 +29,7 @@ export default async function robots(): Promise<MetadataRoute.Robots>  {
         allow: '/',
         disallow:[ '/privacy-policy','/rss-home', "/404"]
       },
-      sitemap:['https://culturays.com/sitemap.xml', 'https://culturays.com/naija-wiki/sitemap.xml', 'https://culturays.com/topic/sitemap.xml', 'https://culturays.com/netflix-naija/sitemap.xml', 'https://culturays.com/forum/sitemap.xml']
+      sitemap:['https://culturays.com/sitemap.xml', 'https://culturays.com/naija-wiki/sitemap.xml', 'https://culturays.com/topic/sitemap.xml', 'https://culturays.com/netflix-naija/sitemap.xml', 'https://culturays.com/forum/sitemap.xml','https://culturays.com/news/sitemap.xml']
       
     }
   } 

@@ -460,7 +460,7 @@ className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-a
 
  </div>  
 
-  <div className="bg-white w-full my-8">
+  <div className="bg-white dark:bg-black w-full my-8">
  <div className="xs:grid grid-cols-2 justify-center xs:items-start items-center lg:grid-cols-4 max-w-2xl lg:max-w-max m-auto py-8 ">
   <div className='max-w-sm m-auto  border-r xs:m-0'>
  { news8.slice(0,5).map((it, index)=>
@@ -475,7 +475,7 @@ className='rounded-xl object-cover'
   alt={it?.featuredImage?.node.altText }
   />
 <div className='my-3 sm:my-0 md:px-1 py-4'>
-<Link href={`/news/article/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
+<Link href={`/news/article/${it.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold text-xl'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <div className="flex flex-wrap py-2">
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/${it.contentTags.nodes[0].id}`}><h4 className='md:text-end underline hover:text-gray-500'>{it.contentTags.nodes[0].name } | </h4></Link>
 <span className='text-sm italic text-red-600 px-1'>{moment(it.date).fromNow()}</span>
