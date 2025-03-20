@@ -32,6 +32,9 @@ setBarState(prev=> !prev)
 </p>
   <div className="animate-in">       
 <ul className="text-white p-3 flex flex-col text-center justify-center items-center h-max">
+<Link href='/news/environment'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full">
+Urban News
+</li></Link>
 <Link href='/news/economy'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full">
  Economy
 </li></Link> 
@@ -45,12 +48,10 @@ Business
 <Link href='/news/health'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2  opacity-80 hover:scale-105 text-lg py-4 w-full">
 Health
 </li></Link>
-<Link href='/news/environment'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full">
-Environment
-</li></Link>
-<Link href='/news/society'><li className="p-2 m-1 mx-4 cursor-pointer opacity-80 hover:scale-105 text-lg py-4 w-full">
+
+{/* <Link href='/news/society'><li className="p-2 m-1 mx-4 cursor-pointer opacity-80 hover:scale-105 text-lg py-4 w-full">
 Society
-</li></Link>
+</li></Link> */}
  
 </ul>
 
@@ -72,6 +73,9 @@ height={35} />
   <nav className="absolute top-0 w-full md:block hidden">
   <div className="m-2">       
 <ul className="flex justify-center"> 
+<Link href='/news/environment'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg">
+Urban News
+</li></Link>
 <Link href='/news/economy'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg w-max">
  Economy
 </li></Link>
@@ -84,12 +88,10 @@ Business
 <Link href='/news/health'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg">
 Health
 </li></Link>
-<Link href='/news/environment'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg">
-Environment
-</li></Link>
-<Link href='/news/society'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg">
+
+{/* <Link href='/news/society'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg">
 Society
-</li></Link> 
+</li></Link>  */}
 </ul>
 
 </div> 
