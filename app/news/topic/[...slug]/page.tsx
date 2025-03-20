@@ -126,9 +126,10 @@ const readNextContent = async(notIn:string[])=>{
       },
       body: JSON.stringify({
         query: `query NEXTCONTENT($notIn:[ID]) {
-       contentNodes(where: {notIn: $notIn}){
+       contentNodes(first:50, where: {notIn: $notIn}){
    nodes {
       contentTypeName
+      id
       ... on Article {
         id
         title
@@ -345,7 +346,7 @@ const {slug} =await params
   const news_detail= await newsDetailData(slug[0])
   const news_related = news_detail?.postnewsgroup.relatedPosts?.edges
 const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
- const next_naija_news = await readNextContent([news_detail.id,exitinginrelated ].flat())
+ const next_naija_news = await readNextContent([news_detail.id,exitinginrelated].flat())
  const sidebarItems=await sidePlusViews()       
      const news_outline=await postsOutline()
      const naija_wiki =async ()=>{  

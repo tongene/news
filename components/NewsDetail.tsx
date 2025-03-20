@@ -10,7 +10,7 @@ import moment from "moment";
 import { usePathname } from "next/navigation";
             
 const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_titles}:{post:PostTypeProps, next_naija_news:NextTypeProps[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => { 
- 
+
   const $ = cheerio.load( post.content ) 
   let data_texts= ''
   let data_link:number[]= [] 
@@ -58,7 +58,7 @@ const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_t
           })});
  
           const post_related= post.postnewsgroup.relatedPosts?.edges   
-            const nextPosts = next_naija_news.filter((tx)=> tx.contentTypeName !== "added-netflix-naija").filter((tx)=> tx.contentTypeName !== "outline").filter((xy)=> xy.contentTypeName!== 'live')?.filter((xy)=> xy.contentTypeName !== 'anticpated-nollywood')?.filter((xy)=> xy.contentTypeName !== 'anticpated-african')?.filter((xy)=> xy.contentTypeName !== 'anticpated-foreign')?.filter((xy)=> xy.contentTypeName !== 'netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'what-to-watch').filter((xy)=> xy.contentTypeName !== 'list-netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'char')?.filter((xy)=> xy.contentTypeName !== 'naija-wiki')?.filter((xy)=> xy.contentTypeName !== 'latest')?.filter((xy)=> xy.contentTypeName !== 'outline')?.filter((xy)=> xy.contentTypeName!== 'page').filter((xy)=> xy.contentTypeName!== 'live')
+            const nextPosts = next_naija_news.filter((tx)=> tx.contentTypeName !== "added-netflix-naija").filter((tx)=> tx.contentTypeName !== "outline").filter((xy)=> xy.contentTypeName!== 'live')?.filter((xy)=> xy.contentTypeName !== 'anticpated-nollywood')?.filter((xy)=> xy.contentTypeName !== 'anticpated-african')?.filter((xy)=> xy.contentTypeName !== 'anticpated-foreign')?.filter((xy)=> xy.contentTypeName !== 'netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'what-to-watch').filter((xy)=> xy.contentTypeName !== 'list-netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'char')?.filter((xy)=> xy.contentTypeName !== 'naija-wiki')?.filter((xy)=> xy.contentTypeName !== 'latest')?.filter((xy)=> xy.contentTypeName !== 'outline')?.filter((xy)=> xy.contentTypeName!== 'page').filter((xy)=> xy.contentTypeName!== 'live') 
   
          const pathname = usePathname()
       
@@ -209,7 +209,7 @@ const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_t
 
  </div>
 </div>
-<div className='flex flex-wrap max-w-xl py-2'> 
+<div className='flex flex-wrap py-2'> 
   {post?.tags?.nodes.map((xy)=>
 <div key={xy?.name + ' ' + Math.random()} className='m-1'>
  <Link href={`/topic/${xy?.slug}`}><h4 className='hover:bg-gray-600 hover:text-gray-200 border border-gray-600 bg-gray-50 text-gray-600 p-2 text-lg w-max text-center'>{xy?.name} </h4></Link>
@@ -227,7 +227,7 @@ const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_t
      </div>
   <div className="max-w-7xl m-auto overflow-auto pt-4 px-1 hidden-scroll" > 
    <div className='flex' style={{width:'1000px'}}> 
-   {nextPosts.slice(0,4).filter((vx)=> vx.contentTypeName==='post').map((xy,i)=>   
+   {nextPosts.filter((vx)=> vx.contentTypeName==='post').slice(0,3).map((xy,i)=>   
    <div className='border pt-5 px-3 w-96' key={i + ' ' + Math.random()}> 
   
     <Link href={`/topic/${xy.tags.nodes[0]?.slug}`}> <h3 className='text-red-500 text-sm italic py-2 hover:dark:text-gray-500'>{xy.tags?.nodes[0]?.name} </h3></Link>

@@ -640,7 +640,7 @@ const readNextContent = async(notIn:string[])=>{
     },
     body: JSON.stringify({
       query: `query NEXTCONTENT($notIn:[ID]) {
-     contentNodes(where: {notIn: $notIn}){
+     contentNodes(first:50,where: {notIn: $notIn}){
  nodes {
     contentTypeName
     ... on Article {
