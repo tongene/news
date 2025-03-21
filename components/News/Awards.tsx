@@ -40,7 +40,7 @@ const Awards = ({awards_content, sidebarItems, news_outline, coming_titles}:{awa
     const title_item=awards_content.map((ex)=>ex.contentTypeName)[0]
     return (
       <div className="bg-gray-100">  
- <div className="bg-white m-auto md:flex justify-center px-3" style={{maxWidth:'1750px'}} >  
+ <div className="bg-white dark:bg-black m-auto md:flex justify-center px-3" style={{maxWidth:'1750px'}} >  
     <div className= "max-w-7xl"> 
     <SlideFxn title_item={title_item} content={awards_content}/> 
         <div className="text-center py-5"> 
@@ -99,7 +99,7 @@ height={675}
 )}
 </div>
   </div>
-  <div className=" md:mt-8"> 
+  <div className="md:mt-8"> 
  <SideBar sidebarItems={sidebarItems}
 news_outline={news_outline} coming_titles={coming_titles}/>
   </div> 
@@ -187,7 +187,7 @@ className="p-1 border border-black"
 </div>
 
 
-<div className=" max-w-lg m-auto xl:block my-4">
+<div className="max-w-lg m-auto xl:block my-4">
 <div className='m-auto lg:m-0'>
  
  {awards_content.slice(30,35).map((ex)=>

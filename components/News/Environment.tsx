@@ -65,12 +65,12 @@ setCurrPg(currPg - 1);
 
   return (
     <div> 
-    <div className="bg-gray-50 py-4 m-auto" style={{maxWidth:'1800px'}}> 
+    <div className="bg-gray-50 dark:bg-black py-4 m-auto" style={{maxWidth:'1800px'}}> 
     <div className="xl:flex justify-center gap-1 px-2 m-auto" style={{maxWidth:'1550px'}}>  
       <section className="sm:grid sm:grid-cols-2 justify-center m-auto gap-1 px-2 max-w-4xl"> 
       {environment_items.length>4 &&environment_items.slice(4,8).map((xy,i)=>
       <div className="max-w-md lg:max-w-xl m-auto" key={xy?.title + ' ' + i}>
-        <div className="bg-white p-4 m-1 h-52 shadow"> 
+        <div className="bg-white dark:bg-black p-4 m-1 h-52 shadow"> 
         <div className="my-3 cursor-pointer ">
           <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}/${xy?.contentTags?.nodes[0]?.id}`}></Link> <span className="border rounded-2xl bg-red-500 text-white p-2 hover:bg-red-600">
             <FontAwesomeIcon 
@@ -101,9 +101,9 @@ setCurrPg(currPg - 1);
  <section>
 <div className="lg:flex m-auto p-6 gap-2 justify-center" style={{maxWidth:'1750px'}}> 
 <div>
-<h2 className="text-5xl font-bold m-4">Environment</h2>
+<h2 className="text-5xl font-bold m-4">News</h2>
 <hr className="bg-black py-0.5"/>
-<div className="grid sm:grid-cols-2 justify-center max-w-2xl lg:max-w-5xl m-auto">
+<div className="grid sm:grid-cols-2 justify-center max-w-2xl m-auto">
 {currentPosts.length>0 &&currentPosts.map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b max-w-xs lg:max-w-max py-4" key={xy?.title + ' ' + ix}> 
 <div className="overflow-hidden text-ellipsis h-28" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}> 
@@ -158,9 +158,7 @@ alt={xy?.featuredImage.node.altText}
  <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).fromNow()}</em></small> 
 </div>
 )}
-</div>
-
- 
+</div> 
 </div>
 <Pagination postPerPage={postPerPage} totalPosts={posts.length} paginating={paginating} />
 </div>

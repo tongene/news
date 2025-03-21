@@ -66,12 +66,12 @@ const Economy = ({economy_news }:{economy_news:TopNews[]}) => {
     
   return (
     <div> 
-    <div className="bg-gray-50 py-4 m-auto" style={{maxWidth:'1800px'}}> 
+    <div className="dark:bg-black bg-gray-50 py-4 m-auto" style={{maxWidth:'1800px'}}> 
     <div className="xl:flex justify-center gap-1 px-2 m-auto" style={{maxWidth:'1550px'}}>  
       <section className="sm:grid sm:grid-cols-2 justify-center m-auto gap-1 px-2 max-w-4xl"> 
       {economy_items.length>4 &&economy_items.slice(4,8).map((xy,i)=>
       <div className="max-w-md lg:max-w-xl m-auto" key={xy?.title + ' ' + i}>
-        <div className="bg-white p-4 m-1 h-52 shadow"> 
+        <div className="dark:bg-black bg-white p-4 m-1 h-52 shadow"> 
         <div className="my-3 cursor-pointer ">
           <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}/${xy?.contentTags?.nodes[0]?.id}`}></Link> <span className="border rounded-2xl bg-red-500 text-white p-2 hover:bg-red-600">
             <FontAwesomeIcon 
@@ -104,7 +104,7 @@ const Economy = ({economy_news }:{economy_news:TopNews[]}) => {
 <div>
 <h2 className="text-5xl font-bold m-4">Economy</h2>
 <hr className="bg-black py-0.5"/>
-<div className="grid sm:grid-cols-2 justify-center max-w-2xl lg:max-w-5xl m-auto">
+<div className="grid sm:grid-cols-2 justify-center max-w-2xl m-auto">
 {currentPosts.length>0 &&currentPosts.map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b max-w-xs lg:max-w-max py-4" key={xy?.title + ' ' + ix}> 
 <div className="overflow-hidden text-ellipsis h-28" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}> 
