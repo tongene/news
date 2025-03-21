@@ -330,9 +330,25 @@ export async function generateMetadata({ params }: {
 }, parent:any) { 
   const {slug} =await params  
   const news_details= await newsDetailData(slug[0])
-  const previousImages = (await parent).openGraph?.images || [] 
+  const previousImages = (await parent).openGraph?.images || []
+  const tags= news_details.tags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+    // description:news_details?.excerpt,
+     // keywords:[eventTitle.genre]//
+    //  twitter: {
+    //   card: 'summary_large_image',
+    //   title: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),
+    //   description: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),  
+    //   images:[post?.files,...previousImages],  
+    // }, 
   return {
     title:`Culturays | News - ${news_details?.title}`,
+       description:news_details?.excerpt,
+      keywords:tags,
+       twitter: { 
+        title: news_details?.title ,
+        description: news_details?.excerpt ,  
+        images:[news_details?.featuredImage.node.sourceUrl,...previousImages],  
+      }, 
     openGraph: { 
       images: [news_details?.featuredImage.node.sourceUrl],
     },
