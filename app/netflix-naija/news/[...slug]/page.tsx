@@ -3,6 +3,7 @@ import { netflixNewsDets, nextNetflixNews } from "../../netflix-news"
 import SideBar from "@/components/Side" 
 import { postsOutline, sidePlusViews } from "@/app/page-data";
 import { createClient } from "@/utils/supabase/server";
+import { getTop10 } from "@/app/naija-wiki/filmsdata";
 const vids = async()=>{  
  
   const wprest = fetch('https://content.culturays.com/graphql',{
@@ -82,14 +83,21 @@ export async function generateMetadata({ params  }: {
   const {slug} =await params 
   const news_details = await netflixNewsDets(slug[0]) 
   const previousImages = (await parent).openGraph?.images || []
-  const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name)
-  
+  const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+   
   return {
     title:`Culturays | Naija Wiki News- ${news_details?.title}`,
-    description: "All titles Coming to or on Netflix Naija weekly, monthly and yearly are first published here. The best of Netflix Naija News and movies are all available.",
+    description: news_details?.title,
     keywords:tags,
+    twitter: {
+      card: 'summary_large_image',
+      title: news_details?.title,
+      description:news_details?.excerpt,    
+      images:  [news_details?.featuredImage.node.sourceUrl],
+    },    
+    
     openGraph: { 
-      images: [news_details?.featuredImage.node.sourceUrl],
+      images: [news_details?.featuredImage.node.sourceUrl, ],
     },
   }
 } 

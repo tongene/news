@@ -30,7 +30,8 @@ export async function generateMetadata(
  
   return {
     title:`Culturays Forum - ${eventTitle?.title}`,
-    keywords:[eventTitle.genre],
+    description:eventTitle?.title,
+    keywords:[eventTitle.genre].join(', '),
     openGraph: { 
       images: [eventTitle?.files,...previousImages],
     },

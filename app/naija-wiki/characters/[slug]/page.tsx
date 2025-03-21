@@ -27,10 +27,10 @@ import type { Metadata, ResolvingMetadata } from 'next'
     );
     const [charactertitles]= listChars 
     const previousImages = (await parent).openGraph?.images || []
-   
+  
     return {
-      title: `${charactertitles?.charactertitles.filmname} | Characters`,
-      keywords:[charactertitles?.charactertitles.filmname],
+      title: `${charactertitles?.charactertitles.filmname} | Characters`,description:charactertitles?.charactertitles.filmAbout,
+      keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname,].join(', '),
       openGraph: {
         images: [charactertitles.charactertitles.filmImg1.node.sourceUrl, ...previousImages],
       },

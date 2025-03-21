@@ -386,15 +386,15 @@ alt={xy?.node.featuredImage?.node.altText}
    <h2 className='text-2xl font-bold py-4'>Next</h2>
      </div>
 <div className="max-w-7xl m-auto overflow-auto pt-4 px-1 hidden-scroll" > 
-   <div className='flex' style={{width:'1000px'}}> 
+   <div className='flex' style={{width:'1000px'}}>  
    {next_posts.slice(0,3).map((xy,i)=> 
     <div className='border pt-5 px-3 w-96' key={i + ' ' + Math.random()}>   
-    <Link href={`/topic/${(xy.node.contentTags.nodes??[][0]).slug}`}></Link> <h3 className='text-red-500 text-sm italic'>{(xy.node.contentTags.nodes??[][0]).name} </h3>
-    <Link href={`/netflix-naija/new-on-netflix/${xy.node.slug}`}><h2 className="hover:text-gray-700 text-base font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2></Link>            
+    <Link href={`/topic/${(xy.node.contentTags.nodes??[][0]).slug}`}></Link> <h3 className='text-red-500 text-sm italic py-1 hover:text-gray-700 cursor-pointer font-bold'>{(xy.node.contentTags.nodes??[][0]).name} </h3>
+    <Link href={`/netflix-naija/new-on-netflix/${xy.node.slug}`}><h2 className="hover:text-gray-700 text-lg font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2></Link>            
       <div className='py-2 text-sm'> 
         <p className=''>{moment(xy.node.date).fromNow()}</p> 
         <Link href={`/creator/${xy.node.author.node.slug}`}>
-          <p className='py-2 font-medium'>{xy.node.author.node.name}</p>
+          <p className='py-2 text-gray-800 font-medium hover:text-red-400 font-bold'>{xy.node.author.node.name}</p>
         </Link> 
       </div>   
      

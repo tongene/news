@@ -24,10 +24,11 @@ import ActorsMovie from "@/components/NaijaWiki/Movie";
     );
     const [charactertitles]= listMovies 
     const previousImages = (await parent).openGraph?.images || []
-   
+  
     return {
       title: `Culturays - ${charactertitles?.charactertitles.portrayedby} | Movies `,
-      keywords:[charactertitles?.charactertitles.portrayedby],
+      description:charactertitles?.charactertitles.filmAbout,
+      keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname,].join(', '),
       openGraph: {
         images: [charactertitles.charactertitles.actorImgs.node.sourceUrl, ...previousImages],
       },

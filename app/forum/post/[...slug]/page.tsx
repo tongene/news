@@ -34,10 +34,23 @@ export async function generateMetadata(
     }
    const post = await postView()  
   const previousImages = (await parent).openGraph?.images || []
-
+    // description:news_details?.excerpt,
+   // keywords:[eventTitle.genre]//
+  //  twitter: {
+  //   card: 'summary_large_image',
+  //   title: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),
+  //   description: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),  
+  //   images:[post?.files,...previousImages],  
+  // }, 
   return {
     title:`Culturays Forum - ${post?.title || post?.article_title?.toUpperCase().replace(/-/g," ")}`,
-    keywords: post.genre,
+    keywords: post.genre.join(', '),
+    twitter: {
+      card: 'summary_large_image',
+      title: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),
+      description: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),  
+      images:[post?.files,...previousImages],  
+    }, 
     openGraph: { 
       images: [post?.files,...previousImages],
     },

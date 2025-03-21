@@ -91,7 +91,7 @@ export const metadata:Metadata = {
   generator: 'Culturays',
   applicationName: 'Culturays',
   referrer: 'origin-when-cross-origin',
-  keywords: ['Africa', 'News', 'Nigeria', 'Nollywood', 'Netflix Naija', 'Business', 'Movies','Naija Birthdays', 'Economy', 'Naija Wiki', 'Naija Events'],
+  keywords: "Africa, News, Nigeria, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events",
   authors: [{ name: 'Christina Ngene', url: 'https://culturays.com/creator/christina-ngene' }],
   creator: 'Christina Ngene',
   publisher: 'Christina Ngene',

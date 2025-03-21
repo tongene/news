@@ -30,9 +30,10 @@ const queryParams = {
   week: finalString,  
   }; 
  const params =  new URLSearchParams(queryParams);  
-const res12=await axios.get(`https://netflix.com/tudum/top10/nigeria`) 
+const res12= axios.get(`https://netflix.com/tudum/top10/nigeria`) 
 .then((response)=>{
-if(response.status!==200 ) throw new Error(`HTTP error! status: ${response.status}`); 
+if(response.status!==200 )return
+  // throw new Error(`HTTP error! status: ${response.status}`); 
 const html = response.data
 const $ = cheerio.load(html)
 // $('#maincontent > div > div > div', html).each(function(){
@@ -72,9 +73,11 @@ date:date
 // //  }) 
 
 }).then(response =>response )
-.catch(err => console.error(err)); 
+.catch(err => { 
+return
+}); 
 await new Promise(resolve => setTimeout(resolve, 1000)); 
-
+ 
 return top10s       
 } 
 
@@ -88,7 +91,7 @@ export async function getTop10Series():Promise<AllObj[]> {
   };
   
    const params = new URLSearchParams (queryParams); 
-  const res12=await axios.get(`https://netflix.com/tudum/top10/nigeria/tv` ) 
+  const res12=  axios.get(`https://netflix.com/tudum/top10/nigeria/tv` ) 
   .then((response)=>{
   if(response.status!==200) throw new Error(`HTTP error! status: ${response.status}`); 
   const html = response.data
@@ -139,7 +142,10 @@ img:img
   // })
   
   }).then(response =>response )
-  .catch(err => console.error(err)); 
+  .catch(err =>{ 
+     return
+    }
+    ); 
   await new Promise(resolve => setTimeout(resolve, 1000));   
   return top10s       
   } 
@@ -153,7 +159,7 @@ export async function getPopular():Promise<AllObj[]> {
   };
   
    const params = new URLSearchParams(queryParams); 
-  const res12=await axios.get(`https://www.netflix.com/tudum/top10/most-popular` ) 
+  const res12=  axios.get(`https://www.netflix.com/tudum/top10/most-popular` ) 
   .then((response)=>{
   if(response.status!==200)throw new Error(`${response.status}`)
   const html = response.data
@@ -186,7 +192,9 @@ export async function getPopular():Promise<AllObj[]> {
  
   
   }).then(response =>response )
-  .catch(err => console.error(err)); 
+  .catch(err => { 
+  return
+  }); 
   await new Promise(resolve => setTimeout(resolve, 1000));   
   return top10s  
 }
@@ -200,7 +208,7 @@ export async function getPopularSeries():Promise<AllObj[]>{
   };
   
    const params = new URLSearchParams(queryParams); 
-  const res12=await axios.get(`https://www.netflix.com/tudum/top10/most-popular/tv` ) 
+  const res12=  axios.get(`https://www.netflix.com/tudum/top10/most-popular/tv` ) 
   .then((response)=>{
   if(response.status!==200)throw new Error(`${response.status}`)
   const html = response.data
@@ -233,7 +241,9 @@ export async function getPopularSeries():Promise<AllObj[]>{
   
   
   }).then(response =>response )
-  .catch(err => console.error(err)); 
+  .catch(err =>  { 
+  return
+  }); 
   await new Promise(resolve => setTimeout(resolve, 1000));   
   return top10s  
 
@@ -248,7 +258,7 @@ export async function getPopularNonEng():Promise<AllObj[]>{
   };
   
    const params = new URLSearchParams(queryParams); 
-  const res12=await axios.get(`https://www.netflix.com/tudum/top10/most-popular/films-non-english` ) 
+  const res12=  axios.get(`https://www.netflix.com/tudum/top10/most-popular/films-non-english` ) 
   .then((response)=>{
   if(response.status!==200)throw new Error(`${response.status}`)
   const html = response.data
@@ -281,7 +291,9 @@ export async function getPopularNonEng():Promise<AllObj[]>{
  
   
   }).then(response =>response )
-  .catch(err => console.error(err)); 
+  .catch(err =>  { 
+  return
+  }); 
   await new Promise(resolve => setTimeout(resolve, 1000));   
   return top10s  
 }
@@ -295,7 +307,7 @@ export async function getPopularSeriesNonEng():Promise<AllObj[]>{
   };
   
    const params = new URLSearchParams(queryParams); 
-  const res12=await axios.get(`https://www.netflix.com/tudum/top10/most-popular/tv-non-english` ) 
+  const res12=  axios.get(`https://www.netflix.com/tudum/top10/most-popular/tv-non-english` ) 
   .then((response)=>{
   if(response.status!==200)throw new Error(`${response.status}`)
   const html = response.data
@@ -329,7 +341,10 @@ export async function getPopularSeriesNonEng():Promise<AllObj[]>{
   
   
   }).then(response =>response )
-  .catch(err => console.error(err)); 
+  .catch(err => {
+    console.error(err)
+  return
+  }); 
   await new Promise(resolve => setTimeout(resolve, 1000));   
   return top10s
 
@@ -392,7 +407,7 @@ export const netFlixData =async () => {
 export const scrapeSilverBird = async ():Promise<AllSilver[]> => {
   const silverbirdsCinemas:AllSilver[]=[]
 try{
-  await axios.get('https://silverbirdcinemas.com/')
+    axios.get('https://silverbirdcinemas.com/')
   .then(async(response)=>{
     if(response.status !== 200) throw new Error(`${response.status}`)
     const html = response.data
@@ -453,8 +468,10 @@ try{
       } ) 
       
     }) 
-    }) .then(response =>response )
-      .catch(err => console.error(err));
+    }).then(response =>response )
+      .catch(err =>  { 
+      return
+      });
   await new Promise(resolve => setTimeout(resolve, 1000));
 } catch(err){
 console.log(err)
