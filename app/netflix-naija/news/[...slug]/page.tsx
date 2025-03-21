@@ -93,11 +93,11 @@ export async function generateMetadata({ params  }: {
       card: 'summary_large_image',
       title: news_details?.title,
       description:news_details?.excerpt,    
-      images:  [news_details?.featuredImage.node.sourceUrl],
+      images:  [news_details?.featuredImage.node.sourceUrl, ...previousImages],
     },    
     
     openGraph: { 
-      images: [news_details?.featuredImage.node.sourceUrl, ],
+      images: [news_details?.featuredImage.node.sourceUrl, ...previousImages],
     },
   }
 } 

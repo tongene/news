@@ -28,12 +28,19 @@ export async function generateMetadata(
     const eventTitle = await eventView()
   const previousImages = (await parent).openGraph?.images || []
  
+    
   return {
     title:`Culturays Forum - ${eventTitle?.title}`,
     description:eventTitle?.title,
     keywords:[eventTitle.genre].join(', '),
+         twitter: {
+      card: 'summary_large_image',
+     title: eventTitle?.title  ,
+    description: eventTitle?.title ,  
+     images:[`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`, ...previousImages],  
+    }, 
     openGraph: { 
-      images: [eventTitle?.files,...previousImages],
+      images: [`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`,...previousImages],
     },
   }
 }  

@@ -113,9 +113,18 @@ export async function generateMetadata(
     const slug =(await params).slug
      const vid_details= await viddetails(slug)
      const previousImages = (await parent).openGraph?.images || []
-    
+     const tags= vid_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+  
      return {
        title:`Culturays | Video - ${vid_details?.title}`,
+       description:vid_details?.excerpt,
+     keywords:tags,
+     twitter: {
+      card: 'summary_large_image',
+      title: vid_details?.title  ,
+      description: vid_details?.excerpt ,  
+      images:[vid_details?.featuredImage.node.sourceUrl, ...previousImages],  
+    },
        openGraph: { 
          images: [vid_details?.featuredImage.node.sourceUrl, ...previousImages],
        },

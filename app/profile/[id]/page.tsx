@@ -23,9 +23,17 @@ export async function generateMetadata(
       const id =(await params).id
       const userDetails= await getProfile(id)
       const previousImages = (await parent).openGraph?.images || [] 
- 
+
   return {
-    title:` ${userDetails.fullname || userDetails?.full_name}`,
+    title:`${userDetails.fullname || userDetails?.full_name}`,
+     description:userDetails?.about,
+     keywords:[`${userDetails.fullname || userDetails?.full_name}`],
+          twitter: {
+      card: 'summary_large_image',
+    description:userDetails?.about,
+      title:`${userDetails.fullname || userDetails?.full_name}`,
+      images:[userDetails.avatar_url, ...previousImages],  
+    },
     openGraph: {
     images: [userDetails.avatar_url, ...previousImages],
     },

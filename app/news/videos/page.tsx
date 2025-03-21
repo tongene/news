@@ -77,10 +77,10 @@ const vids = async()=>{
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}/videos` 
   : "http://localhost:3000/videos";
-
+  
 export const metadata = {
   metadataBase: new URL(defaultUrl), 
-   title:"Culturays | Videos",
+   title:"Culturays | Videos", 
    alternates: {
     canonical: 'https://www.culturays.com/videos',
  

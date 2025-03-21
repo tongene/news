@@ -113,7 +113,6 @@ idType: 'SLUG'
 }
 
 async function similarTrending(notIn:string[]){
- 
   const wprest = fetch('https://content.culturays.com/graphql',{
  method: 'POST', 
  headers:{
@@ -199,10 +198,19 @@ export async function generateMetadata({ params }: {
 }, parent:any) {
  const {slug} =await params 
     const trending_details= await trending(slug)
+    const tags= trending_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
     const previousImages = (await parent).openGraph?.images || []
-   
+     
     return {
       title:`Culturays | Trending - ${trending_details?.title}` ,
+         description:trending_details?.excerpt,
+          keywords:tags,
+          twitter: {
+      card: 'summary_large_image',
+      title: trending_details?.title  ,
+      description: trending_details?.excerpt ,  
+      images:[trending_details?.featuredImage.node.sourceUrl, ...previousImages],  
+    },
       openGraph: { 
         images: [trending_details?.featuredImage.node.sourceUrl],
       },

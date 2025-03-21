@@ -31,6 +31,12 @@ import type { Metadata, ResolvingMetadata } from 'next'
     return {
       title: `${charactertitles?.charactertitles.filmname} | Characters`,description:charactertitles?.charactertitles.filmAbout,
       keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname,].join(', '),
+      twitter: {
+      card: 'summary_large_image',
+      title: charactertitles?.charactertitles.filmname ,
+      description: charactertitles?.charactertitles.filmAbout, 
+      images:[charactertitles.charactertitles.filmImg1.node.sourceUrl, ...previousImages],  
+    },
       openGraph: {
         images: [charactertitles.charactertitles.filmImg1.node.sourceUrl, ...previousImages],
       },

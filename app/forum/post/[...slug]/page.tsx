@@ -34,14 +34,7 @@ export async function generateMetadata(
     }
    const post = await postView()  
   const previousImages = (await parent).openGraph?.images || []
-    // description:news_details?.excerpt,
-   // keywords:[eventTitle.genre]//
-  //  twitter: {
-  //   card: 'summary_large_image',
-  //   title: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),
-  //   description: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),  
-  //   images:[post?.files,...previousImages],  
-  // }, 
+    
   return {
     title:`Culturays Forum - ${post?.title || post?.article_title?.toUpperCase().replace(/-/g," ")}`,
     keywords: post.genre.join(', '),
@@ -49,7 +42,7 @@ export async function generateMetadata(
       card: 'summary_large_image',
       title: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),
       description: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),  
-      images:[post?.files,...previousImages],  
+      images:[`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/posts_imgs/${post?.files[0]}`,...previousImages],  
     }, 
     openGraph: { 
       images: [post?.files,...previousImages],

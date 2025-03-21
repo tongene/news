@@ -20,10 +20,25 @@ export async function generateMetadata(
   const news_details= await liveNewsFeed(slug[0])
   const previousImages = (await parent).openGraph?.images || []
  const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+
+  // description:news_details?.excerpt,
+     // keywords:[eventTitle.genre]//
+         //  twitter: {
+    //   card: 'summary_large_image',
+    //   title: news_details?.title  ,
+    //   description: news_details?.title ,  
+    //   images:[news_details?.featuredImage.node.sourceUrl, ...previousImages],  
+    // },
   return {
     title: `${news_details?.title||'' } `,
     description:news_details?.excerpt,
     keywords: tags,
+     twitter: {
+      card: 'summary_large_image',
+      title: news_details?.title  ,
+      description: news_details?.excerpt ,  
+      images:[news_details?.featuredImage.node.sourceUrl, ...previousImages],  
+    },
     openGraph: {
       images: [news_details?.featuredImage.node.sourceUrl,...previousImages],
       description:news_details?.excerpt,

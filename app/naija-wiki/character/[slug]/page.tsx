@@ -18,6 +18,12 @@ export async function generateMetadata(
     title:`Movie Character - ${char_details?.title} | Culturays`,
     description:char_details?.charactertitles.charBios, 
     keywords:[char_details?.title, char_details?.charactertitles.portrayedby, char_details?.charactertitles.filmname,].join(', '),
+   twitter: {
+      card: 'summary_large_image',
+      title: char_details?.title  ,
+      description:char_details?.charactertitles.charBios, 
+      images:[char_details?.featuredImage.node.sourceUrl, ...previousImages],  
+    },
     openGraph: { 
       images: [char_details?.featuredImage.node.sourceUrl,...previousImages],
     },

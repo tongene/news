@@ -15,11 +15,17 @@ export async function generateMetadata(
   const news_details = await netflixDetails(slug)  
   const previousImages = (await parent).openGraph?.images || [] 
     const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
-  
+
   return {
     title:`Culturays | Netflix Naija News - ${news_details?.title}`,
     description:news_details?.excerpt,
     keywords:tags,
+          twitter: {
+      card: 'summary_large_image',
+      title: news_details?.title  ,
+      description: news_details?.excerpt ,  
+      images:[news_details?.featuredImage.node.sourceUrl, ...previousImages],  
+    },
     openGraph: { 
       images: [news_details?.featuredImage.node.sourceUrl, ...previousImages],
     },

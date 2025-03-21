@@ -16,8 +16,17 @@ export async function generateMetadata(
      const tag_response = await tag(slug)    
      const tagged=tag_details?.nodes.concat(tag_response.nodes)
      const previousImages = (await parent).openGraph?.images || [] 
+  
      return {
-       title:`Culturays | All News About ${tagged[0]?.name}`,
+       title:`Culturays | All News About ${tagged[0]?.name}`,  
+         description: tagged[0]?.name, 
+         keywords: tagged[0]?.name , 
+          twitter: {
+      card: 'summary_large_image',
+      title: tagged[0]?.name ,
+      description: tagged[0]?.name,  
+      images:['/assets/images/culturays.png' , ...previousImages],  
+    },
        openGraph: { 
          images: ['/assets/images/culturays.png' ,...previousImages],
        },
