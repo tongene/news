@@ -37,7 +37,7 @@ await googleTrends.dailyTrends({
            //  titleObj.push({ title: search.title.query });
               });
           } else {
-  //console.log("No trending data available.");
+ //console.log("No trending data available.");
               return []
           }
       } catch (error) {
@@ -87,8 +87,6 @@ await googleTrends.dailyTrends({
  
   return titleObj 
    }
-
-
  
  export async function getNaijaFake1() {  
  const newsRest=await fetch(`https://factchecktools.googleapis.com/v1alpha1/claims:search?query=nigeria&key=${process.env.GOOGLE_API}&pageSize=100`)
@@ -101,7 +99,7 @@ const supabase = await createClient()
 const insertFacts=async()=>{
     const { data, error } = await supabase
   .from('fact_check')
-  .insert(response)
+  .upsert(response, {onConflict:'text'})
   .select() 
 if(error){
   console.log(error?.message)
@@ -117,6 +115,7 @@ return () => clearTimeout(fxnTimeout);
     timeZone: 'Africa/Lagos'
     }); 
   }, 5000);
+ 
 return response
  
    }
