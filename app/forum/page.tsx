@@ -26,15 +26,19 @@ if(error){
 return data ??[]
 }
  
-  const fakeTrend = await getFacts() 
-
+  const fakeTrend = await getFacts()  
   const today = new Date();
-const todayMonth = today.getMonth() ;
-const filteredTrends = fakeTrend?.filter((dateStr:FakeObj) => {
+  const todayMonth = today.getMonth()  
+  
+const date = new Date(); 
+const previousMonth = new Date(date.getTime());
+previousMonth.setDate(0); 
+ 
+ const filteredTrends = fakeTrend?.filter((dateStr:FakeObj) => { 
   const date = new Date(dateStr.claimDate);
   const dateDay = date.getDate();  
-  const dateMonth = date.getMonth() ;
-  return dateMonth <= todayMonth ;
+  const  dateMonth= date.getMonth() ; 
+  return  dateMonth=== todayMonth||previousMonth.getMonth()===dateMonth; 
 });
 
   //const xt10 = fakeTrend.map((xt)=> xt.claimDate).includes('') 
