@@ -12,7 +12,7 @@ const supabase =await createClient()
 const { 
 data: { user }, 
 } = await supabase.auth.getUser(); 
-await getNaijaFake1()
+ const xtre=await getNaijaFake1()
   const trending= await getNaijaTrends1()
   const getFacts=async()=>{
     const { data, error } = await supabase
@@ -26,7 +26,8 @@ if(error){
 return data ??[]
 }
  
-  const fakeTrend = await getFacts()  
+  const fakeTrend = await getFacts() 
+
   const today = new Date();
 const todayMonth = today.getMonth() ;
 const filteredTrends = fakeTrend?.filter((dateStr:FakeObj) => {

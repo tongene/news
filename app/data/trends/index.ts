@@ -96,14 +96,15 @@ await googleTrends.dailyTrends({
 const response = newsRest.claims
 
 const supabase = await createClient()
-const insertFacts=async()=>{
-    const { data, error } = await supabase
-  .from('fact_check')
-  .insert(response)
-  .select() 
-if(error){
-  console.log(error?.message)
-}
+const insertFacts=async()=>{  
+  for (const fact of response) {
+    const { error } = await supabase
+      .from('fact_check')
+      .upsert([fact], { onConflict: 'text' });
+  
+    if (error) console.error(error.message);
+  }
+ 
 return () => clearTimeout(fxnTimeout);
 
 }
@@ -113,7 +114,7 @@ return () => clearTimeout(fxnTimeout);
     onTick: insertFacts(),
     start: true,
     timeZone: 'Africa/Lagos'
-    }); 
+    });  
   }, 5000);
  
 return response
