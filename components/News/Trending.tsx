@@ -13,6 +13,7 @@ const Trending = ({related_to_trend, trends_categories, trends}:{related_to_tren
   return newString 
    } 
    const [readAll, setReadAll]=useState(false)
+ const trendsAll = trends_categories[0].trends.nodes?.concat(trends_categories[1].trends.nodes)?.concat(trends_categories[2].trends.nodes)?.concat(trends_categories[3].trends.nodes)?.concat(trends_categories[4].trends.nodes)?.concat(trends_categories[5].trends.nodes)
   return ( 
     <div className="m-auto px-4" style={{maxWidth:'1700px'}}> 
     <div className="xl:flex justify-center" style={{maxWidth:'1600px'}}>
@@ -44,13 +45,13 @@ alt={trends.featuredImage.node.altText}
   <div className=" my-3 m-auto h-max "> 
 <h2 className="text-center p-3 text-3xl font-bold py-8">See Also</h2>
  <div className="my-4 xs:grid grid-cols-2 justify-center border"> 
-{trends_categories[0].trends.nodes.map((xy,i)=>
-<div key={xy.title + ' ' + i} className="flex shadow px-2 py-4 justify-center"> 
+{trendsAll?.slice(0,5).map((xy,i)=>
+<div key={xy.title + ' ' + i} className="flex shadow px-2 py-4 justify-center border-r border-b"> 
 
 <div> 
 <small className="text-md italic py-2">{moment(xy.date).fromNow()} </small>
 <Link href={`/news/trending/${xy.slug}`}><h3 className="hover:text-gray-500 text-2xl font-bold overflow-hidden text-ellipsis leading-8"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link>
-<Link href={`/news/trending/${xy.slug}`}><p className='hover:text-gray-500 text-lg font-serif overflow-hidden text-ellipsis my-3 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} > {replaceHTMLTags(xy.excerpt)} </p></Link>
+<Link href={`/news/trending/${xy.slug}`}><p className='hover:text-gray-500 text-lg font-serif overflow-hidden text-ellipsis my-1'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} > {replaceHTMLTags(xy.excerpt)} </p></Link>
 </div>
  
 </div>
@@ -58,11 +59,11 @@ alt={trends.featuredImage.node.altText}
     </div>
 </div> 
  </div>
-{related_to_trend?.length>0&&
+ 
 <div className="my-10 md:my-0 max-w-xs xs:max-w-max md:max-w-xs m-auto"> 
-  <h2 className="text-4xl text-gray-800 dark:text-gray-300">Related</h2>
+  <h2 className="text-4xl text-gray-800 dark:text-gray-300">Popular Trends</h2>
 <div className="grid xs:grid-cols-2 md:grid-cols-1 my-4 gap-1 h-max">
-{related_to_trend?.slice(0,5).map((xy,i)=>
+{trendsAll?.slice(5,10).map((xy,i)=>
 <div key={xy.title + ' ' + i} className="p-4 border rounded"> 
 <small className="text-md italic text-red-600">{moment(xy.date).fromNow()} </small>
 <Link href={`/news/trending/${xy.slug}`}><h3 className="hover:text-gray-500 text-2xl  overflow-hidden text-ellipis leading-8 dark:text-gray-300" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link> 
@@ -80,14 +81,14 @@ alt={xy.featuredImage.node.altText}
   
     </div>
     </div>
-}
+ 
     </div>
   
  <div className="my-11 lg:flex xl:block h-max justify-center max-w-5xl m-auto">
- <div className="bg-gray-200 dark:bg-black m-auto border max-w-2xl xl:max-w-sm">
-  <h2 className="text-center p-3 text-3xl text-gray-700 font-bold dark:text-gray-200">Popular Trends</h2>
-  <hr className="p-0.5 bg-gray-600 w-1/2 m-auto m-1"/>
-{trends_categories[1].trends.nodes.map((xy,i)=>
+ <div className="0 dbg-gray-20ark:bg-black m-auto border max-w-2xl xl:max-w-sm">
+  {/* <h2 className="text-center p-3 text-3xl text-gray-700 font-bold dark:text-gray-200">Popular Trends</h2>   <hr className="p-0.5 bg-gray-600 w-1/2 m-auto m-1"/>*/}
+
+{trendsAll?.slice(10,15).map((xy,i)=>
 <div key={xy.title + ' ' + i} className="flex m-4 border-b border-b-4 border-black"> 
 <div className="w-1/2"> 
 <Link href={`/news/trending/${xy.slug}`}><h3 className="hover:text-gray-500 text-2xl py-2 font-bold truncate ">{xy.title} </h3></Link>
@@ -107,9 +108,9 @@ alt={xy.featuredImage.node.altText}
   </div>
 
 <div className="bg-gray-200 dark:bg-black border max-w-2xl my-3 lg:my-0 lg:m-0 xl:my-3 m-auto xl:max-w-sm h-max"> 
-<h2 className="text-center p-3 text-3xl text-gray-700 dark:text-gray-200 font-bold pt-8">On the Topic </h2>
+<h2 className="text-center p-3 text-3xl text-gray-700 dark:text-gray-200 font-bold pt-8">Still on the Topic </h2>
  <div className="my-4 xs:grid grid-cols-2 lg:block xl:grid justify-center mx-2"> 
-{trends_categories[2].trends.nodes.map((xy,i)=>
+{trendsAll?.slice(15,20).map((xy,i)=>
 <div key={xy.title + ' ' + i} className="flex shadow px-2 py-4 justify-center"> 
 
 <div className="max-w-xs"> 
@@ -133,7 +134,7 @@ alt={xy.featuredImage.node.altText}
 <div className="xl:flex justify-center py-8"> 
 <div className="md:flex justify-center"> 
 <div className="mx-2 px-8"> 
-  {trends_categories[3].trends.nodes.map((xy,i)=> 
+  {trendsAll?.slice(20,25).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="my-3 [&:not(:last-child)]:border-b">  
   <ul>
   <Link href={`/news/trending/${xy.slug}`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 overflow-hidden text-ellipsis leading-9 dark:text-gray-300' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </li></Link> 
@@ -145,7 +146,7 @@ alt={xy.featuredImage.node.altText}
   }
   </div>
   <div className="my-4 lg:border-r md:border-l md:border-b h-max p-3 ">  
-{trends_categories[4].trends.nodes.map((xy,i)=> 
+{trendsAll?.slice(25,30).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="max-w-2xl ">   
 <div className="[&:not(:last-child)]:border-b my-3"> 
  
@@ -169,7 +170,7 @@ alt={xy.featuredImage.node.altText}
 </div>
  
   <div className="m-2 p-8 max-w-2xl"> 
-  {trends_categories[5].trends.nodes.map((xy,i)=> 
+  {related_to_trend?.slice(0,5).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="[&:not(:last-child)]:border-b my-3">  
   <ul>
   <Link href={`/news/trending/${xy.slug}`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 dark:text-gray-300 dark:hover:text-gray-500'>{xy.title} </li></Link>

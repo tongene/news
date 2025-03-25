@@ -89,8 +89,7 @@ const postView = async () => {
     }
     
     return comments
-    }
- 
+    } 
  
 const comments =(await commentView()||[]) 
 const commentItems =async(): Promise<InitialComments[]>=>{ 

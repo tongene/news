@@ -99,7 +99,7 @@ const supabase = await createClient()
 const insertFacts=async()=>{
     const { data, error } = await supabase
   .from('fact_check')
-  .upsert(response, {onConflict:'text'})
+  .insert(response)
   .select() 
 if(error){
   console.log(error?.message)
