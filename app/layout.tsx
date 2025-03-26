@@ -229,6 +229,9 @@ dangerouslySetInnerHTML={{
                   page_path: window.location.pathname,
               });
               `, 
+              }}/> 
+              <Script dangerouslySetInnerHTML={{
+              __html: `gtag('event', 'conversion', {'send_to': 'AW-782298154/PeRqCICmn-MBEKrYg_UC'});`, 
               }}/><body className="bg-background text-foreground"><Script
             id="gtm-script"
             strategy="afterInteractive"
