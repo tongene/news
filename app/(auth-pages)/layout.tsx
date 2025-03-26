@@ -1,3 +1,19 @@
+const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
+? `${process.env.NEXT_PUBLIC_BASE_URL}/sign-in` 
+: "http://localhost:3000/sign-in";
+export const metadata = {
+metadataBase: new URL(defaultUrl), 
+ title:"Culturays | Sign In",  
+description: "Sign in to Explore Topics",
+alternates: {
+  canonical: 'https://culturays.com/sign-in',
+
+},
+ openGraph: {
+  title: 'Culturays | Sign In',    
+    
+}
+}; 
 export default async function Layout({
   children,
 }: {
