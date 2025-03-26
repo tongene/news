@@ -177,7 +177,20 @@ export default function RootLayout({
     dangerouslySetInnerHTML={{
       __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ6RQP9V" height="0" width="0" style="display: none; visibility: hidden;" />`,
     }}
-  />*/} 
+  />
+  
+  
+  
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-782298154">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-782298154');
+</script> */} 
   return (
     <html lang="en" className={geistSans.className} suppressHydrationWarning> 
        <Script async strategy="afterInteractive" src="//clickiocmp.com/t/consent_234292.js"/><Script
@@ -206,7 +219,17 @@ dangerouslySetInnerHTML={{
                 });
                 `, 
                 }}
-            /><body className="bg-background text-foreground"><Script
+            /><Script async src={"https://www.googletagmanager.com/gtag/js?id=AW-782298154"}/><Script dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'AW-782298154', {
+                  page_path: window.location.pathname,
+              });
+              `, 
+              }}/><body className="bg-background text-foreground"><Script
             id="gtm-script"
             strategy="afterInteractive"
             src={`https://www.googletagmanager.com/gtm.js?id=GTM-PJ6RQP9V`}
