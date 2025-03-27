@@ -217,19 +217,12 @@ dangerouslySetInnerHTML={{
                 gtag('config', 'G-P51WG5SXDB', {
                     page_path: window.location.pathname,
                 });
-                `, 
-                }}
-            /><Script async src={"https://www.googletagmanager.com/gtag/js?id=AW-782298154"}/><Script dangerouslySetInnerHTML={{
-              __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', 'AW-782298154', {
+                  gtag('config', 'AW-782298154', {
                   page_path: window.location.pathname,
               });
-              `, 
-              }}/> 
+                `, 
+                }}
+            /><Script async src={"https://www.googletagmanager.com/gtag/js?id=AW-782298154"}/>
               <Script dangerouslySetInnerHTML={{
               __html: `gtag('event', 'conversion', {'send_to': 'AW-782298154/PeRqCICmn-MBEKrYg_UC'});`, 
               }}/><body className="bg-background text-foreground"><Script
