@@ -31,7 +31,7 @@ export const searchValues = async (name:string) => {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
+          body: JSON.stringify({ 
             query: `
             query SEARCHES {
      contentNodes(where: { search: "${name}"}) {

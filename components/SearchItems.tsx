@@ -44,48 +44,24 @@ const SearchItems = () => {
   const [searchData,setSearchData]=useState<NodeProps[]>([]) 
   const [nameX1, setNameX1]= useState('')
 
-  const handleSearch =useDebouncedCallback(( e:React.ChangeEvent<HTMLInputElement>) => {    
-    const nameX = e.target.value.trim(); 
-    setNameX1(nameX)
-   if(nameX){
-    params.set('name', nameX);
-    replace(`${pathname}?${params.toString()}`);
- }else{
-   params.delete('name'); 
-    replace(`${pathname}`) 
- }
-},500 ); 
-
-const fetchValues = async()=>{ 
+  const handleSearch =useDebouncedCallback(( e:React.ChangeEvent<HTMLInputElement>) => {  
+ params.set('name', e.target.value.trim());  
+  setNameX1( e.target.value.trim())
+    replace(`${pathname}?${params.toString()}`);  
+},500); 
+ 
+const fetchValues = async()=>{  
  const searchVals = await searchValues(nameX1)
 setSearchData(searchVals)  
-
+ if(!nameX1){
+  params.delete('name'); 
+  replace(`${pathname}`)   
+  } 
 }
 useEffect(()=>{  
   fetchValues() 
-},[params])
-//const name = paramState.get('name') as string
-
-// const newParams = new URLSearchParams(paramState.toString()); 
-// useEffect(()=>{ 
-// setParamsState(newParams);
-// if (nameX1) {   
-// newParams.set("name", nameX1);
-// } else {
-// newParams.delete("name");
-
-// }
-
-// },[])
-
-
-// const handleSearch = useDebouncedCallback(( e:React.ChangeEvent<HTMLInputElement>) => { 
-//    const nameX = e.target.value.trim();
-//    setNameX1(nameX) 
-//    redirect(`${pathname}?${paramState.toString()}`);  
-
-// }, 500);
-
+},[nameX1])
+ 
 
 return ( 
 
@@ -104,7 +80,7 @@ defaultValue={params.get('name')?.toString()}
  
   <div className="relative z-40 top-3 -right-3/4 ml-22 sm:ml-28 md:ml-32">
 <FontAwesomeIcon icon={faAngleDoubleRight}width={20} className="cursor-pointer opacity-70 text-xl hover:scale-150" onClick={()=>!nameX1?replace('/search')
-:replace(`/search?name=${name}`)}/> 
+:replace(`/search?name=${nameX1}`)}/> 
  
 </div> 
  

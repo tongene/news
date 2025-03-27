@@ -7,7 +7,7 @@ import Image from "next/image"
 type InnerNode ={  
     nodes:[{
       naijaOnNetflix:{
-      nodes:{
+      nodes:{ 
         contentTypeName:string;
         id:number;
         slug:string;
@@ -78,14 +78,6 @@ type InnerNode ={
   }
 const Search = ({ name, content }:{name:string, content:NodeProps[]}) => {
  
-// const [contentSearch,setContentSearch]=useState<NodeProps[]>([])
-// const searchedVals =async()=>{
-//     const content =await searchValues(name) 
-//     setContentSearch(content)
-// }
-// useEffect(()=>{
-//  searchedVals()
-// },[]) 
 const searchItem:NodeProps[]= []   
 const netflixContent = content?.map((xy)=> xy?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes).flat()).flat() 
  
