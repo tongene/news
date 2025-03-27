@@ -180,7 +180,6 @@ export default function RootLayout({
   />
   
   
-  
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-782298154">
 </script>
@@ -222,7 +221,7 @@ dangerouslySetInnerHTML={{
               });
                 `, 
                 }}
-            /><Script async src={"https://www.googletagmanager.com/gtag/js?id=AW-782298154"}/>
+            /><Script async  strategy="afterInteractive" src={"https://www.googletagmanager.com/gtag/js?id=AW-782298154"}/>
               <Script dangerouslySetInnerHTML={{
               __html: `gtag('event', 'conversion', {'send_to': 'AW-782298154/PeRqCICmn-MBEKrYg_UC'});`, 
               }}/><body className="bg-background text-foreground"><Script
