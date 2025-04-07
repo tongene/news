@@ -18,21 +18,23 @@ const replaceHTMLTags=(string:string)=>{
     date:string
   }
  
-const SlideFxn = ({content, title_item}:{content:SlideProps[], title_item:string}) => {
+const SlideFxn = ({content, title_item }:{content:SlideProps[], title_item:string}) => {
     const [activeSlide,setActiveSlide] =useState(0)
     const prevSlide=()=> { 
-        const slide =activeSlide - 1 < 0
-          ?4 - 1
-          :activeSlide -1;
-          setActiveSlide(slide);
-      }
-      const nextSlide=()=> {
-        let slide = activeSlide + 1 < 4
-          ? activeSlide + 1
-          : 0;
-          setActiveSlide(slide);  
-      }
-     
+      const slide = activeSlide + 1 < 4
+        ? activeSlide + 1
+        :0;
+        setActiveSlide(slide); 
+    }
+   
+    const nextSlide=()=> {
+      const slide = activeSlide + 1 < 4
+        ? activeSlide + 1
+        : 0;
+        setActiveSlide(slide);  
+    }
+        
+ 
   return (  
  <section className='m-auto my-3 max-w-3xl relative'>
  <div className="flex justify-between m-auto absolute top-1/3 w-full"> 
@@ -49,6 +51,7 @@ const SlideFxn = ({content, title_item}:{content:SlideProps[], title_item:string
  index===activeSlide&&
 <div key={item?.slug + ' ' + index} className="bg-gray-900 border border-yellow-700">  
  <div className='my-2 max-w-max m-auto px-11 py-8'> 
+ 
   <Link href={`/news/${title_item}/${item.slug}`}><h2 className='text-3xl text-gray-300 my-1 font-bold hover:text-gray-200 cursor-pointer overflow-hidden text-ellipsis leading-10' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{item?.title} </h2> </Link>
   
   <Link href={`/news/${title_item}/${item?.slug}`}><p className='text-base text-gray-200 hover:text-gray-50 cursor-pointer overflow-hidden text-ellipsis 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{replaceHTMLTags(item?.excerpt)} </p></Link>

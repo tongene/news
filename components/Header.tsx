@@ -12,7 +12,42 @@ const menuClick=()=>{
 setBarState(prev=> !prev)  
 }
 
+ const navAddress=[{
+  a:"Urban News",
+  b:"/news/environment"
+
+},
+{
+  a:"Economy",
+  b:"/news/economy"
+
+},
+{
+  a:"Tech",
+  b:"/news/tech"
+
+}
+,
+{
+  a:"Business",
+  b:"/news/business"
+
+},
+{
+  a:"Health",
+  b:"/news/health"
+
+},
+]
+ const [addStyle, setAddStyle]=useState('')  
+const handleClick = (id:string)=> { 
+  const activeElement = navAddress.filter((item)=> item.a === id )
+  if(pathname.includes(addStyle.toLowerCase())){
+      activeElement && setAddStyle(id)
+  }
  
+} 
+
  return ( 
  <>
  <Suspense> <ConfirmModal /> </Suspense>  
@@ -30,35 +65,36 @@ setBarState(prev=> !prev)
 <p className="opacity-70 mx-2" >
 <FontAwesomeIcon icon={faXmark} className="text-white w-6 h-11 cursor-pointer"/>
 </p>
-  <div className="animate-in">       
-<ul className="text-white p-3 flex flex-col text-center justify-center items-center h-max">
+  <div className="animate-in"> 
+{  navAddress.map((xy)=> 
+<ul key={xy.b + Math.random()}className="text-white p-3 flex flex-col text-center justify-center items-center h-max"> 
+ <li
+  className={`p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full ${
+    pathname.includes(xy.b) ? 'border-green-700' : {}
+  }`}
+  onClick={() => handleClick(xy.a)} 
+>
+ <Link href={xy.b}>{xy.a}</Link>
+
+</li>
+
+
+</ul>
+
+ 
+)   }   
+<ul >
 <Link href='/news/environment'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full">
 Urban News
 </li></Link>
-<Link href='/news/economy'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full">
- Economy
-</li></Link> 
-<Link href='/news/tech'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2  opacity-80 hover:scale-105 text-lg py-4 w-full">
- Tech
-</li>
-</Link>
-<Link href='/news/business'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2  opacity-80 hover:scale-105 text-lg py-4 w-full">
-Business
-</li></Link>
-<Link href='/news/health'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2  opacity-80 hover:scale-105 text-lg py-4 w-full">
-Health
-</li></Link>
-
-{/* <Link href='/news/society'><li className="p-2 m-1 mx-4 cursor-pointer opacity-80 hover:scale-105 text-lg py-4 w-full">
-Society
-</li></Link> */}
+ 
  
 </ul>
 
 </div>  
 </div>
 
-} 
+}  
 
 <button onClick={menuClick} className="m-1 mx-3 my-3 cursor-pointer md:hidden text-4xl" type="button">  
 <FontAwesomeIcon 
@@ -69,34 +105,28 @@ height={35} />
   
 </button>  
 </header> 
-{!barState&&
-  <nav className="absolute top-0 w-full md:block hidden">
-  <div className="m-2">       
-<ul className="flex justify-center"> 
-<Link href='/news/environment'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg">
-Urban News
-</li></Link>
-<Link href='/news/economy'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg w-max">
- Economy
-</li></Link>
-<Link href='/news/tech'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg">
- Tech
-</li></Link>
-<Link href='/news/business'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg">
-Business
-</li></Link>
-<Link href='/news/health'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg">
-Health
-</li></Link>
+<div className="absolute top-0 w-full md:block hidden z-50"> 
+  <nav className="flex justify-center">
+     {!barState&&
+navAddress.map((xy)=> 
+<ul key={xy.b + Math.random()}> 
+ <li
+  className={`p-2 m-1 mx-4 opacity-80 hover:scale-105 text-lg border-b-4 ${
+    pathname.includes(xy.b) ? 'border-green-700' : {}
+  }`}
+  onClick={() => handleClick(xy.a)} 
+>
+ <Link href={xy.b}>{xy.a}</Link>
 
-{/* <Link href='/news/society'><li className="p-2 m-1 mx-4 sm:border-b-2 md:border-b-2 opacity-80 hover:scale-105 text-lg">
-Society
-</li></Link>  */}
+</li>
+
+
 </ul>
 
-</div> 
-</nav>
-}
+ 
+)
+ 
+}</nav></div>
 </>
  
   )

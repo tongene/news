@@ -47,9 +47,9 @@ export default async function AuthButton() {
 href="/sign-in"
 className="flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover text-xs"
 >
-<button className="text-lg rounded-md no-underline bg-btn-background hover:bg-btn-background-hover border border-4 py-3 px-6">
+  <button className="text-lg rounded-md no-underline bg-btn-background hover:bg-btn-background-hover border border-4 py-3 px-6">
   Login
-</button>
+</button> 
 </Link> 
                      
 </div>

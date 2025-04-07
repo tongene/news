@@ -3,6 +3,7 @@ import { faComments } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"  
 import Image from "next/image"  
+import { useEffect, useState } from "react"
 
 type InnerNode ={  
     nodes:[{
@@ -77,18 +78,31 @@ type InnerNode ={
       }
   }
 const Search = ({ name, content }:{name:string, content:NodeProps[]}) => {
- 
+   const [loading,setLoading]=useState(false)
 const searchItem:NodeProps[]= []   
-const netflixContent = content?.map((xy)=> xy?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes).flat()).flat() 
+const netflixContent = content?.map((xy)=> xy?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes).flat()).flat()
+ 
+const xtcontent = content?.map((xy)=> {
+  if(xy.id){
+    return xy
+  }
+})
+ useEffect(()=>{
+  setLoading(true) 
+   if(xtcontent?.length>0){
+     setLoading(false)
+   }
+ },[name])
  
 return (
     
 <div>
- <div className="bg-gray-50 max-w-2xl m-auto mb-5 dark:text-gray-800">
+{loading&&<p>Loading...</p>}
+{ !loading&& <div className="bg-gray-50 max-w-2xl m-auto mb-5 dark:text-gray-800">
 {name&&content?.length>0&&<p className="p-5 m-4 font-bold">Search result for {name} — {content?.length}</p>}   
 
-  {name &&content?.length>0&&
-content?.filter((ox)=> ox.contentTypeName!=="outline")?.map((it, index)=> it?.contentTypeName !=='char' && it.contentTypeName !=='netflix-naija' && it.contentTypeName !=='post' && it.contentTypeName !=='page' &&           
+  {name &&xtcontent?.length>0&&
+xtcontent?.filter((vx)=> vx !==undefined).filter((ox)=> ox.contentTypeName!=="outline")?.map((it, index)=> it?.contentTypeName !=='char' && it.contentTypeName !=='netflix-naija' && it.contentTypeName !=='post' && it.contentTypeName !=='page' &&           
 <div key={it.id + Math.random()} className="shadow bg-white dark:bg-transparent max-w-xl px-4 m-auto my-2"> 
 <div className="flex justify-center xs:items-center"> 
      <div className="max-w-32 xs:max-w-44"> 
@@ -125,8 +139,8 @@ content?.filter((ox)=> ox.contentTypeName!=="outline")?.map((it, index)=> it?.co
 </div>
 ) }    
  
-{name &&content?.length>0&&
-content?.filter((ox)=> ox.contentTypeName!=="outline")?.filter((x1)=> x1?.contentTypeName ==='netflix-naija' ).map((xy)=> xy?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes)?.flat()?.map((it, index)=>           
+{name &&xtcontent?.length>0&&
+xtcontent?.filter((vx)=> vx !==undefined)?.filter((ox)=> ox.contentTypeName!=="outline")?.filter((x1)=> x1?.contentTypeName ==='netflix-naija' ).map((xy)=> xy?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes)?.flat()?.map((it, index)=>           
 <div key={it?.id + Math.random()} className="shadow bg-white dark:bg-transparent max-w-xl px-4 m-auto my-2"> 
 <div className="flex justify-center xs:items-center">
  <div className="max-w-32 xs:max-w-44"> 
@@ -165,8 +179,8 @@ content?.filter((ox)=> ox.contentTypeName!=="outline")?.filter((x1)=> x1?.conten
 </div>
 )) }
 
-{name &&content?.length>0&&
-content?.filter((ox)=> ox.contentTypeName!=="outline")?.map((it, index)=> it.contentTypeName ==='char' &&               
+{name &&xtcontent?.length>0&&
+xtcontent?.filter((vx)=> vx !==undefined)?.filter((ox)=> ox.contentTypeName!=="outline")?.map((it, index)=> it.contentTypeName ==='char' &&               
 <div key={it.id + Math.random()} className="shadow bg-white dark:bg-transparent max-w-xl px-4 m-auto my-2"> 
 <div className="flex items-center">        
      <div className="max-w-32 xs:max-w-44"> 
@@ -204,8 +218,8 @@ content?.filter((ox)=> ox.contentTypeName!=="outline")?.map((it, index)=> it.con
     </div>
 </div>
 ) } 
-{name &&content?.length>0&&
-content?.filter((ox)=> ox.contentTypeName!=="outline")?.map((it, index)=> it.contentTypeName ==='post' &&               
+{name &&xtcontent?.length>0&&
+xtcontent?.filter((vx)=> vx !==undefined)?.filter((ox)=> ox.contentTypeName!=="outline")?.map((it, index)=> it.contentTypeName ==='post' &&               
 <div key={it.id + Math.random()} className="shadow bg-white dark:bg-transparent max-w-xl px-4 m-auto py-5 my-2"> 
 <div className="flex justify-center xs:items-center">        
      <div className="max-w-32 xs:max-w-44"> 
@@ -260,8 +274,8 @@ searchItem?.length>0&&searchItem?.map((it, index)=>
 </div>
 ):null}  
  
- </div>
- 
+ </div>  
+ }
  </div>
   )
 }

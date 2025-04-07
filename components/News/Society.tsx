@@ -29,9 +29,11 @@ const Society = ({society_news }:{society_news:TopNews[]}) => {
   const [posts, setPosts]=useState<PostProps[]>([]) 
   const [currPg, setCurrPg]=useState(1)
   const [postPerPage, setPostPerP]=useState(10) 
-     const world_news = society_news.map((ex)=>ex.societyCategories?.nodes.filter((xy)=> xy?.name==="World")).flat().map((tx)=> tx?.societies.nodes).flat()
-     const africa_news = society_news.map((ex)=>ex.societyCategories?.nodes.filter((xy)=> xy?.name==="Africa")).flat().map((tx)=> tx?.societies.nodes).flat()     
-     const society_items=society_news.map((ex)=>ex.societyCategories?.nodes.filter((xy)=> xy?.name!=="World")).flat().filter((xy)=> xy?.name!=="Africa").map((tx)=> tx?.societies.nodes).flat()
+  
+     const world_news = society_news.filter((ex)=>ex.societyCategories?.nodes[0].name==="World")
+     const africa_news = society_news.filter((ex)=>ex.societyCategories?.nodes[0].name==="Africa") 
+     const society_items=society_news.filter((ex)=>ex.societyCategories?.nodes[0].name!=="World").filter((ex)=>ex.societyCategories?.nodes[0].name!=="Africa")
+
   function decrement() {
    setCurrPg(currPg - 1);
  }
@@ -74,7 +76,7 @@ const Society = ({society_news }:{society_news:TopNews[]}) => {
       <div className="max-w-md lg:max-w-xl m-auto" key={xy?.title + ' ' + i}>
         <div className="dark:bg-black bg-white p-4 m-1 h-52 shadow"> 
         <div className="my-3 cursor-pointer ">
-          <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}/${xy?.contentTags?.nodes[0]?.id}`}></Link> <span className="border rounded-2xl bg-red-500 text-white p-2 hover:bg-red-600">
+          <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}}`}></Link> <span className="border rounded-2xl bg-red-500 text-white p-2 hover:bg-red-600">
             <FontAwesomeIcon 
            icon={faCircle}
            width={10}

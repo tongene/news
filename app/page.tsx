@@ -7,8 +7,7 @@ import { processImgs } from "@/utils/process_imgs";
 import { processSbImages } from "@/utils/processImages";
 import { replaceSpecialCharacters } from "@/utils/replacechars";
 import { scrapeSilverBird } from "./naija-wiki/filmsdata";
-import { createClient } from "@/utils/supabase/server";
-import { faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { createClient } from "@/utils/supabase/server"; 
 import { CronJob } from "cron";
  type PostEdges ={
     responseLatest:{
@@ -209,10 +208,7 @@ type EvObjType= {
      
      }  
     }
-  
-export default async function Home() {  
- 
-      const dailyWiki =async()=>{
+   const dailyWiki =async()=>{
         const silverBTitles= await scrapeSilverBird()
         const silverB_titles = silverBTitles.filter((xy)=> xy.title !==undefined).map((ex)=> ex.title)  
         const silverB_urls = silverBTitles.filter((xy)=> xy.titleUrl !==undefined).map((ex)=> ex.titleUrl)
@@ -248,6 +244,9 @@ export default async function Home() {
     
        // return () => clearTimeout(fxnTimeout);
         } 
+export default async function Home() {  
+ 
+     
 const latestPosts=await newsByLatest() 
   const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
      const news_outline=await postsOutline()
@@ -265,6 +264,8 @@ const latestPosts=await newsByLatest()
           start: true,
           timeZone: 'Africa/Lagos'
          }); 
+
+  
 return (
     <div> 
 <MainSlider livesNews={latestPosts.resp1Live}latestPosts={latestPosts.resp}/>

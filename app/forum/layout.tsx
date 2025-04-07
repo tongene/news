@@ -12,7 +12,7 @@ export const metadata = {
     canonical: 'https://culturays.com/forum',
  
   },
-  openGraph: {
+  openGraph: { 
     title: 'Culturays | Forum, People, Nigeria',    
       
 } 

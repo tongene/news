@@ -173,23 +173,7 @@ export default function RootLayout({
   //   new URLSearchParams(headerStore.get("confirm") || "")
   // ); <pre>{JSON.stringify(searchParams, null, 2)}</pre>
  {/* <TagManager/> */}  {/* <GoogleAnalytics/> 
-          <noscript
-    dangerouslySetInnerHTML={{
-      __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ6RQP9V" height="0" width="0" style="display: none; visibility: hidden;" />`,
-    }}
-  />
-  
-  
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-782298154">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-782298154');
-</script> */} 
+  */} 
   return (
     <html lang="en" className={geistSans.className} suppressHydrationWarning> 
        <Script async strategy="afterInteractive" src="//clickiocmp.com/t/consent_234292.js"/><Script
@@ -225,29 +209,27 @@ dangerouslySetInnerHTML={{
               <Script dangerouslySetInnerHTML={{
               __html: `gtag('event', 'conversion', {'send_to': 'AW-782298154/PeRqCICmn-MBEKrYg_UC'});`, 
               }}/><body className="bg-background text-foreground"><Script
-            id="gtm-script"
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtm.js?id=GTM-PJ6RQP9V`}
-          /><ThemeProvider
+              id="gtm-script"
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtm.js?id=GTM-PJ6RQP9V`}
+            />
+            <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange 
         >          
-          <main className="m-auto"style={{maxWidth:'100%'}} >
+        <main className="m-auto"style={{maxWidth:'100%'}} >
             <div> 
    <Header/> 
   <SocialNav/>  
 <HeaderAuth />  
    <Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense>
-<div className="flex flex-col">{children}  
-             </div>
+ <div className="flex flex-col">{children}</div> 
              <Latests/> 
                <Footer/>   
             </div>
-          </main> 
-      
-        </ThemeProvider>
+          </main></ThemeProvider> 
       </body>
      
     </html>

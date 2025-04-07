@@ -50,7 +50,7 @@ icon={faWhatsapp}/></p>
   icon={faYoutube}/> </p></Link>
     </div>
 
-    </div>
+    </div> 
     
     )
   }

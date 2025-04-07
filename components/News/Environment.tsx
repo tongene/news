@@ -21,28 +21,28 @@ type PostProps={
     }
     }
 }
-const Environment = ({environment_news }:{environment_news:TopNews[]}) => {
+const Environment = ({environment_news }:{environment_news:TopNews[],  }) => {
 
 const [posts, setPosts]=useState<PostProps[]>([]) 
 const [currPg, setCurrPg]=useState(1)
 const [postPerPage, setPostPerP]=useState(10) 
-const world_news = environment_news.map((ex)=>ex.environmentCategories?.nodes.filter((xy)=> xy?.name==="World")).flat().map((tx)=> tx?.environments.nodes).flat()
-const africa_news = environment_news.map((ex)=>ex.environmentCategories?.nodes.filter((xy)=> xy?.name==="Africa")).flat().map((tx)=> tx?.environments.nodes).flat()     
-const environment_items=environment_news.map((ex)=>ex.environmentCategories?.nodes.filter((xy)=> xy?.name!=="World")).flat().filter((xy)=> xy?.name!=="Africa").map((tx)=> tx?.environments.nodes).flat()
+const world_news = environment_news.filter((ex)=>ex.environmentCategories?.nodes[0].name==="World")
+const africa_news = environment_news.filter((ex)=>ex.environmentCategories?.nodes[0].name==="Africa") 
+const environment_items=environment_news.filter((ex)=>ex.environmentCategories?.nodes[0].name!=="World").filter((ex)=>ex.environmentCategories?.nodes[0].name!=="Africa")
 function decrement() {
 setCurrPg(currPg - 1);
  }
  function increment() {
    setCurrPg(currPg + 1);
  }
+
  
  useEffect(()=>{
    const fetchPs= async()=>{ 
      setPosts([...environment_items.slice(8)]) 
    }
    fetchPs()
- },[environment_news])
- 
+ },[environment_news]) 
   
  const idxLastPs= currPg * postPerPage
  const idxFsPage = idxLastPs - postPerPage
@@ -59,8 +59,7 @@ setCurrPg(currPg - 1);
     const newString = string?.replace(regex, "");
     return newString
      }
-     const [activeSet , setActiveSet]=useState(false)
-    
+     const [activeSet , setActiveSet]=useState(false)    
      const title_item=environment_news.map((ex)=>ex.contentTypeName)[0]
 
   return (
@@ -72,7 +71,7 @@ setCurrPg(currPg - 1);
       <div className="max-w-md lg:max-w-xl m-auto" key={xy?.title + ' ' + i}>
         <div className="bg-white dark:bg-black p-4 m-1 h-52 shadow"> 
         <div className="my-3 cursor-pointer ">
-          <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}/${xy?.contentTags?.nodes[0]?.id}`}></Link> <span className="border rounded-2xl bg-red-500 text-white p-2 hover:bg-red-600">
+          <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}`}></Link> <span className="border rounded-2xl bg-red-500 text-white p-2 hover:bg-red-600">
             <FontAwesomeIcon 
            icon={faCircle}
            width={10}
@@ -92,7 +91,7 @@ setCurrPg(currPg - 1);
 </section>
 
 <div className="max-w-2xl m-auto xl:m-0">
-  <SlideFxn title_item={title_item} content={environment_items}/>  
+  <SlideFxn title_item={title_item} content={environment_items} />  
 </div>
 
     </div>

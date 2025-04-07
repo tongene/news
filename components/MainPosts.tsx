@@ -21,7 +21,8 @@ const xyCategories= posts_notIn_newsPosts?.categories?.edges
 
   }
  
-  const posts_all= top_Posts_notIn_newsPosts.concat(posts_notInX).map((xy)=> xy?.node.posts).filter((vx)=> vx?.nodes.length>0)  
+  const posts_all= top_Posts_notIn_newsPosts.concat(posts_notInX).map((xy)=> xy?.node?.posts).filter((vx)=> vx?.nodes.length>0)
+   
  useEffect(()=>{
   setIsLoading(true)
   if(!isLoading){
@@ -36,13 +37,13 @@ setIsLoading(false)
   newxTitles() 
  
 },[posts_all])
- 
+
   return (<>{!isLoading&&
    <div className="bg-white w-full my-8 dark:bg-black">   
   <div className="xs:grid grid-cols-2 justify-center xs:items-start items-center xl:grid-cols-4 max-w-2xl lg:max-w-max m-auto py-8"> 
 
   <div className='max-w-sm m-auto border-r xs:m-0'>   
- { posts_all?.length>0&& posts_all[0]?.nodes.slice(0,5).map((it, index:number)=> 
+ { posts_all?.length>0&& posts_all.map((vx)=>vx?.nodes.slice(0,3).map((it, index:number)=> 
  <div key={index} className="px-4">  
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
@@ -70,12 +71,12 @@ className='rounded-xl h-44 object-cover'
 </div>} 
  
  </div>
- )} 
+ ) )} 
   
 </div>   
 
  <div className='max-w-sm m-auto border-r xs:m-0'>   
- { posts_all?.length>0&&posts_all[1]?.nodes.slice(0,5).map((it, index:number)=> 
+ { posts_all?.length>0&&posts_all.map((vx)=>vx?.nodes.slice(3,6).map((it, index:number)=> 
  <div key={index} className="px-4"> 
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '> 
@@ -102,12 +103,12 @@ className='rounded-xl h-44 object-cover'
 </div>}
  
  </div>
- )} 
+ ))} 
   
 </div> 
  
 <div className='max-w-sm m-auto xs:m-0 border-r'>   
- { posts_all?.length>0&&posts_all[2]?.nodes.slice(0,5).map((it, index:number)=> 
+ { posts_all?.length>0&&posts_all.map((vx)=>vx?.nodes.slice(6,9).map((it, index:number)=> 
  <div key={index} className="px-4"> 
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '> 
@@ -134,12 +135,12 @@ className='rounded-xl h-44 object-cover'
 </div>}
  
  </div>
- )} 
+ ))} 
   
 </div>  
 
  <div className='max-w-sm m-auto xs:m-0 border-r'>   
- { posts_all?.length>0&&posts_all[3]?.nodes.slice(0,5).map((it, index:number)=> 
+ { posts_all?.length>0&&posts_all.map((vx)=>vx?.nodes.slice(9,12).map((it, index:number)=> 
  <div key={index} className="px-4"> 
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '> 
@@ -166,7 +167,7 @@ className='rounded-xl h-44 object-cover'
 </div>}
  
  </div>
- )} 
+ ))} 
   
 </div>  
 </div>  

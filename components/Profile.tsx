@@ -30,9 +30,6 @@ type UserDataProps={
   full_name:string,
   username:string
 }
-
-
-
 const monoton =Monoton({
   subsets:['latin'], 
    weight:'400',
@@ -761,7 +758,6 @@ null
  <button type="submit"className="text-2xl p-3"onClick={handleMailsJS} >Invite</button> </div>
   </div> 
 </div>
-
 
   <div className='px-5 sm:px-16 my-2 m-auto xl:flex justify-center'> 
     <div className='main-forum m-auto xl:m-0 px-6 py-2 m-1.5 max-w-xl md:mt-0'ref={editingRef} > 

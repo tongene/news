@@ -20,7 +20,7 @@ export const metadata = {
         body: JSON.stringify({
           query:`
           query WPPOSTS {
-          environments {
+          environments(first:30) {
           nodes {
              contentTypeName
             title
@@ -89,13 +89,16 @@ export const metadata = {
           //const response = wprest?.data.environments.nodes 
          return wprest  
   } 
-const EnvironmentPage =async () => {
-   const environment_news = await environmentBlog() 
   
+
+ 
+const EnvironmentPage =async () => {
+   const environment_news = await environmentBlog()  
+ 
   return ( 
    <div>    
  <Environment 
-environment_news={environment_news} 
+ environment_news={environment_news}  
 />  
   </div> 
   )

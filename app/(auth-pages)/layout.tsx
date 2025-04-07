@@ -8,7 +8,7 @@ description: "Sign in to Explore Topics",
 alternates: {
   canonical: 'https://culturays.com/sign-in',
 
-},
+}, 
  openGraph: {
   title: 'Culturays | Sign In',    
     

@@ -16,7 +16,7 @@ openGraph: {
   title: 'Culturays | Live News, Nigeria',    
     
 } 
-}; 
+};  
 
  const openSans = Open_Sans({ 
     subsets: ['latin'], 

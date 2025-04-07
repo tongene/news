@@ -150,9 +150,9 @@ className='rounded-xl'
   <div className="grid sm:grid-cols-2 sm:max-w-6xl sm:m-0 px-5 xs:px-11 sm:px-2 py-8 max-w-xl" >
     {newsAll.slice(4,10).map((xy,i)=>
     <div className='pt-2 sm:pt-0 border-b flex my-2 mx-1' key={i + ' ' + Math.random()}>
-       <div className='' style={{maxWidth:'20%'}}>
+       <div>
     <Image
-className='h-20 rounded-xl object-cover'
+className='h-28 rounded-xl object-cover max-w-44'
   width={1200}
   height={675}
   src={xy.featuredImage?.node.sourceUrl}
@@ -226,9 +226,9 @@ alt={xy?.featuredImage?.node.altText }
  <div className="bg-white rounded-xl my-2 py-2 max-w-lg">
 {newsAll.slice(14,16).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2' key={i + ' ' + Math.random()}>
-    <div className='px-2' style={{maxWidth:'30%'}}>
+      <div>
     <Image
-className='h-20 xxs:h-24 rounded-xl object-cover'
+className='h-28 rounded-xl object-cover max-w-44'
   width={1200}
   height={675}
   src={x1.featuredImage?.node.sourceUrl}
@@ -254,9 +254,9 @@ className='h-20 xxs:h-24 rounded-xl object-cover'
 
   {newsAll?.slice(16,25).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2' key={i + ' ' + Math.random()}>
-    <div className='px-2' style={{maxWidth:'30%'}}>
+      <div>
     <Image
-className='h-24 rounded-xl object-cover'
+className='h-28 rounded-xl object-cover max-w-44'
   width={1200}
   height={675}
   src={x1.featuredImage?.node.sourceUrl}
@@ -328,9 +328,9 @@ className='rounded-xl'
   <div className="bg-white rounded-xl my-2 py-2 max-w-lg">
 {newsAll.slice(30,34).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2 gap-3' key={i + ' ' + Math.random()}>
-    <div style={{maxWidth:'30%'}}>
+      <div>
     <Image
-className='h-24 rounded-xl object-cover'
+className='h-28 rounded-xl object-cover max-w-44'
   width={1200}
   height={675}
   src={x1.featuredImage?.node.sourceUrl}
@@ -352,9 +352,9 @@ className='h-24 rounded-xl object-cover'
   <div className="rounded-xl my-2 py-2 max-w-lg">
 {newsAll.slice(34,44).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2 gap-1' key={i + ' ' + Math.random()}>
-    <div style={{maxWidth:'30%'}} >
+     <div>
     <Image
-className='h-24 rounded-xl object-cover'
+className='h-28 rounded-xl object-cover max-w-44'
   width={1200}
   height={675}
   src={x1.featuredImage?.node.sourceUrl}
@@ -380,9 +380,9 @@ className='h-24 rounded-xl object-cover'
   <div className="rounded-xl my-4 xl:mx-2 m-auto max-w-xl md:max-w-md min-[900px]:max-w-xl lg:max-w-2xl xl:max-w-xl h-max">
   {newsAll.slice(44,54).map((x1,i)=>
   <div className='border-b mx-1 px-3 pt-5 sm:pt-0 py-3 flex my-2' key={i + ' ' + Math.random()}>
-    <div className='px-2 py-2 ' style={{maxWidth:'30%'}}>
+      <div>
     <Image
-className='h-32 xl:h-36 rounded-xl object-cover'
+className='h-28 rounded-xl object-cover max-w-44'
   width={1200}
   height={675}
   src={x1.featuredImage?.node.sourceUrl}
@@ -597,3 +597,4 @@ className='rounded-xl object-cover'
 }
 
 export default News
+ 

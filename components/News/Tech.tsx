@@ -25,10 +25,13 @@ type PostProps={
 const Tech = ({tech_news }:{tech_news:TopNews[]}) => { 
   const [posts, setPosts]=useState<PostProps[]>([]) 
   const [currPg, setCurrPg]=useState(1)
-  const [postPerPage, setPostPerP]=useState(10) 
+  const [postPerPage, setPostPerP]=useState(10)  
+
      const world_news = tech_news.map((ex)=>ex.techCategories?.nodes.filter((xy)=> xy?.name==="World")).flat().map((tx)=> tx?.technologies.nodes).flat()
      const africa_news = tech_news.map((ex)=>ex.techCategories?.nodes.filter((xy)=> xy?.name==="Africa")).flat().map((tx)=> tx?.technologies.nodes).flat()     
      const tech_items=tech_news.map((ex)=>ex.techCategories?.nodes.filter((xy)=> xy?.name!=="World")).flat().filter((xy)=> xy?.name!=="Africa").map((tx)=> tx?.technologies.nodes).flat()
+
+
   function decrement() {
    setCurrPg(currPg - 1);
  }
@@ -71,7 +74,7 @@ const Tech = ({tech_news }:{tech_news:TopNews[]}) => {
       <div className="max-w-md lg:max-w-xl m-auto" key={xy?.title + ' ' + i}>
         <div className="dark:bg-black bg-white p-4 m-1 h-52 shadow"> 
         <div className="my-3 cursor-pointer ">
-          <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}/${xy?.contentTags?.nodes[0]?.id}`}></Link> <span className="border rounded-2xl bg-red-500 text-white p-2 hover:bg-red-600">
+          <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}}`}></Link> <span className="border rounded-2xl bg-red-500 text-white p-2 hover:bg-red-600">
             <FontAwesomeIcon 
            icon={faCircle}
            width={10}

@@ -43,24 +43,38 @@ const SearchItems = () => {
   const params = new URLSearchParams(searchParams); 
   const [searchData,setSearchData]=useState<NodeProps[]>([]) 
   const [nameX1, setNameX1]= useState('')
+  const [loading,setLoading]=useState(false)
+  const debouncedSearch = useDebouncedCallback((value: string) => {
+    params.set('name', value.trim());
+    replace(`${pathname}?${params.toString()}`);
+  }, 500);
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setNameX1(val); 
+    debouncedSearch(val); 
+   
+  };; 
 
-  const handleSearch =useDebouncedCallback(( e:React.ChangeEvent<HTMLInputElement>) => {  
- params.set('name', e.target.value.trim());  
-  setNameX1( e.target.value.trim())
-    replace(`${pathname}?${params.toString()}`);  
-},500); 
- 
-const fetchValues = async()=>{  
+const fetchValues = async()=>{ 
+  
+  setLoading(true) 
+  
+  if (!nameX1.trim()) {
+    params.delete('name');
+    replace(`${pathname}`);
+    setSearchData([]);
+    setLoading(false);
+    return;
+  }
  const searchVals = await searchValues(nameX1)
-setSearchData(searchVals)  
- if(!nameX1){
-  params.delete('name'); 
-  replace(`${pathname}`)   
-  } 
+setSearchData(searchVals)
+  setLoading(false) 
 }
-useEffect(()=>{  
-  fetchValues() 
-},[nameX1])
+useEffect(()=>{ 
+ setNameX1('');
+ fetchValues()
+  
+},[pathname])
  
 
 return ( 
@@ -72,10 +86,8 @@ placeholder='search'
 className='absolute z-20 w-full p-2 border-2 focus:outline-none text-lg'
 type="text" 
 name='name' 
-onChange={(e) => {
-  handleSearch(e);
-}}
-defaultValue={params.get('name')?.toString()}
+onChange={handleSearch}
+value={nameX1}
 /> 
  
   <div className="relative z-40 top-3 -right-3/4 ml-22 sm:ml-28 md:ml-32">
@@ -84,8 +96,9 @@ defaultValue={params.get('name')?.toString()}
  
 </div> 
  
-</div>  
-  {nameX1 &&!pathname.includes('search')&&
+</div> 
+{loading&&<p>Loading...</p>}
+  {!loading&&nameX1 &&!pathname.includes('search')&&
     <div className='searchRes m-2 sm:grid sm:grid-cols-2 sm:gap-2 md:grid-cols-3 max-w-6xl m-auto'>  
  { 
 searchData?.map((it, index)=> it?.contentTypeName ==='char' &&           
