@@ -18,6 +18,7 @@ data: { user },
     const { data, error } = await supabase
   .from('fact_check') 
   .select('*') 
+  .order('id', { ascending: false }) 
   .range(0, 10)
 if(error){
   console.log(error?.message)
