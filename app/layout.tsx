@@ -175,8 +175,7 @@ export default function RootLayout({
  {/* <TagManager/> */}  {/* <GoogleAnalytics/> 
   */} 
   return (
-    <html lang="en" className={geistSans.className} suppressHydrationWarning> 
-       <Script async strategy="afterInteractive" src="//clickiocmp.com/t/consent_234292.js"/><Script
+    <html lang="en" className={geistSans.className} suppressHydrationWarning><Script async strategy="afterInteractive" src="//clickiocmp.com/t/consent_234292.js"/><Script
 id='gt-manager'
 strategy="afterInteractive"
 dangerouslySetInnerHTML={{
@@ -189,8 +188,7 @@ dangerouslySetInnerHTML={{
 
 }
 /><Script async strategy="afterInteractive" 
-              src={`https://www.googletagmanager.com/gtag/js?id=G-P51WG5SXDB`}/>
-            <Script id='google-analytics'strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=G-P51WG5SXDB`}/><Script id='google-analytics'strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                 __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -205,34 +203,19 @@ dangerouslySetInnerHTML={{
               });
                 `, 
                 }}
-            /><Script async  strategy="afterInteractive" src={"https://www.googletagmanager.com/gtag/js?id=AW-782298154"}/>
-              <Script dangerouslySetInnerHTML={{
+            /><Script async  strategy="afterInteractive" src={"https://www.googletagmanager.com/gtag/js?id=AW-782298154"}/><Script dangerouslySetInnerHTML={{
               __html: `gtag('event', 'conversion', {'send_to': 'AW-782298154/PeRqCICmn-MBEKrYg_UC'});`, 
               }}/><body className="bg-background text-foreground"><Script
               id="gtm-script"
               strategy="afterInteractive"
               src={`https://www.googletagmanager.com/gtm.js?id=GTM-PJ6RQP9V`}
-            />
-            <ThemeProvider
+            /><ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange 
-        >          
-        <main className="m-auto"style={{maxWidth:'100%'}} >
-            <div> 
-   <Header/> 
-  <SocialNav/>  
-<HeaderAuth />  
-   <Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense>
- <div className="flex flex-col">{children}</div> 
-             <Latests/> 
-               <Footer/>   
-            </div>
-          </main></ThemeProvider> 
-      </body>
-     
-    </html>
+        ><main className="m-auto"style={{maxWidth:'100%'}} ><div><Header/><SocialNav/><HeaderAuth /><Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense><div className="flex flex-col">{children}</div><Latests/><Footer/>   
+            </div></main></ThemeProvider></body></html>
   );
 }
  
