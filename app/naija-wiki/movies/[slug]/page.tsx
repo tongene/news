@@ -37,6 +37,7 @@ import ActorsMovie from "@/components/NaijaWiki/Movie";
     },
       openGraph: {
         images: [charactertitles.charactertitles.actorImgs.node.sourceUrl, ...previousImages],
+       
       },
     } 
   }

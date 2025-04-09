@@ -849,7 +849,7 @@ export async function generateMetadata(
   const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/${slug[1]}/`)
   const previousImages = (await parent).openGraph?.images || []
   const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
-    
+
   return {
     title: `Culturays — ${news_details?.title}`,
     description:news_details?.excerpt,
@@ -862,6 +862,8 @@ export async function generateMetadata(
     },
      openGraph: {    
       images: [news_details?.featuredImage.node.sourceUrl,...previousImages],
+      type: "article",
+      publishedTime:news_details?.date,
     },
   } 
 } 

@@ -38,6 +38,8 @@ export async function generateMetadata(  { params }: Props,
     title:`Culturays Forum - ${comment?.title}`,
     openGraph: {
       images: [comment?.files,...previousImages],
+      type: "article",
+      publishedTime:comment?.created_at,
     },
   }
 } 

@@ -251,20 +251,19 @@ const latestPosts=await newsByLatest()
   const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
      const news_outline=await postsOutline()
   
-    //  CronJob.from({
-    //   cronTime: '10 8 * * *', 
-    //   onTick: dailyEv3(),
-    //   start: true,
-    //   timeZone: 'Africa/Lagos'
-    //   });
+     CronJob.from({
+      cronTime: '10 8 * * *',  
+      onTick: dailyEv3(),
+      start: true,
+      timeZone: 'Africa/Lagos'
+      });
     
-    //      CronJob.from({
-    //       cronTime: '10 8 * * *',  
-    //       onTick: dailyWiki(),
-    //       start: true,
-    //       timeZone: 'Africa/Lagos'
-    //      }); 
-
+         CronJob.from({
+          cronTime: '10 8 * * *',  
+          onTick: dailyWiki(),
+          start: true,
+          timeZone: 'Africa/Lagos'
+         });
   
 return (
     <div> 

@@ -23,6 +23,8 @@ export async function generateMetadata({ params }: {
     },
     openGraph: {  
       images: [news_details?.featuredImage.node.sourceUrl, ...previousImages],
+      type: "article",
+      publishedTime:news_details?.date
     },
   }
 } 

@@ -127,6 +127,8 @@ export async function generateMetadata(
     },
        openGraph: { 
          images: [vid_details?.featuredImage.node.sourceUrl, ...previousImages],
+         type: "article",
+         publishedTime:vid_details?.date
        },
      }
    }  

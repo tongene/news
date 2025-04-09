@@ -26,6 +26,8 @@ export async function generateMetadata(
     },
     openGraph: { 
       images: [char_details?.featuredImage.node.sourceUrl,...previousImages],
+      type: "article",
+      publishedTime:char_details?.date
     },
   }
 }  

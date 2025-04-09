@@ -63,7 +63,7 @@ contentTags(where: {slug: "${slug}"}){
     nodes { 
       name
       id
-      slug
+      slug 
        awards { 
           nodes {
           id

@@ -41,6 +41,8 @@ export async function generateMetadata(
     }, 
     openGraph: { 
       images: [`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`,...previousImages],
+      type: "article",
+      publishedTime:eventTitle?.created_at
     },
   }
 }  

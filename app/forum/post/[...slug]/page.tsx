@@ -46,6 +46,9 @@ export async function generateMetadata(
     }, 
     openGraph: { 
       images: [post?.files,...previousImages],
+      type: "article",
+      publishedTime:post?.created_at,
+
     },
   }
 }  

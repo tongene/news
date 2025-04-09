@@ -213,6 +213,8 @@ export async function generateMetadata({ params }: {
     },
       openGraph: { 
         images: [trending_details?.featuredImage.node.sourceUrl],
+        type: "article",
+        publishedTime:trending_details?.date
       },
     }
   }   

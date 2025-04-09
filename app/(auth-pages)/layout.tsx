@@ -10,8 +10,7 @@ alternates: {
 
 }, 
  openGraph: {
-  title: 'Culturays | Sign In',    
-    
+  title: 'Culturays | Sign In',
 }
 }; 
 export default async function Layout({

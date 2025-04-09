@@ -34,6 +34,9 @@ export async function generateMetadata(
     openGraph: {
       images: [news_details?.featuredImage.node.sourceUrl,...previousImages],
       description:news_details?.excerpt,
+      type: "article",
+      publishedTime: news_details?.date,
+
     },
   } 
 } 

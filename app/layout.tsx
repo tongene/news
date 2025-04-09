@@ -100,7 +100,7 @@ export const metadata:Metadata = {
   title: 'Culturays | News, Nigeria, Business, Economy, Nollywood, Netflix Naija',
   description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
   url: 'https://culturays.com', 
-  siteName: 'Culturays',
+  siteName: 'Culturays', 
   images: [
   {
   url: 'https://culturays.com/assets/images/culturays.png',  

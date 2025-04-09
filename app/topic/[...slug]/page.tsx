@@ -16,7 +16,6 @@ export async function generateMetadata(
      const tag_response = await tag(slug)    
      const tagged=tag_details?.nodes.concat(tag_response.nodes)
      const previousImages = (await parent).openGraph?.images || [] 
-  
      return {
        title:`Culturays | All News About ${tagged[0]?.name}`,  
          description: tagged[0]?.name, 
@@ -28,7 +27,8 @@ export async function generateMetadata(
       images:['/assets/images/culturays.png' , ...previousImages],  
     },
        openGraph: { 
-         images: ['/assets/images/culturays.png' ,...previousImages],
+         images: ['/assets/images/culturays.png' ,...previousImages], 
+       
        },
      }
    } 
@@ -37,7 +37,7 @@ const TagPage = async({params}: Props) => {
 // const id= params.slug[1].replace('%3D','')
  const content_tag_response = await contentTag(slug[0])
   const tag_response = await tag(slug)
- 
+
   return (
     <div>  
      <Tags
