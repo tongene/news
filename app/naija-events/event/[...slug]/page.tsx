@@ -1,6 +1,8 @@
 import EventDetail from "@/components/events/EventDetails";  
+import StructuredData from "@/components/StructuredData";
 import { createClient } from "@/utils/supabase/server";
 import type { Metadata, ResolvingMetadata } from 'next'
+import { Event, WithContext } from "schema-dts";
 type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -63,9 +65,50 @@ return;
 return data 
 }
  
-const eventTitle = await eventView()
+const eventTitle = await eventView() 
+const jsonLd: WithContext<Event> = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: eventTitle?.title ,
+  description: eventTitle?.desc, 
+  startDate:eventTitle?.day,
+  endDate: eventTitle?.day,
+  eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  location: {
+    "@type": "Place",
+    name: eventTitle?.location,
+    // address: {
+    //   "@type": "PostalAddress",
+    //   streetAddress: "123 Innovation Road",
+    //   addressLocality: "Lagos",
+    //   addressRegion: "LA",
+    //   postalCode: "100001",
+    //   addressCountry: "NG"
+    // }
+  },
+  image: [
+   `https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`
+  ],
+  keywords:[eventTitle.genre].join(', ')
+  // organizer: {
+  //   "@type": "Organization",
+  //   name: "Culturays",
+  //   url: "https://culturays.com"
+  // },
+  // offers: {
+  //   "@type": "Offer",
+  //   url: "https://culturays.com/events/workshop",
+  //   price: "0.00",
+  //   priceCurrency: "NGN",
+  //   availability: "https://schema.org/InStock",
+  //   validFrom: "2025-04-01T12:00:00+01:00"
+  // }
+};
+ 
 return (
-<div>   
+<div>
+  <StructuredData schema={jsonLd} /> 
 <EventDetail eventTitle={eventTitle}/> 
 </div>
   )

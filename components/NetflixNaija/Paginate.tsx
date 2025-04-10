@@ -38,14 +38,27 @@ const Paginate = ({content}:{content:any[]}) => {
     const newString = string?.replace(regex, "");
     return newString
      }
+      <section>
+        <div className="pages_shadow border-b-2 border-black p-5 max-w-6xl h-max">
+        {currentPosts.map((itx,index)=> 
+        <div key={index} className="border-b xs:flex" > 
+        
+                
+        </div>)}
      
+         <div> 
+      
+           </div>  
+        </div>
+       
+         </section> 
   return (
     <div>       
    <section>
-   <div className="pages_shadow border-b-2 border-black p-5 max-w-6xl h-max dark:bg-black">
+   <div className="pages_shadow border-b-2 border-black p-5 lg:p-10 max-w-6xl h-max dark:bg-black">
    {currentPosts.map((itx,index)=> 
    <div key={index} className="border-b flex" > 
-   <div className="w-96 m-1 sm:m-2">   
+   <div className="xs:w-3/4 xl:w-2/3 m-1 sm:m-4">   
         <p className="italic text-red-600 text-right py-4">{moment(itx.node?.date).fromNow()}</p> 
  <Image  
         width={1200}
@@ -54,14 +67,16 @@ const Paginate = ({content}:{content:any[]}) => {
        alt={itx.node?.title}
        />
         </div>   
-          <div className="w-4/5 m-1 sm:m-2 p-3">
-    <div className="sm:w-3/4">
-            <Link href={`/netflix-naija/${path.split('/')[2]}/${itx.node?.slug}`}><h2 className="text-2xl py-2 font-bold">{itx.node?.title}</h2></Link>
-         <Link href={`/news/${path.split('/')[2]}/${itx.node?.slug}`}><p className="text-lg py-4" style={{lineHeight:'35px'}} >{replaceHTMLTags(itx.node?.excerpt)} </p></Link>  
+          <div className="w-full m-1 sm:m-3 py-5">
+          <div className="py-2">
+            <Link href={`/netflix-naija/${path.split('/')[2]}/${itx.node?.slug}`}><h2 className="text-2xl overflow-hidden text-ellipsis font-bold hover:text-gray-600 font-bold"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical', lineHeight:'35px' }}>{itx.node?.title}</h2></Link>
+         <Link href={`/news/${path.split('/')[2]}/${itx.node?.slug}`}><p className="text-lg hover:text-gray-600 overflow-hidden text-ellipsis"  style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical', lineHeight:'35px' }}  >{replaceHTMLTags(itx.node?.excerpt)} </p></Link>  
       </div>
-       <div className="bg-gray-600 max-w-max flex flex-wrap"> { itx.node?.contentTags.nodes.map((tx:{name:string} ,index:number)=> 
-    <p key={index} className="text-lg px-6 py-2 text-gray-200"> {tx.name }</p> )  } 
-       </div>  
+      <div className="max-w-max flex flex-wrap"> {itx.node.contentTags.nodes.map((tx:{name:string, slug:string} ,index:number)=> 
+            <div key={index}>
+        <Link href={`/topic/${tx.slug}`}><p className="text-lg bg-gray-600 px-6 py-2 m-1 text-gray-200 hover:bg-red-600"> {tx.name }</p></Link></div>)} 
+            </div> 
+         
         </div> 
    </div>)}
 

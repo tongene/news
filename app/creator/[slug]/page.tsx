@@ -1,5 +1,5 @@
 import {userItem} from '../../data/usershandle'
-import Creator from '@/components/Creator' 
+import Creator from '@/components/Creator'  
 import type { Metadata, ResolvingMetadata } from 'next'
 
   type CreatorProps={
@@ -29,6 +29,7 @@ function CreatorPage() {
   return (
 <div> 
    <Creator /> 
+   
 </div> 
   )
 }

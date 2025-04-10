@@ -215,7 +215,7 @@ width={1200}
 <div className="sm:flex justify-between max-w-max bg-white m-auto"> 
 <Paginate content={coming_to_netflix_grouped.slice(4)}/>
 <div> 
-  <div className='h-max mx-1 rounded-t lg:hidden bg-transparent max-w-36 sm:m-0 m-auto cursor-pointer'>  
+  <div className='h-max rounded-t lg:hidden bg-transparent max-w-36 sm:m-0 m-auto cursor-pointer'>   
 
 <div className='py-5 flex flex-col justify-center w-full cursor-pointer my-2 text-gray-600 px-2'> 
 <FontAwesomeIcon icon={faClapperboard}className='text-xl'/>

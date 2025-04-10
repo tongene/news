@@ -4,6 +4,8 @@ import ArticleDetail from "@/components/News/ArticleDetail"
 import type { Metadata, ResolvingMetadata } from 'next'
 import { postsOutline, sidePlusViews } from "@/app/page-data";
 import { createClient } from "@/utils/supabase/server";
+import { NewsArticle, WithContext } from "schema-dts";
+import StructuredData from "@/components/StructuredData";
  
 const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
 
@@ -867,7 +869,7 @@ export async function generateMetadata(
     },
   } 
 } 
-
+ 
 const ArticleDetailPage = async ({params}: Props) => {
 const slug =(await params).slug
  const news_detail= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/${slug[1]}/`)
@@ -888,8 +890,40 @@ return cinema_titles
       }   
  const xTitltes= await naija_wiki()
    const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
-
-  return ( 
+   const tags= news_detail.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+   const jsonLd:WithContext<NewsArticle> = {
+     '@context': 'https://schema.org',
+     '@type': 'NewsArticle',
+      name: news_detail.title,
+      headline:news_detail.title, 
+      description: news_detail?.excerpt,
+      author: {
+        "@type": "Person",
+        name: "Christina Ngene",
+      }, 
+      datePublished: news_detail?.date, 
+      dateModified: news_detail?.date,
+       mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": news_detail?.slug,
+      },
+      url:news_detail?.slug,
+      image: news_detail?.featuredImage.node.sourceUrl ,
+      publisher: {
+        "@type": "Organization",
+        name: "Christina Ngene",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://culturays.com/assets/images/culturays-no-bg.png",
+        },
+      },
+       
+      keywords:tags,    
+      
+    };
+  return (
+     <>
+  <StructuredData schema={jsonLd} />
     <div className="bg-gray-50">     
     <div className="lg:flex justify-center m-auto px-4 bg-white" style={{maxWidth:'1450px' }}>
         <ArticleDetail 
@@ -902,7 +936,7 @@ return cinema_titles
       </div>
       </div>
  </div>
-  ) 
+ </>  ) 
 }
 
 export default ArticleDetailPage

@@ -15,7 +15,8 @@ import Header from "@/components/Header";
 import Nav from "@/components/Nav";
 import SocialNav from "@/components/SociaNav"; 
 import { Suspense } from "react";
-import type { Metadata } from 'next'
+import type { Metadata } from 'next' 
+import { NewsArticle, WebSite, WithContext } from "schema-dts";
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `https://${process.env.NEXT_PUBLIC_BASE_URL}`
@@ -87,11 +88,11 @@ export const metadata:Metadata = {
     template:"%s | Culturays Nigeria",
     default: 'Culturays | News, Nigeria, Business, Economy, Nollywood, Netflix Naija',   
    },
-  description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
+  description:'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
   generator: 'Culturays',
   applicationName: 'Culturays',
   referrer: 'origin-when-cross-origin',
-  keywords: "Africa, News, Nigeria, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events",
+  keywords:"News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Inflation, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa",
   authors: [{ name: 'Christina Ngene', url: 'https://culturays.com/creator/christina-ngene' }],
   creator: 'Christina Ngene',
   publisher: 'Christina Ngene',
@@ -162,6 +163,35 @@ export const metadata:Metadata = {
     
 };
  
+  
+const jsonLd: WithContext<WebSite>= {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  headline: 'Culturays',
+  description:
+    'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world',
+  author: {
+    '@type': 'Person',
+    name: 'Christina Ngene',
+  },
+  datePublished: '2025-04-09T10:00:00Z',
+  dateModified: '2025-04-09T12:00:00Z',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://culturays.com/',
+  },
+  url:'https://culturays.com/', 
+  image: 'https://culturays.com/assets/images/opengraph-image.png',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Christina Ngene',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://culturays.com/assets/images/culturays-no-bg.png',
+    },
+  },
+  keywords: "News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Inflation, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa",
+};
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -183,32 +213,35 @@ dangerouslySetInnerHTML={{
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-PJ6RQP9V')`
+  })(window,document,'script','dataLayer','${process.env.GTM}')`
 }
 
 }
 /><Script async strategy="afterInteractive" 
-              src={`https://www.googletagmanager.com/gtag/js?id=G-P51WG5SXDB`}/><Script id='google-analytics'strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA}`}/><Script id='google-analytics'strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                 __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', 'G-P51WG5SXDB', {
+                gtag('config', '${process.env.GA}', {
                     page_path: window.location.pathname,
                 });
-                  gtag('config', 'AW-782298154', {
+                  gtag('config', '${process.env.AW}', {
                   page_path: window.location.pathname,
               });
                 `, 
                 }}
-            /><Script async  strategy="afterInteractive" src={"https://www.googletagmanager.com/gtag/js?id=AW-782298154"}/><Script dangerouslySetInnerHTML={{
-              __html: `gtag('event', 'conversion', {'send_to': 'AW-782298154/PeRqCICmn-MBEKrYg_UC'});`, 
+            /><Script async strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.AW}`}/><Script dangerouslySetInnerHTML={{
+              __html: `gtag('event', 'conversion', {'send_to': '${process.env.AW}/PeRqCICmn-MBEKrYg_UC'});`, 
               }}/><body className="bg-background text-foreground"><Script
               id="gtm-script"
               strategy="afterInteractive"
-              src={`https://www.googletagmanager.com/gtm.js?id=GTM-PJ6RQP9V`}
+              src={`https://www.googletagmanager.com/gtm.js?id='${process.env.GTM}'`}
+            /><script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             /><ThemeProvider
           attribute="class"
           defaultTheme="system"

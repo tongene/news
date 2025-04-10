@@ -103,11 +103,12 @@ const insertFacts=async()=>{
       .upsert([fact], { onConflict: 'text' });
   
     if (error) console.error(error.message);
-  }
+   }
  
 return () => clearTimeout(fxnTimeout);
 
 }
+
  const fxnTimeout = setTimeout(() => {
     CronJob.from({
     cronTime: '10 8 * * *', 

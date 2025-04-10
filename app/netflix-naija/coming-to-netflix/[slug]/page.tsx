@@ -2,6 +2,8 @@ import ToNetflixDetails from "@/components/NetflixNaija/NetflixNaijaComing/Comin
 import {netflixDetails, netflixNews, newsbyComingtoCategory} from "../../netflix-news" 
 import CategoryComingDetails from "@/components/NetflixNaija/NetflixNaijaComing/CategoryComingDetails"
 import ComingToNetflixClassDetails from "@/components/NetflixNaija/NetflixNaijaComing/ComingToNetflixClassDetails"
+import StructuredData from "@/components/StructuredData"
+import { NewsArticle, WithContext } from "schema-dts"
  
 export async function generateMetadata({ params }: {
   params: Promise<{ slug: string }>
@@ -37,10 +39,41 @@ const netflix_news =await netflixNews()
 const netflix_related = coming_to_netflix_details?.netflixNewsGroup?.netflixComingRelated?.edges
 const exitinginrelated= netflix_related?.map((fx:{cursor:string})=>fx.cursor)??[] 
 const coming_to_netflix_naija = await newsbyComingtoCategory(exitinginrelated?.concat(coming_to_netflix_details.id).flat())  
+const tags= coming_to_netflix_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
 
+const jsonLd:WithContext<NewsArticle> = {
+ '@context': 'https://schema.org',
+ '@type': 'NewsArticle',
+ name:coming_to_netflix_details?.title, 
+ headline:coming_to_netflix_details?.title, 
+  description: coming_to_netflix_details?.excerpt,
+  author: {
+    "@type": "Person",
+    name: "Christina Ngene",
+  }, 
+  datePublished: coming_to_netflix_details?.date, 
+  dateModified: coming_to_netflix_details?.date,
+   mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": coming_to_netflix_details?.slug,
+  },
+  url:coming_to_netflix_details?.slug,
+  image: coming_to_netflix_details?.featuredImage.node.sourceUrl ,
+  publisher: {
+    "@type": "Organization",
+    name: "Christina Ngene",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://culturays.com/assets/images/culturays-no-bg.png",
+    },
+  },
+   
+  keywords:tags,   
+};
+ 
    return ( 
      <div>  
-  
+   <StructuredData schema={jsonLd} />
        {coming_to_netflix_details.netflixCategories.nodes[0].slug ==="coming-to-netflix" ?
      <ToNetflixDetails
     netflix_news={netflix_news}

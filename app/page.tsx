@@ -9,6 +9,7 @@ import { replaceSpecialCharacters } from "@/utils/replacechars";
 import { scrapeSilverBird } from "./naija-wiki/filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
 import { CronJob } from "cron";
+import { getNaijaFake1 } from "./data/trends";
  type PostEdges ={
     responseLatest:{
         slug:string,
@@ -244,9 +245,7 @@ type EvObjType= {
     
        // return () => clearTimeout(fxnTimeout);
         } 
-export default async function Home() {  
- 
-     
+export default async function Home() {     
 const latestPosts=await newsByLatest() 
   const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
      const news_outline=await postsOutline()

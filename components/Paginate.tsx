@@ -41,10 +41,10 @@ const Paginate = ({content}:{content:any[]}) => {
   return (
     <div>       
    <section>
-   <div className="pages_shadow border-b-2 border-black p-5 max-w-6xl h-max">
+   <div className="pages_shadow border-b-2 border-black p-5  lg:p-10 max-w-6xl h-max dark:bg-black">
    {currentPosts.map((itx,index)=> 
    <div key={index} className="border-b xs:flex" > 
-   <div className="xs:w-3/4 m-1 sm:m-4"> 
+   <div className="xs:w-3/4 xl:w-2/3 m-1 sm:m-4"> 
         <p className="italic text-red-600 text-right py-2">{moment(itx.date).fromNow()}</p> 
   <Image  
         width={1200}

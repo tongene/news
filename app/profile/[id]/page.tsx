@@ -7,6 +7,8 @@ import { type User } from "@supabase/supabase-js";
 import { UserPostProps } from "@/app/types";
 import type { Metadata, ResolvingMetadata } from 'next'
 import { Suspense } from "react";
+import StructuredData from "@/components/StructuredData";
+import { Person, ProfilePage, WithContext } from "schema-dts";
 
 type Props = {
   params: Promise<{ id: string }>
@@ -44,7 +46,7 @@ const UserPage =async({params}: Props) => {
   const supabase =await createClient()    
   const {
   data: { user }, 
-  } = await supabase.auth.getUser();  
+  } = await supabase.auth.getUser();
 
   const currentProfile = await getProfile(id)
  
@@ -57,9 +59,43 @@ const UserPage =async({params}: Props) => {
     return initialPosts ??[]
   }
   const userPosts = await userItems() 
- 
+  const jsonLd:WithContext<ProfilePage> = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    name: `${currentProfile?.fullname || currentProfile?.full_name}`, 
+     headline: `${currentProfile?.fullname || currentProfile?.full_name}`, 
+     description:currentProfile?.about , 
+     url:`https://culturays.com/profile/${id}`,
+     mainEntity: {
+      "@type": "Person",
+      name:`${currentProfile.fullname || currentProfile?.full_name} - Profile`,     
+      image: currentProfile.avatar_url,
+      ////  //use later
+      // jobTitle: "Editor-in-Chief",      
+      // worksFor: {
+      //   "@type": "Organization",
+      //   name: "Culturays"
+      // },
+      // sameAs: [
+      //   "https://twitter.com/ChristinaNgene",
+      //   "https://www.linkedin.com/in/christinangene"
+      // ]
+     
+    },
+     
+      mainEntityOfPage: {
+       "@type": "WebPage",
+       "@id":`https://culturays.com/profile/${id}`, 
+     },
+
+     image:currentProfile.avatar_url, 
+     keywords:[`${currentProfile.fullname || currentProfile?.full_name}`],    
+     
+   };
+  
   return (
-    <div> 
+    <div>
+      <StructuredData schema={jsonLd} />
       <Suspense>  
    <Profile
      profile={currentProfile}

@@ -125,7 +125,7 @@ export async function generateMetadata(
       description: vid_details?.excerpt ,  
       images:[vid_details?.featuredImage.node.sourceUrl, ...previousImages],  
     },
-       openGraph: { 
+       openGraph: {  
          images: [vid_details?.featuredImage.node.sourceUrl, ...previousImages],
          type: "article",
          publishedTime:vid_details?.date
@@ -135,7 +135,7 @@ export async function generateMetadata(
 
 const VideoDetailsPage=async ({params}: Props) => {
   const slug =(await params).slug
-  const vid_details= await viddetails(slug)
+  const vid_details= await viddetails(slug) 
   return ( 
     <div>
   <VideoDetail  

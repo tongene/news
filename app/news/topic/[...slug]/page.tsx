@@ -1,7 +1,9 @@
  
 import { postsOutline, sidePlusViews } from "@/app/page-data";
 import NewsDetail from "@/components/NewsDetail" 
+import StructuredData from "@/components/StructuredData";
 import { createClient } from "@/utils/supabase/server";
+import { NewsArticle, WithContext } from "schema-dts";
   async function newsDetailData(slug:string){ 
   
      const wprest =   fetch('https://content.culturays.com/graphql',{
@@ -355,6 +357,7 @@ const NewsDetailPage = async ({params}: {
 }) => {
 const {slug} =await params 
   const news_detail= await newsDetailData(slug[0])
+  const tags= news_detail.tags.nodes.map((ex:{name:string})=>ex.name).join(', ')
   const news_related = news_detail?.postnewsgroup.relatedPosts?.edges
 const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
  const next_naija_news = await readNextContent([news_detail.id,exitinginrelated].flat())
@@ -371,8 +374,41 @@ return cinema_titles
       }   
  const xTitltes= await naija_wiki()
    const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))
+
+ const jsonLd:WithContext<NewsArticle> = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  name: news_detail?.title, 
+   headline: news_detail?.title, 
+   description: news_detail?.excerpt,
+   author: {
+     "@type": "Person",
+     name: "Christina Ngene",
+   }, 
+   datePublished: news_detail?.date, 
+   dateModified: news_detail?.date,
+    mainEntityOfPage: {
+     "@type": "WebPage",
+     "@id": news_detail?.slug,
+   },
+   url:news_detail?.slug,
+   image: news_detail?.featuredImage.node.sourceUrl ,
+   publisher: {
+     "@type": "Organization",
+     name: "Christina Ngene",
+     logo: {
+       "@type": "ImageObject",
+       url: "https://culturays.com/assets/images/culturays-no-bg.png",
+     },
+   },
+    
+   keywords:tags,    
+   
+ };
+
   return ( 
     <div>
+      <StructuredData schema={jsonLd} />
       <NewsDetail
       post={news_detail}
       next_naija_news={next_naija_news}

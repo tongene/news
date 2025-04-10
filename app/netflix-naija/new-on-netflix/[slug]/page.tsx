@@ -2,6 +2,8 @@ import NewOnNetflixDetails from "@/components/NetflixNaija/NetflixNaijaNew/NewOn
 import { netflixDetails } from "../../netflix-news"
  
 import type { Metadata, ResolvingMetadata } from 'next'
+import StructuredData from "@/components/StructuredData"
+import { NewsArticle, WithContext } from "schema-dts"
 const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
 type Props = {
   params: Promise<{ slug: string }>
@@ -36,9 +38,40 @@ export async function generateMetadata(
 async function NewNetflixNaijaDetails ({ params }: Props) {
   const slug =(await params).slug
 const new_on_details = await netflixDetails(slug)
+const tags= new_on_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+const jsonLd:WithContext<NewsArticle> = {
+ '@context': 'https://schema.org',
+ '@type': 'NewsArticle',
+ name:new_on_details?.title, 
+  headline:new_on_details?.title, 
+  description: new_on_details?.excerpt,
+  author: {
+    "@type": "Person",
+    name: "Christina Ngene",
+  }, 
+  datePublished: new_on_details?.date, 
+  dateModified: new_on_details?.date,
+   mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": new_on_details?.slug,
+  },
+  url:new_on_details?.slug,
+  image: new_on_details?.featuredImage.node.sourceUrl ,
+  publisher: {
+    "@type": "Organization",
+    name: "Christina Ngene",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://culturays.com/assets/images/culturays-no-bg.png",
+    },
+  },
+   
+  keywords:tags,   
+};
 
 return (
     <div> 
+      <StructuredData schema={jsonLd} />
   {new_on_details.netflixCategories.nodes[0].slug ==="new-on-netflix"?
       <NewOnNetflixDetails  
       new_on_details={new_on_details}  

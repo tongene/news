@@ -15,6 +15,13 @@ export const liveNewsFeed =async(id:string)=>{
     slug
     title
     content
+       contentTags{
+           nodes{
+           slug
+           name
+           }
+           
+           } 
   }
    } `,
         variables:{

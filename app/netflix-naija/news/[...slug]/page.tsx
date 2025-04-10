@@ -4,6 +4,8 @@ import SideBar from "@/components/Side"
 import { postsOutline, sidePlusViews } from "@/app/page-data";
 import { createClient } from "@/utils/supabase/server";
 import { getTop10 } from "@/app/naija-wiki/filmsdata";
+import StructuredData from "@/components/StructuredData";
+import { NewsArticle, WithContext } from "schema-dts";
 const vids = async()=>{  
  
   const wprest = fetch('https://content.culturays.com/graphql',{
@@ -126,8 +128,39 @@ const content_videos = await vids();
        }   
   const xTitltes= await naija_wiki()
     const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
- 
+    const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+  const jsonLd:WithContext<NewsArticle> = {
+   '@context': 'https://schema.org',
+   '@type': 'NewsArticle',
+    name: news_details.title,
+    headline: news_details.title, 
+    description: news_details?.excerpt,
+    author: {
+      "@type": "Person",
+      name: "Christina Ngene",
+    }, 
+    datePublished: news_details?.date, 
+    dateModified: news_details?.date,
+     mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": news_details?.slug,
+    },
+    url:news_details?.slug,
+    image: news_details?.featuredImage.node.sourceUrl ,
+    publisher: {
+      "@type": "Organization",
+      name: "Christina Ngene",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://culturays.com/assets/images/culturays-no-bg.png",
+      },
+    },
+     
+    keywords:tags,   
+  };
   return (
+  <>
+  <StructuredData schema={jsonLd} />
     <div className="2xl:flex justify-center m-auto px-4 bg-white">
       
       {news_details.netflixCategories.nodes[0].slug ==="news"?
@@ -142,7 +175,7 @@ const content_videos = await vids();
 news_outline={news_outline} coming_titles={coming_titles}/> 
       </div>
     </div>
-  )
+ </>  )
 }
 
 export default NetflixNaijaNewsDetailsPage

@@ -1,5 +1,22 @@
-import { MetadataRoute } from "next";  
-import { FeedProps } from "../types";   
+import { NextResponse } from 'next/server';  
+import { FeedProps } from '@/app/types';
+type Post = {
+  url: string;
+  lastModified: Date;
+  changeFrequency: string;
+  priority: number;
+  images?: string[];
+  videos?:  {
+    title: string,
+    thumbnail_loc: string,
+    description:  string,    
+  }[];
+  news: {
+    publication: { name: string; language: string };
+    publication_date: string;
+    article_title: string;
+  }[];
+};
 const contentFeed = async()=>{  
     const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
@@ -257,62 +274,107 @@ const contentFeed = async()=>{
        return wprest 
    
    }
-export const revalidate = 0;
-const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}` 
-  : "http://localhost:3000";   
-  export type Videos = {
-    title: string;
-    thumbnail_loc: string;
-    description: string;
-    content_loc?: string;
-    player_loc?: string;
-    duration?: number;
-    expiration_date?: Date | string;
-    rating?: number;
-    view_count?: number;
-    publication_date?: Date | string;
-    family_friendly?: 'yes' | 'no'; 
-    requires_subscription?: 'yes' | 'no';
-    uploader?: {
-        info?: string;
-        content?: string;
-    };
-    live?: 'yes' | 'no';
-    tag?: string;
-};
-type UnmatchedLang = 'x-default';
-type HrefLang = UnmatchedLang;
-export type Languages<T> = {
-    [s in HrefLang]?: T;
-};
-type SitemapFile = Array<{
-    url: string;
-    lastModified?: string | Date;
-    changeFrequency?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-    priority?: number;
-    alternates?: {
-        languages?: Languages<string>;
-    };
-    images?: string[];
-    videos?: Videos[];
-}>;
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> { 
- const contentData:FeedProps[]=await contentFeed() 
-    const dataFeed= contentData?.filter((xy)=> xy.contentTypeName !== 'post')?.filter((xy)=> xy.contentTypeName !== 'anticpated-nollywood')?.filter((xy)=> xy.contentTypeName !== 'anticpated-african')?.filter((xy)=> xy.contentTypeName !== 'anticpated-foreign')?.filter((xy)=> xy.contentTypeName !== 'netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'what-to-watch').filter((xy)=> xy.contentTypeName !== 'list-netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'char')?.filter((xy)=> xy.contentTypeName !== 'naija-wiki')?.filter((xy)=> xy.contentTypeName !== 'latest')?.filter((xy)=> xy.contentTypeName !== 'outline')?.filter((xy)=> xy.contentTypeName!== 'page').filter((xy)=> xy.contentTypeName!== 'live').filter((xy)=> xy.contentTypeName!== 'added-netflix-naija') 
-    const dataPosts = dataFeed.map((post)=>({
-        title:post.title,
-         url:`https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
-                lastModified:new Date(post.date),
-                changeFrequency:'always', 
-                priority:0.8,
-               images: [post?.featuredImage?.node?.sourceUrl], 
-   
-         } ))
-   
-    return [      
-        ...dataPosts
-    ] as SitemapFile
-  }
+  
+const generateNewsSitemap = (content_posts: Post[]) => {
+  const xmlContent = content_posts
+    .map((post) => {
+      const news =  post?.news[0]; 
+ const escapeXml =(unsafe: string)=>   
+    unsafe
+      ?.replace(/&/g, "&amp;")
+      ?.replace(/</g, "&lt;")
+      ?.replace(/>/g, "&gt;")
+      ?.replace(/"/g, "&quot;")
+      ?.replace(/'/g, "&apos;")
+      // ?.replace(/á/g,'')
+      //  'a', 'à': 'a', 'ã': 'a', 'â': 'a', 'ä': 'a',
+      // 'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
+      // 'í': 'i', 'ì': 'i', 'î': 'i', 'ï': 'i',
+      // 'ó': 'o', 'ò': 'o', 'õ': 'o', 'ô': 'o', 'ö': 'o',
+      // 'ú': 'u', 'ù': 'u', 'û': 'u', 'ü': 'u',
+      // 'ç': 'c', 'ñ': 'n',
+      // '%20': ' ', '@': '', '#': '', '!': '', ',': '', '.': '', '_': ' ',  
+    
+      return  `
+<url>
+  <loc>${post.url}</loc>
+  <news:news>
+    <news:publication>
+      <news:name>${escapeXml(news.publication?.name)}</news:name>
+      <news:language>${news.publication?.language}</news:language>
+    </news:publication>
+    <news:publication_date>${news.publication_date}</news:publication_date>
+    <news:title>${escapeXml(news.article_title)}</news:title>
+  </news:news>
+  ${post.images?.map((img) => `<image:image><image:loc>${img}</image:loc></image:image>`).join('\n') || ''}
 
- 
+  <lastmod>${post.lastModified.toISOString()}</lastmod>
+  <changefreq>${post.changeFrequency}</changefreq>
+  <priority>${post.priority}</priority>
+</url>`;
+    })
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+${xmlContent}
+</urlset>`;
+};
+
+
+export async function GET() { 
+  const contentData:FeedProps[]=await contentFeed() 
+  const postsData= contentData?.filter((xy)=> xy.contentTypeName=== 'post')
+  const liveData= contentData?.filter((xy)=> xy.contentTypeName=== 'live') 
+   
+  const content_posts: Post[] = postsData.map((post) => ({
+    url: `https://culturays.com/news/topic/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: 'always',
+    priority: 0.8,
+    images: [post.featuredImage.node.sourceUrl],
+    news: [
+      {
+        publication: {
+          name: 'Culturays News',
+          language: 'en',
+        },
+        publication_date: new Date(post.date).toISOString(),
+        article_title: post.title,
+      },
+    ],
+  })); 
+
+  const live_posts: Post[] = liveData.map((post)=>({ 
+    title:post.title,
+   url:`https://culturays.com/live/${post.databaseId}`,
+   lastModified:new Date(post.date),
+   changeFrequency:'always', 
+  priority:0.8,
+   images: [post?.featuredImage?.node?.sourceUrl],
+   news: [
+    {
+      publication: {
+        name: 'Culturays News',
+        language: 'en',
+      },
+      publication_date: new Date(post.date).toISOString(),
+      article_title: post.title,
+    },
+  ],
+}) )
+
+
+
+const allPosts = [...content_posts, ...live_posts]; 
+const xml = generateNewsSitemap(allPosts);
+  return new NextResponse(xml, {
+    headers: {
+      'Content-Type': 'application/xml',
+    },
+  } );
+}

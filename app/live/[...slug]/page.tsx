@@ -5,6 +5,8 @@ import { Suspense } from "react"
 import { createClient } from "@/utils/supabase/server"
 import { postsOutline, sidePlusViews } from "@/app/page-data"
 import { liveNewsFeed } from "../live"
+import { NewsArticle, WithContext } from "schema-dts"
+import StructuredData from "@/components/StructuredData"
 const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
 
 type Props = {
@@ -58,8 +60,43 @@ const slug =(await params).slug
        }   
   const xTitltes= await naija_wiki()
     const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon')) 
+   const tags= news.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
 
-  return ( news?.title&&
+   const jsonLd:WithContext<NewsArticle> = {
+     '@context': 'https://schema.org',
+     '@type': 'NewsArticle',
+     name:news?.title, 
+      headline: news?.title, 
+      description: news?.excerpt,
+      author: {
+        "@type": "Person",
+        name: "Christina Ngene",
+      }, 
+      datePublished: news?.date, 
+      dateModified: news?.date,
+       mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": news?.slug,
+      },
+      url:news?.slug,
+      image: news?.featuredImage.node.sourceUrl ,
+      publisher: {
+        "@type": "Organization",
+        name: "Christina Ngene",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://culturays.com/assets/images/culturays-no-bg.png",
+        },
+      },
+       
+      keywords:tags,    
+      
+    };
+
+  return ( 
+      <>
+     <StructuredData schema={jsonLd} />
+     {  news?.title&&
     <div className="bg-gray-50">     
     <div className="lg:flex justify-center m-auto px-4 bg-white" style={{maxWidth:'1450px'}}>
         <Suspense><LiveNews 
@@ -70,8 +107,8 @@ const slug =(await params).slug
  news_outline={news_outline} coming_titles={coming_titles}/> 
       </div>
       </div>
- </div>
-  ) 
+ </div>}
+  </> ) 
 }
 
 export default LiveNewsPage

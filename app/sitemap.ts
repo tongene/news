@@ -1,265 +1,112 @@
 import { MetadataRoute } from "next"; 
 import { FeedProps } from "./types";  
-export const revalidate = 0;
-
-const contentFeed = async()=>{  
-   const wprest =fetch('https://content.culturays.com/graphql',{
-      method: 'POST',
-      headers:{ 
-      'Content-Type':'application/json'
-      },
-      body: JSON.stringify({
-        query: `query CONTENTFEED{
-      contentNodes(first:100) {
-      nodes {
-        date
-        contentTypeName
-         ... on NetflixNaija {
-          id
-          title
-          slug
-           author {
-          node {
-           name
-            slug
-          }
-        }
-              featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        } 
-
-            ... on Live {
-           id
-            databaseId
-          title
-          slug
-        featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-          author {
-          node {
-          name
-            slug
-          }
-      }
-          }
-        ... on Technology {
-           id
-          title
-          slug
-          author {
-          node {
-          name
-            slug
-          }
-        }
-              featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        }   ... on Video {
-           id
-          title
-          slug
-          excerpt
-          author {
-          node {
-          name
-            slug
-          }
-        }
-              featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        }   ... on Post {
-           id
-          title
-          slug
-          author {
-          node {
-          name
-            slug
-          }
-        }
-              featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        }   ... on Nollywood {
-           id
-          title
-          slug   
-          author {
-          node {
-            name
-            slug
-          }
-        }
-              featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        }    ... on Article {
-           id
-          title
-          slug  
-           author {
-          node {
-         name
-            slug
-          }
-        }
-              featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        }    ... on Society {
-          id
-          title
-          slug   
-          author {
-          node {
-         name
-            slug
-          }
-        } 
-          featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        }  ... on Health {
-          id
-          title
-          slug 
-           author {
-          node {
-          name
-            slug
-          }
-        }
-              featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        }  ... on Economy {
-          id
-          title
-          slug 
-           author {
-          node {
-          name
-            slug
-          }
-        } 
-          featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        }  ... on Trending {
-          id
-          title
-          slug 
-           author {
-          node {
-          name
-            slug
-          }
-        } 
-          featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        }  ... on Environment {
-          id
-          title
-          slug 
-           author {
-          node {
-           name
-            slug
-          }
-        }
-              featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        } 
-        
-         ... on Char {
-          id
-          title
-          slug 
-           author {
-          node {
-           name
-            slug
-          }
-        }
-              featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        } 
-        ... on Business {
-          id
-          title
-          slug 
-           author {
-          node {
-            name
-            slug
-          }
-        }
-              featuredImage {
-          node {
-            altText
-            sourceUrl
-          }
-        }
-        }  
-      }
-    }
-        
-        }`})
-      
-      }).then(response => response.json())   
-      .then(data => data.data.contentNodes.nodes )
-      .catch(error => console.error('Error:', error));
-     // const response = wprest?.data.contentNodes.nodes 
-      return wprest 
+export const revalidate = 0; 
+const relativeData=[   {
+    url: `https://culturays.com/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority:1,
+  },
+  {
+    url:`https://culturays.com/about/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    url:`https://culturays.com/forum/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    url:`https://culturays.com/naija-wiki/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    url:`https://culturays.com/news/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    url:`https://culturays.com/live/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    url:`https://culturays.com/naija-events/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    url:`https://culturays.com/netflix-naija/coming-to-netflix/`,
+    lastModified: new Date(),
+    changeFrequency:"daily"  ,
+    priority: 0.8,
+  },
   
-  }
-
+  {
+    url:`https://culturays.com/netflix-naija/new-on-netflix/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  
+  {
+    url:`https://culturays.com/news/nollywood/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    url:`https://culturays.com/news/videos/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    url:`https://culturays.com/news/business/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    url:`https://culturays.com/news/economy/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    url:`https://culturays.com/news/health/`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  }, 
+  {
+    url:`https://culturays.com/sign-in`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  }, 
+  {
+    url:`https://culturays.com/naija-birthdays`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  }, ]
+  
+  const parentPosts = relativeData.map((post)=>({ 
+    url:post.url,
+    lastModified:post.lastModified,
+    changeFrequency:post.changeFrequency, 
+    priority:0.8, 
+  
+  }) )
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}` 
   : "http://localhost:3000";   
@@ -299,105 +146,323 @@ type SitemapFile = Array<{
     images?: string[];
     videos?: Videos[];
 }>;
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+const contentFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       contentNodes(first:100) {
+       nodes {
+         date
+         contentTypeName
+          ... on NetflixNaija {
+           id
+           title
+           slug
+            author {
+           node {
+            name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         } 
  
-     const contentData:FeedProps[]=await contentFeed()   
-      const postsData= contentData?.filter((xy)=> xy.contentTypeName=== 'post')
-      const liveData= contentData?.filter((xy)=> xy.contentTypeName=== 'live')
-      const videoData= contentData?.filter((xy)=> xy.contentTypeName=== 'video')
-   
-      const replaceHTMLTags=(string:string)=>{
-      const regex = /(<([^>]+)>)/gi;
-      //(/<\/?[^>]+(>|$)/g, "")
-      const newString = string?.replace(regex, "");
-      return newString
+             ... on Live {
+            id
+             databaseId
+           title
+           slug
+         featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+           author {
+           node {
+           name
+             slug
+           }
        }
- 
-      const content_posts = postsData.map((post)=>({ 
-        title:post.title,
-        url:`https://culturays.com/news/topic/${post.slug}`,
-        lastModified:new Date(post.date),
-        changeFrequency:'always', 
-        priority:0.8,
-        images: [post.featuredImage.node.sourceUrl]
-
-     }) )
-         const live_posts = liveData.map((post)=>({ 
-          title:post.title,
-         url:`https://culturays.com/live/${post.databaseId}`,
-         lastModified:new Date(post.date),
-         changeFrequency:'always', 
-        priority:0.8,
-         images: [post?.featuredImage?.node?.sourceUrl]
-
-      }) )
+           }
+         ... on Technology {
+            id
+           title
+           slug
+           author {
+           node {
+           name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }   ... on Video {
+            id
+           title
+           slug
+           excerpt
+           author {
+           node {
+           name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }   ... on Post {
+            id
+           title
+           slug
+           author {
+           node {
+           name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }   ... on Nollywood {
+            id
+           title
+           slug   
+           author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }    ... on Article {
+            id
+           title
+           slug  
+            author {
+           node {
+          name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }    ... on Society {
+           id
+           title
+           slug   
+           author {
+           node {
+          name
+             slug
+           }
+         } 
+           featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  ... on Health {
+           id
+           title
+           slug 
+            author {
+           node {
+           name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  ... on Economy {
+           id
+           title
+           slug 
+            author {
+           node {
+           name
+             slug
+           }
+         } 
+           featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  ... on Trending {
+           id
+           title
+           slug 
+            author {
+           node {
+           name
+             slug
+           }
+         } 
+           featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  ... on Environment {
+           id
+           title
+           slug 
+            author {
+           node {
+            name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         } 
+         
+          ... on Char {
+           id
+           title
+           slug 
+            author {
+           node {
+            name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         } 
+         ... on Business {
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+     }
+         
+         }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.contentNodes.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
     
-      
-      const dataVideo = videoData.map((post)=>({
-        title:post.title,
-        url:`https://culturays.com/news/video/${post.slug}`,
-        lastModified:new Date(post.date),
-        changeFrequency:'always', 
-        priority:0.8,
-        videos: [
-         {
-           title: post.title,
-           thumbnail_loc: post.featuredImage.node.sourceUrl,
-           description: replaceHTMLTags(post.excerpt) ,
-         },
-       ],
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> { 
+    const contentData:FeedProps[]=await contentFeed() 
 
-     }) ) 
-  
-     
     return [
       {
         url: `https://culturays.com/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority:1,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/about/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/forum/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/naija-wiki/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/news/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/live/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/naija-events/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/netflix-naija/coming-to-netflix/`,
         lastModified: new Date(),
         changeFrequency:"daily"  ,
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
      
       {
@@ -405,6 +470,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       
       {
@@ -412,46 +478,51 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/news/videos/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/news/business/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/news/economy/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/news/health/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       }, 
       {
         url:`https://culturays.com/sign-in`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       }, 
       {
         url:`https://culturays.com/naija-birthdays`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
       }, 
-     ...live_posts,
-    ...content_posts,    
- ...dataVideo
+ 
     ] as SitemapFile
   }
 
