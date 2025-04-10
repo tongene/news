@@ -48,9 +48,11 @@ const jsonLd:WithContext<NewsArticle> = {
   author: {
     "@type": "Person",
     name: "Christina Ngene",
+    url:'https://culturays.com/creator/christina-ngene',
+
   }, 
-  datePublished: new_on_details?.date, 
-  dateModified: new_on_details?.date,
+  datePublished: new_on_details?.date.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
+  dateModified: new_on_details?.date.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
    mainEntityOfPage: {
     "@type": "WebPage",
     "@id": new_on_details?.slug,

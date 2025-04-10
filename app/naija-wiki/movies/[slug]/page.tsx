@@ -59,7 +59,7 @@ const jsonLd:WithContext<ProfilePage> = {
   '@type': 'ProfilePage',
    headline: `Culturays - ${charactertitles?.charactertitles.portrayedby} | Movies `, 
    description: `${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
-   url:`https://culturays.com/profile/${slug}`,
+   url:`https://culturays.com/naija-wiki/movies/${slug}`,
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.portrayedby} - Movies`,     

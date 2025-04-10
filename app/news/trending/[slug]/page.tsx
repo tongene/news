@@ -240,9 +240,10 @@ const TrendingDetails =async ({params}: {
    author: {
      "@type": "Person",
      name: "Christina Ngene",
+     url:'https://culturays.com/creator/christina-ngene',
    }, 
-   datePublished: trends_detail?.date, 
-   dateModified: trends_detail?.date,
+   datePublished: trends_detail?.date.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
+   dateModified: trends_detail?.date.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
     mainEntityOfPage: {
      "@type": "WebPage",
      "@id": trends_detail?.slug,

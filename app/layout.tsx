@@ -173,6 +173,7 @@ const jsonLd: WithContext<WebSite>= {
   author: {
     '@type': 'Person',
     name: 'Christina Ngene',
+    url:'https://culturays.com/creator/christina-ngene',
   },
   datePublished: '2025-04-09T10:00:00Z',
   dateModified: '2025-04-09T12:00:00Z',

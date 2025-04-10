@@ -61,7 +61,7 @@ const jsonLd:WithContext<Article> = {
   '@type': 'Article',
    headline: `Culturays - ${charactertitles?.charactertitles.filmname} | Characters `, 
    description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
-   url:`https://culturays.com/profile/${slug}`,
+   url:`https://culturays.com/naija-wiki/characters/${slug}`,
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.filmname} - Movies`,     

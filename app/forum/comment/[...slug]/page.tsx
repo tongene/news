@@ -138,10 +138,11 @@ const jsonLd:WithContext<BlogPosting> = {
    description:comment?.title ,
    author: {
      "@type": "Person",
-     name: "Christina Ngene",
-   }, 
-   datePublished: comment?.created_at, 
-   dateModified: comment?.created_at,
+     name: comment?.user_name ,
+     url:`https://culturays.com/profile/${comment?.user_id}`,
+   },
+   datePublished: comment?.created_at.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
+   dateModified: comment?.created_at.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
     mainEntityOfPage: {
      "@type": "WebPage",
      "@id": comment?.slug,
@@ -151,6 +152,7 @@ const jsonLd:WithContext<BlogPosting> = {
    publisher: {
      "@type": "Organization",
      name: "Christina Ngene",
+     url:`https://culturays.com/`,
      logo: {
        "@type": "ImageObject",
        url: "https://culturays.com/assets/images/culturays-no-bg.png",

@@ -52,55 +52,7 @@ alt="christina-ngene"/>
 </div>
  
 </div> 
-{/* African Music has always had an upper hand in African entertainment. Though movies and other forms of entertainment in Africa are thriving and have been getting on the international stage. They still have some time before they can get up to the level of music. We will make sure to give you all the fun facts about African music and artists. There is no better place to follow up music in Africa than here at Nollymania.
 
-
-
-
-American Movies - Movies, just like music are a universal language and we like to see every kind of artwork as an element that connects all humans.
-
-From our side of the world, we are trying to get people to see and understand how movies can be used properly whether America or African.
-
-We are also challenged by the method which American movies are made. This is why we like to take our time to analyse and write about it and hope that our readers see it the same way.
-
-These days we also find it difficult to differentiate certain films as we see more and more collaborations both in music and movie. So we like to help people understand such partnership and provide all the details that we have access to.
-
-Filmmaking is as much big business in Africa as it is in America. So, it only makes it harder to accept certain opinions that say the African movie industries are still budding. That is only fair on some level as there is still a need to improve on several factors like film quality and storytelling. So, when we see American movies and storytelling, there is always a need to scrutinize it to compare what makes it different from the ones made in Africa.
-
- 
-
-
-
-	
-There is no way to tell exactly what’s missing in the system of education in Africa. If the continent holds the highest number of young people in the world, it should translate to strength.
-
-In Africa, many people seem not to be getting what they asked for in when it comes to education. From leaders to toddlers. But who is to blame for that?
-
-In more ways than one, students in Africa, mostly in Nigeria, Africa’s giant, protest the system of education. Strikes are now a standard format in universities which is apparently a drag for any nation.
-
-The promising leaders are getting education abroad but they come back and only to seek bigger lives. Apparently, being opportune to get a big education abroad translates to getting big jobs and living high.
-
-Many young people in Africa clearly feel cheated by this system that allows certain people access to certain things that might be considered “best”.
-
-After getting a foreign education, do these people comes back to make an impact in their countries or are they just like everyone else? Do the government care about what happens in schools? How do they handle gender-based issues in universities around Africa and do they have an interest in creating an educational haven?
-
-Get to know Africa on Africareinvented.
-
-
-
-
-
-
-The End SARS protest quickly turned bloody in Nigeria as te military gena to kill peaceful protesters.
-
-The government is yet to meet with the demand of the protesters and the SERAP is suing President Muhammdu Buhari.
-
-Being one of the darkest days in the nation, many people around the world are no lending their voices to protesters and giving support.
-
-Sadly, criminal orders are also taking advantage of the situation, insecurity heightened in the country.
-
-Until President Muhammadu Buhari and the Inspector General of Police Mohammad Adamu agree to the protest demands, the protesters have sworn to keep going.
-*/}
     </>
   )
 }

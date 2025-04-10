@@ -42,7 +42,7 @@ const jsonLd:WithContext<ProfilePage> = {
   '@type': 'ProfilePage',
    headline: `Culturays - ${character_data?.title}`, 
    description: character_data?.excerpt, 
-   url:`https://culturays.com/profile/${slug}`,
+   url:`https://culturays.com/naija-wiki/character/${slug}`,
    mainEntity: {
     "@type": "Person",
     name:character_data?.title,     

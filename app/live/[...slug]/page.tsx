@@ -71,9 +71,10 @@ const slug =(await params).slug
       author: {
         "@type": "Person",
         name: "Christina Ngene",
+        url:'https://culturays.com/creator/christina-ngene',
       }, 
-      datePublished: news?.date, 
-      dateModified: news?.date,
+      datePublished: news?.date.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
+      dateModified: news?.date.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
        mainEntityOfPage: {
         "@type": "WebPage",
         "@id": news?.slug,
