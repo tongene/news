@@ -140,8 +140,8 @@ const jsonLd:WithContext<BlogPosting> = {
      name: "Christina Ngene",
      url:`https://culturays.com/profile/${post?.id}`,
    }, 
-   datePublished: new Date(post?.created_at).toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
-   dateModified:  new Date( post?.created_at).toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
+   datePublished: new Date(post?.created_at).toDateString(), 
+   dateModified:  new Date( post?.created_at).toDateString(), 
     mainEntityOfPage: {
      "@type": "WebPage",
      "@id": post?.slug,

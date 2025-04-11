@@ -141,8 +141,8 @@ const content_videos = await vids();
       url:'https://culturays.com/creator/christina-ngene',
 
     }, 
-    datePublished:new Date(news_details?.date).toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
-    dateModified: new Date(news_details?.date).toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
+    datePublished:new Date(news_details?.date).toDateString(), 
+    dateModified: new Date(news_details?.date).toDateString(), 
      mainEntityOfPage: {
       "@type": "WebPage",
       "@id": news_details?.slug,

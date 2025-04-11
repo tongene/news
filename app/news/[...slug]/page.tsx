@@ -891,6 +891,7 @@ return cinema_titles
  const xTitltes= await naija_wiki()
    const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
    const tags= news_detail.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+
    const jsonLd:WithContext<NewsArticle> = {
      '@context': 'https://schema.org',
      '@type': 'NewsArticle',
@@ -902,8 +903,8 @@ return cinema_titles
         name: "Christina Ngene",
         url:'https://culturays.com/creator/christina-ngene',
       }, 
-      datePublished: new Date(news_detail?.date).toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
-      dateModified: new Date(news_detail?.date).toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
+      datePublished: new Date(news_detail?.date).toDateString(), 
+      dateModified: new Date(news_detail?.date).toDateString(), 
        mainEntityOfPage: {
         "@type": "WebPage",
         "@id": news_detail?.slug,

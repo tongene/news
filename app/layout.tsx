@@ -163,36 +163,7 @@ export const metadata:Metadata = {
     
 };
  
-  
-const jsonLd: WithContext<WebSite>= {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  headline: 'Culturays',
-  description:
-    'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world',
-  author: {
-    '@type': 'Person',
-    name: 'Christina Ngene',
-    url:'https://culturays.com/creator/christina-ngene',
-  },
-  datePublished: '2025-04-09T10:00:00Z',
-  dateModified: '2025-04-09T12:00:00Z',
-  mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': 'https://culturays.com/',
-  },
-  url:'https://culturays.com/', 
-  image: 'https://culturays.com/assets/images/opengraph-image.png',
-  publisher: {
-    '@type': 'Organization',
-    name: 'Christina Ngene',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://culturays.com/assets/images/culturays-no-bg.png',
-    },
-  },
-  keywords: "News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Inflation, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa",
-};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -240,9 +211,6 @@ dangerouslySetInnerHTML={{
               id="gtm-script"
               strategy="afterInteractive"
               src={`https://www.googletagmanager.com/gtm.js?id='${process.env.GTM}'`}
-            /><script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             /><ThemeProvider
           attribute="class"
           defaultTheme="system"
