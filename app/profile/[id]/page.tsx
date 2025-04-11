@@ -58,7 +58,9 @@ const UserPage =async({params}: Props) => {
     const initialPosts = await getUserPosts(0, INITIAL_NUMBER_OF_POSTS, id)  
     return initialPosts ??[]
   }
-  const userPosts = await userItems() 
+  const userPosts = await userItems()
+
+  
   const jsonLd:WithContext<ProfilePage> = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',

@@ -5,13 +5,18 @@ import { NewsArticle, WebSite, WithContext } from 'schema-dts';
 
 const NaijaWikiPage =async () => {  
   const netflix_News = await netflixNews()
-
+  const replaceHTMLTags=(string:string)=>{
+    const regex = /(<([^>]+)>)/gi;
+    const newString = string?.replace(regex, "");
+    return newString
+     } 
+     
   const jsonLd: WithContext<NewsArticle>= {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     name:netflix_News[0].title,
     headline:netflix_News[0].title,
-    description: netflix_News[0].excerpt,
+    description:replaceHTMLTags(netflix_News[0].excerpt),
     author: {
       '@type': 'Person',
       name: 'Christina Ngene',

@@ -61,13 +61,17 @@ const slug =(await params).slug
   const xTitltes= await naija_wiki()
     const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon')) 
    const tags= news.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
-
+   const replaceHTMLTags=(string:string)=>{
+    const regex = /(<([^>]+)>)/gi;
+    const newString = string?.replace(regex, "");
+    return newString
+     }
    const jsonLd:WithContext<NewsArticle> = {
      '@context': 'https://schema.org',
      '@type': 'NewsArticle',
      name:news?.title, 
       headline: news?.title, 
-      description: news?.excerpt,
+      description: replaceHTMLTags(news?.excerpt) ,
       author: {
         "@type": "Person",
         name: "Christina Ngene",

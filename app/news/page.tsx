@@ -123,13 +123,17 @@ export const metadata = {
 const NewsPage = async() => {
   const newsData= await news__Articles()
   const news1 = newsData[0]?.articles.nodes
-
+  const replaceHTMLTags=(string:string)=>{
+    const regex = /(<([^>]+)>)/gi;
+    const newString = string?.replace(regex, "");
+    return newString
+     }
   const jsonLd: WithContext<NewsArticle>= {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     name:news1[0].title,
     headline:news1[0].title,
-    description: news1[0].excerpt,
+    description: replaceHTMLTags(news1[0].excerpt),
     author: {
       '@type': 'Person',
       name: 'Christina Ngene',

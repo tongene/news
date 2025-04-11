@@ -230,13 +230,19 @@ const TrendingDetails =async ({params}: {
   const related_to_trend= trends_detail?.trendinggroup?.related?.nodes
  const rm_ids = (related_to_trend_id??[])?.concat(trends_detail?.id)
  //trends_detail.id,related_to_trend_id
- const trends_categories=await similarTrending(rm_ids)  
+ const trends_categories=await similarTrending(rm_ids)
+ const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
+
  const jsonLd:WithContext<NewsArticle> = {
   '@context': 'https://schema.org',
   '@type': 'NewsArticle',
     name: trends_detail?.title,
    headline: trends_detail?.title, 
-   description: trends_detail?.excerpt,
+   description:replaceHTMLTags(trends_detail?.excerpt) ,
    author: {
      "@type": "Person",
      name: "Christina Ngene",

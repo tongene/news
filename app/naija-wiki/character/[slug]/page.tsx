@@ -37,11 +37,16 @@ export async function generateMetadata(
   const slug =(await params).slug
  const character_data = await newcharCall(slug) 
 const related_chars = await relatedChars()
+const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
 const jsonLd:WithContext<ProfilePage> = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
    headline: `Culturays - ${character_data?.title}`, 
-   description: character_data?.excerpt, 
+   description:replaceHTMLTags(character_data?.excerpt) , 
    url:`https://culturays.com/naija-wiki/character/${slug}`,
    mainEntity: {
     "@type": "Person",

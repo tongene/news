@@ -11,13 +11,17 @@ async function New_On_Netflix() {
  const made_in_africa = added_on_netflix_naija.addedCategories.edges.filter((xy:{node:{name:string}})=> xy?.node.name === 'Made in Africa').flat()
  const non_africa = added_on_netflix_naija.addedCategories.edges.filter((xy:{node:{name:string}})=> xy?.node.name !== 'Made in Africa').flat()
  const netflixNaija=new_on_netflix_naija.map((xy:{node:{naijaOnNetflix:{edges:[]}}})=> xy.node.naijaOnNetflix.edges).flat()
-  
+ const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
  const jsonLd: WithContext<NewsArticle>= {
   '@context': 'https://schema.org',
   '@type': 'NewsArticle',
   name:netflixNaija[0].title,
   headline:netflixNaija[0].title,
-  description: netflixNaija[0].excerpt,
+  description: replaceHTMLTags(netflixNaija[0].excerpt),
   author: {
     '@type': 'Person',
     name: 'Christina Ngene',

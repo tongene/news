@@ -40,13 +40,17 @@ const netflix_related = coming_to_netflix_details?.netflixNewsGroup?.netflixComi
 const exitinginrelated= netflix_related?.map((fx:{cursor:string})=>fx.cursor)??[] 
 const coming_to_netflix_naija = await newsbyComingtoCategory(exitinginrelated?.concat(coming_to_netflix_details.id).flat())  
 const tags= coming_to_netflix_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
-
+const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
 const jsonLd:WithContext<NewsArticle> = {
  '@context': 'https://schema.org',
  '@type': 'NewsArticle',
  name:coming_to_netflix_details?.title, 
  headline:coming_to_netflix_details?.title, 
-  description: coming_to_netflix_details?.excerpt,
+  description:replaceHTMLTags( coming_to_netflix_details?.excerpt),
   author: {
     "@type": "Person",
     name: "Christina Ngene",

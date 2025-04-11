@@ -39,12 +39,19 @@ async function NewNetflixNaijaDetails ({ params }: Props) {
   const slug =(await params).slug
 const new_on_details = await netflixDetails(slug)
 const tags= new_on_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+
+const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
+
 const jsonLd:WithContext<NewsArticle> = {
  '@context': 'https://schema.org',
  '@type': 'NewsArticle',
  name:new_on_details?.title, 
   headline:new_on_details?.title, 
-  description: new_on_details?.excerpt,
+  description:replaceHTMLTags(new_on_details?.excerpt) ,
   author: {
     "@type": "Person",
     name: "Christina Ngene",

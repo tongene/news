@@ -261,7 +261,7 @@ const latestPosts=await newsByLatest()
     
          CronJob.from({
           cronTime: '10 8 * * *',  
-          onTick: dailyWiki(),
+          onTick: dailyWiki(), 
           start: true,
           timeZone: 'Africa/Lagos'
          });

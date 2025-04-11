@@ -16,7 +16,6 @@ import Nav from "@/components/Nav";
 import SocialNav from "@/components/SociaNav"; 
 import { Suspense } from "react";
 import type { Metadata } from 'next' 
-import { NewsArticle, WebSite, WithContext } from "schema-dts";
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `https://${process.env.NEXT_PUBLIC_BASE_URL}`

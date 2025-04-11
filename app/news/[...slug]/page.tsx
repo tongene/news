@@ -891,13 +891,17 @@ return cinema_titles
  const xTitltes= await naija_wiki()
    const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
    const tags= news_detail.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
-
+   const replaceHTMLTags=(string:string)=>{
+    const regex = /(<([^>]+)>)/gi;
+    const newString = string?.replace(regex, "");
+    return newString
+     }
    const jsonLd:WithContext<NewsArticle> = {
      '@context': 'https://schema.org',
      '@type': 'NewsArticle',
       name: news_detail.title,
       headline:news_detail.title, 
-      description: news_detail?.excerpt,
+      description:replaceHTMLTags(news_detail?.excerpt) ,
       author: {
         "@type": "Person",
         name: "Christina Ngene",

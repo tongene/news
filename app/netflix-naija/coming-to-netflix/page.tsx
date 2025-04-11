@@ -11,13 +11,17 @@ const coming_to_netflix_class= category_children.filter((ex:{node:{slug:string}}
 const coming_to_netflix_category =category_children.filter((ex:{node:{slug:string}})=> ex.node.slug==='category-coming-to-netflix').map((fx:{node:{naijaOnNetflix:{edges:[]}} })=> fx.node.naijaOnNetflix.edges).flat() 
 const netflix_news_data = await netflixNews()
 const coming_to_netflix_grouped =netflixNaija.concat(coming_to_netflix_class).concat(coming_to_netflix_category) 
-
+const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
 const jsonLd: WithContext<NewsArticle>= {
   '@context': 'https://schema.org',
   '@type': 'NewsArticle',
   name:coming_to_netflix_grouped[0].title,
   headline:coming_to_netflix_grouped[0].title,
-  description: coming_to_netflix_grouped[0].excerpt,
+  description:replaceHTMLTags(coming_to_netflix_grouped[0].excerpt) ,
   author: {
     '@type': 'Person',
     name: 'Christina Ngene',

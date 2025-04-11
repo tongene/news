@@ -129,12 +129,17 @@ const content_videos = await vids();
   const xTitltes= await naija_wiki()
     const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
     const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+    const replaceHTMLTags=(string:string)=>{
+      const regex = /(<([^>]+)>)/gi;
+      const newString = string?.replace(regex, "");
+      return newString
+       }
   const jsonLd:WithContext<NewsArticle> = {
    '@context': 'https://schema.org',
    '@type': 'NewsArticle',
     name: news_details.title,
     headline: news_details.title, 
-    description: news_details?.excerpt,
+    description:replaceHTMLTags(news_details?.excerpt) ,
     author: {
       "@type": "Person",
       name: "Christina Ngene",
