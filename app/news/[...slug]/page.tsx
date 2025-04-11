@@ -902,8 +902,8 @@ return cinema_titles
         name: "Christina Ngene",
         url:'https://culturays.com/creator/christina-ngene',
       }, 
-      datePublished: news_detail?.date.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
-      dateModified: news_detail?.date.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
+      datePublished: new Date(news_detail?.date).toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
+      dateModified: new Date(news_detail?.date).toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
        mainEntityOfPage: {
         "@type": "WebPage",
         "@id": news_detail?.slug,

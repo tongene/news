@@ -141,8 +141,8 @@ const jsonLd:WithContext<BlogPosting> = {
      name: comment?.user_name ,
      url:`https://culturays.com/profile/${comment?.user_id}`,
    },
-   datePublished: comment?.created_at.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
-   dateModified: comment?.created_at.toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
+   datePublished: new Date(comment?.created_at).toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}), 
+   dateModified: new Date(comment?.created_at).toLocaleDateString('en-NG', {timeZone: 'Africa/Lagos'}),
     mainEntityOfPage: {
      "@type": "WebPage",
      "@id": comment?.slug,
