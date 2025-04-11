@@ -17,7 +17,7 @@ export default async function AuthButton() {
  
  <div className="flex flex-col items-center pb-2 leading-none"> 
 <div className="flex items-center"> 
-<Link href={`/profile/${user.id}`}><p className="m-1 text-lg hover:scale-105">Hey, {user.email}!</p></Link>  
+<Link href={`/profile/${user.id}`}><p className="m-1 text-lg hover:scale-105">Hey, {user.user_metadata.full_name}!</p></Link>  
 </div>
 
 <div className="m-1 flex m-auto justify-center">  
