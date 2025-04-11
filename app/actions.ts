@@ -9,11 +9,12 @@ import {createClient as deleteClient} from "@/utils/supabase/accountDelete"
 export const signUpAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
+  const full_name = formData.get("full_name")?.toString();
   const supabase = await createClient();
   const origin = (await headers()).get("origin");
 
   if (!email || !password) {
-    return encodedRedirect(
+    return encodedRedirect( 
       "error",
       "/sign-in",
       "Email and password are required",
@@ -25,6 +26,9 @@ export const signUpAction = async (formData: FormData) => {
     password,
     options: {
       emailRedirectTo: `${origin}/auth/callback`,
+      data: {
+        full_name, 
+      },
     },
   });
 

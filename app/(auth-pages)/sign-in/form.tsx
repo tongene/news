@@ -14,7 +14,7 @@ type formVals = {
 };
 type formErrors = {
   full_name?: string;
-  email?: string;
+  email?: string; 
   password?: string;
 };
 
