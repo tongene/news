@@ -174,7 +174,7 @@ export default function RootLayout({
   //   new URLSearchParams(headerStore.get("confirm") || "")
   // ); <pre>{JSON.stringify(searchParams, null, 2)}</pre>
  {/* <TagManager/> */}  {/* <GoogleAnalytics/> 
-  */} 
+  <Header/><SocialNav/><HeaderAuth /><Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense><div className="flex flex-col">{children}</div><Latests/><Footer/>*/} 
   return (
     <html lang="en" className={geistSans.className} suppressHydrationWarning><Script async strategy="afterInteractive" src="//clickiocmp.com/t/consent_234292.js"/><Script
 id='gt-manager'
@@ -215,8 +215,7 @@ dangerouslySetInnerHTML={{
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange 
-        ><main className="m-auto"style={{maxWidth:'100%'}} ><div><Header/><SocialNav/><HeaderAuth /><Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense><div className="flex flex-col">{children}</div><Latests/><Footer/>   
-            </div></main></ThemeProvider></body></html>
+        ><main className="m-auto"style={{maxWidth:'100%'}} ><div><h2>Culturays News</h2></div></main></ThemeProvider></body></html>
   );
 }
  

@@ -1,7 +1,7 @@
 import Main from '@/components/NaijaWiki/Main'  
 import { netflixNews } from '../netflix-naija/netflix-news'
 import StructuredData from '@/components/StructuredData';
-import { NewsArticle, WebSite, WithContext } from 'schema-dts';
+import { NewsArticle,  WithContext } from 'schema-dts';
 
 const NaijaWikiPage =async () => {  
   const netflix_News = await netflixNews()
@@ -44,7 +44,8 @@ const NaijaWikiPage =async () => {
 return (
 <div>
  <StructuredData schema={jsonLd} />
- <Main netflix_News={netflix_News}/> 
+ {/* <Main netflix_News={netflix_News}/>  */}
+ <h2>Culturays News</h2>
  </div>
   )
 }
