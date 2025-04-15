@@ -94,7 +94,7 @@ const Nollywood = ({nollywood_news, sidebarItems, news_outline, coming_titles}:{
      <div className='relative h-max text-white font-bold'>
         <div className='absolute bottom-8 xs:bottom-1 z-10'>
         <Link href={`/news/nollywood/${nt.slug}`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className='hover:text-gray-500 overflow-hidden text-ellipsis mx-2 sm:w-56 lg:w-64 text-lg xs:text-base sm:text-lg lg:text-xl'>{nt.title}</h2></Link>
-        <Link href={`/topic/${nt.contentTags.nodes[0]?.slug}/${nt?.contentTags?.nodes[0]?.id}`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.date).fromNow()} |</span> {nt.contentTags.nodes[0]?.name}</p ></Link> 
+        <Link href={`/topic/${nt.contentTags.nodes[0]?.slug}`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.date).fromNow()} |</span> {nt.contentTags.nodes[0]?.name}</p ></Link> 
 
       </div> 
       

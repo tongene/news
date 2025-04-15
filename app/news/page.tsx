@@ -121,8 +121,7 @@ export const metadata = {
   }, 
 }; 
 const NewsPage = async() => {
-  const newsData= await news__Articles()
-  const news1 = newsData[0]?.articles.nodes
+  const newsData= await news__Articles() 
   const replaceHTMLTags=(string:string)=>{
     const regex = /(<([^>]+)>)/gi;
     const newString = string?.replace(regex, "");
@@ -157,9 +156,9 @@ const NewsPage = async() => {
  return (  
    <div>
      <StructuredData schema={jsonLd} />
-     <News 
+   <News 
  newsData={newsData} 
- />   
+ /> 
   </div>
 
  )

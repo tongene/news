@@ -90,12 +90,13 @@ const jsonLd:WithContext<WebPage>={
 return ( 
 <div> 
   <StructuredData schema={jsonLd} />
- <Suspense> <Main 
+ {/* <Suspense> <Main 
  user={user}
  trendX={trending}
  initialPosts={initialPostsD}
  filteredTrends={filteredTrends}
- /></Suspense>  
+ /></Suspense>   */}
+ <h2>Culturays News</h2>
  </div> 
 
   )

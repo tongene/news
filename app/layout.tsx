@@ -215,7 +215,7 @@ dangerouslySetInnerHTML={{
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange 
-        ><main className="m-auto"style={{maxWidth:'100%'}} ><div><h2>Culturays News</h2></div></main></ThemeProvider></body></html>
+        ><main className="m-auto"style={{maxWidth:'100%'}} ><div>{children}</div></main></ThemeProvider></body></html>
   );
 }
  
