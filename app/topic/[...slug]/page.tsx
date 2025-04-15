@@ -41,12 +41,12 @@ const TagPage = async({params}: Props) => {
  const content_tag_response = await contentTag(slug[0])
   const tag_response = await tag(slug)
   const tagged=content_tag_response?.nodes.concat(tag_response.nodes)
-
+ 
   const jsonLd: WithContext<NewsArticle> = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
-     name:tagged[0].name,
-     headline:tagged[0].name , 
+     name:tagged[0]?.name,
+     headline:tagged[0]?.name , 
      description:"This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world",
      author: {
        "@type": "Person",
