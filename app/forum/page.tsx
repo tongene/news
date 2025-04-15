@@ -4,7 +4,7 @@ import { FakeObj, getNaijaFake1, getNaijaTrends1 } from "../data/trends";
 import { InitialPosts } from "../types";
 import { getPosts } from "./actions/loadPosts";
 import { Suspense } from "react";  
-import { WebPage, WithContext } from "schema-dts";
+import { BlogPosting, WebPage, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
  export const revalidate = 0
  const INITIAL_NUMBER_OF_POSTS = 10
@@ -60,21 +60,26 @@ previousMonth.setDate(0);
    const initialPostsD= await postsItems()
 //const ix =await getGoogleNewsTitles('Lagos, Nigeria');
 //const ix =await netFlixData() 
-const jsonLd:WithContext<WebPage>={
+const jsonLd:WithContext<BlogPosting>={
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Culturays",
-  "url": "https://culturays.com/forum",
+  "@type": "BlogPosting",
+  "headline": "Culturays - Covering News in Nigeria, Africa, and Beyond",
   "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-  "inLanguage": "en",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Culturays",
-    "url": "https://culturays.com/forum"
+  "url": "https://culturays.com/forum",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://culturays.com/forum"
   },
-  "primaryImageOfPage": {
+  "inLanguage": "en",
+  "image": {
     "@type": "ImageObject",
-    "url": "https://culturays.com/assets/images/opengraph-image.png"
+    "url": "https://culturays.com/opengraph-image.png"
+  },
+  "datePublished": "2025-04-15T08:00:00Z",
+  "dateModified": "2025-04-15T08:00:00Z",
+  "author": {
+    "@type": "Organization",
+    "name": "Culturays"
   },
   "publisher": {
     "@type": "Organization",
@@ -86,6 +91,7 @@ const jsonLd:WithContext<WebPage>={
     }
   }
 }
+
 
 return ( 
 <div> 

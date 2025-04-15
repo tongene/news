@@ -10,7 +10,7 @@ import { scrapeSilverBird } from "./naija-wiki/filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
 import { CronJob } from "cron";
 import { getNaijaFake1 } from "./data/trends";
-import { WebPage, WebSite, WithContext } from "schema-dts";
+import { BlogPosting, WebPage, WebSite, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData"; 
  type PostEdges ={
     responseLatest:{
@@ -276,32 +276,37 @@ const latestPosts=await newsByLatest()
       //     }
       //   ]
       // }
-    const jsonLd: WithContext<WebPage>={
-      "@context": "https://schema.org",
+  const jsonLd:WithContext<BlogPosting>={
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Culturays - Covering News in Nigeria, Africa, and Beyond",
+    "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
+    "url": "https://culturays.com/",
+    "mainEntityOfPage": {
       "@type": "WebPage",
-      "name": "Culturays",
-      "url": "https://culturays.com/",
-      "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "Culturays",
-        "url": "https://culturays.com/"
-      },
-      "primaryImageOfPage": {
+      "@id": "https://culturays.com/"
+    },
+    "inLanguage": "en",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://culturays.com/opengraph-image.png"
+    },
+    "datePublished": "2025-04-15T08:00:00Z",
+    "dateModified": "2025-04-15T08:00:00Z",
+    "author": {
+      "@type": "Organization",
+      "name": "Culturays"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ngenet Studio",
+      "url": "https://www.culturays.com/",
+      "logo": {
         "@type": "ImageObject",
-        "url": "https://culturays.com/assets/images/opengraph-image.png"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Ngenet Studio",
-        "url": "https://www.culturays.com/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://culturays.com/assets/images/culturays-no-bg.png"
-        }
+        "url": "https://culturays.com/assets/images/culturays-no-bg.png"
       }
     }
+  }
    
 return (
     <div> 
