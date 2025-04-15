@@ -1,7 +1,7 @@
 import AllBirthdays from "@/components/AllBirthdays"
 import StructuredData from "@/components/StructuredData"
 import { createClient } from "@/utils/supabase/server"
-import { PeopleAudience, SpecialAnnouncement, WithContext } from "schema-dts"
+import { PeopleAudience, SpecialAnnouncement, WebPage, WithContext } from "schema-dts"
 
 
 const BdaysPage = async() => {
@@ -22,32 +22,32 @@ const BdaysPage = async() => {
         return dateMonth=== todayMonth;
     }); 
    
-       const jsonLd:WithContext<SpecialAnnouncement> = {
-        '@context': 'https://schema.org',
-        '@type': 'SpecialAnnouncement',
-         name:"Culturays Naija Birthdays",
-         description: "Naija Birthdays Today",
-         dateCreated:today.getDate().toLocaleString(),
-          mainEntityOfPage: {
-           "@type": "WebPage",
-           "@id":'https://culturays.com/naija-birthdays/',
-         },
-         url:'https://culturays.com/naija-birthdays/',
-         image: filteredDates[0].img,
-         publisher: {
-           "@type": "Organization",
-           name: "Christina Ngene",
-           logo: {
-             "@type": "ImageObject",
-             url: "https://culturays.com/assets/images/culturays-no-bg.png",
-           },
-         },
-          
-         keywords:filteredDates[0].name,    
-         
-       };
-      
-      
+       const jsonLd: WithContext<WebPage>={
+                      "@context": "https://schema.org",
+                      "@type": "WebPage",
+                      "name": "Culturays",
+                      "url": "https://culturays.com/naija-birthdays",
+                      "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
+                      "inLanguage": "en",
+                      "isPartOf": {
+                        "@type": "WebSite",
+                        "name": "Culturays",
+                        "url": "https://culturays.com/naija-birthdays"
+                      },
+                      "primaryImageOfPage": {
+                        "@type": "ImageObject",
+                        "url": "https://culturays.com/assets/images/opengraph-image.png"
+                      },
+                      "publisher": {
+                        "@type": "Organization",
+                        "name": "Ngenet Studio",
+                        "url": "https://www.culturays.com/naija-birthdays",
+                        "logo": {
+                          "@type": "ImageObject",
+                          "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+                        }
+                      }
+                    }
   return (
     <div> 
       <StructuredData schema={jsonLd} />

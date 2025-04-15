@@ -9,7 +9,7 @@ import { InitialComments, TrendsProps } from "@/app/types";
 import type { Metadata, ResolvingMetadata } from 'next'
 import { Suspense } from "react";
 import StructuredData from "@/components/StructuredData";
-import { BlogPosting, WithContext } from "schema-dts";
+import { BlogPosting, DiscussionForumPosting, WithContext } from "schema-dts";
 type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -127,43 +127,18 @@ const filteredTrends = fakeTrend?.filter((dateStr:FakeObj) => {
   const dateMonth = date.getMonth() ;
   return dateMonth <= todayMonth ;
 });
-const tags= post.suggestedTags.map((ex:string)=>ex ) 
-const tags1= post?.tags.map((ex:string)=>ex ) 
-const tagged=tags1?.concat(tags)
-const jsonLd:WithContext<BlogPosting> = {
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-  name:comment?.title ,
-   headline: comment?.title , 
-   description:comment?.title ,
-   author: {
-     "@type": "Person",
-     name: comment?.user_name ,
-     url:`https://culturays.com/profile/${comment?.user_id}`,
-   },
-   datePublished: new Date(comment?.created_at).toDateString(), 
-   dateModified: new Date(comment?.created_at).toDateString(), 
-    mainEntityOfPage: {
-     "@type": "WebPage",
-     "@id": comment?.slug,
-   },
-   url:comment?.slug,
-   image: comment?.avatar_url,
-   publisher: {
-     "@type": "Organization",
-     name: "Christina Ngene",
-     url:`https://culturays.com/`,
-     logo: {
-       "@type": "ImageObject",
-       url: "https://culturays.com/assets/images/culturays-no-bg.png",
-     },
-   },
-    
-   keywords:tagged.join(', '),    
-   
- };
  
-
+const jsonLd:WithContext<DiscussionForumPosting> = {
+  '@context': 'https://schema.org',
+  '@type': 'DiscussionForumPosting', 
+  "@id":`https://culturays.com/post/${comment?.slug}`,
+  "headline":comment?.title ,
+  "author": {
+    "@type": "Person",
+    "name": comment?.user_name
+  },
+ 
+ };
   return ( 
     <div> 
       <StructuredData schema={jsonLd} />

@@ -4,7 +4,7 @@ import { FakeObj, getNaijaFake1, getNaijaTrends1 } from "../data/trends";
 import { InitialPosts } from "../types";
 import { getPosts } from "./actions/loadPosts";
 import { Suspense } from "react";  
-import { DiscussionForumPosting, WebPage, WithContext } from "schema-dts";
+import { WebPage, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
  export const revalidate = 0
  const INITIAL_NUMBER_OF_POSTS = 10
@@ -60,37 +60,32 @@ previousMonth.setDate(0);
    const initialPostsD= await postsItems()
 //const ix =await getGoogleNewsTitles('Lagos, Nigeria');
 //const ix =await netFlixData() 
-const jsonLd:WithContext<DiscussionForumPosting> = {
-  '@context': 'https://schema.org',
-  '@type': 'DiscussionForumPosting',
-   name:"Culturays Forum",
-   headline: "Culturays Forum",
-   description: "Start a conversation with people you know and connect with new people.",
-   author: {
-     "@type": "Person",
-     name: "Christina Ngene",
-     url:'https://culturays.com/creator/christina-ngene',
-   }, 
-   datePublished:'2025-04-09T10:00:00Z', 
-   dateModified: '2025-04-09T10:00:00Z',
-    mainEntityOfPage: {
-     "@type": "WebPage",
-     "@id":'https://culturays.com/forum/',
-   },
-   url:'https://culturays.com/forum/',
-   image: "https://culturays.com/assets/images/culturays-no-bg.png",
-   publisher: {
-     "@type": "Organization",
-     name: "Christina Ngene",
-     logo: {
-       "@type": "ImageObject",
-       url: "https://culturays.com/assets/images/culturays-no-bg.png",
-     },
-   },
-    
-   keywords:'Nigeria, Naija, Lagos',    
-   
- };
+const jsonLd:WithContext<WebPage>={
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Culturays",
+  "url": "https://culturays.com/forum",
+  "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Culturays",
+    "url": "https://culturays.com/forum"
+  },
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://culturays.com/assets/images/opengraph-image.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ngenet Studio",
+    "url": "https://www.culturays.com/forum",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+    }
+  }
+}
 
 return ( 
 <div> 

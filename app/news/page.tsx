@@ -1,6 +1,6 @@
 import News from '@/components/News/News' 
 import StructuredData from '@/components/StructuredData';
-import { NewsArticle, WithContext } from 'schema-dts';
+import { NewsArticle, WebPage, WithContext } from 'schema-dts';
 async function news__Articles(){  
   const wprest = fetch('https://content.culturays.com/graphql',{
  method: 'POST', 
@@ -128,36 +128,32 @@ const NewsPage = async() => {
     const newString = string?.replace(regex, "");
     return newString
      }
-  const jsonLd: WithContext<NewsArticle>= {
-    '@context': 'https://schema.org',
-    '@type': 'NewsArticle',
-    name:news1[0].title,
-    headline:news1[0].title,
-    description: replaceHTMLTags(news1[0].excerpt),
-    author: {
-      '@type': 'Person',
-      name: 'Christina Ngene',
-      url:'https://culturays.com/creator/christina-ngene',
-    },
-    datePublished:new Date(news1[0].date).toDateString(),
-    dateModified:new Date(news1[0].date).toDateString(),
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': 'https://culturays.com/news/',
-    },
-    url:'https://culturays.com/news/', 
-    image: news1[0].featuredImage?.node?.sourceUrl,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Christina Ngene',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://culturays.com/assets/images/culturays-no-bg.png',
-      },
-    },
-    keywords:news1[0].contentTags,
-  };
-    
+  const jsonLd: WithContext<WebPage>={
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Culturays",
+        "url": "https://culturays.com/news",
+        "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Culturays",
+          "url": "https://culturays.com/news"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://culturays.com/assets/images/opengraph-image.png"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Ngenet Studio",
+          "url": "https://www.culturays.com/news",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+          }
+        }
+      }
  return (  
    <div>
      <StructuredData schema={jsonLd} />

@@ -10,7 +10,7 @@ import { scrapeSilverBird } from "./naija-wiki/filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
 import { CronJob } from "cron";
 import { getNaijaFake1 } from "./data/trends";
-import { WebSite, WithContext } from "schema-dts";
+import { WebPage, WebSite, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData"; 
  type PostEdges ={
     responseLatest:{
@@ -264,36 +264,44 @@ const latestPosts=await newsByLatest()
     //       onTick: dailyWiki(), 
     //       start: true,
     //       timeZone: 'Africa/Lagos'
-    //      });
-    const jsonLd: WithContext<WebSite>= {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      headline: 'Culturays',
-      description:
-        'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world',
-      author: {
-        '@type': 'Person',
-        name: 'Christina Ngene',
-        url:'https://culturays.com/creator/christina-ngene',
+    //      });   
+         // "breadcrumb": {
+      //   "@type": "BreadcrumbList",
+      //   "itemListElement": [
+      //     {
+      //       "@type": "ListItem",
+      //       "position": 1,
+      //       "name": "Home",
+      //       "item": "https://www.culturays.com/"
+      //     }
+      //   ]
+      // }
+    const jsonLd: WithContext<WebPage>={
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Culturays",
+      "url": "https://culturays.com/",
+      "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Culturays",
+        "url": "https://culturays.com/"
       },
-      datePublished: '2025-04-09T10:00:00Z',
-      dateModified: '2025-04-09T12:00:00Z',
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': 'https://culturays.com/',
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://culturays.com/assets/images/opengraph-image.png"
       },
-      url:'https://culturays.com/', 
-      image: 'https://culturays.com/assets/images/opengraph-image.png',
-      publisher: {
-        '@type': 'Organization',
-        name: 'Christina Ngene',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://culturays.com/assets/images/culturays-no-bg.png',
-        },
-      },
-      keywords: "News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Inflation, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa",
-    };
+      "publisher": {
+        "@type": "Organization",
+        "name": "Ngenet Studio",
+        "url": "https://www.culturays.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+        }
+      }
+    }
    
 return (
     <div> 
