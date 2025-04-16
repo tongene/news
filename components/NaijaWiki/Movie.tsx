@@ -9,16 +9,10 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
   const [charactertitles]= listMovies 
   const titleIdx = listMovies.filter((ex)=>ex.charactertitles.charRel?.edges??[]?.length>0 ).flat() 
    const char_itx = titleIdx.map((xy)=> xy.charactertitles.charRel.edges).flat(); 
-    
-  const replaceHTMLTags=(string:string)=>{
-    const regex = /(<([^>]+)>)/gi;
-    //(/<\/?[^>]+(>|$)/g, "")
-    const newString = string?.replace(regex, "");
-    return newString
-     }
+ 
      const nextFilms= listOtherChars.map((xy)=> xy.charactertitles) 
      const fixFilmname = nextFilms.filter((item, index, self) =>  index === self.findIndex((t) => t.filmname === item.filmname))
-  
+
   return (
     <div> 
   <div className=''> 
@@ -72,10 +66,10 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
  <ul><li dangerouslySetInnerHTML={{__html:xx.charactertitles.actorsBios}}className="list-disc text-lg my-2 p-4 m-4"/></ul>
     </div>
     </td></tr>) }</tbody><thead><tr ><td className="text-2xl p-11 font-bold w-full">Related Actors</td></tr></thead><tbody>  
-  { char_itx.map((xx, i)=><tr key={i + ' ' + xx?.node.title} >    
-    <td className="border"><Link href={`/naija-wiki/character/${xx?.node?.slug}`}><h3 className="text-xl font-bold p-3 text-center"> {xx?.node?.charactertitles.portrayedby} </h3></Link>  
+  {char_itx.map((xx, i)=><tr key={i + ' ' + xx?.node.title} >    
+   {xx?.node.title&& <td className="border"><Link href={`/naija-wiki/character/${xx?.node?.slug}`}><h3 className="text-xl font-bold p-3 text-center"> {xx?.node?.charactertitles?.portrayedby} </h3></Link>  
        <div className=" border p-2 m-2 "> 
-       <div className="w-44">     
+     <div className="w-44">     
       <Image
     className=""
     src={xx?.node?.featuredImage?.node.sourceUrl}
@@ -90,11 +84,9 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
       
  </ul>  
     </div>
-    </td></tr>) }</tbody>
+    </td>}</tr>) }</tbody>
     </table>   
-</section> 
-
-
+</section>  
 <div className="px-11 py-4 text-center text-2xl font-bold w-max">
   <h3>Next Actors</h3> 
 </div>

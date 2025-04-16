@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";  
 import { FeedProps } from "../types"; 
 import { contentFeed, newchars } from "./newCharHandle";
-export const revalidate = 0;
+//export const revalidate = 0;
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}` 
   : "http://localhost:3000";   

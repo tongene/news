@@ -76,7 +76,7 @@ const jsonLd:WithContext<ProfilePage> = {
    keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),    
    
  };
-
+ 
   return ( 
     <div>
       <StructuredData schema={jsonLd} />

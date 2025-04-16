@@ -1,4 +1,4 @@
-import { agent, fetchWithRetry } from "@/utils/fetchWithRetry";
+ 
 export async function tag (slug:string) { 
   const wprest = fetch('https://content.culturays.com/graphql',{
     method: 'POST',     

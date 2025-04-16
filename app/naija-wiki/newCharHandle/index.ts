@@ -81,19 +81,18 @@ export async function newchars(){
           charRel {
             edges {
               node {
-                ... on NaijaWiki {
-                  id
+                ... on NaijaWiki { 
+              id
+              slug
+              title
+              excerpt
+              content 
                   featuredImage {
                     node {
                       altText
                       sourceUrl
                     }
                   }
-              id
-              slug
-              title
-              excerpt
-              content
               charactertitles {
                 shorts
                 series

@@ -3,7 +3,7 @@ import StructuredData from '@/components/StructuredData'
 import { createClient } from '@/utils/supabase/server'  
 import { BlogPosting, SpecialAnnouncement, WebPage, WithContext } from 'schema-dts'
  
-export const revalidate = 10
+//export const revalidate = 10
 const Events_Naija = async() => { 
 const forumEvents =async ()=>{
 const supabase =await createClient() 
@@ -54,7 +54,7 @@ return (
 <> 
 <StructuredData schema={jsonLd} />
 <div className='xxs:flex xxs:flex-col'> 
-  {/* <NaijaEvents events={events} />  */}
+ <NaijaEvents events={events} /> 
 </div> 
 
 </>)

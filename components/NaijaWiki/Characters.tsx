@@ -10,16 +10,27 @@ const Characters = ({listChars, listOtherChars }:{listChars:CharacterProps[],lis
    const char_itx = titleIdx.filter((e, i, a) => {
     return a?.findIndex(item => item?.node?.title === e?.node?.title) === i  
   } ); 
-
-  const replaceHTMLTags=(string:string)=>{
-    const regex = /(<([^>]+)>)/gi;
-    //(/<\/?[^>]+(>|$)/g, "")
-    const newString = string?.replace(regex, "");
-    return newString
-     } 
+ 
  const nextFilms= listOtherChars.map((xy)=> xy.charactertitles) 
  const fixFilmname = nextFilms.filter((item, index, self) =>  index === self.findIndex((t) => t.filmname === item.filmname)) 
  
+//has the same result as char_itx
+//  <tbody>{ listChars.map((xx, i)=><tr key={i + ' ' + xx.title} ><td className="border">  
+//  <Link href={`/naija-wiki/character/${xx.slug}`}><h3 className="text-xl font-bold p-3 text-center"> {xx.title} </h3></Link> 
+//        <div className=" border p-2 m-2 "> 
+//        <div className="w-1/4"><Image
+//   className=""
+//     src={xx?.featuredImage?.node.sourceUrl}
+//     width={1250}
+//     height={650}
+//     alt={xx?.featuredImage?.node.altText}/> 
+//     </div> 
+//   <ul className=""> 
+//   <p className="list-disc text-xl font-bold my-2 my-4"> <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4" />{xx.charactertitles?.portrayedby} </p>
+//   <li dangerouslySetInnerHTML={{__html:xx.excerpt}}className="list-disc text-lg my-2 p-4 m-4"/>
+//   <li dangerouslySetInnerHTML={{__html:xx.content}}className="list-disc text-lg my-2 p-4 m-4"/> 
+//  </ul> 
+//     </div></td></tr>) }</tbody>
   return (
     <div> 
   <div className=' p-11 text-center text-4xl font-bold bg-gray-700 text-white '>  
@@ -53,10 +64,7 @@ const Characters = ({listChars, listOtherChars }:{listChars:CharacterProps[],lis
 </div>
  </div> 
 
-  <table className="border lg:w-1/2"><tbody>  
-  { char_itx.map((xx, i)=><tr key={i + ' ' + xx?.node.title} >
-    
-    <td className="border"> 
+  <table className="border lg:w-1/2"><tbody>{ char_itx.map((xx, i)=><tr key={i + ' ' + xx?.node.title} ><td className="border"> 
  <Link href={`/naija-wiki/character/${xx?.node.slug}`}><h3 className="text-xl font-bold p-3 text-center"> {xx?.node.title} </h3></Link> 
        <div className=" border p-2 m-2 "> 
        <div className="w-1/4">
@@ -69,38 +77,13 @@ const Characters = ({listChars, listOtherChars }:{listChars:CharacterProps[],lis
     alt={xx?.node?.featuredImage?.node.altText}/> 
     </div> 
  <ul className=""> 
-  <p className="list-disc text-xl font-bold my-2 my-4"> <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4" />{xx?.node.charactertitles.portrayedby} </p>
+  <p className="list-disc text-xl font-bold my-2 my-4"> <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4" />{xx?.node.charactertitles?.portrayedby} </p>
    <li dangerouslySetInnerHTML={{__html:xx?.node.excerpt}}className="list-disc text-lg my-2 p-4 m-4"/>
   <li dangerouslySetInnerHTML={{__html:xx?.node.content}}className="list-disc text-lg my-2 p-4 m-4"/>
       
  </ul>
-    </div>
-    </td></tr>) }</tbody><tbody>  
-  { listChars.map((xx, i)=><tr key={i + ' ' + xx.title} >
-    
-    <td className="border">  
- <Link href={`/naija-wiki/character/${xx.slug}`}><h3 className="text-xl font-bold p-3 text-center"> {xx.title} </h3></Link> 
-       <div className=" border p-2 m-2 "> 
-       <div className="w-1/4">
-     
-      <Image
-  className=""
-    src={xx?.featuredImage?.node.sourceUrl}
-    width={1250}
-    height={650}
-    alt={xx?.featuredImage?.node.altText}/> 
-    </div> 
-  <ul className=""> 
-  <p className="list-disc text-xl font-bold my-2 my-4"> <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4" />{xx.charactertitles.portrayedby} </p>
-  <li dangerouslySetInnerHTML={{__html:xx.excerpt}}className="list-disc text-lg my-2 p-4 m-4"/>
-  <li dangerouslySetInnerHTML={{__html:xx.content}}className="list-disc text-lg my-2 p-4 m-4"/>
-   
-  
- </ul> 
-    </div>
-    </td></tr>) }</tbody>
-    </table>   
-</section>  
+    </div></td></tr>) }</tbody>
+    </table></section>  
 <div className="px-11 py-4 text-center text-xl font-bold w-max">
   <h3>Next Characters</h3> 
 </div>

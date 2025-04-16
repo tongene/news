@@ -15,7 +15,7 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
  
-export const revalidate=1
+//export const revalidate=1
 export async function generateMetadata(  { params }: Props,
   parent: ResolvingMetadata ): Promise<Metadata> {
     const slug =(await params).slug

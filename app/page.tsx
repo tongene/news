@@ -311,10 +311,10 @@ const latestPosts=await newsByLatest()
 return (
     <div> 
       <StructuredData schema={jsonLd} /> 
-{/* <MainSlider livesNews={latestPosts.resp1Live}latestPosts={latestPosts.resp}/> */}
-    {/* <Main top_PostsData={postData} 
-news_outline={news_outline} />  */}
-<h2>Culturays News</h2>
+  <MainSlider livesNews={latestPosts.resp1Live}latestPosts={latestPosts.resp}/> 
+    <Main top_PostsData={postData} 
+news_outline={news_outline} />  
+
     </div>
   ); 
 }

@@ -40,8 +40,8 @@ const jsonLd:WithContext<BlogPosting>={
 return (
 <div>
  <StructuredData schema={jsonLd} />
- {/* <Main netflix_News={netflix_News}/>  */}
- <h2>Culturays News</h2>
+ <Main netflix_News={netflix_News}/> 
+ 
  </div>
   )
 }

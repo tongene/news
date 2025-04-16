@@ -14,7 +14,7 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
  
-export const revalidate = 0
+//export const revalidate = 0
 const INITIAL_NUMBER_OF_POSTS =2
 export async function generateMetadata(
   { params }: Props,

@@ -90,7 +90,7 @@ type SitemapFile = Array<{
     videos?: Videos[];
 }>;
 
-export const revalidate = 0;
+//export const revalidate = 0;
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}` 
   : "http://localhost:3000";

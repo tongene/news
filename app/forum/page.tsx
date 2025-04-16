@@ -6,7 +6,7 @@ import { getPosts } from "./actions/loadPosts";
 import { Suspense } from "react";  
 import { BlogPosting, WebPage, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
- export const revalidate = 0
+ //export const revalidate = 0
  const INITIAL_NUMBER_OF_POSTS = 10
 const Forum = async({searchParams}: {
   searchParams: Promise<{ topic: string }>}) => {
@@ -96,13 +96,12 @@ const jsonLd:WithContext<BlogPosting>={
 return ( 
 <div> 
   <StructuredData schema={jsonLd} />
- {/* <Suspense> <Main 
+  <Suspense><Main 
  user={user}
  trendX={trending}
  initialPosts={initialPostsD}
  filteredTrends={filteredTrends}
- /></Suspense>   */}
- <h2>Culturays News</h2>
+ /></Suspense> 
  </div> 
 
   )
