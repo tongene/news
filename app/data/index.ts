@@ -1,9 +1,7 @@
 "use server"
 import { newsByLatest } from "../page-data";
 import { InnerEdges } from "../types";
-
  
-
 //   export async function newsPosts(){  
 //     const wprest = fetch('https://content.culturays.com/graphql',{     
 //          method: 'POST',
@@ -112,7 +110,7 @@ import { InnerEdges } from "../types";
 
    export async function postCategories(){
  
-  const wprest = fetch('https://content.culturays.com/graphql',{
+  const wprest =await fetch('https://content.culturays.com/graphql',{
         method: 'POST',
         headers:{
             'Content-Type':'application/json'
@@ -352,7 +350,7 @@ import { InnerEdges } from "../types";
     const latestPosts=await newsByLatest() 
     const postX = latestPosts.resp?.categories.nodes.map((xy:{posts:{edges:any[] }})=> xy.posts.edges).flat().map((vx:any )=> vx.cursor)
     const postsXY = latestPosts?.resp2Post?.map((xy:{posts:{edges:any[] }})=> xy.posts.edges).flat().map((vx:any)=> vx.cursor) 
-   const postsXcursors= postsXY.concat(postX) 
+   const postsXcursors= postsXY?.concat(postX) 
 
   const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
@@ -361,14 +359,14 @@ import { InnerEdges } from "../types";
       },
       body: JSON.stringify({
         query:`
-        query WPPOSTS { 
+        query WPPOSTS($notIn:[ID]) { 
        categories(where:{name: "News"}){          
        edges {
         cursor      
         node {
       name
       slug
-       posts(where:{notIn:[${postsXcursors.map((id:string) => `"${id}"`).join(", ")}]},first:20 ){ 
+       posts(where:{notIn:$notIn},first:20 ){ 
           nodes {
             author {
               node {
@@ -411,7 +409,9 @@ import { InnerEdges } from "../types";
     }
   }
 }
-  } ` 
+  } `,variables:{
+    notIn:postsXcursors
+  }
       
       })
       

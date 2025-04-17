@@ -137,8 +137,8 @@ setCategoryPost(currentPosts)
  
 </div>
 
-  <div className='lg:flex justify-center max-w-7xl m-auto'> 
-<div className='px-2 m-auto my-8 xs:max-w-md lg:max-w-xl'> 
+  <div className='xl:flex justify-center max-w-7xl m-auto'> 
+<div className='px-2 m-auto my-8 xs:max-w-md sm:max-w-lg lg:max-w-xl'> 
  {!categoryName&&top_PostsData.length>0?top_PostsData?.slice(0,1).map((ex, i)=>
 <div className='shadow-2xl' key={ex.node.title + ' ' + Math.random()}>
   <div className='h-3/4 my-2'> 

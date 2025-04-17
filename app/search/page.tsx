@@ -15,6 +15,7 @@ const SearchPage = async ({searchParams}: {
   searchParams: Promise<{ name: string }>} ) => {
   const {name}=await searchParams  
  const content = await searchValues(name) 
+
   return (
     <div>
    <Search name={name} content={content} />  

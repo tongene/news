@@ -1,22 +1,20 @@
 "use client"
 import Image from "next/image"
-import { useRouter, usePathname, useSearchParams} from "next/navigation";  
+import { useRouter, usePathname } from "next/navigation";  
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faComment, faThumbsUp } from "@fortawesome/free-regular-svg-icons"
-import { faDeleteLeft, faPencil, faShare, faAngleDown, faUser, faAngleUp, faImage, faClose, faArrowRight, faAngleRight, faLeftRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
+import { faDeleteLeft, faPencil, faShare, faAngleDown, faUser, faAngleUp, faImage, faClose, faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 import ShareButtons from "../ShareButtons" 
-import { useFormStatus } from "react-dom"; 
-import useSWR from "swr"
+import { useFormStatus } from "react-dom";  
 import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
 import LoginModal from "./LoginModal"
 import { useInView } from "react-intersection-observer" 
-import nlp from 'compromise/three'
 import Events from "@/app/forum/Events"; 
 import { createClient } from "@/utils/supabase/client"; 
 import Bday from "../Bday";
 import Trends from "./Trends"; 
-import { Event, InitialPosts, PostProps, TrendsProps, CommentProps, BdaysProps, ArticlesReplies} from "@/app/types";
+import { Event, InitialPosts, PostProps, CommentProps, BdaysProps, ArticlesReplies} from "@/app/types";
 import CreateForm from "@/app/forum/createPost";
 import { type User } from '@supabase/supabase-js'
 import { createComment, deleteTag, postDelete, postLike, postTag } from "@/app/forum/actions/postsActions";
@@ -31,7 +29,7 @@ function sortAscending(pb:PostProps, pa:PostProps){
  type TrendyProp={
   title:string
   }
-const Main = ({ user, trendX, initialPosts, filteredTrends }:{ user: User | null, trendX: TrendyProp[], initialPosts: InitialPosts[], filteredTrends: FakeObj[]} ) => {   
+const Main = ({topic, val, user, trendX, initialPosts, filteredTrends }:{ user: User | null, trendX: TrendyProp[], initialPosts: InitialPosts[], filteredTrends: FakeObj[], topic: string, val: string} ) => {   
  const [events,setEvents]=useState<Event[]>([]) 
 // const [initialPostsData,setInitialPostsData]=useState<InitialPosts[] >([])
 const forumEvents =async ()=>{  
@@ -77,34 +75,34 @@ const createRef= useRef<HTMLDivElement | null>(null);
 const { ref, inView } = useInView()
     const { pending, action } = useFormStatus(); 
     const isPending = pending && action
-    const topicParams= useSearchParams();
-    const titlesX = topicParams.get('topic') as string||'';
-    const titlesPath= titlesX.split('-').slice(0,3).join('/')
+    //const topicParams= useSearchParams();
+   // const titlesX = topicParams.get('topic') as string||'';
+    //const titlesPath= titlesX.split('-').slice(0,3).join('/')
     //const titleX= titlesX.split('-').slice(3,-1).join('-')
  
     useEffect(() => {
       const xIntialPosts = initialPosts.filter((xy)=> xy.article_title!==null) 
        const titleXIntialPosts = initialPosts.filter((xy)=> xy.article_title===null)
-      const title_X=xIntialPosts.filter((xy)=>xy.article_title===titlesX)
+      const title_X=xIntialPosts.filter((xy)=>xy.article_title===topic)
       const titleXIntialPosts2 = initialPosts.filter((xy)=> xy.title!==null) 
       const btTitlesA=xIntialPosts.concat( titleXIntialPosts2) 
      
-      if(!titlesX){
+      if(!topic){
           setScrolledPosts( [...btTitlesA] )  
       }else{
            setScrolledPosts(title_X )
       } 
      
-      }, [titlesX]);  
+      }, [topic]);  
     
 
     const loadMorePosts = async () => {
      const apiP =await postsItems(startScroll, count)??[]
      const apiXIntialPosts = apiP.filter((xy)=> xy.article_title!==null)
-     const title_X=apiXIntialPosts.filter((xy)=>xy.article_title===titlesX)
+     const title_X=apiXIntialPosts.filter((xy)=>xy.article_title===topic)
       const apiXIntialTitles = apiP.filter((xy)=> xy.article_title===null)
     if(apiP &&apiP?.length>0){
-      if(!titlesX){ 
+      if(!topic){ 
         setScrolledPosts([...scrolledPosts, ...apiXIntialTitles])
     }else{
          setScrolledPosts([...scrolledPosts, ...title_X] )
@@ -126,9 +124,7 @@ const { ref, inView } = useInView()
       
     }, [inView])
  
-    const opTitles=scrolledPosts?.sort(sortAscending) 
-
- 
+    const opTitles=scrolledPosts?.sort(sortAscending)  
     function enlargeImgs(i:number, ix: number) {
       const files = (scrolledPosts[i]?.files ??[]).filter((xy:string)=>!xy?.includes('undefined'))
           setImgIndex(files[ix])
@@ -244,8 +240,8 @@ const openEdit=(id:number )=>{
   setScrolledPosts([...pt, ...(data ?? [])]);
   router.refresh() 
  //createRef.current?.scrollIntoView()
- if(titlesX){
-  router.push(`/forum/?topic=${titlesX.replace(/ /g,"-")}`, {scroll:false}) 
+ if(topic){
+  router.push(`/forum/?topic=${topic.replace(/ /g,"-")}`, {scroll:false}) 
 }
   else{
 router.push(pathname+'?message=Like Updated', {scroll:false}) 
@@ -298,7 +294,7 @@ router.push(pathname+'?message=Like Updated', {scroll:false})
       setScrolledPosts(pt )
       setDeleteBtn(false)
   
-      if(titlesX){ 
+      if(topic){ 
         router.push('/forum')
       } 
       router.refresh()
@@ -329,8 +325,8 @@ router.push(pathname+'?message=Like Updated', {scroll:false})
         //   fallbackData: bdaysData,
         // })      
  
-        const searchParams= useSearchParams();
-        const val = searchParams.get('message') as string;
+       // const searchParams= useSearchParams();
+       // const val = searchParams.get('message') as string;
         const pathname = usePathname() 
         useEffect(
           () => { 
@@ -343,7 +339,7 @@ router.push(pathname+'?message=Like Updated', {scroll:false})
          (window as any).posted =''
         };
         
-        },[val, searchParams, router])
+        },[val, router])
       
         const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
           const files = event.target.files;
@@ -406,7 +402,7 @@ events={events}
 <p className="text-xl">Drop your thought to hear from other people! </p>  
 </div>
 <CreateForm 
- titleX={titlesX}
+ titleX={topic}
 post={post}  
 val={val}
 user={user}
@@ -429,7 +425,7 @@ setEditId={setEditId}
 
 </div>
  <hr />
-     {!titlesX&& 
+     {!topic&& 
     <main className="bg-mainBg py-6">  
 <div className={opTitles.length===0?'hidden':"block relative top-20 z-30 w-max"}style={arrowOpens}onClick={rotateArrow}>
 <div >  
@@ -664,7 +660,7 @@ onChange={handleImageUpload}
    </main>  
    }
  
-{titlesX&& 
+{topic&& 
     <main className="bg-mainBg py-6">  
 <div className={opTitles.length===0?'hidden':"block relative top-20 z-30 w-max "} style={arrowOpens}onClick={rotateArrow}> 
   <div >  
@@ -693,8 +689,8 @@ onChange={handleImageUpload}
 </div>
  
  {userActions &&<LoginModal setUserActions={setUserActions}/>} 
-  <h3 className="text-white capitalize opacity-70 text-2xl cursor-pointer px-4 text-center underline">{titlesX.replace(/-/g, ' ')}</h3>  
-    {opTitles?.filter((xy)=>xy.article_title===titlesX).map((xx, i) =>(
+  <h3 className="text-white capitalize opacity-70 text-2xl cursor-pointer px-4 text-center underline">{topic.replace(/-/g, ' ')}</h3>  
+    {opTitles?.filter((xy)=>xy.article_title===topic).map((xx, i) =>(
    
     <div key={xx.article_title +  ' ' + i }className="sm:max-w-lg md:max-w-xl m-auto p-4 border my-1 border-t-4 border-gray-900 hover:bg-gray-900 cursor-pointer">  
    <div className="w-full overflow-hidden md:block justify-center"> 

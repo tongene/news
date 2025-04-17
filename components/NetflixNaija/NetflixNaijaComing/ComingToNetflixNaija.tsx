@@ -4,9 +4,8 @@ import moment from "moment/moment"
 import Image from "next/image"    
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleRight, faAward, faClapperboard, faFilm } from "@fortawesome/free-solid-svg-icons" 
-import SideBar from "@/components/Side"
-import Paginate from "../Paginate"
-import { NAPINewsProps } from "@/app/types"
+ 
+import Paginate from "../Paginate" 
 import NewsLetter from "@/components/NewsLetter"
 
 type TitleXProps={
@@ -207,13 +206,13 @@ width={1200}
  
   
 </section> 
- 
+  
 </div> 
   
 </div>  
 
 <div className="sm:flex justify-between max-w-max bg-white m-auto"> 
-<Paginate content={coming_to_netflix_grouped.slice(4)}/>
+<Paginate content={coming_to_netflix_grouped.slice(4)} pathString='coming-to-netflix' />
 <div> 
   <div className='h-max rounded-t lg:hidden bg-transparent max-w-36 sm:m-0 m-auto cursor-pointer'>   
 

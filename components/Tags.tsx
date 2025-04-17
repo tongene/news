@@ -54,7 +54,7 @@ const nollywood= content_tag_response.nodes.map((xy)=>xy.nollywoods.nodes??[]).f
 const tagged=content_tag_response?.nodes.concat(tag_response.nodes) 
 const charsPosts= content_tag_response.nodes.map((xy)=>xy?.naijaWikis?.nodes).flat() 
 const tagged_reses=awards.concat(businesses).concat(culturaysVideos).concat(economies).concat(environments).concat(health).concat(societies).concat(trends).concat(technologies).concat(newsArticles).concat(nollywood).concat(netflixNaijaPosts).concat(posts).concat(charsPosts).concat(technologies)
-
+ 
    return (
    <div className="search_all" > 
   <div className="m-auto bg-white dark:bg-black sm:px-4 xl:px-28 px-2"style={{maxWidth:'1550px'}}> 
@@ -109,7 +109,7 @@ ex.contentTypeName ==='video'?
  alt={ex?.featuredImage?.node.altText}
  />
  {ex.contentTypeName !=='post' && ex.contentTypeName !=='video' && ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki' && <Link href={`/news/${ex.contentTypeName}/${ex.slug}`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link>} 
- {ex.contentTypeName ==='netflix-naija' && <Link href={`/${ex.contentTypeName}/news/${ex.slug}`}><p className="bg-black py-2 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link>} 
+ {ex.contentTypeName ==='netflix-naija' && <Link href={`/${ex.contentTypeName}/news/${ex.slug}`}><p className="bg-black py-2 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link>}  
 
  {ex.contentTypeName ==='naija-wiki' && <Link href={`/naija-wiki/character/${ex.slug}`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">Character</p></Link>}
  </div> 
@@ -437,8 +437,6 @@ ex.contentTypeName ==='video'?
       {ex.contentTypeName ==='naija-wiki' ? <Link href={`/naija-wiki/character/${ex.slug}`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">Character</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>}
 
    <div className="py-5 mx-3">
- 
-
    {ex.contentTypeName ==='post'&& <Link href={`/news/topic/${ex.slug}`}><h3  className='mx-1 text-2xl my-2 underline'>{ex.title}</h3></Link>}
 
 {ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}`}><h3 className=' mx-1 text-2xl my-2 underline'>{ex.title}</h3></Link> }
@@ -447,12 +445,9 @@ ex.contentTypeName ==='video'?
 
 {ex.contentTypeName !=='post'&& ex.contentTypeName !=='naija-wiki'&&ex.contentTypeName !=='netflix-naija'&& <Link href={`/news/${ex.contentTypeName}/${ex.slug}`}><h3 className=' mx-1 text-2xl my-2 underline'>{ex.title}</h3></Link> }
 
-
    </div>
 </div>)}
 </div>
-
-
 
 <div className="grid xs:grid-cols-2 lg:grid-cols-4 max-w-max md:max-w-3xl lg:max-w-6xl m-auto lg:m-0 gap-2"> 
 {tagged_reses.slice(16,20).map((ex, index)=> 

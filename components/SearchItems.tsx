@@ -39,44 +39,57 @@ type NodeProps ={
 const SearchItems = () => {  
   const { replace } = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams(); 
-  const params = new URLSearchParams(searchParams); 
-  const [searchData,setSearchData]=useState<NodeProps[]>([]) 
-  const [nameX1, setNameX1]= useState('')
-  const [loading,setLoading]=useState(false)
-  const debouncedSearch = useDebouncedCallback((value: string) => {
-    params.set('name', value.trim());
+  const searchParams = useSearchParams();
+  
+  const [searchData, setSearchData] = useState<NodeProps[]>([]);
+  const [nameX1, setNameX1] = useState('');
+  const [loading, setLoading] = useState(false);
+  
+  // Debounced update of URL
+  const debouncedUpdateURL = useDebouncedCallback((value: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (value.trim()) {
+      params.set('name', value.trim());
+    } else {
+      params.delete('name');
+    }
     replace(`${pathname}?${params.toString()}`);
   }, 500);
+  
+  // Handle input change
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
-    setNameX1(val); 
-    debouncedSearch(val); 
-   
-  };; 
+    const value = e.target.value;
+    setNameX1(value);
+    debouncedUpdateURL(value);
+  };
+  
+  // Fetch data when nameX1 changes (after debounce)
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!nameX1.trim()) {
+        setSearchData([]);
+        setLoading(false);
+        return;
+      }
+  
+      setLoading(true);
+      const results = await searchValues(nameX1.trim());
+      setSearchData(results);
+      setLoading(false);
+    };
+  
+    fetchData();
+  }, [nameX1, searchParams]);
+  
+  // Preload search from URL on page load
+  useEffect(() => {
+    const initial = searchParams.get('name') || '';
+    setNameX1(initial);
+  }, [searchParams]);
+  
 
-const fetchValues = async()=>{ 
-  
-  setLoading(true) 
-  
-  if (!nameX1.trim()) {
-    params.delete('name');
-    replace(`${pathname}`);
-    setSearchData([]);
-    setLoading(false);
-    return;
-  }
- const searchVals = await searchValues(nameX1)
-setSearchData(searchVals)
-  setLoading(false) 
-}
-useEffect(()=>{ 
- setNameX1('');
- fetchValues()
-  
-},[pathname])
+   const xposts = searchData.filter((vz)=> vz.id).flat()
  
-
 return ( 
 
 <div> 
@@ -89,8 +102,7 @@ name='name'
 onChange={handleSearch}
 value={nameX1}
 /> 
- 
-  <div className="relative z-40 top-3 -right-3/4 ml-22 sm:ml-28 md:ml-32">
+<div className="relative z-40 top-3 -right-3/4 ml-22 sm:ml-28 md:ml-32">
 <FontAwesomeIcon icon={faAngleDoubleRight}width={20} className="cursor-pointer opacity-70 text-xl hover:scale-150" onClick={()=>!nameX1?replace('/search')
 :replace(`/search?name=${nameX1}`)}/> 
  
@@ -101,26 +113,37 @@ value={nameX1}
   {!loading&&nameX1 &&!pathname.includes('search')&&
     <div className='searchRes m-2 sm:grid sm:grid-cols-2 sm:gap-2 md:grid-cols-3 max-w-6xl m-auto'>  
  { 
-searchData?.map((it, index)=> it?.contentTypeName ==='char' &&           
+xposts?.map((it, index)=> it?.contentTypeName ==='naija-wiki' ?
 <div key={it?.id + Math.random()} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 
-<div className="m-6">  
+<div className="m-6"> 
 <Link href={`/naija-wiki/character/${it?.slug }`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.title}</p></Link> 
 
 </div>
 </div>
-)   } 
-{  
-searchData?.map((it, index)=> it?.contentTypeName ==='post' &&           
+ :it?.contentTypeName ==='post' ?           
 <div key={it?.id + Math.random()} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 
 <div className="m-6"> 
 <Link href={`/news/topic/${it?.slug }`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.title}</p></Link> 
 
 </div>
-</div>
-)   }
+</div>: it?.contentTypeName ==='netflix-naija' &&it?.netflixCategories?.nodes.length>0? it?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes?.flat()?.map((itx, index)=> 
+<div key={itx?.id + Math.random()} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 
 
-{ 
-searchData?.filter((ox)=> ox.contentTypeName==="nollywood").filter((xy)=> xy.contentTypeName === 'award')?.filter((xy)=> xy.contentTypeName === 'video')?.filter((xy)=> xy.contentTypeName === 'trending')?.filter((xy)=> xy.contentTypeName === 'business')?.filter((xy)=> xy.contentTypeName === 'economy')?.filter((xy)=> xy.contentTypeName=== 'environment')?.filter((xy)=> xy.contentTypeName === 'health')?.filter((xy)=> xy.contentTypeName === 'society')?.filter((xy)=> xy.contentTypeName=== 'tech').map((it, index)=>  
+<div className="m-6"> 
+<Link href={`/netflix-naija/news/${itx?.slug }`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{itx?.title}</p></Link> 
+
+</div>
+</div>)):
+<div key={it?.id + Math.random()} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 
+ <div className="m-6"> 
+ <Link href={`/news/${it?.contentTypeName}/${it?.slug }`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.title}</p></Link> 
+  
+ </div>
+ </div>)  } 
+ 
+
+{/* { 
+searchData.map((it, index)=> 
 <div key={it?.id + Math.random()} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 
  
 <div className="m-6"> 
@@ -128,20 +151,20 @@ searchData?.filter((ox)=> ox.contentTypeName==="nollywood").filter((xy)=> xy.con
  
 </div>
 </div>
-)   }
-{ 
-searchData?.filter((x1)=> x1?.contentTypeName ==='netflix-naija' ).map((xy)=> xy?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes)?.flat()?.map((it, index)=>
-  {it?.title&&
+)   } */}
+{/* { 
+searchData?.filter((x1)=> x1?.contentTypeName ==='netflix-naija' ).map((xy)=> xy?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes)?.flat()?.map((it, index)=>it?.contentTypeName !=='naija-wiki'&&it?.contentTypeName !=='post'&&it?.contentTypeName !=='netflix-naija' &&it?.contentTypeName !=="added-netflix-naija" &&it?.contentTypeName !=="outline"&&it?.contentTypeName !=="list-netflix-naija"&&it?.contentTypeName !=="anticpated-nollywood"&&it?.contentTypeName !=="what-to-watch"&&it?.contentTypeName !=="added-netflix-naija"&&it?.contentTypeName !=="char"&&
+   it?.title&&
 <div key={it?.id + Math.random()} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 
 <div className="m-6"> 
 <Link href={`/netflix-naija/news/${it?.slug }`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.title}</p></Link> 
 
 </div>
-</div>}
-)) }
-
- {nameX1||searchData?.length ===0?<p className="p-11">Loading...</p>: <p className="p-11 text-xl"></p>}
-   
+</div> 
+)) } */}
+ 
+ {nameX1&&searchData?.length ===0?<p className="p-11">Loading...</p>: <p className="p-11 text-xl"></p>}
+ {searchData?.length >1&&<Link href={`/search?name=${nameX1}`}><p className="p-11">See All</p></Link>}
 </div> 
 }  
    

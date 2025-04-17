@@ -3,14 +3,13 @@ import { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import Image from "next/image";
 import Link from "next/link";
-import moment from "moment";
-import { usePathname } from "next/navigation";
+import moment from "moment"; 
  
-const Paginate = ({content}:{content:any[]}) => {
+const Paginate = ({content, pathString}:{content:any[], pathString:string}) => {
     const [posts, setPosts]=useState<any[]>([]) 
     const [currPg, setCurrPg]=useState(1)
     const [postPerPage, setPostPerP]=useState(10)  
-  const path = usePathname() 
+ 
     function decrement() {
      setCurrPg(currPg - 1); 
    }
@@ -52,11 +51,10 @@ const Paginate = ({content}:{content:any[]}) => {
        src={itx.featuredImage?.node?.sourceUrl}
        alt={itx.title}
        />
-         
-           </div>   
+         </div>   
          <div className="w-full m-1 sm:m-3 py-5">    
-           <div className="py-2"><Link href={`/news/${path.split('/')[2]}/${itx.slug}`}><h2 className="text-2xl overflow-hidden text-ellipsis font-bold hover:text-gray-600" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical', lineHeight:'35px' }}>{itx.title}</h2></Link></div> 
-         <Link href={`/news/${path.split('/')[2]}/${itx.slug}`}><p className="text-lg hover:text-gray-600 overflow-hidden text-ellipsis" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical', lineHeight:'35px' }} >{replaceHTMLTags(itx.excerpt)} </p></Link>       
+           <div className="py-2"><Link href={`/news/${pathString}/${itx.slug}`}><h2 className="text-2xl overflow-hidden text-ellipsis font-bold hover:text-gray-600" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical', lineHeight:'35px' }}>{itx.title}</h2></Link></div> 
+         <Link href={`/news/${pathString}/${itx.slug}`}><p className="text-lg hover:text-gray-600 overflow-hidden text-ellipsis" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical', lineHeight:'35px' }} >{replaceHTMLTags(itx.excerpt)} </p></Link>
        <div className="max-w-max flex flex-wrap"> {itx.contentTags.nodes.map((tx:{name:string, slug:string} ,index:number)=> 
        <div key={index}>
    <Link href={`/topic/${tx.slug}`}><p className="text-lg bg-gray-600 px-6 py-2 m-1 text-gray-200 hover:bg-red-600"> {tx.name }</p></Link></div>)} 

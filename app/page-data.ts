@@ -1,7 +1,10 @@
 "use server"
-export async function newsByLatest(){ 
+export const newsByLatest=async()=>{ 
     const wprest = fetch('https://content.culturays.com/graphql',{
       method: "POST",
+       headers: {
+           'Content-Type':'application/json'
+          },
       body: JSON.stringify({
         query:`
         query WPPOSTS { 
@@ -60,10 +63,8 @@ export async function newsByLatest(){
        ` 
       
       })
-      ,
-      headers: {
-           'Content-Type':'application/json'
-          },
+      
+     
     }).then((res) => res.json())
     .then((data)=>data.data)
     .catch((err) => console.log("err", err)) 
@@ -117,7 +118,10 @@ export async function newsByLatest(){
 
 
       const wprestPost = fetch('https://content.culturays.com/graphql',{     
-        method: 'POST',
+        method: 'POST', 
+        headers:{
+            'Content-Type':'application/json'
+        },
         body: JSON.stringify({
           query:`
           query WPPOSTS {
@@ -209,9 +213,7 @@ export async function newsByLatest(){
         
         })
         , 
-        headers:{
-            'Content-Type':'application/json'
-        }
+     
         }).then((response) => response.json()) 
         .then((data)=>data.data.categories.nodes)
         .catch((error) => console.error('Error:', error));
@@ -222,7 +224,7 @@ const resp2Post =await wprestPost
 return {resp, resp1Live, resp2Post}
 }
 
-  export async function newsViews(){
+  export const newsViews=async()=>{
     const latestPosts=await newsByLatest()  
     const postX = latestPosts?.resp?.categories?.nodes.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts?.pageInfo?.endCursor).flat()
   
@@ -233,8 +235,8 @@ return {resp, resp1Live, resp2Post}
         },
         body: JSON.stringify({
           query:`
-          query WPPOSTS {                  
-             posts(first:10 ,after:"${postX[0]}", where: {categoryName: "Latest"}) {
+          query WPPOSTS($after: String) {                  
+             posts(first:10 ,after:$after, where: {categoryName: "Latest"}) {
                 pageInfo {
               startCursor
               endCursor
@@ -287,7 +289,9 @@ return {resp, resp1Live, resp2Post}
          }
            }  } 
         } 
-         ` 
+         `, variables:{
+          after:postX[0]
+         }
         
         })
         
@@ -373,7 +377,7 @@ return {resp, resp1Live, resp2Post}
   return wprest
   }
 
-  export async function postsOutline (){
+  export const postsOutline =async()=>{
     
     const wprest = fetch('https://content.culturays.com/graphql',{
            method: 'POST',

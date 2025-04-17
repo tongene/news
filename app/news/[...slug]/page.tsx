@@ -8,7 +8,7 @@ import { NewsArticle, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
  
 const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
-
+ 
   async function news_details_all(uri:string){  
  
    const wprest = fetch('https://content.culturays.com/graphql',{

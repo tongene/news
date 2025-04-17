@@ -9,7 +9,7 @@ import StructuredData from "@/components/StructuredData";
  //export const revalidate = 0
  const INITIAL_NUMBER_OF_POSTS = 10
 const Forum = async({searchParams}: {
-  searchParams: Promise<{ topic: string }>}) => {
+  searchParams: Promise<{ topic: string, message: string }>}) => {
 const supabase =await createClient()    
 const { 
 data: { user }, 
@@ -53,6 +53,7 @@ previousMonth.setDate(0);
 //    )
   
  const {topic}=await searchParams || ''
+ const {message}=await searchParams || ''
   const postsItems =async(): Promise<InitialPosts[]> =>{ 
     const initialPostsD = await getPosts(0, INITIAL_NUMBER_OF_POSTS)
        return initialPostsD ?? [] 
@@ -92,16 +93,19 @@ const jsonLd:WithContext<BlogPosting>={
   }
 }
 
-
+// <Suspense>
+// </Suspense>
 return ( 
 <div> 
   <StructuredData schema={jsonLd} />
-  <Suspense><Main 
+ <Main 
+ topic={topic}
+ val={message}
  user={user}
  trendX={trending}
  initialPosts={initialPostsD}
  filteredTrends={filteredTrends}
- /></Suspense> 
+ /> 
  </div> 
 
   )

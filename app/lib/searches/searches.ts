@@ -34,99 +34,56 @@ export const searchValues = async (name:string) => {
           body: JSON.stringify({ 
             query: `
             query SEARCHES {
-     contentNodes(where: { search: "${name}"}) {
+     contentNodes(first:20, where: { search: "${name}"}) {
      nodes {
-      contentTypeName
-      ... on Post {
+      slug
+      id
+          }
+    }
+  }
+   `
+     })
+          
+        }).then(response => response.json())
+        .then(data =>data?.data?.contentNodes?.nodes  ) 
+        .catch(error => console.error('Error:', error)); 
+        const response =await post_response??[]
+        const resx=response.map((xy:{id:string})=>xy.id)
+       
+        const singular_response = fetch('https://content.culturays.com/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ 
+            query: `
+            query SEARCHES($ids: [ID]!) {
+ contentNodes(where: {in: $ids}) {
+    nodes {
+      ... on Article {
         id
         title
         slug
-        tags{
-        nodes{
-        name
-        slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-            altText
-          }
-           
-        }
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
+        contentTypeName
       }
-      ... on Video {
-         id
+         ... on NaijaWiki {
+        id
         title
         slug
-        contentTags{
-        nodes{
-        name
-        slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
+        contentTypeName
       }
-      ... on Trending {
-         id
+         ... on NetflixNaija {
+        id
         title
-        slug   contentTags{
-        nodes{
-        name
         slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
-      }
-      
-      ... on Nollywood {
-       id
-        title
-        slug 
-         contentTags{
-        nodes{
-        name
-        slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
-      }
-      ... on NetflixNaija {
-       id
-        title
-        slug 
-        contentTags{
-        nodes{
-        name
-        slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
-            netflixCategories(where: {name: "News"}) {
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
+        contentTypeName
+         netflixCategories(where: {name: "News"}) {
           nodes {
             naijaOnNetflix {
               nodes {
@@ -149,157 +106,107 @@ export const searchValues = async (name:string) => {
             }
           }
         }
-      }    
-     
-      ... on Char {
+      }
+         ... on Nollywood {
         id
         title
-        slug   contentTags{
-        nodes{
-        name
         slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
       }
-      
-      ... on Award {
-         id
+         ... on Technology {
+        id
         title
-        slug   contentTags{
-        nodes{
-        name
-        slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
       }
-           ... on Business {
-         id
+         ... on Society {
+        id
         title
-        slug   contentTags{
-        nodes{
-        name
         slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
       }
-           ... on Economy {
-         id
+         ... on Post {
+        id
         title
-        slug   contentTags{
-        nodes{
-        name
         slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        tags{nodes{name slug}}
       }
-           ... on Environment {
-         id
+         ... on Business {
+        id
         title
-        slug   contentTags{
-        nodes{
-        name
         slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
       }
-           ... on Society {
-         id
+         ... on Environment {
+        id
         title
-        slug   contentTags{
-        nodes{
-        name
         slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
       }
-           ... on Technology {
-         id
+         ... on Live {
+        id
         title
-        slug   contentTags{
-        nodes{
-        name
         slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
       }
-      ... on Article {
-         id
+         ... on Health {
+        id
         title
-        slug   contentTags{
-        nodes{
-        name
         slug
-        }
-        }
-        featuredImage{
-          node{
-            sourceUrl
-             altText
-          }
-           
-        }
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
       }
-    }
-     
+         ... on Economy {
+        id
+        title
+        slug
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
+      }
+         ... on Trending {
+        id
+        title
+        slug
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
+      }
+         ... on Video {
+        id
+        title
+        slug
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
+      }
     }
   }
-   `
-     })
+ 
+  }
+   `,variables: {
+    ids: resx,
+  }
+   })
           
         }).then(response => response.json())
-        .then(data =>data?.data?.contentNodes?.nodes  ) 
-        .catch(error => console.error('Error:', error));      
-        const response = post_response   
-        return post_response
+        .then(data => data.data.contentNodes.nodes) 
+        .catch(error => console.error('Error:', error)); 
+        return singular_response
     
     }}
     

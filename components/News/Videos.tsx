@@ -82,7 +82,7 @@ const Videos = ({content_videos, sidebarItems, news_outline, coming_titles}:{con
   
 </div> 
 <div className="md:flex justify-between max-w-max bg-white m-auto"> 
-<Paginate content={content_videos.slice(4)}/>
+<Paginate content={content_videos.slice(4)} pathString='video'/>
   <SideBar sidebarItems={sidebarItems}
 news_outline={news_outline} coming_titles={coming_titles}/>  
  </div>  
