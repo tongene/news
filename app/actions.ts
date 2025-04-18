@@ -1,4 +1,4 @@
-"use server";
+"use server"; 
 
 import { encodedRedirect } from "@/utils/utils";
 import { createClient } from "@/utils/supabase/server";
@@ -17,7 +17,7 @@ export const signUpAction = async (formData: FormData) => {
     return encodedRedirect( 
       "error",
       "/sign-in",
-      "Email and password are required",
+      "Email and password are required", 
     );
   }
 

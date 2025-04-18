@@ -55,7 +55,8 @@ export const updateSession = async (request: NextRequest) => {
     if (user.data.user && isUnprotectedPath) { 
       return NextResponse.redirect(new URL("/", request.url));
        } 
-       response.headers.set('confirm',request.nextUrl.searchParams.toString() ) 
+     //  response.headers.set('confirm',request.nextUrl.searchParams.toString() ) 
+     
        response.headers.set('x-url',request.nextUrl.pathname) 
     return response;
   } catch (e) {

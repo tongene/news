@@ -42,6 +42,8 @@ export const signInAction = async (formData: FormData) => {
   const password = formData.get("password") as string;
   const supabase = await createClient();
   const origin =(await headers()).get("origin") as string; 
+  const headersList = await headers() 
+  const router = headersList?.get('x-url')
   const { error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -58,9 +60,10 @@ export const signInAction = async (formData: FormData) => {
     const origin =(await headers()).get("origin"); 
    const supabase =await createClient();
    const referer = (await headers()).get("referer");
- 
-   const redirectTo = referer 
-   ? `${origin}/auth/callback?redirect_to=${encodeURIComponent('/forum')}`
+   const headersList = await headers() 
+   const router = headersList?.get('x-url')
+   const redirectTo = router 
+   ? `${origin}/auth/callback?redirect_to=${encodeURIComponent(router)}`
    : `${origin}/auth/callback`;
      const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',  
@@ -72,7 +75,7 @@ export const signInAction = async (formData: FormData) => {
     if (error) {
       console.log(error)        
    } 
-    console.log(redirectTo)
+   // console.log(redirectTo)
     return redirect(data.url as string);
   };
    

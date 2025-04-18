@@ -45,11 +45,9 @@ const SearchItems = () => {
   const [nameX1, setNameX1] = useState('');
   const [loading, setLoading] = useState(false);
   
-  // Debounced update of URL
   const debouncedUpdateURL = useDebouncedCallback((value: string) => {
     const params = new URLSearchParams(searchParams);
-    if (value.trim()) { 
-       setLoading(true);
+    if (value.trim()) {
       params.set('name', value.trim());
     } else {
       params.delete('name');
@@ -57,19 +55,18 @@ const SearchItems = () => {
     replace(`${pathname}?${params.toString()}`);
   }, 500);
   
-  // Handle input change
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setNameX1(value);
     debouncedUpdateURL(value);
-  };
+  };  
   
-  // Fetch data when nameX1 changes (after debounce)
-  useEffect(() => {
+ 
+  useEffect(() => { 
+    setLoading(true);
     const fetchData = async () => {
       if (!nameX1.trim()) {
         setSearchData([]);
-        setLoading(false);
         return;
       }
   
@@ -82,7 +79,7 @@ const SearchItems = () => {
     fetchData();
   }, [nameX1, searchParams]);
   
-  // Preload search from URL on page load
+ 
   useEffect(() => {
     const initial = searchParams.get('name') || '';
     setNameX1(initial);

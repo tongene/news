@@ -1,18 +1,23 @@
-"use client"
-import { usePathname, useRouter } from "next/navigation"
-
-const SignOutBtn = () => {
-    const router = useRouter()
-    const pathname = usePathname()
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+const SignOutBtn = async() => {   
+  const headersList = await headers() 
+ const router = headersList?.get('x-url') 
+  const pathChanged=async()=>{
+    "use server"
+    //return NextResponse.redirect(new URL("/sign-in", request.url));
+ return redirect(`${router}?confirm=logout`);  
+  }
+   
   return (
-    <div>
+    <form action={pathChanged}>
     <div className="m-1 flex m-auto justify-center">  
- <button onClick={()=>router.push(`${pathname}?confirm=logout`)} className="button block m-1 ml-2 rounded-md no-underline bg-btn-background text-lg hover:scale-105 mt-5" type="button">
+  <button className="button block m-1 ml-2 rounded-md no-underline bg-btn-background text-lg hover:scale-105 mt-5" type="submit">
    Sign out
- </button> 
+ </button>  
  
 </div>
- </div>  
+ </form>  
   )
 } 
 

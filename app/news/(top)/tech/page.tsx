@@ -122,7 +122,7 @@ const TechPage =async () => {
     }
   }
 }
- 
+
      
   return (
     <div > 
