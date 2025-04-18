@@ -48,7 +48,8 @@ const SearchItems = () => {
   // Debounced update of URL
   const debouncedUpdateURL = useDebouncedCallback((value: string) => {
     const params = new URLSearchParams(searchParams);
-    if (value.trim()) {
+    if (value.trim()) { 
+       setLoading(true);
       params.set('name', value.trim());
     } else {
       params.delete('name');
@@ -72,7 +73,7 @@ const SearchItems = () => {
         return;
       }
   
-      setLoading(true);
+    
       const results = await searchValues(nameX1.trim());
       setSearchData(results);
       setLoading(false);

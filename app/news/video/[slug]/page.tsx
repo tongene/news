@@ -1,5 +1,7 @@
 import VideoDetail from "@/components/News/VideoDetail" 
+import StructuredData from "@/components/StructuredData"
 import type { Metadata, ResolvingMetadata } from 'next'
+import { NewsArticle, WithContext } from "schema-dts"
 type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -135,9 +137,49 @@ export async function generateMetadata(
 
 const VideoDetailsPage=async ({params}: Props) => {
   const slug =(await params).slug
-  const vid_details= await viddetails(slug) 
+  const vid_details= await viddetails(slug)
+  const tags= vid_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+  const replaceHTMLTags=(string:string)=>{
+    const regex = /(<([^>]+)>)/gi;
+    const newString = string?.replace(regex, "");
+    return newString
+     }
+
+  const jsonLd:WithContext<NewsArticle> = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+     name: vid_details.title,
+     headline:vid_details.title, 
+     description:replaceHTMLTags(vid_details?.excerpt) ,
+     author: {
+       "@type": "Person",
+       name: "Christina Ngene",
+       url:'https://culturays.com/creator/christina-ngene',
+     }, 
+     datePublished: new Date(vid_details?.date).toDateString(), 
+     dateModified: new Date(vid_details?.date).toDateString(), 
+      mainEntityOfPage: {
+       "@type": "WebPage",
+       "@id": vid_details?.slug,
+     },
+     url:vid_details?.slug,
+     image: vid_details?.featuredImage.node.sourceUrl ,
+     publisher: {
+       "@type": "Organization",
+       name: "Christina Ngene",
+       logo: {
+         "@type": "ImageObject",
+         url: "https://culturays.com/assets/images/culturays-no-bg.png",
+       },
+     },
+      
+     keywords:tags,    
+     
+   };
+
   return ( 
     <div>
+      <StructuredData schema={jsonLd} />
   <VideoDetail  
 vid_details={vid_details}   
 /> 

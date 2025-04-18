@@ -11,24 +11,20 @@ const coming_to_netflix_class= category_children.filter((ex:{node:{slug:string}}
 const coming_to_netflix_category =category_children.filter((ex:{node:{slug:string}})=> ex.node.slug==='category-coming-to-netflix').map((fx:{node:{naijaOnNetflix:{edges:[]}} })=> fx.node.naijaOnNetflix.edges).flat() 
 const netflix_news_data = await netflixNews()
 const coming_to_netflix_grouped =netflixNaija.concat(coming_to_netflix_class).concat(coming_to_netflix_category) 
-const replaceHTMLTags=(string:string)=>{
-  const regex = /(<([^>]+)>)/gi;
-  const newString = string?.replace(regex, "");
-  return newString
-   }
+ 
 const jsonLd: WithContext<NewsArticle>= {
   '@context': 'https://schema.org',
   '@type': 'NewsArticle',
-  name:coming_to_netflix_grouped[0].title,
-  headline:coming_to_netflix_grouped[0].title,
-  description:replaceHTMLTags(coming_to_netflix_grouped[0].excerpt) ,
+  name:"What's Coming to Netflix Naija",
+  headline:"What's Coming to Netflix Naija",
+  description:"All titles Coming to Netflix Naija weekly, monthly and yearly are first published here. The best of Netflix Naija News and movies are all available.",
   author: {
     '@type': 'Person',
     name: 'Christina Ngene',
     url:'https://culturays.com/creator/christina-ngene',
   },
-  datePublished:new Date( coming_to_netflix_grouped[0].date).toDateString(),
-  dateModified:new Date( coming_to_netflix_grouped[0].date).toDateString(),
+  datePublished:new Date().toDateString(),
+  dateModified:new Date().toDateString(),
   mainEntityOfPage: {
     '@type': 'WebPage',
     '@id': 'https://culturays.com/netflix-naija/coming-to-netflix',
@@ -43,7 +39,7 @@ const jsonLd: WithContext<NewsArticle>= {
       url: 'https://culturays.com/assets/images/culturays-no-bg.png',
     },
   },
-  keywords:coming_to_netflix_grouped[0].contentTags,
+  keywords:'Netflix Naija'
 };
 
   return (

@@ -11,24 +11,20 @@ async function New_On_Netflix() {
  const made_in_africa = added_on_netflix_naija.addedCategories.edges.filter((xy:{node:{name:string}})=> xy?.node.name === 'Made in Africa').flat()
  const non_africa = added_on_netflix_naija.addedCategories.edges.filter((xy:{node:{name:string}})=> xy?.node.name !== 'Made in Africa').flat()
  const netflixNaija=new_on_netflix_naija.map((xy:{node:{naijaOnNetflix:{edges:[]}}})=> xy.node.naijaOnNetflix.edges).flat()
- const replaceHTMLTags=(string:string)=>{
-  const regex = /(<([^>]+)>)/gi;
-  const newString = string?.replace(regex, "");
-  return newString
-   }
+ 
  const jsonLd: WithContext<NewsArticle>= {
   '@context': 'https://schema.org',
   '@type': 'NewsArticle',
-  name:netflixNaija[0].title,
-  headline:netflixNaija[0].title,
-  description: replaceHTMLTags(netflixNaija[0].excerpt),
+  name:'New on Netflix Naija',
+  headline:'New on Netflix Naija',
+  description:"All titles on Netflix Naija weekly, monthly and yearly are first published here. The best of Netflix Naija News and movies are all available.",
   author: {
     '@type': 'Person',
     name: 'Christina Ngene',
     url:'https://culturays.com/creator/christina-ngene',
   },
-  datePublished:new Date( netflixNaija[0].date).toDateString(),
-  dateModified:new Date( netflixNaija[0].date).toDateString(),
+  datePublished:new Date().toDateString(),
+  dateModified:new Date().toDateString(),
   mainEntityOfPage: {
     '@type': 'WebPage',
     '@id': 'https://culturays.com/netflix-naija/new-on-netflix',
@@ -43,7 +39,7 @@ async function New_On_Netflix() {
       url: 'https://culturays.com/assets/images/culturays-no-bg.png',
     },
   },
-  keywords:netflixNaija[0].contentTags,
+  keywords:'Netflix Naija',
 };
 
  return (      
