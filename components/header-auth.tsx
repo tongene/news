@@ -5,13 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { faUser } from "@fortawesome/free-solid-svg-icons"; 
 import SignOutBtn from "./SignOutBtn";   
+import { headers } from "next/headers"; 
 export default async function AuthButton() {
   const supabase = await createClient();
-
+  const headersList = await headers() 
+  const router = headersList?.get('x-url') ||''
   const { 
     data: { user },
   } = await supabase.auth.getUser();
-  
+
+ 
   return user ? (
   <> 
  
@@ -37,7 +40,8 @@ export default async function AuthButton() {
  alt={user.user_metadata.full_name}
  /> 
  </div></Link> }
- <SignOutBtn/>  
+ <SignOutBtn rtx={router}/>   
+ 
 </div>
 </div> 
 </> ) : (  

@@ -49,6 +49,7 @@ const SearchItems = () => {
     const params = new URLSearchParams(searchParams);
     if (value.trim()) {
       params.set('name', value.trim());
+    
     } else {
       params.delete('name');
     }
@@ -56,6 +57,7 @@ const SearchItems = () => {
   }, 500);
   
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoading(true);
     const value = e.target.value;
     setNameX1(value);
     debouncedUpdateURL(value);
@@ -63,20 +65,20 @@ const SearchItems = () => {
   
  
   useEffect(() => { 
-    setLoading(true);
+   
     const fetchData = async () => {
       if (!nameX1.trim()) {
         setSearchData([]);
         return;
-      }
-  
-    
-      const results = await searchValues(nameX1.trim());
+      } 
+      
+      const results =await searchValues(nameX1.trim());
       setSearchData(results);
-      setLoading(false);
+    
     };
   
-    fetchData();
+    fetchData(); 
+    setLoading(false);
   }, [nameX1, searchParams]);
   
  

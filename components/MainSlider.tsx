@@ -89,7 +89,7 @@ setScreenWidth(viewport )
   } 
   return ( 
     <div className='relative'>
-     <div className="block absolute top-72 xl:top-0 z-50 w-max bg-blue-900 rounded-xl hover:bg-gray-900 dark:bg-gray-800 "style={arrowOpens}onClick={rotateArrow}>
+     {/* <div className="block absolute top-72 xl:top-0 z-50 w-max bg-blue-900 rounded-xl hover:bg-gray-900 dark:bg-gray-800 "style={arrowOpens}onClick={rotateArrow}>
    
      <div className='text-white'>  
         <div className="flex items-center border-b w-80 hover:dark:bg-gray-900" > 
@@ -121,7 +121,7 @@ setScreenWidth(viewport )
        </div>
         </div>
       </div>
-     
+      */}
 
     <div className='flex flex-col justify-center items-center my-11'> 
         <h2 className='text-gray-600 font-bold text-4xl text-center py-4 dark:text-gray-300'>News</h2> 
