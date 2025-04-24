@@ -28,8 +28,7 @@ export async function generateMetadata(
     return event
     }
     const eventTitle = await eventView()
-  const previousImages = (await parent).openGraph?.images || []
- 
+  const previousImages = (await parent).openGraph?.images || [] 
     
   return {
     title:`Culturays Forum - ${eventTitle?.title}`,

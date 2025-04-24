@@ -142,8 +142,8 @@ export const handleOauthLogin = async () => {
   const supabase =await createClient(); 
   const referer = (await headers()).get("x-url");  
   const redirectTo = referer 
-  ? `${origin}/auth/callback?redirect_to=${encodeURIComponent('/forum')}`
-  : `${origin}/auth/callback`; 
+  ? `${referer}/auth/callback?redirect_to=${encodeURIComponent('/forum')}`
+  : `${referer}/auth/callback`; 
     const { data, error } = await supabase.auth.signInWithOAuth({
    provider: 'google',  
    options: { 

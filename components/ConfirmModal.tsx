@@ -30,7 +30,7 @@ const ConfirmModal = () => {
      <p className="text-2xl p-4 font-bold opacity-70 text-black">Do you want to logout?</p>   
     <button onClick={()=> router.back()}className="cursor-pointer hover:bg-opacity-70 m-1 text-xl bg-gray-900 px-3 py-2 w-1/2 text-white">Return</button>  
   <form className="m-1 flex m-auto justify-center"action={signOutAction} >  
- <button type="submit" className="cursor-pointer text-xl px-3 text-center py-2 w-1/2 text-red-400 m-1 hover:bg-gray-100">Yes</button > 
+ <button className="cursor-pointer text-xl px-3 text-center py-2 w-1/2 text-red-400 m-1 hover:bg-gray-100">Yes</button > 
  </form>
 </div>
   </div>

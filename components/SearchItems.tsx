@@ -64,8 +64,7 @@ const SearchItems = () => {
   };  
   
  
-  useEffect(() => { 
-   
+  useEffect(() => {
     const fetchData = async () => {
       if (!nameX1.trim()) {
         setSearchData([]);

@@ -4,12 +4,7 @@ import ShareButtons from "../ShareButtons";
 import Link from 'next/link';
 import { NextTypeProps, TopNews } from '@/app/types';
 const ArticleDetail = ({news_detail, next_top_news}:{news_detail:TopNews, next_top_news:NextTypeProps[]}) => {
-   const replaceHTMLTags=(string:string)=>{
-    const regex = /(<([^>]+)>)/gi; 
-    const newString = string?.replace(regex, "");
-    return newString
-     }
-     
+  
     const related_content =news_detail?.newsGroup.related?.edges??[]
     
   return (
@@ -23,10 +18,11 @@ const ArticleDetail = ({news_detail, next_top_news}:{news_detail:TopNews, next_t
  
  </div>
   <Image  
-src={news_detail?.featuredImage?.node?.sourceUrl}
+src={news_detail?.featuredImage?.node?.sourceUrl} 
 width={1200}
 height={675}
 alt={news_detail?.featuredImage?.node?.altText} 
+priority={true}
 />  
 
 <div className='sm:flex'> 
@@ -41,6 +37,7 @@ alt={news_detail?.featuredImage?.node?.altText}
     width={1200}
     height={675}
     alt={news_detail?.author?.node?.name}
+
     />
 
    </div>  

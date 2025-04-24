@@ -37,7 +37,7 @@ const Paginate = ({content, pathString}:{content:any[], pathString:string}) => {
     return newString
      }
      
-  return (
+  return ( 
     <div>       
    <section>
    <div className="pages_shadow border-b-2 border-black p-5  lg:p-10 max-w-6xl h-max dark:bg-black">
@@ -49,7 +49,7 @@ const Paginate = ({content, pathString}:{content:any[], pathString:string}) => {
         width={1200}
         height={675}
        src={itx.featuredImage?.node?.sourceUrl}
-       alt={itx.title}
+       alt={itx.title} 
        />
          </div>   
          <div className="w-full m-1 sm:m-3 py-5">    

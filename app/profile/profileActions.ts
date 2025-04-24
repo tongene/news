@@ -43,7 +43,7 @@ export async function getProfile(id:string):Promise<{user:{id:string}, avatar_ur
     if (deleteErr) {
         throw deleteErr
       }
-     redirect('/')
+   return redirect('/')
   } 
   export const getUserPosts = async (offset:number,limit:number, id:string) => {
   
@@ -77,7 +77,7 @@ export async function updateProfile({
    ) {
  "use server"
 const supabase=await createClient() 
-      const { error } = await supabase.from('profiles').upsert({
+      const {data, error } = await supabase.from('profiles').upsert({
         id: user?.id,
         full_name: fullname,  
         avatar_url, 
@@ -92,5 +92,5 @@ const supabase=await createClient()
       //console.log(error)
       if (error) throw error
       console.log('Profile updated!')
- 
+ return data
   }

@@ -10,7 +10,7 @@ export async function newchars(){
         body: JSON.stringify({
           query: `
           query WPChars {
-           naijaWikis(last: 100) {
+           naijaWikis(last: 20) {
                 nodes {
                   content
                   excerpt

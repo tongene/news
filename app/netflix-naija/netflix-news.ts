@@ -729,7 +729,7 @@ fullListNetflixNaijas(first: 1) {
       node {
       name
       slug         
-          naijaOnNetflix(first:50) { 
+          naijaOnNetflix(first:20) { 
           nodes { 
           id
             slug
@@ -797,7 +797,7 @@ fullListNetflixNaijas(first: 1) {
       node {
       name
       slug         
-          naijaOnNetflix(first:50) { 
+          naijaOnNetflix(first:20)  { 
           nodes { 
           id
             slug

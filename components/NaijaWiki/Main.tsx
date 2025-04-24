@@ -38,34 +38,30 @@ type CineProps={
    }
 }
 
-const Main = ({netflix_News}:{netflix_News:NAPINewsProps[]}) => { 
+const Main = ({netflix_News, cinemaTitles, newChars}:{netflix_News:NAPINewsProps[], cinemaTitles:CineProps[], newChars:CharacterProps[]}) => { 
  
 const [netflix_africa,setNetflix__Africa]=useState<NAPINewsProps[]>([])
 const [netflix_popular,setNetflix__Popular]=useState<NAPINewsProps[]>([])
 const [netflix_inter,setNetflix__Inter]=useState<NAPINewsProps[]>([])
-const [netflix__NG_naija,setNetflix_NG_naija]=useState<NAPINewsProps[]>([])
-const [new_Chars,setNew_Chars]=useState<CharacterProps[]>([])
+const [netflix__NG_naija,setNetflix_NG_naija]=useState<NAPINewsProps[]>([]) 
 const [naijaWikiVideos,setNaijaWikiVideos]=useState<VidProps[]>([])
 const [netFlixTop10,setNetFlixTop10]=useState<any[]>([])
 const [loading, setLoading]=useState(false)
-const [cinema_titles,setCinemaTitles]=useState<CineProps[]>([])
+ 
 const wikiNetflixNews=async()=>{
-
-// const netflix_Africa= await netflixAfrica() 
-// const netflix_Popular = await netflixPopular()
-// const netflix_inter = await netflixInter()
-// const netflix__NG_naija = await netflixNigNaija()
-// const newChars = await newchars()
-// const naijaWikiVideos =await vids()
-// const netFlixTopItems = await getTop10()  
-  // setNetflix__Africa(netflix_Africa)
-  // setNetflix__Popular(netflix_Popular)
-  // setNetflix__Inter(netflix_inter)
-  // setNetflix_NG_naija(netflix__NG_naija)
-  // setNew_Chars(newChars)
-  // setNaijaWikiVideos(naijaWikiVideos)
-  // setNetFlixTop10(netFlixTopItems)
-  return {}
+  const netflix_Africa= await netflixAfrica() 
+  const netflix_Popular = await netflixPopular()
+  const netflix_inter = await netflixInter()
+  const netflix__NG_naija = await netflixNigNaija() 
+ const naijaWikiVideos =await vids()
+  const netFlixTopItems = await getTop10()  
+  setNetflix__Africa(netflix_Africa)
+  setNetflix__Popular(netflix_Popular)
+  setNetflix__Inter(netflix_inter)
+  setNetflix_NG_naija(netflix__NG_naija) 
+  setNaijaWikiVideos(naijaWikiVideos)
+  setNetFlixTop10(netFlixTopItems)
+ 
   }
   useEffect(()=>{
      setLoading(true)
@@ -73,19 +69,7 @@ const wikiNetflixNews=async()=>{
     if(netFlixTop10.length>0){
       setLoading(false)
     }
-      },[new_Chars])
-      const naija_wiki =async ()=>{  
-        const supabase =await createClient() 
-        const { data:cinemaTitles , error } = await supabase 
-        .from('cinema_titles')
-        .select('*') 
-        if(error)throw new Error('An Error has occured!')
-      setCinemaTitles(cinemaTitles)   
-          
-        }
-      useEffect(()=>{
-naija_wiki()
-      },[])
+      },[netFlixTop10]) 
           
 const news_blog =netflix_News?.map((ex)=> ex?.node.naijaOnNetflix).map((xy)=> (xy?.nodes??{})).flat()
 const africa_blog =netflix_africa?.map((ex)=>ex?.node.naijaOnNetflix).map((xy)=> xy?.nodes).flat()
@@ -99,26 +83,20 @@ const popular_blog =netflix_popular?.map((ex)=>ex?.node.naijaOnNetflix).map((xy)
 const [activeSlide, setActiveSlide]=useState(0)
 const [activeIndices, setActiveIndices] = useState([0, 1]);
 const [end_ng_cursor, setEnd_ng_cursor] = useState('');
-const [end_inter_cursor, setEnd_inter_cursor] = useState('');  
-const replaceHTMLTags=(string:string)=>{
-const regex = /(<([^>]+)>)/gi;
-//(/<\/?[^>]+(>|$)/g, "")
-const newString = string.replace(regex, "");
-return newString
- } 
+const [end_inter_cursor, setEnd_inter_cursor] = useState('');
   
- const nollywood_titles= cinema_titles?.filter((ex)=> ex.genre?.includes('Nollywood'))
- const non_nollywood_titles= cinema_titles?.filter((ex)=> !ex.genre?.includes('Nollywood')) 
- const coming_titles= cinema_titles?.filter((ex)=> ex.genre?.includes('Coming Soon')) 
+ const nollywood_titles= cinemaTitles?.filter((ex)=> ex.genre?.includes('Nollywood'))
+ const non_nollywood_titles= cinemaTitles?.filter((ex)=> !ex.genre?.includes('Nollywood')) 
+ const coming_titles= cinemaTitles?.filter((ex)=> ex.genre?.includes('Coming Soon')) 
 
  const prevSlide=()=> { 
    const slide =activeSlide - 1 < 0
-     ?10 - 1
+     ?5 - 1
      :activeSlide -1;
      setActiveSlide(slide);
  }
  const nextSlide=()=> {
-   let slide = activeSlide + 1 < 10
+   let slide = activeSlide + 1 < 5
      ? activeSlide + 1
      : 0;
      setActiveSlide(slide);  
@@ -146,8 +124,8 @@ return newString
     <div className='m-auto' style={{maxWidth:'1700px'}}>  
  <div className='bg-white py-8'> 
  <h2 className='text-3xl font-bold my-6 text-center text-slate-800 opacity-80'>Featured Naija Characters</h2> 
-{loading?<p>Loading...</p>: <div className='md:flex justify-center max-w-6xl m-auto md:px-3'>  
-  {new_Chars&&new_Chars.slice(0,3).map((it, index)=>  
+ <div className='md:flex justify-center max-w-6xl m-auto md:px-3'>  
+  {newChars&&newChars.slice(0,3).map((it, index)=>  
         <div key={it.title + ' ' + index} className='max-w-sm md:w-80 lg:w-96 border rounded-b-xl bg-gray-700 my-2 relative m-auto'>  
           <Image
          className='w-full h-56 max-h-40 xxs:max-h-56 min-[400px]:max-h-64 md:max-h-36 min-[850px]:max-h-48 lg:max-h-64'
@@ -167,7 +145,7 @@ return newString
    </div>   
       </div>   
         )} 
-        </div>}
+        </div> 
         </div>
 
   <div className='m-auto bg-white py-8  my-2'> 

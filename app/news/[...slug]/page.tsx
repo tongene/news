@@ -835,8 +835,6 @@ const readNextContent = async(notIn:string[])=>{
     .catch(error => console.error('Error:', error));
  //  const response = wprest?.data.contentNodes.nodes 
   return wprest
-
-
 } 
 type Props = {
   params: Promise<{ slug: string }>
@@ -938,7 +936,8 @@ return cinema_titles
       />    
        <div className="[&_h2]:dark:text-gray-900 dark:text-gray-900 h-max">
        <SideBar sidebarItems={sidebarItems}
-        news_outline={news_outline} coming_titles={coming_titles}/>  
+        news_outline={news_outline} 
+        coming_titles={coming_titles}/>  
       </div>
       </div>
  </div>
