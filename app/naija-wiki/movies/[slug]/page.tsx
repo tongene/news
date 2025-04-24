@@ -1,4 +1,4 @@
-import { newchars } from "../../newCharHandle"
+import { charsFilms, newchars } from "../../newCharHandle"
 import type { Metadata, ResolvingMetadata } from 'next'  
 import ActorsMovie from "@/components/NaijaWiki/Movie";
 import StructuredData from "@/components/StructuredData";
@@ -19,12 +19,10 @@ import { ProfilePage, WithContext } from "schema-dts";
     { params }: Props,
     parent: ResolvingMetadata 
   ): Promise<Metadata> {  
-    const slug =(await params).slug
-    const charsList = await newchars()
-    const listMovies = charsList?.filter((post: Character) => 
-      post.charactertitles.portrayedby.toLowerCase().replace(/ /g, '-') === slug
-    );
-    const [charactertitles]= listMovies 
+    const slug =(await params).slug 
+   const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))   
+   const [charactertitles]= charsList
+    
     const previousImages = (await parent).openGraph?.images || []
 
     return {
@@ -46,14 +44,12 @@ import { ProfilePage, WithContext } from "schema-dts";
 
 const ActorsMoviePage =async ({params}: Props) => {
 const slug =(await params).slug
-const charsList = await newchars() 
-const listMovies = charsList?.filter((post: Character) => 
-  post.charactertitles.portrayedby.toLowerCase().replace(/ /g, '-') === slug
-);
+const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))   
+   const [charactertitles]= charsList
 const listOtherChars = charsList?.filter((post: Character) => 
   post.charactertitles.portrayedby.toLowerCase().replace(/ /g, '-') !== slug
 );
-const [charactertitles]= listMovies 
+ 
 const jsonLd:WithContext<ProfilePage> = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
@@ -81,7 +77,7 @@ const jsonLd:WithContext<ProfilePage> = {
     <div>
       <StructuredData schema={jsonLd} />
  <ActorsMovie
- listMovies={listMovies}
+ listMovies={charsList}
  listOtherChars={listOtherChars}
  /> 
  </div>

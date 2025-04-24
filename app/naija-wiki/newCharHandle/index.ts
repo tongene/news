@@ -1,4 +1,10 @@
 "use server"
+interface Character {
+  charactertitles: {
+    filmname: string;
+  };
+  
+}
 export async function newchars(){ 
   
   try {
@@ -154,7 +160,7 @@ export async function newchars(){
         console.error('Error fetching posts:', error); 
       }
 } 
-
+ 
 export async function relatedChars(){ 
   
   try {
@@ -406,7 +412,163 @@ export async function newcharCall(slug:string){
     const response = wprest
     return wprest 
 } 
+export async function charsFilms(findString: string){ 
   
+  try {
+    const wprest =fetch('https://content.culturays.com/graphql',{
+        method: 'POST',
+        headers:{
+        'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query: `
+          query WPChars($search: String) {
+           naijaWikis(first: 1, where: {search:$search}) {
+                nodes {
+                  content
+                  excerpt
+                  title
+                   id
+                  slug
+                  date
+                  
+      featuredImage {
+        node {
+        altText
+        sourceUrl
+        }
+        }
+      
+        contentTags {
+          nodes {
+          name
+          slug
+          naijaWikis {
+              nodes {
+                date
+                excerpt
+                id
+                title
+                slug
+              }
+            }
+          }
+        }
+        charactertitles{  
+          series
+          movie
+          shorts
+          portrayedby
+          genre
+          filmname
+          filmDirector
+          actorsUpcomingMovie
+          releaseDate
+          country
+          characterWiki
+          charBios
+          actorsBios
+          actorWiki
+          filmAbout
+          characterOtherName
+          prequel
+          sequel
+          filmProducer
+          filmMedia
+          filmFamily
+          filmFamilyAbout
+           actorImgs {
+            node{
+              altText
+           sourceUrl 
+            }
+           
+        }
+        actorImgs2 {
+          node{
+             altText
+           sourceUrl   
+          }
+          
+        }
+          charRel {
+            edges {
+              node {
+                ... on NaijaWiki { 
+              id
+              slug
+              title
+              excerpt
+              content 
+                  featuredImage {
+                    node {
+                      altText
+                      sourceUrl
+                    }
+                  }
+              charactertitles {
+                shorts
+                series
+                portrayedby
+                movie
+                genre
+                actorsUpcomingMovie
+                filmname
+                filmDirector
+                characterWiki
+                actorWiki
+              }
+                }
+              }
+            }
+          }
+          filmImg1 {
+            node{
+              altText
+           sourceUrl
+           }
+          }
+          filmImg2 {
+            node{
+               altText
+            sourceUrl
+            }
+           
+          }
+
+          actorImgs {
+            node{
+              altText
+           sourceUrl 
+            }
+           
+        }
+        actorImgs2 {
+          node{
+             altText
+           sourceUrl   
+          }
+          
+        }
+          
+        } }}
+
+         }  
+         ` , variables:{
+          search: findString
+         }
+        
+        })
+        
+        }).then(response => response.json())  
+       .then(data =>data?.data.naijaWikis.nodes) 
+       .catch(error => console.error('Error:', error));
+       const response = wprest
+       return wprest
+      } catch (error) {
+        console.error('Error fetching posts:', error); 
+      }
+} 
 export const contentFeed = async()=>{  
   const wprest =fetch('https://content.culturays.com/graphql',{
      method: 'POST',

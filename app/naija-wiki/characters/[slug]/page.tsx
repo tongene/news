@@ -1,5 +1,5 @@
 import Characters from "@/components/NaijaWiki/Characters";
-import { newchars } from "../../newCharHandle"
+import { charsFilms, newchars } from "../../newCharHandle"
 import type { Metadata, ResolvingMetadata } from 'next' 
 import { Article, ProfilePage, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
@@ -23,11 +23,8 @@ import StructuredData from "@/components/StructuredData";
     parent: ResolvingMetadata 
   ): Promise<Metadata> {  
     const slug =(await params).slug
-    const charsList = await newchars()
-    const listChars = charsList?.filter((post: Character) => 
-      post.charactertitles.filmname.toLowerCase().replace(/ /g, '-') === slug
-    );
-    const [charactertitles]= listChars 
+    const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))   
+    const [charactertitles]= charsList  
     const previousImages = (await parent).openGraph?.images || []
   
     return {
@@ -48,14 +45,14 @@ import StructuredData from "@/components/StructuredData";
 
 const CharactersPage =async ({params}: Props) => {
 const slug =(await params).slug
-const charsList = await newchars()
-const listChars = charsList?.filter((post: Character) => 
-  post.charactertitles.filmname.toLowerCase().replace(/ /g, '-') === slug
-);
+const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))   
+const [charactertitles]= charsList
+
 const listOtherChars = charsList?.filter((post: Character) => 
   post.charactertitles.filmname.toLowerCase().replace(/ /g, '-') !== slug
 );
-const [charactertitles]= listChars
+ 
+ 
 const jsonLd:WithContext<Article> = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -65,7 +62,7 @@ const jsonLd:WithContext<Article> = {
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.filmname} - Movies`,     
-    image: charactertitles.charactertitles.filmImg1.node.sourceUrl , 
+   image: charactertitles.charactertitles.filmImg1.node.sourceUrl , 
   },
    
     mainEntityOfPage: {
@@ -73,7 +70,7 @@ const jsonLd:WithContext<Article> = {
      "@id":`https://culturays.com/naija-wiki/characters/${slug}`, 
    },
 
-   image: charactertitles.charactertitles.filmImg1.node.sourceUrl, 
+  image: charactertitles.charactertitles.filmImg1.node.sourceUrl, 
    keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),   
    
  };
@@ -81,7 +78,7 @@ const jsonLd:WithContext<Article> = {
   return ( 
     <div> <StructuredData schema={jsonLd} />  
  <Characters
- listChars={listChars}
+ listChars={charsList}
  listOtherChars={listOtherChars}
  />  
 

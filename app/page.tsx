@@ -265,17 +265,7 @@ const latestPosts=await newsByLatest()
           start: true,
           timeZone: 'Africa/Lagos'
          });   
-         // "breadcrumb": {
-      //   "@type": "BreadcrumbList",
-      //   "itemListElement": [
-      //     {
-      //       "@type": "ListItem",
-      //       "position": 1,
-      //       "name": "Home",
-      //       "item": "https://www.culturays.com/"
-      //     }
-      //   ]
-      // }
+        
   const jsonLd:WithContext<BlogPosting>={
     "@context": "https://schema.org",
     "@type": "BlogPosting",
