@@ -1,5 +1,6 @@
 "use client" 
-import { liveNewsFeed } from '@/app/live/live';
+
+import { liveNewsFeed } from '@/app/news/live/live';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
