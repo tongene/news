@@ -66,7 +66,7 @@ useEffect(()=>{
     <ul key={ex.node.title} className="flex py-3 items-center">
       <span className="animate-pulse mr-2 text-5xl text-red-600">•</span>
       <span className="text-red-600">Live</span>
-      <Link href={`/live/${ex.node.databaseId}/${ex.node.slug}`}>
+      <Link href={`/news/live/${ex.node.databaseId}/${ex.node.slug}`}>
         <li
           className="m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold"
           style={{

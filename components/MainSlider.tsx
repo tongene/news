@@ -166,8 +166,8 @@ setScreenWidth(viewport )
      <p><span className="animate-pulse text-5xl">•</span> Live</p> 
       <span className='text-sm italic px-1'>{currentHour}</span>  
   </div>
-   <Link href={`/live/${xy.node.databaseId}/${xy.node.slug}`}><h2 className="overflow-hidden leading-8 py-6 text-gray-600 text-xl py-4 px-3 h-32 hover:text-gray-500 cursor-pointer dark:text-gray-200" onClick={() => setIsAnimating(false)} style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2></Link> 
-   <Link href={`/live/${xy.node.databaseId}/${xy.node.slug}`}><Image
+   <Link href={`/news/live/${xy.node.databaseId}/${xy.node.slug}`}><h2 className="overflow-hidden leading-8 py-6 text-gray-600 text-xl py-4 px-3 h-32 hover:text-gray-500 cursor-pointer dark:text-gray-200" onClick={() => setIsAnimating(false)} style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2></Link> 
+   <Link href={`/news/live/${xy.node.databaseId}/${xy.node.slug}`}><Image
           className='h-56 px-1 py-2 hover:opacity-50'
           src={xy.node.featuredImage.node.sourceUrl}
           width={1200}

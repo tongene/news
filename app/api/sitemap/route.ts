@@ -351,7 +351,7 @@ export async function GET() {
 
   const live_posts: Post[] = liveData.map((post)=>({ 
     title:post.title,
-   url:`https://culturays.com/live/${post.databaseId}`,
+   url:`https://culturays.com/news/live/${post.databaseId}`,
    lastModified:new Date(post.date),
    changeFrequency:'always', 
   priority:0.8,

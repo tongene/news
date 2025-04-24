@@ -1,112 +1,7 @@
 import { MetadataRoute } from "next"; 
 import { FeedProps } from "./types";  
 export const revalidate = 0; 
-const relativeData=[   {
-    url: `https://culturays.com/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority:1,
-  },
-  {
-    url:`https://culturays.com/about/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  {
-    url:`https://culturays.com/forum/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  {
-    url:`https://culturays.com/naija-wiki/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  {
-    url:`https://culturays.com/news/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  {
-    url:`https://culturays.com/live/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  {
-    url:`https://culturays.com/naija-events/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  {
-    url:`https://culturays.com/netflix-naija/coming-to-netflix/`,
-    lastModified: new Date(),
-    changeFrequency:"daily"  ,
-    priority: 0.8,
-  },
-  
-  {
-    url:`https://culturays.com/netflix-naija/new-on-netflix/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  
-  {
-    url:`https://culturays.com/news/nollywood/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  {
-    url:`https://culturays.com/news/videos/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  {
-    url:`https://culturays.com/news/business/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  {
-    url:`https://culturays.com/news/economy/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  },
-  {
-    url:`https://culturays.com/news/health/`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  }, 
-  {
-    url:`https://culturays.com/sign-in`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  }, 
-  {
-    url:`https://culturays.com/naija-birthdays`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.8,
-  }, ]
-  
-  const parentPosts = relativeData.map((post)=>({ 
-    url:post.url,
-    lastModified:post.lastModified,
-    changeFrequency:post.changeFrequency, 
-    priority:0.8, 
-  
-  }) )
+ 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}` 
   : "http://localhost:3000";   
@@ -443,13 +338,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
         images: ['https://culturays.com/assets/images/culturays.png']
       },
-      {
-        url:`https://culturays.com/live/`,
-        lastModified: new Date(),
-        changeFrequency: 'daily',
-        priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png']
-      },
+     
       {
         url:`https://culturays.com/naija-events/`,
         lastModified: new Date(),
