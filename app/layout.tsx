@@ -143,8 +143,8 @@ export const metadata:Metadata = {
   
     alternates: {
       canonical: 'https://culturays.com', 
-      languages: {
-        'en-US':`https://culturays.com/en-US`, 
+      languages: { 
+          'en-US': '/en-US',          
       },
     },
    
