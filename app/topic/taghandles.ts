@@ -406,8 +406,10 @@ contentTags(where: {slug: "${slug}"}){
       }).then(response => response.json())    
       .then(data =>data.data.contentTags) 
       .catch(error => console.error('Error:', error));
-      const response = wprest
-      return wprest
+      const response =await wprest
+     
+      // const xtagged= response.filter((vx:{slug:string})=> vx.slug !== slug)
+      return response
  }
  
 

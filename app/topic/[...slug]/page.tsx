@@ -37,11 +37,11 @@ export async function generateMetadata(
    } 
 const TagPage = async({params}: Props) => {  
   const slug =(await params).slug
-// const id= params.slug[1].replace('%3D','')   // Article,
+// const id= params.slug[1].replace('%3D',''),
  const content_tag_response = await contentTag(slug[0])
   const tag_response = await tag(slug)
   const tagged=content_tag_response?.nodes.concat(tag_response.nodes)
- 
+
   const jsonLd: WithContext<NewsArticle> = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
@@ -78,6 +78,7 @@ const TagPage = async({params}: Props) => {
     <div>
       <StructuredData schema={jsonLd} />
      <Tags
+     slug={slug}
         content_tag_response={content_tag_response}
         tag_response={tag_response} 
       /> 
