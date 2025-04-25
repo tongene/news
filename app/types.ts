@@ -1727,7 +1727,28 @@ categories:{
 nodes:{posts:{edges:{}}}[]
 }
    }
-
+export interface ObjType { 
+  title: string[];
+  slug:string  
+  img_url: string
+   desc: string[]
+   day: string[]
+   loc_slug: string  
+   genre: string 
+   genre_slug:string  
+   location:string 
+}
+export interface CineType { 
+  title: string 
+  img_url: string
+   genre: string 
+   url:string 
+   release_date:string 
+   dur:string 
+}
+export type EvObjType= {
+   titleAObj:any ; 
+}
    export interface InnerEdges{
     cursor:string
     node:{

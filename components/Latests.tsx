@@ -1,5 +1,6 @@
 "use client"  
-import { altPageNewsItems, newsViews } from "@/app/latestx" 
+import { altPageNewsItems } from "@/app/latestx" 
+import { newsViews } from "@/app/page-data"
 import Image from "next/image"
 import Link from "next/link"    
 import { useEffect, useState } from "react"
@@ -19,7 +20,7 @@ type Node ={
 const Latests = () => {   
   const [bottom_news_data, set_bottom_News_data]=useState<Node[]>([])
   const [alt_news_data, set_alt_News_data]=useState<Node[]>([])
-
+ 
 const newsContent=async()=>{ 
  const bottom_latest = await newsViews(); 
  const xLatest = bottom_latest.edges.map((xy:{node:[]})=> xy?.node).flat() 
@@ -54,7 +55,9 @@ className="w-auto h-full p-1"
 src={ex.featuredImage?.node.sourceUrl}
 width={500}  
 height={500}
-alt={ex.title}/> 
+alt={ex.title}
+priority={true}
+/> 
 <div className="absolute bg-gray-800 flex items-center justify-center top-0 bg-opacity-40 mx-2 w-full h-full"> 
 <small className="text-yellow-400 text-2xl font-bold h-4">&#124;</small> <Link href={`/news/topic/${ex.slug}`}><h2 className="text-white cursor-pointer underline hover:text-gray-400 text-xl py-20 px-1">{ex.title} </h2></Link>
 </div> 

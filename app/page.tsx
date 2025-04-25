@@ -1,16 +1,15 @@
 import Main from "@/components/Main"; 
 import { InnerEdges } from '@/app/types'   
 import MainSlider from "@/components/MainSlider";
-import { newsByLatest, postsOutline, sidePlusViews } from "./page-data";
+import { newsByLatest, newsViews, postsOutline } from "./page-data";
 import { events3Details, getNaijaEvents3 } from "./naija-events/eventData/eventContent";
 import { processImgs } from "@/utils/process_imgs";
 import { processSbImages } from "@/utils/processImages";
 import { replaceSpecialCharacters } from "@/utils/replacechars";
 import { scrapeSilverBird } from "./naija-wiki/filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
-import { CronJob } from "cron";
-import { getNaijaFake1 } from "./data/trends";
-import { BlogPosting, WebPage, WebSite, WithContext } from "schema-dts";
+import { CronJob } from "cron"; 
+import { BlogPosting, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData"; 
  type PostEdges ={
     responseLatest:{
@@ -126,9 +125,7 @@ interface CineType {
    release_date:string 
    dur:string 
 }
-type EvObjType= {
-   titleAObj:any ; 
-}
+ 
  
   const dailyEv3 =async()=>{ 
      const eventExp= await getNaijaEvents3();
@@ -248,10 +245,10 @@ type EvObjType= {
        // return () => clearTimeout(fxnTimeout);
         } 
 export default async function Home() {     
-const latestPosts=await newsByLatest() 
-  const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
-     const news_outline=await postsOutline()
-  
+ const latestPosts=await newsByLatest() 
+ const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
+ const news_outline=await postsOutline()
+
      CronJob.from({
       cronTime: '10 8 * * *',  
       onTick: dailyEv3(),
@@ -297,13 +294,27 @@ const latestPosts=await newsByLatest()
       }
     }
   }
-   
+ const naija_wiki =async ()=>{
+  const supabase =await createClient() 
+   const { data:cinemax_titles , error } = await supabase 
+   .from('cinema_titles') 
+   .select('*')
+   if(error)throw new Error('An Error has occured!')
+ 
+ return cinemax_titles 
+ }
+ const naijasWiki= await naija_wiki()
 return (
     <div> 
-      <StructuredData schema={jsonLd} /> 
-  <MainSlider livesNews={latestPosts.resp1Live}latestPosts={latestPosts.resp}/> 
-    <Main top_PostsData={postData} 
-news_outline={news_outline} /> 
+  <StructuredData schema={jsonLd} /> 
+ <MainSlider 
+     livesNews={latestPosts.resp1Live}
+     latestPosts={latestPosts.resp}/> 
+       <Main 
+       top_PostsData={postData} 
+    news_outline={news_outline}
+    cinemax_titles={naijasWiki}
+    />  
     </div>
   ); 
 }

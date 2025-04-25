@@ -1,5 +1,6 @@
 "use server"
 export const newsByLatest=async()=>{ 
+
     const wprest = fetch('https://content.culturays.com/graphql',{
       method: "POST",
        headers: {
@@ -116,7 +117,6 @@ export const newsByLatest=async()=>{
       .then(data => data.data.lives.edges)
       .catch(error => console.error('Error:', error));
 
-
       const wprestPost = fetch('https://content.culturays.com/graphql',{     
         method: 'POST', 
         headers:{
@@ -225,7 +225,7 @@ return {resp, resp1Live, resp2Post}
 }
 
   export const newsViews=async()=>{
-    const latestPosts=await newsByLatest()  
+    const latestPosts=await newsByLatest() 
     const postX = latestPosts?.resp?.categories?.nodes.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts?.pageInfo?.endCursor).flat()
   
      const wprest = fetch('https://content.culturays.com/graphql',{     
@@ -295,10 +295,10 @@ return {resp, resp1Live, resp2Post}
         
         })
         
-        }).then(response => response.json()  )
+        }).then(response => response.json() )
         .then(data =>  data.data?.posts) 
         .catch(error => console.error('Error:', error)); 
-      //const response = wprest?.data?.posts
+      ////const response = wprest?.data?.posts
         return wprest
   }
   
@@ -418,5 +418,4 @@ return {resp, resp1Live, resp2Post}
            .catch(error => console.error('Error:', error));
            //const response = wprest?.data?.outlines?.nodes 
            return wprest
-      
-     }
+  }
