@@ -27,10 +27,11 @@ const CreateForm: React.FC<SetPostProps>= ({ scrolledPosts, setScrolledPosts, po
  const [selectedImages, setSelectedImages] = useState<string[]>([]);
  useEffect(() => { 
   if(val){
-  setTimeout(()=>{
+  const timeoutVal= setTimeout(()=>{
     clearRef.current?.reset(); 
   },2000)
   window.scrollTo({ top:800, behavior: "smooth" })
+  return () => clearTimeout(timeoutVal); 
   }
 
 }, [createPost, postEdit]);

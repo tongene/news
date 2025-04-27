@@ -76,7 +76,7 @@ date:date
 .catch(err => { 
 return
 }); 
-await new Promise(resolve => setTimeout(resolve, 1000)); 
+// await new Promise(resolve => setTimeout(resolve, 1000)); 
  
 return top10s       
 } 
@@ -146,7 +146,7 @@ img:img
      return
     }
     ); 
-  await new Promise(resolve => setTimeout(resolve, 1000));   
+  ///await new Promise(resolve => setTimeout(resolve, 1000));   
   return top10s       
   } 
   
@@ -195,7 +195,7 @@ export async function getPopular():Promise<AllObj[]> {
   .catch(err => { 
   return
   }); 
-  await new Promise(resolve => setTimeout(resolve, 1000));   
+  //await new Promise(resolve => setTimeout(resolve, 1000));   
   return top10s  
 }
 
@@ -244,7 +244,7 @@ export async function getPopularSeries():Promise<AllObj[]>{
   .catch(err =>  { 
   return
   }); 
-  await new Promise(resolve => setTimeout(resolve, 1000));   
+  //await new Promise(resolve => setTimeout(resolve, 1000));   
   return top10s  
 
 }
@@ -345,7 +345,7 @@ export async function getPopularSeriesNonEng():Promise<AllObj[]>{
     console.error(err)
   return
   }); 
-  await new Promise(resolve => setTimeout(resolve, 1000));   
+  //await new Promise(resolve => setTimeout(resolve, 1000));   
   return top10s
 
 }
@@ -472,7 +472,7 @@ try{
       .catch(err =>  { 
       return
       });
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  //await new Promise(resolve => setTimeout(resolve, 1000));
 } catch(err){
 console.log(err)
 }

@@ -45,10 +45,11 @@ const InterContent = ({end_ng_cursor,end_inter_cursor, setEnd_inter_cursor }:{en
         
       useEffect(() => { 
         if(inView){
-          setTimeout(()=>{
+          const clearNotify= setTimeout(()=>{
             loadMorePosts() 
         
-          },1000)  
+          },1000)
+          return ()=> clearTimeout(clearNotify)  
          }
       }, [loadMorePosts]);  
   

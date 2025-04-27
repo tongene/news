@@ -116,10 +116,11 @@ const { ref, inView } = useInView()
     }
     useEffect(() => {
       if(inView){
-        setTimeout(()=>{
+        const clearInView= setTimeout(()=>{
           loadMorePosts() 
       
-        },1000)  
+        },1000)
+        return ()=> clearTimeout(clearInView) 
        }
       
     }, [inView])
@@ -224,11 +225,12 @@ const openEdit=(id:number )=>{
     setNotify('Image Deleted')
     const pt = scrolledPosts.filter((te) => String(te.id) !== String(imgs.id))?? [];;
     setScrolledPosts([...pt, ...(data ?? [])]);
-    setTimeout(
+    const clearNotify= setTimeout(
       () =>setNotify(''),  
       2000 
     );
     router.refresh()
+    return ()=> clearTimeout(clearNotify) 
   }
   
   const likeAction= async(postx:PostProps)=>{

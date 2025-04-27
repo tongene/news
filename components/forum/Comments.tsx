@@ -384,11 +384,13 @@ const deletePostAction=async (postid:string)=>{
         setShow(false)
         setNotify('Image Deleted')
       
-        setTimeout(
+      const clearNotify=  setTimeout(
           () =>setNotify(''),  
           2000 
         );
+      
         router.refresh()
+        return ()=> clearTimeout(clearNotify)
       }
     
 const fetchParent = async()=>{

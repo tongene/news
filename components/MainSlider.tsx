@@ -41,7 +41,7 @@ setScreenWidth(viewport )
       return [newLeft, newRight];
     });
    
-    setTimeout(() => {
+  const slideTimeOut=  setTimeout(() => {
       setIsAnimating(true)
       setActiveIndices((prev) => {
         const newValues = activeIndices.filter((n) => !prev.includes(n));
@@ -49,6 +49,7 @@ setScreenWidth(viewport )
       });
      
     },10000);
+    return ()=> clearTimeout(slideTimeOut)
   };
   
   const right_slide = () => {
@@ -60,7 +61,7 @@ setScreenWidth(viewport )
       .concat(latest_post_categories).length;
       return [newLeft, newRight];
     }); 
-  setTimeout(() => { 
+    const slideTimeOut= setTimeout(() => { 
       setIsAnimating(true) 
       setActiveIndices((prev) => {
         const newValues = activeIndices.filter((n) => !prev.includes(n));
@@ -68,16 +69,19 @@ setScreenWidth(viewport )
       });
 
   },10000);
+  return ()=> clearTimeout(slideTimeOut)
   };
   const [hasClicked, setHasClicked]= useState(false)
   const handleClick = useCallback((str:string) => {
     if (!hasClicked) {
       setHasClicked(true);
- setTimeout(()=>{
+      const slideTimeOut=  setTimeout(()=>{
 setHasClicked(false)
 
  },1000)
-  router.push(`/news/topic/${str}`);
+ router.push(`/news/topic/${str}`);
+ return ()=> clearTimeout(slideTimeOut)
+
     }
   }, [hasClicked]);
   const [index, setIndex] = useState(0);

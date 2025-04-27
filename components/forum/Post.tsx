@@ -331,11 +331,12 @@ useEffect(() => {
     setShow(false)
     setNotify('Image Deleted')
     router.push(`/forum/post/${postsImgx.slug}/${postsImgx.id}`,{ scroll:false}) 
-    setTimeout(
+   const clearNotify= setTimeout(
       () =>setNotify(''),  
       2000 
     );
     router.refresh()
+  return ()=> clearTimeout(clearNotify)
   }
 const openImgDelete=(id:number)=>{
   setDeleteBtn(prev => !prev)  

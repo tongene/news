@@ -286,10 +286,11 @@ getProfile()
           setNotify("Email successfully sent. Check your mail");
           setLoading(false);
     }
-    setTimeout(
+   const clearNotify = setTimeout(
       () =>setNotify(''), 
-      2000 
-    );  
+      2000   
+    ); 
+    return ()=> clearTimeout(clearNotify) 
   }
  
 
@@ -536,11 +537,14 @@ const deletePostAction=async (id_:string| number )=>{
         setNotify('Image Deleted')
         const pt = scrolledPosts.filter((te) => String(te.id) !== String(imgs.id))?? [];;
         setScrolledPosts([...pt, ...(data ?? [])]);
-        setTimeout(
+        router.refresh()
+       const clearNotify= setTimeout(
           () =>setNotify(''),  
           2000 
         );
-        router.refresh()
+
+        return ()=> clearTimeout(clearNotify) 
+       
       }
       function enlargeImgs(i:number, ix: number) {
         const files = (scrolledPosts[i]?.files ??[]).filter((xy:string)=>!xy?.includes('undefined'))

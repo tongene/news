@@ -49,11 +49,12 @@ if(data){
         content:""
       })
 
-      setTimeout(
+      const clearNotify= setTimeout(
         () =>setFormSuccessMessage(' '),  
         2000 
       );
-
+     
+      return ()=> clearTimeout(clearNotify)
     })
   } 
   

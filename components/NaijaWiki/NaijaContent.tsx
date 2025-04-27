@@ -47,10 +47,11 @@ const NaijaContent = ({end_ng_cursor, setEnd_ng_cursor}:{end_ng_cursor:string, s
         
       useEffect(() => { 
         if(inView){
-          setTimeout(()=>{
+       const clearInView=  setTimeout(()=>{
             loadMorePosts() 
         
-          },1000)  
+          },1000) 
+          return ()=> clearTimeout(clearInView) 
          }
       }, [loadMorePosts]);  
   

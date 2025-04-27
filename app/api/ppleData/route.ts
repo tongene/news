@@ -2,11 +2,7 @@ import { createClient } from "@/utils/supabase/server"
 import { NextResponse } from "next/server" 
  
 export async function GET() {
-    await new Promise((resolve)=> {
-      setTimeout(()=>{
-      resolve(true)
-        },5000)
-       })
+    
        const forumBdays =async ()=>{
         const supabase =await createClient()
         const { data: bday, error } = await supabase

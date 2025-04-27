@@ -83,7 +83,7 @@ await googleTrends.dailyTrends({
   //   start: true,
   //   timeZone: 'Africa/Lagos'
   //   });
-  // }, 5000);    
+  // }, 5000);  
  
   return titleObj 
    }

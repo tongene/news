@@ -79,11 +79,7 @@ export async function events3Details(id:string ) {
         const fullObj: FullObjType = { data: [] };
       try{
  await axios.get(id).then((response) => {
-// new Promise((resolve)=> {
-// setTimeout(()=>{
-// resolve(true)
-// },5000)
-// }) 
+ 
 const html = response.data
 const $ = cheerio.load(html) 
 $('h1', html).each((index, element)=>{            
