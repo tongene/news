@@ -3,7 +3,7 @@
 declare module 'cron'
 declare module 'google-trends-api';
 declare module 'compromise';
-
+declare module 'html2pdf.js';
 // declare namespace React {
 //     type ReactNode =
 //       | ReactElement

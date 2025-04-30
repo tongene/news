@@ -16,10 +16,10 @@ img_url?:string
 }
 
 export async function getTop10():Promise<AllObj[]> {
-const top10Data=[]
+
 const top10s:AllObj[]=[] 
-const top10Names=[]
- 
+const top10Names:AllObj[]=[]
+
 const dateObject = new Date(); 
 const year = dateObject.getFullYear();
 const month = String(dateObject.getMonth() +1 ).padStart(2, '0');
@@ -30,7 +30,7 @@ const queryParams = {
   week: finalString,  
   }; 
  const params =  new URLSearchParams(queryParams);  
-const res12= axios.get(`https://netflix.com/tudum/top10/nigeria`) 
+const res12=await axios.get(`https://netflix.com/tudum/top10/nigeria`) 
 .then((response)=>{
 if(response.status!==200 )return
   // throw new Error(`HTTP error! status: ${response.status}`); 
@@ -44,21 +44,23 @@ const $ = cheerio.load(html)
 // urls:acUrl,
 // }) 
 // }) 
-        $('td.title > button').each((index, element) => {
+$('td.title > button').each(function(index, element) {
           const title= $(element).text()
           top10s.push({ 
      title:title, 
   } 
- ) 
-        });
-        $('td > img').each((index, element) =>{      
-const img = $(element).attr('src')  
-top10s.push({ 
+ )
+
+ });
+        $('td > img').each(function(index, element){      
+const img = $(element).attr('src') 
+
+top10Names.push({ 
 img:img  
  } ) 
 })
- $('#maincontent > div > div > div').each((index, element) =>{      
-const date =  $(element).text()
+ $('#maincontent > div > div > div').each(function(index, element){      
+const date = $(element).text()
 top10s.push({ 
 date:date   
  } ) 
@@ -71,27 +73,26 @@ date:date
 // // rank:rank, 
 // // }  ) 
 // //  }) 
-
-}).then(response =>response )
+ 
+}).then(response =>response) 
 .catch(err => { 
 return
 }); 
 // await new Promise(resolve => setTimeout(resolve, 1000)); 
- 
-return top10s       
+const top10Data=[...top10s,...top10Names] 
+ return top10Data
 } 
 
  
-export async function getTop10Series():Promise<AllObj[]> {
-  const top10Data=[]
+export async function getTop10Series():Promise<AllObj[]> { 
   const top10s:AllObj[]=[]
-  const top10Names=[]
+  const top10Names:AllObj[]=[]
   const queryParams = {
   limit: String(10) , 
   };
   
    const params = new URLSearchParams (queryParams); 
-  const res12=  axios.get(`https://netflix.com/tudum/top10/nigeria/tv` ) 
+  const res12= await axios.get(`https://netflix.com/tudum/top10/nigeria/tv` ) 
   .then((response)=>{
   if(response.status!==200) throw new Error(`HTTP error! status: ${response.status}`); 
   const html = response.data
@@ -130,7 +131,7 @@ export async function getTop10Series():Promise<AllObj[]> {
  }) 
 $('td > img', html).each((index, element) =>{      
 const img = $(element).attr('src')  
-top10s.push({ 
+top10Names.push({ 
 img:img  
  } ) 
 })
@@ -147,7 +148,8 @@ img:img
     }
     ); 
   ///await new Promise(resolve => setTimeout(resolve, 1000));   
-  return top10s       
+  const top10Data=[...top10s,...top10Names] 
+ return top10Data     
   } 
   
 export async function getPopular():Promise<AllObj[]> { 
@@ -159,7 +161,7 @@ export async function getPopular():Promise<AllObj[]> {
   };
   
    const params = new URLSearchParams(queryParams); 
-  const res12=  axios.get(`https://www.netflix.com/tudum/top10/most-popular` ) 
+  const res12= await axios.get(`https://www.netflix.com/tudum/top10/most-popular` ) 
   .then((response)=>{
   if(response.status!==200)throw new Error(`${response.status}`)
   const html = response.data
@@ -208,7 +210,7 @@ export async function getPopularSeries():Promise<AllObj[]>{
   };
   
    const params = new URLSearchParams(queryParams); 
-  const res12=  axios.get(`https://www.netflix.com/tudum/top10/most-popular/tv` ) 
+  const res12= await axios.get(`https://www.netflix.com/tudum/top10/most-popular/tv` ) 
   .then((response)=>{
   if(response.status!==200)throw new Error(`${response.status}`)
   const html = response.data
@@ -258,7 +260,7 @@ export async function getPopularNonEng():Promise<AllObj[]>{
   };
   
    const params = new URLSearchParams(queryParams); 
-  const res12=  axios.get(`https://www.netflix.com/tudum/top10/most-popular/films-non-english` ) 
+  const res12= await axios.get(`https://www.netflix.com/tudum/top10/most-popular/films-non-english` ) 
   .then((response)=>{
   if(response.status!==200)throw new Error(`${response.status}`)
   const html = response.data
@@ -307,7 +309,7 @@ export async function getPopularSeriesNonEng():Promise<AllObj[]>{
   };
   
    const params = new URLSearchParams(queryParams); 
-  const res12=  axios.get(`https://www.netflix.com/tudum/top10/most-popular/tv-non-english` ) 
+  const res12= await axios.get(`https://www.netflix.com/tudum/top10/most-popular/tv-non-english` ) 
   .then((response)=>{
   if(response.status!==200)throw new Error(`${response.status}`)
   const html = response.data
@@ -407,7 +409,7 @@ export const netFlixData =async () => {
 export const scrapeSilverBird = async ():Promise<AllSilver[]> => {
   const silverbirdsCinemas:AllSilver[]=[]
 try{
-    axios.get('https://silverbirdcinemas.com/')
+  await axios.get('https://silverbirdcinemas.com/')
   .then(async(response)=>{
     if(response.status !== 200) throw new Error(`${response.status}`)
     const html = response.data

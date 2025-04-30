@@ -1,37 +1,16 @@
-'use client'
-import { faEllipsisVertical, faPen } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Image from "next/image"  
+'use client'  
 import Link from "next/link"
 import { useEffect, useState } from "react"; 
-import EventForm from "./EventForm";
 import { createClient } from "@/utils/supabase/client" 
 import { EventsProps } from "@/app/types" 
-const EventDetail = ({ eventTitle }:{eventTitle:EventsProps }) => {
+const EventDetail = ({ eventTitle, similarEvents}:{eventTitle:EventsProps, similarEvents:EventsProps[]}) => {
 const [active, setActive]= useState(false)
-const [similarEvents,setSimilarEvents]= useState<EventsProps[]>([]) 
+ 
 const [eventId,setEventId]= useState([]) 
 const openForm = () => {
 setActive(prev => !prev); 
 } 
 //console.log(eventTitle.loc_slug)
-useEffect(()=>{
-const simValues = async () => {  
-const supabase = createClient();  
-const { data, error } = await supabase
-.from('events')
-.select("*")
-.filter('loc_slug', 'ilike', `%${eventTitle.loc_slug}%`);
-
-if (error) {
-console.error('Error fetching posts:', error.message);
-return;
-}
-
-setSimilarEvents( data)  
-} 
-simValues()
-},[eventTitle])  
 
  
  
@@ -71,7 +50,7 @@ eventEdit={eventTitle}
   <div className="py-8"> 
   <h2 className="text-3xl p-6 dark:text-gray-200 text-gray-700 font-bold text-center">Related Events</h2>
 <div className=" flex flex-wrap sm:flex-nowrap md:flex-wrap gap-1 justify-center m-auto xl:flex-nowrap max-w-7xl px-3" >
-{similarEvents.filter((xx)=> xx.title!== eventTitle.title).map((ex)=>
+{similarEvents.map((ex)=>
 <div className="relative"key={ex.title}> 
  <div className="h-full w-full bg-gray-900 bg-opacity-60 absolute rounded-lg"> </div>  
 

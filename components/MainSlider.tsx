@@ -122,12 +122,12 @@ const slides=livesNews?.filter((ex) => {
      <FontAwesomeIcon icon={faAngleRight}/>
       </div> 
      </div> 
-<div className={'main-x-slider absolute top-0 pt-4 '}
+<div className={'main-x-slider absolute top-0 pt-4 z-50'}
 style={{width:'9000px' }} ref={sliderRef}> 
 {slides?.map((xy,i)=>xy?.node?.contentTypeName !=='live'?
 activeIndices.includes(i)&&
-<div className='x-main-x-slider float-left relative inline-block p-1 h-96' key={i}>
-  
+<div className='x-main-x-slider float-left p-1 h-96' key={i}>
+ 
 <div className="main-slider-container px-2 text-center py-11 bg-gray-200 bg-opacity-60 rounded-xl w-72 border">
   <p className='italic text-red-600 px-1 text-left'>{moment(xy.node.date).fromNow()}</p>
  <h2 onClick={() => handleSlideClick(`/news/topic/${xy.node.slug}`)}className="overflow-hidden leading-8 py-6 text-gray-600 text-xl py-4 px-3 h-32 font-bold hover:text-gray-500 cursor-pointer dark:text-gray-200" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2> 
@@ -141,7 +141,7 @@ activeIndices.includes(i)&&
     />      
 </div>    
 </div>:
-  <div className='x-main-x-slider float-left relative inline-block p-1 h-96' key={i + ' ' + Math.random()}>
+  <div className='x-main-x-slider float-left p-1 h-96' key={i + ' ' + Math.random()}>
   <div className="main-slider-container px-2 text-center py-11 bg-gray-200 bg-opacity-60 rounded-xl w-72 border" > 
   <div className="flex font-bold justify-between items-center text-red-600 ">
  <p><span className="animate-pulse text-5xl">•</span> Live</p> 

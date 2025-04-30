@@ -69,7 +69,7 @@ setCategoryPost(currentPosts)
      
  
   return ( 
-    <div> 
+    <div className='clear-left'> 
     <div className="lg:flex justify-center sm:px-11 px-4 m-auto" style={{maxWidth:'1700px'}}> 
 <div className='max-w-7xl mx-auto'>  
 

@@ -30,6 +30,7 @@
     "geist": "^1.2.1",
     "google-trends-api": "^4.9.2",
     "googleapis": "^144.0.0",
+    "html2pdf.js": "^0.10.3",
     "lucide-react": "^0.468.0",
     "mime": "^4.0.4",
     "moment": "^2.30.1",

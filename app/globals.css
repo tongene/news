@@ -566,7 +566,6 @@ background-color: rgba(0,0,0,.4);
   }
 
   .myFile input[type="file"] {
-
 font-size: 100px;
 filter: alpha(opacity=0);
 cursor: pointer;

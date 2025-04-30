@@ -7,8 +7,8 @@ import ShareButtons from "./ShareButtons";
 import SideBar from "./Side";
 import { PostTypeProps, NextTypeProps, CineProps, Cursors, SideNode} from "@/app/types";
 import moment from "moment"; 
-import { usePathname } from "next/navigation";
-            
+
+import { useEffect, useRef, useState } from "react";
 const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_titles}:{post:PostTypeProps, next_naija_news:NextTypeProps[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => { 
 
   const $ = cheerio.load( post.content ) 
@@ -60,11 +60,42 @@ const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_t
           const post_related= post.postnewsgroup.relatedPosts?.edges   
             const nextPosts = next_naija_news.filter((tx)=> tx.contentTypeName !== "added-netflix-naija").filter((tx)=> tx.contentTypeName !== "outline").filter((xy)=> xy.contentTypeName!== 'live')?.filter((xy)=> xy.contentTypeName !== 'anticpated-nollywood')?.filter((xy)=> xy.contentTypeName !== 'anticpated-african')?.filter((xy)=> xy.contentTypeName !== 'anticpated-foreign')?.filter((xy)=> xy.contentTypeName !== 'netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'what-to-watch').filter((xy)=> xy.contentTypeName !== 'list-netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'char')?.filter((xy)=> xy.contentTypeName !== 'naija-wiki')?.filter((xy)=> xy.contentTypeName !== 'latest')?.filter((xy)=> xy.contentTypeName !== 'outline')?.filter((xy)=> xy.contentTypeName!== 'page').filter((xy)=> xy.contentTypeName!== 'live') 
   
-         const pathname = usePathname()
-      
+  const html2pdfRef = useRef<any>(null);
+  useEffect(() => {
+    import('html2pdf.js').then((mod) => {
+      html2pdfRef.current = mod.default;
+    });
+  }, []);
+
+  
+  const [revealChild, setRevealChild]=useState(false)
+  const showItem =()=>{
+setRevealChild(prev=> !prev)
+const hideItem =setTimeout(()=>{
+  setRevealChild(false)
+},200)
+return ()=> clearTimeout(hideItem)
+  }
+  const handleDownload = () => {
+    if (!html2pdfRef.current) return; 
+    const element = document.getElementById('post-content'); 
+    showItem()
+    const opt = {
+      margin: 0.5,
+      filename: `${post.title}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+    };
+return html2pdfRef.current().set(opt).from(element).save();
+  };
+  
+
+
   return (
     <div>
-      <div className="px-5"> 
+ 
+      <div className="px-5" > 
 <div className="">
 <div className="px-4 lg:px-16 py-8 m-auto max-w-7xl" > 
 <div className="flex justify-between text-ld py-4 px-2"> 
@@ -132,13 +163,31 @@ const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_t
      alt={post.postnewsgroup?.heroImage?.node.altText}
      /> 
  </div>}
-<div dangerouslySetInnerHTML={{__html: post.postnewsgroup?.heroImage?.node.caption}} className="italic py-2 text-sm "/>
- <div>
+<div dangerouslySetInnerHTML={{__html: post.postnewsgroup?.heroImage?.node.caption}} className="italic py-2 text-sm"/>
+ <div id="post-content">
+ <div className="p-4"  > 
+ <div id='add-child'className={!revealChild?'hidden':'block'}><h2 className="text-2xl font-bold text-center dark:from-white dark:to-green-400 text-gradient-to-r to-sky-500 from-red-600 bg-clip-text">Culturays</h2>
+ <h3>{post.title}</h3>
+
+   <Image 
+  className="object-cover h-full border-t border-t-8 rounded-t border-t-orange-600"
+     src='/assets/images/culturays-no-bg.png'
+     width={50}
+     height={50}
+     alt={post.title}
+     />  <h3>{post.slug}</h3> </div> 
+      <button
+        onClick={handleDownload}
+        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
+      >
+        Save Article as PDF
+      </button>
+    </div>
 {post.content.split('\n').filter((xy)=> xy !=='').slice(0,post.content.split('\n').length/10).map((line, index) =>(
-  <div key={index + ' ' + Math.random()} className="">
+  <div key={index + ' ' + Math.random()}>
  
      <div>
-        <div dangerouslySetInnerHTML={{__html:line}} className="py-2 my-1 text-lg leading-9 [&_figure>figcaption]:italic [&_figure>figcaption]:py-2 [&_figure>figcaption]:text-sm  [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800 [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-3xl [&_h3]:font-bold [&_h2]:border-b [&_h2]:border-b-4"/>
+        <div dangerouslySetInnerHTML={{__html:line}}className="py-2 my-1 text-lg leading-9 [&_figure>figcaption]:italic [&_figure>figcaption]:py-2 [&_figure>figcaption]:text-sm  [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800 [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-3xl [&_h3]:font-bold [&_h2]:border-b [&_h2]:border-b-4"/>
         {index===0&&     
      <div className='bg-white w-11/12 lg:w-4/5'>
       {post_related?.slice(0,2).map((ex)=> 
@@ -216,12 +265,14 @@ const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_t
 
 </div>)} 
 </div>
+
 <div className="text-xl text-center border py-5 my-11 mx-2 bg-red-700 hover:bg-red-900 font-mono font-bold text-white dark:text-auto">
-  
+ 
  <Link href={{ pathname: '/forum', query: { topic:post.slug} }}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
 </div>
  
 <div className='bg-white dark:bg-transparent px-3'> 
+
 <div className='max-w-7xl m-auto'>
    <h2 className='text-2xl font-bold py-4'>Next</h2>
      </div>
@@ -251,6 +302,7 @@ const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_t
   <SideBar sidebarItems={sidebarItems}news_outline={news_outline} coming_titles={coming_titles}/> 
   </div>
  </div>
+  
  
 </div>
   )

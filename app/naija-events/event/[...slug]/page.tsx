@@ -1,3 +1,4 @@
+import { getTop10 } from "@/app/naija-wiki/filmsdata";
 import EventDetail from "@/components/events/EventDetails";  
 import StructuredData from "@/components/StructuredData";
 import { createClient } from "@/utils/supabase/server";
@@ -29,7 +30,8 @@ export async function generateMetadata(
     }
     const eventTitle = await eventView()
   const previousImages = (await parent).openGraph?.images || [] 
-    
+  
+  
   return {
     title:`Culturays Forum - ${eventTitle?.title}`,
     description:eventTitle?.title,
@@ -104,11 +106,26 @@ const jsonLd: WithContext<Event> = {
   //   validFrom: "2025-04-01T12:00:00+01:00"
   // }
 };
- 
+  const simValues = async () => {  
+    const supabase =await createClient();  
+    const { data, error } = await supabase
+    .from('events')
+    .select("*")
+    .neq('slug', slug[0])
+    .range(0,2)
+   
+    if (error) {
+    console.error('Error fetching posts:', error.message);   
+    }
+    
+   return data??[];
+    } 
+   const similarEvents=await simValues() 
+
 return (
 <div>
   <StructuredData schema={jsonLd} /> 
-<EventDetail eventTitle={eventTitle}/> 
+<EventDetail eventTitle={eventTitle} similarEvents={similarEvents} /> 
 </div>
   )
 }
