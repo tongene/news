@@ -93,7 +93,7 @@ return html2pdfRef.current().set(opt).from(element).save();
 
 
   return (
-    <div>
+    <article>
  
       <div className="px-5" > 
 <div className="">
@@ -304,7 +304,7 @@ return html2pdfRef.current().set(opt).from(element).save();
  </div>
   
  
-</div>
+</article>
   )
 }
 

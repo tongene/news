@@ -9,7 +9,7 @@ const ArticleDetail = ({news_detail, next_top_news}:{news_detail:TopNews, next_t
     
   return (
     
- <div className='bg-white max-w-6xl lg:max-w-2xl min-[1100px]:max-w-3xl sm:p-6 xl:max-w-4xl 2xl:max-w-5xl xl:p-8 dark:text-gray-900' > 
+ <article className='bg-white max-w-6xl lg:max-w-2xl min-[1100px]:max-w-3xl sm:p-6 xl:max-w-4xl 2xl:max-w-5xl xl:p-8 dark:text-gray-900' > 
   <h1 className="text-4xl font-bold md:text-5xl py-8"style={{lineHeight:'50px'}}>{news_detail?.title}</h1>
 <hr/>
   <div dangerouslySetInnerHTML={{__html:news_detail?.excerpt}}className='py-4 text-lg italic'/> 
@@ -131,7 +131,7 @@ priority={true}
     </div> 
     </div>  
   </div>
-</div> 
+</article> 
 
  
  )

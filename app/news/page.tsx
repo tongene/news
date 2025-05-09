@@ -122,11 +122,7 @@ export const metadata = {
 }; 
 const NewsPage = async() => {
   const newsData= await news__Articles() 
-  const replaceHTMLTags=(string:string)=>{
-    const regex = /(<([^>]+)>)/gi;
-    const newString = string?.replace(regex, "");
-    return newString
-     }
+  
  const jsonLd:WithContext<BlogPosting>={
    "@context": "https://schema.org",
    "@type": "BlogPosting",

@@ -35,7 +35,7 @@ const NaijaWikiNetflixNewsDetails =({next_on_netflix_naija, content_videos, news
   setXTextX(xtext)
 },[])
   return (
-    <div className="px-5 2xl:px-0"> 
+    <article className="px-5 2xl:px-0"> 
    <div style={{width:"1170px"}} className="overflow-hidden m-auto"> 
     <div className="xs:flex justify-between items-center"> 
    <h2 className="text-4xl font-bold py-2 px-6 text-gray-800"> Videos </h2> <hr className="h-0.5 bg-gray-700 w-full"/> </div>
@@ -141,7 +141,7 @@ alt={ex.node.featuredImage.node.altText}
     </div> 
     </div> 
   </div>
-    </div>
+    </article>
   )
 }
 
