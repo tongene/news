@@ -606,7 +606,8 @@ cursor: pointer;
   }
   .head-forum-span-dark {
  /* box-shadow: 0 3px 30px rgb(0, 0, 0);  */
-  box-shadow: 0 3px 30px rgb(160, 160, 160);
+  box-shadow: 0 3px 30px 5px rgb(160, 160, 160);
+
 }
 
 .head-forum-span-light {

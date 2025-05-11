@@ -84,8 +84,8 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   }
 export const metadata:Metadata = {
   title:{
-    template:"%s | Culturays Nigeria",
-    default: 'Culturays | News, Nigeria, Business, Economy, Nollywood, Netflix Naija',   
+    template:"%s | Urban Naija News",
+    default: 'Urban Naija | News, Nigeria, Business, Economy, Nollywood, Netflix Naija',   
    },
   description:'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
   generator: 'Culturays',

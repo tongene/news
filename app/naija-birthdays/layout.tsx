@@ -6,14 +6,14 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
  
 export const metadata = {
 metadataBase: new URL(defaultUrl), 
- title:"Culturays | Naija Birthdays",  
+ title:"Urban News | Naija Birthdays",  
 description: "Look up the birthday dates of high profile Nigerians and celebrate with them - posthumously or alive.",
 alternates: {
   canonical: 'https://culturays.com/naija-birthdays',
  
 },
 openGraph: {
-  title: 'Culturays | Naija Birthdays',    
+  title: 'Urban News | Naija Birthdays',    
     
 } 
 }; 

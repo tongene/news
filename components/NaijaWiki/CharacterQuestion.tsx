@@ -2,7 +2,7 @@
 import React, { useState } from "react" 
 function CharacterQuestion() {
   const [formData, setFormData] = useState({
-    title: "Culturays | Characters",
+    title: "Urban News | Characters",
     content:""
   });
 

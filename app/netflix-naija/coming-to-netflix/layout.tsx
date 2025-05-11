@@ -7,10 +7,10 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
  
 export const metadata = {
 metadataBase: new URL(defaultUrl), 
-title:"Culturays | Coming to Netflix Naija",  
+title:"Urban News | Coming to Netflix Naija",  
 description: "All titles Coming to Netflix Naija weekly, monthly and yearly are first published here. The best of Netflix Naija News and movies are all available.",
 openGraph: {
-  title:  "Culturays | Netflix Naija, News, What's Coming to Netflix",    
+  title:  "Urban News | Netflix Naija, News, What's Coming to Netflix",    
     
 }
 }; 

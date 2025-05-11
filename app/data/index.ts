@@ -110,7 +110,7 @@ import { InnerEdges } from "../types";
 
    export async function postCategories(){
  
-  const wprest =await fetch('https://content.culturays.com/graphql',{
+  const wprest = fetch('https://content.culturays.com/graphql',{
         method: 'POST',
         headers:{
             'Content-Type':'application/json'
@@ -266,7 +266,7 @@ import { InnerEdges } from "../types";
   }  
 
   export async function postNextCategories (){ 
-    const post_data = (await postCategories()??[])
+    const post_data = (await postCategories()??[]) 
     const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
     const postCategory_cursor = postCategory_Children?.map((xy:InnerEdges)=> xy.node?.posts?.edges)?.flat()?.map((t)=> t?.cursor)??[] 
  const wprest = fetch('https://content.culturays.com/graphql',{
@@ -348,7 +348,7 @@ import { InnerEdges } from "../types";
    
   export async function nextNewsPosts(){
     const latestPosts=await newsByLatest() 
-    const postX = latestPosts.resp?.categories.nodes.map((xy:{posts:{edges:any[] }})=> xy.posts.edges).flat().map((vx:any )=> vx.cursor)
+    const postX = latestPosts.resp?.categories?.nodes.map((xy:{posts:{edges:any[] }})=> xy.posts.edges).flat().map((vx:any )=> vx.cursor)
     const postsXY = latestPosts?.resp2Post?.map((xy:{posts:{edges:any[] }})=> xy.posts.edges).flat().map((vx:any)=> vx.cursor) 
    const postsXcursors= postsXY?.concat(postX) 
 

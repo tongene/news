@@ -139,11 +139,10 @@ alt={news_outline[0]?.featuredImage?.node.altText}/>
 </div>
   {coming_titles.map((ity, index)=> 
  <div key={index}> 
- <ul className='flex hover:scale-105 text-gray-600 p-2'>  
-  
- <a target='_blank'><ol className="text-lg px-3">
+ <ul className='flex hover:scale-105 text-gray-600 p-2'>    
+ <li className="text-lg px-3">
    {ity.title} — {ity.release_date.slice(9)}
- </ol></a>  
+ </li>  
    
  </ul> 
  </div>

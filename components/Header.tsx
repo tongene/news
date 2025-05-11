@@ -13,7 +13,7 @@ setBarState(prev=> !prev)
 }
 
  const navAddress=[{
-  a:"Urban News",
+  a:"Outline",
   b:"/news/environment"
 
 },
@@ -53,8 +53,8 @@ const handleClick = (id:string)=> {
  <Suspense> <ConfirmModal /> </Suspense>  
   <header className="flex flex-wrap justify-between w-full relative"> 
 <div className="md:m-3 flex mt-6 z-20"> 
-<Link href='/'><h1 className="head-forum font-bold text-7xl sm:mb-4 mt-4 my-4 md:mt-11 lg:mt-6 mb-4 mx-4 font-mono tightest"> 
-<span className='py-1 px-3 text-7xl head-forum-span-dark dark:head-forum-span-light'>C</span>ulturays 
+<Link href='/'><h1 className="head-forum font-bold text-7xl sm:mb-4 mt-4 my-4 md:mt-11 lg:mt-6 mb-4 mx-4 font-mono"> 
+<span className='px-2 head-forum-span-dark dark:head-forum-span-light'>U</span><span className="tightest text-center">rban News</span> 
 </h1></Link>
  {pathname.includes('netflix-naija')?<Link href={`/${pathname.split('/')[1]}/${pathname.split('/')[2]}`}><p className="text-xl mt-20 mb-2">{`/${pathname.split('/')[2]}/`}</p></Link>:<Link href={`/${pathname.split('/')[1]}`}><p className="text-xl mt-20 mb-2">{`/${pathname.split('/')[1]}/`}</p></Link>}
 
@@ -85,9 +85,8 @@ const handleClick = (id:string)=> {
 )   }   
 <ul >
 <Link href='/news/environment'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full">
-Urban News
+Outline
 </li></Link>
- 
  
 </ul>
 

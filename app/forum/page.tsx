@@ -64,7 +64,7 @@ previousMonth.setDate(0);
 const jsonLd:WithContext<BlogPosting>={
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Culturays - Covering News in Nigeria, Africa, and Beyond",
+  "headline": "Urban - Covering News in Nigeria, Africa, and Beyond",
   "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
   "url": "https://culturays.com/forum",
   "mainEntityOfPage": {

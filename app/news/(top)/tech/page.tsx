@@ -7,7 +7,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl), 
-   title:"Culturays | Tech",   
+   title:"Urban News | Tech",   
 }; 
     async function techBlog(){  
       const wprest = fetch('https://content.culturays.com/graphql',{
@@ -94,7 +94,7 @@ const TechPage =async () => {
  const jsonLd:WithContext<BlogPosting>={
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Culturays - Covering News in Nigeria, Africa, and Beyond",
+  "headline": "Urban News - Covering News in Nigeria, Africa, and Beyond",
   "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
   "url": "https://culturays.com/news/tech",
   "mainEntityOfPage": {

@@ -18,12 +18,12 @@ alt='Culturays Logo Image'/>
 <h2 className="cursor-pointer text-4xl my-1 font-bold hover:text-gray-500">  
 Culturays</h2></Link>
 <ul> 
-<Link href='/news'prefetch={false}><li className="text list-disc p-3 mx-11 hover:text-gray-500">News</li></Link> 
-<Link href='/forum'prefetch={false}><li className="text list-disc p-3 mx-11 hover:text-gray-500">Forum</li></Link>  
+<li className="text list-disc p-3 mx-11 hover:text-gray-500"><Link href='/news'prefetch={false}>News</Link></li>
+<li className="text list-disc p-3 mx-11 hover:text-gray-500"><Link href='/forum'prefetch={false}>Forum</Link></li>  
  
-<Link href='/naija-wiki'prefetch={false}><li className="text list-disc p-3 mx-11 hover:text-gray-500">Naija Wiki</li></Link> 
-<Link href='/naija-events'prefetch={false}><li className="text list-disc p-3 mx-11 hover:text-gray-500 ">Naija Events</li></Link> 
-<Link href='/naija-birthdays'prefetch={false}><li className="text list-disc p-3 mx-11 hover:text-gray-500 ">Naija Birthdays</li></Link>   
+<li className="text list-disc p-3 mx-11 hover:text-gray-500"><Link href='/naija-wiki'prefetch={false}>Naija Wiki</Link></li> 
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 "><Link href='/naija-events'prefetch={false}>Naija Events</Link></li> 
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 "><Link href='/naija-birthdays'prefetch={false}>Naija Birthdays</Link> </li>  
 </ul> 
   <ContactUs />  
 

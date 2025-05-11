@@ -38,10 +38,10 @@ return {}
  
       const coming_titles= cinemax_titles?.filter((ex:CineProps)=> ex.genre?.includes('Coming Soon'))
     
-      useEffect(()=>{
-        
+      useEffect(()=>{        
         x_wiki()
-      },[top_PostsData])
+        //dep top_PostsData
+      },[])
     
 useEffect(()=>{
 //setCategoryPost(top_PostsData)  
@@ -69,7 +69,7 @@ setCategoryPost(currentPosts)
      
  
   return ( 
-    <div className='clear-left'> 
+    <section className='clear-left'> 
     <div className="lg:flex justify-center sm:px-11 px-4 m-auto" style={{maxWidth:'1700px'}}> 
 <div className='max-w-7xl mx-auto'>  
 
@@ -218,7 +218,7 @@ setCategoryPost(currentPosts)
     <MainBottom
    top_PostsCa={top_PostsCa}
    />   
-   </div>
+   </section>
   )
 }
 

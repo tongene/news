@@ -162,7 +162,7 @@ interface CineType {
          
        } 
        
-      && (ex.imgMime.includes('.jpg')|| ex.imgMime.includes('.png'))
+      //&& (ex.imgMime.includes('.jpg')|| ex.imgMime.includes('.png'))
        if (ex.img !== undefined ){ 
          const imgMime  =await processImgs(ex.img, 'event_avatars') 
          grouped.img_url= imgMime as string 
@@ -242,7 +242,7 @@ interface CineType {
          console.error('Error inserting items:', error);
        }
     
-       return () => clearTimeout(fxnTimeout);
+       // return () => clearTimeout(fxnTimeout);
         } 
 export default async function Home() {     
  const latestPosts=await newsByLatest() 
@@ -266,7 +266,7 @@ export default async function Home() {
   const jsonLd:WithContext<BlogPosting>={
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "Culturays - Covering News in Nigeria, Africa, and Beyond",
+    "headline": "Urban - Covering News in Nigeria, Africa, and Beyond",
     "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
     "url": "https://culturays.com/",
     "mainEntityOfPage": {
