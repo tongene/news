@@ -38,17 +38,7 @@ const jsonLd:WithContext<BlogPosting>={
     }
   }
 }
-// const naija_wiki =async ()=>{  
-//         const supabase =await createClient() 
-//         const { data:cinemaTitles , error } = await supabase 
-//         .from('cinema_titles')
-//         .select('*') 
-//         if(error)throw new Error('An Error has occured!')
-//      return cinemaTitles   
-          
-//         }
-//         const cinemaTitles=await naija_wiki()
-        const newChars = await newchars()
+const newChars = await newchars()
 return (
 <div>
  <StructuredData schema={jsonLd} />

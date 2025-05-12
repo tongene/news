@@ -424,7 +424,7 @@ ex.contentTypeName ==='video'?
  />
      {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki' ? <Link href={`/news/${ex.contentTypeName}/${ex.slug}`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize capitalize">{ex.contentTypeName}</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-red-500 text-lg font-bold text-center  capitalize"></p>}
 
-     {ex.contentTypeName ==='netflix-naija'? <Link href={`/${ex.contentTypeName}/news//${ex.slug}`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize capitalize">{ex.contentTypeName}</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-red-500 text-lg font-bold text-center  capitalize"></p>}
+     {ex.contentTypeName ==='netflix-naija'? <Link href={`/${ex.contentTypeName}/news/${ex.slug}`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize capitalize">{ex.contentTypeName}</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-red-500 text-lg font-bold text-center  capitalize"></p>}
 
      {ex.contentTypeName ==='naija-wiki'? <Link href={`/naija-wiki/character/${ex.slug}`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize capitalize">{ex.contentTypeName}</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-red-500 text-lg font-bold text-center  capitalize"></p>}
 
