@@ -29,7 +29,7 @@ type PostProps={
     }
     contentTypeName:string
 }
-const Awards = ({awards_content, sidebarItems, news_outline, coming_titles}:{awards_content:PostProps[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => {  
+const Awards = ({awards_content, sidebarItems, news_outline }:{awards_content:PostProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => {  
     const replaceHTMLTags=(string:string)=>{
       const regex = /(<([^>]+)>)/gi;
       //(/<\/?[^>]+(>|$)/g, "") 
@@ -100,8 +100,9 @@ height={675}
 </div>
   </div>
   <div className="md:mt-8"> 
- <SideBar sidebarItems={sidebarItems}
-news_outline={news_outline} coming_titles={coming_titles}/>
+ <SideBar 
+ sidebarItems={sidebarItems}
+news_outline={news_outline} />
   </div> 
 </div> 
 

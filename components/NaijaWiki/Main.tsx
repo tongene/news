@@ -38,7 +38,7 @@ type CineProps={
    }
 }
 
-const Main = ({netflix_News, cinemaTitles, newChars}:{netflix_News:NAPINewsProps[], cinemaTitles:CineProps[], newChars:CharacterProps[]}) => { 
+const Main = ({netflix_News, newChars}:{netflix_News:NAPINewsProps[], newChars:CharacterProps[]}) => { 
  
 const [netflix_africa,setNetflix__Africa]=useState<NAPINewsProps[]>([])
 const [netflix_popular,setNetflix__Popular]=useState<NAPINewsProps[]>([])
@@ -79,12 +79,26 @@ const popular_blog =netflix_popular?.map((ex)=>ex?.node.naijaOnNetflix).map((xy)
 // const naija_blog =netflix__NG_naija?.edges?.map((ex)=> ex.node.netflixNaijaPosts).map((xy)=> xy.nodes).flat()
 // const inter_cursor=netflix_inter?.edges?.map((ex)=> ex.node.netflixNaijaPosts).map((xy)=> xy.pageInfo) 
 // const naija_cursor= netflix__NG_naija?.edges?.map((ex)=> ex.node.netflixNaijaPosts).map((xy)=> xy.pageInfo) 
-
+ 
 const [activeSlide, setActiveSlide]=useState(0)
 const [activeIndices, setActiveIndices] = useState([0, 1]);
 const [end_ng_cursor, setEnd_ng_cursor] = useState('');
 const [end_inter_cursor, setEnd_inter_cursor] = useState('');
-  
+    const [cinemaTitles, setCinemaTitles]=useState<CineProps[]>([])
+    const [loadingx, setLoadingx]=useState(false)
+     const naija_wiki =async ()=>{  
+        const supabase =await createClient() 
+        const { data:cinema_titles , error } = await supabase 
+        .from('cinema_titles') 
+        .select('*')
+        if(error)throw new Error('An Error has occured!')
+  setCinemaTitles (cinema_titles)
+            setLoadingx(false)
+        } 
+  useEffect(()=>{
+    setLoadingx(true)
+  naija_wiki()
+  },[])
  const nollywood_titles= cinemaTitles?.filter((ex)=> ex.genre?.includes('Nollywood'))
  const non_nollywood_titles= cinemaTitles?.filter((ex)=> !ex.genre?.includes('Nollywood')) 
  const coming_titles= cinemaTitles?.filter((ex)=> ex.genre?.includes('Coming Soon')) 
@@ -238,7 +252,7 @@ const [end_inter_cursor, setEnd_inter_cursor] = useState('');
  
 )} </ul>  
 </div>
-  
+  {loadingx?<p>Loading...</p>:<></>}
   <div className='lg:w-1/2 md:m-5'> 
   <h4 className='text-2xl text-center p-3'>Nollywood</h4>
   <hr className='bg-gray-400 py-0.5 w-1/2 m-auto'/>  

@@ -120,8 +120,10 @@ const AwardsPage = async() => {
     <div> 
       <StructuredData schema={jsonLd} />
  <Awards
- awards_content={awards_content} sidebarItems={sidebarItems}
- news_outline={news_outline} coming_titles={coming_titles}
+ awards_content={awards_content} 
+ sidebarItems={sidebarItems}
+ news_outline={news_outline} 
+ 
  />  
     </div>
   )

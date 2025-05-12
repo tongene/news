@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SideBar from '../Side'
 import { CineProps, Cursors, SideNode, VidProps } from '@/app/types' 
 import Paginate from '../Paginate'
-const Videos = ({content_videos, sidebarItems, news_outline, coming_titles}:{content_videos:VidProps[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => { 
+const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:VidProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => { 
  const replaceHTMLTags=(string:string)=>{
   const regex = /(<([^>]+)>)/gi;
   //(/<\/?[^>]+(>|$)/g, "")
@@ -83,8 +83,9 @@ const Videos = ({content_videos, sidebarItems, news_outline, coming_titles}:{con
 </div> 
 <div className="md:flex justify-between max-w-max bg-white m-auto"> 
 <Paginate content={content_videos.slice(4)} pathString='video'/>
-  <SideBar sidebarItems={sidebarItems}
-news_outline={news_outline} coming_titles={coming_titles}/>  
+  <SideBar 
+  sidebarItems={sidebarItems}
+news_outline={news_outline} />  
  </div>  
  </div>
  )

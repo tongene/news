@@ -13,7 +13,7 @@ import { sidePlusViews } from '@/app/page-data';
 import { createClient } from '@/utils/supabase/client';
 import MainPosts from './MainPosts';
 
-const Main = ({top_PostsData, news_outline, cinemax_titles}:{top_PostsData:InnerEdges[],  news_outline:SideNode[], cinemax_titles:CineProps[] }) => { 
+const Main = ({top_PostsData, news_outline }:{top_PostsData:InnerEdges[],  news_outline:SideNode[]  }) => { 
 const [activeSet, setActiveSet]=useState(true)
 const [actIdx ,setActIdx]=useState(-1)
 const [categoryPost,setCategoryPost]=useState<InnerEdges[]>([])
@@ -35,8 +35,7 @@ setTopPostsCa(postCategory_Children )
  
 return {} 
 }
- 
-      const coming_titles= cinemax_titles?.filter((ex:CineProps)=> ex.genre?.includes('Coming Soon'))
+  
     
       useEffect(()=>{        
         x_wiki()
@@ -213,7 +212,7 @@ setCategoryPost(currentPosts)
      <SideBar 
      sidebarItems={sidebarItems}
      news_outline={news_outline}
-     coming_titles={coming_titles}/>  
+     />  
   </div> </div>
     <MainBottom
    top_PostsCa={top_PostsCa}

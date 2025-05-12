@@ -123,7 +123,8 @@ const NollywoodPage =async () => {
   <Nollywood
      nollywood_news={nollywood_news}
      sidebarItems={sidebarItems}
- news_outline={news_outline} coming_titles={coming_titles}
+ news_outline={news_outline} 
+ 
   />  
     </div>
   )

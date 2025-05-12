@@ -9,7 +9,7 @@ import { PostTypeProps, NextTypeProps, CineProps, Cursors, SideNode} from "@/app
 import moment from "moment"; 
 
 import { useEffect, useRef, useState } from "react";
-const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline, coming_titles}:{post:PostTypeProps, next_naija_news:NextTypeProps[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => { 
+const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline }:{post:PostTypeProps, next_naija_news:NextTypeProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => { 
 
   const $ = cheerio.load( post.content ) 
   let data_texts= ''
@@ -299,7 +299,7 @@ return html2pdfRef.current().set(opt).from(element).save();
      
   </div>
  </div>
-  <SideBar sidebarItems={sidebarItems}news_outline={news_outline} coming_titles={coming_titles}/> 
+  <SideBar sidebarItems={sidebarItems}news_outline={news_outline} /> 
   </div>
 
 

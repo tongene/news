@@ -117,17 +117,8 @@ const content_videos = await vids();
  const next_on_netflix_naija = await nextNetflixNews([news_details.id, exitinginrelated].flat())
   const sidebarItems=await sidePlusViews()       
       const news_outline=await postsOutline()
-      const naija_wiki =async ()=>{  
-       const supabase =await createClient() 
-       const { data:cinema_titles , error } = await supabase 
-       .from('cinema_titles') 
-       .select('*')
-       if(error)throw new Error('An Error has occured!')
- return cinema_titles
-           
-       }   
-  const xTitltes= await naija_wiki()
-    const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
+
+  //   const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
     const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
     const replaceHTMLTags=(string:string)=>{
       const regex = /(<([^>]+)>)/gi;
@@ -178,8 +169,9 @@ const content_videos = await vids();
     /> :<></> } 
     
         <div className="[&_.summary-side]:dark:text-gray-900 h-max dark:text-gray-900 [&_div]:lg:m-auto">
-      <SideBar sidebarItems={sidebarItems}
-news_outline={news_outline} coming_titles={coming_titles}/> 
+      <SideBar 
+      sidebarItems={sidebarItems}
+      news_outline={news_outline} /> 
       </div>
     </div>
  </>  )

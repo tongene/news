@@ -363,17 +363,17 @@ const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
  const next_naija_news = await readNextContent([news_detail.id,exitinginrelated].flat())
  const sidebarItems=await sidePlusViews()       
      const news_outline=await postsOutline()
-     const naija_wiki =async ()=>{  
-      const supabase =await createClient() 
-      const { data:cinema_titles , error } = await supabase 
-      .from('cinema_titles') 
-      .select('*')
-      if(error)throw new Error('An Error has occured!')
-return cinema_titles
+//      const naija_wiki =async ()=>{  
+//       const supabase =await createClient() 
+//       const { data:cinema_titles , error } = await supabase 
+//       .from('cinema_titles') 
+//       .select('*')
+//       if(error)throw new Error('An Error has occured!')
+// return cinema_titles
           
-      }   
- const xTitltes= await naija_wiki()
-   const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))
+//       }   
+//  const xTitltes= await naija_wiki()
+//    const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))
    const replaceHTMLTags=(string:string)=>{
     const regex = /(<([^>]+)>)/gi;
     const newString = string?.replace(regex, "");
@@ -419,8 +419,7 @@ return cinema_titles
       post={news_detail}
       next_naija_news={next_naija_news}
       sidebarItems={sidebarItems}
-      news_outline={news_outline} 
-      coming_titles={coming_titles} 
+      news_outline={news_outline}  
       />  
     </div>
   ) 

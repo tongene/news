@@ -249,19 +249,19 @@ export default async function Home() {
  const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
  const news_outline=await postsOutline()
 
-    //  CronJob.from({
-    //   cronTime: '10 8 * * *',  
-    //   onTick: dailyEv3(),
-    //   start: true,
-    //   timeZone: 'Africa/Lagos'
-    //   });
+     CronJob.from({
+      cronTime: '10 8 * * *',  
+      onTick: dailyEv3(),
+      start: true,
+      timeZone: 'Africa/Lagos'
+      });
     
-    //      CronJob.from({
-    //       cronTime: '10 8 * * *',  
-    //       onTick: dailyWiki(), 
-    //       start: true,
-    //       timeZone: 'Africa/Lagos'
-    //      });   
+         CronJob.from({
+          cronTime: '10 8 * * *',  
+          onTick: dailyWiki(), 
+          start: true,
+          timeZone: 'Africa/Lagos'
+         });   
         
   const jsonLd:WithContext<BlogPosting>={
     "@context": "https://schema.org",
@@ -294,16 +294,7 @@ export default async function Home() {
       }
     }
   }
- const naija_wiki =async ()=>{
-  const supabase =await createClient() 
-   const { data:cinemax_titles , error } = await supabase 
-   .from('cinema_titles') 
-   .select('*')
-   if(error)throw new Error('An Error has occured!')
  
- return cinemax_titles 
- }
- const naijasWiki= await naija_wiki()
 return (
     <div> 
   <StructuredData schema={jsonLd} /> 
@@ -313,7 +304,7 @@ return (
        <Main 
        top_PostsData={postData} 
     news_outline={news_outline}
-    cinemax_titles={naijasWiki}
+    
     />  
     </div>
   ); 

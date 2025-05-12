@@ -41,14 +41,7 @@ type PostProps={
     }[]
     }
 }
-const Nollywood = ({nollywood_news, sidebarItems, news_outline, coming_titles}:{nollywood_news:PostProps[], sidebarItems:Cursors[], news_outline:SideNode[], coming_titles:CineProps[]}) => {
- 
- const replaceHTMLTags=(string:string)=>{
-  const regex = /(<([^>]+)>)/gi;
-  //(/<\/?[^>]+(>|$)/g, "")
-  const newString = string.replace(regex, "");
-  return newString
-   }
+const Nollywood = ({nollywood_news, sidebarItems, news_outline }:{nollywood_news:PostProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => {
    
   return (
  <div className=''>  
@@ -111,8 +104,9 @@ const Nollywood = ({nollywood_news, sidebarItems, news_outline, coming_titles}:{
 </div> 
 <div className="md:flex justify-between max-w-max"> 
 <Paginate content={nollywood_news?.slice(4)} pathString='nollywood'/>
-<SideBar sidebarItems={sidebarItems}
-news_outline={news_outline} coming_titles={coming_titles}/>
+<SideBar
+ sidebarItems={sidebarItems}
+news_outline={news_outline} />
  </div>  
  </div>
  )
