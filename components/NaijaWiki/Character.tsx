@@ -113,7 +113,7 @@ All {character_data.charactertitles.filmname} Characters</p></Link>
   <span className='text-2xl py-2 font-bold'>Information</span>
   <hr/>
   {character_data.content.split('\n').map((line)=>
-  <div key={Math.random()} className='py-1 text-lg leading-8' dangerouslySetInnerHTML={{__html:line
+  <div key={Math.random()} className='py-1 text-lg leading-8 [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800' dangerouslySetInnerHTML={{__html:line
 }}/> 
    )}
   </div>  

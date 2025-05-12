@@ -80,7 +80,7 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
   <ul className=""> 
   <p className="list-disc text-xl font-bold my-2 my-4"> <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4" />{xx?.node?.title} </p>
    <li dangerouslySetInnerHTML={{__html:xx?.node?.excerpt}}className="list-disc text-lg my-2 p-4 m-4"/>
-  <li dangerouslySetInnerHTML={{__html:xx?.node?.content}}className="list-disc text-lg my-2 p-4 m-4"/>
+  <li dangerouslySetInnerHTML={{__html:xx?.node?.content}}className="list-disc text-lg my-2 p-4 m-4 [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800"/>
       
  </ul>  
     </div>
