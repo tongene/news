@@ -83,12 +83,7 @@ const handleClick = (id:string)=> {
 
  
 )   }   
-<ul >
-<Link href='/news/environment'><li className="p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full">
-Outline
-</li></Link>
  
-</ul>
 
 </div>  
 </div>

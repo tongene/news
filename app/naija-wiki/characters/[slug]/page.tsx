@@ -35,10 +35,10 @@ import StructuredData from "@/components/StructuredData";
       card: 'summary_large_image',
       title: charactertitles?.charactertitles.filmname ,
       description: charactertitles?.charactertitles.filmAbout, 
-      images:[charactertitles.charactertitles.filmImg1.node.sourceUrl, ...previousImages],  
+      images:[charactertitles?.charactertitles.filmImg1.node.sourceUrl, ...previousImages],  
     },
       openGraph: {
-        images: [charactertitles.charactertitles.filmImg1.node.sourceUrl, ...previousImages],
+        images: [charactertitles?.charactertitles.filmImg1.node.sourceUrl, ...previousImages],
       },
     } 
   }
@@ -62,7 +62,7 @@ const jsonLd:WithContext<Article> = {
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.filmname} - Movies`,     
-   image: charactertitles.charactertitles.filmImg1.node.sourceUrl , 
+   image: charactertitles?.charactertitles.filmImg1.node.sourceUrl , 
   },
    
     mainEntityOfPage: {
@@ -70,7 +70,7 @@ const jsonLd:WithContext<Article> = {
      "@id":`https://culturays.com/naija-wiki/characters/${slug}`, 
    },
 
-  image: charactertitles.charactertitles.filmImg1.node.sourceUrl, 
+  image: charactertitles?.charactertitles.filmImg1.node.sourceUrl, 
    keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),   
    
  };

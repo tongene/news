@@ -12,7 +12,7 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
  
      const nextFilms= listOtherChars.map((xy)=> xy.charactertitles) 
      const fixFilmname = nextFilms.filter((item, index, self) =>  index === self.findIndex((t) => t.filmname === item.filmname))
-
+ 
   return (
     <div> 
   <div className=''> 
@@ -46,13 +46,13 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
 </div>
  </div> 
  
-  <table className="border lg:w-1/2 "><thead><tr ><td className="text-2xl p-11 font-bold w-full">Other Characters by the Same Actor</td></tr></thead><tbody className="sm:flex justify-center">{ listMovies.map((xx, i)=>   
-    <tr className="border w-1/2" key={i + ' ' + xx.title}><td>
-       <div className=" border p-2 m-2 "> 
-       <div className="w-44">
+  <table className="border w-2/3 xl:w-1/2"><thead><tr ><td className="text-2xl p-11 font-bold w-full">Characters of {charactertitles.charactertitles.portrayedby}</td></tr></thead><tbody className="md:flex justify-center">{ listMovies.map((xx, i)=>   
+    <tr className="border" key={i + ' ' + xx.title}><td>
+       <div className="border p-2 m-2 "> 
+       <div className="w-max m-auto ">
      
-      <Image
-  className=""
+      <Image      
+      className="h-64 w-96"  
     src={xx?.featuredImage?.node.sourceUrl}
     width={1250}
     height={650}
@@ -61,9 +61,9 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
      
   <ul className="text-xl font-bold flex jusify-between my-2"> 
     <Link href={`/naija-wiki/character/${xx.slug}`}><h3> {xx.title} <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4" /></h3></Link>
-  <p className="list-disc text-xl font-bold hover:text-gray-400"> {xx.charactertitles.portrayedby} </p> 
+  {/* <p className="list-disc text-xl font-bold hover:text-gray-400"> {xx.charactertitles.portrayedby} </p>  */}
  </ul> 
- <ul><li dangerouslySetInnerHTML={{__html:xx.charactertitles.actorsBios}}className="list-disc text-lg my-2 p-4 m-4"/></ul>
+ <ul><li dangerouslySetInnerHTML={{__html:xx.charactertitles.charBios}}className="list-disc text-lg overflow-hidden text-ellipsis leading-8"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></ul>
     </div>
     </td></tr>) }</tbody><thead><tr ><td className="text-2xl p-11 font-bold w-full">Related Actors</td></tr></thead><tbody>  
   {char_itx.map((xx, i)=><tr key={i + ' ' + xx?.node.title} >    

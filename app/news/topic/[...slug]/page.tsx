@@ -412,7 +412,7 @@ return cinema_titles
    
  };
 
-  return ( 
+  return (  
     <div>
       <StructuredData schema={jsonLd} />
       <NewsDetail

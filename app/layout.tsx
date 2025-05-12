@@ -97,10 +97,10 @@ export const metadata:Metadata = {
   publisher: 'Christina Ngene',
   metadataBase: new URL('https://culturays.com'),
   openGraph: {
-  title: 'Culturays | News, Nigeria, Business, Economy, Nollywood, Netflix Naija',
+  title: 'Urban Naija | News, Nigeria, Business, Economy, Nollywood, Netflix Naija',
   description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
   url: 'https://culturays.com', 
-  siteName: 'Culturays', 
+  siteName: 'Urban Naija News', 
   images: [
   {
   url: 'https://culturays.com/assets/images/culturays.png',  
@@ -151,7 +151,7 @@ export const metadata:Metadata = {
    manifest: 'https://culturays.com/site.webmanifest',
     twitter: {
       card: 'summary_large_image',
-      title: 'Culturays',
+      title: 'Urban Naija | News, Nigeria, Business, Economy, Nollywood, Netflix Naija',
       description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',    
       images: ['https://culturays.com/assets/images/culturays.png'],  
     },    

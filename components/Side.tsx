@@ -1,12 +1,8 @@
-"use client"
- 
+"use client" 
 import NewsLetter from "./NewsLetter"
-import { createClient } from "@/utils/supabase/client"
 import Image from "next/image"
 import Link from "next/link"
 import { dateFormatter } from "@/utils/dateformat"
-import { useEffect, useState } from "react" 
-import { postsOutline, sidePlusViews } from "@/app/page-data"
 import { CineProps } from "@/app/types"
 
 type SideNode ={

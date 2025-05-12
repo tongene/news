@@ -413,7 +413,7 @@ export async function newcharCall(slug:string){
     return wprest 
 } 
 export async function charsFilms(findString: string){ 
-  
+ 
   try {
     const wprest =fetch('https://content.culturays.com/graphql',{
         method: 'POST',
@@ -423,7 +423,7 @@ export async function charsFilms(findString: string){
         body: JSON.stringify({
           query: `
           query WPChars($search: String) {
-           naijaWikis(first: 1, where: {search:$search}) {
+           naijaWikis(where: {search:$search}) {
                 nodes {
                   content
                   excerpt

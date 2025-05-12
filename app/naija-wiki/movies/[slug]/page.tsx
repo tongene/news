@@ -45,21 +45,21 @@ import { ProfilePage, WithContext } from "schema-dts";
 const ActorsMoviePage =async ({params}: Props) => {
 const slug =(await params).slug
 const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))   
-   const [charactertitles]= charsList
+ const [charactertitles]= charsList
 const listOtherChars = charsList?.filter((post: Character) => 
   post.charactertitles.portrayedby.toLowerCase().replace(/ /g, '-') !== slug
 );
- 
+
 const jsonLd:WithContext<ProfilePage> = {
-  '@context': 'https://schema.org',
+   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-   headline: `Culturays - ${charactertitles?.charactertitles.portrayedby} | Movies `, 
+  headline: `Culturays - ${charactertitles?.charactertitles.portrayedby} | Movies `, 
    description: `${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
    url:`https://culturays.com/naija-wiki/movies/${slug}`,
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.portrayedby} - Movies`,     
-    image: charactertitles.charactertitles.actorImgs.node.sourceUrl , 
+    image: charactertitles?.charactertitles.actorImgs.node.sourceUrl , 
    
   },
    
@@ -68,7 +68,7 @@ const jsonLd:WithContext<ProfilePage> = {
      "@id":`https://culturays.com/naija-wiki/movies/${slug}`, 
    },
 
-   image: charactertitles.charactertitles.actorImgs.node.sourceUrl, 
+   image: charactertitles?.charactertitles.actorImgs.node.sourceUrl, 
    keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),    
    
  };

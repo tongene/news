@@ -926,7 +926,7 @@ return cinema_titles
       
     };
   return (
-     <>
+     <> 
   <StructuredData schema={jsonLd} />
     <div className="bg-gray-50">     
     <div className="lg:flex justify-center m-auto px-4 bg-white" style={{maxWidth:'1450px' }}>

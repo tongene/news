@@ -3,7 +3,7 @@ import { dateFormatter } from "@/utils/dateformat"
 import * as cheerio from 'cheerio';
 import Image from "next/image";
 import Link from "next/link";
-import ShareButtons from "./ShareButtons"; 
+import ShareButtons from "./ShareButtons";
 import SideBar from "./Side";
 import { PostTypeProps, NextTypeProps, CineProps, Cursors, SideNode} from "@/app/types";
 import moment from "moment"; 
@@ -95,7 +95,7 @@ return html2pdfRef.current().set(opt).from(element).save();
   return (
     <article>
  
-      <div className="px-5" > 
+      <div> 
 <div className="">
 <div className="px-4 lg:px-16 py-8 m-auto max-w-7xl" > 
 <div className="flex justify-between text-ld py-4 px-2"> 
@@ -301,9 +301,9 @@ return html2pdfRef.current().set(opt).from(element).save();
  </div>
   <SideBar sidebarItems={sidebarItems}news_outline={news_outline} coming_titles={coming_titles}/> 
   </div>
- </div>
-  
- 
+
+
+ </div> 
 </article>
   )
 }
