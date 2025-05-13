@@ -1,4 +1,4 @@
-import { charsFilms, newchars } from "../../newCharHandle"
+import { charsFilms, newchars, relatedChars } from "../../newCharHandle"
 import type { Metadata, ResolvingMetadata } from 'next'  
 import ActorsMovie from "@/components/NaijaWiki/Movie";
 import StructuredData from "@/components/StructuredData";
@@ -46,9 +46,7 @@ const ActorsMoviePage =async ({params}: Props) => {
 const slug =(await params).slug
 const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))   
  const [charactertitles]= charsList
-const listOtherChars = charsList?.filter((post: Character) => 
-  post.charactertitles.portrayedby.toLowerCase().replace(/ /g, '-') !== slug
-);
+const listOtherChars =await relatedChars() 
 
 const jsonLd:WithContext<ProfilePage> = {
    '@context': 'https://schema.org',

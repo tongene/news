@@ -13,7 +13,7 @@ import { sidePlusViews } from '@/app/page-data';
 import { createClient } from '@/utils/supabase/client';
 import MainPosts from './MainPosts';
 
-const Main = ({top_PostsData, news_outline }:{top_PostsData:InnerEdges[],  news_outline:SideNode[]  }) => { 
+const Main = ({top_PostsData, news_outline }:{top_PostsData:InnerEdges[],  news_outline:SideNode[]}) => { 
 const [activeSet, setActiveSet]=useState(true)
 const [actIdx ,setActIdx]=useState(-1)
 const [categoryPost,setCategoryPost]=useState<InnerEdges[]>([])

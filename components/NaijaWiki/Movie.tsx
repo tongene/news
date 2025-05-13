@@ -103,7 +103,7 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
    src={xy.actorImgs.node.sourceUrl}
    alt={xy.actorImgs.node.altText}/>
    </div>
-   <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().replace(/ /g,'-')}`}><h2 className="text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis"style={{ display: '-webkit-box', WebkitLineClamp:1, WebkitBoxOrient: 'vertical' }} >{xy.characterWiki.slice(0, -5)}</h2></Link> 
+   <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().replace(/ /g,'-')}`}><h2 className="text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis py-3" >{xy.characterWiki.slice(0, -5)}</h2></Link> 
  
 </div>
 )}

@@ -172,7 +172,7 @@ export async function relatedChars(){
         body: JSON.stringify({
           query: `
           query WPChars {
-            naijaWikis {
+            naijaWikis(first:5) {
                 nodes {
                   content
                   excerpt
@@ -298,7 +298,7 @@ export async function relatedChars(){
         }).then(response => response.json())  
        .then(data =>data?.data.naijaWikis.nodes) 
        .catch(error => console.error('Error:', error));
-       const response = wprest
+      
         return wprest 
       } catch (error) {
         console.error('Error fetching posts:', error); 

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image" 
 import Link from "next/link"
 import { CharacterProps } from "@/app/types"
-const Characters = ({listChars, listOtherChars }:{listChars:CharacterProps[],listOtherChars:CharacterProps[]}) => {
+const Characters = ({listChars, listOtherChars}:{listChars:CharacterProps[],listOtherChars:CharacterProps[]}) => {
   const [charactertitles]= listChars 
   const titleIdx = listChars.map((ex)=>ex.charactertitles.charRel?.edges??[] ).flat() 
    const char_itx = titleIdx.filter((e, i, a) => {
@@ -12,25 +12,9 @@ const Characters = ({listChars, listOtherChars }:{listChars:CharacterProps[],lis
   } ); 
  
  const nextFilms= listOtherChars.map((xy)=> xy.charactertitles) 
- const fixFilmname = nextFilms.filter((item, index, self) =>  index === self.findIndex((t) => t.filmname === item.filmname)) 
+  const fixFilmname = nextFilms.filter((item, index, self) =>  index === self.findIndex((t) => t.filmname === item.filmname)) 
  
-//has the same result as char_itx
-//  <tbody>{ listChars.map((xx, i)=><tr key={i + ' ' + xx.title} ><td className="border">  
-//  <Link href={`/naija-wiki/character/${xx.slug}`}><h3 className="text-xl font-bold p-3 text-center"> {xx.title} </h3></Link> 
-//        <div className=" border p-2 m-2 "> 
-//        <div className="w-1/4"><Image
-//   className=""
-//     src={xx?.featuredImage?.node.sourceUrl}
-//     width={1250}
-//     height={650}
-//     alt={xx?.featuredImage?.node.altText}/> 
-//     </div> 
-//   <ul className=""> 
-//   <p className="list-disc text-xl font-bold my-2 my-4"> <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4" />{xx.charactertitles?.portrayedby} </p>
-//   <li dangerouslySetInnerHTML={{__html:xx.excerpt}}className="list-disc text-lg my-2 p-4 m-4"/>
-//   <li dangerouslySetInnerHTML={{__html:xx.content}}className="list-disc text-lg my-2 p-4 m-4"/> 
-//  </ul> 
-//     </div></td></tr>) }</tbody>
+ 
   return (
     <div> 
   <div className=' p-11 text-center text-4xl font-bold bg-gray-700 text-white '>  
@@ -64,22 +48,22 @@ const Characters = ({listChars, listOtherChars }:{listChars:CharacterProps[],lis
 </div>
  </div> 
 
-  <table className="border lg:w-1/2"><tbody>{ char_itx.map((xx, i)=><tr key={i + ' ' + xx?.node.title} ><td className="border"> 
- <Link href={`/naija-wiki/character/${xx?.node.slug}`}><h3 className="text-xl font-bold p-3 text-center"> {xx?.node.title} </h3></Link> 
+  <table className="border lg:w-1/2"><tbody>{ listChars.map((xx, i)=><tr key={i + ' ' + xx?.title} ><td className="border"> 
+ <Link href={`/naija-wiki/character/${xx?.slug}`}><h3 className="text-xl font-bold p-3 text-center"> {xx?.title} </h3></Link> 
        <div className=" border p-2 m-2 "> 
        <div className="w-1/4">
      
       <Image
   className=""
-    src={xx?.node?.featuredImage?.node.sourceUrl}
+    src={xx?.featuredImage?.node.sourceUrl}
     width={1250}
     height={650}
-    alt={xx?.node?.featuredImage?.node.altText}/> 
+    alt={xx?.featuredImage?.node.altText}/> 
     </div> 
  <ul className=""> 
-  <p className="list-disc text-xl font-bold my-2 my-4"> <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4" />{xx?.node.charactertitles?.portrayedby} </p>
-   <li dangerouslySetInnerHTML={{__html:xx?.node.excerpt}}className="list-disc text-lg my-2 p-4 m-4"/>
-  <li dangerouslySetInnerHTML={{__html:xx?.node.content}}className="list-disc text-lg my-2 p-4 m-4"/>
+  {/* <p className="list-disc text-xl font-bold my-2 my-4"> <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4" />{xx?.node.charactertitles?.portrayedby} </p> */}
+   <li dangerouslySetInnerHTML={{__html:xx.excerpt}}className="list-disc text-lg my-2 p-4 m-4"/>
+  <li dangerouslySetInnerHTML={{__html:xx.content}}className="list-disc text-lg my-2 p-4 m-4"/>
       
  </ul>
     </div></td></tr>) }</tbody>
@@ -88,10 +72,10 @@ const Characters = ({listChars, listOtherChars }:{listChars:CharacterProps[],lis
   <h3>Next Characters</h3> 
 </div>
 <div className="max-w-7xl m-auto overflow-auto pt-4 px-1 hidden-scroll" > 
-<div className='flex' style={{width:'1000px'}}>  
-  {fixFilmname.slice(0,10).map((xy)=>
-    <div key={xy.filmname + ' ' + Math.random()}className='border pt-5 px-3 w-96'>
-  <Link href={`/naija-wiki/characters/${xy.filmname.toLowerCase().replace(/ /g,'-')}`}><h2 className="text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-2xl text-center overflow-hidden text-ellipsis"style={{ display: '-webkit-box', WebkitLineClamp:1, WebkitBoxOrient: 'vertical' }} >{xy.filmname}</h2></Link>   
+ <div className='flex' style={{width:'1000px'}}>  
+  {fixFilmname.map((xy)=>
+    <div key={xy.filmname + ' ' + Math.random()} className='border pt-5 px-3 w-96'>
+  <Link href={`/naija-wiki/characters/${xy?.filmname.toLowerCase().replace(/ /g,'-')}`}><h2 className="text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-2xl text-center overflow-hidden text-ellipsis"style={{ display: '-webkit-box', WebkitLineClamp:1, WebkitBoxOrient: 'vertical' }} >{xy.filmname}</h2></Link>   
 <div className="w-72 h-44">
   <Image
   className="w-72 h-44"
@@ -101,10 +85,10 @@ const Characters = ({listChars, listOtherChars }:{listChars:CharacterProps[],lis
    alt={xy.filmImg1.node.altText}/>
    </div>
  
-    <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().replace(/ /g,'-')}`}> <h3 className='text-red-500 hover:bg-gray-500 italic py-2 hover:dark:text-gray-500 p-2 font-bold'>{xy.characterWiki}</h3></Link> 
+    <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().replace(/ /g,'-')}`}> <h3 className='text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis py-3'>{xy.characterWiki}</h3></Link> 
 </div>
 )}
-</div>
+</div>  
 </div>
    </div>
   )

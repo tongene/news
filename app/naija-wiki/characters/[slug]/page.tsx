@@ -1,5 +1,5 @@
 import Characters from "@/components/NaijaWiki/Characters";
-import { charsFilms, newchars } from "../../newCharHandle"
+import { charsFilms, newchars, relatedChars } from "../../newCharHandle"
 import type { Metadata, ResolvingMetadata } from 'next' 
 import { Article, ProfilePage, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
@@ -9,8 +9,10 @@ import StructuredData from "@/components/StructuredData";
 //   }; 
   
   interface Character {
+    content: string;
     charactertitles: {
       filmname: string;
+      
     };
     
   }
@@ -48,10 +50,7 @@ const slug =(await params).slug
 const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))   
 const [charactertitles]= charsList
 
-const listOtherChars = charsList?.filter((post: Character) => 
-  post.charactertitles.filmname.toLowerCase().replace(/ /g, '-') !== slug
-);
- 
+const listOtherChars =await relatedChars() 
  
 const jsonLd:WithContext<Article> = {
   '@context': 'https://schema.org',
@@ -74,15 +73,13 @@ const jsonLd:WithContext<Article> = {
    keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),   
    
  };
-
-  return ( 
+   return ( 
     <div> <StructuredData schema={jsonLd} />  
  <Characters
- listChars={charsList}
+ listChars={charsList} 
  listOtherChars={listOtherChars}
  />  
-
-    </div>
+ </div>
   )
 }
 
