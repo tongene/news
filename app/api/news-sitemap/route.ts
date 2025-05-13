@@ -17,268 +17,394 @@
      article_title: string;
    }[];
  };
- const contentFeed = async()=>{  
-     const wprest =fetch('https://content.culturays.com/graphql',{
-        method: 'POST',
-        headers:{ 
-        'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-          query: `query CONTENTFEED{
-        contentNodes(first:100) {
-        nodes {
-          date
-          contentTypeName
-           ... on NetflixNaija {
-            id
-            title
-            slug
-             author {
-            node {
+  const businessFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       businesses  {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
              name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          } 
-  
-              ... on Live {
-             id
-              databaseId
-            title
-            slug
-          featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-            author {
-            node {
-            name
-              slug
-            }
-        }
-            }
-          ... on Technology {
-             id
-            title
-            slug
-            author {
-            node {
-            name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }   ... on Video {
-             id
-            title
-            slug
-            excerpt
-            author {
-            node {
-            name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }   ... on Post {
-             id
-            title
-            slug
-            author {
-            node {
-            name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }   ... on Nollywood {
-             id
-            title
-            slug   
-            author {
-            node {
-              name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }    ... on Article {
-             id
-            title
-            slug  
-             author {
-            node {
-           name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }    ... on Society {
-            id
-            title
-            slug   
-            author {
-            node {
-           name
-              slug
-            }
-          } 
-            featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }  ... on Health {
-            id
-            title
-            slug 
-             author {
-            node {
-            name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }  ... on Economy {
-            id
-            title
-            slug 
-             author {
-            node {
-            name
-              slug
-            }
-          } 
-            featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }  ... on Trending {
-            id
-            title
-            slug 
-             author {
-            node {
-            name
-              slug
-            }
-          } 
-            featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }  ... on Environment {
-            id
-            title
-            slug 
-             author {
-            node {
-             name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          } 
-          
-           ... on Char {
-            id
-            title
-            slug 
-             author {
-            node {
-             name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          } 
-          ... on Business {
-            id
-            title
-            slug 
-             author {
-            node {
-              name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }  
-        }
-      }
-          
-          }`})
-        
-        }).then(response => response.json())   
-        .then(data => data.data.contentNodes.nodes )
-        .catch(error => console.error('Error:', error));
-       // const response = wprest?.data.contentNodes.nodes 
-        return wprest 
-    
-    }
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.businesses.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
    
+   }
+    const ecoFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       economies  {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.economies.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
+    const envFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       environments  {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.environments.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
+    const techFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       technologies  {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.technologies.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
+
+    const societyFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       societies {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.societies.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
+
+    const nolFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       nollywoods  {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.nollywoods.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
+
+    const awFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       awards  {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.awards.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
+    const trendFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       trends {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.trends.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
+    const vidFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       videos  {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.videos.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
+     const heFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       healths  {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.healths.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
  const generateNewsSitemap = (content_posts: Post[]) => {
+   
    const xmlContent = content_posts
-     .map((post) => {
-       const news =  post?.news[0]; 
+     .map((post) => {  
+       const news = post?.news[0]; 
   const escapeXml =(unsafe: string)=>   
      unsafe
        ?.replace(/&/g, "&amp;")
@@ -286,7 +412,7 @@
        ?.replace(/>/g, "&gt;")
        ?.replace(/"/g, "&quot;")
        ?.replace(/'/g, "&apos;")
-      
+       
      
        return  `
  <url>
@@ -318,11 +444,20 @@ ${xmlContent}
 </urlset>`;
  };
  
- export async function GET() { 
-   const contentData:FeedProps[]=await contentFeed() 
-   const dataFeed= contentData?.filter((xy)=> xy.contentTypeName !== 'post')?.filter((xy)=> xy.contentTypeName !== 'anticpated-nollywood')?.filter((xy)=> xy.contentTypeName !== 'anticpated-african')?.filter((xy)=> xy.contentTypeName !== 'anticpated-foreign')?.filter((xy)=> xy.contentTypeName !== 'netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'what-to-watch').filter((xy)=> xy.contentTypeName !== 'list-netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'char')?.filter((xy)=> xy.contentTypeName !== 'naija-wiki')?.filter((xy)=> xy.contentTypeName !== 'latest')?.filter((xy)=> xy.contentTypeName !== 'outline')?.filter((xy)=> xy.contentTypeName!== 'page').filter((xy)=> xy.contentTypeName!== 'live').filter((xy)=> xy.contentTypeName!== 'added-netflix-naija')  
+ export async function GET() {
 
-   const content_posts: Post[] = dataFeed.map((post) => ({
+  const business_news:FeedProps[] = await businessFeed()  
+  const ec_news:FeedProps[] = await ecoFeed()  
+  const env_news:FeedProps[] = await envFeed()  
+  const tech_news:FeedProps[] = await techFeed()  
+  const aw_news:FeedProps[] = await awFeed()  
+  const nol_news:FeedProps[] = await nolFeed()  
+  const soc_news:FeedProps[] = await societyFeed()  
+  const trend_news:FeedProps[] = await trendFeed()  
+  const vid_news:FeedProps[] = await vidFeed()  
+  const he_news:FeedProps[] = await heFeed()
+
+   const bix_posts: Post[] = business_news.map((post) => ({
      url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
@@ -339,8 +474,166 @@ ${xmlContent}
        },
      ],
    })); 
+      const ec_posts: Post[] = ec_news.map((post) => ({
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     lastModified: new Date(post.date),
+     changeFrequency: 'always',
+     priority: 0.8,
+     images: [post.featuredImage.node.sourceUrl],
+     news: [
+       {
+         publication: {
+           name: 'Culturays News',
+           language: 'en',
+         },
+         publication_date: new Date(post.date).toISOString(),
+         article_title: post.title,
+       },
+     ],
+   }));
+  
+      const tex_posts: Post[] = tech_news.map((post) => ({
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     lastModified: new Date(post.date),
+     changeFrequency: 'always',
+     priority: 0.8,
+     images: [post.featuredImage.node.sourceUrl],
+     news: [
+       {
+         publication: {
+           name: 'Culturays News',
+           language: 'en',
+         },
+         publication_date: new Date(post.date).toISOString(),
+         article_title: post.title,
+       },
+     ],
+   }));
+ 
+   const tr_posts: Post[] = trend_news.map((post) => ({
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     lastModified: new Date(post.date),
+     changeFrequency: 'always',
+     priority: 0.8,
+     images: [post.featuredImage.node.sourceUrl],
+     news: [
+       {
+         publication: {
+           name: 'Culturays News',
+           language: 'en',
+         },
+         publication_date: new Date(post.date).toISOString(),
+         article_title: post.title,
+       },
+     ],
+   }));
+
+      const vid_posts: Post[] = vid_news.map((post) => ({
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     lastModified: new Date(post.date),
+     changeFrequency: 'always',
+     priority: 0.8,
+     images: [post.featuredImage.node.sourceUrl],
+     news: [
+       {
+         publication: {
+           name: 'Culturays News',
+           language: 'en',
+         },
+         publication_date: new Date(post.date).toISOString(),
+         article_title: post.title,
+       },
+     ],
+   }));
+      const aw_posts: Post[] = aw_news.map((post) => ({
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     lastModified: new Date(post.date),
+     changeFrequency: 'always',
+     priority: 0.8,
+     images: [post.featuredImage.node.sourceUrl],
+     news: [
+       {
+         publication: {
+           name: 'Culturays News',
+           language: 'en',
+         },
+         publication_date: new Date(post.date).toISOString(),
+         article_title: post.title,
+       },
+     ],
+   }));
+      const nol_posts: Post[] = nol_news.map((post) => ({
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     lastModified: new Date(post.date),
+     changeFrequency: 'always',
+     priority: 0.8,
+     images: [post.featuredImage.node.sourceUrl],
+     news: [
+       {
+         publication: {
+           name: 'Culturays News',
+           language: 'en',
+         },
+         publication_date: new Date(post.date).toISOString(),
+         article_title: post.title,
+       },
+     ],
+   }));
+const he_posts: Post[] = he_news.map((post) => ({
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     lastModified: new Date(post.date),
+     changeFrequency: 'always',
+     priority: 0.8,
+     images: [post.featuredImage.node.sourceUrl],
+     news: [
+       {
+         publication: {
+           name: 'Culturays News',
+           language: 'en',
+         },
+         publication_date: new Date(post.date).toISOString(),
+         article_title: post.title,
+       },
+     ],
+   }));
+
+const env_posts: Post[] = env_news.map((post) => ({
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     lastModified: new Date(post.date),
+     changeFrequency: 'always',
+     priority: 0.8,
+     images: [post.featuredImage.node.sourceUrl],
+     news: [
+       {
+         publication: {
+           name: 'Culturays News',
+           language: 'en',
+         },
+         publication_date: new Date(post.date).toISOString(),
+         article_title: post.title,
+       },
+     ],
+   }));
    
-  const xml = generateNewsSitemap(content_posts);
+   const soc_posts: Post[] = soc_news.map((post) => ({
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     lastModified: new Date(post.date),
+     changeFrequency: 'always',
+     priority: 0.8,
+     images: [post.featuredImage.node.sourceUrl],
+     news: [
+       {
+         publication: {
+           name: 'Culturays News',
+           language: 'en',
+         },
+         publication_date: new Date(post.date).toISOString(),
+         article_title: post.title,
+       },
+     ],
+   }));
+   const xmlData = [...bix_posts, ...soc_posts, ...ec_posts, ...env_posts, ...tex_posts, ...vid_posts, ...aw_posts, ...nol_posts, ...he_posts, ...tr_posts] as Post[]     
+ const xml = generateNewsSitemap(xmlData);
  
    return new NextResponse(xml, {
      headers: {

@@ -17,264 +17,44 @@
      article_title: string;
    }[];
  };
- const contentFeed = async()=>{  
-     const wprest =fetch('https://content.culturays.com/graphql',{
-        method: 'POST',
-        headers:{ 
-        'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-          query: `query CONTENTFEED{
-        contentNodes(first:100) {
-        nodes {
-          date
-          contentTypeName
-           ... on NetflixNaija {
-            id
-            title
-            slug
-             author {
-            node {
+   const vidFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       videos  {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
              name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          } 
-  
-              ... on Live {
-             id
-              databaseId
-            title
-            slug
-          featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-            author {
-            node {
-            name
-              slug
-            }
-        }
-            }
-          ... on Technology {
-             id
-            title
-            slug
-            author {
-            node {
-            name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }   ... on Video {
-             id
-            title
-            slug
-            excerpt
-            author {
-            node {
-            name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }   ... on Post {
-             id
-            title
-            slug
-            author {
-            node {
-            name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }   ... on Nollywood {
-             id
-            title
-            slug   
-            author {
-            node {
-              name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }    ... on Article {
-             id
-            title
-            slug  
-             author {
-            node {
-           name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }    ... on Society {
-            id
-            title
-            slug   
-            author {
-            node {
-           name
-              slug
-            }
-          } 
-            featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }  ... on Health {
-            id
-            title
-            slug 
-             author {
-            node {
-            name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }  ... on Economy {
-            id
-            title
-            slug 
-             author {
-            node {
-            name
-              slug
-            }
-          } 
-            featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }  ... on Trending {
-            id
-            title
-            slug 
-             author {
-            node {
-            name
-              slug
-            }
-          } 
-            featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }  ... on Environment {
-            id
-            title
-            slug 
-             author {
-            node {
-             name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          } 
-          
-           ... on Char {
-            id
-            title
-            slug 
-             author {
-            node {
-             name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          } 
-          ... on Business {
-            id
-            title
-            slug 
-             author {
-            node {
-              name
-              slug
-            }
-          }
-                featuredImage {
-            node {
-              altText
-              sourceUrl
-            }
-          }
-          }  
-        }
-      }
-          
-          }`})
-        
-        }).then(response => response.json())   
-        .then(data => data.data.contentNodes.nodes )
-        .catch(error => console.error('Error:', error));
-       // const response = wprest?.data.contentNodes.nodes 
-        return wprest 
-    
-    }
- 
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.videos.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
  const generateVidSitemap = (content_posts: Post[]) => {
     const xmlContent = content_posts
       .map((post) => {
@@ -320,9 +100,8 @@
   ${xmlContent}
   </urlset>`;
   };
- export async function GET() { 
-   const contentData:FeedProps[]=await contentFeed()  
-   const videoData= contentData?.filter((xy)=> xy.contentTypeName=== 'video') 
+ export async function GET() {  
+   const videoData:FeedProps[]=await vidFeed()   
    const replaceHTMLTags=(string:string)=>{
     const regex = /(<([^>]+)>)/gi;
     //(/<\/?[^>]+(>|$)/g, "")

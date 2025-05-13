@@ -1,4 +1,4 @@
-import { contentFeed, newchars } from "@/app/naija-wiki/newCharHandle";
+ 
 import { newsbyComingtoCategory, newsbyNewOnCategory } from "@/app/netflix-naija/netflix-news";
 import { FeedProps } from "@/app/types";
 import { NextResponse } from 'next/server';
@@ -67,7 +67,6 @@ const generateNewsSitemap = (content_posts: Post[]) => {
             const netflixFeed =netflix__News?.map((ex)=> ex.node.naijaOnNetflix.edges).flat() 
             const netflixFeed2 =coming_to_netflix_naija?.map((ex)=> ex.node.naijaOnNetflix.edges).flat()  
     
-            console.log(netflixFeed)
     const content_posts: Post[] = netflixFeed.map((post) => ({
       url: `https://culturays.com/netflix-naija/new-on-netflix/${post.node.slug}`,
       lastModified: new Date(post.node.date),

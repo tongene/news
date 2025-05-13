@@ -25,227 +25,10 @@ const contentFeed = async()=>{
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       contentNodes(first:100) {
+       posts(first:50) {
        nodes {
          date
-         contentTypeName
-          ... on NetflixNaija {
-           id
-           title
-           slug
-            author {
-           node {
-            name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         } 
- 
-             ... on Live {
-            id
-             databaseId
-           title
-           slug
-         featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-           author {
-           node {
-           name
-             slug
-           }
-       }
-           }
-         ... on Technology {
-            id
-           title
-           slug
-           author {
-           node {
-           name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }   ... on Video {
-            id
-           title
-           slug
-           excerpt
-           author {
-           node {
-           name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }   ... on Post {
-            id
-           title
-           slug
-           author {
-           node {
-           name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }   ... on Nollywood {
-            id
-           title
-           slug   
-           author {
-           node {
-             name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }    ... on Article {
-            id
-           title
-           slug  
-            author {
-           node {
-          name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }    ... on Society {
-           id
-           title
-           slug   
-           author {
-           node {
-          name
-             slug
-           }
-         } 
-           featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }  ... on Health {
-           id
-           title
-           slug 
-            author {
-           node {
-           name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }  ... on Economy {
-           id
-           title
-           slug 
-            author {
-           node {
-           name
-             slug
-           }
-         } 
-           featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }  ... on Trending {
-           id
-           title
-           slug 
-            author {
-           node {
-           name
-             slug
-           }
-         } 
-           featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }  ... on Environment {
-           id
-           title
-           slug 
-            author {
-           node {
-            name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         } 
-         
-          ... on Char {
-           id
-           title
-           slug 
-            author {
-           node {
-            name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         } 
-         ... on Business {
+         contentTypeName 
            id
            title
            slug 
@@ -263,18 +46,53 @@ const contentFeed = async()=>{
          }
          }  
        }
-     }
-         
-         }`})
+      }`})
        
        }).then(response => response.json())   
-       .then(data => data.data.contentNodes.nodes )
+       .then(data => data.data.posts.nodes )
        .catch(error => console.error('Error:', error));
       // const response = wprest?.data.contentNodes.nodes 
        return wprest 
    
    }
-  
+  const livesFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       lives(first:50) {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.lives.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
 const generateNewsSitemap = (content_posts: Post[]) => {
   const xmlContent = content_posts
     .map((post) => {
@@ -326,10 +144,9 @@ ${xmlContent}
 };
 
 
-export async function GET() { 
-  const contentData:FeedProps[]=await contentFeed() 
-  const postsData= contentData?.filter((xy)=> xy.contentTypeName=== 'post')
-  const liveData= contentData?.filter((xy)=> xy.contentTypeName=== 'live') 
+export async function GET() {  
+  const postsData:FeedProps[]=await contentFeed() 
+  const liveData:FeedProps[]=await livesFeed() 
    
   const content_posts: Post[] = postsData.map((post) => ({
     url: `https://culturays.com/news/topic/${post.slug}`,
@@ -368,9 +185,10 @@ export async function GET() {
   ],
 }) )
 
-
+ 
 
 const allPosts = [...content_posts, ...live_posts]; 
+ 
 const xml = generateNewsSitemap(allPosts);
   return new NextResponse(xml, {
     headers: {

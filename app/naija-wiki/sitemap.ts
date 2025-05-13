@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";  
 import { FeedProps } from "../types"; 
-import { contentFeed, newchars } from "./newCharHandle";
+import { newchars } from "./newCharHandle";
 //export const revalidate = 0;
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}` 
@@ -43,15 +43,11 @@ type SitemapFile = Array<{
 }>;
 
 
-
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
- 
-     const contentData:FeedProps[]=await contentFeed()   
-      const charData= contentData?.filter((xy)=> xy.contentTypeName=== 'naijaWiki') 
+  
       const charsList:FeedProps[] = await newchars() 
       
-      const charPosts = charData.map((post)=>({
+      const charPosts = charsList.map((post)=>({
         title:post.title,
         url:`https://culturays.com/naija-wiki/character/${post.slug}`,
         lastModified:new Date(post.date),

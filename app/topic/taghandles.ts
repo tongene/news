@@ -8,7 +8,7 @@ export async function tag (slug:string) {
     body: JSON.stringify({ 
       query:`
       query POSTTAGS {
-tags(where: {slug: "${slug}"}){
+tags(first:100, where: {slug: "${slug}"}){
   nodes { 
     name
     id
@@ -59,7 +59,7 @@ export async function contentTag (slug:string) {
       body: JSON.stringify({
         query:`
         query POSTTAGS {
-contentTags(where: {slug: "${slug}"}){
+contentTags(first:100, where: {slug: "${slug}"}){
     nodes { 
       name
       id
