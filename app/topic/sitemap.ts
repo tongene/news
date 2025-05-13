@@ -9,7 +9,7 @@ import { FeedProps } from "../types";
       },
       body: JSON.stringify({
         query: `query CONTENTFEED{
-   contentTags(first:5) {
+   contentTags(first:50) {
     nodes {
       slug
       name
@@ -34,7 +34,7 @@ import { FeedProps } from "../types";
       body: JSON.stringify({
         query:
          `query CONTENTFEED{
-       postsTags(first:5) {
+       postsTags(first:50) {
        nodes {     
           name
           slug
