@@ -1,7 +1,7 @@
 import Main from "@/components/Main"; 
 import { InnerEdges } from '@/app/types'   
 import MainSlider from "@/components/MainSlider";
-import { newsByLatest, newsViews, postsOutline } from "./page-data";
+import { newsByLatest, postsOutline } from "./page-data";
 import { events3Details, getNaijaEvents3 } from "./naija-events/eventData/eventContent";
 import { processImgs } from "@/utils/process_imgs";
 import { processSbImages } from "@/utils/processImages";
@@ -104,8 +104,8 @@ import StructuredData from "@/components/StructuredData";
     }
 
     respPosts:InnerEdges
- }
-
+ } 
+ 
  interface ObjType { 
   title: string[];
   slug:string  

@@ -1,3 +1,4 @@
+"use client"
 import { nextNewsPosts, postNextCategories } from '@/app/data'
 import { getGoogleNewsTitles } from '@/app/data/news-data'
 import { InnerEdges, PostsNotInPost, PostXNode } from '@/app/types' 

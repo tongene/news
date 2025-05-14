@@ -9,8 +9,7 @@ import { CineProps, Cursors, InnerEdges, PostsNotInPost, PostXNode, SideNode } f
 import MainBottom from './MainBottom'
 import SideBar from './Side'
 
-import { sidePlusViews } from '@/app/page-data';
-import { createClient } from '@/utils/supabase/client';
+import { sidePlusViews } from '@/app/page-data'; 
 import MainPosts from './MainPosts';
 
 const Main = ({top_PostsData, news_outline }:{top_PostsData:InnerEdges[],  news_outline:SideNode[]}) => { 
@@ -20,16 +19,17 @@ const [categoryPost,setCategoryPost]=useState<InnerEdges[]>([])
 const [categoryName,setCategoryName]=useState('') 
 const [top_PostsCa, setTopPostsCa]=useState<PostXNode[]>([]) 
 const [sidebarItems, setSidebarxItems]=useState<Cursors[]>([])
-const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotInPost[]>([])
+//const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotInPost[]>([])
 // const [top_Last_categories, setLast_categories]=useState([])   
 const rmMain =top_PostsData.map((xy)=> xy.cursor)
 const x_wiki =async ()=>{
   const sidebarxItems= await sidePlusViews()
+  //console.log(sidebarxItems)
   setSidebarxItems(sidebarxItems)
   const post_data = await postCategories()
-  const posts_notIn_newsPosts= await nextNewsPosts() 
-const xtCategories= posts_notIn_newsPosts?.categories?.edges
-setPosts_notIn_newsPosts(xtCategories) 
+  //const posts_notIn_newsPosts= await nextNewsPosts() 
+//const xtCategories= posts_notIn_newsPosts?.categories?.edges
+//setPosts_notIn_newsPosts(xtCategories) 
 const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
 setTopPostsCa(postCategory_Children ) 
  

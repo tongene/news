@@ -22,7 +22,7 @@ const Latests = () => {
   const [alt_news_data, set_alt_News_data]=useState<Node[]>([])
  
 const newsContent=async()=>{ 
- const bottom_latest = await newsViews(); 
+ const bottom_latest = await newsViews();
  const xLatest = bottom_latest.edges.map((xy:{node:[]})=> xy?.node).flat() 
  set_bottom_News_data(xLatest) 
  const altNews = await altPageNewsItems()

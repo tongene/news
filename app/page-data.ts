@@ -227,7 +227,7 @@ return {resp, resp1Live, resp2Post}
   export const newsViews=async()=>{
     const latestPosts=await newsByLatest() 
     const postX = latestPosts?.resp?.categories?.nodes.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts?.pageInfo?.endCursor).flat()
-  
+
      const wprest = fetch('https://content.culturays.com/graphql',{     
         method: 'POST',
         headers:{
@@ -236,7 +236,7 @@ return {resp, resp1Live, resp2Post}
         body: JSON.stringify({
           query:`
           query WPPOSTS($after: String) {                  
-             posts(first:10 ,after:$after, where: {categoryName: "Latest"}) {
+             posts(first:4 ,after:$after, where: {categoryName: "Latest"}) {
                 pageInfo {
               startCursor
               endCursor
@@ -303,7 +303,7 @@ return {resp, resp1Live, resp2Post}
   }
   
   export async function sidePlusViews(){
-    const latestPosts=await newsViews() 
+    const latestPosts=await newsViews()  
      const wprest = fetch('https://content.culturays.com/graphql', { 
         method: 'POST',
         headers:{
@@ -312,7 +312,7 @@ return {resp, resp1Live, resp2Post}
         body: JSON.stringify({
           query:`
           query WPPOSTS {                  
-             posts(first:10 ,after:"${latestPosts.pageInfo.endCursor}", where: {categoryName: "Latest"}) {
+             posts(first:6 ,after:"${latestPosts.pageInfo.endCursor}", where: {categoryName: "Latest"}) {
                 pageInfo {
               startCursor
               endCursor
