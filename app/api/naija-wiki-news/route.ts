@@ -77,7 +77,7 @@ const generateNewsSitemap = (content_posts: Post[]) => {
       lastModified: new Date(post.date),
       changeFrequency: 'always',
       priority: 0.8,
-      images: [post.featuredImage.node.sourceUrl],
+      images: [post?.featuredImage?.node?.sourceUrl],
       news: [
         {
           publication: {

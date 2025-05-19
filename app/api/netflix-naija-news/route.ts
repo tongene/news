@@ -72,7 +72,7 @@ const generateNewsSitemap = (content_posts: Post[]) => {
       lastModified: new Date(post.node.date),
       changeFrequency: 'always',
       priority: 0.8,
-      images: [post.node.featuredImage.node.sourceUrl],
+      images: [post?.node?.featuredImage?.node?.sourceUrl],
       news: [
         {
           publication: {
@@ -89,7 +89,7 @@ const generateNewsSitemap = (content_posts: Post[]) => {
         lastModified: new Date(post.node.date),
         changeFrequency: 'always',
         priority: 0.8,
-        images: [post.node.featuredImage.node.sourceUrl],
+        images: [post?.node?.featuredImage?.node?.sourceUrl],
         news: [
           {
             publication: {
