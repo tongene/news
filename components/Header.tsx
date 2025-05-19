@@ -90,7 +90,7 @@ const handleClick = (id:string)=> {
 
 }  
 
-<button onClick={menuClick} className="m-1 mx-3 my-3 cursor-pointer md:hidden text-4xl" type="button">  
+<button onClick={menuClick} className="m-1 mx-3 my-3 cursor-pointer md:hidden text-4xl" aria-label="Navigation" type="button">  
 <FontAwesomeIcon 
 className=""
 icon={faBars}

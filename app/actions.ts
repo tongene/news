@@ -137,26 +137,31 @@ export const signOutAction = async () => {
   await supabase.auth.signOut();
   return redirect("/sign-in");
 };
-export const handleOauthLogin = async () => { 
-  const origin = (await headers()).get("origin"); 
-  const supabase =await createClient(); 
-  const referer = (await headers()).get("x-url");  
-  const redirectTo = referer 
-  ? `${referer}/auth/callback?redirect_to=${encodeURIComponent('/forum')}`
-  : `${referer}/auth/callback`; 
-    const { data, error } = await supabase.auth.signInWithOAuth({
-   provider: 'google',  
-   options: { 
-   redirectTo ,
-  }, 
-    })
-   if (error instanceof Error) {
-      console.error(error); 
-     //return error.message       
+export const handleOauthLogin = async () => {
+  const origin = (await headers()).get("origin");
+  const supabase = await createClient();
+
+  const redirectTo = origin
+    ? `${origin}/auth/callback?redirect_to=${encodeURIComponent('/forum')}`
+    : undefined;
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo, 
+    },
+  });
+
+  if (error instanceof Error) {
+    console.error(error);
+    // return error.message
   }
+
   return redirect(data.url as string);
- };
+};
+
  
+
  export async function deleteProfile(id:string){ 
    const supabase =await deleteClient();
    const auth_ =await createClient()

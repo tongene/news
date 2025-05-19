@@ -18,7 +18,7 @@ const ThemeSwitcher = () => {
 
   const ICON_SIZE = 16;
   return (
-     <Button variant="outline" size={"sm"} className="block self-end w-max hover:bg-transparent" onClick={() => setTheme(theme === "light" ? "dark" :theme === "dark"? "system": "light")}>
+     <Button variant="outline" size={"sm"}aria-label="Theme" className="block self-end w-max hover:bg-transparent" onClick={() => setTheme(theme === "light" ? "dark" :theme === "dark"? "system": "light")}>
           {theme === "light" ? (
            <Flashlight 
               key="light"

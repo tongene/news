@@ -34,16 +34,6 @@ import { type NextRequest, NextResponse } from "next/server";
 //           },
 //         },
 //       }
-//     );
-
-//     const { data: { user }, error } = await supabase.auth.getUser();
-
-//     // If the user is not logged in and trying to access protected pages
-//     if (!user && pathname.startsWith("/protected")) {
-//       return NextResponse.redirect(new URL("/sign-in", request.url));
-//     }
-
-//     // If the user IS logged in but goes to public-only pages
 //     if (user && (pathname === "/sign-in" || pathname === "/forgot-password")) {
 //       return NextResponse.redirect(new URL("/", request.url));
 //     }
@@ -58,10 +48,20 @@ import { type NextRequest, NextResponse } from "next/server";
 // // Limit middleware scope to protected paths only
 // export const config = {
 //   matcher: ["/protected/:path*"],
-// };
+// };  );
+
+//     const { data: { user }, error } = await supabase.auth.getUser();
+
+//     // If the user is not logged in and trying to access protected pages
+//     if (!user && pathname.startsWith("/protected")) {
+//       return NextResponse.redirect(new URL("/sign-in", request.url));
+//     }
+
+//     // If the user IS logged in but goes to public-only pages
+//   
 
 export const updateSession = async (request: NextRequest) => {
-  try {
+ // try {
     // Create an unmodified response
     let response = NextResponse.next({
       request: {
@@ -92,25 +92,29 @@ export const updateSession = async (request: NextRequest) => {
       },
     );
  
-    const user = await supabase.auth.getUser();   
-    
+    const user = await supabase.auth.getUser(); 
+      const path = new URL(request.url).pathname;  
+   
+  const unprotectedPaths = ["/sign-in", "/forgot-password"]; 
       if (request.nextUrl.pathname.startsWith("/protected") && user.error) {
         return NextResponse.redirect(new URL("/sign-in", request.url));
       }
   
-      // if (request.nextUrl.pathname === "/" && !user.error) {
-      //   return NextResponse.redirect(new URL("/", request.url));
-      // }
-      return response;
-  
-  } catch (e) {
-  
+  //     if (request.nextUrl.pathname === "/" && !user.error) {
+  //       return NextResponse.redirect(new URL("/", request.url));
+  //     }
+   const isUnprotectedPath = unprotectedPaths.some((up) => path.startsWith(up));
+  if (user.data.user && isUnprotectedPath) { 
+      return NextResponse.redirect(new URL("/", request.url));
+     } 
+     // return response;
+     response.headers.set('confirm',request.nextUrl.searchParams.toString() ) 
+     response.headers.set('x-url',request.nextUrl.pathname) 
     return NextResponse.next({
       request: {
         headers: request.headers,
       },
     
     });
-  }
 
 };

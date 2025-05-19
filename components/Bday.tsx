@@ -1,52 +1,72 @@
 'use client'
-import { BdaysProps } from '@/app/types';
+
 import { createClient } from '@/utils/supabase/client';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState} from 'react'; 
+import React, { useEffect, useMemo, useState} from 'react'; 
+ 
+type BdaysProps={
+  info:string
+img:string
+name:string
+}[]
 type DataProps={
 data:[]
-isLoading:Boolean
-}
+ info:string
+img:string
+name:string
+person_obj:BdaysProps
+title:string
+id:string
+}[]
 const Bday = () => { 
-    const [bdaysData,setBdaysData]=useState<BdaysProps[]>([])
+    const [bdaysData,setBdaysData]=useState<DataProps>([])
     const [isLoading, setIsLoading]=useState(false)
     const [error, setIsError]=useState('')
-const today = new Date();
+ const today = new Date();
 const todayDay = today.getDate()-1;
 const todayMonth = today.getMonth();
+  const gx = useMemo(() => {
+  const groupParent: { [info: string ]: DataProps} = {};
+  bdaysData?.forEach((dy) => 
+    dy.person_obj.forEach((ex)=>{ 
+         const date = new Date(ex.info); 
+         const dateDay = date.getDate();  
+    const dateMonth = date.getMonth() ; 
+      if(dateMonth === todayMonth&&dateDay === todayDay){
+    groupParent[todayMonth as unknown as string] ||= [] ;
+    groupParent[todayMonth as unknown as string]?.push(dy);
+ }
+  }));
+ 
+  return groupParent ;
+}, [bdaysData]);
 
-const filteredDates = bdaysData?.filter((dateStr) => {
-    const date = new Date(dateStr.info);
-    const dateDay = date.getDate();  
-    const dateMonth = date.getMonth(); 
-    return dateMonth === todayMonth&&dateDay === todayDay;
-});
+
+const todayBirthdays = Object.values(gx).flat()
+const personObj = todayBirthdays.filter((dx)=> dx.person_obj.length<4) 
+
   const forumBdays =async ()=>{
     setIsLoading(true)
     const supabase = await createClient()
     const { data: bday, error } = await supabase
-    .from('bday')
+    .from('b_day')
     .select('*')
     if(error){
       setIsError('No Data')
       throw new Error('An Error has Occured')
     }
       setBdaysData(bday) 
-      if(filteredDates.length>0){
-        setIsLoading(false)
-       }
+      setIsLoading(false)
+        
   } 
   
    const [activeSlide,setActiveSlide] =useState( 0) 
   const offset = -8;
   const todaysBd= new Date( new Date().getTime() + offset * 3600 * 1000).toUTCString().replace( / GMT$/, "" )
-  // const bdayObj= data?.filter((xy, i)=>new Date(xy.info).toLocaleString().split(',')[0].slice(0,-5) 
-  // === new Date(todaysBd).toLocaleString().split(',')[0].slice(0,-5))
-///today.setHours(0, 0, 0, 0); 
-
+ 
  useEffect(()=>{   
    forumBdays()
 
@@ -54,27 +74,27 @@ const filteredDates = bdaysData?.filter((dateStr) => {
 
   const prevSlide=()=> { 
     const slide =activeSlide - 1 < 0
-      ?filteredDates.length - 1
+      ?personObj.length - 1
       :activeSlide -1;
       setActiveSlide(slide);
   }
   const nextSlide=()=> {
-    const slide = activeSlide + 1 <  filteredDates.length
+    const slide = activeSlide + 1 <  personObj.length
       ? activeSlide + 1
       : 0;
       setActiveSlide(slide);  
   }
  
   return (
-    <div>  
-       {filteredDates?.length === 0&&bdaysData.length===0&&<small className='m-1'>Checking for Birthdays...</small>}
+ <div>  
+       {personObj?.length === 0 && bdaysData.length===0&&<small className='m-1'>Checking for Birthdays...</small>}
        {error&& <small className='ml-1'>{error}</small>}
        <h2 className="border-dotted border-b-2 py-2 text-2xl my-4 font-bold text-center">Naija Birthdays Today {new Date().toLocaleDateString()} 
 </h2>
-       {filteredDates.length===0&&  isLoading&&
+       {personObj.length===0 && isLoading&&
   <p className='m-1 text-center'>No Birthdays Today...</p>  }
  <section className="">   
-{filteredDates?.length >0
+{personObj?.length >0
 &&
 <div className="card-data overflow-hidden flex bg-slate-100 p-4 justify-center relative"> 
   <div className="flex justify-between absolute mt-14 w-1/2"> 
@@ -84,19 +104,20 @@ const filteredDates = bdaysData?.filter((dateStr) => {
  <FontAwesomeIcon icon={faAngleRight}/></p>
  </div>
 <div className="pple-card-x flex w-max justify-center">
-{filteredDates.map((xx,ix)=> 
+{personObj.map((xx,ix)=> 
   ix === activeSlide &&
-<div key={ix} className="w-full">
-<div className="pple-card m-1">
+<div key={xx.id} className="w-full">
+<div className="pple-card m-1 relative w-[200px] h-[200px]">
+
 <Image
 className="justify-self-center bg-gray-900 rounded-full"
-src={xx?.img } 
-width={150}
-height={150}    
+src={xx.person_obj[ix + 1]?.img || '/assets/images/tv.png'} 
+ fill
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 alt='Naija Birthdays'/>
 </div>
 <div className="my-2 pple-card">
-<h3 className=' text-white text-center bg-gray-900 w-full p-2'>{xx.name}</h3> 
+<h3 className=' text-white text-xl text-center bg-gray-900 w-full p-2'>{personObj[ix + 0]?.title}</h3> 
 </div> 
 </div>
 )}

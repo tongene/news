@@ -46,20 +46,20 @@ useEffect(()=>{
 </div>
 <div className="py-4 my-5 border-t-4 border-yellow-600 bg-black" >
   <h2 className="text-3xl text-gray-300 font-bold text-center p-4 border-b border-yellow-600 my-2">News</h2>
-  <div className="xs:grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 max-w-3xl lg:max-w-6xl m-auto">
+  <div className="md:grid grid-cols-2 gap-2 lg:grid-cols-3 lg:max-w-4xl xl:grid-cols-4 max-w-xl xl:max-w-6xl m-auto">
    {bottom_news_data?.map((ex, index)=> 
 <div key={index + Math.random()} className="max-w-max m-auto"> 
-<div className="relative h-52 max-w-72 overflow-hidden border border-yellow-600">  
+<div className="relative h-52 max-w-72 overflow-hidden border border-yellow-600"> 
+  <div className="relative w-[300px] h-[300px]">
 <Image 
-className="w-auto h-full p-1"
 src={ex.featuredImage?.node.sourceUrl}
-width={500}  
-height={500}
+ fill
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 alt={ex.title}
 priority={true}
-/> 
+/> </div>
 <div className="absolute bg-gray-800 flex items-center justify-center top-0 bg-opacity-40 mx-2 w-full h-full"> 
-<small className="text-yellow-400 text-2xl font-bold h-4">&#124;</small> <Link href={`/news/topic/${ex.slug}`}><h2 className="text-white cursor-pointer underline hover:text-gray-400 text-xl py-20 px-1">{ex.title} </h2></Link>
+<small className="text-yellow-400 text-2xl font-bold h-4">&#124;</small> <Link href={`/news/topic/${ex.slug}`}><h2 className="text-white cursor-pointer underline hover:text-gray-400 text-xl py-20 px-2">{ex.title} </h2></Link>
 </div> 
 </div>
   

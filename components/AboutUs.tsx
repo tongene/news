@@ -35,9 +35,10 @@ const About = ({listedUsers}:{listedUsers:ListUsers[]}) => {
 <h2 className="text-center p-8 text-4xl">Our Team</h2>
 <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 m-4"> 
 <div className="shadow-xl border p-3">
+ 
 <Image
-width={1200}
-height={675} 
+fill
+sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
 src="/assets/images/ngenet.jpg"
 alt="christina-ngene"/>
 <div className="">

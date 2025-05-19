@@ -18,7 +18,7 @@ alt='Culturays Logo Image'/>
 <h2 className="cursor-pointer text-4xl my-1 font-bold hover:text-gray-500">  
 Culturays</h2></Link>
 <ul> 
-<li className="text list-disc p-3 mx-11 hover:text-gray-500"><Link href='/news'prefetch={false}>News</Link></li>
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 "><Link href='/news'prefetch={false}aria-label="News">News</Link></li>
 <li className="text list-disc p-3 mx-11 hover:text-gray-500"><Link href='/forum'prefetch={false}>Forum</Link></li>  
  
 <li className="text list-disc p-3 mx-11 hover:text-gray-500"><Link href='/naija-wiki'prefetch={false}>Naija Wiki</Link></li> 
@@ -36,7 +36,7 @@ Culturays</h2></Link>
 <p className="p-1 hover:opacity-70 text-center ">About</p></Link> 
  
 <Link href="/">
-<p className="p-1">
+<p className="p-1" > 
 Copyright{" "}
 © Ngenet Studio, 2024
 </p>

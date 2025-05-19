@@ -29,7 +29,6 @@ const generateNewsSitemap = (content_posts:Post[]) => {
       ?.replace(/>/g, "&gt;")
       ?.replace(/"/g, "&quot;")
       ?.replace(/'/g, "&apos;")
-  
       return  `
 <url>
   <loc>${post.url}</loc>

@@ -93,8 +93,7 @@ const jsonLd:WithContext<BlogPosting>={
   }
 }
 
-// <Suspense>
-// </Suspense>
+ 
 return ( 
 <div> 
   <StructuredData schema={jsonLd} />

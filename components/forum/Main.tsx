@@ -29,7 +29,7 @@ function sortAscending(pb:PostProps, pa:PostProps){
  type TrendyProp={
   title:string
   }
-const Main = ({topic, val, user, trendX, initialPosts, filteredTrends }:{ user: User | null, trendX: TrendyProp[], initialPosts: InitialPosts[], filteredTrends: FakeObj[], topic: string, val: string} ) => {   
+const Main = ({topic, val, user, trendX, initialPosts, filteredTrends }:{ user: User | null, trendX: TrendyProp[], initialPosts: InitialPosts[], filteredTrends: FakeObj[], topic: string, val: string } ) => {   
  const [events,setEvents]=useState<Event[]>([]) 
 // const [initialPostsData,setInitialPostsData]=useState<InitialPosts[] >([])
 const forumEvents =async ()=>{  
@@ -446,7 +446,6 @@ setEditId={setEditId}
    </div>
 
   <div className='absolute'>
-
   {gnrItx.map((vx, i)=>vx.article_title &&
   <div key={vx.article_title + ' ' + Math.random()} className="flex items-center border-b hover:bg-gray-400 dark:bg-gray-800 bg-white w-80 hover:dark:bg-gray-900" > 
 <Link href={{ pathname: pathname, query: { topic:vx.article_title} }}><h2 className="capitalize text-lg p-6 cursor-pointer" >{vx.article_title.replace(/-/g," ")}</h2> </Link>

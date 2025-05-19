@@ -1,27 +1,20 @@
 import AllBirthdays from "@/components/AllBirthdays"
 import StructuredData from "@/components/StructuredData"
 import { createClient } from "@/utils/supabase/server"
-import { BlogPosting, PeopleAudience, SpecialAnnouncement, WebPage, WithContext } from "schema-dts"
-
+import { BlogPosting, WithContext } from "schema-dts"
 
 const BdaysPage = async() => {
      const forumBdays =async ()=>{
         const supabase = await createClient()
         const { data: bday, error } = await supabase
-        .from('bday')
+        .from('b_day')
         .select('*')
+ 
         if(error)throw new Error('An Error has Occured')
           return bday  
       }
-       const data = await forumBdays()
-       const today = new Date();
-       const todayMonth = today.getMonth();
-       const filteredDates = data?.filter((dateStr) => { 
-        const date = new Date(dateStr.info);
-        const dateMonth = date.getMonth(); 
-        return dateMonth=== todayMonth;
-    }); 
-   
+       const data = await forumBdays()     
+
   const jsonLd:WithContext<BlogPosting>={
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -53,10 +46,12 @@ const BdaysPage = async() => {
       }
     }
   }
-  return (
+ const peopleObj = data.map((dy)=> dy.person_obj) 
+ 
+  return (  
     <div> 
-      <StructuredData schema={jsonLd} />
-      <AllBirthdays data={data} />
+      <StructuredData schema={jsonLd} /> 
+    <AllBirthdays data={peopleObj} datax={data} /> 
     </div>
   )
 }

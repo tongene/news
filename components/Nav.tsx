@@ -52,7 +52,7 @@ useEffect(()=>{
    <div className='flex shadow-detailShadow pt-6 my-1 mt-4 dark:shadow-detailShadowLight justify-center dark:bg-gray-800' > 
     <div className='w-full py-4'> 
    <p className='text-center hover:text-gray-500 text-2xl font-bold' >Trending <span></span> <span>&#10141;</span></p> 
-   <div className='relative text-xl hover:text-orange-700'><p className='absolute bottom-0 right-10 lg:right:40'><Link href='/search'><FontAwesomeIcon icon={faMagnifyingGlass} /></Link></p></div> 
+   <div className='relative text-xl hover:text-orange-700'><p className='absolute bottom-0 right-10 lg:right:40'><Link href='/search'aria-label="Search"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link></p></div> 
 <div className='text-md font-medium flex justify-center items-center xs:flex-row flex-wrap' >
 {liveNewsView
   ?.filter((ex: { node: { modified: string } }) => {

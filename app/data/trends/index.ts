@@ -2,7 +2,7 @@ import googleTrends from 'google-trends-api'
 import { CronJob } from 'cron'; 
 import axios from 'axios';
 import { createClient } from '@/utils/supabase/server';
-import * as cheerio from 'cheerio';
+ 
 const ourPassword = process.env.NEXT_PUBLIC_WP_SECRET
 const ourUsername = "Christina Ngene"
 type Obj={
