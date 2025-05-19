@@ -67,7 +67,7 @@ priority={true}
 )}  
 </div> 
    
-<Link href='/news'><p className="underline m-8 hover:text-gray-400 text-white"> See More</p></Link>
+<p className="underline m-8 hover:text-gray-400 text-white"><Link href='/news'>See All News</Link></p>
 </div>   
    </div>)
 }

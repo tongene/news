@@ -27,7 +27,7 @@ export default async function robots(): Promise<MetadataRoute.Robots>  {
       rules: {
         userAgent: '*', 
         allow: '/',
-        disallow:[ '/privacy-policy','/rss-home', "/404", "https://content.culturays.com"]
+        disallow:[ '/privacy-policy','/rss-home', "/404"]
       },
       sitemap:['https://culturays.com/sitemap.xml','https://culturays.com/api/forum/', 'https://culturays.com/api/naija-wiki-news/','https://culturays.com/api/netflix-naija-news/', 'https://culturays.com/api/news-sitemap/','https://culturays.com/api/sitemap','https://culturays.com/api/videos' , 'https://culturays.com/naija-wiki/sitemap.xml/','https://culturays.com/topic/sitemap.xml']
       
