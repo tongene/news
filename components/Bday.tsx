@@ -96,18 +96,18 @@ const personObj = todayBirthdays.filter((dx)=> dx.person_obj.length<4)
  <section className="">   
 {personObj?.length >0
 &&
-<div className="card-data overflow-hidden flex bg-slate-100 p-4 justify-center relative"> 
-  <div className="flex justify-between absolute mt-14 w-1/2"> 
- <p onClick={prevSlide} className='text-5xl text-white opacity-70 bg-gray-400 cursor-pointer'> 
+<div className="card-data overflow-hidden flex bg-slate-100 justify-center relative"> 
+  <div className="flex justify-between absolute top-5 mt-14 text-5xl text-white opacity-70  cursor-pointer w-4/5 md:w-1/3"> 
+ <p onClick={prevSlide} className='bg-gray-400'> 
  <FontAwesomeIcon icon={faAngleLeft}/></p>  
- <p onClick={nextSlide} className='text-5xl text-white opacity-70 bg-gray-400 cursor-pointer'> 
+ <p onClick={nextSlide}className='bg-gray-400'> 
  <FontAwesomeIcon icon={faAngleRight}/></p>
  </div>
-<div className="pple-card-x flex w-max justify-center">
+<div className="pple-card-x flex w-max justify-center ">
 {personObj.map((xx,ix)=> 
   ix === activeSlide &&
-<div key={xx.id} className="w-full">
-<div className="pple-card m-1 relative w-[200px] h-[200px]">
+<div key={xx.id} className="w-full m-5">
+<div className="pple-card m-1 relative w-[200px] h-[200px] m-auto">
 
 <Image
 className="justify-self-center bg-gray-900 rounded-full"

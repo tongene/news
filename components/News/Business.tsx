@@ -95,7 +95,7 @@ const Business = ({business_news}:{business_news:TopNews[]}) => {
 </section>
  
 <div className="max-w-2xl m-auto xl:m-0">
-  <SlideFxn title_item={title_item} content={business_items}/>  
+  <SlideFxn title_item={title_item} content={business_items.slice(0,4)}/>  
 </div>
 
     </div>
@@ -120,7 +120,7 @@ width={1200}
 height={675}
 alt={xy?.featuredImage.node.altText}
 /> 
-<Link href={`/news/business/${xy?.slug}`}><p style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis my-2 text-lg hover:text-gray-500 py-2 leading-9">{replaceHTMLTags(xy?.excerpt)} </p></Link>
+<Link href={`/news/business/${xy?.slug}`}><div dangerouslySetInnerHTML={{__html:xy?.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis my-2 text-lg hover:text-gray-500 py-2 leading-9"/></Link>
  <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).fromNow()}</em></small> 
 </div>
 )}

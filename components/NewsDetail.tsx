@@ -131,7 +131,7 @@ return html2pdfRef.current().set(opt).from(element).save();
 </div>
  </div>
 <hr/>
-  <div dangerouslySetInnerHTML={{__html:post.excerpt}} className="py-4 text-xl font-medium italic leading-8"/>
+  <div dangerouslySetInnerHTML={{__html:post.excerpt}} className="py-4 my-4 text-xl font-medium italic leading-8"/>
 </div>  
  </div>
  

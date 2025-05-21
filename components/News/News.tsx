@@ -113,7 +113,7 @@ className='rounded-xl'
       />
       <div>
    <Link href={`/news/article/${xy.slug}`}><h2 className='text-2xl font-bold py-3 hover:text-gray-700'>{xy.title} </h2></Link>
-   <div dangerouslySetInnerHTML={{__html:xy.excerpt}} className="leading-8"/>
+   <div dangerouslySetInnerHTML={{__html:xy.excerpt}} className="leading-8 text-lg"/>
  </div>
   <div className='flex py-3'>
   <p className=''>{moment(xy.date).fromNow()} </p>
@@ -129,7 +129,7 @@ className='rounded-xl'
     {newsAll.slice(1,4).map((xy,i)=>
     <div className='border w-96 xxs:w-96 px-5 xl:px-0 pt-5 sm:pt-0 sm:border-none sm:w-auto' key={i + ' ' + Math.random()}>
    <Link href={`/topic/${xy.contentTags.nodes[0].slug}`} > <h3 className='text-red-500 text-sm italic py-1'>{xy.contentTags.nodes[0].name} </h3></Link>
-  <Link href={`/news/article/${xy.slug}`}><h2 className="hover:text-gray-700 text-lg font-bold overflow-hidden text-ellipsis hover:text-gray-500 py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
+  <Link href={`/news/article/${xy.slug}`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis hover:text-gray-500 py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
       <div className='py-2 text-sm flex flex-wrap'>
       <h3 className="m-1">{xy.articlesCategories.nodes[0].name} |</h3>
         <p className='m-1 text-gray-400'>{moment(xy.date).fromNow()}</p>
@@ -152,7 +152,7 @@ className='rounded-xl'
     <div className='pt-2 sm:pt-0 border-b flex my-2 mx-1' key={i + ' ' + Math.random()}>
        <div>
     <Image
-className='h-28 rounded-xl object-cover max-w-44'
+className='rounded-xl object-cover max-w-40 h-28'
   width={1200}
   height={675}
   src={xy.featuredImage?.node.sourceUrl}
@@ -163,7 +163,7 @@ className='h-28 rounded-xl object-cover max-w-44'
    <h3 className='text-red-500 text-sm italic py-1'>{xy.contentTags.nodes[0].name} </h3></Link>
   <Link href={`/news/article/${xy.slug}`}><h2 className="font-bold overflow-hidden text-ellipsis hover:text-gray-500 py-1 text-xl"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2>
   </Link>
-      <div className='py-2 text-sm flex flex-wrap '>
+      <div className='py-2 text-sm flex flex-wrap'>
       <h3 className="m-1">{xy.articlesCategories.nodes[0].name} |</h3>
         <p className='m-1 text-gray-400'>{moment(xy.date).fromNow()}</p>
 
@@ -191,7 +191,7 @@ alt={xy?.featuredImage?.node.altText }
     />
     <div>
  <Link href={`/news/article/${xy.slug}`}><h2 className='text-2xl font-bold py-3 hover:text-gray-700'>{xy.title} </h2></Link>
- <div dangerouslySetInnerHTML={{__html:xy.excerpt}} className="leading-8"/>
+ <div dangerouslySetInnerHTML={{__html:xy.excerpt}} className="leading-8 text-lg"/>
 </div>
 <div className='flex py-3'>
 <p className=''>{moment(xy.date).fromNow()} </p>
@@ -207,7 +207,7 @@ alt={xy?.featuredImage?.node.altText }
   {newsAll.slice(11,14).map((xy,i)=>
   <div className='border w-96 xxs:w-96 px-5 xl:px-0 pt-5 sm:pt-0 sm:border-none sm:w-auto' key={i + ' ' + Math.random()}>
  <Link href={`/topic/${xy.contentTags.nodes[0].slug}`} > <h3 className='text-red-500 text-sm italic py-1'>{xy.contentTags.nodes[0].name} </h3></Link>
-<Link href={`/news/article/${xy.slug}`}><h2 className="hover:text-gray-700 text-lg font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
+<Link href={`/news/article/${xy.slug}`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
     <div className='py-2 text-sm flex flex-wrap'>
     <h3 className="m-1">{xy.articlesCategories.nodes[0].name} |</h3>
       <p className='m-1 text-gray-600'>{moment(xy.date).fromNow()}</p>
@@ -228,7 +228,7 @@ alt={xy?.featuredImage?.node.altText }
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2' key={i + ' ' + Math.random()}>
       <div>
     <Image
-className='h-28 rounded-xl object-cover max-w-44'
+className='h-28 rounded-xl object-cover max-w-40'
   width={1200}
   height={675}
   src={x1.featuredImage?.node.sourceUrl}
@@ -239,7 +239,7 @@ className='h-28 rounded-xl object-cover max-w-44'
    <Link href={`/news/article/${x1.slug}`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{x1.title}</h2></Link>
    <div className='py-2 flex flex-wrap'>
       <h3 className="m-1 text-sm">{x1.articlesCategories.nodes[0].name} |</h3>
-        <p className='m-1'>{moment(x1.date).fromNow()} </p>
+        <p className='m-1 text-gray-400'>{moment(x1.date).fromNow()} </p>
 
       </div>
        </div>
@@ -250,20 +250,20 @@ className='h-28 rounded-xl object-cover max-w-44'
 
 <div className="rounded-xl my-2 py-2 max-w-lg mx-2">
 
-<hr/>
+{/* <hr/> */}
 
   {newsAll?.slice(16,25).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2' key={i + ' ' + Math.random()}>
       <div>
     <Image
-className='h-28 rounded-xl object-cover max-w-44'
+className='h-28 rounded-xl object-cover max-w-40'
   width={1200}
   height={675}
   src={x1.featuredImage?.node.sourceUrl}
   alt={x1?.featuredImage?.node.altText }
       />
       </div>
-    <div>
+    <div className="px-3">
   <Link href={`/topic/${x1.contentTags.nodes[0].slug}`} ><h3 className='text-red-500 text-sm italic py-1'>{x1.contentTags.nodes[0].name} </h3></Link>
    <Link href={`/news/article/${x1.slug}`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{x1.title}</h2></Link>
    <div className='py-2 flex flex-wrap '>
@@ -308,7 +308,7 @@ className='rounded-xl'
     {newsAll.slice(26,30).map((xy,i)=>
     <div className='border w-96 xxs:w-96 px-5 xl:px-0 pt-5 sm:pt-0 sm:border-none sm:w-auto' key={i + ' ' + Math.random()}>
    <Link href={`/topic/${xy.contentTags.nodes[0].slug}`} > <h3 className='text-red-500 text-sm italic py-1'>{xy.contentTags.nodes[0].name} </h3></Link>
-  <Link href={`/news/article/${xy.slug}`}><h2 className="hover:text-gray-700 text-lg font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
+  <Link href={`/news/article/${xy.slug}`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
       <div className='py-2 text-sm flex flex-wrap'>
       <h3 className="m-1">{xy.articlesCategories.nodes[0].name} |</h3>
         <p className='m-1 text-gray-400'>{moment(xy.date).fromNow()}</p>
@@ -330,7 +330,7 @@ className='rounded-xl'
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2 gap-3' key={i + ' ' + Math.random()}>
       <div>
     <Image
-className='h-28 rounded-xl object-cover max-w-44'
+className='h-28 rounded-xl object-cover max-w-40'
   width={1200}
   height={675}
   src={x1.featuredImage?.node.sourceUrl}
@@ -341,7 +341,7 @@ className='h-28 rounded-xl object-cover max-w-44'
    <Link href={`/news/article/${x1.slug}`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{x1.title}</h2></Link>
    <div className='py-2 flex flex-wrap'>
       <h3 className="m-1 text-sm">{x1.articlesCategories.nodes[0].name} |</h3>
-        <p className='m-1'>{moment(x1.date).fromNow()} </p>
+        <p className='m-1 text-gray-400'>{moment(x1.date).fromNow()} </p>
 
       </div>
        </div>
@@ -354,7 +354,7 @@ className='h-28 rounded-xl object-cover max-w-44'
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2 gap-1' key={i + ' ' + Math.random()}>
      <div>
     <Image
-className='h-28 rounded-xl object-cover max-w-44'
+className='h-28 rounded-xl object-cover max-w-40'
   width={1200}
   height={675}
   src={x1.featuredImage?.node.sourceUrl}
@@ -382,13 +382,13 @@ className='h-28 rounded-xl object-cover max-w-44'
   <div className='border-b mx-1 px-3 pt-5 sm:pt-0 py-3 flex my-2' key={i + ' ' + Math.random()}>
       <div>
     <Image
-className='h-28 rounded-xl object-cover max-w-44'
+className='h-28 rounded-xl object-cover max-w-40'
   width={1200}
   height={675}
   src={x1.featuredImage?.node.sourceUrl}
   alt={x1?.featuredImage?.node.altText }
       />  </div>
-    <div className="max-w-lg py-4">
+    <div className="max-w-lg py-4 mx-3">
   <Link href={`/topic/${x1.contentTags.nodes[0].slug}`} ><h3 className='text-red-500 text-sm italic py-1'>{x1.contentTags.nodes[0].name} </h3></Link>
    <Link href={`/news/article/${x1.slug}`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis p-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{x1.title}</h2></Link>
    <div className='py-2 flex flex-wrap'>

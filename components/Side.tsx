@@ -102,21 +102,21 @@ alt={news_outline[0]?.featuredImage?.node.altText}/>
 
  <div className='m-auto max-w-md lg:m-0'>
  {sidebarItems?.slice(1).map((ex)=>
-<div className='shadow flex my-3' key={ex.node.title + ' ' + Math.random()}>
- <div className='w-1/4 lg:w-1/2 mx-1 py-6 '> 
+<div className='shadow flex my-2' key={ex.node.title + ' ' + Math.random()}>
+ <div className='w-2/53 lg:w-1/2 mx-1 py-3'> 
  <Image
- className='xs:h-20 h-11 md:h-11 lg:h-20'
+ className='h-24 w-48'
  src={ex.node?.featuredImage?.node.sourceUrl} 
  width={1200} 
  height={675} 
  alt={ex.node?.featuredImage?.node.altText}/>  
  
  </div> 
- <div className='w-4/5 mx-2 py-6'> 
+ <div className='w-4/5 mx-2 py-3'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/topic/${ex.node.slug}`}><h2 className='font-bold text-base hover:text-gray-400' >{ex.node?.title}</h2></Link>
+ <Link href={`/news/topic/${ex.node.slug}`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node?.title}</h2></Link>
 </div>
-<div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
+<div className='flex text-gray-400 justify-between items-center leading-8 '> 
 <Link href={`/creator/${ex?.node.author.node.slug}`}><p >{ ex?.node.author.node.name }</p> </Link>
  <p>{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p>
 </div>

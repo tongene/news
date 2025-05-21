@@ -103,23 +103,23 @@ setCategoryPost(currentPosts)
  
 </div>
 
-  <div className='xl:flex justify-center max-w-7xl m-auto'> 
-<div className='px-2 m-auto my-8 xl:my-0 xs:max-w-md sm:max-w-lg'> 
+  <div className='xl:flex justify-center max-w-4xl md:w-10/12 xl:w-auto xl:max-w-7xl m-auto'> 
+<div> 
  {!categoryName&&top_PostsData.length>0?top_PostsData?.slice(0,1).map((ex, i)=>
 <div className='shadow-2xl h-3/4' key={ex.node.title + ' ' + Math.random()}>
 
-<div className="relative my-3 w-[500px] h-[300px]"> 
+<div className=" my-3"> 
   <Image 
   src={ex?.node.featuredImage?.node.sourceUrl } 
 className='object-cover'
-  fill
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+ width={1200}
+ height={768}
   alt={ex?.node.featuredImage?.node.sourceUrl } />  
 
  </div>
-  <Link href={`/news/topic/${ex.node.slug}`} prefetch={false}><h2 className='overflow-hidden text-ellipsis text-xl lg:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link >
+  <Link href={`/news/topic/${ex.node.slug}`} prefetch={false}><h2 className='overflow-hidden text-ellipsis text-xl sm:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link >
   <hr className='my-2'/>
-  <Link href={`/news/topic/${ex.node.slug}`}prefetch={false}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
+  <Link href={`/news/topic/${ex.node.slug}`}prefetch={false}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
  
 <div className='flex text-gray-400 justify-between items-center py-4 leading-8 '> 
 <Link href={`/creator/${ex.node?.author.node.slug}`}prefetch={false}><p>{ ex.node?.author.node.name }</p></Link>  
@@ -129,19 +129,19 @@ className='object-cover'
 ):<> {categoryName==='Fake News'?<p className="italic text-xl p-4">In 2025, there has been at least 30 fake news and propaganda circulating the internet. About 27 of those in January alone. Be careful what you read. The good things is, we are here to fact-check the news.</p> :''}
 {categoryPost?.slice(0,1).map((ex, i)=>
   <div className='shadow-2xl' key={ex.node.title + ' ' + Math.random()}>   
-<div className="relative w-[500px] h-[300px] my-3">
+<div className="my-3">
   <Image 
   src={ex?.node.featuredImage?.node.sourceUrl } 
-  className="object-cover" 
-  fill
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+ className='object-cover'
+ width={1200}
+ height={768}
   alt={ex?.node.featuredImage?.node.sourceUrl } />  
 
  </div>
    
-    <Link href={`/news/topic/${ex.node.slug}`} prefetch={false}><h2 className='overflow-hidden text-ellipsis text-xl lg:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link >
+    <Link href={`/news/topic/${ex.node.slug}`} prefetch={false}><h2 className='overflow-hidden text-ellipsis text-xl sm:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link >
     <hr className='my-2'/>
-    <Link href={`/news/topic/${ex.node.slug}`}prefetch={false}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
+    <Link href={`/news/topic/${ex.node.slug}`}prefetch={false}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
    
   <div className='flex text-gray-400 justify-between items-center py-4 leading-8 my-3'> 
   <Link href={`/creator/${ex.node?.author.node.slug}`}prefetch={false}><p>{ ex.node?.author.node.name }</p></Link>  
@@ -156,7 +156,7 @@ className='object-cover'
   <div className='my-2 m-auto px-4 xl:px-1'>
   {!categoryName?top_PostsData?.slice(1).map((ex)=>
 <div className='shadow flex gap-4 first:md:my-0 first:md:py-0 md:pb-4' key={ex.node.title + ' ' + Math.random()}>
-  <div className="relative w-[200px] h-[100px] sm:w-[250px] xs:h-[150px] xl:w-[200px] m-auto xl:h-[100px] my-2">
+  <div className="relative w-44 h-24 m-auto xl:h-[100px] my-2">
 
   <Image 
   src={ex?.node.featuredImage?.node.sourceUrl} 
@@ -178,10 +178,10 @@ className='object-cover'
 </div>
 ):categoryPost?.slice(1).map((ex)=>
   <div className='shadow flex gap-4 first:md:my-0 first:md:py-0 md:pb-4' key={ex.node.title + ' ' + Math.random()}>
-  <div className="relative w-[300px] h-[150px] xl:w-[200px] m-auto xl:h-[100px] my-2">
+  <div className="relative w-44 h-24 m-auto xl:h-[100px] my-2">
     <Image 
     src={ex?.node.featuredImage?.node.sourceUrl} 
-    fill
+fill
   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
     alt={ex?.node.featuredImage?.node.altText}/> 
     
