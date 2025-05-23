@@ -97,7 +97,7 @@ export const metadata:Metadata = {
   publisher: 'Christina Ngene',
   metadataBase: new URL('https://culturays.com'),
   openGraph: {
-  title: 'Urban Naija | News, Nigeria, Business, Economy, Nollywood, Netflix Naija',
+  title: 'Urban Naija | News, Nigeria',
   description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
   url: 'https://culturays.com', 
   siteName: 'Urban Naija News', 
@@ -124,7 +124,7 @@ export const metadata:Metadata = {
       // nocache: true,
       googleBot: {
         index: true,
-        follow: false,
+       // follow: false,
         noimageindex: false,
         'max-video-preview': -1,
         'max-image-preview': 'large',
