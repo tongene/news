@@ -336,7 +336,7 @@ export async function generateMetadata({ params }: {
   const tags= news_details.tags.nodes.map((ex:{name:string})=>ex.name).join(', ')
    
   return {
-    title:`Culturays | News - ${news_details?.title}`,
+    title:`Urban Naija | News - ${news_details?.title}`,
        description:news_details?.excerpt,
       keywords:tags,
        twitter: { 
