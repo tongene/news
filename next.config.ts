@@ -15,7 +15,25 @@ const nextConfig = {
       NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
       EMAILJS_PUBLIC_API: process.env.EMAILJS_PUBLIC_API,
   },
-  
+   async redirects() {
+    return [
+      // {
+      //   source: '/news/articles',
+      //   destination: '/news',
+      //   permanent: true,
+      // },
+       {
+        source: '/news/local',
+        destination: '/news',
+        permanent: true,
+      },
+       {
+        source: '/news/foreign',
+        destination: '/news',
+        permanent: true,
+      },
+    ]
+  },
  images: {
   unoptimized: true,
      remotePatterns: [

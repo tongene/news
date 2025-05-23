@@ -12,32 +12,42 @@ const menuClick=()=>{
 setBarState(prev=> !prev)  
 }
 
- const navAddress=[{
-  a:"Outline",
-  b:"/news/environment"
+ const navAddress=[
+{
+  a:"News",
+  b:"/news/"
+
+},{
+  a:"Latest",
+  b:"/news/articles/"
+
+},
+ {
+  a:"Local",
+  b:"/news/local/"
+
+},
+ 
+ {
+  a:"Foreign",
+  b:"/news/foreign/" 
 
 },
 {
-  a:"Economy",
-  b:"/news/economy"
+  a:"Netflix Naija",
+  b:"/naija-wiki/"
 
 },
 {
-  a:"Tech",
-  b:"/news/tech"
-
-}
-,
-{
-  a:"Business",
-  b:"/news/business"
+  a:"Events",
+  b:"/naija-events/"
 
 },
 {
-  a:"Health",
-  b:"/news/health"
+  a:"Forum",
+  b:"/forum/"
 
-},
+} 
 ]
  const [addStyle, setAddStyle]=useState('')  
 const handleClick = (id:string)=> { 
@@ -65,27 +75,21 @@ const handleClick = (id:string)=> {
 <p className="opacity-70 mx-2" >
 <FontAwesomeIcon icon={faXmark} className="text-white w-6 h-11 cursor-pointer"/>
 </p>
-  <div className="animate-in"> 
+  <nav className="animate-in"> 
 {  navAddress.map((xy)=> 
 <ul key={xy.b + Math.random()}className="text-white p-3 flex flex-col text-center justify-center items-center h-max"> 
  <li
   className={`p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full ${
-    pathname.includes(xy.b) ? 'border-green-700' : {}
+    pathname=== xy.b ? 'border-green-700' : {}
   }`}
   onClick={() => handleClick(xy.a)} 
 >
  <Link href={xy.b}>{xy.a}</Link>
 
 </li>
-
-
-</ul>
-
- 
-)   }   
- 
-
-</div>  
+</ul> 
+)   } 
+</nav>  
 </div>
 
 }  
@@ -106,12 +110,12 @@ navAddress.map((xy)=>
 <ul key={xy.b + Math.random()}> 
  <li
   className={`p-2 m-1 mx-4 opacity-80 hover:scale-105 text-lg border-b-4 ${
-    pathname.includes(xy.b) ? 'border-green-700' : {}
+    pathname=== xy.b  ? 'border-green-700' : {}
   }`}
   onClick={() => handleClick(xy.a)} 
 >
  <Link href={xy.b}>{xy.a}</Link>
-
+ 
 </li>
 
 

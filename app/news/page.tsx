@@ -128,7 +128,7 @@ const NewsPage = async() => {
    "@type": "BlogPosting",
    "headline": "Urban News - Covering News in Nigeria, Africa, and Beyond",
    "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-   "url": "https://culturays.com/news",
+   "url": "https://culturays.com/news", 
    "mainEntityOfPage": {
      "@type": "WebPage",
      "@id": "https://culturays.com/news"

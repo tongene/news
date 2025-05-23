@@ -107,7 +107,7 @@ priority={true}
   
  <Link href={{ pathname: '/forum', query: { topic:news_detail.slug} }}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
 </div>
-<div className='px-3 lg:w-screen ' > 
+<div className='px-3 max-w-7xl' > 
 <div className='max-w-5xl'>
    <h2 className='text-2xl font-bold py-4'>Next</h2>
      </div>

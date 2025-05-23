@@ -134,7 +134,7 @@ const [end_inter_cursor, setEnd_inter_cursor] = useState('');
   };
 
   return (
-   <div className='bg-slate-50 dark:bg-black'>
+   <div className='bg-slate-50 dark:bg-black px-8'>
     <div className='m-auto' style={{maxWidth:'1700px'}}>  
  <div className='bg-white py-8'> 
  <h2 className='text-3xl font-bold my-6 text-center text-slate-800 opacity-80'>Featured Naija Characters</h2> 

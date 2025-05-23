@@ -841,45 +841,44 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
  
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata 
-): Promise<Metadata> {  
-  const slug =(await params).slug
-  const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/${slug[1]}/`)
-  const previousImages = (await parent).openGraph?.images || []
-  const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+// export async function generateMetadata(
+//   { params }: Props,
+//   parent: ResolvingMetadata 
+// ): Promise<Metadata> {  
+//   const slug =(await params).slug
+//   const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/${slug[1]}/`)
+//   const previousImages = (await parent).openGraph?.images || []
+//   const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
 
-  return {
-    title: `Culturays — ${news_details?.title}`,
-    description:news_details?.excerpt,
-    keywords:tags,
-    twitter: {
-      card: 'summary_large_image',
-      title: news_details?.title  ,
-      description: news_details?.excerpt ,  
-      images:[news_details?.featuredImage.node.sourceUrl, ...previousImages],  
-    },
-     openGraph: {    
-      images: [news_details?.featuredImage.node.sourceUrl,...previousImages],
-      type: "article",
-      publishedTime:news_details?.date,
-    },
-  } 
-} 
+//   return {
+//     title: `Culturays — ${news_details?.title}`,
+//     description:news_details?.excerpt,
+//     keywords:tags,
+//     twitter: {
+//       card: 'summary_large_image',
+//       title: news_details?.title  ,
+//       description: news_details?.excerpt ,  
+//       images:[news_details?.featuredImage.node.sourceUrl, ...previousImages],  
+//     },
+//      openGraph: {    
+//       images: [news_details?.featuredImage.node.sourceUrl,...previousImages],
+//       type: "article",
+//       publishedTime:news_details?.date,
+//     },
+//   } 
+// } 
  
 const ArticleDetailPage = async ({params}: Props) => {
 const slug =(await params).slug
  const news_detail= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/${slug[1]}/`)
- const news_related = news_detail?.newsGroup.related?.edges.map((tx:{node:{id:string}})=> tx.node.id)
+  const news_related = news_detail?.newsGroup.related?.edges.map((tx:{node:{id:string}})=> tx.node.id)
  
  const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
- const next_top_news = await readNextContent([news_detail.id, news_related ].flat())
+ const next_top_news = await readNextContent([news_detail?.id, news_related ].flat())
  const sidebarItems=await sidePlusViews()       
-     const news_outline=await postsOutline()
-     
+  const news_outline=await postsOutline()     
 
-   const tags= news_detail.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+   const tags= news_detail?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
    const replaceHTMLTags=(string:string)=>{
     const regex = /(<([^>]+)>)/gi;
     const newString = string?.replace(regex, "");
@@ -888,8 +887,8 @@ const slug =(await params).slug
    const jsonLd:WithContext<NewsArticle> = {
      '@context': 'https://schema.org',
      '@type': 'NewsArticle',
-      name: news_detail.title,
-      headline:news_detail.title, 
+      name: news_detail?.title,
+      headline:news_detail?.title, 
       description:replaceHTMLTags(news_detail?.excerpt) ,
       author: {
         "@type": "Person",
@@ -916,20 +915,22 @@ const slug =(await params).slug
       keywords:tags,    
       
     };
+
+ 
   return (
      <> 
-  <StructuredData schema={jsonLd} />
+  <StructuredData schema={jsonLd} /> 
     <div className="bg-gray-50">     
     <div className="lg:flex justify-center m-auto px-4 bg-white" style={{maxWidth:'1450px' }}>
         <ArticleDetail 
       news_detail={news_detail} 
       next_top_news={next_top_news}
-      />    
+      />  
        <div className="[&_h2]:dark:text-gray-900 dark:text-gray-900 h-max">
-       <SideBar 
+    <SideBar 
        sidebarItems={sidebarItems}
         news_outline={news_outline} 
-        />  
+        />   
       </div>
       </div>
  </div>

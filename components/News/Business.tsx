@@ -1,6 +1,6 @@
 "use client"
  
-import { faAngleLeft, faAngleRight, faCircle, faDotCircle } from "@fortawesome/free-solid-svg-icons"
+import { faCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import moment from "moment"
 import Image from "next/image" 
@@ -95,7 +95,7 @@ const Business = ({business_news}:{business_news:TopNews[]}) => {
 </section>
  
 <div className="max-w-2xl m-auto xl:m-0">
-  <SlideFxn title_item={title_item} content={business_items.slice(0,4)}/>  
+  <SlideFxn content={business_items.slice(0,4)}/>  
 </div>
 
     </div>

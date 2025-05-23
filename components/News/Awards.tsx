@@ -42,7 +42,7 @@ const Awards = ({awards_content, sidebarItems, news_outline }:{awards_content:Po
       <div className="bg-gray-100">  
  <div className="bg-white dark:bg-black m-auto md:flex justify-center px-3" style={{maxWidth:'1750px'}} >  
     <div className= "max-w-7xl"> 
-    <SlideFxn title_item={title_item} content={awards_content}/> 
+    <SlideFxn content={awards_content}/> 
         <div className="text-center py-5"> 
         <h2 className="text-4xl font-bold text-gray-800 py-4">award</h2>
        <div className="sm:flex justify-center w-3/4 m-auto"> 

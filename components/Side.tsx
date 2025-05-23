@@ -131,14 +131,14 @@ alt={news_outline[0]?.featuredImage?.node.altText}/>
 <div key={ex.node.title + ' ' + Math.random()}> 
 <div> 
  <Image
- className='h-56 lg:h-44 xl:h-56'
+ className='h-56 lg:h-64 xl:h-56'
  src={ex.node?.featuredImage?.node.sourceUrl} 
  width={1200} 
  height={675} 
  alt={ex.node?.featuredImage?.node.altText}/> 
  
  </div> 
-<Link href={`/news/topic/${ex.node.slug}`}><h2 className='text-xl font-medium py-4 hover:text-gray-400 border-l px-2 border-r my-2'>{ex.node.title}</h2></Link>
+<Link href={`/news/topic/${ex.node.slug}`}><h2 className='text-2xl font-bold py-4 hover:text-gray-400 border-l px-2 border-r my-2'>{ex.node.title}</h2></Link>
 </div>
 )}
 

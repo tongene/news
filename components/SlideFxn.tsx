@@ -16,9 +16,10 @@ const replaceHTMLTags=(string:string)=>{
     title:string 
     excerpt:string 
     date:string
+    contentTypeName:string
   }
  
-const SlideFxn = ({content, title_item }:{content:SlideProps[], title_item:string}) => {
+const SlideFxn = ({content}:{content:SlideProps[]}) => {
     const [activeSlide,setActiveSlide] =useState(0)
         
   const prevSlide=()=> {
@@ -50,7 +51,7 @@ const SlideFxn = ({content, title_item }:{content:SlideProps[], title_item:strin
 <div key={item?.slug + ' ' + index} className="bg-gray-900 border border-yellow-700">  
  <div className='my-2 max-w-max m-auto px-11 py-8'> 
   
-  <Link href={`/news/${title_item}/${item.slug}`}><h2 className='text-3xl text-gray-300 my-1 font-bold hover:text-gray-200 cursor-pointer overflow-hidden text-ellipsis leading-10' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{item?.title} </h2> </Link>
+  <Link href={`/news/${item.contentTypeName}/${item.slug}`}><h2 className='text-3xl text-gray-300 my-1 font-bold hover:text-gray-200 cursor-pointer overflow-hidden text-ellipsis leading-10' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{item?.title} </h2> </Link>
  
  <div style={{
           display: '-webkit-box',
@@ -59,7 +60,7 @@ const SlideFxn = ({content, title_item }:{content:SlideProps[], title_item:strin
         }}
           className='overflow-hidden text-ellipsis leading-8'>
   {item?.excerpt.split('\n').map((dy, index) => (
-    <Link key={index} href={`/news/${title_item}/${item?.slug}`}>
+    <Link key={index} href={`/news/${item.contentTypeName}/${item?.slug}`}>
       <div
         dangerouslySetInnerHTML={{ __html: dy }}       
         className="my-3 text-gray-200 cursor-pointer text-lg hover:text-gray-500 "

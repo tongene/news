@@ -1,5 +1,4 @@
-import { MetadataRoute } from "next"; 
-import { FeedProps } from "./types";  
+import { MetadataRoute } from "next";  
 export const revalidate = 0; 
  
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
@@ -43,21 +42,20 @@ type SitemapFile = Array<{
 }>;
 
     
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> { 
-  
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {  
 
     return [
       {
         url: `https://culturays.com/`,
         lastModified: new Date(),
-        changeFrequency: 'daily',
+        changeFrequency: 'hourly',
         priority:1,
         images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/about/`,
         lastModified: new Date(),
-        changeFrequency: 'daily',
+        changeFrequency: 'monthly',
         priority: 0.8,
         images: ['https://culturays.com/assets/images/culturays.png']
       },
@@ -71,18 +69,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       {
         url:`https://culturays.com/naija-wiki/`,
         lastModified: new Date(),
-        changeFrequency: 'daily',
+        changeFrequency: 'hourly',
         priority: 0.8,
         images: ['https://culturays.com/assets/images/culturays.png']
       },
       {
         url:`https://culturays.com/news/`,
         lastModified: new Date(),
-        changeFrequency: 'daily',
+        changeFrequency: 'hourly',
         priority: 0.8,
         images: ['https://culturays.com/assets/images/culturays.png']
       },
-     
+     ,
+      {
+        url:`https://culturays.com/news/trending`,
+        lastModified: new Date(),
+        changeFrequency: 'hourly',
+        priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
+      },
       {
         url:`https://culturays.com/naija-events/`,
         lastModified: new Date(),
@@ -127,6 +132,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
         images: ['https://culturays.com/assets/images/culturays.png']
       },
+       
+      {
+        url:`https://culturays.com/news/articles/`,
+        lastModified: new Date(),
+        changeFrequency: 'hourly',
+        priority: 0.8,
+        images: ['https://culturays.com/assets/images/culturays.png']
+      },
       {
         url:`https://culturays.com/news/economy/`,
         lastModified: new Date(),
@@ -134,13 +147,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
         images: ['https://culturays.com/assets/images/culturays.png']
       },
-      {
-        url:`https://culturays.com/news/health/`,
-        lastModified: new Date(),
-        changeFrequency: 'daily',
-        priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png']
-      }, 
+      
       {
         url:`https://culturays.com/sign-in`,
         lastModified: new Date(),
