@@ -85,7 +85,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
 export const metadata:Metadata = {
   title:{
     template:"%s | Urban Naija News",
-    default: 'Urban Naija | News, Nigeria, Business, Economy, Nollywood, Netflix Naija',   
+    default: 'Urban Naija | News, Nigeria',   
    },
   description:'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
   generator: 'Culturays',
@@ -120,8 +120,8 @@ export const metadata:Metadata = {
     },
     robots: {
       // index: false,
-      follow: true,
-      nocache: true,
+      // follow: true,
+      // nocache: true,
       googleBot: {
         index: true,
         follow: false,
@@ -129,7 +129,7 @@ export const metadata:Metadata = {
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1,
-      },
+      } ,
     },
    
     icons: { 
