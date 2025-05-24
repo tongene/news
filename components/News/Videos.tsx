@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SideBar from '../Side'
-import { CineProps, Cursors, SideNode, VidProps } from '@/app/types' 
+import { Cursors, SideNode, VidProps } from '@/app/types' 
 import Paginate from '../Paginate'
 const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:VidProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => { 
  const replaceHTMLTags=(string:string)=>{

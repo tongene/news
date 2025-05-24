@@ -3,7 +3,7 @@ import Link from "next/link"
 import moment from "moment/moment"
 import Image from "next/image"  
 import SideBar from "../Side" 
-import { CineProps, Cursors, SideNode } from "@/app/types"
+import { Cursors, SideNode } from "@/app/types"
 import Paginate from "../Paginate"
 
 type PostProps={ 

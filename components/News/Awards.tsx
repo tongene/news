@@ -1,10 +1,10 @@
-import moment from "moment"
+
 import Image from "next/image"
 import Link from "next/link"  
 import { dateFormatter } from "@/utils/dateformat"
 import SlideFxn from "../SlideFxn"  
 import SideBar from "../Side"  
-import { CineProps, Cursors, SideNode } from "@/app/types"
+import { Cursors, SideNode } from "@/app/types"
 type PostProps={
   title:string
   slug:string
