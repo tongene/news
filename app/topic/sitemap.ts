@@ -120,7 +120,7 @@ export default async function sitemap({
       priority:0.8,
 
    }) )
-     
+     console.log(dataTags)
     return [ 
    ... postTags,
     ...dataTags, 

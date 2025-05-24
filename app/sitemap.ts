@@ -80,14 +80,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
         images: ['https://culturays.com/assets/images/culturays.png']
       },
-     ,
-      {
-        url:`https://culturays.com/news/trending`,
-        lastModified: new Date(),
-        changeFrequency: 'hourly',
-        priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png']
-      },
+     
+     
       {
         url:`https://culturays.com/naija-events/`,
         lastModified: new Date(),
