@@ -246,7 +246,7 @@ interface CineType {
         } 
 export default async function Home() {     
  const latestPosts=await newsByLatest() 
- const postData= latestPosts.resp2Post.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
+ const postData= latestPosts?.resp2Post?.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
  const news_outline=await postsOutline()
 
      CronJob.from({

@@ -5,6 +5,7 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import type { NewsArticle, WithContext } from 'schema-dts';
 
 import StructuredData from "@/components/StructuredData";
+import { redirect } from "next/navigation";
 type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -73,7 +74,9 @@ const TagPage = async({params}: Props) => {
      keywords:tagged[0]?.name ,    
      
    };
-   
+ 
+ if(tagged.length < 10) redirect('/')
+     
   return (
     <div>
       <StructuredData schema={jsonLd} />

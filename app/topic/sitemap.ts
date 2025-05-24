@@ -1,5 +1,8 @@
 import { MetadataRoute } from "next";
-import { FeedProps } from "../types";
+  export type TagProps={
+    name:string
+    slug:string
+  }
 
  const topicFeed = async()=>{ 
     const wprest =   fetch('https://content.culturays.com/graphql',{
@@ -101,11 +104,11 @@ export default async function sitemap({
     id: number
   }): Promise<MetadataRoute.Sitemap>{ 
 
-     const topicData:FeedProps[]=await topicFeed()
-      const tagData:FeedProps[]=await tagFeed()
+     const topicData:TagProps[]=await topicFeed()
+      const tagData:TagProps[]=await tagFeed()
     
       const dataTags=topicData.map((post)=>({ 
-        title:post.title,
+        title:post.name,
         url:`https://culturays.com/topic/${post.slug}`,
         lastModified:new Date(),
         changeFrequency:'always', 
@@ -113,17 +116,17 @@ export default async function sitemap({
 
      }) )
      const postTags=tagData.map((post)=>({ 
-      title:post.title,
+      title:post.name,
       url:`https://culturays.com/topic/${post.slug}`,
       lastModified:new Date(),
       changeFrequency:'always', 
       priority:0.8,
 
    }) )
-     console.log(dataTags)
+ const xtags = postTags.concat(dataTags).filter((item, index, self) =>  index === self.findIndex((t) => t.title === item.title))
+ 
     return [ 
-   ... postTags,
-    ...dataTags, 
+   ... xtags, 
     ] as SitemapFile
   }
 

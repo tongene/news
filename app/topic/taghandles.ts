@@ -1,4 +1,6 @@
  
+ 
+ 
 export async function tag (slug:string) { 
   const wprest = fetch('https://content.culturays.com/graphql',{
     method: 'POST',     
@@ -8,7 +10,7 @@ export async function tag (slug:string) {
     body: JSON.stringify({ 
       query:`
       query POSTTAGS {
-tags(first:100, where: {slug: "${slug}"}){
+tags(first:100, where: {search: "${slug}"}){
   nodes { 
     name
     id
@@ -45,7 +47,7 @@ tags(first:100, where: {slug: "${slug}"}){
     }).then(response => response.json())    
     .then(data =>data.data.tags) 
     .catch(error => console.error('Error:', error)); 
-    const response = wprest
+      
     return wprest
    
  }
@@ -59,7 +61,7 @@ export async function contentTag (slug:string) {
       body: JSON.stringify({
         query:`
         query POSTTAGS {
-contentTags(first:100, where: {slug: "${slug}"}){
+contentTags(first:100, where: {search: "${slug}"}){
     nodes { 
       name
       id
@@ -406,10 +408,9 @@ contentTags(first:100, where: {slug: "${slug}"}){
       }).then(response => response.json())    
       .then(data =>data.data.contentTags) 
       .catch(error => console.error('Error:', error));
-      const response =await wprest
      
       // const xtagged= response.filter((vx:{slug:string})=> vx.slug !== slug)
-      return response
+      return wprest
  }
  
 
@@ -512,6 +513,5 @@ export async function content_TAGS () {
       }).then(response => response.json())    
       .then(data =>data.data.contentTags) 
       .catch(error => console.error('Error:', error));
-      const response = wprest
-      return wprest
+       return wprest
  }

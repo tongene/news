@@ -115,7 +115,7 @@ return () => clearTimeout(fxnTimeout);
     onTick: insertFacts(),
     start: true,
     timeZone: 'Africa/Lagos'
-    });  
+    });
   }, 5000);
  
 return response
