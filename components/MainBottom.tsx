@@ -121,7 +121,7 @@ const MainBottom = () => {
     <div className='grid grid-cols-1 lg:grid-cols-2 lg:justify-center justify-between gap-2 m-auto w-max'> 
       <div>
  { posts_all?.length>0&&posts_all.slice(0,1).map((xy, i)=> 
-<div key={i + ' ' + Math.random()}  className='border max-w-lg m-auto md:m-0 px-3 py-6 ' > 
+<div key={i + ' ' + Math.random()}  className='border max-w-sm min-[500px]:max-w-md sm:max-w-lg m-auto md:m-0 px-3 py-6 ' > 
 <Link href={`/news/topic/${xy.node.slug}`}>
  
 <h2 className='py-4 my-4 text-4xl lg:text-5xl font-bold hover:text-gray-400 px-1' style={{lineHeight:'55px'}} >{xy?.node.title}</h2></Link >
@@ -130,10 +130,10 @@ const MainBottom = () => {
  <div>
 <hr className='h-3 bg-black my-1'/> 
 <hr className='h-1 bg-black my-1'/> 
-  <div className='flex text-gray-400 justify-between py-4 px-4 overflow-hidden'> 
-<Link href={`/creator/${xy?.node.author.node.slug}`}><p>{xy?.node.author.node.name}</p></Link>
+  <div className='flex text-gray-400 justify-between py-4 px-2 overflow-hidden'> 
+<Link href={`/creator/${xy?.node.author.node.slug}`}><p className='w-44'>{xy?.node.author.node.name}</p></Link>
 <hr className='h-10 bg-black p-0.5 w-auto'/>
-  <p className='px-3 '>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
+  <p className='w-44'>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
 </div>  
 
 <hr className='h-3 bg-black my-1'/> 
@@ -149,10 +149,10 @@ const MainBottom = () => {
   <hr className='h-3 bg-black my-1'/> 
 <hr className='h-1 bg-black my-1'/> 
 <div className='flex text-gray-600 justify-between py-4 px-4 overflow-hidden first:border-r first:border-r-4 first:border-r-black'> 
-<Link href={`/topic/${xy?.node.tags?.nodes[0]?.slug}`}><p className='hover:text-gray-300 px-4 '>{xy?.node.tags.nodes[0]?.name}</p></Link> 
+<Link href={`/topic/${xy?.node.tags?.nodes[0]?.slug}`}><p className='hover:text-gray-300 px-4 w-32'>{xy?.node.tags.nodes[0]?.name}</p></Link> 
  
   <hr className='h-10 bg-black p-0.5 w-auto'/> 
-  <Link href={`/topic/${xy?.node.tags?.nodes[1]?.slug}`}><p className='hover:text-gray-300 px-4 '>{xy?.node.tags?.nodes[1]?.name}</p></Link>
+  <Link href={`/topic/${xy?.node.tags?.nodes[1]?.slug}`}><p className='hover:text-gray-300 px-4 w-32'>{xy?.node.tags?.nodes[1]?.name}</p></Link>
 </div> 
 <hr className='h-3 bg-black my-1'/> 
 <hr className='h-1 bg-black  my-1'/>   
@@ -175,7 +175,7 @@ const MainBottom = () => {
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
  <Link href={`/news/topic/${ex?.node.slug}`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
 </div>
-<div className='flex  text-gray-400 justify-between items-center leading-8'> 
+<div className='flex text-gray-400 justify-between items-center leading-8'> 
 <Link href={`/creator/${ex?.node.author.node.slug}`}><p >{ ex?.node.author.node.name }</p> </Link>
  <p>{ dateFormatter?.format(Date?.parse(ex.node?.date)) }</p>
 </div>
