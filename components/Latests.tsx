@@ -46,7 +46,7 @@ useEffect(()=>{
 </div>
 <div className="py-4 my-5 border-t-4 border-yellow-600 bg-black" >
   <h2 className="text-3xl text-gray-300 font-bold text-center p-4 border-b border-yellow-600 my-2">News</h2>
-  <div className="md:grid grid-cols-2 gap-2 lg:grid-cols-3 lg:max-w-4xl xl:grid-cols-4 max-w-xl xl:max-w-6xl m-auto">
+  <div className="md:grid grid-cols-2 gap-2 xl:max-w-6xl max-w-xl xl:grid-cols-4 m-auto">
    {bottom_news_data?.map((ex, index)=> 
 <div key={index + Math.random()} className="max-w-max m-auto"> 
 <div className="relative h-52 max-w-72 overflow-hidden border border-yellow-600"> 

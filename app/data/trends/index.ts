@@ -110,12 +110,12 @@ return () => clearTimeout(fxnTimeout);
 }
 
  const fxnTimeout = setTimeout(() => {
-    CronJob.from({
-    cronTime: '10 8 * * *', 
-    onTick: insertFacts(),
-    start: true,
-    timeZone: 'Africa/Lagos'
-    });
+    // CronJob.from({
+    // cronTime: '10 8 * * *', 
+    // onTick: insertFacts(),
+    // start: true,
+    // timeZone: 'Africa/Lagos'
+    // });
   }, 5000);
  
 return response

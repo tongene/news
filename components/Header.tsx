@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { Suspense, useEffect, useState } from "react";   
+import { Suspense, useState } from "react";   
 import { usePathname } from "next/navigation"; 
 import ConfirmModal from "./ConfirmModal"
 const Header = () => {

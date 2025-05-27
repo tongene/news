@@ -46,7 +46,8 @@ const Paginate = ({content, pathString}:{content:any[], pathString:string}) => {
    <div key={index} className="border-b flex" > 
    <div className="xs:w-3/4 xl:w-2/3 m-1 sm:m-4">   
         <p className="italic text-red-600 text-right py-4">{moment(itx.node?.date).fromNow()}</p> 
- <Image  
+ <Image 
+ className="h-44 md:h-52 xl:h-64"
         width={1200}
         height={675}
        src={itx.node?.featuredImage?.node?.sourceUrl}

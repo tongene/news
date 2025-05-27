@@ -201,10 +201,8 @@ width={1200}
     </div>
     </div>  
        )    
-) } </div>
+) } </div> 
    
- 
-  
 </section> 
   
 </div> 
@@ -263,8 +261,7 @@ alt={xy?.featuredImage?.node.altText}
 
 </div>  
  
- </div>
-
+ </div> 
 
 </div>
 

@@ -312,7 +312,7 @@ return {resp, resp1Live, resp2Post}
         body: JSON.stringify({
           query:`
           query WPPOSTS {                  
-             posts(first:6 ,after:"${latestPosts.pageInfo.endCursor}", where: {categoryName: "Latest"}) {
+             posts(first:5 ,after:"${latestPosts.pageInfo.endCursor}", where: {categoryName: "Latest"}) {
                 pageInfo {
               startCursor
               endCursor

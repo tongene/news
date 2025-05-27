@@ -113,7 +113,7 @@ const slides=livesNews?.filter((ex) => {
     <hr className='w-1/2 m-auto h-1 dark:bg-gray-300 bg-gray-600'/>  
 <div className="w-main_slider_small md:w-main_slider_big overflow-hidden relative main_slider"   onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}>
-<div className="flex justify-between m-auto absolute z-50 top-1/3 w-full "> 
+<div className="flex justify-between m-auto absolute z-40 top-1/3 w-full "> 
      <div onClick={left_slide} className='text-5xl text-white opacity-70 bg-gray-600 cursor-pointer hover:scale-105'> 
      <FontAwesomeIcon icon={faAngleLeft}/> 
      </div>
@@ -163,6 +163,7 @@ activeIndices.includes(i)&&
 </div>
 
 <hr className='w-11/12 m-auto bg-gray-600 h-1'/>
+
 </section>
 )
 };

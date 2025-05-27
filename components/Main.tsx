@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { dateFormatter } from '@/utils/dateformat'
 import Link from 'next/link'  
 import moment from 'moment'
-import { nextNewsPosts, postCategories } from '@/app/data'
-import { CineProps, Cursors, InnerEdges, PostsNotInPost, PostXNode, SideNode } from '@/app/types'  
+import {postCategories } from '@/app/data'
+import { Cursors, InnerEdges, PostXNode, SideNode } from '@/app/types'  
 import MainBottom from './MainBottom'
 import SideBar from './Side'
 
@@ -35,9 +35,7 @@ setTopPostsCa(postCategory_Children )
  
 return {} 
 }
-  
-    
-      useEffect(()=>{        
+  useEffect(()=>{        
         x_wiki()
         //dep top_PostsData
       },[])
@@ -218,7 +216,6 @@ fill
      />  
   </div> </div>
     <MainBottom
-   top_PostsCa={top_PostsCa}
    />   
    </section>
   )

@@ -162,6 +162,7 @@ import { InnerEdges } from "../types";
   export async function postNextCategories (){ 
     const post_data = (await postCategories()??[]) 
     const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
+  
     const postCategory_cursor = postCategory_Children?.map((xy:InnerEdges)=> xy.node?.posts?.edges)?.flat()?.map((t)=> t?.cursor)??[] 
  const wprest = fetch('https://content.culturays.com/graphql',{
            method: 'POST',
@@ -260,7 +261,7 @@ import { InnerEdges } from "../types";
         node {
       name
       slug
-       posts(where:{notIn:$notIn},first:20 ){ 
+       posts(where:{notIn:$notIn}, first:12 ){ 
           nodes {
             author {
               node {

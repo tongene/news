@@ -1955,6 +1955,7 @@ edges:[]
 
   }
   export interface PostsNotInPost{
+    
     cursor:string
     nodes: [
       {
@@ -1984,11 +1985,62 @@ edges:[]
     ],
 
     node: {
+       slug: string,
+                  title:string,
+                  excerpt:string,
+                  date:string,
+                  tags: {
+                    nodes: 
+                      {
+                        slug?: string,
+                        name?:string,
+                      }[],
+                   
+                  },
+                  featuredImage: {
+                    node: {
+                      sourceUrl: string,
+                      altText:string,
+                    },
+                  },
+                      author:{
+              node:{
+                slug:string,
+                name:string
+              }
+            },
+            
       posts: {
         
         pageInfo: {
           endCursor:string
         },
+           edges:  [{
+       node:   {
+            slug: string,
+            title:string,
+            excerpt:string,
+            date:string,
+            tags: {
+              nodes: Array<{
+                slug?: string;
+                name?: string;
+              }>;
+            } 
+            author:{
+              node:{
+                slug:string,
+                name:string
+              }
+            },
+            featuredImage: {
+              node: {
+                sourceUrl: string,
+                altText:string,
+              },
+            },
+          },}
+        ],
         nodes: [
           {
             slug: string,
@@ -2064,10 +2116,10 @@ edges:[]
         },
       ],
     },
-    edges: [
+   posts:{ edges: [
       {
      
-  }]
+  }]}
    
   }
 

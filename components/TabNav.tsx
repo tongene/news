@@ -6,11 +6,8 @@ import { faCaretDown, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react"; 
 import { useSearchParams } from "next/navigation"; 
 import { sidePanelNewsItems } from "@/app/sidex";
+import MoviesWidget from "./MoviesWidget";
 
-type Cursors={
-    cursor:string
-}
- 
 type Node ={
     node:{
         title:string;
@@ -115,14 +112,14 @@ const checkBiased = (e: React.ChangeEvent<HTMLInputElement>) => {
   <FontAwesomeIcon icon={faCaretLeft} width={50}/>  
  </div>
   {closeQuestion &&
-  <div className="grid_slide fixed pb-80 bg-gray-900 bottom-0 top-0 left-4 bg-opacity-90 h-full overflow-y-auto px-1 z-40 border lg:w-11/12 xs:w-4/5 max-w-md animate-in text-gray-200">  
+  <div className="grid_slide fixed pb-80 bg-gray-900 bottom-0 top-0 left-4 bg-opacity-90 h-full overflow-y-auto px-1 z-50 border lg:w-11/12 xs:w-4/5 max-w-md animate-in text-gray-200"onClick={()=>setCloseQuestion(false)}>  
 
   <div className="my-4 text-xl p-6"> 
  <h2 className="text-gray-300 font-medium text-3xl">Explore More</h2> 
  
 <div className="p-6 text-gray-200 flex justify-between hover:scale-105"> 
 <hr className="w-1/4 my-3"/>
-<Link href='/news/nollywood'><h3 className="cursor-pointer" onClick={()=>setCloseQuestion(false)}>Nollywood </h3></Link> 
+<Link href='/news/nollywood'><h3 className="cursor-pointer" >Nollywood </h3></Link> 
 <hr className="w-1/4 my-3"/> 
  
 </div>
@@ -134,7 +131,7 @@ const checkBiased = (e: React.ChangeEvent<HTMLInputElement>) => {
 </div>
 <div className="p-6 text-gray-200 flex justify-between hover:scale-105"> 
 <hr className="w-1/4 my-3"/> 
-<Link href='/news/videos'><h3 className="cursor-pointer" onClick={()=>setCloseQuestion(false)}>Videos</h3></Link>  
+<Link href='/news/videos'><h3 className="cursor-pointer">Videos</h3></Link>  
 <hr className="w-1/4 my-3"/>  
 </div>
  
@@ -208,10 +205,11 @@ height={675}
           <button type="submit" formAction={navAction} className="bg-gray-800 text-white mt-3 cursor-pointer font-bold hover:bg-opacity-80 rounded border w-1/2 m-auto h-max p-3" >Send</button> 
         </form> 
      </div> 
-     </div>  
-      </div> 
+     </div> 
+ <MoviesWidget/> 
+   </div> 
 }  
-  
+
  </div>
   )
 }
