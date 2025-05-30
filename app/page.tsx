@@ -12,8 +12,7 @@ import { CronJob } from "cron";
 import { BlogPosting, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData"; 
 import { nextNewsPosts } from "./data";
-import { getGoogleNewsTitles } from "./data/news-data";
-import { fetchNewPosts, fetchXPosts } from "./page-bottom";
+import { fetchXPosts } from "./page-bottom";
  
  type PostEdges ={
     responseLatest:{
@@ -253,8 +252,7 @@ export default async function Home() {
  const postData= latestPosts?.resp2Post?.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
  const news_outline=await postsOutline()
  const posts_notIn_newsPosts= await nextNewsPosts() 
-       const postsXnewsPosts= await fetchXPosts()  
-       const xtCategories= postsXnewsPosts?.categories?.edges 
+  
      CronJob.from({
       cronTime: '10 8 * * *',  
       onTick: dailyEv3(),
@@ -300,8 +298,8 @@ export default async function Home() {
       }
     }
   }
-  const location = 'Lagos, Nigeria'; 
- await getGoogleNewsTitles(location)     
+   
+
 return (
     <div> 
    
@@ -310,10 +308,10 @@ return (
      livesNews={latestPosts.resp1Live}
      latestPosts={latestPosts.resp}/> 
        <Main 
-       top_PostsData={postData} 
+    top_PostsData={postData} 
     news_outline={news_outline}
     posts_notIn_newsPosts={posts_notIn_newsPosts}
-    xtCategories={xtCategories}
+   
     />  
     </div>
   ); 

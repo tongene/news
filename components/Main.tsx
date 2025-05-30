@@ -11,15 +11,16 @@ import SideBar from './Side'
 
 import { sidePlusViews } from '@/app/page-data'; 
 import MainPosts from './MainPosts';
+import { getGoogleNewsTitles } from '@/app/data/news-data'
 
-const Main = ({top_PostsData, news_outline, posts_notIn_newsPosts, xtCategories }:{top_PostsData:InnerEdges[],  news_outline:SideNode[], posts_notIn_newsPosts:PostXNode, xtCategories:PostXNode[] }) => { 
+const Main = ({top_PostsData, news_outline, posts_notIn_newsPosts }:{top_PostsData:InnerEdges[],  news_outline:SideNode[], posts_notIn_newsPosts:PostXNode  }) => { 
 const [activeSet, setActiveSet]=useState(true)
 const [actIdx ,setActIdx]=useState(-1)
 const [categoryPost,setCategoryPost]=useState<InnerEdges[]>([])
 const [categoryName,setCategoryName]=useState('') 
 const [top_PostsCa, setTopPostsCa]=useState<PostXNode[]>([]) 
 const [sidebarItems, setSidebarxItems]=useState<Cursors[]>([])
-//const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotInPost[]>([])
+
 // const [top_Last_categories, setLast_categories]=useState([])   
 const rmMain =top_PostsData.map((xy)=> xy.cursor)
 const x_wiki =async ()=>{
@@ -31,7 +32,7 @@ const x_wiki =async ()=>{
 
 const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
 setTopPostsCa(postCategory_Children ) 
- 
+     
 return {} 
 }
   useEffect(()=>{        
@@ -61,7 +62,13 @@ setCategoryPost(currentPosts)
     setCategoryName(name) 
   
     }; 
-     
+    useEffect(()=>{
+      const googleTxt=async()=>{
+   const location = 'Lagos, Nigeria'; 
+       await getGoogleNewsTitles(location) 
+      }
+      googleTxt()
+    },[]) 
 
   return ( 
     <section className='clear-left'> 
@@ -214,8 +221,7 @@ fill
      news_outline={news_outline}
      />  
   </div> </div>
-    <MainBottom
-    xtCategories={xtCategories}
+    <MainBottom 
    />   
    </section>
   )

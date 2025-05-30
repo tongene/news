@@ -1,6 +1,6 @@
 "use client"
   
-import { fetchNewPosts, nextXXPosts } from '@/app/page-bottom'
+import { fetchNewPosts, fetchXPosts, nextXXPosts } from '@/app/page-bottom'
 import { LatestProps, PostXNode } from '@/app/types'
 import { dateFormatter } from '@/utils/dateformat'
 import Image from 'next/image'
@@ -36,12 +36,12 @@ nodes:{
 }[]
 }
 
-const MainBottom = ({xtCategories}:{xtCategories:PostXNode[]}) => {
+const MainBottom = () => {
     const [scrolledContent, setScrolledContent]=useState<LatestProps[]>([])
     const {ref, inView } =useInView();     
     const [top_x_Posts, setXnewsPosts] = useState<PostXNode[]>([]) 
     const [debouncedValue, setDebouncedValue] = useState<string>('') 
-
+    const [topXnewsPosts, setXPosts] = useState<PostXNode[]>([])
     const postsEnd =async()=>{  
    const xUnsedPosts= await nextXXPosts() 
   const postsX1=xUnsedPosts.postsX1
@@ -49,7 +49,9 @@ const MainBottom = ({xtCategories}:{xtCategories:PostXNode[]}) => {
      const postsX3=xUnsedPosts.postsX3
      const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
      setXnewsPosts(xtUnused)  
-  
+   const postsXnewsPosts= await fetchXPosts()  
+          const xtCategories= postsXnewsPosts?.categories?.edges 
+          setXPosts(xtCategories)
       }
       useEffect(()=>{
         postsEnd()
@@ -81,7 +83,7 @@ useEffect(() => {
     loadMorePosts();
   }
 }, [inView, hasNewPage, loadMorePosts]);  
- const posts_all = xtCategories?.filter((xy )=> (xy?.node.posts.edges)??[].length>0).map((dy)=> dy?.node.posts.edges).flat() 
+ const posts_all = topXnewsPosts?.filter((xy )=> (xy?.node.posts.edges)??[].length>0).map((dy)=> dy?.node.posts.edges).flat() 
   
   return (
     <div>       
