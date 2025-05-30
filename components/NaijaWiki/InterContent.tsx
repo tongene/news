@@ -75,7 +75,7 @@ const InterContent = ({end_ng_cursor,end_inter_cursor, setEnd_inter_cursor }:{en
 )}
  
 </div>
- {/* {console.log(end_inter_cursor === null &&end_ng_cursor === null)} */}
+ 
 {end_ng_cursor === null&& end_inter_cursor==='' ?
 <p ref={ref} className="p-4">Loading</p>: ''
  }

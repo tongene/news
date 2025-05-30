@@ -1,4 +1,5 @@
 import { postsOutline, sidePlusViews } from "@/app/page-data";
+import { InnerEdges } from "@/app/types";
 import Awards from "@/components/News/Awards"   
 import StructuredData from "@/components/StructuredData";
 import { createClient } from "@/utils/supabase/server";
@@ -71,7 +72,8 @@ export const metadata = {
 
 const AwardsPage = async() => {
  const awards_content = await awardsBlog() 
-  const sidebarItems=await sidePlusViews()       
+  const sidebarItems=await sidePlusViews()
+  const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)     
       const news_outline=await postsOutline()
       const naija_wiki =async ()=>{  
        const supabase =await createClient() 
@@ -121,7 +123,7 @@ const AwardsPage = async() => {
       <StructuredData schema={jsonLd} />
  <Awards
  awards_content={awards_content} 
- sidebarItems={sidebarItems}
+ sidebarItems={txPlus}
  news_outline={news_outline} 
  
  />  

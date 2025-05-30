@@ -3,9 +3,9 @@ import SideBar from "@/components/Side"
 import ArticleDetail from "@/components/News/ArticleDetail" 
 import type { Metadata, ResolvingMetadata } from 'next'
 import { postsOutline, sidePlusViews } from "@/app/page-data";
-import { createClient } from "@/utils/supabase/server";
 import { NewsArticle, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
+import { InnerEdges } from "@/app/types";
  
 const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
  
@@ -875,7 +875,8 @@ const slug =(await params).slug
  
  const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
  const next_top_news = await readNextContent([news_detail?.id, news_related ].flat())
- const sidebarItems=await sidePlusViews()       
+ const sidebarItems=await sidePlusViews()
+ const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)       
   const news_outline=await postsOutline()     
 
    const tags= news_detail?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
@@ -928,7 +929,7 @@ const slug =(await params).slug
       />  
        <div className="[&_h2]:dark:text-gray-900 dark:text-gray-900 h-max">
     <SideBar 
-       sidebarItems={sidebarItems}
+       sidebarItems={txPlus}
         news_outline={news_outline} 
         />   
       </div>

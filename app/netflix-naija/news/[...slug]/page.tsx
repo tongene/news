@@ -6,6 +6,7 @@ import { createClient } from "@/utils/supabase/server";
 import { getTop10 } from "@/app/naija-wiki/filmsdata";
 import StructuredData from "@/components/StructuredData";
 import { NewsArticle, WithContext } from "schema-dts";
+import { InnerEdges } from "@/app/types";
 const vids = async()=>{  
  
   const wprest = fetch('https://content.culturays.com/graphql',{
@@ -115,7 +116,8 @@ const content_videos = await vids();
  const netflix_related =news_details.netflixNewsGroup.netflixNewsRelated?.edges 
  const exitinginrelated= netflix_related?.map((fx:{cursor:string})=>fx.cursor)
  const next_on_netflix_naija = await nextNetflixNews([news_details.id, exitinginrelated].flat())
-  const sidebarItems=await sidePlusViews()       
+  const sidebarItems=await sidePlusViews()  
+   const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)    
       const news_outline=await postsOutline()
 
   //   const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
@@ -170,7 +172,7 @@ const content_videos = await vids();
     
         <div className="[&_.summary-side]:dark:text-gray-900 h-max dark:text-gray-900 [&_div]:lg:m-auto">
       <SideBar 
-      sidebarItems={sidebarItems}
+      sidebarItems={txPlus}
       news_outline={news_outline} /> 
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { postsOutline, sidePlusViews } from "@/app/page-data";
+import { InnerEdges } from "@/app/types";
 import Videos from "@/components/News/Videos";
 import StructuredData from "@/components/StructuredData";
 import { createClient } from "@/utils/supabase/server";
@@ -90,7 +91,8 @@ export const metadata = {
 }; 
 const VideosPage = async () => {
 const content_videos = await vids(); 
-  const sidebarItems=await sidePlusViews()       
+  const sidebarItems=await sidePlusViews()
+    const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)  
          const news_outline=await postsOutline()
     //      const naija_wiki =async ()=>{  
     //       const supabase =await createClient() 
@@ -142,7 +144,7 @@ const content_videos = await vids();
     <StructuredData schema={jsonLd} />
 <Videos
   content_videos={content_videos}
-  sidebarItems={sidebarItems}
+  sidebarItems={txPlus}
  news_outline={news_outline} 
   />  
  

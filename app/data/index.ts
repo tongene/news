@@ -18,13 +18,20 @@ import { InnerEdges } from "../types";
           node {
         name
         slug
+        posts{
+        edges{
+       cursor
+        }
+        }
          children {
+            
          edges {
-          cursor      
+          cursor
+              
           node {
           name
           slug
-         posts(first:6) {
+         posts(first:5) {
         pageInfo{
         endCursor
       startCursor
@@ -159,94 +166,11 @@ import { InnerEdges } from "../types";
      return wprest
   }  
 
-  export async function postNextCategories (){ 
-    const post_data = (await postCategories()??[]) 
-    const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
-  
-    const postCategory_cursor = postCategory_Children?.map((xy:InnerEdges)=> xy.node?.posts?.edges)?.flat()?.map((t)=> t?.cursor)??[] 
- const wprest = fetch('https://content.culturays.com/graphql',{
-           method: 'POST',
-           headers:{
-               'Content-Type':'application/json'
-           },
-           body: JSON.stringify({
-             query:`
-             query WPPOSTS { 
-             categories( where: {name: "Topics"}) {          
-         edges {
-          cursor      
-          node {
-        name
-        slug
-         children {
-         edges {
-          cursor      
-          node {
-          name
-          slug
-         posts(where: {notIn:[${postCategory_cursor.map(id => `"${id}"`).join(", ")}]} ) { 
-            nodes {
-              author {
-                node {
-                  name
-                  slug
-                }
-              }
-                 categories {
-                nodes {
-                  name
-                  slug
-                }
-              }
-                  tags {
-                nodes {
-                id
-                  name
-                  slug
-                }
-              }
-              
-                postsTags {
-              nodes {
-                name
-                slug
-              }
-            }
-              date
-              excerpt
-               slug
-              title
-              featuredImage {
-                node {
-                  altText
-                  sourceUrl
-                }
-              }
-             
-             
-            }
-      }
-        }}
-      }  }}
-  }
-       } ` 
-           
-           })
-           
-           }).then(response =>response.json()) 
-      .then(data => data.data)
-      .catch(error => console.error('Error:', error));
-          // const response = wprest?.data
-           return wprest
-  
-     } 
-   
-  export async function nextNewsPosts(){
-    const latestPosts=await newsByLatest() 
-    const postX = latestPosts.resp?.categories?.nodes.map((xy:{posts:{edges:any[] }})=> xy.posts.edges).flat().map((vx:any )=> vx.cursor)
-    const postsXY = latestPosts?.resp2Post?.map((xy:{posts:{edges:any[] }})=> xy.posts.edges).flat().map((vx:any)=> vx.cursor) 
-   const postsXcursors= postsXY?.concat(postX) 
-
+ 
+ 
+  export async function nextNewsPosts(){ 
+    const latestPosts=await newsByLatest()  
+  const endX= latestPosts?.resp2Post?.map((xy:{posts:{ pageInfo:{endCursor:string}}})=> xy.posts.pageInfo.endCursor)  
   const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{
@@ -254,15 +178,22 @@ import { InnerEdges } from "../types";
       },
       body: JSON.stringify({
         query:`
-        query WPPOSTS($notIn:[ID]) { 
+        query WPPOSTS($after:String) { 
        categories(where:{name: "News"}){          
        edges {
         cursor      
         node {
       name
       slug
-       posts(where:{notIn:$notIn}, first:12 ){ 
-          nodes {
+       posts( after:$after,first:8){ 
+            pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+       edges{
+       cursor
+          node {
             author {
               node {
                 name
@@ -298,20 +229,20 @@ import { InnerEdges } from "../types";
               }
             }
            
-           
+      }
           }
         } 
     }
   }
 }
   } `,variables:{
-    notIn:postsXcursors
+    after:endX[0]
   }
       
       })
       
       }).then(response =>response.json())
-      .then(data => data.data)
+      .then(data =>  data.data )
       .catch(error => console.error('Error:', error)); 
       return wprest
   

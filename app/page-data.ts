@@ -218,7 +218,7 @@ export const newsByLatest=async()=>{
         .then((data)=>data.data.categories.nodes)
         .catch((error) => console.error('Error:', error));
 
-const resp =await wprest ??[]
+const resp =await wprest ??[] 
 const resp1Live =await wprestLive 
 const resp2Post =await wprestPost 
 return {resp, resp1Live, resp2Post}
@@ -227,7 +227,7 @@ return {resp, resp1Live, resp2Post}
   export const newsViews=async()=>{
     const latestPosts=await newsByLatest() 
     const postX = latestPosts?.resp?.categories?.nodes.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts?.pageInfo?.endCursor).flat()
-
+ 
      const wprest = fetch('https://content.culturays.com/graphql',{     
         method: 'POST',
         headers:{
@@ -303,7 +303,7 @@ return {resp, resp1Live, resp2Post}
   }
   
   export async function sidePlusViews(){
-    const latestPosts=await newsViews()  
+    const latestPosts=await newsViews()
      const wprest = fetch('https://content.culturays.com/graphql', { 
         method: 'POST',
         headers:{
@@ -312,7 +312,7 @@ return {resp, resp1Live, resp2Post}
         body: JSON.stringify({
           query:`
           query WPPOSTS {                  
-             posts(first:5 ,after:"${latestPosts.pageInfo.endCursor}", where: {categoryName: "Latest"}) {
+             posts(first:4 ,after:"${latestPosts.pageInfo.endCursor}", where: {categoryName: "Latest"}) {
                 pageInfo {
               startCursor
               endCursor
@@ -370,7 +370,7 @@ return {resp, resp1Live, resp2Post}
         })
         
         }).then(response => response.json())
-        .then(data =>  data.data?.posts?.edges) 
+        .then(data =>  data.data) 
         .catch(error => console.error('Error:', error)); 
       // const response = wprest?.data?.posts?.edges
        

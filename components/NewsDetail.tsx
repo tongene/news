@@ -187,17 +187,17 @@ return html2pdfRef.current().set(opt).from(element).save();
   <div key={index + ' ' + Math.random()}>
  
      <div>
-        <div dangerouslySetInnerHTML={{__html:line}}className="py-2 my-1 text-lg leading-9 [&_figure>figcaption]:italic [&_figure>figcaption]:py-2 [&_figure>figcaption]:text-sm  [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800 [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-3xl [&_h3]:font-bold [&_h2]:border-b [&_h2]:border-b-4"/>
+        <div dangerouslySetInnerHTML={{__html:line}}className="py-2 my-1 text-xl leading-9 [&_figure>figcaption]:italic [&_figure>figcaption]:py-2 [&_figure>figcaption]:text-sm  [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800 [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-3xl [&_h3]:font-bold [&_h2]:border-b [&_h2]:border-b-4"/>
         {index===0&&     
-     <div className='bg-white w-11/12 lg:w-4/5'>
+     <div className='bg-white w-11/12 '>
       {post_related?.slice(0,2).map((ex)=> 
-       <div key={ex.node.title + ' ' + Math.random()} className=" py-4 first:border-b border px-3"> 
-       <div className="sm:flex justify-center"> 
-       <div className="px-1 sm:w-4/5">
-       <Link href={`/news/topic/${ex.node.slug}`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis  text-orange-600 hover:text-red-300 text-lg py-1 font-bold">{ex.node.title} </h2></Link>
+       <div key={ex.node.title + ' ' + Math.random()} className=" py-4 first:border-b border px-3 lg:px-0"> 
+       <div className="md:flex lg:block justify-center"> 
+       <div className="px-1 md:w-4/5 m-auto">
+       <Link href={`/news/topic/${ex.node.slug}`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-lg py-1 font-bold">{ex.node.title} </h2></Link>
        </div>
        
-     <div className="px-4 py-2 sm:w-2/3 sm:px-0 sm:m-0 m-auto"> 
+     <div className="px-2 md:w-2/3 lg:w-4/5 md:px-0 md:m-0 lg:m-auto m-auto"> 
      <Image 
      src={ex.node.featuredImage?.node.sourceUrl}
      width={1200}
@@ -207,7 +207,7 @@ return html2pdfRef.current().set(opt).from(element).save();
       </div> 
      
        </div>
-        <Link href={`/news/topic/${ex.node.slug}`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
+        <Link href={`/news/topic/${ex.node.slug}`}><button className="m-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
    
         </div>  
        )} 
@@ -224,17 +224,17 @@ return html2pdfRef.current().set(opt).from(element).save();
   {post.content.split('\n').filter((xy)=> xy !=='').slice(post.content.split('\n').length/10).map((line, index) =>(
   <div key={index + ' ' + Math.random()}>  
    <div>
-        <div dangerouslySetInnerHTML={{__html:line}} className="py-2 my-1 text-lg leading-9 [&_figure>figcaption]:italic [&_figure>figcaption]:py-2 [&_figure>figcaption]:text-sm  [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800 [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-3xl [&_h3]:font-bold [&_h2]:border-b [&_h2]:border-b-4"/>
+        <div dangerouslySetInnerHTML={{__html:line}} className="py-2 my-1 text-xl leading-9 [&_figure>figcaption]:italic [&_figure>figcaption]:py-2 [&_figure>figcaption]:text-sm  [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800 [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-3xl [&_h3]:font-bold [&_h2]:border-b [&_h2]:border-b-4"/>
         {index===3&&     
      <div className='bg-white w-11/12 m-auto lg:w-4/5'>
       {post_related?.slice(2).map((ex)=> 
-       <div key={ex.node.title + ' ' + Math.random()} className=" py-4 first:border-b border px-3"> 
-       <div className="sm:flex justify-center"> 
-       <div className="px-1 sm:w-4/5">
-       <Link href={`/news/topic/${ex.node.slug}`}><h2 className="text-orange-600 hover:text-red-300 py-1 font-bold">{ex.node.title} </h2></Link>
+       <div key={ex.node.title + ' ' + Math.random()} className=" py-4 first:border-b border px-3 lg:px-0"> 
+       <div className="md:flex lg:block justify-center"> 
+       <div className="px-1 md:w-4/5 m-auto">
+       <Link href={`/news/topic/${ex.node.slug}`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-lg py-1 font-bold">{ex.node.title} </h2></Link>
        </div>
        
-     <div className="px-4 py-2 sm:w-2/3 sm:px-0 sm:m-0 m-auto"> 
+     <div className="px-2 md:w-2/3 lg:w-4/5 md:px-0 md:m-0 lg:m-auto m-auto"> 
      <Image 
      src={ex.node.featuredImage?.node.sourceUrl}
      width={1200}
@@ -244,8 +244,9 @@ return html2pdfRef.current().set(opt).from(element).save();
       </div> 
      
        </div>
-        <Link href={`/news/topic/${ex.node.slug}`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
-        </div>  
+        <Link href={`/news/topic/${ex.node.slug}`}><button className="m-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
+   
+        </div>   
        )} 
       </div>
             }

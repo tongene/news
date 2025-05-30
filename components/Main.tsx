@@ -12,7 +12,7 @@ import SideBar from './Side'
 import { sidePlusViews } from '@/app/page-data'; 
 import MainPosts from './MainPosts';
 
-const Main = ({top_PostsData, news_outline }:{top_PostsData:InnerEdges[],  news_outline:SideNode[]}) => { 
+const Main = ({top_PostsData, news_outline, posts_notIn_newsPosts, xtCategories }:{top_PostsData:InnerEdges[],  news_outline:SideNode[], posts_notIn_newsPosts:PostXNode, xtCategories:PostXNode[] }) => { 
 const [activeSet, setActiveSet]=useState(true)
 const [actIdx ,setActIdx]=useState(-1)
 const [categoryPost,setCategoryPost]=useState<InnerEdges[]>([])
@@ -23,13 +23,12 @@ const [sidebarItems, setSidebarxItems]=useState<Cursors[]>([])
 // const [top_Last_categories, setLast_categories]=useState([])   
 const rmMain =top_PostsData.map((xy)=> xy.cursor)
 const x_wiki =async ()=>{
-  const sidebarxItems= await sidePlusViews()
-  //console.log(sidebarxItems)
-  setSidebarxItems(sidebarxItems)
+  const sidebarxItems= await sidePlusViews() 
+  const txPlus=sidebarxItems.posts?.edges.map((dy:InnerEdges)=>dy.node )
+  setSidebarxItems(txPlus)
+  
   const post_data = await postCategories()
-  //const posts_notIn_newsPosts= await nextNewsPosts() 
-//const xtCategories= posts_notIn_newsPosts?.categories?.edges
-//setPosts_notIn_newsPosts(xtCategories) 
+
 const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
 setTopPostsCa(postCategory_Children ) 
  
@@ -39,7 +38,6 @@ return {}
         x_wiki()
         //dep top_PostsData
       },[])
-    
 useEffect(()=>{
 //setCategoryPost(top_PostsData)  
 const currentPosts= top_PostsCa?.flat()?.filter((ex)=> ex?.node?.name=== categoryName)?.map((xy)=> xy?.node?.posts).map((ex)=> ex?.edges as InnerEdges).flat()
@@ -64,7 +62,7 @@ setCategoryPost(currentPosts)
   
     }; 
      
- 
+
   return ( 
     <section className='clear-left'> 
     <div className="lg:flex justify-center sm:px-11 px-4 m-auto" style={{maxWidth:'1700px'}}> 
@@ -205,7 +203,8 @@ fill
 
 </div>   
  <hr className='h-1 w-4/5 m-auto my-4'/>
-   <MainPosts  
+   <MainPosts
+   posts_notIn_newsPosts={posts_notIn_newsPosts}
  /> 
  
 </div>  
@@ -216,6 +215,7 @@ fill
      />  
   </div> </div>
     <MainBottom
+    xtCategories={xtCategories}
    />   
    </section>
   )

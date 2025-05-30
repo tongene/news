@@ -1,6 +1,8 @@
  
-import { PostsNotInPost } from "./types"; 
-//
+import { nextNewsPosts, postCategories } from "./data";
+import { sidePlusViews } from "./page-data";
+import { InnerEdges } from "./types";
+ 
   export const fetchXPosts = async () => { 
 const wp_naija = fetch('https://content.culturays.com/graphql',{
       method: 'POST', 
@@ -11,10 +13,10 @@ const wp_naija = fetch('https://content.culturays.com/graphql',{
       body: JSON.stringify({
         query:`
         query WPPOSTS  {
-          categories(where: {name:["journal", "nigeria", "africa", "world"]}) {
+          categories(where: {name:["africa", "world"]}) {
           edges{
           node{                
-         posts  {
+         posts(first:21){
           pageInfo {
               startCursor
               endCursor
@@ -28,8 +30,7 @@ const wp_naija = fetch('https://content.culturays.com/graphql',{
            date
            content
            id
-             
-                postsTags {
+           postsTags {
               nodes {
                 name
                 slug
@@ -99,19 +100,15 @@ const wp_naija = fetch('https://content.culturays.com/graphql',{
       })
       
       }).then(response => response.json())       
-      .then(data => data.data  )
+      .then(data => data.data)
       .catch(error => console.error('Error:', error));     
       //const res_naija = wp_naija?.data 
       return wp_naija
    
   }
  
-  export const fetchNewPosts = async (first:number) => { 
-      const posts_notIn_newsPosts= await fetchXPosts()  
-          const xtCategories= posts_notIn_newsPosts?.categories?.edges.flat() 
-const post_end_cursor = xtCategories?.map((xy:{node:{posts:{edges:[]}}} )=> xy?.node.posts.edges).flat().map((dy:{cursor:string})=> dy.cursor)  
- 
-//
+  export const fetchNewPosts = async (afterA:string) => { 
+     
 const wp_naija = fetch('https://content.culturays.com/graphql',{
       method: 'POST', 
       headers:{
@@ -119,10 +116,8 @@ const wp_naija = fetch('https://content.culturays.com/graphql',{
       },
       body: JSON.stringify({
         query:`
-        query WPPOSTS($first:Int){
-         categories(where: {name:["journal", "nigeria", "africa", "world"]})  {
-          nodes{                
-         posts (first:$first, where: {notIn:[${post_end_cursor.map((id:string) => `"${id}"`).join(", ")}]}) {
+        query WPPOSTS($after:String ){
+                posts(where: { categoryName: "Nigeria" }, first:1, after:$after){
           pageInfo {
               startCursor
               endCursor
@@ -199,18 +194,15 @@ const wp_naija = fetch('https://content.culturays.com/graphql',{
             }
           }
         }
-      }  }    
+      }  
+         }     
          
-         
-  }
-    }    
-         
-       `, variables:{first}  
+       `, variables:{after:afterA}  
       
       })
       
       }).then(response => response.json())      
-      .then(data => data.data )
+      .then(data =>  data.data)  
       .catch(error => console.error('Error:', error));     
       //const res_naija =await wp_naija?.data 
       return wp_naija
@@ -218,10 +210,7 @@ const wp_naija = fetch('https://content.culturays.com/graphql',{
   }
  
 export async function postLastAndScrolledCategories (){
-    const posts_notIn_newsPosts= await fetchXPosts()  
-        const xtCategories= posts_notIn_newsPosts?.categories?.edges
-         const last_two_categories = xtCategories?.map((xt:PostsNotInPost)=>xt.cursor).concat(["YXJyYXljb25uZWN0aW9uOjUwMQ=="])
-       
+     
      const wprest = fetch('https://content.culturays.com/graphql',{
                method: 'POST',
                headers:{
@@ -230,7 +219,7 @@ export async function postLastAndScrolledCategories (){
                body: JSON.stringify({
                  query:`
                  query WPPOSTS( $notIn:[ID]) { 
-                categories(last:1, where:{name:["world", "journal", "nigeria", "africa"], exclude: "${last_two_categories}"}) {
+                categories(last:1, where:{name:["world", "journal", "nigeria", "africa"]}) {
                 edges {
                 cursor
                  node {
@@ -328,5 +317,218 @@ export async function postLastAndScrolledCategories (){
                return wprest 
        
          }
-    
-    
+     export async function nextXXPosts(){
+          const latestPosts=await sidePlusViews()
+        const news_notIn_newsPosts= await nextNewsPosts()   
+   const endXNews = news_notIn_newsPosts.categories.edges.map((dy :InnerEdges[])=> dy ).flat().map((xy :{node:{posts:{pageInfo:{endCursor:string}}}})=> xy?.node?.posts.pageInfo.endCursor).flat()  
+
+   const endXCate = await postCategories()   
+     const postCategory_Children =(endXCate?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
+ 
+     const postCategory_cursor = postCategory_Children.map((dx:InnerEdges)=>dx.node.posts.edges).flat().map((xy:InnerEdges)=> xy.cursor)      
+ 
+      const wprest = fetch('https://content.culturays.com/graphql',{
+      method: 'POST',
+      headers:{
+          'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query:`
+        query WPPOSTS {       
+       posts( after:"${endXNews[0]}" , where:{categoryName: "News"}){ 
+            pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+       edges{
+       cursor
+          node {
+           contentTypeName
+            author {
+              node {
+                name
+                slug
+              }
+            }
+               categories {
+              nodes {
+                name
+                slug
+              }
+            }
+             postsTags {
+              nodes {
+                name
+                slug
+              }
+            }  tags {
+              nodes { 
+              id
+                name
+                slug
+              }
+            }
+            date
+            excerpt
+             slug
+            title
+            featuredImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+           
+      }
+          }
+        } 
+    }
+  ` 
+      
+      })
+      
+      }).then(response =>response.json())
+      .then(data => data.data)
+      .catch(error => console.error('Error:', error));
+       
+
+  const wpXXrest = fetch('https://content.culturays.com/graphql',{
+      method: 'POST',
+      headers:{
+          'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query:`
+        query WPPOSTS {       
+       posts( after:"${latestPosts.posts.pageInfo.endCursor}" , where:{categoryName: "Latest"}){ 
+            pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+       edges{
+       cursor
+          node {
+           contentTypeName
+            author {
+              node {
+                name
+                slug
+              }
+            }
+               categories {
+              nodes {
+                name
+                slug
+              }
+            }
+             postsTags {
+              nodes {
+                name
+                slug
+              }
+            }  tags {
+              nodes { 
+              id
+                name
+                slug
+              }
+            }
+            date
+            excerpt
+             slug
+            title
+            featuredImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+           
+      }
+          }
+        } 
+    }
+  ` 
+      
+      })
+      
+      }).then(response =>response.json())
+      .then(data =>  data.data  )
+      .catch(error => console.error('Error:', error));
+
+  const wpRestXX = fetch('https://content.culturays.com/graphql',{
+      method: 'POST',
+      headers:{
+          'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query:`
+        query WPPOSTS($notIn:[ID]) {       
+       posts( where:{categoryName: "Topics", notIn:$notIn }){ 
+            pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+       edges{
+       cursor
+          node {
+           contentTypeName
+            author {
+              node {
+                name
+                slug
+              }
+            }
+               categories {
+              nodes {
+                name
+                slug
+              }
+            }
+             postsTags {
+              nodes {
+                name
+                slug
+              }
+            }  tags {
+              nodes { 
+              id
+                name
+                slug
+              }
+            }
+            date
+            excerpt
+             slug
+            title
+            featuredImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+           
+      }
+          }
+        } 
+    }
+  ` , variables:{
+notIn: postCategory_cursor 
+
+  }
+      
+      })
+      
+      }).then(response =>response.json())
+      .then(data => data.data)
+      .catch(error => console.error('Error:', error)); 
+ const postsX1= await wprest 
+    const postsX2= await wpRestXX 
+     const postsX3= await wpXXrest 
+ 
+      return {postsX1, postsX2, postsX3}  
+        
+     } 

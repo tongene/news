@@ -5,6 +5,7 @@ import Link from "next/link"
 import { dateFormatter } from "@/utils/dateformat"
 
 import MoviesWidget from "./MoviesWidget"
+import { Cursors } from "@/app/types"
 
 type SideNode ={
   node:{
@@ -26,27 +27,7 @@ type SideNode ={
    }
 }
 
-type Cursors={
-  cursor: string 
-  node:{
-    title:string
-    slug:string
-    date:string
-    featuredImage:{
-      node:{
-        sourceUrl:string
-        caption:string
-        altText:string
-       }
-     }
-     author:{
-      node:{
-        name:string
-        slug:string 
-       }
-     }
-  }
-}
+ 
 
 const SideBar = ({sidebarItems, news_outline }:{sidebarItems:Cursors[], news_outline:SideNode[]}) => { 
  
@@ -86,23 +67,23 @@ alt={news_outline[0]?.featuredImage?.node.altText}/>
 
  <div className='m-auto max-w-md lg:m-0'>
  {sidebarItems?.slice(1).map((ex)=>
-<div className='shadow flex my-2' key={ex.node.title + ' ' + Math.random()}>
+<div className='shadow flex my-2' key={ex.title + ' ' + Math.random()}>
  <div className='w-2/53 lg:w-1/2 mx-1 py-3'> 
  <Image
  className='h-24 w-48'
- src={ex.node?.featuredImage?.node.sourceUrl} 
+ src={ex?.featuredImage?.node.sourceUrl} 
  width={1200} 
  height={675} 
- alt={ex.node?.featuredImage?.node.altText}/>  
+ alt={ex?.featuredImage?.node.altText}/>  
  
  </div> 
  <div className='w-4/5 mx-2 py-3'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/topic/${ex.node.slug}`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node?.title}</h2></Link>
+ <Link href={`/news/topic/${ex.slug}`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex?.title}</h2></Link>
 </div>
 <div className='flex text-gray-400 justify-between items-center leading-8 '> 
-<Link href={`/creator/${ex?.node.author.node.slug}`}><p >{ ex?.node.author.node.name }</p> </Link>
- <p>{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p>
+<Link href={`/creator/${ex?.author.node.slug}`}><p >{ ex?.author.node.name }</p> </Link>
+ <p>{ dateFormatter?.format(Date.parse(ex?.date)) }</p>
 </div>
 </div>
 </div>
@@ -112,22 +93,21 @@ alt={news_outline[0]?.featuredImage?.node.altText}/>
  
 <div className='max-w-sm lg:max-w-md py-6 m-auto border-b border-t border-yellow-600 border-b-4 border-t-4 lg:m-0 xl:max-w-sm'> 
 {sidebarItems?.slice(0, 1).map((ex, i)=>
-<div key={ex.node.title + ' ' + Math.random()}> 
+<div key={ex.title + ' ' + Math.random()}> 
 <div> 
  <Image
  className='h-56 lg:h-64 xl:h-56'
- src={ex.node?.featuredImage?.node.sourceUrl} 
+ src={ex?.featuredImage?.node.sourceUrl} 
  width={1200} 
  height={675} 
- alt={ex.node?.featuredImage?.node.altText}/> 
+ alt={ex?.featuredImage?.node.altText}/> 
  
  </div> 
-<Link href={`/news/topic/${ex.node.slug}`}><h2 className='text-2xl font-bold py-4 hover:text-gray-400 border-t my-2'>{ex.node.title}</h2></Link>
+<Link href={`/news/topic/${ex.slug}`}><h2 className='text-2xl font-bold py-4 hover:text-gray-400 border-t my-2'>{ex.title}</h2></Link>
 </div>
 )}
 
-</div> 
- 
+</div>  
 
 </div> 
   )

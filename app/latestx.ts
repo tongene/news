@@ -12,7 +12,7 @@ import { sidePanelNewsItems } from "./sidex";
       body: JSON.stringify({
         query:`
         query WPPOSTS {                  
-           posts(where: {categoryName: "Opinions" },after:"${postX[0]}") {
+           posts(where: {categoryName: "Opinions" }, after:"${postX[0]}") {
               pageInfo {
             startCursor
             endCursor

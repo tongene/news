@@ -1637,7 +1637,8 @@ parent_id: string
     
   }
 
-  export type LatestProps={  
+  export type LatestProps={ 
+    id:string
       slug:string,
     title:string,
     excerpt:string
@@ -1750,6 +1751,7 @@ export type EvObjType= {
    titleAObj:any ; 
 }
    export interface InnerEdges{
+  
     cursor:string
     node:{
       name:string,
@@ -1758,7 +1760,14 @@ export type EvObjType= {
       date:string,
       cursor:string,
       title:string
+      tags:{
+        nodes:{
+          slug:string,
+          name:string
+        }[]
+      }, 
       posts:{ 
+         nodes:InnerEdges[]
         edges: InnerEdges
       }
       author:{
@@ -1889,8 +1898,61 @@ edges:[]
    }
    }
    export interface PostXNode {
-    cursor:string
+   id:string
+       excerpt:string,
+      date:string,
+      cursor:string,
+      title:string
+       slug:string,
+      author:{
+        node:{
+          slug:string,
+          name:string
+        }
+      },
+      tags:{
+        nodes:{
+          slug:string,
+          name:string
+        }[]
+      },
+  featuredImage:{
+    node:{
+      sourceUrl:string,
+      altText:string
+    }
+  }
     categories:{
+      edges:{
+ node:{
+      name:string,
+      slug:string,
+      excerpt:string,
+      date:string,
+      cursor:string,
+      title:string
+      posts:{ 
+        nodes:[]
+        edges: InnerEdges
+        pageInfo:{ 
+          endCursor:string
+        }
+      }
+      author:{
+        node:{
+          slug:string,
+          name:string
+        }
+      },
+   
+  featuredImage:{
+    node:{
+      sourceUrl:string,
+      altText:string
+    }
+  }
+    }
+      }[],
       nodes:[{
         posts: {
            pageInfo:{
@@ -1922,6 +1984,7 @@ edges:[]
       } 
     }[]
     node:{
+  
       name:string,
       slug:string,
       excerpt:string,
@@ -2155,25 +2218,63 @@ export type CineProps={
        }
      }
   }
-  export type Cursors={
-    cursor: string 
-    node:{
-      title:string
-      slug:string
-      date:string
-      featuredImage:{
-        node:{
-          sourceUrl:string
-          caption:string
-          altText:string
-         }
+
+ export type Cursors={
+  cursor: string 
+    title:string
+    slug:string
+    date:string
+    featuredImage:{
+      node:{
+        sourceUrl:string
+        caption:string
+        altText:string
        }
-       author:{
-        node:{
-          name:string
-          slug:string 
-         }
+     }
+     author:{
+      node:{
+        name:string
+        slug:string 
        }
-    }
+     }
+  node:{
+    title:string
+    slug:string
+    date:string
+    featuredImage:{
+      node:{
+        sourceUrl:string
+        caption:string
+        altText:string
+       }
+     }
+     author:{
+      node:{
+        name:string
+        slug:string 
+       }
+     }
   }
+}
+  // export type Cursors={
+  //   cursor: string 
+  //   node:{
+  //     title:string
+  //     slug:string
+  //     date:string
+  //     featuredImage:{
+  //       node:{
+  //         sourceUrl:string
+  //         caption:string
+  //         altText:string
+  //        }
+  //      }
+  //      author:{
+  //       node:{
+  //         name:string
+  //         slug:string 
+  //        }
+  //      }
+  //   }
+  // }
   

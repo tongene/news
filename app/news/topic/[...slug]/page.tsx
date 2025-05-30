@@ -1,5 +1,6 @@
  
 import { postsOutline, sidePlusViews } from "@/app/page-data";
+import { InnerEdges } from "@/app/types";
 import NewsDetail from "@/components/NewsDetail" 
 import StructuredData from "@/components/StructuredData";
 import { createClient } from "@/utils/supabase/server";
@@ -361,7 +362,8 @@ const {slug} =await params
   const news_related = news_detail?.postnewsgroup.relatedPosts?.edges
 const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
  const next_naija_news = await readNextContent([news_detail.id,exitinginrelated].flat())
- const sidebarItems=await sidePlusViews()       
+ const sidebarItems=await sidePlusViews() 
+  const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)          
      const news_outline=await postsOutline()
 //      const naija_wiki =async ()=>{  
 //       const supabase =await createClient() 
@@ -398,7 +400,7 @@ const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
      "@id": news_detail?.slug,
    },
    url:news_detail?.slug,
-   image: news_detail?.featuredImage.node.sourceUrl ,
+   image: news_detail?.featuredImage?.node.sourceUrl ,
    publisher: {
      "@type": "Organization",
      name: "Christina Ngene",
@@ -418,7 +420,7 @@ const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
       <NewsDetail
       post={news_detail}
       next_naija_news={next_naija_news}
-      sidebarItems={sidebarItems}
+      sidebarItems={txPlus}
       news_outline={news_outline}  
       />  
     </div>

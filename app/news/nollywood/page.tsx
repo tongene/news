@@ -1,4 +1,5 @@
 import { postsOutline, sidePlusViews } from "@/app/page-data";
+import { InnerEdges } from "@/app/types";
 import Nollywood from "@/components/News/Nollywood";
 import StructuredData from "@/components/StructuredData";
 import { createClient } from "@/utils/supabase/server";
@@ -72,7 +73,8 @@ export const metadata = {
 
 const NollywoodPage =async () => {
  const nollywood_news = await nollywoodBlog()
- const sidebarItems=await sidePlusViews()       
+ const sidebarItems=await sidePlusViews() 
+ const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)          
        const news_outline=await postsOutline()
        const naija_wiki =async ()=>{  
         const supabase =await createClient() 
@@ -122,7 +124,7 @@ const NollywoodPage =async () => {
       <StructuredData schema={jsonLd} />
   <Nollywood
      nollywood_news={nollywood_news}
-     sidebarItems={sidebarItems}
+     sidebarItems={txPlus}
  news_outline={news_outline} 
  
   />  

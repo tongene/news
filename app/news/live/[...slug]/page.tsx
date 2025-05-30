@@ -7,6 +7,7 @@ import { postsOutline, sidePlusViews } from "@/app/page-data"
 import { liveNewsFeed } from "../live"
 import { NewsArticle, WithContext } from "schema-dts"
 import StructuredData from "@/components/StructuredData"
+import { InnerEdges } from "@/app/types"
 const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
 
 type Props = {
@@ -47,7 +48,8 @@ const LiveNewsPage = async ({params}: Props) => {
 const slug =(await params).slug
  const news= await liveNewsFeed(slug[0])
 
-  const sidebarItems=await sidePlusViews()       
+  const sidebarItems=await sidePlusViews() 
+    const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)   
       const news_outline=await postsOutline()
 //       const naija_wiki =async ()=>{  
 //        const supabase =await createClient() 
@@ -109,8 +111,8 @@ const slug =(await params).slug
       /></Suspense> 
        <div className="[&_.summary-side]:dark:text-gray-900 h-max dark:text-gray-900">
       <SideBar 
-      sidebarItems={sidebarItems}
- news_outline={news_outline} /> 
+      sidebarItems={txPlus}
+      news_outline={news_outline} /> 
       </div>
       </div>
  </div>}

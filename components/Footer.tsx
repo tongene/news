@@ -16,7 +16,7 @@ height={50}
 src={'/assets/images/culturays-no-bg.png'}  
 alt='Culturays Logo Image'/> 
 <h2 className="cursor-pointer text-4xl my-1 font-bold hover:text-gray-500">  
-Culturays</h2></Link>
+Urban Naija News</h2></Link>
 <ul> 
 <li className="text list-disc p-3 mx-11 hover:text-gray-500 "><Link href='/news'prefetch={false}aria-label="News">News</Link></li>
 <li className="text list-disc p-3 mx-11 hover:text-gray-500"><Link href='/forum'prefetch={false}>Forum</Link></li>  

@@ -1,7 +1,7 @@
 "use client"
   
-import { fetchNewPosts, fetchXPosts } from '@/app/page-bottom'
-import { InnerEdges, LatestProps, PostsNotInPost } from '@/app/types'
+import { fetchNewPosts, nextXXPosts } from '@/app/page-bottom'
+import { LatestProps, PostXNode } from '@/app/types'
 import { dateFormatter } from '@/utils/dateformat'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -36,74 +36,53 @@ nodes:{
 }[]
 }
 
-const MainBottom = () => {
+const MainBottom = ({xtCategories}:{xtCategories:PostXNode[]}) => {
     const [scrolledContent, setScrolledContent]=useState<LatestProps[]>([])
-    const {ref, inView } =useInView(); 
-    const [debouncedValue, setDebouncedValue] = useState('')    
-    const [top_Posts_notIn_newsPosts, setPosts_notIn_newsPosts] = useState<PostsNotInPost[]>([])
-    
-  const post_end_cursor=top_Posts_notIn_newsPosts[0]?.node.posts.pageInfo.endCursor
- const [end_post_cursor, setEnd_post_cursor] = useState(post_end_cursor); 
- 
-    const postsEnd =async()=>{   
-       const posts_notIn_newsPosts= await fetchXPosts()  
-      const xtCategories= posts_notIn_newsPosts?.categories?.edges 
-      setPosts_notIn_newsPosts(xtCategories)
-     
+    const {ref, inView } =useInView();     
+    const [top_x_Posts, setXnewsPosts] = useState<PostXNode[]>([]) 
+    const [debouncedValue, setDebouncedValue] = useState<string>('') 
+
+    const postsEnd =async()=>{  
+   const xUnsedPosts= await nextXXPosts() 
+  const postsX1=xUnsedPosts.postsX1
+     const postsX2=xUnsedPosts.postsX2
+     const postsX3=xUnsedPosts.postsX3
+     const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
+     setXnewsPosts(xtUnused)  
+  
       }
       useEffect(()=>{
         postsEnd()
-     
-     },[]) 
-    
-
-    const loadMorePosts = useCallback(async () => {    
-        const apiP = await fetchNewPosts(2);
-           const post_res=apiP?.categories?.nodes.map((xy:{ posts:{edges: InnerEdges[]}})=> xy.posts) 
-           const post_content = post_res?.map((ex:{ nodes: InnerEdges[]}) => ex.nodes).map((xy:any)=> xy)
-            .flat();
-           if (post_content?.length>0) {
-             setScrolledContent(prevContent => [...prevContent, ...post_content]);
-           } 
-  
-          const hasMorePosts = apiP?.categories?.nodes.map((xy:{ posts:{edges: InnerEdges[],pageInfo:{ 
-            endCursor:string
-            hasNextPage:boolean
-          }}})=> xy.posts.pageInfo.hasNextPage)
-          
-          if (hasMorePosts && end_post_cursor !== null) { 
-             const nextCursor =apiP?.categories?.nodes.map((xy:{ posts:{edges: InnerEdges[],pageInfo:{ 
-              endCursor:string
-              hasNextPage:boolean
-            }}})=> xy.posts.pageInfo.endCursor )
-            
-
-             setEnd_post_cursor(nextCursor[0]); 
-           } else {
-             setEnd_post_cursor('');
-           } 
-
-          if( scrolledContent.length===20 )setEnd_post_cursor('');
-          
-         }, [debouncedValue, inView ]);  
-          
-         useEffect(() => { 
-           if (inView&& debouncedValue !== null ) {
-             loadMorePosts(); 
-         }
-   }, [loadMorePosts]);
-   
-    useEffect(() => {
-      const handler = setTimeout(() => {
-      setDebouncedValue(end_post_cursor)
-      }, 500)
-  
-      return () => {
-        clearTimeout(handler)
-      }
-    }, [end_post_cursor , 500])
-    const posts_all = top_Posts_notIn_newsPosts?.filter((xy )=> xy?.node.posts.edges.length>0).map((dy)=> dy?.node.posts.edges).flat()
  
+     },[])
+const [hasNewPage, setHasNewPage] = useState(true);
+const loadMorePosts = useCallback(async () => {
+ 
+  const apiP = await fetchNewPosts(debouncedValue); 
+  const naijaNew_content = apiP.posts.nodes;
+  const hasMorePosts = apiP.posts.pageInfo.hasNextPage;
+ 
+   setScrolledContent(prev => {
+      const existingIds = new Set(prev.map(item => item.id));
+      const uniqueNew = naijaNew_content.filter((item:PostXNode) => !existingIds.has(item.id));
+      return [...prev, ...uniqueNew];
+    });
+ 
+  setHasNewPage(hasMorePosts);
+  if (hasMorePosts) {
+    setDebouncedValue(apiP.posts.pageInfo.endCursor);
+  } else {
+    setDebouncedValue('');
+  }
+}, [debouncedValue, hasNewPage]);  
+
+useEffect(() => {
+  if (hasNewPage) {
+    loadMorePosts();
+  }
+}, [inView, hasNewPage, loadMorePosts]);  
+ const posts_all = xtCategories?.filter((xy )=> (xy?.node.posts.edges)??[].length>0).map((dy)=> dy?.node.posts.edges).flat() 
+  
   return (
     <div>       
  <div className='xl:w-11/12 m-auto px-3'>
@@ -116,8 +95,7 @@ const MainBottom = () => {
 <p>Special Edition</p>
  <p>{new Date().toDateString()}</p>
  </div>
- 
-<div className='py-6'> 
+ <div className='py-6'> 
     <div className='grid grid-cols-1 lg:grid-cols-2 lg:justify-center justify-between gap-2 m-auto w-max'> 
       <div>
  { posts_all?.length>0&&posts_all.slice(0,1).map((xy, i)=> 
@@ -161,17 +139,17 @@ const MainBottom = () => {
 )} 
   <div className='m-auto max-w-lg lg:m-0 my-4'>
  { posts_all?.length>0&&posts_all.slice(1,3).map((ex)=>
-<div className='shadow flex w-full my-1' key={ex?.node.title + ' ' + Math.random()}>
+<div className='shadow flex my-1' key={ex?.node.title + ' ' + Math.random()}>
  <div className='w-44 m-1'> 
  <Image
- className='xs:h-24 h-11 lg:h-32'
+ className='xs:h-28 sm:h-32'
  src={ex?.node.featuredImage?.node.sourceUrl} 
  width={1200} 
  height={675} 
  alt={ex?.node.featuredImage?.node.altText}/>  
  
  </div> 
- <div className='w-4/5 mx-2'> 
+ <div className='w-44 xs:w-[200px] sm:w-[280px] mx-2'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
  <Link href={`/news/topic/${ex?.node.slug}`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
 </div>
@@ -193,14 +171,14 @@ const MainBottom = () => {
 <div className='shadow flex w-full my-1' key={ex.node.title + ' ' + Math.random()}>
   <div className='w-44 m-1'> 
  <Image
- className='xs:h-24 h-11 lg:h-32'
+ className='xs:h-24 lg:h-32'
  src={ex.node.featuredImage?.node.sourceUrl} 
  width={1200} 
  height={675} 
  alt={ex.node.featuredImage?.node.altText}/>  
  
  </div> 
- <div className='w-4/5 mx-2'> 
+ <div className='w-44  mx-2'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
  <Link href={`/news/topic/${ex.node.slug}`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
 </div>
@@ -219,7 +197,7 @@ const MainBottom = () => {
 <div className='shadow flex w-full my-1' key={ex.node.title + ' ' + Math.random()}>
  <div className='w-44 m-1'> 
  <Image
- className='xs:h-24 h-11 lg:h-32'
+ className='xs:h-24 lg:h-32'
  src={ex.node.featuredImage?.node.sourceUrl} 
  width={1200} 
  height={675} 
@@ -260,10 +238,10 @@ const MainBottom = () => {
 </div>
 <hr /> 
 </div> 
- </div>  
+ </div>   
 
 </div>
- 
+  
   <div className='m-auto py-5 w-full'>  
   <div className='flex border-b shadow justify-around items-center py-6'> 
 <h3 className='text-2xl font-bold w-max mx-4 px-2'>What&#39;s New</h3>
@@ -342,9 +320,9 @@ const MainBottom = () => {
 )}  
 </div>
 
-
+ 
 <div className='md:grid md:grid-cols-2 justify-center m-auto my-11 px-2 md:px-1 max-w-4xl lg:max-w-max' > 
- { posts_all?.length>0&&posts_all.slice(21,23).map((xy, i)=> 
+ { top_x_Posts?.length>0&&top_x_Posts.slice(0,2).map((xy, i)=> 
 <div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'550px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
@@ -369,7 +347,7 @@ const MainBottom = () => {
  
 <hr className='h-1 w-4/5 m-auto my-4'/>
  <div className='p-3 md:py-0 md:m-0 md:grid grid-cols-2 xl:grid justify-center gap-0 xl:max-w-5xl xl:m-auto' >
- { posts_all?.length>0&&posts_all.slice(23,27).map((ex)=>
+ { top_x_Posts?.length>0&&top_x_Posts.slice(2,6).map((ex)=>
 <div className='flex m-auto my-3' key={ex.node.title + ' ' + Math.random()}>
   <div className='w-44 mx-2 py-6'> 
   <Image
@@ -393,10 +371,9 @@ const MainBottom = () => {
 )} 
  </div> 
 </div> 
-  
-
-   <div className='flex flex-wrap justify-center py-6'>
-{ posts_all?.length>0&&posts_all.slice(27,30).map((ex,i)=>
+ 
+  <div className='flex flex-wrap justify-center py-6'>
+{ top_x_Posts?.length>0&&top_x_Posts.slice(6,9).map((ex,i)=>
 <div className='relative m-3' key={ex?.node.title + ' ' + Math.random()} >
   <div className='max-w-sm m-auto'> 
 
@@ -418,7 +395,7 @@ const MainBottom = () => {
   </div>
 )}
 
-</div> 
+</div>  
 
 <hr className='h-1 w-4/5 m-auto my-4'/>
  <div className='lg:flex lg:px-3 lg:m-auto justify-between' style={{maxWidth:'1450px'}}> 
@@ -485,11 +462,11 @@ const MainBottom = () => {
 </div>   
 </div>
   
-</div>  
-
-{end_post_cursor !== null ?
-<p ref={ref} className="p-4">Loading...</p>: ''
- } 
+</div> 
+ <div ref={ref} > 
+ {hasNewPage&&
+<p className="p-4">Loading...</p> 
+ } </div>
   </div>
   )
 }
