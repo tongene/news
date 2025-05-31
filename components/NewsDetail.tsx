@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ShareButtons from "./ShareButtons";
 import SideBar from "./Side";
-import { PostTypeProps, NextTypeProps, CineProps, Cursors, SideNode} from "@/app/types";
+import { PostTypeProps, NextTypeProps, Cursors, SideNode} from "@/app/types";
 import moment from "moment"; 
 
 import { useEffect, useRef, useState } from "react";
@@ -232,7 +232,7 @@ return html2pdfRef.current().set(opt).from(element).save();
        <div className="md:flex lg:block justify-center"> 
        <div className="px-1 md:w-4/5 m-auto">
        <Link href={`/news/topic/${ex.node.slug}`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-lg py-1 font-bold">{ex.node.title} </h2></Link>
-       </div>
+       </div> 
        
      <div className="px-2 md:w-2/3 lg:w-4/5 md:px-0 md:m-0 lg:m-auto m-auto"> 
      <Image 

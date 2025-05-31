@@ -49,7 +49,7 @@ const slug =(await params).slug
  const news= await liveNewsFeed(slug[0])
 
   const sidebarItems=await sidePlusViews() 
-    const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)   
+    const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)   
       const news_outline=await postsOutline()
 //       const naija_wiki =async ()=>{  
 //        const supabase =await createClient() 

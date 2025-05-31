@@ -117,7 +117,7 @@ const content_videos = await vids();
  const exitinginrelated= netflix_related?.map((fx:{cursor:string})=>fx.cursor)
  const next_on_netflix_naija = await nextNetflixNews([news_details.id, exitinginrelated].flat())
   const sidebarItems=await sidePlusViews()  
-   const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)    
+   const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)    
       const news_outline=await postsOutline()
 
   //   const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  

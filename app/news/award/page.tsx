@@ -73,7 +73,7 @@ export const metadata = {
 const AwardsPage = async() => {
  const awards_content = await awardsBlog() 
   const sidebarItems=await sidePlusViews()
-  const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)     
+  const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)     
       const news_outline=await postsOutline()
       const naija_wiki =async ()=>{  
        const supabase =await createClient() 

@@ -362,8 +362,8 @@ const {slug} =await params
   const news_related = news_detail?.postnewsgroup.relatedPosts?.edges
 const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
  const next_naija_news = await readNextContent([news_detail.id,exitinginrelated].flat())
- const sidebarItems=await sidePlusViews() 
-  const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)          
+ const sidebarItems=await sidePlusViews()  
+  const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)          
      const news_outline=await postsOutline()
 //      const naija_wiki =async ()=>{  
 //       const supabase =await createClient() 

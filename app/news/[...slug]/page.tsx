@@ -876,7 +876,7 @@ const slug =(await params).slug
  const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
  const next_top_news = await readNextContent([news_detail?.id, news_related ].flat())
  const sidebarItems=await sidePlusViews()
- const txPlus=sidebarItems.map((dy:InnerEdges)=>dy.node.posts?.edges)       
+ const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)       
   const news_outline=await postsOutline()     
 
    const tags= news_detail?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
