@@ -10,7 +10,7 @@ export default async function ForgotPassword(props: {
   const searchParams = await props.searchParams;
   return (
     <div className='mx-0 p-0 flex flex-col items-center justify-center w-full my-6'>
-      <form className="login_form w-96 flex flex-col gap-2.5 bg-gray-800 p-5 rounded tracking-wider"noValidate>
+      <form className="login_form w-96 flex flex-col gap-2.5 dark:bg-gray-800 bg-gray-300 p-5 rounded tracking-wider"noValidate>
         <div>
           <h1 className="text-2xl font-medium">Reset Password</h1>
           <p className="text-sm text-secondary-foreground">
