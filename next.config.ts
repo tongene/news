@@ -17,11 +17,51 @@ const nextConfig = {
   },
    async redirects() {
     return [
-      // {
-      //   source: '/news/articles',
-      //   destination: '/news',
-      //   permanent: true,
-      // },
+         {
+        source: '/world/news/:path*',
+        destination: '/',
+        permanent: true,
+      }, 
+       {
+        source: '/africa/news/:path*',
+        destination: '/',
+        permanent: true,
+      },
+       {
+        source: '/moviewikiafrica/wiki/:path*',
+        destination: '/naija-wiki/character/:path*',
+        permanent: true,
+      }, 
+      {
+        source: '/moviewikiafrica/video/:path*',
+        destination: '/news/videos/',
+        permanent: true,
+      },
+         {
+        source: '/nollywood/news/:path*',
+        destination: '/news/nollywood/',
+        permanent: true,
+      }, 
+       {
+        source: '/comingtonetflix/naija/:path*',
+        destination: '/netflix-naija/coming-to-netflix/',
+        permanent: true,
+      },
+        {
+        source: '/newonnetflix/naija/:path*',
+        destination: '/netflix-naija/new-on-netflix/',
+        permanent: true,
+      },  
+       {
+        source: '/comingtonetflix',
+        destination: '/netflix-naija/coming-to-netflix/',
+        permanent: true,
+      },
+      {
+        source: '/newonnetflix',
+        destination: '/netflix-naija/new-on-netflix/',
+        permanent: true,
+      },
        {
         source: '/news/local',
         destination: '/news',
@@ -30,6 +70,16 @@ const nextConfig = {
        {
         source: '/news/foreign',
         destination: '/news',
+        permanent: true,
+      },
+       {
+        source: '/search-page',
+        destination: '/search',
+        permanent: true,
+      },
+       {
+        source: '/innews/newspost',
+        destination: '/',
         permanent: true,
       },
     ]
