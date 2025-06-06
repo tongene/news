@@ -24,7 +24,7 @@ setFakeNewsData(filteredTrends)
   <div className="flex lg:block lg:h-96 overflow-y-hidden lg:overflow-y-auto" >  
  {gxt.map((xy, i)=>
  <div key={xy.title + ' '  + Math.random()} className="border">
- {xy.textualRating?.split('-')[0].length <= 6 ? <p className="p-1 text-lg text-center">{xy.textualRating?.split('-')[0]} </p>:''}
+ {xy.textualRating?.split('-')[0].length <= 6 ? <p className="p-1 text-lg text-center">{i+1} — {xy.textualRating?.split('-')[0]} </p>:<p className="p-1 text-lg text-center">{i+1}</p>}
 
  <div className="px-2 cursor-pointer w-96 flex justify-between py-6 items-center hover:bg-opacity-70 hover:bg-green-50 h-44"> 
   <p className="p-2 text-lg">{i+1}.</p>   

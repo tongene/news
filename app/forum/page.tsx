@@ -31,17 +31,15 @@ return data ??[]
  
   const fakeTrend = await getFacts()  
   const today = new Date();
-  const todayMonth = today.getMonth()  
-  
-const date = new Date(); 
-const previousMonth = new Date(date.getTime());
-previousMonth.setDate(0); 
+  const todayMonth = today.getMonth() 
  
- const filteredTrends = fakeTrend?.filter((dateStr:FakeObj) => { 
-  const date = new Date(dateStr.claimDate);
+ const filteredTrends = fakeTrend?.filter((item, index, self) =>  index === self.findIndex((t) => t.claimant === item.claimant)) 
+ .filter((dateStr:FakeObj) => { 
+ 
+  const date = new Date(dateStr.claimDate); 
   const dateDay = date.getDate();  
-  const  dateMonth= date.getMonth() ; 
-  return  dateMonth=== todayMonth||previousMonth.getMonth()===dateMonth; 
+  const dateMonth= date.getMonth() ;
+  return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMonth||todayMonth-3===dateMonth; 
 });
 
   //const xt10 = fakeTrend.map((xt)=> xt.claimDate).includes('') 
