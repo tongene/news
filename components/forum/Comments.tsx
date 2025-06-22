@@ -452,17 +452,17 @@ related={related}
 
 <div className='shadow-2xl m-auto max-w-2xl px-3'>  
 <div className='m-auto flex flex-col items-center border-b-2'> 
-{postData?.avatar_url? <Link href={`/profile/${postData?.user_id}`}><Image src={postData?.avatar_url} 
+{postData?.avatar_url? <Link href={`/profile/${postData?.user_id}/`}><Image src={postData?.avatar_url} 
 width={80} 
 height={80}
 className='rounded-full'
 alt={postData?.user_email as string}/></Link>:
-<Link href={`/profile/${postData?.user_id}`}><Image src={'/assets/images/culturays.png'} 
+<Link href={`/profile/${postData?.user_id}/`}><Image src={'/assets/images/culturays.png'} 
 width={80} 
 height={80} 
 className='rounded-full'
 alt={postData?.user_email as string}/></Link> }  
-<Link href={`/profile/${postData?.user_id}`}><h3 className='p-3 text-lg font-bold'>{postData?.user_email} </h3></Link>
+<Link href={`/profile/${postData?.user_id}/`}><h3 className='p-3 text-lg font-bold'>{postData?.user_email} </h3></Link>
 </div>
  
 {!editId ?
@@ -472,12 +472,12 @@ alt={postData?.user_email as string}/></Link> }
 <small className="my-4">
 {moment(postData.created_at, "YYYYMMDD").fromNow() }  
 </small> 
-<Link href={`/forum/post/${postData.slug}/${postData.id}`}><h3 className='text-2xl p-3 underline text-center capitalize'>{postData?.title ||postData?.article_title?.replace(/-/g, ' ') } </h3> </Link>
+<Link href={`/forum/post/${postData.slug}/${postData.id}/`}><h3 className='text-2xl p-3 underline text-center capitalize'>{postData?.title ||postData?.article_title?.replace(/-/g, ' ') } </h3> </Link>
  {postData.user_id === user?.id&& <p onClick={() => setNavDropper(prev=> !prev)} className='absolute z-50 opacity-80 cursor-pointer text-xl right-0 top-0'> <FontAwesomeIcon icon={faEllipsisVertical} /></p>}
  <p className="dark:text-white text-gray-800 font-bold text-center text-lg my-1">Genres:</p>
    {postData?.genre?.slice(0,3)?.map((xy, vi)=>
    <div className="dark:text-white text-gray-800 text-center" key={vi}>
-   <Link href={`/topic/${xy}'`}><p className="m-1 hover:opacity-70 cursor-pointer" >{ xy} </p></Link>
+   <Link href={`/topic/${xy}/`}><p className="m-1 hover:opacity-70 cursor-pointer" >{ xy} </p></Link>
    </div> 
    )}
  </div>
@@ -488,7 +488,7 @@ alt={postData?.user_email as string}/></Link> }
 {postData?.tags?.map((xy, vi)=>
 xy.split(',').map((ex, xi)=> ex&&
 <div className="flex mx-1 my-4" key={xi}>
-<Link href={`/search/?searchVal=${ex.replace('#', '')}`}><p className="p-1 m-1 hover:opacity-70 cursor-pointer" >{'#' + ex.replace('.', '')} </p></Link>
+<Link href={`/search/?searchVal=${ex.replace('#', '')}/`}><p className="p-1 m-1 hover:opacity-70 cursor-pointer" >{'#' + ex.replace('.', '')} </p></Link>
 
   {postData.user_id === user.id && <small className="p-2 hover:bg-gray-400 cursor-pointer" onClick={()=>deleteTagAction(postData, ex)}>x</small>} 
 </div> ))} 
@@ -502,7 +502,7 @@ xy.split(',').map((ex, xi)=> ex&&
 postData?.suggested_tags?.map((ex, xi)=>    
 <div className="flex text-sm" key={ex + ' ' + xi}>
   
- <div className="flex w-full flex-wrap overflow-hidden "> 
+ <div className="flex w-full flex-wrap overflow-hidden"> 
  {showSuggestion&&!postData?.tags?.includes(ex)&&Boolean(ex)!==false && ex.split(' ')?.filter((e, i, a)=> a.findIndex(item=>item.replace("'", '').replace(",", '').replace("-", '') === e) === i).filter((jx )=> jx!=='').map((xy, i)=> <p onClick={()=>tagAction(postData , xy)}key={i}className="p-1 m-1 hover:opacity-70 cursor-pointer" >#{xy.replace('.', '')}  
 </p> ) } 
  </div>
@@ -645,22 +645,22 @@ alt={postData.title as string}
 <div title="close" className={!comment.parent_id?'':'absolute -left-3 bg-gray-200 w-0.5 h-full cursor-pointer'}/>  
   <div className='border '> 
   <div className="h-max flex">
-{comment.avatar_url&& <Link href={`/profile/${comment?.user_id}`}><Image
+{comment.avatar_url&& <Link href={`/profile/${comment?.user_id}/`}><Image
 src={comment.avatar_url}
 width={50}
 height={50}
 className='rounded-full p-4 w-20 max-w-64'
 alt={comment.user_name as string}/></Link> }
- {!comment.avatar_url&& <Link href={`/profile/${comment?.user_id}`}><Image
+ {!comment.avatar_url&& <Link href={`/profile/${comment?.user_id}/`}><Image
 src='/assets/images/placeholderimg.png'
 width={50}
 height={50}
 className='rounded-full p-4 w-20 max-w-64'
 alt={comment.user_name as string}/></Link> }
-<p className="text-xl font-bold my-2 mt-11 w-32 overflow-hidden text-ellipsis xs:w-full"><Link href={`/profile/${comment.user_id}`}>{comment.user_name||comment.user_email}</Link></p>
+<p className="text-xl font-bold my-2 mt-11 w-32 overflow-hidden text-ellipsis xs:w-full"><Link href={`/profile/${comment.user_id}/`}>{comment.user_name||comment.user_email}</Link></p>
 </div>
 
- <div className='p-3'><Link href={`/forum/comment/${comment.id}`}>
+ <div className='p-3'><Link href={`/forum/comment/${comment.id}/`}>
 <p className='text-md leading-relaxed cursor-pointer pb-3 hover:text-gray-300'>
  {comment.title} </p></Link>
 <small className="my-3">

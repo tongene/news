@@ -12,102 +12,7 @@ import { CronJob } from "cron";
 import { BlogPosting, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData"; 
 import { nextNewsPosts } from "./data";
-import { fetchXPosts } from "./page-bottom";
  
- type PostEdges ={
-    responseLatest:{
-        slug:string,
-        title:string,
-        excerpt:string
-        date:string
-        modified:Date
-        contentTypeName:string
-        author:{
-          node:{
-            slug:string,
-            name:string
-          }
-        },
-        featuredImage:{
-      node:{
-        sourceUrl:string,
-        altText:string
-      }
-        }    
-        posts:{
-            edges:{
-              cursor:string[]
-              node:{
-                slug:string,
-            title:string,
-            excerpt:string
-            date:string
-            contentTypeName:string
-            databaseId:string
-            modified:Date
-            author:{
-              node:{
-                slug:string,
-                name:string
-              }
-            },
-            featuredImage:{
-          node:{
-            sourceUrl:string,
-            altText:string
-          }
-            }
-            }
-          
-            }[]
-            nodes:{
-              id:string
-              databaseId:string
-              slug:string,
-              title:string,
-              contentTypeName:string
-              date:string 
-              featuredImage:{
-            node:{
-              sourceUrl:string,
-              altText:string
-            }
-              }
-            }
-            pageInfo:{
-              endCursor:string
-            }
-           }
-          
-          node:{
-            slug:string,
-            title:string,
-            excerpt:string
-            date:string
-            contentTypeName:string
-            databaseId:string
-            modified:Date
-            author:{
-              node:{
-                slug:string,
-                name:string
-              }
-            },
-            featuredImage:{
-          node:{
-            sourceUrl:string,
-            altText:string
-          }
-            }
-          }
-          categories:{
-          nodes:{posts:{edges:{}}}[]
-          }    
-
-    }
-
-    respPosts:InnerEdges
- } 
  
  interface ObjType { 
   title: string[];
@@ -132,8 +37,7 @@ interface CineType {
  
   const dailyEv3 =async()=>{ 
      const eventExp= await getNaijaEvents3();
-
-    const result= await Promise.all(eventExp?.titleAObj.map(async( one:{atitle:string})=> {  
+     const result= await Promise.all(eventExp?.titleAObj.map(async( one:{atitle:string})=> {  
     const evData = await events3Details(one.atitle)
     
      return evData 

@@ -118,7 +118,7 @@ export async function generateMetadata(
      const tags= vid_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
   
      return {
-       title:`Culturays | Video - ${vid_details?.title}`,
+       title:`Urban Naija | Video - ${vid_details?.title}`,
        description:vid_details?.excerpt,
      keywords:tags,
      twitter: {
@@ -132,6 +132,10 @@ export async function generateMetadata(
          type: "article",
          publishedTime:vid_details?.date
        },
+         alternates: {
+    canonical:  `https://culturays.com/news/video/${slug}/`,
+ 
+  },
      }
    }  
 
@@ -154,7 +158,7 @@ const VideoDetailsPage=async ({params}: Props) => {
      author: {
        "@type": "Person",
        name: "Christina Ngene",
-       url:'https://culturays.com/creator/christina-ngene',
+       url:'https://culturays.com/creator/christina-ngene/',
      }, 
      datePublished: new Date(vid_details?.date).toDateString(), 
      dateModified: new Date(vid_details?.date).toDateString(), 
@@ -172,8 +176,7 @@ const VideoDetailsPage=async ({params}: Props) => {
          url: "https://culturays.com/assets/images/culturays-no-bg.png",
        },
      },
-      
-     keywords:tags,    
+      keywords:tags,    
      
    };
 

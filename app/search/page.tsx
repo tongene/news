@@ -1,13 +1,13 @@
 import Search from "@/components/Search" 
 import { searchValues } from "../lib/searches/searches"
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-? `${process.env.NEXT_PUBLIC_BASE_URL}/search` 
-: "http://localhost:3000/search";
+? `${process.env.NEXT_PUBLIC_BASE_URL}/search/` 
+: "http://localhost:3000/search/";
 export const metadata = {
 metadataBase: new URL(defaultUrl), 
  title:"Urban News | Search",
  alternates: {
-  canonical: 'https://culturays.com/search',
+  canonical: 'https://culturays.com/search/',
 
 }, 
 }; 

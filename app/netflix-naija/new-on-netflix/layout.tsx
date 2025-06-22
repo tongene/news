@@ -2,8 +2,8 @@
 import { Open_Sans, Nokora } from 'next/font/google'; 
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-? `${process.env.NEXT_PUBLIC_BASE_URL}/netflix-naija/new-on-netflix` 
-: "http://localhost:3000/netflix-naija/new-on-netflix";
+? `${process.env.NEXT_PUBLIC_BASE_URL}/netflix-naija/new-on-netflix/` 
+: "http://localhost:3000/netflix-naija/new-on-netflix/";
  
 export const metadata = {
 metadataBase: new URL(defaultUrl), 
@@ -12,7 +12,11 @@ description: "All titles on Netflix Naija weekly, monthly and yearly are first p
 openGraph: {
   title:  "Urban News | Netflix Naija News, What's New on Netflix",    
     
-}
+},
+    alternates: {
+    canonical:  `https://culturays.com/netflix-naija/new-on-netflix/`,
+ 
+  }
 }; 
 
   const noko =Nokora({

@@ -8,7 +8,7 @@ import { UserPostProps } from "@/app/types";
 import type { Metadata, ResolvingMetadata } from 'next'
 import { Suspense } from "react";
 import StructuredData from "@/components/StructuredData";
-import { Person, ProfilePage, WithContext } from "schema-dts";
+import { ProfilePage, WithContext } from "schema-dts";
 
 type Props = {
   params: Promise<{ id: string }>
@@ -27,7 +27,7 @@ export async function generateMetadata(
       const previousImages = (await parent).openGraph?.images || [] 
 
   return {
-    title:`${userDetails.fullname || userDetails?.full_name}`,
+    title:`Urban Naija | ${userDetails.fullname || userDetails?.full_name}`,
      description:userDetails?.about,
      keywords:[`${userDetails.fullname || userDetails?.full_name}`],
           twitter: {
@@ -39,6 +39,10 @@ export async function generateMetadata(
     openGraph: {
     images: [userDetails.avatar_url, ...previousImages],
     },
+     alternates: {
+    canonical:  `https://culturays.com/profile/${id}/`,
+ 
+  }
   }
 }
 const UserPage =async({params}: Props) => {
@@ -67,10 +71,10 @@ const UserPage =async({params}: Props) => {
     name: `${currentProfile?.fullname || currentProfile?.full_name}`, 
      headline: `${currentProfile?.fullname || currentProfile?.full_name}`, 
      description:currentProfile?.about , 
-     url:`https://culturays.com/profile/${id}`,
+     url:`https://culturays.com/profile/${id}/`,
      mainEntity: {
       "@type": "Person",
-      name:`${currentProfile.fullname || currentProfile?.full_name} - Profile`,     
+      name:`Urban Naija | ${currentProfile.fullname || currentProfile?.full_name} - Profile`,     
       image: currentProfile.avatar_url,
       ////  //use later
       // jobTitle: "Editor-in-Chief",      
@@ -87,7 +91,7 @@ const UserPage =async({params}: Props) => {
      
       mainEntityOfPage: {
        "@type": "WebPage",
-       "@id":`https://culturays.com/profile/${id}`, 
+       "@id":`https://culturays.com/profile/${id}/`, 
      },
 
      image:currentProfile.avatar_url, 

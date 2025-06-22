@@ -85,7 +85,7 @@ alt={news_detail.featuredImage.node.altText}
     />
    </div> 
  
-<Link href={`/creator/${news_detail.author.node.slug}`}><p className='text-lg p-3 underline font-bold'>{news_detail.author.node.name} </p></Link> 
+<Link href={`/creator/${news_detail.author.node.slug}/`}><p className='text-lg p-3 underline font-bold'>{news_detail.author.node.name} </p></Link> 
 
 </div>
 <hr className='bg-black p-0.5 m-0.5'/>
@@ -105,7 +105,7 @@ alt={news_detail.featuredImage.node.altText}
 <div className='xs:px-6 xs:py-8 bg-white 6'>
 {news_detail.tags.nodes.map((xy)=>
 <div key={xy.name + ' ' + Math.random()} className='my-3'>
- <Link href={`/topic/${xy.slug}`}><h4 className='hover:bg-gray-600 hover:text-gray-200 border border-gray-600 bg-gray-50 text-gray-600 p-3 text-xl w-32 text-center'>{xy.name} </h4></Link>
+ <Link href={`/topic/${xy.slug}/`}><h4 className='hover:bg-gray-600 hover:text-gray-200 border border-gray-600 bg-gray-50 text-gray-600 p-3 text-xl w-32 text-center'>{xy.name} </h4></Link>
  <hr className='bg-black p-0.5 m-0.5'/>
 <hr className='bg-black p-0.5 m-0.5'/>
 </div>)}
@@ -119,7 +119,7 @@ alt={news_detail.featuredImage.node.altText}
        <div key={ex.node.title + ' ' + Math.random()} className="py-4 first:border-b border px-3 max-w-xs m-auto sm:m-0"> 
        <div className="sm:flex justify-center"> 
        <div className="px-1 sm:w-4/5">
-         <Link href={`/news/${news_detail.contentTypeName}/${ex.node.slug}`}><h2 className="text-gray-600 hover:text-red-300 text-lg py-2">{ex.node.title} </h2></Link>  
+         <Link href={`/news/${news_detail.contentTypeName}/${ex.node.slug}/`}><h2 className="text-gray-600 hover:text-red-300 text-lg py-2">{ex.node.title} </h2></Link>  
        </div> 
        
      <div className="px-4 py-2 sm:w-2/3 sm:px-0 sm:m-0 m-auto">      
@@ -133,7 +133,7 @@ alt={news_detail.featuredImage.node.altText}
       </div> 
      
        </div>
-        <Link href={`/news/${ex.node.slug}`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
+        <Link href={`/news/${ex.node.slug}/`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
         </div>  
        )} 
  </div>}

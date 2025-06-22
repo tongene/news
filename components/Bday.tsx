@@ -128,7 +128,7 @@ alt='Naija Birthdays'/>
 
  <div className="card-data overflow-hidden flex flex-col items-center bg-slate-100 p-4 justify-center text-black font-bold">
 
- <Link href='/naija-birthdays'><small className='text-green-600 py-2 hover:text-black'>See all Birthdays in {new Date().toLocaleString('en-US', { month: 'long' })}</small></Link> 
+ <Link href='/naija-birthdays/'><small className='text-green-600 py-2 hover:text-black'>See all Birthdays in {new Date().toLocaleString('en-US', { month: 'long' })}</small></Link> 
 </div> 
  </div>
   );

@@ -458,7 +458,7 @@ ${xmlContent}
   const he_news:FeedProps[] = await heFeed()
 
    const bix_posts: Post[] = business_news.map((post) => ({
-     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -475,7 +475,7 @@ ${xmlContent}
      ],
    })); 
       const ec_posts: Post[] = ec_news.map((post) => ({
-     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -493,7 +493,7 @@ ${xmlContent}
    }));
   
       const tex_posts: Post[] = tech_news.map((post) => ({
-     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -511,7 +511,7 @@ ${xmlContent}
    }));
  
    const tr_posts: Post[] = trend_news.map((post) => ({
-     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -529,7 +529,7 @@ ${xmlContent}
    }));
 
       const vid_posts: Post[] = vid_news.map((post) => ({
-     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -546,7 +546,7 @@ ${xmlContent}
      ],
    }));
       const aw_posts: Post[] = aw_news.map((post) => ({
-     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -563,7 +563,7 @@ ${xmlContent}
      ],
    }));
       const nol_posts: Post[] = nol_news.map((post) => ({
-     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -580,7 +580,7 @@ ${xmlContent}
      ],
    }));
 const he_posts: Post[] = he_news.map((post) => ({
-     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -598,7 +598,7 @@ const he_posts: Post[] = he_news.map((post) => ({
    }));
 
 const env_posts: Post[] = env_news.map((post) => ({
-     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -616,7 +616,7 @@ const env_posts: Post[] = env_news.map((post) => ({
    }));
    
    const soc_posts: Post[] = soc_news.map((post) => ({
-     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}`,
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -624,7 +624,7 @@ const env_posts: Post[] = env_news.map((post) => ({
      news: [
        {
          publication: {
-           name: 'Culturays News',
+           name: 'Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),

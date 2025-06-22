@@ -9,7 +9,7 @@ metadataBase: new URL(defaultUrl),
  title:"Urban News | Naija Birthdays",  
 description: "Look up the birthday dates of high profile Nigerians and celebrate with them - posthumously or alive.",
 alternates: {
-  canonical: 'https://culturays.com/naija-birthdays',
+  canonical: 'https://culturays.com/naija-birthdays/',
  
 },
 openGraph: {

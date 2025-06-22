@@ -111,14 +111,14 @@
      
     const dataVideo = videoData.map((post)=>({
         title:post.title,
-        url:`https://culturays.com/news/video/${post.slug}`,
+        url:`https://culturays.com/news/video/${post.slug}/`,
         lastModified:new Date(post.date),
         changeFrequency:'always', 
         priority:0.8,
         news: [
             {
               publication: {
-                name: 'Culturays News',
+                name: 'Urban Naija News | Videos',
                 language: 'en',
               },
               publication_date: new Date(post.date).toISOString(),

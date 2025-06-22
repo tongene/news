@@ -149,12 +149,12 @@ const [end_inter_cursor, setEnd_inter_cursor] = useState('');
           alt={it.featuredImage.node.altText|| it.title}
           />  
           <div className='absolute top-5'>  
- <Link href={`/naija-wiki/character/${it.slug }`}><h3 className='text-white font-bold px-5 py-1 text-2xl'>{it.title }</h3></Link> 
-  <span className='text-white ml-2'>by</span><Link href={`/naija-wiki/character/${it.slug }`}><p className='text-white hover:text-gray-200 font-bold py-1 px-5 mx-1 text-lg'> {it.charactertitles.portrayedby}</p></Link> 
+ <Link href={`/naija-wiki/character/${it.slug}/`}><h3 className='text-white font-bold px-5 py-1 text-2xl'>{it.title }</h3></Link> 
+  <span className='text-white ml-2'>by</span><Link href={`/naija-wiki/character/${it.slug }/`}><p className='text-white hover:text-gray-200 font-bold py-1 px-5 mx-1 text-lg'> {it.charactertitles.portrayedby}</p></Link> 
  
  </div>
  <div className='text-white mx-4 pb-6 pt-3'>
- <Link href={`/naija-wiki/character/${it.slug }`}><div dangerouslySetInnerHTML={{__html:it.excerpt}} className='overflow-hidden text-ellipsis hover:text-gray-200 leading-relaxed text-lg cursor-pointer'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link>   
+ <Link href={`/naija-wiki/character/${it.slug }/`}><div dangerouslySetInnerHTML={{__html:it.excerpt}} className='overflow-hidden text-ellipsis hover:text-gray-200 leading-relaxed text-lg cursor-pointer'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link>   
  
    </div>   
       </div>   
@@ -176,8 +176,8 @@ const [end_inter_cursor, setEnd_inter_cursor] = useState('');
        alt={nt.featuredImage.node.altText || nt.title}
       />
       <div className='absolute bottom-5 z-20 font-bold text-white mx-4'>   
-    <Link href={`/netflix-naija/news/${nt.slug}`}><h2 className='xs:text-2xl md:text-4xl py-2 hover:text-gray-400'> {nt.title}</h2></Link>
-    <Link href={`/netflix-naija/news/${nt.slug}`}><div dangerouslySetInnerHTML={{__html:nt.excerpt}} className='sm:text-lg py-2 hidden sm:block hover:text-gray-400'/> </Link> 
+    <Link href={`/netflix-naija/news/${nt.slug}/`}><h2 className='xs:text-2xl md:text-4xl py-2 hover:text-gray-400'> {nt.title}</h2></Link>
+    <Link href={`/netflix-naija/news/${nt.slug}/`}><div dangerouslySetInnerHTML={{__html:nt.excerpt}} className='sm:text-lg py-2 hidden sm:block hover:text-gray-400'/> </Link> 
     <span className='text-end text-sm mt-11 italic'>{moment(nt.date).fromNow()} </span>
     </div>
     </div> 
@@ -195,8 +195,8 @@ const [end_inter_cursor, setEnd_inter_cursor] = useState('');
        alt={nt.featuredImage.node.altText || nt.title}
       />  
     <div className='m-auto py-5 lg:py-0 lg:mx-0 md:absolute md:text-white z-20 bottom-11 xl:bottom-16 text-gray-600 hover:text-gray-400 px-4'>   
-    <Link href={`/netflix-naija/news/${nt.slug}`}><h2 className='overflow-hidden text-ellipsis hover:text-gray-200 text-xl underline lg:no-underlinelg:text-xl'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}> {nt.title}</h2></Link>
-   <Link href={`/topic/${nt.contentTags.nodes[0].slug}`}><p className='lg:absolute text-md xl:text-md py-3  text-end z-10 lg:text-sm'><span>{moment(nt.date).fromNow()} |</span> {nt.contentTags.nodes[0].name}</p ></Link> 
+    <Link href={`/netflix-naija/news/${nt.slug}/`}><h2 className='overflow-hidden text-ellipsis hover:text-gray-200 text-xl underline lg:no-underlinelg:text-xl'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}> {nt.title}</h2></Link>
+   <Link href={`/topic/${nt.contentTags.nodes[0].slug}/`}><p className='lg:absolute text-md xl:text-md py-3  text-end z-10 lg:text-sm'><span>{moment(nt.date).fromNow()} |</span> {nt.contentTags.nodes[0].name}</p ></Link> 
     </div> 
     </div> 
        )    
@@ -276,8 +276,8 @@ width={1250}
 height={675}
 alt={xy.title}/> 
 <div className='m-4'> 
-<Link href={`/netflix-naja/news/${xy.slug}`}><h3 className='my-1 text-xl font-medium'>{xy.title}</h3></Link> 
-<Link href={`/topic/${xy.contentTags.nodes[0].slug}`}><h4 className="text-md mt-4 hover:text-gray-400"> 
+<Link href={`/netflix-naja/news/${xy.slug}/`}><h3 className='my-1 text-xl font-medium'>{xy.title}</h3></Link> 
+<Link href={`/topic/${xy.contentTags.nodes[0].slug}/`}><h4 className="text-md mt-4 hover:text-gray-400"> 
 <FontAwesomeIcon 
 className='mx-1 text-red-500' 
 icon={faTags}/>{xy.contentTags.nodes[0].name}</h4></Link>  
@@ -293,7 +293,7 @@ icon={faTags}/>{xy.contentTags.nodes[0].name}</h4></Link>
   <div className='bg-black py-4 my-3' > 
 <div className='flex flex-col sm:flex-row font-bold sm:justify-between items-center my-6 text-slate-800 text-white border-b px-8'>
     <h2 className='text-center text-3xl m-3'>Reels </h2> 
-    <Link href='/news/videos'><button className='border mr-1 rounded-lg p-4 m-2 text-white'>View All <span><FontAwesomeIcon
+    <Link href='/news/videos/'><button className='border mr-1 rounded-lg p-4 m-2 text-white'>View All <span><FontAwesomeIcon
     className=''
    icon={faArrowRight}
    width={18}/></span></button></Link>
@@ -316,12 +316,12 @@ icon={faTags}/>{xy.contentTags.nodes[0].name}</h4></Link>
 </video> 
  <div className='py-3'> 
   <div className='flex xs:my-4 px-2 justify-between w-full'> 
-   <Link href={`/news/video/${it.slug }`} ><h3 className='text-gray-300 mx-1 text-xl my-2 overflow-hidden text-ellipsis' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
+   <Link href={`/news/video/${it.slug }/`} ><h3 className='text-gray-300 mx-1 text-xl my-2 overflow-hidden text-ellipsis' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
    <button> 
-    <Link href={`/news/video/${it.slug}`}><span className="rounded-full border py-2 px-5 text-gray-300 hover:text-gray-50 text-4xl cursor-pointer"><FontAwesomeIcon icon={faPlay}/></span></Link>  
+    <Link href={`/news/video/${it.slug}/`}><span className="rounded-full border py-2 px-5 text-gray-300 hover:text-gray-50 text-4xl cursor-pointer"><FontAwesomeIcon icon={faPlay}/></span></Link>  
         </button>
    </div> 
- <Link href={`/news/video/${it.slug }`} ><div dangerouslySetInnerHTML={{__html:it.excerpt}} className='text-gray-300 hover:text-gray-500 overflow-hidden text-ellipsis leading-7 px-3' style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link> 
+ <Link href={`/news/video/${it.slug }/`} ><div dangerouslySetInnerHTML={{__html:it.excerpt}} className='text-gray-300 hover:text-gray-500 overflow-hidden text-ellipsis leading-7 px-3' style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link> 
      </div>
     </div> )}  
    
@@ -337,14 +337,14 @@ icon={faTags}/>{xy.contentTags.nodes[0].name}</h4></Link>
 {popular_blog.slice(0,6).map((item=>
 <div key={item.id} className='py-2 md:border-r border-b' >
   <div className='flex max-w-lg lg:max-w-xl'> 
-<Link href={`/netflix-naija/news/${item.slug }`}><h3 className='text-2xl py-3'>{item.title}</h3></Link>
+<Link href={`/netflix-naija/news/${item.slug}/`}><h3 className='text-2xl py-3'>{item.title}</h3></Link>
  <Image
 className='max-w-40 max-h-40 px-1'
   src={item.featuredImage.node.sourceUrl}
   alt={item.title}
   width={1200}
   height={675} /> </div> 
-<Link href={`/topic/${item.contentTags.nodes[0].slug}`}><h4 className=' py-1 font-bold'>&#8212; {item.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className=' py-1 font-bold'>&#8212; {item.contentTags.nodes[0].name }</h4></Link> 
      <p className='italic text-red-600 text-sm'>{moment(item.date).fromNow()}</p> 
   </div>
   )) }
@@ -361,8 +361,8 @@ className='w-1/2 md:w-auto lg:w-full max-h-44'
   width={1200}
   height={675} /> 
   <div className='w-80'>
-<Link href={`/netflix-naija/news/${item.slug }`}><h3 className='text-lg lg:text-xl py-3'>{item.title}</h3></Link> 
-<Link href={`/topic/${item.contentTags.nodes[0].slug}`}><h4 className='py-1 font-bold'> &#8212; {item.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/netflix-naija/news/${item.slug}/`}><h3 className='text-lg lg:text-xl py-3'>{item.title}</h3></Link> 
+<Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className='py-1 font-bold'> &#8212; {item.contentTags.nodes[0].name }</h4></Link> 
      <p className='italic text-red-600 text-sm'>{moment(item.date).fromNow()}</p>
   </div>
   </div>
@@ -388,9 +388,9 @@ className='w-1/2 md:w-auto lg:w-full max-h-44'
   height={675} /> 
 
   <div className='border-r border-b-4 border-orange-300 px-1 h-fit'> 
-<Link href={`/netflix-naija/news/${item.slug }`}>
+<Link href={`/netflix-naija/news/${item.slug}/`}>
 <h3 className='overflow-hidden text-ellipsis text-base sm:text-2xl font-bold px-2 text-gray-700 hover:text-gray-500'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{item.title}</h3></Link> 
-<Link href={`/topic/${item.contentTags.nodes[0].slug}`}><h4 className=' my-3 hover:text-gray-500 text-red-600'>&#8212; {item.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className=' my-3 hover:text-gray-500 text-red-600'>&#8212; {item.contentTags.nodes[0].name }</h4></Link> 
   <p className='createdAt'>{moment(item.date).fromNow()}</p> 
   </div> 
   </div>
@@ -416,10 +416,10 @@ className='w-1/2 md:w-auto lg:w-full max-h-44'
   alt={item.title}/>  
  
 <div className='flex justify-between'>
-  <Link href={`/netflix-naija/news/${item.slug }`}><h3 className='text-4xl text-gray-800 hover:text-gray-500 font-bold py-3'>{item.title} </h3></Link>
+  <Link href={`/netflix-naija/news/${item.slug}/`}><h3 className='text-4xl text-gray-800 hover:text-gray-500 font-bold py-3'>{item.title} </h3></Link>
   <div className='flex items-center text-red-600 font-bold w-1/6'> 
   <span>&#8212; </span>
-  <Link href={`/topic/${item.contentTags.nodes[0].slug}`}><h4 className='m-2 hover:text-gray-500'>{item.contentTags.nodes[0].name }</h4></Link> 
+  <Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className='m-2 hover:text-gray-500'>{item.contentTags.nodes[0].name}</h4></Link> 
   </div>
 </div>
 <span className='italic'>{moment(item.date).fromNow()}</span >
@@ -436,9 +436,9 @@ className='h-36 sm:h-48 md:h-64 lg:h-52 xl:h-64'
  height={675}
  src={ item.featuredImage.node.sourceUrl }
  alt={item.title}/> 
-<Link href={`/netflix-naija/news/${item.slug }`}><h3 className='hover:text-gray-500 text-gray-700 text-xl py-5 pr-2 my-3 font-bold'>{item.title} </h3></Link> 
+<Link href={`/netflix-naija/news/${item.slug}/`}><h3 className='hover:text-gray-500 text-gray-700 text-xl py-5 pr-2 my-3 font-bold'>{item.title} </h3></Link> 
 
-<Link  href={`/topic/${item.contentTags.nodes[0].slug}`}><h4 className='hover:text-gray-500'>&#8212;  {item.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className='hover:text-gray-500'>&#8212;  {item.contentTags.nodes[0].name }</h4></Link> 
 <span className='italic text-red-600'>{moment(item.date).fromNow()}</span>
 </div>  
  
@@ -452,7 +452,7 @@ className='h-36 sm:h-48 md:h-64 lg:h-52 xl:h-64'
 {africa_blog.slice(7,10).map((item=>
 <div key={item.id} className='border-b'>
   <div className='xl:max-w-xs flex xl:block justify-center py-4'> 
-<Link href={`/netflix-naija/news/${item.slug }`}><h3 className='text-2xl py-3 xl:py-0'>{item.title}</h3></Link>
+<Link href={`/netflix-naija/news/${item.slug }/`}><h3 className='text-2xl py-3 xl:py-0'>{item.title}</h3></Link>
  <Image
 className='xl:max-h-44 max-w-40 xl:max-w-max max-h-32 px-1'
   src={item.featuredImage.node.sourceUrl}
@@ -460,7 +460,7 @@ className='xl:max-h-44 max-w-40 xl:max-w-max max-h-32 px-1'
   width={1200}
   height={675} />
    </div> 
-<Link href={`/topic/${item.contentTags.nodes[0].slug}`}><h4 className=' py-1 font-bold'>&#8212; {item.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className=' py-1 font-bold'>&#8212; {item.contentTags.nodes[0].name }</h4></Link> 
      <p className='italic text-red-600 text-sm'>{moment(item.date).fromNow()}</p> 
   </div>
   )) }
@@ -472,7 +472,7 @@ className='xl:max-h-44 max-w-40 xl:max-w-max max-h-32 px-1'
    <h2 className='bg-gray-700 text-gray-300 text-3xl font-bold  text-center p-3 pt-4'>Latest on Netflix News</h2> 
  <ul className='list-none text-lg [&>*:nth-child(odd)]:bg-gray-500 [&>*:nth-child(even)]:bg-blue-200 [&>*:nth-child(odd)]:text-white [&>*:nth-child(even)]:text-black font-bold'>
   {africa_blog.slice(10,15).map((oneItem, index)=> 
-  <ol className='flex p-8 justify-between'key={oneItem.id}> <Link href= {`/netflix-naija/news/${oneItem.slug}` }><li className='mx-5 px-4 hover:opacity-70'>{oneItem.title} ...</li></Link></ol> 
+  <ol className='flex p-8 justify-between'key={oneItem.id}> <Link href= {`/netflix-naija/news/${oneItem.slug}/` }><li className='mx-5 px-4 hover:opacity-70'>{oneItem.title} ...</li></Link></ol> 
 
 )}</ul> 
   </div>
@@ -499,9 +499,9 @@ className='max-h-72 px-2 py-3'
   src={ oneCategory.featuredImage.node.sourceUrl}
   alt={ oneCategory.featuredImage.node.altText}/>
  <div className='border-r px-1'>
-<Link href={`/netflix-naija/news/${oneCategory.slug}` } >
+<Link href={`/netflix-naija/news/${oneCategory.slug}/` } >
 <h3 className='hover:text-gray-500 text-gray-800 text-4xl px-2 overflow-hidden text-ellipis leading-9' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{oneCategory.title} </h3></Link>
-<Link href={`/topic/${oneCategory.contentTags.nodes[0].slug}`}><h4 className='hover:text-gray-500 text-lg my-3'>&#8212; {oneCategory.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${oneCategory.contentTags.nodes[0].slug}/`}><h4 className='hover:text-gray-500 text-lg my-3'>&#8212; {oneCategory.contentTags.nodes[0].name }</h4></Link> 
 <span className='italic text-red-500 text-sm'>{moment(oneCategory.date).fromNow()}</span>
  </div> 
  </div>
@@ -512,8 +512,8 @@ className='max-h-72 px-2 py-3'
 {africa_blog.slice(17,23).map((oneCategory, index) =>  
 <div key={oneCategory.id +' ' +index } className='mx-0.5 px-3 border-t py-8 lg:px-3    border-r'> 
  
-<Link href={`/netflix-naija/news/${oneCategory.slug}` } ><h3 className='hover:text-gray-500 text-gray-800 text-2xl overflow-hidden text-ellipis leading-9' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{oneCategory.title} </h3></Link>
-<Link href={`/topic/${oneCategory.contentTags.nodes[0].slug}`}><h4 className='hover:text-gray-500 text-lg my-3'>&#8212; {oneCategory.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/netflix-naija/news/${oneCategory.slug}/` } ><h3 className='hover:text-gray-500 text-gray-800 text-2xl overflow-hidden text-ellipis leading-9' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{oneCategory.title} </h3></Link>
+<Link href={`/topic/${oneCategory.contentTags.nodes[0].slug}/`}><h4 className='hover:text-gray-500 text-lg my-3'>&#8212; {oneCategory.contentTags.nodes[0].name }</h4></Link> 
 <span className='italic text-red-500 text-sm'>{moment(oneCategory.date).fromNow()}</span>
  </div> 
 
@@ -536,9 +536,9 @@ className='max-h-72 px-2 py-3'
   alt={ oneitem.featuredImage.node.altText}/> 
   
   <div className='sm:py-4'> 
-  <Link href={`/netflix-naija/news/${oneitem.slug}`}><h3 className='overflow-hidden hover:text-gray-500 text-ellipis leading-9 text-3xl font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{oneitem.title} </h3>
+  <Link href={`/netflix-naija/news/${oneitem.slug}/`}><h3 className='overflow-hidden hover:text-gray-500 text-ellipis leading-9 text-3xl font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{oneitem.title} </h3>
 </Link>
-<Link href={`/topic/${oneitem.contentTags.nodes[0].slug}`}><h4 className='text-lg my-3 hover:text-gray-500'>&#8212; {oneitem.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${oneitem.contentTags.nodes[0].slug}/`}><h4 className='text-lg my-3 hover:text-gray-500'>&#8212; {oneitem.contentTags.nodes[0].name }</h4></Link> 
 <span className='italic'>{moment(oneitem.date).fromNow()}</span>
 </div>
  </div> 
@@ -569,8 +569,8 @@ className='sm:flex justify-center md:justify-between lg:justify-start overflow-h
   alt={it.featuredImage.node.altText}  
   />
 <div className='my-3 sm:my-0 md:px-1 md:w-9/12 xl:w-1/2'>
-<Link href={`/netflix-naija/news/${it.slug}`}><h3 className='hover:text-gray-500 text-2xl md:my-0 md:pr-0 md:py-0 px-1 pr-2'>{it.title}</h3></Link>
-<Link href={`/topic/${it.contentTags.nodes[0].slug}`}><h4 className='md:text-end md:px-42 py-2 md:px-0 text-lg underline hover:text-gray-500'>{it.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/netflix-naija/news/${it.slug}/`}><h3 className='hover:text-gray-500 text-2xl md:my-0 md:pr-0 md:py-0 px-1 pr-2'>{it.title}</h3></Link>
+<Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end md:px-42 py-2 md:px-0 text-lg underline hover:text-gray-500'>{it.contentTags.nodes[0].name }</h4></Link> 
 <span className='italic text-red-600 md:px-4'>{moment(it.date).fromNow()}</span>
 </div>  
 

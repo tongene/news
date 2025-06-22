@@ -50,8 +50,8 @@ alt={trends.featuredImage.node.altText}
 
 <div> 
 <small className="text-md italic py-2">{moment(xy.date).fromNow()} </small>
-<Link href={`/news/trending/${xy.slug}`}><h3 className="hover:text-gray-500 text-2xl font-bold overflow-hidden text-ellipsis leading-8"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link>
-<Link href={`/news/trending/${xy.slug}`}><p className='hover:text-gray-500 text-lg font-serif overflow-hidden text-ellipsis my-1'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} > {replaceHTMLTags(xy.excerpt)} </p></Link>
+<Link href={`/news/trending/${xy.slug}/`}><h3 className="hover:text-gray-500 text-2xl font-bold overflow-hidden text-ellipsis leading-8"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link>
+<Link href={`/news/trending/${xy.slug}/`}><p className='hover:text-gray-500 text-lg font-serif overflow-hidden text-ellipsis my-1'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} > {replaceHTMLTags(xy.excerpt)} </p></Link>
 </div>
  
 </div>
@@ -66,8 +66,8 @@ alt={trends.featuredImage.node.altText}
 {trendsAll?.slice(5,10).map((xy,i)=>
 <div key={xy.title + ' ' + i} className="p-4 border rounded"> 
 <small className="text-md italic text-red-600">{moment(xy.date).fromNow()} </small>
-<Link href={`/news/trending/${xy.slug}`}><h3 className="hover:text-gray-500 text-2xl  overflow-hidden text-ellipis leading-8 dark:text-gray-300" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link> 
-<Link href={`/news/trending/${xy.slug}`}><p className='hover:text-gray-500 overflow-hidden text-ellipis my-2'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}> {replaceHTMLTags(xy.excerpt)} </p></Link>
+<Link href={`/news/trending/${xy.slug}/`}><h3 className="hover:text-gray-500 text-2xl  overflow-hidden text-ellipis leading-8 dark:text-gray-300" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link> 
+<Link href={`/news/trending/${xy.slug}/`}><p className='hover:text-gray-500 overflow-hidden text-ellipis my-2'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}> {replaceHTMLTags(xy.excerpt)} </p></Link>
 <div className='py-2'>
 <Image
 src={xy.featuredImage.node.sourceUrl}
@@ -91,8 +91,8 @@ alt={xy.featuredImage.node.altText}
 {trendsAll?.slice(10,15).map((xy,i)=>
 <div key={xy.title + ' ' + i} className="flex m-4 border-b border-b-4 border-black"> 
 <div className="w-1/2"> 
-<Link href={`/news/trending/${xy.slug}`}><h3 className="hover:text-gray-500 text-2xl py-2 font-bold truncate ">{xy.title} </h3></Link>
-<Link href={`/news/trending/${xy.slug}`}><p className='hover:text-gray-500 text-lg font-serif text-gray-600 dark:text-gray-300' > {replaceHTMLTags(xy.excerpt)} </p></Link>
+<Link href={`/news/trending/${xy.slug}/`}><h3 className="hover:text-gray-500 text-2xl py-2 font-bold truncate ">{xy.title} </h3></Link>
+<Link href={`/news/trending/${xy.slug}/`}><p className='hover:text-gray-500 text-lg font-serif text-gray-600 dark:text-gray-300' > {replaceHTMLTags(xy.excerpt)} </p></Link>
 </div>
 <div className="w-1/2 p-1">
 <Image
@@ -115,9 +115,9 @@ alt={xy.featuredImage.node.altText}
 
 <div className="max-w-xs"> 
 <small className="text-md italic text-gray-600 py-2 dark:text-gray-300">{moment(xy.date).fromNow()} </small>
-<Link href={`/news/trending/${xy.slug}`}><h3 className="hover:text-gray-500 font-bold overflow-hidden text-ellipsis dark:text-gray-300"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link> 
+<Link href={`/news/trending/${xy.slug}/`}><h3 className="hover:text-gray-500 font-bold overflow-hidden text-ellipsis dark:text-gray-300"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link> 
 
-<Link href={`/news/trending/${xy.slug}`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}}className='hover:text-gray-500 text-lg font-serif text-gray-600 overflow-hidden text-ellipsis my-3 dark:text-gray-300'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link>
+<Link href={`/news/trending/${xy.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}}className='hover:text-gray-500 text-lg font-serif text-gray-600 overflow-hidden text-ellipsis my-3 dark:text-gray-300'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link>
 </div> 
  
 </div>
@@ -137,9 +137,9 @@ alt={xy.featuredImage.node.altText}
   {trendsAll?.slice(20,25).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="my-3 [&:not(:last-child)]:border-b">  
   <ul>
-  <Link href={`/news/trending/${xy.slug}`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 overflow-hidden text-ellipsis leading-9 dark:text-gray-300' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </li></Link> 
+  <Link href={`/news/trending/${xy.slug}/`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 overflow-hidden text-ellipsis leading-9 dark:text-gray-300' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </li></Link> 
      </ul> 
-     <Link href={`/news/trending/${xy.slug}`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}}className="hover:text-gray-500 text-lg overflow-hidden text-ellipsis leading-8 my-3 dark:text-gray-300" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link>
+     <Link href={`/news/trending/${xy.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}}className="hover:text-gray-500 text-lg overflow-hidden text-ellipsis leading-8 my-3 dark:text-gray-300" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link>
  <small className="text-md italic text-red-600 py-2 block">{moment(xy.date).fromNow()} </small>
 </div>
   )
@@ -150,8 +150,8 @@ alt={xy.featuredImage.node.altText}
 <div key={xy.title + ' ' + i} className="max-w-2xl ">   
 <div className="[&:not(:last-child)]:border-b my-3"> 
  
-<Link href={`/news/trending/${xy.slug}`}><h3 className="hover:text-gray-500 text-2xl text-gray-800 overflow-hidden text-ellipsis leading-8 my-3 dark:text-gray-300"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link> 
-<Link href={`/news/trending/${xy.slug}`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}}className='hover:text-gray-500 text-lg overflow-hidden text-ellipsis leading-8 my-3 dark:text-gray-300' style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link>
+<Link href={`/news/trending/${xy.slug}/`}><h3 className="hover:text-gray-500 text-2xl text-gray-800 overflow-hidden text-ellipsis leading-8 my-3 dark:text-gray-300"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link> 
+<Link href={`/news/trending/${xy.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}}className='hover:text-gray-500 text-lg overflow-hidden text-ellipsis leading-8 my-3 dark:text-gray-300' style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link>
   <small className="text-md italic text-red-600 py-2 block">{moment(xy.date).fromNow()} </small>
  </div>
 <Image
@@ -173,9 +173,9 @@ alt={xy.featuredImage.node.altText}
   {related_to_trend?.slice(0,5).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="[&:not(:last-child)]:border-b my-3">  
   <ul>
-  <Link href={`/news/trending/${xy.slug}`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 dark:text-gray-300 dark:hover:text-gray-500'>{xy.title} </li></Link>
+  <Link href={`/news/trending/${xy.slug}/`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 dark:text-gray-300 dark:hover:text-gray-500'>{xy.title} </li></Link>
      </ul>  
-     <Link href={`/news/trending/${xy.slug}`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}}className="text-lg hover:text-gray-500 overflow-hidden text-ellipsis leading-8 my-3 " style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link>
+     <Link href={`/news/trending/${xy.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}}className="text-lg hover:text-gray-500 overflow-hidden text-ellipsis leading-8 my-3 " style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></Link>
 <small className="text-md italic text-red-600 py-2 block">{moment(xy.date).fromNow()} </small>
 </div>
   )

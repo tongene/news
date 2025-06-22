@@ -39,8 +39,6 @@ defaultValue={comment?.id===commentObj.id?comment?.title:''}
 className='w-full resize-none bg-inherit p-5 leading-normal focus:outline-none border-2 rounded ' 
 placeholder="Speak your Mind!"
 />  
-
- 
 <div className="right-36 bottom-5 absolute">
  <label className="block text-2xl relative overflow-hidden float-left clear-left hover:scale-105  myFile edit-view block text-gray-900 dark:text-white" htmlFor="file_input">
  <p className="cursor-pointer "> 

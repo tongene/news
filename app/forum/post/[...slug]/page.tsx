@@ -8,7 +8,8 @@ import { InitialComments } from "@/app/types";
 import { Suspense } from "react";
 import type { Metadata, ResolvingMetadata } from 'next'
 import StructuredData from "@/components/StructuredData";
-import { BlogPosting, DiscussionForumPosting, WithContext } from "schema-dts";
+import { DiscussionForumPosting, WithContext } from "schema-dts";
+ 
 type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -38,7 +39,7 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || []
     
   return {
-    title:`Culturays Forum - ${post?.title || post?.article_title?.toUpperCase().replace(/-/g," ")}`,
+    title:`Urban Naija | Forum - ${post?.title || post?.article_title?.toUpperCase().replace(/-/g," ")}`,
     keywords: post.genre.join(', '),
     twitter: {
       card: 'summary_large_image',
@@ -52,6 +53,10 @@ export async function generateMetadata(
       publishedTime:post?.created_at,
 
     },
+      alternates: {
+    canonical:  `https://culturays.com/forum/post/${slug}/`,
+ 
+  },
   }
 }  
    
@@ -117,20 +122,23 @@ if(error){
 return data ??[]
 }
  
-  const fakeTrend = await getFacts() 
-  const today = new Date();
-const todayMonth = today.getMonth() ;
-const filteredTrends = fakeTrend?.filter((dateStr:FakeObj) => {
-  const date = new Date(dateStr.claimDate);
-  const dateDay = date.getDate();  
-  const dateMonth = date.getMonth() ;
-  return dateMonth <= todayMonth ;
-});;
  
+const fakeTrend = await getFacts()  
+const today = new Date();
+const todayMonth = today.getMonth() 
+
+const filteredTrends = fakeTrend?.filter((item, index, self) =>  index === self.findIndex((t) => t.claimant === item.claimant)) 
+.filter((dateStr:FakeObj) => { 
+
+const date = new Date(dateStr.claimDate); 
+const dateDay = date.getDate();  
+const dateMonth= date.getMonth() ;
+return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMonth||todayMonth-3===dateMonth; 
+});
 const jsonLd:WithContext<DiscussionForumPosting> = {
   '@context': 'https://schema.org',
   '@type': 'DiscussionForumPosting', 
-  "@id":`https://culturays.com/post/${post?.slug}`,
+  "@id":`https://culturays.com/post/${slug}/`,
   "headline":post?.title||post?.article_title?.toUpperCase().replace(/-/g," "),
   "author": {
     "@type": "Person",

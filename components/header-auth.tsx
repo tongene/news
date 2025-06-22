@@ -20,17 +20,17 @@ export default async function AuthButton() {
  
  <div className="flex flex-col items-center pb-2 leading-none"> 
 <div className="flex items-center"> 
-<Link href={`/profile/${user.id}`}><p className="m-1 text-lg hover:scale-105">Hey, {user.user_metadata.full_name}!</p></Link>  
+<Link href={`/profile/${user.id}/`}><p className="m-1 text-lg hover:scale-105">Hey, {user.user_metadata.full_name}!</p></Link>  
 </div>
 
 <div className="m-1 flex m-auto justify-center">  
-{!user.user_metadata.picture && <Link href={`/profile/${user.id}`}>
+{!user.user_metadata.picture && <Link href={`/profile/${user.id}/`}>
  <FontAwesomeIcon 
  width={15}
  height={15} 
  className="p-3 m-1 cursor-pointer border rounded-full"icon={faUser}/></Link> } 
   {user.user_metadata.picture&& 
-   <Link href={`/profile/${user.id}`}>
+   <Link href={`/profile/${user.id}/`}>
    <div > 
       <Image
  src={user.user_metadata.picture} 
@@ -48,7 +48,7 @@ export default async function AuthButton() {
   <>
 <div className="flex flex-col items-center pb-2 leading-none text-xs my-6">
 <Link
-href="/sign-in"
+href="/sign-in/"
 className="flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover text-xs"
 >
   <button className="text-lg rounded-md no-underline bg-btn-background hover:bg-btn-background-hover border border-4 py-3 px-6">

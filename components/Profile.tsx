@@ -736,7 +736,7 @@ size={150}
   <div className="absolute right-5 bg-transparent z-50" ref={dropperRef}>
    {openNav?
  (  <nav className='bg-gray-800'> 
-    <Link href="/forum"><div className='flex justify-between text-lg p-3 text-white'><FontAwesomeIcon icon={faHouse} width={25} /><p className="mx-2">Home</p></div></Link>
+    <Link href="/forum/"><div className='flex justify-between text-lg p-3 text-white'><FontAwesomeIcon icon={faHouse} width={25} /><p className="mx-2">Home</p></div></Link>
   <div className='flex justify-between text-lg p-3 mx-2 text-white cursor-pointer' onClick={()=> setShowInput(prev => !prev)}><FontAwesomeIcon icon={faImage}width={20} /><p className="mx-2">Change Photo</p></div> 
   <div className='flex justify-between text-lg p-3 mx-2 text-white cursor-pointer' onClick={accountDelete}><FontAwesomeIcon icon={faTrash}width={20} /><p className="mx-2">Delete Profile</p>
   </div>
@@ -790,14 +790,14 @@ null
     {postsSorted?.map((xx, i)=> (  
     <div key={xx.title +  ' ' + i }className="sm:max-w-lg md:max-w-xl m-auto p-4 border-gray-900 hover:bg-gray-900 cursor-pointer border rounded my-1">  
    <div className="w-full overflow-hidden md:block justify-center" ref={ref}>
-   <div onClick={()=>router.push(`/forum/post/${xx.slug}/${xx.id}`)}className="" ref={createRef}> 
+   <div onClick={()=>router.push(`/forum/post/${xx.slug}/${xx.id}/`)}className="" ref={createRef}> 
    <h3 className="text-white opacity-70 text-2xl cursor-pointer px-4 text-center underline capitalize">
    {xx?.title }  
    </h3>  
    <p className="text-white font-bold text-center text-lg my-1">Genres:</p>
    {xx?.genre?.slice(0,3)?.map((xy, vi)=>
    <div className="text-white text-center" key={vi}>
-   <Link href={`/topic/${xy}`}><p className="m-1 hover:opacity-70 cursor-pointer" >{ xy} </p></Link> 
+   <Link href={`/topic/${xy}/`}><p className="m-1 hover:opacity-70 cursor-pointer" >{ xy} </p></Link> 
    </div>
    )} 
   
@@ -806,13 +806,13 @@ null
    <p className="text_truncate_at" style={{lineHeight:'30px'}}>
    {xx?.story} 
    </p>
-   <Link href={`/forum/post/${xx?.slug}/${xx.id}`}><small className="hover:text-green-400  text-white opacity-70 cursor-pointer px-2">See full story</small></Link> </div>
+   <Link href={`/forum/post/${xx?.slug}/${xx.id}/`}><small className="hover:text-green-400  text-white opacity-70 cursor-pointer px-2">See full story</small></Link> </div>
    <div className="flex flex-wrap text-sm "> 
    {xx?.tags?.map((xy, vi)=> 
    xy.split(',').map((ex, xi)=> ex&&
    <div className="flex bg-gray-100 mx-1 my-8" key={xi}>
     
-   <Link href={`/topic/${ex.replace('#', '')}'`}><p className="p-1 m-1 hover:opacity-70 cursor-pointer" >{'#' + ex.replace('.', '')} </p></Link>
+   <Link href={`/topic/${ex.replace('#', '')}/`}><p className="p-1 m-1 hover:opacity-70 cursor-pointer" >{'#' + ex.replace('.', '')} </p></Link>
    <small className="p-2 hover:bg-gray-400" onClick={()=>deleteTagAction(xx, ex)}>x</small>
    </div> ))} 
     
@@ -860,7 +860,7 @@ null
      <div className='text-white flex justify-center opacity-70 mt-8'> 
     <span className="m-2">by</span>    
      {xx?.avatar_url?     
-     <Link href={`/profile/${xx?.user_id}`}>      
+     <Link href={`/profile/${xx?.user_id}/`}>      
        <Image 
      width={40}
      height={40}
@@ -870,9 +870,9 @@ null
      </Link>:
      
      <Link href={`/profile/${xx?.user_id}`}><p className='border cursor-pointer rounded-full w-full p-2 opacity-70 hover:scale-105'><FontAwesomeIcon icon={faUser} width={25}className="avatar_"/></p></Link> }  
-   { xx?.username&& <Link href={`/profile/${xx?.user_id}`}><p className="text-sm m-2 hover:scale-105" >{xx?.username} 
+   { xx?.username&& <Link href={`/profile/${xx?.user_id}/`}><p className="text-sm m-2 hover:scale-105" >{xx?.username} 
      </p></Link>} 
-     {!xx?.username&& <Link href={`/profile/${xx?.user_id}`}><p className="text-sm m-2 hover:scale-105" >{xx?.user_email} 
+     {!xx?.username&& <Link href={`/profile/${xx?.user_id}/`}><p className="text-sm m-2 hover:scale-105" >{xx?.user_email} 
      </p></Link>}     
    </div>
   
@@ -930,7 +930,7 @@ null
    {isPending ? 'Waiting' : 'Reply'}
    </button>    
    </form>     
-   <Link href={`/forum/post/${xx.slug}/${xx.id}`} className="text-white m-1 text-sm rounded-none p-2">View All Comments</Link>
+   <Link href={`/forum/post/${xx.slug}/${xx.id}/`} className="text-white m-1 text-sm rounded-none p-2">View All Comments</Link>
    </div>
    }
   {userActions?<LoginModal 

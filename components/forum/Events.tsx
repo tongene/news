@@ -42,7 +42,7 @@ height={150}
 alt={xx.title}
 />  
 <div className="my-2 mx-2 text-center">
-<Link href={`/naija-events/event/${xx.slug}` } ><h2 className="py-2 text-white cursor-pointer text-2xl hover:text-gray-400" >Title: {xx.title}</h2></Link>
+<Link href={`/naija-events/event/${xx.slug}/` } ><h2 className="py-2 text-white cursor-pointer text-2xl hover:text-gray-400" >Title: {xx.title}</h2></Link>
  
  <p className="text-white mx-0.5 text-md mt-1">Genre: {xx?.genre||'Not Available'}</p> 
 <p className="text-white mx-0.5 text-md mt-1"suppressHydrationWarning>Date: {nlp(xx?.day)?.dates()?.text()?.split('at')[0]}</p>
@@ -51,7 +51,7 @@ alt={xx.title}
 
 </div>
 </div>
-<Link href='/naija-events'> 
+<Link href='/naija-events/'> 
 <small className="text-center flex justify-center py-4 text-white hover:text-green-400 hover:ml-2 hover:opacity-70">all event <FontAwesomeIcon icon={faAngleRight} className="opacity-70 mx-3 p-1 cursor-pointer hover:mr-2"/>  </small></Link> 
 </div> )}
 

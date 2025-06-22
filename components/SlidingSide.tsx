@@ -45,7 +45,7 @@ const SlidingSide = ({ newsItems, speed = 50000} :{newsItems:VidProps[], speed:n
 </div> 
 
  <div className="px-3 cursor-pointer py-2 w-80 sm:w-72">    
- <Link href={`/news/video/${item.slug}`}>
+ <Link href={`/news/video/${item.slug}/`}>
  <h2 key={index} className='text-2xl font-bold text-gray-700 hover:text-orange-800'>
         {item.title}
     </h2></Link> 

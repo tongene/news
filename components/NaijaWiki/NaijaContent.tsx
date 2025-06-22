@@ -70,7 +70,7 @@ const NaijaContent = ({end_ng_cursor, setEnd_ng_cursor}:{end_ng_cursor:string, s
   alt={xy.featuredImage.node.altText} 
   /></div>
   <div className="w-1/2 px-2 my-4"> 
-  <Link href={`/netflix-naija/news/${xy.slug}`}><h2 className='text-lg font-bold text-gray-700 hover:text-gray-500 cursor-pointer'>{ xy.title}</h2></Link>
+  <Link href={`/netflix-naija/news/${xy.slug}/`}><h2 className='text-lg font-bold text-gray-700 hover:text-gray-500 cursor-pointer'>{ xy.title}</h2></Link>
 <small className="text-red-600 my-4 italic">{moment(xy.date).fromNow()}</small>
   </div> 
 </div> 

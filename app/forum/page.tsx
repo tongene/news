@@ -8,6 +8,7 @@ import { BlogPosting, WebPage, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
  //export const revalidate = 0
  const INITIAL_NUMBER_OF_POSTS = 10
+ 
 const Forum = async({searchParams}: {
   searchParams: Promise<{ topic: string, message: string }>}) => {
 const supabase =await createClient()    
@@ -41,14 +42,6 @@ return data ??[]
   const dateMonth= date.getMonth() ;
   return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMonth||todayMonth-3===dateMonth; 
 });
-
-  //const xt10 = fakeTrend.map((xt)=> xt.claimDate).includes('') 
- // console.log(fakeTrend)
-//   const xt20= xt10.map((xy)=> 
-//     // if(xy.claimDate.includes(String('2025'))){
-// console.log(xy)  
-//     // }
-//    )
   
  const {topic}=await searchParams || ''
  const {message}=await searchParams || ''
@@ -64,15 +57,15 @@ const jsonLd:WithContext<BlogPosting>={
   "@type": "BlogPosting",
   "headline": "Urban - Covering News in Nigeria, Africa, and Beyond",
   "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-  "url": "https://culturays.com/forum",
+  "url": "https://culturays.com/forum/",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://culturays.com/forum"
+    "@id": "https://culturays.com/forum/"
   },
   "inLanguage": "en",
   "image": {
     "@type": "ImageObject",
-    "url": "https://culturays.com/opengraph-image.png"
+    "url": "https://culturays.com/opengraph-image.png/"
   },
   "datePublished": "2025-04-15T08:00:00Z",
   "dateModified": "2025-04-15T08:00:00Z",
@@ -83,10 +76,10 @@ const jsonLd:WithContext<BlogPosting>={
   "publisher": {
     "@type": "Organization",
     "name": "Ngenet Studio",
-    "url": "https://www.culturays.com/forum",
+    "url": "https://www.culturays.com/forum/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+      "url": "https://culturays.com/assets/images/culturays-no-bg.png/"
     }
   }
 }

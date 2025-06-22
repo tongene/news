@@ -17,7 +17,7 @@ height={500}
 alt={ux.title} 
 />  
 
-<Link href={`/naija-events/event/${ux.slug }`}><h1 className="absolute top-11 cursor-pointer text-white hover:opacity-70 px-3 py-5 z-10 font-bold text-xl">{ux.title.split(',')[0]}</h1></Link> 
+<Link href={`/naija-events/event/${ux.slug}/`}><h1 className="absolute top-11 cursor-pointer text-white hover:opacity-70 px-3 py-5 z-10 font-bold text-xl">{ux.title.split(',')[0]}</h1></Link> 
 </div> 
  )} 
  

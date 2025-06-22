@@ -2,12 +2,16 @@ import Economy from "@/components/News/Economy"
 import StructuredData from "@/components/StructuredData";
 import { BlogPosting, WithContext } from "schema-dts";
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/economy` 
-  : "http://localhost:3000/economy";
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}/economy/` 
+  : "http://localhost:3000/economy/";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl), 
-   title:"Urban News | Economy",   
+   title:"Urban News | Economy",  
+    alternates: {
+    canonical:  `https://culturays.com/news/economy/`,
+ 
+  }
 };
 
 
@@ -100,10 +104,10 @@ const EconomyPage =async () => {
              "@type": "BlogPosting",
              "headline": "Urban News - Covering News in Nigeria, Africa, and Beyond",
              "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-             "url": "https://culturays.com/news/ecenomy",
+             "url": "https://culturays.com/news/ecenomy/",
              "mainEntityOfPage": {
                "@type": "WebPage",
-               "@id": "https://culturays.com/news/economy"
+               "@id": "https://culturays.com/news/economy/"
              },
              "inLanguage": "en",
              "image": {
@@ -119,7 +123,7 @@ const EconomyPage =async () => {
              "publisher": {
                "@type": "Organization",
                "name": "Ngenet Studio",
-               "url": "https://culturays.com/news/economy",
+               "url": "https://culturays.com/news/economy/",
                "logo": {
                  "@type": "ImageObject",
                  "url": "https://culturays.com/assets/images/culturays-no-bg.png"

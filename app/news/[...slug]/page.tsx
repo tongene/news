@@ -865,6 +865,10 @@ export async function generateMetadata(
       type: "article",
       publishedTime:news_details?.date,
     },
+     alternates: {
+    canonical:  `https://culturays.com/news/article/${slug}/`,
+ 
+  },
   } 
 } 
  
@@ -894,7 +898,7 @@ const slug =(await params).slug
       author: {
         "@type": "Person",
         name: "Christina Ngene",
-        url:'https://culturays.com/creator/christina-ngene',
+        url:'https://culturays.com/creator/christina-ngene/',
       }, 
       datePublished: new Date(news_detail?.date).toDateString(), 
       dateModified: new Date(news_detail?.date).toDateString(), 

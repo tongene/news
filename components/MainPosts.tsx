@@ -26,18 +26,18 @@ className='rounded-xl h-44 object-cover'
   alt={it?.node?.featuredImage?.node.altText } 
   /> 
 <div className='my-3 sm:my-0 md:px-1 py-4'>
-<Link href={`/news/topic/${it?.node?.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-xl md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.node?.title}</h3></Link>
+<Link href={`/news/topic/${it?.node?.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-xl md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.node?.title}</h3></Link>
 
  <div className="flex flex-wrap py-2"> 
-<Link href={`/topic/${it?.node?.tags.nodes[0]?.slug}`}><h4 className='md:text-end underline hover:text-gray-500'>{it?.node?.tags.nodes[0]?.name } | </h4></Link> 
+<Link href={`/topic/${it?.node?.tags.nodes[0]?.slug}/`}><h4 className='md:text-end underline hover:text-gray-500'>{it?.node?.tags.nodes[0]?.name } | </h4></Link> 
 <span className='text-sm italic text-red-600 px-1'>{moment(it?.node?.date).fromNow()}</span>
 </div>    
 </div>  
  </div>}
    {index !==0&&
  <div className='my-3 md:px-1 border-b py-4'>
-<Link href={`/news/topic/${it?.node?.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-xl md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.node?.title}</h3></Link>
-<Link href={`/topic/${it?.node?.tags.nodes[0]?.slug}`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-500'>{it?.node?.tags.nodes[0]?.name }</h4></Link> 
+<Link href={`/news/topic/${it?.node?.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-xl md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.node?.title}</h3></Link>
+<Link href={`/topic/${it?.node?.tags.nodes[0]?.slug}/`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-500'>{it?.node?.tags.nodes[0]?.name }</h4></Link> 
 <span className='text-sm italic text-red-600'>{moment(it?.node?.date).fromNow()}</span>
 </div>} 
  
@@ -59,17 +59,17 @@ className='rounded-xl h-44 object-cover'
   alt={it?.node.featuredImage?.node.altText } 
   />   
 <div className='my-3 sm:my-0 md:px-1 py-4'>
-<Link href={`/news/topic/${it.node.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-xl md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.node.title}</h3></Link>
+<Link href={`/news/topic/${it.node.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-xl md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.node.title}</h3></Link>
 <div className="flex flex-wrap py-2"> 
-<Link href={`/topic/${it.node.tags.nodes[0].slug}`}><h4 className='md:text-end underline hover:text-gray-500'>{it.node.tags.nodes[0].name } | </h4></Link> 
+<Link href={`/topic/${it.node.tags.nodes[0].slug}/`}><h4 className='md:text-end underline hover:text-gray-500'>{it.node.tags.nodes[0].name } | </h4></Link> 
 <span className='text-sm italic text-red-600 px-1'>{moment(it.node.date).fromNow()}</span>
 </div> 
 </div>  
  </div>}
  {index !==0&&
  <div className='my-3 md:px-1 border-b py-4'>
-<Link href={`/news/topic/${it.node.slug}`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-xl md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.node.title}</h3></Link>
-<Link href={`/topic/${it.node.tags.nodes[0]?.slug}`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-500'>{it.node.tags.nodes[0]?.name }</h4></Link> 
+<Link href={`/news/topic/${it.node.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-500 text-xl md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.node.title}</h3></Link>
+<Link href={`/topic/${it.node.tags.nodes[0]?.slug}/`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-500'>{it.node.tags.nodes[0]?.name }</h4></Link> 
 <span className='text-sm italic text-red-600'>{moment(it.node.date).fromNow()}</span>
 </div>}
  

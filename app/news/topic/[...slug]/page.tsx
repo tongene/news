@@ -350,6 +350,10 @@ export async function generateMetadata({ params }: {
       type: "article",
       publishedTime:news_details?.date 
     },
+     alternates: {
+    canonical:  `https://culturays.com/news/topic/${slug}/`,
+ 
+  },
   }
 }    
 
@@ -391,7 +395,7 @@ const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
    author: {
      "@type": "Person",
      name: "Christina Ngene",
-     url:'https://culturays.com/creator/christina-ngene',
+     url:'https://culturays.com/creator/christina-ngene/',
    }, 
    datePublished:new Date(news_detail?.date).toDateString(), 
    dateModified:new Date(news_detail?.date).toDateString(),

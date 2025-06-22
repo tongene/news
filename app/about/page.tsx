@@ -1,14 +1,16 @@
 import AboutUs from "@/components/AboutUs"  
 import { usersList } from "../data/usershandle";
-import fs from 'fs'
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/about` 
-  : "http://localhost:3000/about";
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}/about/` 
+  : "http://localhost:3000/about/";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl), 
-   title:"About",  
-    
+   title:"Urban Naija News | About",  
+    alternates: {
+  canonical: 'https://culturays.com/about/',
+
+},
 }; 
 
 const AboutUsPage =async () => {

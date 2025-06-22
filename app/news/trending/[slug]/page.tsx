@@ -204,7 +204,7 @@ export async function generateMetadata({ params }: {
     const previousImages = (await parent).openGraph?.images || []
      
     return {
-      title:`Culturays | Trending - ${trending_details?.title}` ,
+      title:`Urban Naija | Trending - ${trending_details?.title}` ,
          description:trending_details?.excerpt,
           keywords:tags,
           twitter: {
@@ -218,6 +218,10 @@ export async function generateMetadata({ params }: {
         type: "article",
         publishedTime:trending_details?.date
       },
+       alternates: {
+    canonical:  `https://culturays.com/news/trending/${slug}`,
+ 
+  }
     }
   }   
 const TrendingDetails =async ({params}: {
@@ -246,7 +250,7 @@ const TrendingDetails =async ({params}: {
    author: {
      "@type": "Person",
      name: "Christina Ngene",
-     url:'https://culturays.com/creator/christina-ngene',
+     url:'https://culturays.com/creator/christina-ngene/',
    }, 
    datePublished: new Date( trends_detail?.date).toDateString(), 
    dateModified: new Date( trends_detail?.date).toDateString(), 

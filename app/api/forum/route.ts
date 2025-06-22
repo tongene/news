@@ -71,7 +71,7 @@ export async function GET() {
           ?.replace(/'/g, "&apos;")
           ?.replace(/-/g, " ")
   const content_posts =(initialPostsD as PostProps[]).map((post) => ({
-    url: `https://culturays.com/forum/post/${post.slug}/${post.id}`,
+    url: `https://culturays.com/forum/post/${post.slug}/${post.id}/`,
     lastModified: new Date(post.created_at as string),
     changeFrequency: 'always',
     priority: 0.8,
@@ -79,7 +79,7 @@ export async function GET() {
     news: [
       {
         publication: {
-          name: 'Culturays News',
+          name: 'Urban Naija News | Forum',
           language: 'en',
         },
         publication_date: new Date(post.created_at  as string).toISOString(),

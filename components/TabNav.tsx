@@ -119,19 +119,19 @@ const checkBiased = (e: React.ChangeEvent<HTMLInputElement>) => {
  
 <div className="p-6 text-gray-200 flex justify-between hover:scale-105"> 
 <hr className="w-1/4 my-3"/>
-<Link href='/news/nollywood'><h3 className="cursor-pointer" >Nollywood </h3></Link> 
+<Link href='/news/nollywood/'><h3 className="cursor-pointer" >Nollywood </h3></Link> 
 <hr className="w-1/4 my-3"/> 
  
 </div>
  
 <div className="p-6 text-gray-200 flex justify-between hover:scale-105"> 
 <hr className="w-1/4 my-3"/> 
-<Link href='/news/award'><h3 className="cursor-pointer" onClick={()=>setCloseQuestion(false)}>Awards</h3></Link>  
+<Link href='/news/award/'><h3 className="cursor-pointer" onClick={()=>setCloseQuestion(false)}>Awards</h3></Link>  
 <hr className="w-1/4 my-3"/>  
 </div>
 <div className="p-6 text-gray-200 flex justify-between hover:scale-105"> 
 <hr className="w-1/4 my-3"/> 
-<Link href='/news/videos'><h3 className="cursor-pointer">Videos</h3></Link>  
+<Link href='/news/videos/'><h3 className="cursor-pointer">Videos</h3></Link>  
 <hr className="w-1/4 my-3"/>  
 </div>
  
@@ -153,7 +153,7 @@ height={675}
    </div> 
  
   <div className=" w-3/4 mx-1 px-1 text-lg"> 
- <Link href={`/news/topic/${ex.node.slug}`}>
+ <Link href={`/news/topic/${ex.node.slug}/`}>
  <div dangerouslySetInnerHTML={{__html:ex.node.excerpt}} className="text-ellipsis overflow-hidden " style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/>
  </Link> 
 </div>

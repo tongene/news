@@ -462,12 +462,12 @@ setEditId={setEditId}
    <div className="w-full overflow-hidden md:block justify-center" >
     
   <div ref={createRef}> 
-{xx?.title&&!xx?.article_title&&  <Link href={`/forum/post/${xx.slug}/${xx.id}`}><h3 className="text-white opacity-70 text-2xl cursor-pointer px-4 text-center underline">{xx?.title}</h3></Link>}
+{xx?.title&&!xx?.article_title&&  <Link href={`/forum/post/${xx.slug}/${xx.id}/`}><h3 className="text-white opacity-70 text-2xl cursor-pointer px-4 text-center underline">{xx?.title}</h3></Link>}
  
    <p className="text-white font-bold text-center text-lg my-1">Genres:</p>
    {xx?.genre?.slice(0,3)?.map((xy, vi)=>
    <div className="text-white text-center" key={vi}>
-   <Link href={`/topic/${xy}'`}><p className="m-1 hover:opacity-70 cursor-pointer" >{ xy} </p></Link>
+   <Link href={`/topic/${xy}/`}><p className="m-1 hover:opacity-70 cursor-pointer" >{ xy} </p></Link>
    </div>  
    )}  
    
@@ -475,13 +475,13 @@ setEditId={setEditId}
 
    <div className=""> 
    <p style={{lineHeight:'28px'}} className="text-white opacity-70 cursor-pointer p-4 text-center">
-   {xx?.story} <Link href={`/forum/post/${xx.slug}/${xx.id}`}><small className="hover:text-green-400">See full story</small></Link>
+   {xx?.story} <Link href={`/forum/post/${xx.slug}/${xx.id}/`}><small className="hover:text-green-400">See full story</small></Link>
    </p></div> 
    <div className="flex flex-wrap text-sm my-8 text-white"> 
    {xx?.tags?.map((xy, vi)=> 
    xy.split(',').map((ex, xi)=> ex&&
    <div className="flex m-1" key={xi}>
-   <Link href={`/topic/${ex.replace('#', '')}'`}><p className="p-1 m-1 hover:opacity-70 cursor-pointer" >{'#' + ex.replace('.', '')} </p></Link>
+   <Link href={`/topic/${ex.replace('#', '')}/`}><p className="p-1 m-1 hover:opacity-70 cursor-pointer" >{'#' + ex.replace('.', '')} </p></Link>
  {xx?.user_id === user?.id && <small className="p-2 hover:bg-gray-400" onClick={()=>deleteTagAction(xx, ex)}>x</small>}
    </div> ))} 
     
@@ -534,7 +534,7 @@ setEditId={setEditId}
      <div className='text-white flex justify-center opacity-70 mt-8'> 
     <span className="m-2">by</span>    
      {xx?.avatar_url?     
-     <Link href={`/profile/${xx?.user_id}`}>      
+     <Link href={`/profile/${xx?.user_id}/`}>      
        <img 
      width={40}
      height={40}
@@ -543,10 +543,10 @@ setEditId={setEditId}
      className='border cursor-pointer rounded-full opacity-70 hover:scale-105'/>
      </Link>:
      
-     <Link href={`/profile/${xx?.user_id}`}><p className='border cursor-pointer rounded-full w-full p-2 opacity-70 hover:scale-105'><FontAwesomeIcon icon={faUser} width={25}className="avatar_"/></p></Link> }  
-   { xx?.username&& <Link href={`/profile/${xx?.user_id}`}><p className="text-sm m-2 hover:scale-105" >{xx?.username} 
+     <Link href={`/profile/${xx?.user_id}/`}><p className='border cursor-pointer rounded-full w-full p-2 opacity-70 hover:scale-105'><FontAwesomeIcon icon={faUser} width={25}className="avatar_"/></p></Link> }  
+   { xx?.username&& <Link href={`/profile/${xx?.user_id}/`}><p className="text-sm m-2 hover:scale-105" >{xx?.username} 
      </p></Link>} 
-     {!xx?.username&& <Link href={`/profile/${xx?.user_id}`}><p className="text-sm m-2 hover:scale-105" >{xx?.user_email} 
+     {!xx?.username&& <Link href={`/profile/${xx?.user_id}/`}><p className="text-sm m-2 hover:scale-105" >{xx?.user_email} 
      </p></Link>}     
    </div>
   
@@ -644,7 +644,7 @@ onChange={handleImageUpload}
    </div>
  ))}
 </div>
-   <Link href={`/forum/post/${xx.slug}/${xx.id}`}><p className="text-white text-center my-1 text-xs rounded-none py-2">View Comments</p></Link>
+   <Link href={`/forum/post/${xx.slug}/${xx.id}/`}><p className="text-white text-center my-1 text-xs rounded-none py-2">View Comments</p></Link>
    </div>
    }
    {userActions?
@@ -682,7 +682,7 @@ onChange={handleImageUpload}
 {gnrItx.map((vx, i)=>
   <div className='absolute' key={vx.article_title +' ' + i}>  
   <div className="flex border-b hover:bg-gray-900 dark:bg-gray-800 w-80 bg-white" > 
-<Link href={`/forum/post/${vx.slug}/${vx.id}`}><h2 className="capitalize text-lg p-6 cursor-pointer">{vx.article_title.replace(/-/g, ' ')}</h2></Link>
+<Link href={`/forum/post/${vx.slug}/${vx.id}/`}><h2 className="capitalize text-lg p-6 cursor-pointer">{vx.article_title.replace(/-/g, ' ')}</h2></Link>
    </div>
 
    </div>
@@ -700,7 +700,7 @@ onChange={handleImageUpload}
    <p className="text-white font-bold text-center text-lg my-1">Genres:</p>
    {xx?.genre?.slice(0,3)?.map((xy, vi)=>
    <div className="text-white text-center" key={vi}>
-   <Link href={`/topic/${xy}'`}><p className="m-1 hover:opacity-70 cursor-pointer" >{ xy} </p></Link>
+   <Link href={`/topic/${xy}/`}><p className="m-1 hover:opacity-70 cursor-pointer" >{ xy} </p></Link>
    </div>  
    )}  
    
@@ -708,14 +708,14 @@ onChange={handleImageUpload}
 
    <div className=""> 
    <p style={{lineHeight:'28px'}} className="text-white opacity-70 cursor-pointer p-4 text-center">
-   {xx?.story} <Link href={`/forum/post/${xx.slug}/${xx.id}`}><small className="hover:text-green-400">See full story</small></Link>
+   {xx?.story} <Link href={`/forum/post/${xx.slug}/${xx.id}/`}><small className="hover:text-green-400">See full story</small></Link>
    </p></div> 
 
    <div className="flex flex-wrap text-sm my-8 text-white"> 
    {xx?.tags?.map((xy, vi)=> 
    xy.split(',').map((ex, xi)=> ex&&
    <div className="flex m-1" key={xi}>
-   <Link href={`/topic/${ex.replace('#', '')}'`}><p className="p-1 m-1 hover:opacity-70 cursor-pointer" >{'#' + ex.replace('.', '')} </p></Link>
+   <Link href={`/topic/${ex.replace('#', '')}/`}><p className="p-1 m-1 hover:opacity-70 cursor-pointer" >{'#' + ex.replace('.', '')} </p></Link>
  {xx?.user_id === user?.id && <small className="p-2 hover:bg-gray-400" onClick={()=>deleteTagAction(xx, ex)}>x</small>}
    </div> ))} 
     
@@ -768,7 +768,7 @@ onChange={handleImageUpload}
      <div className='text-white flex justify-center opacity-70 mt-8'> 
     <span className="m-2">by</span>    
      {xx?.avatar_url?     
-     <Link href={`/profile/${xx?.user_id}`}>      
+     <Link href={`/profile/${xx?.user_id}/`}>      
        <img 
      width={40}
      height={40}
@@ -777,10 +777,10 @@ onChange={handleImageUpload}
      className='border cursor-pointer rounded-full opacity-70 hover:scale-105'/>
      </Link>:
      
-     <Link href={`/profile/${xx?.user_id}`}><p className='border cursor-pointer rounded-full w-full p-2 opacity-70 hover:scale-105'><FontAwesomeIcon icon={faUser} width={25}className="avatar_"/></p></Link> }  
-   { xx?.username&& <Link href={`/profile/${xx?.user_id}`}><p className="text-sm m-2 hover:scale-105" >{xx?.username} 
+     <Link href={`/profile/${xx?.user_id}/`}><p className='border cursor-pointer rounded-full w-full p-2 opacity-70 hover:scale-105'><FontAwesomeIcon icon={faUser} width={25}className="avatar_"/></p></Link> }  
+   { xx?.username&& <Link href={`/profile/${xx?.user_id}/`}><p className="text-sm m-2 hover:scale-105" >{xx?.username} 
      </p></Link>} 
-     {!xx?.username&& <Link href={`/profile/${xx?.user_id}`}><p className="text-sm m-2 hover:scale-105" >{xx?.user_email} 
+     {!xx?.username&& <Link href={`/profile/${xx?.user_id}/`}><p className="text-sm m-2 hover:scale-105" >{xx?.user_email} 
      </p></Link>}     
    </div>
   
@@ -878,7 +878,7 @@ onChange={handleImageUpload}
    </div>
  ))}
 </div>
-   <Link href={`/forum/post/${xx.slug}/${xx.id}`}><p className="text-white text-center my-1 text-xs rounded-none py-2">View Comments</p></Link>
+   <Link href={`/forum/post/${xx.slug}/${xx.id}/`}><p className="text-white text-center my-1 text-xs rounded-none py-2">View Comments</p></Link>
    </div>
    }
    {userActions?

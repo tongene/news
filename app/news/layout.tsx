@@ -1,13 +1,13 @@
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/news` 
-  : "http://localhost:3000/news";
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}/news/` 
+  : "http://localhost:3000/news/";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Urban Naija | News",
   description:'This is the medium that caters for the daily need of legitimate global news. We cover news about all technological advancements, economic situations and growth, entertainment, Nollywood, health and societal issues as well as business and environment.',
   alternates: {
-    canonical: 'https://culturays.com/news',
+    canonical: 'https://culturays.com/news/',
  
   },
   openGraph: {

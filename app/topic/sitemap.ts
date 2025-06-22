@@ -109,7 +109,7 @@ export default async function sitemap({
     
       const dataTags=topicData.map((post)=>({ 
         title:post.name,
-        url:`https://culturays.com/topic/${post.slug}`,
+        url:`https://culturays.com/topic/${post.slug}/`,
         lastModified:new Date(),
         changeFrequency:'always', 
         priority:0.8,
@@ -117,7 +117,7 @@ export default async function sitemap({
      }) )
      const postTags=tagData.map((post)=>({ 
       title:post.name,
-      url:`https://culturays.com/topic/${post.slug}`,
+      url:`https://culturays.com/topic/${post.slug}/`,
       lastModified:new Date(),
       changeFrequency:'always', 
       priority:0.8,

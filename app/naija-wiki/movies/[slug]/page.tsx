@@ -26,7 +26,7 @@ import { ProfilePage, WithContext } from "schema-dts";
     const previousImages = (await parent).openGraph?.images || []
 
     return {
-      title: `Culturays - ${charactertitles?.charactertitles.portrayedby} Movies `,
+      title: `Urban Naija | Movies - ${charactertitles?.charactertitles.portrayedby} Movies `,
       description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
       keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),
      twitter: {
@@ -39,6 +39,10 @@ import { ProfilePage, WithContext } from "schema-dts";
         images: [charactertitles.charactertitles.actorImgs.node.sourceUrl, ...previousImages],
        
       },
+      alternates: {
+    canonical:  `https://culturays.com/naija-wiki/movies/${slug.toLowerCase().replace(/-/g, ' ')}/`,
+ 
+  }
     } 
   }
 
@@ -53,7 +57,7 @@ const jsonLd:WithContext<ProfilePage> = {
   '@type': 'ProfilePage',
   headline: `Culturays - ${charactertitles?.charactertitles.portrayedby} | Movies `, 
    description: `${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
-   url:`https://culturays.com/naija-wiki/movies/${slug}`,
+   url:`https://culturays.com/naija-wiki/movies/${slug.toLowerCase().replace(/-/g, ' ')}/`,
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.portrayedby} - Movies`,     
@@ -63,7 +67,7 @@ const jsonLd:WithContext<ProfilePage> = {
    
     mainEntityOfPage: {
      "@type": "WebPage",
-     "@id":`https://culturays.com/naija-wiki/movies/${slug}`, 
+     "@id":`https://culturays.com/naija-wiki/movies/${slug.toLowerCase().replace(/-/g, ' ')}/`, 
    },
 
    image: charactertitles?.charactertitles.actorImgs.node.sourceUrl, 

@@ -52,7 +52,7 @@ useEffect(()=>{
    <div className='flex shadow-detailShadow pt-6 my-1 mt-4 dark:shadow-detailShadowLight justify-center dark:bg-gray-800' > 
     <div className='w-full py-4'> 
     <h3 className='text-center hover:text-gray-500 text-2xl font-bold py-3' >Trending in Nigeria<span></span> <span>&#10141;</span></h3> 
-   <div className='relative text-xl hover:text-orange-700'><p className='absolute bottom-0 right-10 lg:right:40'><Link href='/search'aria-label="Search"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link></p></div> 
+   <div className='relative text-xl hover:text-orange-700'><p className='absolute bottom-0 right-10 lg:right:40'><Link href='/search/'aria-label="Search"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link></p></div> 
 <div className='text-md font-medium flex justify-center items-center xs:flex-row flex-wrap' >
 {liveNewsView
   ?.filter((ex: { node: { modified: string } }) => {
@@ -66,7 +66,7 @@ useEffect(()=>{
     <ul key={ex.node.title} className="flex py-3 items-center">
       <span className="animate-pulse mr-2 text-5xl text-red-600">•</span>
       <span className="text-red-600">Live</span>
-      <Link href={`/news/live/${ex.node.databaseId}/${ex.node.slug}`}>
+      <Link href={`/news/live/${ex.node.databaseId}/${ex.node.slug}/`}>
         <li
           className="m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold"
           style={{
@@ -83,7 +83,7 @@ useEffect(()=>{
 
     {trendsData?.slice(0,6)?.map((ex)=> 
     <ul key={ex.title} className='py-3'> 
-     <Link href={`/news/trending/${ex.slug}`}><li className='m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.contentTags.nodes[0].name}</li></Link> 
+     <Link href={`/news/trending/${ex.slug}/`}><li className='m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.contentTags.nodes[0].name}</li></Link> 
     </ul> 
      )}  
   

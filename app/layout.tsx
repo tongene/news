@@ -92,14 +92,14 @@ export const metadata:Metadata = {
   applicationName: 'Culturays',
   referrer: 'origin-when-cross-origin',
   keywords:"News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Money, Lifestyle, People, Culture, Finance, Industry, Production, Conflict, GDP, Investment, Dollar, Naira, Binanace, Bitcoin, Crude Oil, Gold, Mining, Stocks",
-  authors: [{ name: 'Christina Ngene', url: 'https://culturays.com/creator/christina-ngene' }],
+  authors: [{ name: 'Christina Ngene', url: 'https://culturays.com/creator/christina-ngene/' }],
   creator: 'Christina Ngene',
   publisher: 'Christina Ngene',
-  metadataBase: new URL('https://culturays.com'),
+  metadataBase: new URL('https://culturays.com/'),
   openGraph: {
   title: 'Urban Naija | News, Nigeria',
   description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
-  url: 'https://culturays.com', 
+  url: 'https://culturays.com/', 
   siteName: 'Urban Naija News', 
   images: [
   {
@@ -140,9 +140,8 @@ export const metadata:Metadata = {
    
     },
   
-  
     alternates: {
-      canonical: 'https://culturays.com', 
+      canonical: 'https://culturays.com/', 
       languages: { 
           'en-US': '/en-US',          
       },

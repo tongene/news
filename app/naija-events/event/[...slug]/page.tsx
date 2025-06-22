@@ -33,7 +33,7 @@ export async function generateMetadata(
   
   
   return {
-    title:`Culturays Forum - ${eventTitle?.title}`,
+    title:`Urban Naija | Event - ${eventTitle?.title}`,
     description:eventTitle?.title,
     keywords:[eventTitle.genre].join(', '),
          twitter: {
@@ -47,6 +47,10 @@ export async function generateMetadata(
       type: "article",
       publishedTime:eventTitle?.created_at
     },
+       alternates: {
+    canonical:  `https://culturays.com/naija-events/event/${slug}/`,
+ 
+  },
   }
 }  
    
@@ -89,7 +93,7 @@ const jsonLd: WithContext<Event> = {
     // }
   },
   image: [
-   `https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`
+   `https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}/`
   ],
   keywords:[eventTitle.genre].join(', ')
   // organizer: {

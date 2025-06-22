@@ -20,15 +20,15 @@ const BdaysPage = async() => {
     "@type": "BlogPosting",
     "headline": "Urban News - Covering News in Nigeria, Africa, and Beyond",
     "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-    "url": "https://culturays.com/naija-birthdays",
+    "url": "https://culturays.com/naija-birthdays/",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://culturays.com/naija-birthdays"
+      "@id": "https://culturays.com/naija-birthdays/"
     },
     "inLanguage": "en",
     "image": {
       "@type": "ImageObject",
-      "url": "https://culturays.com/opengraph-image.png"
+      "url": "https://culturays.com/opengraph-image.png/"
     },
     "datePublished": "2025-04-15T08:00:00Z",
     "dateModified": "2025-04-15T08:00:00Z",
@@ -39,10 +39,10 @@ const BdaysPage = async() => {
     "publisher": {
       "@type": "Organization",
       "name": "Ngenet Studio",
-      "url": "https://www.culturays.com/naija-birthdays",
+      "url": "https://www.culturays.com/naija-birthdays/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+        "url": "https://culturays.com/assets/images/culturays-no-bg.png/"
       }
     }
   }

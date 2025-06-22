@@ -49,7 +49,7 @@ const Characters = ({listChars, listOtherChars}:{listChars:CharacterProps[],list
  </div> 
 
   <table className="border lg:w-1/2"><tbody>{ listChars.map((xx, i)=><tr key={i + ' ' + xx?.title} ><td className="border"> 
- <Link href={`/naija-wiki/character/${xx?.slug}`}><h3 className="text-xl font-bold p-3 text-center"> {xx?.title} </h3></Link> 
+ <Link href={`/naija-wiki/character/${xx?.slug}/`}><h3 className="text-xl font-bold p-3 text-center"> {xx?.title} </h3></Link> 
        <div className=" border p-2 m-2 "> 
        <div className="w-1/4">
      
@@ -75,7 +75,7 @@ const Characters = ({listChars, listOtherChars}:{listChars:CharacterProps[],list
  <div className='flex' style={{width:'1000px'}}>  
   {fixFilmname.map((xy)=>
     <div key={xy.filmname + ' ' + Math.random()} className='border pt-5 px-3 w-96'>
-  <Link href={`/naija-wiki/characters/${xy?.filmname.toLowerCase().replace(/ /g,'-')}`}><h2 className="text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-2xl text-center overflow-hidden text-ellipsis"style={{ display: '-webkit-box', WebkitLineClamp:1, WebkitBoxOrient: 'vertical' }} >{xy.filmname}</h2></Link>   
+  <Link href={`/naija-wiki/characters/${xy?.filmname.toLowerCase().replace(/ /g,'-')}/`}><h2 className="text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-2xl text-center overflow-hidden text-ellipsis"style={{ display: '-webkit-box', WebkitLineClamp:1, WebkitBoxOrient: 'vertical' }} >{xy.filmname}</h2></Link>   
 <div className="w-72 h-44">
   <Image
   className="w-72 h-44"
@@ -85,7 +85,7 @@ const Characters = ({listChars, listOtherChars}:{listChars:CharacterProps[],list
    alt={xy.filmImg1.node.altText}/>
    </div>
  
-    <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().replace(/ /g,'-')}`}> <h3 className='text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis py-3'>{xy.characterWiki}</h3></Link> 
+    <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().replace(/ /g,'-')}/`}> <h3 className='text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis py-3'>{xy.characterWiki}</h3></Link> 
 </div>
 )}
 </div>  

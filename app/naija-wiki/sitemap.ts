@@ -4,7 +4,7 @@ import { newchars } from "./newCharHandle";
 //export const revalidate = 0;
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}` 
-  : "http://localhost:3000";   
+  : "http://localhost:3000/";   
   export type Videos = {
     title: string;
     thumbnail_loc: string;
@@ -49,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       
       const charPosts = charsList.map((post)=>({
         title:post.title,
-        url:`https://culturays.com/naija-wiki/character/${post.slug}`,
+        url:`https://culturays.com/naija-wiki/character/${post.slug}/`,
         lastModified:new Date(post.date),
         changeFrequency:'always', 
         priority:0.8,
@@ -57,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
      }) )
   const listChars = charsList?.map((post) =>( {
     title:post.title,
-    url:`https://culturays.com/naija-wiki/characters/${post.charactertitles.filmname.toLowerCase().replace(/ /g, '-')}`,
+    url:`https://culturays.com/naija-wiki/characters/${post.charactertitles.filmname.toLowerCase().replace(/ /g, '-')}/`,
         lastModified:new Date(post.date),
         changeFrequency:'always', 
         priority:0.8,
@@ -68,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const moviesChars = charsList?.map((post) =>( {
     title:post.title,
-    url:`https://culturays.com/naija-wiki/movies/${post.charactertitles.portrayedby.toLowerCase().replace(/ /g, '-')}`,
+    url:`https://culturays.com/naija-wiki/movies/${post.charactertitles.portrayedby.toLowerCase().replace(/ /g, '-')}/`,
         lastModified:new Date(post.date),
         changeFrequency:'always', 
         priority:0.8,

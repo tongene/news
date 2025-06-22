@@ -50,13 +50,13 @@ selectedImages.forEach((imageUrl) => URL.revokeObjectURL(imageUrl));
 setSelectedImages([]); 
 setPost({})
 router.refresh()
-if(!title) router.push(pathname+'?message=Please Enter a Title', {scroll:false})
+if(!title) router.push(pathname+'?message=Please Enter a Title/', {scroll:false})
 
 if(titleX){
-  router.push(`/forum/?topic=${titleX.replace(/ /g,"-")}`, {scroll:false}) 
+  router.push(`/forum/?topic=${titleX.replace(/ /g,"-")}/`, {scroll:false}) 
 }
   else{
-router.push(pathname+'?message=Post Created', {scroll:false}) 
+router.push(pathname+'?message=Post Created/', {scroll:false}) 
   }
 
  }
@@ -75,10 +75,10 @@ const editAction= async(formData: FormData, post:PostProps|UserPostProps)=>{
   setSelectedImages([]); 
 
   if(titleX){
-    router.push(`/forum/?topic=${titleX.replace(/ /g,"-")}`, {scroll:false}) 
+    router.push(`/forum/?topic=${titleX.replace(/ /g,"-")}/`, {scroll:false}) 
   }
     else{
-  router.push(pathname+'?message=Post Updated', {scroll:false}) 
+  router.push(pathname+'?message=Post Updated/', {scroll:false}) 
     }
   
 } 

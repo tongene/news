@@ -37,12 +37,16 @@ export async function generateMetadata(  { params }: Props,
   const previousImages = (await parent).openGraph?.images || []
 
   return {
-    title:`Culturays Forum - ${comment?.title}`,
+    title:`Urban Naija |Forum - ${comment?.title}`,
     openGraph: {
       images: [comment?.files,...previousImages],
       type: "article",
       publishedTime:comment?.created_at,
     },
+       alternates: {
+    canonical:  `https://culturays.com/forum/comment/${slug}/`,
+ 
+  },
   }
 } 
  
@@ -118,20 +122,22 @@ if(error){
 return data ??[]
 }
  
-  const fakeTrend = await getFacts() 
+ const fakeTrend = await getFacts()  
   const today = new Date();
-const todayMonth = today.getMonth() ;
-const filteredTrends = fakeTrend?.filter((dateStr:FakeObj) => {
-  const date = new Date(dateStr.claimDate);
-  const dateDay = date.getDate();  
-  const dateMonth = date.getMonth() ;
-  return dateMonth <= todayMonth ;
-});
+  const todayMonth = today.getMonth() 
  
+ const filteredTrends = fakeTrend?.filter((item, index, self) =>  index === self.findIndex((t) => t.claimant === item.claimant)) 
+ .filter((dateStr:FakeObj) => { 
+ 
+  const date = new Date(dateStr.claimDate); 
+  const dateDay = date.getDate();  
+  const dateMonth= date.getMonth() ;
+  return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMonth||todayMonth-3===dateMonth; 
+});
 const jsonLd:WithContext<DiscussionForumPosting> = {
   '@context': 'https://schema.org',
   '@type': 'DiscussionForumPosting', 
-  "@id":`https://culturays.com/post/${comment?.slug}`,
+  "@id":`https://culturays.com/comment/${slug}/`,
   "headline":comment?.title ,
   "author": {
     "@type": "Person",

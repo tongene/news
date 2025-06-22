@@ -1,18 +1,7 @@
 'use client'  
 import Link from "next/link"
-import { useEffect, useState } from "react"; 
-import { createClient } from "@/utils/supabase/client" 
 import { EventsProps } from "@/app/types" 
 const EventDetail = ({ eventTitle, similarEvents}:{eventTitle:EventsProps, similarEvents:EventsProps[]}) => {
-const [active, setActive]= useState(false)
- 
-const [eventId,setEventId]= useState([]) 
-const openForm = () => {
-setActive(prev => !prev); 
-} 
-//console.log(eventTitle.loc_slug)
-
- 
  
 return (
   <div className="my-6"> 
@@ -66,7 +55,7 @@ eventEdit={eventTitle}
      className="rounded-lg px-8 bg-black hover:border-solid max-w-xs py-20 "> 
  <div className="rounded-lg hover:shadow-3xl animated-in absolute z-50 left-0 bottom-0 px-5">
  <div>  
-    <Link href={`/naija-events/event/${ex.slug}`}>
+    <Link href={`/naija-events/event/${ex.slug}/`}>
     <h3 className="text-3xl text-gray-100 font-bold cursor-pointer hover:opacity-80 leading-10 px-3">
 {ex.title}
 </h3></Link>

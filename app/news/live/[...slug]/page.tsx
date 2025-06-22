@@ -25,7 +25,7 @@ export async function generateMetadata(
  const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ') 
 
   return {
-    title: `${news_details?.title||'' } `,
+    title: `Urban Naija | Live News ${news_details?.title||'' } `,
     description:news_details?.excerpt,
     keywords: tags,
      twitter: {
@@ -41,6 +41,10 @@ export async function generateMetadata(
       publishedTime: news_details?.date,
 
     },
+     alternates: {
+    canonical:  `https://culturays.com/news/live/${slug}/`,
+ 
+  },
   } 
 } 
 
@@ -77,7 +81,7 @@ const slug =(await params).slug
       author: {
         "@type": "Person",
         name: "Christina Ngene",
-        url:'https://culturays.com/creator/christina-ngene',
+        url:'https://culturays.com/creator/christina-ngene/',
       }, 
       datePublished: new Date(news?.date).toDateString(), 
       dateModified:  new Date(news?.date).toDateString(), 

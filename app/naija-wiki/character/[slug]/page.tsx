@@ -17,7 +17,7 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || []
  
   return {
-    title:`Movie Character - ${char_details?.title} | Culturays`,
+    title:`Urban Naija | Movie Character - ${char_details?.title} | Culturays`,
     description:char_details?.excerpt, 
     keywords:[char_details?.title, char_details?.charactertitles.portrayedby, char_details?.charactertitles.filmname].join(', '),
    twitter: {
@@ -31,6 +31,10 @@ export async function generateMetadata(
       type: "article",
       publishedTime:char_details?.date
     },
+        alternates: {
+    canonical:  `https://culturays.com/naija-wiki/character/${slug}/`,
+ 
+  }
   }
 }  
  async function CharacterPage ({ params  }: Props) {
@@ -47,7 +51,7 @@ const jsonLd:WithContext<ProfilePage> = {
   '@type': 'ProfilePage',
    headline: `Culturays - ${character_data?.title}`, 
    description:replaceHTMLTags(character_data?.excerpt) , 
-   url:`https://culturays.com/naija-wiki/character/${slug}`,
+   url:`https://culturays.com/naija-wiki/character/${slug}/`,
    mainEntity: {
     "@type": "Person",
     name:character_data?.title,     
@@ -57,7 +61,7 @@ const jsonLd:WithContext<ProfilePage> = {
    
     mainEntityOfPage: {
      "@type": "WebPage",
-     "@id":`https://culturays.com/naija-wiki/character/${slug}`, 
+     "@id":`https://culturays.com/naija-wiki/character/${slug}/`, 
    },
 
    image: character_data?.featuredImage.node.sourceUrl, 

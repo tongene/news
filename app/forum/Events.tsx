@@ -22,7 +22,7 @@ const Events= ({ events }:{events:EventsProps[] } ) => {
 <div className="md:flex-row flex flex-col justify-center items-center xl:w-2/3 sm:justify-between md:justify-evenly m-auto">  
 
 <div className="my-2 mx-2 text-center">
-<Link href={`/naija-events/event/${xx.slug}` } ><h2 className="py-2 text-white cursor-pointer text-2xl hover:text-gray-400" >Title: {xx.title}</h2></Link>
+<Link href={`/naija-events/event/${xx.slug}/` } ><h2 className="py-2 text-white cursor-pointer text-2xl hover:text-gray-400" >Title: {xx.title}</h2></Link>
  
  <p className="text-white mx-0.5 text-lg mt-1">Genre: {xx?.genre||'Not Available'}</p> 
 <p className="text-white mx-0.5 text-lg mt-1"suppressHydrationWarning>Date: {nlp(xx?.day)?.dates()?.text()?.split('at')[0]}</p>
@@ -33,14 +33,14 @@ const Events= ({ events }:{events:EventsProps[] } ) => {
 <div className="relative w-[350px] h-[300px] my-3">
  <Image 
 className="rounded-xl mt-5"
-src={xx.img_url &&xx.img_url.endsWith('.jpg')||xx.img_url.endsWith('.jpeg')||xx.img_url.endsWith('.png')?`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${xx.img_url}`:'/assets/images/culturays_events.png'}
+src={xx.img_url &&xx.img_url.endsWith('.jpg')||xx.img_url.endsWith('.jpeg')||xx.img_url.endsWith('.png')?`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${xx.img_url}/`:'/assets/images/culturays_events.png/'}
 fill
 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
 alt={xx.title}  
 /> 
 </div>
 </div>
-<Link href='/naija-events'> 
+<Link href='/naija-events/'> 
 <small className="text-center flex justify-center py-4 text-white hover:text-green-400 hover:ml-2 hover:opacity-70">all event <FontAwesomeIcon icon={faAngleRight} className="opacity-70 mx-3 p-1 cursor-pointer hover:mr-2"/>  </small></Link> 
 </div> )}
 

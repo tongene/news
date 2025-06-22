@@ -19,7 +19,7 @@ const VideoDetail = ({vid_details}:{vid_details:VidProps}) => {
          
       <h2 className='p-4 text-4xl'>{vid_details.title}</h2>
       <div className='flex flex-wrap justify-between'> 
-      <Link href={`/creator/${vid_details?.author.node.slug}`}><p className='text-lg p-3 underline'>{vid_details.author.node.name} </p></Link> 
+      <Link href={`/creator/${vid_details?.author.node.slug}/`}><p className='text-lg p-3 underline'>{vid_details.author.node.name} </p></Link> 
        <p className='text-sm p-3 text-red-600 italic text-end'>{moment(vid_details.date).fromNow()} </p>
      
      </div>
@@ -70,10 +70,10 @@ const VideoDetail = ({vid_details}:{vid_details:VidProps}) => {
       </div>
        <div className='border flex px-2 py-8'>
       
-       <Link href={`/news/video/${xy.slug}`}><h2 className='search-title text-xl text-gray-200'>{xy.title}</h2></Link>  
+       <Link href={`/news/video/${xy.slug}/`}><h2 className='search-title text-xl text-gray-200'>{xy.title}</h2></Link>  
    
         <button className="rounded-full border text-gray-300 hover:border-4 hover:text-gray-50 text-2xl cursor-pointer h-12 w-28 sm:w-24 sm:h-16 mx-1">
-    <Link href={`/news/video/${xy.slug}`}><span><FontAwesomeIcon icon={faPlay}/></span></Link>  
+    <Link href={`/news/video/${xy.slug}/`}><span><FontAwesomeIcon icon={faPlay}/></span></Link>  
         </button>         
       </div> 
   

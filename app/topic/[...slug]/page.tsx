@@ -21,7 +21,7 @@ export async function generateMetadata(
      const tagged=tag_details?.nodes.concat(tag_response.nodes)
      const previousImages = (await parent).openGraph?.images || [] 
      return {
-       title:`Culturays | All News About ${tagged[0]?.name}`,  
+       title:`Urban Naija | All News About ${tagged[0]?.name}`,  
          description: tagged[0]?.name, 
          keywords: tagged[0]?.name , 
           twitter: {
@@ -34,6 +34,10 @@ export async function generateMetadata(
          images: ['/assets/images/culturays.png' ,...previousImages], 
          
        },
+        alternates: {
+    canonical:  `https://culturays.com/topic/${slug}/`,
+ 
+  }
      }
    } 
 const TagPage = async({params}: Props) => {  
@@ -52,7 +56,7 @@ const TagPage = async({params}: Props) => {
      author: {
        "@type": "Person",
        name: "Christina Ngene",
-       url:'https://culturays.com/creator/christina-ngene',
+       url:'https://culturays.com/creator/christina-ngene/',
      }, 
      datePublished: "2025-04-09T10:00:00Z", 
      dateModified:"2025-04-09T12:00:00Z",

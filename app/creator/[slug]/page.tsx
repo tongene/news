@@ -18,10 +18,14 @@ import type { Metadata, ResolvingMetadata } from 'next'
     const user_details = await user_detailsPromise;
     const previousImages = (await parent).openGraph?.images || []
     return {
-      title:`Culturays | Creator - ${user_details?.name}`,
+      title:`Urban Naija News | Creator -`,
       openGraph: { 
         images: [user_details?.avatar.url,...previousImages],
       },
+    alternates: {
+  canonical: `https://culturays.com/creator/${user_details?.name}/`,
+
+},
     }
   }  
 function CreatorPage() {

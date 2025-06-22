@@ -2,8 +2,8 @@
 import { Open_Sans, Nokora } from 'next/font/google';  
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-? `${process.env.NEXT_PUBLIC_BASE_URL}/netflix-naija/coming-to-netflix` 
-: "http://localhost:3000/netflix-naija/coming-to-netflix";
+? `${process.env.NEXT_PUBLIC_BASE_URL}/netflix-naija/coming-to-netflix/` 
+: "http://localhost:3000/netflix-naija/coming-to-netflix/";
  
 export const metadata = {
 metadataBase: new URL(defaultUrl), 
@@ -12,7 +12,11 @@ description: "All titles Coming to Netflix Naija weekly, monthly and yearly are 
 openGraph: {
   title:  "Urban News | Netflix Naija, News, What's Coming to Netflix",    
     
-}
+},
+ alternates: {
+    canonical:  `https://culturays.com/netflix-naija/coming-to-netflix/`,
+ 
+  }
 }; 
 
  const openSans = Open_Sans({ 

@@ -47,7 +47,7 @@ const NaijaWikiNetflixNewsDetails =({next_on_netflix_naija, content_videos, news
        <h2 className="font-bold py-4 sm:px-8 text-3xl md:text-5xl text-gray-800 dark:text-gray-200 leading-10">{news_details.title} </h2>
        <div className="flex justify-between bg-gray-700">
        <p className="p-4 italic text-red-500 ">{moment(news_details.date).fromNow() } </p> 
-       <Link href={`/creator/${news_details.author.node.slug}`}><p className="p-4 text-end text-lg  text-gray-200 mx-4 xs:mx-20 hover:text-red-400"><small className="italic p-3"> by</small>{ news_details.author.node.name } </p></Link></div>
+       <Link href={`/creator/${news_details.author.node.slug}/`}><p className="p-4 text-end text-lg  text-gray-200 mx-4 xs:mx-20 hover:text-red-400"><small className="italic p-3"> by</small>{ news_details.author.node.name } </p></Link></div>
        <div className="relative -mx-5 sm:-mx-8 border border-4 border-yellow-700"> 
        <Image src={news_details.featuredImage.node.sourceUrl}
        width={1200} 
@@ -96,7 +96,7 @@ alt={ex.node.featuredImage.node.altText}
  </div> 
 
   </div>
-   <Link href={`/netflix-naija/news/${ex.node.slug}`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
+   <Link href={`/netflix-naija/news/${ex.node.slug}/`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
    </div> 
   )}  
     
@@ -108,14 +108,14 @@ alt={ex.node.featuredImage.node.altText}
 <div className="flex flex-wrap mx-8">
   {news_details.contentTags.nodes.map((xy)=> 
     <div key={xy.name +  ' ' + Math.random()} > 
-<Link href={`/topic/${xy.slug}`}><p className="shadow-2xl border text-base font-bold text-green-700 py-5 px-3 mx-2 hover:text-green-400">{xy.name}</p></Link>  
+<Link href={`/topic/${xy.slug}/`}><p className="shadow-2xl border text-base font-bold text-green-700 py-5 px-3 mx-2 hover:text-green-400">{xy.name}</p></Link>  
 </div>)} 
 </div>
   </div>
     </div>  
     <div className="text-xl text-center border py-5 my-11 mx-2 bg-red-700 hover:bg-red-900 font-mono font-bold text-white dark:text-auto ">
   
- <Link href={{ pathname: '/forum', query: { topic:news_details.slug} }}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
+ <Link href={`/forum?topic=${news_details.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
 </div>
 
     <div className='bg-white px-3'> 
@@ -126,12 +126,12 @@ alt={ex.node.featuredImage.node.altText}
    <div className='flex' style={{width:'1000px'}}> 
    {next_posts.slice(0,3).map((xy,i)=> 
     <div className='border pt-5 px-3 w-96' key={i + ' ' + Math.random()}>   
-    <Link href={`/topic/${ xy.contentTags.nodes[0].slug}`}></Link> <h3 className='text-red-500 text-sm italic py-1 hover:text-gray-700 cursor-pointer font-bold'>{xy.contentTags.nodes[0].name} </h3>
+    <Link href={`/topic/${ xy.contentTags.nodes[0].slug}/`}></Link> <h3 className='text-red-500 text-sm italic py-1 hover:text-gray-700 cursor-pointer font-bold'>{xy.contentTags.nodes[0].name} </h3>
  
-    <Link href={`/netflix-naija/news/${xy.slug}`}><h2 className="text-gray-800 text-lg font-bold overflow-hidden text-ellipsis hover:text-red-400 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link> 
+    <Link href={`/netflix-naija/news/${xy.slug}/`}><h2 className="text-gray-800 text-lg font-bold overflow-hidden text-ellipsis hover:text-red-400 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link> 
      <div className='py-2 text-sm'> 
         <p className='text-gray-600'>{moment(xy.date).fromNow()}</p> 
-        <Link href={`/creator/${xy.author.node.slug}`}>
+        <Link href={`/creator/${xy.author.node.slug}/`}>
           <p className='py-2 text-gray-800 font-medium hover:text-red-400 font-bold'>{xy.author.node.name}</p>
         </Link> 
       </div>   

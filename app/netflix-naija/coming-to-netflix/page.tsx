@@ -21,13 +21,13 @@ const jsonLd: WithContext<NewsArticle>= {
   author: {
     '@type': 'Person',
     name: 'Christina Ngene',
-    url:'https://culturays.com/creator/christina-ngene',
+    url:'https://culturays.com/creator/christina-ngene/',
   },
   datePublished:new Date().toDateString(),
   dateModified:new Date().toDateString(),
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://culturays.com/netflix-naija/coming-to-netflix',
+    '@id': 'https://culturays.com/netflix-naija/coming-to-netflix/',
   },
   url:'https://culturays.com/netflix-naija/coming-to-netflix/', 
   image: coming_to_netflix_grouped[0].featuredImage?.node?.sourceUrl,

@@ -81,7 +81,7 @@ setCurrPg(currPg - 1);
       <div className="max-w-md lg:max-w-xl m-auto" key={xy?.title + ' ' + i}>
         <div className="bg-white dark:bg-black p-4 m-1 h-52 shadow"> 
         <div className="my-3 cursor-pointer ">
-          <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}`}></Link> <span className="border rounded-2xl bg-red-500 text-white p-2 hover:bg-red-600">
+          <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}/`}></Link> <span className="border rounded-2xl bg-red-500 text-white p-2 hover:bg-red-600">
             <FontAwesomeIcon 
            icon={faCircle}
            width={10}
@@ -91,7 +91,7 @@ setCurrPg(currPg - 1);
             </div>
                 <div className="my-6">
             <div className="cursor-pointer">
-           <Link href={`/news/${xy.contentTypeName}/${xy?.slug}`}><h2 className="text-xl font-medium hover:text-gray-500">{xy?.title}</h2></Link> 
+           <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 className="text-xl font-medium hover:text-gray-500">{xy?.title}</h2></Link> 
            </div>
             <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).fromNow()}</em></small>
          </div>
@@ -114,7 +114,7 @@ setCurrPg(currPg - 1);
 <div className="grid sm:grid-cols-2 lg:block xl:grid-cols-2 gap-2 justify-center m-auto">
 {currentPosts.length>0 &&currentPosts.map((xy, ix)=> 
 <div className="my-2 m-auto border-b max-w-md xl:max-w-3xl py-4" key={xy?.title + ' ' + ix}> 
-<div className="h-32"><Link href={`/news/${xy.contentTypeName}/${xy?.slug}`}>
+<div className="h-32"><Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}>
 
 <h2 className="text-3xl hover:text-gray-500 overflow-hidden text-ellipsis leading-9 my-5"style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>{xy?.title} </h2></Link> </div>
 <Image
@@ -124,7 +124,7 @@ width={1200}
 height={675}
 alt={xy?.featuredImage.node.altText}
 /> 
-<Link href={`/news/${xy.contentTypeName}/${xy?.slug}`}><div dangerouslySetInnerHTML={{__html:xy?.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis my-2 text-lg hover:text-gray-500 py-2 leading-9"/></Link>
+<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis my-2 text-lg hover:text-gray-500 py-2 leading-9"/></Link>
  <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).fromNow()}</em></small> 
 </div>
 )}
@@ -150,8 +150,8 @@ alt={xy?.featuredImage.node.altText}
 <hr className={!activeSet?"bg-red-500 py-0.5 font-bold":''}/>
 { tech_news.slice(0,5).map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
-<Link href={`/news/${xy.contentTypeName}/${xy?.slug}`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis leading-8 text-xl font-bold py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
-<Link href={`/news/${xy.contentTypeName}/${xy?.slug}`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base">{replaceHTMLTags(xy?.excerpt)} </p></Link>
+<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis leading-8 text-xl font-bold py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
+<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base">{replaceHTMLTags(xy?.excerpt)} </p></Link>
  <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).fromNow()}</em></small> 
 </div>
 )}
@@ -160,8 +160,8 @@ alt={xy?.featuredImage.node.altText}
 <hr className={activeSet?"bg-red-500 py-0.5 font-bold":''}/>
 { health_news.slice(0,5).map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
-<Link href={`/news/${xy.contentTypeName}/${xy?.slug}`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis font-bold leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
-<Link href={`/news/${xy.contentTypeName}/${xy?.slug}`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base">{replaceHTMLTags(xy?.excerpt)} </p></Link>
+<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis font-bold leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
+<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base">{replaceHTMLTags(xy?.excerpt)} </p></Link>
  <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).fromNow()}</em></small> 
 </div>
 )}

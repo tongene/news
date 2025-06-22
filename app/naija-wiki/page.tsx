@@ -2,7 +2,6 @@ import Main from '@/components/NaijaWiki/Main'
 import { netflixNews } from '../netflix-naija/netflix-news'
 import StructuredData from '@/components/StructuredData';
 import { BlogPosting, NewsArticle,  WebPage,  WithContext } from 'schema-dts';
-import { createClient } from '@/utils/supabase/server';
 import { newchars } from './newCharHandle';
 
 const NaijaWikiPage =async () => {  

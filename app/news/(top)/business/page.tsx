@@ -4,12 +4,16 @@ import StructuredData from "@/components/StructuredData";
 import { BlogPosting, WithContext } from "schema-dts";
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/business` 
-  : "http://localhost:3000/business";
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}/business/` 
+  : "http://localhost:3000/business/";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl), 
-   title:"Urban News | Business",   
+   title:"Urban News | Business", 
+    alternates: {
+    canonical:  `https://culturays.com/news/business/`,
+ 
+  }  
 }; 
     async function businessBlog(){
    
@@ -99,10 +103,10 @@ const BusinessPage =async () => {
     "@type": "BlogPosting",
     "headline": "Urban News - Covering News in Nigeria, Africa, and Beyond",
     "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-    "url": "https://culturays.com/news/business",
+    "url": "https://culturays.com/news/business/",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://culturays.com/news/business"
+      "@id": "https://culturays.com/news/business/"
     },
     "inLanguage": "en",
     "image": {
@@ -118,7 +122,7 @@ const BusinessPage =async () => {
     "publisher": {
       "@type": "Organization",
       "name": "Ngenet Studio",
-      "url": "https://culturays.com/news/business",
+      "url": "https://culturays.com/news/business/",
       "logo": {
         "@type": "ImageObject",
         "url": "https://culturays.com/assets/images/culturays-no-bg.png"

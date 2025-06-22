@@ -79,7 +79,7 @@ setScreenWidth(viewport )
 setHasClicked(false)
 
  },1000)
- router.push(`/news/topic/${str}`);
+ router.push(`/news/topic/${str}/`);
  return ()=> clearTimeout(slideTimeOut)
 
     }
@@ -130,7 +130,7 @@ activeIndices.includes(i)&&
  
 <div className="main-slider-container px-2 py-11 bg-gray-200 bg-opacity-60 rounded-xl w-72 border">
   <p className='italic text-red-600 px-1 text-left'>{moment(xy.node.date).fromNow()}</p>
- <h2 onClick={() => handleSlideClick(`/news/topic/${xy.node.slug}`)}className="overflow-hidden leading-8 py-6 text-gray-600 text-xl py-4 px-3 h-32 font-bold hover:text-gray-500 cursor-pointer dark:text-gray-200" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2> 
+ <h2 onClick={() => handleSlideClick(`/news/topic/${xy.node.slug}/`)}className="overflow-hidden leading-8 py-6 text-gray-600 text-xl py-4 px-3 h-32 font-bold hover:text-gray-500 cursor-pointer dark:text-gray-200" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2> 
   
    <Image      
     className='h-56 px-1 py-2 hover:opacity-50'
@@ -147,7 +147,7 @@ activeIndices.includes(i)&&
  <p><span className="animate-pulse text-5xl">•</span> Live</p> 
   <span className='text-sm italic px-1'>{currentHour}</span>  
 </div>
- <h2  onClick={() => handleSlideClick(`/news/live/${xy.node.databaseId}/${xy.node.slug}`)} className="overflow-hidden leading-8 py-6 text-gray-600 text-xl py-4 px-3 h-32 hover:text-gray-500 cursor-pointer dark:text-gray-200"  style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2> 
+ <h2  onClick={() => handleSlideClick(`/news/live/${xy.node.databaseId}/${xy.node.slug}/`)} className="overflow-hidden leading-8 py-6 text-gray-600 text-xl py-4 px-3 h-32 hover:text-gray-500 cursor-pointer dark:text-gray-200"  style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2> 
  <Image
       className='h-56 px-1 py-2 hover:opacity-50'
       src={xy.node.featuredImage.node.sourceUrl}

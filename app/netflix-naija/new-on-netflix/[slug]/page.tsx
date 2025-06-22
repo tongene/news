@@ -19,7 +19,7 @@ export async function generateMetadata(
     const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
 
   return {
-    title:`Culturays | Netflix Naija News - ${news_details?.title}`,
+    title:`Urban Naija | Netflix News - ${news_details?.title}`,
     description:news_details?.excerpt,
     keywords:tags,
           twitter: {
@@ -33,6 +33,10 @@ export async function generateMetadata(
       type: "article",
       publishedTime:news_details?.date
     },
+        alternates: {
+    canonical:  `https://culturays.com/netflix-naija/new-on-netflix/${slug}/`,
+ 
+  }
   } 
 } 
 async function NewNetflixNaijaDetails ({ params }: Props) {
@@ -55,7 +59,7 @@ const jsonLd:WithContext<NewsArticle> = {
   author: {
     "@type": "Person",
     name: "Christina Ngene",
-    url:'https://culturays.com/creator/christina-ngene',
+    url:'https://culturays.com/creator/christina-ngene/',
 
   }, 
   datePublished:new Date(new_on_details?.date).toDateString(), 

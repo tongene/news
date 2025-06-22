@@ -491,7 +491,7 @@ related={related}
 <div className='shadow-2xl m-auto max-w-2xl px-3'>
 
 <div className='m-auto flex flex-col items-center border-b-2'> 
-{postData?.avatar_url? <Link href={`/profile/${postData?.user_id}`}><Image src={postData?.avatar_url} 
+{postData?.avatar_url? <Link href={`/profile/${postData?.user_id}/`}><Image src={postData?.avatar_url} 
 width={80} 
 height={80}
 className='rounded-full'
@@ -501,7 +501,7 @@ width={80}
 height={80} 
 className='rounded-full'
 alt={postData?.user_email as string}/></Link> }  
-<Link href={`/profile/${postData?.user_id}`}><h3 className='p-3 text-lg font-bold'>{postData?.user_email} </h3></Link>
+<Link href={`/profile/${postData?.user_id}/`}><h3 className='p-3 text-lg font-bold'>{postData?.user_email} </h3></Link>
 </div> 
  
 {!editId ?
@@ -516,7 +516,7 @@ alt={postData?.user_email as string}/></Link> }
  <p className="dark:text-white text-gray-800 font-bold text-center text-lg my-1">Genres:</p>
    {postData?.genre?.slice(0,3)?.map((xy, vi)=>
    <div className="dark:text-white text-gray-800 text-center" key={vi}>
-   <Link href={`/topic/${xy}'`}><p className="m-1 hover:opacity-70 cursor-pointer" >{ xy} </p></Link>
+   <Link href={`/topic/${xy}/`}><p className="m-1 hover:opacity-70 cursor-pointer" >{ xy} </p></Link>
    </div> 
    )} 
  </div>
@@ -527,7 +527,7 @@ alt={postData?.user_email as string}/></Link> }
 {postData?.tags?.map((xy, vi)=>
 xy.split(',').map((ex, xi)=> ex&&
 <div className="flex mx-1 my-4" key={xi}>
-<Link href={`/search/?searchVal=${ex.replace('#', '')}`}><p className="p-1 m-1 hover:opacity-70 cursor-pointer" >{'#' + ex.replace('.', '')} </p></Link>
+<Link href={`/search/?searchVal=${ex.replace('#', '')}/`}><p className="p-1 m-1 hover:opacity-70 cursor-pointer" >{'#' + ex.replace('.', '')} </p></Link>
  {postData.user_id === user?.id && <small className="p-2 hover:bg-gray-400 cursor-pointer" onClick={()=>deleteTagAction(postData, ex)}>x</small>} 
 </div> ))} 
  

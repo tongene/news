@@ -10,7 +10,7 @@ const Relevant = ({related, item}:{related:InitialPosts[], item:PostProps}) => {
   <aside className='w-max py-2'>  
   {related.filter((xy)=> xy.title!== item.title).map((ex, i)=> 
  (ex?.files??[][0])&& <div className='border my-1 max-w-xs rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-gray-200' key={ex.title + ' ' + i}> 
-   <Link href={`/forum/post/${ex.slug}/${ex.id}`}>
+   <Link href={`/forum/post/${ex.slug}/${ex.id}/`}>
   <Image  
   src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(ex?.files??[][0])}`}  
   width={300} 

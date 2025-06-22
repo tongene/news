@@ -149,7 +149,7 @@ export async function GET() {
   const liveData:FeedProps[]=await livesFeed() 
    
   const content_posts: Post[] = postsData.map((post) => ({
-    url: `https://culturays.com/news/topic/${post.slug}`,
+    url: `https://culturays.com/news/topic/${post.slug}/`,
     lastModified: new Date(post.date),
     changeFrequency: 'always',
     priority: 0.8,
@@ -168,7 +168,7 @@ export async function GET() {
 
   const live_posts: Post[] = liveData.map((post)=>({ 
     title:post.title,
-   url:`https://culturays.com/news/live/${post.databaseId}`,
+   url:`https://culturays.com/news/live/${post.databaseId}/`,
    lastModified:new Date(post.date),
    changeFrequency:'always', 
   priority:0.8,
@@ -176,7 +176,7 @@ export async function GET() {
    news: [
     {
       publication: {
-        name: 'Culturays News',
+        name: 'Urban Naija News',
         language: 'en',
       },
       publication_date: new Date(post.date).toISOString(),

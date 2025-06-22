@@ -45,7 +45,7 @@ const About = ({listedUsers}:{listedUsers:ListUsers[]}) => {
 </div>
  
 <div className="w-[320px] h-[380px]">
-<Link href={`/creator/${listedUsers?.length>0&&listedUsers[0]?.node.slug}`}><h2 className="font-bold text-2xl pt-4 hover:text-gray-500">Christina Ngene</h2></Link>
+<Link href={`/creator/${listedUsers?.length>0&&listedUsers[0]?.node.slug}/`}><h2 className="font-bold text-2xl pt-4 hover:text-gray-500">Christina Ngene</h2></Link>
 <p className="text-gray-400">Head of Content</p>
 <p className="leading-relaxed mt-4">I am the originator of Culturays and I have years of experience programming and writing content. I intend to enable young people like me who may have challenges getting jobs, are out of jobs or even unemployed learn useful skills that will be beneficial to them through Ngenet Studio. I want to bring everyone with me into this process beginning from here - <Link href='/'><b>Culturays</b></Link>.</p>
  

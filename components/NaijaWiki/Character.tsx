@@ -40,15 +40,15 @@ onMouseEnter={() => setHidden(prev => !prev)}
 <div className='text-white p-2 relative left-0'> 
 <ul className={hiddenState?'hidden':'block absolute w-56 z-30 m-auto bg-gray-800 top-10 right-10 animate-in text-center'}>
   <div className='flex justify-between m-4'> 
-<Link href= {`/topic/${character_data.slug }`}><li className='text-lg'onClick={navSelect}>News </li></Link>
+<Link href= {`/topic/${character_data.slug}/`}><li className='text-lg'onClick={navSelect}>News </li></Link>
 <span className='text-2xl cursor-pointer hover:scale-150 '>&#10095;</span>
 </div>
 <div className='flex justify-between m-4'> 
-<Link href= {`/topic/${character_data.charactertitles.portrayedby.toLowerCase().replace(/ /g,'-')}`}><li onClick={navSelect} className='text-lg'>{character_data.title } </li></Link>
+<Link href= {`/topic/${character_data.charactertitles.portrayedby.toLowerCase().replace(/ /g,'-')}/`}><li onClick={navSelect} className='text-lg'>{character_data.title } </li></Link>
 <span className='text-2xl cursor-pointer hover:scale-150 '>&#10095; </span>
 </div>
 <div className='flex justify-between m-4'> 
-<Link href= {`/topic/${character_data.charactertitles.filmname.toLowerCase().replace(/ /g,'-')}`}><li className='text-lg'>{character_data.charactertitles.filmname} </li></Link> 
+<Link href= {`/topic/${character_data.charactertitles.filmname.toLowerCase().replace(/ /g,'-')}/`}><li className='text-lg'>{character_data.charactertitles.filmname} </li></Link> 
 <span className='text-2xl cursor-pointer hover:scale-150'>&#10095;</span></div>
 </ul>
  </div>
@@ -58,15 +58,15 @@ onMouseEnter={() => setHidden(prev => !prev)}
 <div className='flex flex-wrap p-4 justify-between bg-gray-900 border-t'> 
   <div className='flex flex-wrap '>
   <span className='p-2 text-blue-600'>tags:</span> 
-  {character_data.contentTags.nodes.map((xy, i)=><Link key={i}href={`/topic/${xy.slug}`}><p className='p-2 text-gray-100 relative z-0 hover:text-blue-600'>  
+  {character_data.contentTags.nodes.map((xy, i)=><Link key={i}href={`/topic/${xy.slug}/`}><p className='p-2 text-gray-100 relative z-0 hover:text-blue-600'>  
 { xy.name }</p></Link> )} 
 </div>  
-<Link href={`/naija-wiki/characters/${character_data.charactertitles.filmname.toLowerCase().replace(/ /g,'-') }`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
+<Link href={`/naija-wiki/characters/${character_data.charactertitles.filmname.toLowerCase().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
 All {character_data.charactertitles.filmname} Characters</p></Link>
-<Link href={`/naija-wiki/movies/${character_data.charactertitles.portrayedby.toLowerCase().replace(/ /g,'-') }`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
+<Link href={`/naija-wiki/movies/${character_data.charactertitles.portrayedby.toLowerCase().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
 {character_data.charactertitles.portrayedby} Movies</p></Link> 
 </div>
-<div className=' relative' >
+<div className='relative' >
     <div className='-z-50 bg-cover bg-center bg-gray-600 absolute h-full w-full'style={{
       'backgroundImage': `url(${character_data.charactertitles?.filmImg1.node.sourceUrl})`,  
      backgroundRepeat: 'no-repeat',
@@ -165,9 +165,9 @@ height={550}
 alt={ itex.title }
 />  
 <div className='w-1/2 m-auto mx-3'>
-  <Link href={`/naija-wiki/character/${itex.slug}`}>
+  <Link href={`/naija-wiki/character/${itex.slug}/`}>
 <h3 className='text-2xl text-center py-4 font-bold'>{ itex.title }</h3></Link> 
-<Link href={`/naija-wiki/character/${itex.slug}`}>
+<Link href={`/naija-wiki/character/${itex.slug}/`}>
 <div className='text-lg overflow-hidden text-ellipsis'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} dangerouslySetInnerHTML={{__html:itex.excerpt}}/></Link> 
 </div>  
   </div>  

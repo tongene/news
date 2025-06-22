@@ -21,7 +21,8 @@ const nextConfig = {
         source: '/world/news/:path*',
         destination: '/',
         permanent: true,
-      }, 
+      },
+        
        {
         source: '/africa/news/:path*',
         destination: '/',

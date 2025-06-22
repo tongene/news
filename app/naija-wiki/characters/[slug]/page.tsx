@@ -3,10 +3,6 @@ import { charsFilms, newchars, relatedChars } from "../../newCharHandle"
 import type { Metadata, ResolvingMetadata } from 'next' 
 import { Article, ProfilePage, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
-// export const metadata:Metadata = {  
-//    title:"Naija Wiki | Characters",  
-//   description: "Culturays is an independent news outlet operating under Ngenet Studio and focused on events from around the world that affect Nigeria and the rest of Africa.",
-//   }; 
   
   interface Character {
     content: string;
@@ -30,7 +26,7 @@ import StructuredData from "@/components/StructuredData";
     const previousImages = (await parent).openGraph?.images || []
   
     return {
-      title: `${charactertitles?.charactertitles.filmname} | Characters`,
+      title: `Urban Naija | ${charactertitles?.charactertitles.filmname} Characters`,
       description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname} `,
       keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),
       twitter: {
@@ -42,6 +38,10 @@ import StructuredData from "@/components/StructuredData";
       openGraph: {
         images: [charactertitles?.charactertitles.filmImg1.node.sourceUrl, ...previousImages],
       },
+      alternates: {
+     canonical: `https://culturays.com/naija-wiki/charcters/${slug.toLowerCase().replace(/-/g, ' ')}/`,
+
+},
     } 
   }
 
@@ -57,7 +57,7 @@ const jsonLd:WithContext<Article> = {
   '@type': 'Article',
    headline: `Culturays - ${charactertitles?.charactertitles.filmname} | Characters `, 
    description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
-   url:`https://culturays.com/naija-wiki/characters/${slug}`,
+   url:`https://culturays.com/naija-wiki/characters/${slug.toLowerCase().replace(/-/g, ' ')}/`,
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.filmname} - Movies`,     
@@ -66,7 +66,7 @@ const jsonLd:WithContext<Article> = {
    
     mainEntityOfPage: {
      "@type": "WebPage",
-     "@id":`https://culturays.com/naija-wiki/characters/${slug}`, 
+     "@id":`https://culturays.com/naija-wiki/characters/${slug.toLowerCase().replace(/-/g, ' ')}/`, 
    },
 
   image: charactertitles?.charactertitles.filmImg1.node.sourceUrl, 

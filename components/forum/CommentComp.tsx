@@ -49,7 +49,6 @@ const [deleteBtn,setDeleteBtn]=useState(false)
 const [editBtn,setEditBtn]=useState(false)
 const router= useRouter() 
 const elRef = useRef<HTMLDivElement | null>(null);
-const editingRef = useRef<HTMLDivElement | null>(null);
 const replyRef=useRef<HTMLDivElement | null>(null);
 const [navDropper,setNavDropper]= useState(false) 
 const dropperRef=useRef<HTMLDivElement | null>(null);
@@ -261,10 +260,10 @@ setShowx(prev=>!prev)
 //  router.push(`/forum/comment/${childComments[0].parent_id}`)
 //  } 
 if(comment.parent_id !== null&& childComments?.length >=2){
-  router.push(`/forum/comment/${childComments[0].parent_id}`)
+  router.push(`/forum/comment/${childComments[0].parent_id}/`)
   }
   if(comment.parent_id === null){ 
-    router.push(`/forum/comment/${comment.id}`)
+    router.push(`/forum/comment/${comment.id}/`)
     } 
 }
  
@@ -274,22 +273,22 @@ if(comment.parent_id !== null&& childComments?.length >=2){
  <div className='max-w-2xl px-2 m-auto my-2'>
   <div className='border'> 
   <div className="h-max flex">
-{comment.avatar_url&& <Link href={`/profile/${comment?.user_id}`}><Image
+{comment.avatar_url&& <Link href={`/profile/${comment?.user_id}/`}><Image
 src={comment.avatar_url}
 width={50}
 height={50}
 className='rounded-full p-4 w-20 max-w-64'
 alt={comment.user_name as string}/></Link> }
- {!comment.avatar_url&& <Link href={`/profile/${comment?.user_id}`}><Image
+ {!comment.avatar_url&& <Link href={`/profile/${comment?.user_id}/`}><Image
 src='/assets/images/placeholderimg.png'
 width={50}
 height={50}
 className='rounded-full p-4 w-20 max-w-64'
 alt={comment.user_name as string}/></Link> }
-<p className="text-xl font-bold my-2 mt-11 w-32 overflow-hidden text-ellipsis xs:w-full"><Link href={`/profile/${comment.user_id}`}>{comment.user_name||comment.user_email}</Link></p>
+<p className="text-xl font-bold my-2 mt-11 w-32 overflow-hidden text-ellipsis xs:w-full"><Link href={`/profile/${comment.user_id}/`}>{comment.user_name||comment.user_email}</Link></p>
 </div>
 
- <div className='p-3'><Link href={`/forum/comment/${comment.id}`}>
+ <div className='p-3'><Link href={`/forum/comment/${comment.id}/`}>
  <p className='text-md leading-relaxed cursor-pointer pb-3 hover:text-gray-500'>
  {comment.title}</p></Link>
  

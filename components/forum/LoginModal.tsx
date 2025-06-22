@@ -38,7 +38,7 @@ const closeActions=()=>{
 </div>
 
 </form> 
-<Link href='/forgot-password'><p className="p-2 cursor-pointer text-gray-800 dark:text-gray-200 text-center rounded dark:hover:text-gray-400 hover:text-gray-400">Forgot Password?</p></Link> 
+<Link href='/forgot-password/'><p className="p-2 cursor-pointer text-gray-800 dark:text-gray-200 text-center rounded dark:hover:text-gray-400 hover:text-gray-400">Forgot Password?</p></Link> 
 
 </div>
 </div>

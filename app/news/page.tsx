@@ -107,19 +107,7 @@ async function news__Articles(){
        return wprest
   
  }
-const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/news` 
-  : "http://localhost:3000/news";
-
-export const metadata = {
-  metadataBase: new URL(defaultUrl), 
-   title:"Urban | News",
-   description:'This is the medium that caters for the daily need of legitimate global news. We cover news about all technological advancements, economic situations and growth, health and societal issues as well as business and environment.',
-   alternates: {
-    canonical: 'https://www.culturays.com/news',
  
-  }, 
-}; 
 const NewsPage = async() => {
   const newsData= await news__Articles() 
   

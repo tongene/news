@@ -6,6 +6,10 @@ export const metadata = {
   openGraph: {
     title:  'Urban News | Breaking, Nigeria, Trends, Business, Economy, Tech', 
       
+  },
+   alternates: {
+    canonical:  `https://culturays.com/news/trending/`,
+ 
   }
 
 };

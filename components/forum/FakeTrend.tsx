@@ -24,11 +24,11 @@ setFakeNewsData(filteredTrends)
   <div className="flex lg:block lg:h-96 overflow-y-hidden lg:overflow-y-auto" >  
  {gxt.map((xy, i)=>
  <div key={xy.title + ' '  + Math.random()} className="border">
- {xy.textualRating?.split('-')[0].length <= 6 ? <p className="p-1 text-lg text-center">{i+1} — {xy.textualRating?.split('-')[0]} </p>:<p className="p-1 text-lg text-center">{i+1}</p>}
-
+ {xy.textualRating?.split('-')[0].length <= 6 ? <p className="p-1 text-lg text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }}>{i+1} — {xy.textualRating?.split('-')[0].replace(/[^A-Za-z]/g, '')} </p>:<p className="p-1 text-lg text-center">{i+1}</p>}
+ 
  <div className="px-2 cursor-pointer w-96 flex justify-between py-6 items-center hover:bg-opacity-70 hover:bg-green-50 h-44"> 
   <p className="p-2 text-lg">{i+1}.</p>   
- <h3 className="px-2 text-lg w-72"><a target='_blank' href={xy.url}>{fakeNewsData[i]?.text}</a></h3>  
+ <h3 className="px-2 text-lg w-72 text-ellipsis overflow-hidden"style={{ display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }}><a target='_blank' href={xy.url}>{fakeNewsData[i]?.text.replace(/[^A-Za-z]/g, ' ')}</a></h3>  
  <p className="p-1 mt-2 xl:mt-0 text-xl opacity-70"><a target='_blank' href={xy.url}><FontAwesomeIcon icon={faAngleRight}/></a></p>  
 
  </div> 

@@ -6,12 +6,13 @@ metadataBase: new URL(defaultUrl),
  title:"Urban News | Sign In",  
 description: "Sign in to Explore Topics",
 alternates: {
-  canonical: 'https://culturays.com/sign-in',
+  canonical: 'https://culturays.com/sign-in/',
 
 }, 
  openGraph: {
   title: 'Culturays | Sign In',
 }
+ 
 }; 
 export default async function Layout({
   children,

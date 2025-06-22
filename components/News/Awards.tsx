@@ -72,7 +72,7 @@ height={100}
 { awards_content.slice(5,11).map((ex,i)=>
 <div key={ex.title + ' '+ i} className="mx-4 py-2 ">
   <ul className="text-gray-300 text-xl px-2 mx-1"> 
-  <Link href={`/news/award/${ex.slug}`}><li className="list-disc p-2 hover:text-gray-500">{ex.title}</li></Link>
+  <Link href={`/news/award/${ex.slug}/`}><li className="list-disc p-2 hover:text-gray-500">{ex.title}</li></Link>
 </ul>
  </div>
 )}</div>
@@ -91,8 +91,8 @@ height={675}
   /> 
 </div>
   <div className="md:w-2/3 max-w-sm m-auto"> 
-  <Link href={`/news/award/${ex.slug}`}><h2 className="text-gray-700 overflow-hidden text-ellipsis text-2xl hover:text-gray-400 py-4 h-20 px-2"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.title}</h2></Link>
-  <Link href={`/news/award/${ex.slug}`}><h2 className="text-gray-700 overflow-hidden text-ellipsis  hover:text-gray-400 text-base px-2 py-4 h-24 leading-7"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{replaceHTMLTags(ex.excerpt)}</h2></Link>
+  <Link href={`/news/award/${ex.slug}/`}><h2 className="text-gray-700 overflow-hidden text-ellipsis text-2xl hover:text-gray-400 py-4 h-20 px-2"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.title}</h2></Link>
+  <Link href={`/news/award/${ex.slug}/`}><h2 className="text-gray-700 overflow-hidden text-ellipsis  hover:text-gray-400 text-base px-2 py-4 h-24 leading-7"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{replaceHTMLTags(ex.excerpt)}</h2></Link>
     </div>
     </div>
  </div>
@@ -114,8 +114,8 @@ news_outline={news_outline} />
   <div key={ex.title + ' '+ i} className="[&:nth-child(2)]:border-b [&:nth-child(1)]:border-b [&:nth-child(2)]:md:border-b-0 [&:nth-child(1)]:md:border-b-0 first:md:border-r [&:nth-child(2)]:md:border-r ">     
 <div className="xs:flex justify-center py-6"> 
   <div className="xs:w-2/3 max-w-xs m-auto"> 
-  <Link href={`/news/award/${ex.slug}`}><h2 className=" hover:text-gray-500 overflow-hidden text-ellipsis text-2xl text-white py-4 h-20 px-2 "style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.title}</h2></Link>
-  <Link href={`/news/award/${ex.slug}`}><h2 className="hover:text-gray-500 overflow-hidden text-ellipsis text-gray-300 text-base px-2  h-24 leading-7 py-4"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{replaceHTMLTags(ex.excerpt)}</h2></Link>
+  <Link href={`/news/award/${ex.slug}/`}><h2 className=" hover:text-gray-500 overflow-hidden text-ellipsis text-2xl text-white py-4 h-20 px-2 "style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.title}</h2></Link>
+  <Link href={`/news/award/${ex.slug}/`}><h2 className="hover:text-gray-500 overflow-hidden text-ellipsis text-gray-300 text-base px-2  h-24 leading-7 py-4"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{replaceHTMLTags(ex.excerpt)}</h2></Link>
  </div> 
  <div className="p-2 xs:w-1/2 max-w-xs m-auto"> 
  <Image
@@ -142,8 +142,8 @@ height={675}
   /> 
 </div>
   <div className="md:w-2/3 max-w-xs m-auto"> 
-  <Link href={`/news/award/${ex.slug}`}><h2 className=" hover:text-gray-500 overflow-hidden text-ellipsis text-2xl text-white py-4 h-20 px-2"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.title}</h2></Link>
-  <Link href={`/news/award/${ex.slug}`}><h2 className=" hover:text-gray-500 overflow-hidden text-ellipsis text-gray-300 text-base px-2  py-4 h-24 leading-7"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{replaceHTMLTags(ex.excerpt)}</h2></Link>
+  <Link href={`/news/award/${ex.slug}/`}><h2 className=" hover:text-gray-500 overflow-hidden text-ellipsis text-2xl text-white py-4 h-20 px-2"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.title}</h2></Link>
+  <Link href={`/news/award/${ex.slug}/`}><h2 className=" hover:text-gray-500 overflow-hidden text-ellipsis text-gray-300 text-base px-2  py-4 h-24 leading-7"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{replaceHTMLTags(ex.excerpt)}</h2></Link>
     </div>
     </div>
  </div>
@@ -161,7 +161,7 @@ height={675}
 <hr className="bg-yellow-700 h-1 my-3"/>
 {awards_content.slice(21, 24).map((ex,i)=>
 <div className="border border-black rounded-b-4 max-w-xs m-auto my-2" key={ex.title + ' '+ i} > 
-   <Link href={`/news/award/${ex.slug}`}><h2 className="text-2xl font-bold p-3 text-ellipsis overflow-hidden hover:text-gray-500"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.title} </h2></Link>
+   <Link href={`/news/award/${ex.slug}/`}><h2 className="text-2xl font-bold p-3 text-ellipsis overflow-hidden hover:text-gray-500"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.title} </h2></Link>
    <p className="italic text-gray-400 px-4 pb-2 py-2">{ dateFormatter?.format(Date.parse(ex?.date)) }</p>
 <Image 
 className="p-1 border border-black"
@@ -180,7 +180,7 @@ className="p-1 border border-black"
 <hr className="bg-yellow-700 h-1 my-3 max-w-sm m-auto"/>
 {awards_content.slice(24,30).map((ex,i)=>
 <div className="border-b mx-2" key={ex.title + ' ' + Math.random()}> 
-  <Link href={`/news/award/${ex.slug}`}><h2 className="hover:text-gray-500 text-3xl leading-10 py-3 my-3 xs:px-3" key={ex.title + ' '+ i} >{ex.title} </h2></Link>
+  <Link href={`/news/award/${ex.slug}/`}><h2 className="hover:text-gray-500 text-3xl leading-10 py-3 my-3 xs:px-3" key={ex.title + ' '+ i} >{ex.title} </h2></Link>
  </div>
  )}
 
@@ -205,10 +205,10 @@ className="p-1 border border-black"
 
  <div className='w-4/5 mx-2 py-6'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/award/${ex.slug}`}><h2 className='font-bold text-base hover:text-gray-400' >{ex.title}</h2></Link>
+ <Link href={`/news/award/${ex.slug}/`}><h2 className='font-bold text-base hover:text-gray-400' >{ex.title}</h2></Link>
 </div>
 <div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
-<Link href={`/creator/${ex?.author.node.slug}`}><p >{ ex?.author.node.name }</p> </Link>
+<Link href={`/creator/${ex?.author.node.slug}/`}><p >{ ex?.author.node.name }</p> </Link>
  <p>{ dateFormatter?.format(Date.parse(ex?.date)) }</p>
 </div>
 </div>
@@ -232,10 +232,10 @@ className="p-1 border border-black"
  </div> 
  <div className='w-4/5 mx-2 py-6'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/award/${ex.slug}`}><h2 className='font-bold text-base hover:text-gray-400' >{ex.title}</h2></Link>
+ <Link href={`/news/award/${ex.slug}/`}><h2 className='font-bold text-base hover:text-gray-400' >{ex.title}</h2></Link>
 </div>
 <div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
-<Link href={`/creator/${ex?.author.node.slug}`}><p >{ ex?.author.node.name }</p> </Link>
+<Link href={`/creator/${ex?.author.node.slug}/`}><p >{ ex?.author.node.name }</p> </Link>
  <p>{ dateFormatter?.format(Date.parse(ex?.date)) }</p>
 </div>
 </div>

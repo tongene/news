@@ -221,8 +221,8 @@ const africa_made = made_in_africa.map((ex)=> ex.node.addedOnNetflixNaijas?.node
       />  
       </div>  
       <div className='absolute z-20 top-0 sm:top-28 xs:mx-8 py-5 font-bold text-white mx-2 lg:w-1/2'>   
-    <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}`}><h2 className='text-xl xs:text-3xl md:text-4xl md:py-2 hover:text-gray-500'> {nt.node.title}</h2></Link>
-    <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}`}><div className='xs:text-lg text-sm py-2 xs:block hover:text-gray-500' dangerouslySetInnerHTML={{__html:nt.node.excerpt}}/>  </Link> 
+    <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}><h2 className='text-xl xs:text-3xl md:text-4xl md:py-2 hover:text-gray-500'> {nt.node.title}</h2></Link>
+    <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}><div className='xs:text-lg text-sm py-2 xs:block hover:text-gray-500' dangerouslySetInnerHTML={{__html:nt.node.excerpt}}/>  </Link> 
     <span className='text-end text-sm mt-11 italic'>{moment(nt.node.date).fromNow()} </span>
     </div>
     </div> 
@@ -243,8 +243,8 @@ const africa_made = made_in_africa.map((ex)=> ex.node.addedOnNetflixNaijas?.node
   </div>
   <div className='relative h-max text-white'>
         <div className='absolute bottom-8 xs:bottom-1 z-10'>
-        <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className='hover:text-gray-500 overflow-hidden text-ellipsis mx-2 sm:w-56 lg:w-64 text-lg xs:text-base sm:text-lg lg:text-xl'>{nt.node.title}</h2></Link>
-    <Link href={`/topic/${(nt.node.contentTags.nodes??[][0])?.slug}/${(nt.node?.contentTags?.nodes??[][0])?.id}`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.node.date).fromNow()} |</span> {(nt.node.contentTags.nodes??[][0]).name}</p ></Link>
+        <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className='hover:text-gray-500 overflow-hidden text-ellipsis mx-2 sm:w-56 lg:w-64 text-lg xs:text-base sm:text-lg lg:text-xl'>{nt.node.title}</h2></Link>
+    <Link href={`/topic/${(nt.node.contentTags.nodes??[][0])?.slug}/`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.node.date).fromNow()} |</span> {(nt.node.contentTags.nodes??[][0]).name}</p ></Link>
       </div> 
       
     </div>
@@ -341,20 +341,20 @@ const africa_made = made_in_africa.map((ex)=> ex.node.addedOnNetflixNaijas?.node
   <div className='h-max rounded-t lg:hidden bg-transparent max-w-36 sm:m-0 m-auto cursor-pointer'>
 <div className='py-5 flex flex-col justify-center w-full cursor-pointer my-2 text-gray-600 px-2'> 
 <FontAwesomeIcon icon={faFilm}className='text-xl'/>
-<Link href='/netflix-naija/coming-to-netflix'prefetch={false}><p className='p-2 font-bold text-center'>Coming to Netflix Naija</p></Link> 
+<Link href='/netflix-naija/coming-to-netflix/'><p className='p-2 font-bold text-center'>Coming to Netflix Naija</p></Link> 
 </div> 
 <hr/>
 <div className='py-5 flex flex-col justify-center w-full cursor-pointer my-2 bg-transparent text-gray-600'> 
 <FontAwesomeIcon icon={faFilm} className='text-xl p-2'/>
 {/* has all netfix naija news as no page was built for netflix naija */}
-<Link href='/naija-wiki'><p className='p-2 font-bold text-center text-lg'>Netflix News</p></Link>   
+<Link href='/naija-wiki/'><p className='p-2 font-bold text-center text-lg'>Netflix News</p></Link>   
 </div>  
  
  </div> 
   
  <div className='hidden lg:block mx-1 py-4 max-w-sm'> 
     <div className="cursor-pointer py-6 shadow max-w-sm border px-3 font-bold text-gray-600 flex items-center justify-between my-1"> 
-    <Link href='/netflix-naija/coming-to-netflix'prefetch={false}><li className='hover:text-gray-400 list-none'>Coming to Netflix Naija</li></Link>
+    <Link href='/netflix-naija/coming-to-netflix/'><li className='hover:text-gray-400 list-none'>Coming to Netflix Naija</li></Link>
   <FontAwesomeIcon icon={faAngleRight}/>
   </div> 
   <div className='[&_.news-letter-unflexed>form]:lg:flex-wrap [&_.news-letter-unflexed]:w-80 [&_.news-letter-unflexed]:max-w-auto [&_.news-letter-unflexed]:md:m-0 [&_.news-letter-unflexed]:my-2 [&_.news-letter-buttonwidth]:md:w-auto [&_.news-letter-nowidth]:w-auto'>
@@ -376,7 +376,7 @@ const africa_made = made_in_africa.map((ex)=> ex.node.addedOnNetflixNaijas?.node
  
  </div>
  <div className='px-2 font-bold flex justify-between'>
- <Link href={`/netflix-naija/news/${xy.slug}`}><h2 className='hover:text-gray-400 text-gray-600 text-xl overflow-hidden text-ellipsis'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.title} </h2></Link>
+ <Link href={`/netflix-naija/news/${xy.slug}/`}><h2 className='hover:text-gray-400 text-gray-600 text-xl overflow-hidden text-ellipsis'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.title} </h2></Link>
   </div> 
  </div> 
  )}</div>

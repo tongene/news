@@ -9,7 +9,7 @@ metadataBase: new URL(defaultUrl),
  title:"Urban News | Netflix Naija",  
 description: "All titles Coming to or on Netflix Naija weekly, monthly and yearly are first published here. The best of Netflix Naija News and movies are all available.",
 alternates: {
-  canonical: 'https://culturays.com/naija-wiki',
+  canonical: 'https://culturays.com/naija-wiki/',
  
 },
 openGraph: {

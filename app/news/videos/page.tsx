@@ -78,14 +78,14 @@ const vids = async()=>{
  
   }
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/videos` 
-  : "http://localhost:3000/videos";
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}/videos/` 
+  : "http://localhost:3000/videos/";
   
 export const metadata = {
   metadataBase: new URL(defaultUrl), 
    title:"Urban News | Videos", 
    alternates: {
-    canonical: 'https://www.culturays.com/videos',
+    canonical: 'https://culturays.com/videos/',
  
   }, 
 }; 
@@ -94,24 +94,13 @@ const content_videos = await vids();
   const sidebarItems=await sidePlusViews()
     const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)  
          const news_outline=await postsOutline()
-    //      const naija_wiki =async ()=>{  
-    //       const supabase =await createClient() 
-    //       const { data:cinema_titles , error } = await supabase 
-    //       .from('cinema_titles') 
-    //       .select('*')
-    //       if(error)throw new Error('An Error has occured!')
-    // return cinema_titles
-              
-    //       }   
-    //  const xTitltes= await naija_wiki()
-    //    const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon')) 
    
        const jsonLd:WithContext<BlogPosting>={
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": "Urban News - Event Video Report",
         "description": "Watch this video report on major African events from Culturays.",
-        "url": `https://culturays.com/news/video/${content_videos[0]?.slug}`,
+        "url": `https://culturays.com/news/video/${content_videos[0]?.slug}/`,
         "image": "https://culturays.com/opengraph-image.png",
         "datePublished": "2025-04-15T08:00:00Z",
         "dateModified": "2025-04-15T08:00:00Z",
@@ -133,8 +122,8 @@ const content_videos = await vids();
           "description": "This video features Culturays' coverage of major events in Nigeria, Africa, and across the globe.",
           "thumbnailUrl": "https://culturays.com/opengraph-image.png",
           "uploadDate": "2025-04-15T08:00:00Z",
-          "contentUrl": `https://culturays.com/news/video/${content_videos[0]?.videosGroup.videoUrl.node.mediaItemUrl}`,
-          "embedUrl": `https://culturays.com/news/video/${content_videos[0]?.slug}`,
+          "contentUrl": `https://culturays.com/news/video/${content_videos[0]?.videosGroup.videoUrl.node.mediaItemUrl}/`,
+          "embedUrl": `https://culturays.com/news/video/${content_videos[0]?.slug}/`,
           "duration": "PT2M30S"
         }
       }
