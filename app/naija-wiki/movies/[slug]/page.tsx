@@ -65,10 +65,10 @@ const jsonLd:WithContext<ProfilePage> = {
    
   },
    
-    mainEntityOfPage: {
-     "@type": "WebPage",
-     "@id":`https://culturays.com/naija-wiki/movies/${slug.toLowerCase().replace(/-/g, ' ')}/`, 
-   },
+  //   mainEntityOfPage: {
+  //    "@type": "WebPage",
+  //    "@id":`https://culturays.com/naija-wiki/movies/${slug.toLowerCase().replace(/-/g, ' ')}/`, 
+  //  },
 
    image: charactertitles?.charactertitles.actorImgs.node.sourceUrl, 
    keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),    
