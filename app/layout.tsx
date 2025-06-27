@@ -18,8 +18,8 @@ import { Suspense } from "react";
 import type { Metadata } from 'next' 
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `https://${process.env.NEXT_PUBLIC_BASE_URL}`
-  : "http://localhost:3000";
+  ? `https://${process.env.NEXT_PUBLIC_BASE_URL}/`
+  : "http://localhost:3000/";
  
   const geistSans = Geist({
     display: "swap",
@@ -82,37 +82,106 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
    
     ],
   }
-export const metadata:Metadata = {
-  title:{
-    template:"%s | Urban Naija News",
-    default: 'Urban Naija | News, Nigeria',   
-   },
-  description:'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
-  generator: 'Culturays',
-  applicationName: 'Culturays',
+// export const metadata:Metadata = {
+  
+//   creator: 'Christina Ngene',
+//   publisher: 'Christina Ngene',
+//   metadataBase: new URL('https://culturays.com/'),
+//   openGraph: {
+//   title: 'Urban Naija | News, Nigeria',
+//   description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
+//   url: 'https://culturays.com/', 
+//   siteName: 'Urban Naija News', 
+//   images: [
+//   {
+//   url: 'https://culturays.com/assets/images/culturays.png',  
+//   width: 800,
+//   height: 600,
+//   alt: 'Culturays Image & Logo',
+//   },
+//     {
+//           url: 'https://culturays.com/assets/images/culturays.png', 
+//           width: 1800,
+//           height: 1600,
+//           alt: 'Culturays Image & Logo',
+//         },
+//       ], 
+//       locale: 'en_NG',
+//       type: 'website',
+//     },
+//     robots: {
+//       // index: false,
+//       // follow: true,
+//       // nocache: true,
+//       googleBot: {
+//         index: true,
+//        // follow: false,
+//         noimageindex: false,
+//         'max-video-preview': -1,
+//         'max-image-preview': 'large',
+//         'max-snippet': -1,
+//       } ,
+//     },
+   
+//     icons: { 
+//       shortcut: ['/favicon.ico'],
+//       apple: [
+//         { url: '/favicon.ico' }, 
+//       ],
+   
+//     },
+  
+//     alternates: {
+//       canonical: 'https://culturays.com/', 
+//       languages: { 
+//           'en-US': '/en-US',          
+//       },
+//     },
+   
+//    manifest: 'https://culturays.com/site.webmanifest',
+//     twitter: {
+//       card: 'summary_large_image',
+//       title: 'Urban Naija | News, Nigeria, Business, Economy, Nollywood, Netflix Naija, Inflation, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Money, Lifestyle, People, Culture, Finance, Industry, Production, Crisis, Conflict, GDP, Investment, Market, Dangote, CBN, Sollar, Naira,Binanace, Bitcoin, Crude Oil, Gold, Mining, Stocks',
+//       description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',    
+//       images: ['https://culturays.com/assets/images/culturays.png'],  
+//     },    
+    
+//     verification: {
+//       google: 'google',  
+//     },
+    
+// };
+ 
+export const metadata = {
+  metadataBase: new URL(defaultUrl),
+  title: "Urban Naija | News, Nigeria",
+  description: "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
+
+ generator: 'Urban Naija',
+  applicationName: 'Urban Naija | News, Nigeria',
   referrer: 'origin-when-cross-origin',
   keywords:"News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Money, Lifestyle, People, Culture, Finance, Industry, Production, Conflict, GDP, Investment, Dollar, Naira, Binanace, Bitcoin, Crude Oil, Gold, Mining, Stocks",
   authors: [{ name: 'Christina Ngene', url: 'https://culturays.com/creator/christina-ngene/' }],
   creator: 'Christina Ngene',
   publisher: 'Christina Ngene',
-  metadataBase: new URL('https://culturays.com/'),
+ 
   openGraph: {
   title: 'Urban Naija | News, Nigeria',
   description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
   url: 'https://culturays.com/', 
-  siteName: 'Urban Naija News', 
+  siteName: 'Urban Naija', 
   images: [
   {
-  url: 'https://culturays.com/assets/images/culturays.png',  
+  url: 'https://culturays.com/assets/images/culturays-no-bg.png',  
   width: 800,
   height: 600,
-  alt: 'Culturays Image & Logo',
+  alt: 'Urban Naija Image & Logo',
   },
     {
-          url: 'https://culturays.com/assets/images/culturays.png', 
+          url: 'https://culturays.com/assets/images/culturays-no-bg.png', 
           width: 1800,
           height: 1600,
-          alt: 'Culturays Image & Logo',
+          alt: 'Urban Naija Image & Logo',
         },
       ], 
       locale: 'en_NG',
@@ -150,18 +219,15 @@ export const metadata:Metadata = {
    manifest: 'https://culturays.com/site.webmanifest',
     twitter: {
       card: 'summary_large_image',
-      title: 'Urban Naija | News, Nigeria, Business, Economy, Nollywood, Netflix Naija, Inflation, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Money, Lifestyle, People, Culture, Finance, Industry, Production, Crisis, Conflict, GDP, Investment, Market, Dangote, CBN, Sollar, Naira,Binanace, Bitcoin, Crude Oil, Gold, Mining, Stocks',
+      title: 'Urban Naija | News, Nigeria',
       description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',    
-      images: ['https://culturays.com/assets/images/culturays.png'],  
+      images: ['https://culturays.com/assets/images/culturays-no-bg.png'],  
     },    
     
     verification: {
       google: 'google',  
     },
-    
 };
- 
-
 export default function RootLayout({
   children,
 }: Readonly<{
