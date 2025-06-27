@@ -25,7 +25,7 @@ const contentFeed = async()=>{
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       posts(first:50) {
+       posts(first:100) {
        nodes {
          date
          contentTypeName 
