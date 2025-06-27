@@ -25,7 +25,7 @@ const contentFeed = async()=>{
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       posts(first:100) {
+       posts(first:500) {
        nodes {
          date
          contentTypeName 
@@ -157,7 +157,7 @@ export async function GET() {
     news: [
       {
         publication: {
-          name: 'Culturays News',
+          name: 'Urban Naija News',
           language: 'en',
         },
         publication_date: new Date(post.date).toISOString(),

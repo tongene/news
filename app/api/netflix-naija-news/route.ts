@@ -76,9 +76,9 @@ const generateNewsSitemap = (content_posts: Post[]) => {
       news: [
         {
           publication: {
-            name: 'Culturays News',
-            language: 'en',
-          },
+          name: 'Urban Naija News',
+          language: 'en',
+        },
           publication_date: new Date(post.node.date).toISOString(),
           article_title: post.node.title,
         },

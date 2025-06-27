@@ -61,7 +61,7 @@ ${xmlContent}
 
 
 export async function GET() { 
-    const initialPostsD = await getPosts(0, 100)
+    const initialPostsD = await getPosts(0, 20)
     const escapeXml =(unsafe: string)=>   
         unsafe
           ?.replace(/&/g, "&amp;")
@@ -78,8 +78,8 @@ export async function GET() {
     images:  [`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(post?.files as PostProps[])[0]}`||'/assets/images/culturays.png'], 
     news: [
       {
-        publication: {
-          name: 'Urban Naija News | Forum',
+          publication: {
+          name: 'Urban Naija News',
           language: 'en',
         },
         publication_date: new Date(post.created_at  as string).toISOString(),

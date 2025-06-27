@@ -81,9 +81,9 @@ const generateNewsSitemap = (content_posts: Post[]) => {
       news: [
         {
           publication: {
-            name: 'Urban Naija News',
-            language: 'en',
-          },
+          name: 'Urban Naija News',
+          language: 'en',
+        },
           publication_date: new Date(post.date).toISOString(),
           article_title: post.title,
         },

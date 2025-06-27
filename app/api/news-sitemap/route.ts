@@ -25,7 +25,7 @@
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       businesses  {
+       businesses{
        nodes {
          date
          contentTypeName 
@@ -411,8 +411,7 @@
        ?.replace(/</g, "&lt;")
        ?.replace(/>/g, "&gt;")
        ?.replace(/"/g, "&quot;")
-       ?.replace(/'/g, "&apos;")
-       
+       ?.replace(/'/g, "&apos;")       
      
        return  `
  <url>
@@ -465,10 +464,10 @@ ${xmlContent}
      images: [post.featuredImage.node.sourceUrl],
      news: [
        {
-         publication: {
-           name: 'Culturays News',
-           language: 'en',
-         },
+          publication: {
+          name: 'Urban Naija News',
+          language: 'en',
+        },
          publication_date: new Date(post.date).toISOString(),
          article_title: post.title,
        },

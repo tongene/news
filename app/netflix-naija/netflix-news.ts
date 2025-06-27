@@ -13,7 +13,7 @@ export async function newsbyNewOnCategory(notIn:string[]){
       node {
         name
         slug 
-        naijaOnNetflix(where:{notIn:$notIn}) {
+        naijaOnNetflix(first:250, where:{notIn:$notIn}) {
         edges{
         cursor
           node {
@@ -59,8 +59,7 @@ export async function newsbyNewOnCategory(notIn:string[]){
          
           }
         }
-      }}
- 
+      }} 
 }
     
   }
@@ -99,7 +98,7 @@ export async function newsbyComingtoCategory(notIn:string[]){
         node {
           name
           slug
-          naijaOnNetflix(first:50) {
+          naijaOnNetflix(first:250) {
           edges{         
             node {
               contentTypeName
@@ -661,7 +660,7 @@ fullListNetflixNaijas(first: 1) {
       node {
       name
       slug         
-          naijaOnNetflix(first:20) { 
+          naijaOnNetflix(first:250) { 
           nodes { 
           id
             slug

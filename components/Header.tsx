@@ -71,7 +71,7 @@ const handleClick = (id:string)=> {
 </div>
 
 {barState&&
-<div className="fixed h-screen z-50 bg-gray-800 w-full top-0 bottom-0 animate-in cursor-pointer bg-opacity-90" onClick={menuClick}>  
+<div className="fixed h-screen z-40 bg-gray-800 w-full top-0 bottom-0 animate-in cursor-pointer bg-opacity-90" onClick={menuClick}>  
 <p className="opacity-70 mx-2" >
 <FontAwesomeIcon icon={faXmark} className="text-white w-6 h-11 cursor-pointer"/>
 </p>
@@ -103,7 +103,7 @@ height={35} />
   
 </button>  
 </header> 
-<div className="absolute top-0 w-full md:block hidden z-50"> 
+<div className="absolute top-0 w-full md:block hidden z-40"> 
   <nav className="flex justify-center">
      {!barState&&
 navAddress.map((xy)=> 
@@ -116,12 +116,7 @@ navAddress.map((xy)=>
 >
  <Link href={xy.b}>{xy.a}</Link>
  
-</li>
-
-
-</ul>
-
- 
+</li></ul> 
 )
  
 }</nav></div>
