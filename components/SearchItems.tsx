@@ -102,7 +102,7 @@ onChange={handleSearch}
 value={nameX1}
 /> 
 <div className="relative z-40 top-3 -right-3/4 ml-22 sm:ml-28 md:ml-32">
-<FontAwesomeIcon icon={faAngleDoubleRight}width={20} className="cursor-pointer opacity-70 text-xl hover:scale-150" onClick={()=>!nameX1?replace('/search')
+<FontAwesomeIcon icon={faAngleDoubleRight}width={20} className="cursor-pointer opacity-70 text-xl hover:scale-150" onClick={()=>!nameX1?replace('/search/')
 :replace(`/search?name=${nameX1}`)}/> 
  
 </div> 

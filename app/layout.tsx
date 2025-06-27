@@ -160,7 +160,7 @@ export const metadata = {
  generator: 'Urban Naija',
   applicationName: 'Urban Naija | News, Nigeria',
   referrer: 'origin-when-cross-origin',
-  keywords:"News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Money, Lifestyle, People, Culture, Finance, Industry, Production, Conflict, GDP, Investment, Dollar, Naira, Binanace, Bitcoin, Crude Oil, Gold, Mining, Stocks",
+  keywords:"News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Money, Lifestyle, People, Culture, Finance, Industry, Production, Conflict, GDP, Investment, Dollar, Naira, Binance, Bitcoin, Crude Oil, Gold, Mining, Stocks",
   authors: [{ name: 'Christina Ngene', url: 'https://culturays.com/creator/christina-ngene/' }],
   creator: 'Christina Ngene',
   publisher: 'Christina Ngene',

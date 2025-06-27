@@ -63,7 +63,7 @@ const contentFeed = async()=>{
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       lives(first:50) {
+       lives(first:100) {
        nodes {
          date
          contentTypeName 
