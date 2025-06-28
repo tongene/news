@@ -261,13 +261,7 @@ dangerouslySetInnerHTML={{
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', '${process.env.GA}', {
-                    page_path: window.location.pathname,
-                });
-                  gtag('config', '${process.env.AW}', {
-                  page_path: window.location.pathname,
-              });
-                `, 
+                gtag('config', '${process.env.GA}');`, 
                 }}
             /><Script async strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.AW}`}/><Script dangerouslySetInnerHTML={{
               __html: `gtag('event', 'conversion', {'send_to': '${process.env.AW}/PeRqCICmn-MBEKrYg_UC'});`, 
