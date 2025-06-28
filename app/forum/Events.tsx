@@ -17,7 +17,7 @@ const Events= ({ events }:{events:EventsProps[] } ) => {
 <div className="card-data overflow-hidden flex bg-slate-100 p-4 justify-center">
 <p>No Events to Show Today </p>
 </div>} 
-{ events?.slice(1,2).flat().map((xx:Event, i:number)=> 
+{ events.flat().map((xx:Event, i:number)=> 
 <div className="bg-gray-900 w-full p-4" key={xx.name + ' ' +  i}>
 <div className="md:flex-row flex flex-col justify-center items-center xl:w-2/3 sm:justify-between md:justify-evenly m-auto">  
 
@@ -33,13 +33,13 @@ const Events= ({ events }:{events:EventsProps[] } ) => {
 <div className="relative w-[350px] h-[300px] my-3">
 {xx.img_url &&xx.img_url.endsWith('.jpg')||xx.img_url.endsWith('.jpeg')||xx.img_url.endsWith('.png')? <Image 
 className="rounded-xl mt-5"
-src={`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${xx.img_url}/`}
-fill
-sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
+src={`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${xx.img_url}`}
+width={300}
+height={300}
 alt={xx.title}  
 /> : <Image 
 className="rounded-xl mt-5"
-src={'/assets/images/culturays_events.png/'}
+src={'/assets/images/culturays_events.png'}
 fill
 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
 alt={xx.title}  

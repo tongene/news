@@ -37,7 +37,8 @@ const forumEvents =async ()=>{
   const { data:event , error } = await supabase 
 .from('events')
 .select('*')
-.range(0,1)
+.gte('created_at', new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString())
+.limit(1)
 .order('id', { ascending: false })  
 setEvents(event ?? [])
 
