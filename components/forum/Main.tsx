@@ -36,7 +36,8 @@ const forumEvents =async ()=>{
   const supabase = createClient() 
   const { data:event , error } = await supabase 
 .from('events')
-.select('*') 
+.select('*')
+.range(0,1)
 .order('id', { ascending: false })  
 setEvents(event ?? [])
 

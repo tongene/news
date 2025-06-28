@@ -8,7 +8,7 @@ import {Event, EventsProps } from "../types"
 nlp.plugin(plg)
  
 const Events= ({ events }:{events:EventsProps[] } ) => { 
-  
+ console.log(events)
   return (   
 <div> 
   <section className="m-1">
@@ -31,13 +31,19 @@ const Events= ({ events }:{events:EventsProps[] } ) => {
 
 </div>
 <div className="relative w-[350px] h-[300px] my-3">
- <Image 
+{xx.img_url &&xx.img_url.endsWith('.jpg')||xx.img_url.endsWith('.jpeg')||xx.img_url.endsWith('.png')? <Image 
 className="rounded-xl mt-5"
-src={xx.img_url &&xx.img_url.endsWith('.jpg')||xx.img_url.endsWith('.jpeg')||xx.img_url.endsWith('.png')?`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${xx.img_url}/`:'/assets/images/culturays_events.png/'}
+src={`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${xx.img_url}/`}
 fill
 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
 alt={xx.title}  
-/> 
+/> : <Image 
+className="rounded-xl mt-5"
+src={'/assets/images/culturays_events.png/'}
+fill
+sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
+alt={xx.title}  
+/>}
 </div>
 </div>
 <Link href='/naija-events/'> 
