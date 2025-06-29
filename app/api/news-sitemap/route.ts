@@ -25,7 +25,7 @@
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       businesses{
+       businesses (first:100) {
        nodes {
          date
          contentTypeName 
@@ -101,7 +101,7 @@
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       environments  {
+       environments (first:100) {
        nodes {
          date
          contentTypeName 
@@ -217,7 +217,7 @@
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       nollywoods  {
+       nollywoods (first:20){
        nodes {
          date
          contentTypeName 
@@ -294,7 +294,7 @@
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       trends {
+       trends (first:100)  {
        nodes {
          date
          contentTypeName 
@@ -332,7 +332,7 @@
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       videos  {
+       videos (first:100) {
        nodes {
          date
          contentTypeName 
@@ -370,7 +370,7 @@
        },
        body: JSON.stringify({
          query: `query CONTENTFEED{
-       healths  {
+       healths (first:100)   {
        nodes {
          date
          contentTypeName 
@@ -395,6 +395,44 @@
        
        }).then(response => response.json())   
        .then(data => data.data.healths.nodes )
+       .catch(error => console.error('Error:', error));
+      // const response = wprest?.data.contentNodes.nodes 
+       return wprest 
+   
+   }
+      const articlesFeed = async()=>{  
+    const wprest =fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{ 
+       'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query: `query CONTENTFEED{
+       articles (first:100) {
+       nodes {
+         date
+         contentTypeName 
+           id
+           title
+           slug 
+            author {
+           node {
+             name
+             slug
+           }
+         }
+               featuredImage {
+           node {
+             altText
+             sourceUrl
+           }
+         }
+         }  
+       }
+      }`})
+       
+       }).then(response => response.json())   
+       .then(data => data.data.articles.nodes )
        .catch(error => console.error('Error:', error));
       // const response = wprest?.data.contentNodes.nodes 
        return wprest 
@@ -455,7 +493,7 @@ ${xmlContent}
   const trend_news:FeedProps[] = await trendFeed()  
   const vid_news:FeedProps[] = await vidFeed()  
   const he_news:FeedProps[] = await heFeed()
-
+    const articles_news:FeedProps[] = await articlesFeed()
    const bix_posts: Post[] = business_news.map((post) => ({
      url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
@@ -613,8 +651,7 @@ const env_posts: Post[] = env_news.map((post) => ({
        },
      ],
    }));
-   
-   const soc_posts: Post[] = soc_news.map((post) => ({
+      const soc_posts: Post[] = soc_news.map((post) => ({
      url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
@@ -631,7 +668,24 @@ const env_posts: Post[] = env_news.map((post) => ({
        },
      ],
    }));
-   const xmlData = [...bix_posts, ...soc_posts, ...ec_posts, ...env_posts, ...tex_posts, ...vid_posts, ...aw_posts, ...nol_posts, ...he_posts, ...tr_posts] as Post[]     
+   const article_posts: Post[] = articles_news.map((post) => ({
+     url: `https://culturays.com/news/${post.contentTypeName}/${post.slug}/`,
+     lastModified: new Date(post.date),
+     changeFrequency: 'always',
+     priority: 0.8,
+     images: [post?.featuredImage?.node?.sourceUrl],
+     news: [
+       {
+         publication: {
+           name: 'Urban Naija News',
+           language: 'en',
+         },
+         publication_date: new Date(post.date).toISOString(),
+         article_title: post.title,
+       },
+     ],
+   }));
+   const xmlData = [...bix_posts, ...soc_posts, ...ec_posts, ...env_posts, ...tex_posts, ...vid_posts, ...aw_posts, ...nol_posts, ...he_posts, ...tr_posts, ...article_posts] as Post[]     
  const xml = generateNewsSitemap(xmlData);
  
    return new NextResponse(xml, {

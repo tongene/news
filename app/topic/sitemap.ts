@@ -12,7 +12,7 @@ import { MetadataRoute } from "next";
       },
       body: JSON.stringify({
         query: `query CONTENTFEED{
-   contentTags(first:50) {
+   contentTags(first:500) {
     nodes {
       slug
       name
@@ -37,7 +37,7 @@ import { MetadataRoute } from "next";
       body: JSON.stringify({
         query:
          `query CONTENTFEED{
-       postsTags(first:50) {
+       postsTags(first:500) {
        nodes {     
           name
           slug
