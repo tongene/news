@@ -58,7 +58,7 @@ priority={true}
 <div className='py-8 relative sm:my-0 sm:bottom-36'>
 <hr className='h-2 bg-gray-800'/> 
 <div className='sm:px-4 sm:py-8 bg-white'>
-  <div className='flex flex-wrap max-w-xs py-2'> 
+  <div className='flex flex-wrap max-w-xl py-2'> 
   {news_detail?.contentTags?.nodes.map((xy)=>
 <div key={xy?.name + ' ' + Math.random()} className='m-1'>
  <Link href={`/topic/${xy?.slug}/`}><h4 className='hover:bg-gray-600 hover:text-gray-200 border border-gray-600 bg-gray-50 text-gray-600 p-2 text-lg w-max text-center'>{xy?.name} </h4></Link>

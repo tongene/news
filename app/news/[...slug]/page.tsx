@@ -614,8 +614,7 @@ contentNode(id: $id, idType: $idType) {
           }
         }
       }
-    }
-
+    } 
 
   }
 }   
@@ -849,7 +848,7 @@ export async function generateMetadata(
   const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/${slug[1]}/`)
   const previousImages = (await parent).openGraph?.images || []
   const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
-
+ 
   return {
     title: `Urban Naija | ${news_details?.title}`,
     description:news_details?.excerpt,
@@ -866,7 +865,7 @@ export async function generateMetadata(
       publishedTime:news_details?.date,
     },
      alternates: {
-    canonical:  `https://culturays.com/news/article/${slug}/`,
+    canonical:  `https://culturays.com/news/${news_details.contentTypeName}/${slug}/`,
  
   },
   } 
