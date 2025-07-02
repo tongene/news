@@ -107,18 +107,18 @@ setCurrPg(currPg - 1);
   </div>
     
  <section>
-<div className="lg:flex m-auto p-6 gap-1 justify-center lg:w-[1000px] 2xl:w-[1500px]"> 
-<div>
+<div className="xl:flex mx-auto p-6 gap-4 justify-center 2xl:mx-0 lg:w-[1100px] 2xl:w-[1500px]"> 
+<div className="pl-11 lg:max-w-md m-auto">
 <h2 className="text-5xl font-bold m-4">News</h2>
 <hr className="bg-black py-0.5"/>
-<div className="grid sm:grid-cols-2 lg:block xl:grid-cols-2 gap-2 justify-center m-auto">
+<div className="grid sm:grid-cols-2 lg:block xl:grid-cols-2 gap-2 justify-center">
 {currentPosts.length>0 &&currentPosts.map((xy, ix)=> 
-<div className="my-2 m-auto border-b max-w-md xl:max-w-3xl py-4" key={xy?.title + ' ' + ix}> 
+<div className="my-2 m-auto border-b border-b-4 border-b-black max-w-md xl:max-w-3xl py-4" key={xy?.title + ' ' + ix}> 
 <div className="h-32"><Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}>
 
 <h2 className="text-3xl hover:text-gray-500 overflow-hidden text-ellipsis leading-9 my-5"style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>{xy?.title} </h2></Link> </div>
 <Image
-className="hover:opacity-70 cursor-pointer h-60 xs:h-64 sm:h-52 md:h-60"
+className="hover:opacity-70 cursor-pointer h-60 xs:h-64 sm:h-52 md:h-60 lg:h-72"
 src={xy?.featuredImage.node.sourceUrl}
 width={1200}
 height={675}
@@ -144,9 +144,9 @@ alt={xy?.featuredImage.node.altText}
  </div>
 </div>
  
-<div className="md:flex justify-between lg:block 2xl:flex my-5 max-w-xl md:max-w-max lg:max-w-xl xl:max-w-5xl m-auto">
+<div className="justify-between 2xl:flex my-5 max-w-xl md:max-w-max lg:max-w-xl xl:max-w-5xl m-auto">
 
-<div className="mx-1 h-max px-2 py-4"><h2 onClick={()=> setActiveSet(prev => !prev)}className={!activeSet?"text-3xl font-bold":'text-3xl cursor-pointer'}>Africa</h2>
+<div className="mx-1 h-max px-2 py-4 max-w-lg"><h2 onClick={()=> setActiveSet(prev => !prev)}className={!activeSet?"text-3xl font-bold":'text-3xl cursor-pointer'}>Africa</h2>
 <hr className={!activeSet?"bg-red-500 py-0.5 font-bold":''}/>
 { tech_news.slice(0,5).map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
@@ -156,12 +156,12 @@ alt={xy?.featuredImage.node.altText}
 </div>
 )}
 </div>
-<div className="mx-1 h-max px-2 py-4"><h2 onClick={()=> setActiveSet(prev => !prev)}className={activeSet?"text-3xl font-bold":'text-3xl cursor-pointer'}>World</h2>
+<div className="mx-1 h-max px-2 py-4 max-w-lg"><h2 onClick={()=> setActiveSet(prev => !prev)}className={activeSet?"text-3xl font-bold":'text-3xl cursor-pointer'}>World</h2>
 <hr className={activeSet?"bg-red-500 py-0.5 font-bold":''}/>
 { health_news.slice(0,5).map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
-<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis font-bold leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
-<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base">{replaceHTMLTags(xy?.excerpt)} </p></Link>
+<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis font-bold leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title}</h2></Link>
+<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"/></Link>
  <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).fromNow()}</em></small> 
 </div>
 )}

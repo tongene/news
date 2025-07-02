@@ -22,7 +22,11 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
-        
+       {
+        source: '/news/tech/',
+        destination: '/news/',
+        permanent: true,
+      },    
        {
         source: '/africa/news/:path*',
         destination: '/',
@@ -65,21 +69,21 @@ const nextConfig = {
       },
        {
         source: '/news/local',
-        destination: '/news',
+        destination: '/news/',
         permanent: true,
       },
        {
         source: '/news/foreign',
-        destination: '/news',
+        destination: '/news/',
         permanent: true,
       },
        {
         source: '/search-page',
-        destination: '/search',
+        destination: '/search/',
         permanent: true,
       },
        {
-        source: '/innews/newspost',
+        source: '/innews/newspost/',
         destination: '/',
         permanent: true,
       },
