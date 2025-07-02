@@ -118,7 +118,7 @@ const NollywoodPage =async () => {
           "url": "https://culturays.com/news/nollywood/",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+            "url": "https://culturays.com/culturays-no-bg.png"
           }
         }
       }

@@ -457,7 +457,7 @@ width={80}
 height={80}
 className='rounded-full'
 alt={postData?.user_email as string}/></Link>:
-<Link href={`/profile/${postData?.user_id}/`}><Image src={'/assets/images/culturays.png'} 
+<Link href={`/profile/${postData?.user_id}/`}><Image src={'/culturays.png'} 
 width={80} 
 height={80} 
 className='rounded-full'

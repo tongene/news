@@ -859,8 +859,13 @@ export async function generateMetadata(
       description: news_details?.excerpt ,  
       images:[news_details?.featuredImage.node.sourceUrl, ...previousImages],  
     },
-     openGraph: {    
-      images: [news_details?.featuredImage.node.sourceUrl,...previousImages],
+     openGraph: {
+      title: `Urban Naija | ${news_details?.title}`,
+      description:news_details?.excerpt, 
+      url: `https://culturays.com/news/${news_details.contentTypeName}/${slug}/`,
+      siteName: 'Urban Naija',
+      images: [{url:news_details?.featuredImage.node.sourceUrl, width: 800,
+          height: 600, ...previousImages}],
       type: "article",
       publishedTime:news_details?.date,
     },
@@ -912,7 +917,7 @@ const slug =(await params).slug
         name: "Christina Ngene",
         logo: {
           "@type": "ImageObject",
-          url: "https://culturays.com/assets/images/culturays-no-bg.png",
+          url: "https://culturays.com/culturays-no-bg.png",
         },
       },
        

@@ -138,7 +138,7 @@ const NewsPage = async() => {
      "url": "https://www.culturays.com/news",
      "logo": {
        "@type": "ImageObject",
-       "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+       "url": "https://culturays.com/culturays-no-bg.png"
      }
    }
  }

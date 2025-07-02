@@ -172,15 +172,15 @@ export const metadata = {
   siteName: 'Urban Naija', 
   images: [
   {
-  url: 'https://culturays.com/assets/images/culturays-no-bg.png',  
+  url: 'https://culturays.com/culturays-no-bg.png',  
   width: 800,
   height: 600,
   alt: 'Urban Naija Image & Logo',
   },
     {
-          url: 'https://culturays.com/assets/images/culturays-no-bg.png', 
-          width: 1800,
-          height: 1600,
+          url: 'https://culturays.com/culturays.png', 
+          width: 800,
+          height: 600,
           alt: 'Urban Naija Image & Logo',
         },
       ], 
@@ -221,7 +221,7 @@ export const metadata = {
       card: 'summary_large_image',
       title: 'Urban Naija | News, Nigeria',
       description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',    
-      images: ['https://culturays.com/assets/images/culturays-no-bg.png'],  
+      images: ['https://culturays.com/culturays-no-bg.png'],  
     },    
     
     verification: {

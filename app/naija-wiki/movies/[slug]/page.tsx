@@ -26,7 +26,7 @@ import { ProfilePage, WithContext } from "schema-dts";
     const previousImages = (await parent).openGraph?.images || []
 
     return {
-      title: `Urban Naija | Movies - ${charactertitles?.charactertitles.portrayedby} Movies `,
+      title: `Urban Naija | Movies - ${charactertitles?.charactertitles.portrayedby} `,
       description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
       keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),
      twitter: {
@@ -36,7 +36,12 @@ import { ProfilePage, WithContext } from "schema-dts";
       images:[charactertitles.charactertitles.actorImgs.node.sourceUrl, ...previousImages],  
     },
       openGraph: {
-        images: [charactertitles.charactertitles.actorImgs.node.sourceUrl, ...previousImages],
+      title: `Naija Wiki | Movies - ${charactertitles?.charactertitles.portrayedby} `,
+      url: `https://culturays.com/naija-wiki/movies/${slug.toLowerCase().replace(/-/g, ' ')}/`,
+      siteName: 'Urban Naija',
+      description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
+        images: [{url:charactertitles.charactertitles.actorImgs.node.sourceUrl, width: 800,
+          height: 600, ...previousImages}],
        
       },
       alternates: {

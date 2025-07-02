@@ -171,7 +171,7 @@ return html2pdfRef.current().set(opt).from(element).save();
 
    <Image 
   className="object-cover h-full border-t border-t-8 rounded-t border-t-orange-600"
-     src='/assets/images/culturays-no-bg.png'
+     src='/culturays-no-bg.png'
      width={50}
      height={50}
      alt={post.title}

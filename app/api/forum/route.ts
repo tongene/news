@@ -75,7 +75,7 @@ export async function GET() {
     lastModified: new Date(post.created_at as string),
     changeFrequency: 'always',
     priority: 0.8,
-    images:  [`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(post?.files as PostProps[])[0]}`||'/assets/images/culturays.png'], 
+    images:  [`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${(post?.files as PostProps[])[0]}`||'/culturays.png'], 
     news: [
       {
           publication: {

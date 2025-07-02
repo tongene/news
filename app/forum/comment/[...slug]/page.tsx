@@ -5,29 +5,28 @@ import { getChildComments } from "../../actions/loadComments";
 import { getRelatedPosts } from "../../actions/loadPosts";
 import { FakeObj, getNaijaFake1, getNaijaTrends1 } from "@/app/data/trends";
 import {type User } from "@supabase/supabase-js";
-import { InitialComments, TrendsProps } from "@/app/types";
+import { InitialComments } from "@/app/types";
 import type { Metadata, ResolvingMetadata } from 'next'
 import { Suspense } from "react";
 import StructuredData from "@/components/StructuredData";
 import { BlogPosting, DiscussionForumPosting, WithContext } from "schema-dts";
 type Props = {
-  params: Promise<{ slug: string }>
+  params: Promise<{ id: number }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
  
 //export const revalidate=1
 export async function generateMetadata(  { params }: Props,
   parent: ResolvingMetadata ): Promise<Metadata> {
-    const slug =(await params).slug
+  const id =(await params).id
   const postView = async () => { 
     const supabase =await createClient();  
     const { data:commented, error} = await supabase
     .from('comments') 
     .select('*') 
-    .eq('id', slug.slice(-1) )
+    .eq('id', id)
     .single()   
-    if (error) {
-  
+    if (error) {  
     console.error('Error fetching posts:', error );
     return;
     }
@@ -38,13 +37,28 @@ export async function generateMetadata(  { params }: Props,
 
   return {
     title:`Urban Naija |Forum - ${comment?.title}`,
-    openGraph: {
-      images: [comment?.files,...previousImages],
+     description: comment?.title,
+      openGraph: {     
+      title:`Urban Naija News | Creator`,
+      description: comment?.title,
+      url:`https://culturays.com/forum/comment/${comment.id}/`,
       type: "article",
-      publishedTime:comment?.created_at,
-    },
-       alternates: {
-    canonical:  `https://culturays.com/forum/comment/${slug}/`,
+      publishedTime:comment?.created_at, 
+      siteName: 'Urban Naija News', 
+      images: [{url:comment?.files[0],
+        ...previousImages,
+          width: 800,
+          height: 600
+        }],
+      },
+      twitter:{
+      card: 'summary_large_image',
+      title: comment?.title,
+      description: comment?.title,
+      images: [comment?.files[0]],
+   },
+    alternates: {
+    canonical:  `https://culturays.com/forum/comment/${comment.id}/`,
  
   },
   }
@@ -56,13 +70,13 @@ const CommentPage =async ({params}: Props) => {
   data: { user }, 
   } = await supabase.auth.getUser(); 
   
-  const slug =(await params).slug
+  const id =(await params).id
   const commentView = async () => { 
     const supabase =await createClient();  
     const { data:commented, error} = await supabase
     .from('comments') 
     .select('*') 
-    .eq('id', slug.slice(-1) )
+    .eq('id', id )
     .single() 
     if (error) {
   
@@ -137,7 +151,7 @@ return data ??[]
 const jsonLd:WithContext<DiscussionForumPosting> = {
   '@context': 'https://schema.org',
   '@type': 'DiscussionForumPosting', 
-  "@id":`https://culturays.com/comment/${slug}/`,
+  "@id":`https://culturays.com/comment/${comment.id}/`,
   "headline":comment?.title ,
   "author": {
     "@type": "Person",

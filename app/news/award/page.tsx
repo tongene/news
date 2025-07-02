@@ -117,7 +117,7 @@ const AwardsPage = async() => {
               "url": "https://culturays.com/news/award/",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+                "url": "https://culturays.com/culturays-no-bg.png"
               }
             }
           }

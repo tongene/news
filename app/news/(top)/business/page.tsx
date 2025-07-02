@@ -125,7 +125,7 @@ const BusinessPage =async () => {
       "url": "https://culturays.com/news/business/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+        "url": "https://culturays.com/culturays-no-bg.png"
       }
     }
   }

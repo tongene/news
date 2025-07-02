@@ -36,18 +36,26 @@ export async function generateMetadata(
     title:`Urban Naija | Event - ${eventTitle?.title}`,
     description:eventTitle?.title,
     keywords:[eventTitle.genre].join(', '),
-         twitter: {
-      card: 'summary_large_image',
-     title: eventTitle?.title  ,
+    twitter: {
+    card: 'summary_large_image',
+    title: eventTitle?.title  ,
     description: eventTitle?.title ,  
      images:[`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`, ...previousImages],  
     }, 
     openGraph: { 
-      images: [`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`,...previousImages],
+      title:`Urban Naija | Event - ${eventTitle?.title}`,
+      description:eventTitle?.title,
+      url: `https://culturays.com/naija-events/event/${slug}/`,
+      siteName: 'Urban Naija',
+      images: [{url:`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`,
+      width: 800,
+      height: 600,
+      ...previousImages
+    }],
       type: "article",
       publishedTime:eventTitle?.created_at
     },
-       alternates: {
+     alternates: {
     canonical:  `https://culturays.com/naija-events/event/${slug}/`,
  
   },

@@ -110,7 +110,7 @@ export const createPost = async (formData: FormData, titleX:string) => {
     if (file) {
       const filePath = `${Date.now()}-${file.name}`;        
       if (file.name && !file.name.includes('undefined')) {
-        // allFiles.push('/assets/images/culturays.png'); 
+        // allFiles.push('/culturays.png'); 
      //return redirect(pathname+'?message=Please choose a valid file!');
         allFiles.push(filePath.replace(/ /g, "-").trim());
         const { error: uploadError } = await supabase.storage
@@ -362,7 +362,7 @@ export const createPost = async (formData: FormData, titleX:string) => {
         if(file){
         const filePath = `${Date.now()}-${file.name}`; 
         if (file.name && !file.name.includes('undefined')) { 
-        //allFiles.push('/assets/images/culturays.png'); 
+        //allFiles.push('/culturays.png'); 
        //return redirect(pathname+'?message=Please choose a valid file!');   
         
         allFiles.push(filePath.replace(/ /g, "-").trim());

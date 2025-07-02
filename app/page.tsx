@@ -198,7 +198,7 @@ export default async function Home() {
       "url": "https://www.culturays.com/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+        "url": "https://culturays.com/culturays-no-bg.png"
       }
     }
   }

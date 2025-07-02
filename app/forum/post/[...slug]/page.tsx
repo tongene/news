@@ -48,7 +48,15 @@ export async function generateMetadata(
       images:[`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/posts_imgs/${post?.files[0]}`,...previousImages],  
     }, 
     openGraph: { 
-      images: [post?.files,...previousImages],
+      url: `https://culturays.com/forum/post/${slug}/${post.id}/`,
+      siteName: 'Urban Naija',
+      images: [{
+      url: post.files,
+      width: 800,
+      height: 600,
+      ...previousImages,  
+    } ],
+       
       type: "article",
       publishedTime:post?.created_at,
 
@@ -57,6 +65,7 @@ export async function generateMetadata(
     canonical:  `https://culturays.com/forum/post/${slug}/`,
  
   },
+  
   }
 }  
    
@@ -138,7 +147,7 @@ return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMon
 const jsonLd:WithContext<DiscussionForumPosting> = {
   '@context': 'https://schema.org',
   '@type': 'DiscussionForumPosting', 
-  "@id":`https://culturays.com/post/${slug}/`,
+  "@id":`https://culturays.com/post/${slug}/${post.id}/`,
   "headline":post?.title||post?.article_title?.toUpperCase().replace(/-/g," "),
   "author": {
     "@type": "Person",

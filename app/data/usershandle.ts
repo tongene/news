@@ -45,6 +45,7 @@ export async function userItem(slug:string){
      user(id: $id, idType: $idType) {
     slug
     email
+    description
     name
     username
      avatar {

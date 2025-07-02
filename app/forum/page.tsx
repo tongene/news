@@ -79,7 +79,7 @@ const jsonLd:WithContext<BlogPosting>={
     "url": "https://www.culturays.com/forum/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://culturays.com/assets/images/culturays-no-bg.png/"
+      "url": "https://culturays.com/culturays-no-bg.png/"
     }
   }
 }

@@ -30,14 +30,19 @@ export async function generateMetadata(
     title:`Urban Naija | ${userDetails.fullname || userDetails?.full_name}`,
      description:userDetails?.about,
      keywords:[`${userDetails.fullname || userDetails?.full_name}`],
-          twitter: {
+      twitter: {
       card: 'summary_large_image',
-    description:userDetails?.about,
+      description:userDetails?.about,
       title:`${userDetails.fullname || userDetails?.full_name}`,
       images:[userDetails.avatar_url, ...previousImages],  
     },
     openGraph: {
-    images: [userDetails.avatar_url, ...previousImages],
+     title:`Urban Naija | ${userDetails.fullname || userDetails?.full_name}`,
+     description:userDetails?.about,
+       url: `https://culturays.com/profile/${id}/`,
+     siteName: 'Urban Naija',
+    images: [{url:userDetails.avatar_url,width: 800,
+       height: 600, ...previousImages}],
     },
      alternates: {
     canonical:  `https://culturays.com/profile/${id}/`,

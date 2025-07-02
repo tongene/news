@@ -126,7 +126,7 @@ const EconomyPage =async () => {
                "url": "https://culturays.com/news/economy/",
                "logo": {
                  "@type": "ImageObject",
-                 "url": "https://culturays.com/assets/images/culturays-no-bg.png"
+                 "url": "https://culturays.com/culturays-no-bg.png"
                }
              }
            }

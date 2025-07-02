@@ -17,21 +17,29 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || []
  
   return {
-    title:`Urban Naija | Movie Character - ${char_details?.title} | Culturays`,
+    title:`Urban Naija | Movie Character - ${char_details?.title}`,
     description:char_details?.excerpt, 
     keywords:[char_details?.title, char_details?.charactertitles.portrayedby, char_details?.charactertitles.filmname].join(', '),
-   twitter: {
+    twitter: {
       card: 'summary_large_image',
       title: char_details?.title,
       description:char_details?.excerpt, 
       images:[char_details?.featuredImage.node.sourceUrl, ...previousImages],  
     },
     openGraph: { 
-      images: [char_details?.featuredImage.node.sourceUrl,...previousImages],
+      title:`Naija Wiki | Movie Character - ${char_details?.title}`,
+      description:char_details?.excerpt, 
+       url: `https://culturays.com/naija-wiki/character/${slug}/`,
+      siteName: 'Urban Naija',
+      images: [{url:char_details?.featuredImage.node.sourceUrl, 
+          width: 800,
+          height: 600,
+          ...previousImages
+        }],
       type: "article",
       publishedTime:char_details?.date
     },
-        alternates: {
+    alternates: {
     canonical:  `https://culturays.com/naija-wiki/character/${slug}/`,
  
   }

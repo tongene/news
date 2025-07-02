@@ -50,35 +50,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'hourly',
         priority:1,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
       {
         url:`https://culturays.com/about/`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
       {
         url:`https://culturays.com/forum/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
       {
         url:`https://culturays.com/naija-wiki/`,
         lastModified: new Date(),
         changeFrequency: 'hourly',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
       {
         url:`https://culturays.com/news/`,
         lastModified: new Date(),
         changeFrequency: 'hourly',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
      
      
@@ -87,14 +87,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
       {
         url:`https://culturays.com/netflix-naija/coming-to-netflix/`,
         lastModified: new Date(),
         changeFrequency:"daily"  ,
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
      
       {
@@ -102,7 +102,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
       
       {
@@ -110,21 +110,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
       {
         url:`https://culturays.com/news/videos/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
       {
         url:`https://culturays.com/news/business/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
        
       {
@@ -132,14 +132,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'hourly',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
       {
         url:`https://culturays.com/news/economy/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       },
       
       {
@@ -147,14 +147,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       }, 
       {
         url:`https://culturays.com/naija-birthdays/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/assets/images/culturays.png/']
+        images: ['https://culturays.com/culturays.png/']
       }, 
  
     ] as SitemapFile 

@@ -99,8 +99,14 @@ export async function generateMetadata({ params  }: {
       images:  [news_details?.featuredImage.node.sourceUrl, ...previousImages],
     },    
     
-    openGraph: { 
-      images: [news_details?.featuredImage.node.sourceUrl, ...previousImages],
+    openGraph: {
+      title:`Urban Naija | Naija Wiki News- ${news_details?.title}`,
+      description: news_details?.title,
+      url: `https://culturays.com/netflix-naija/news/${slug}/`,
+      siteName: 'Urban Naija',
+      images: [{url:news_details?.featuredImage.node.sourceUrl,
+        width: 800,
+          height: 600, ...previousImages}],
       type: "article",
       publishedTime:news_details?.date
     },
@@ -156,7 +162,7 @@ const content_videos = await vids();
       name: "Christina Ngene",
       logo: {
         "@type": "ImageObject",
-        url: "https://culturays.com/assets/images/culturays-no-bg.png",
+        url: "https://culturays.com/culturays-no-bg.png",
       },
     },
      

@@ -21,17 +21,23 @@ export async function generateMetadata(
      const tagged=tag_details?.nodes.concat(tag_response.nodes)
      const previousImages = (await parent).openGraph?.images || [] 
      return {
-       title:`Urban Naija | All News About ${tagged[0]?.name}`,  
-         description: tagged[0]?.name, 
-         keywords: tagged[0]?.name , 
-          twitter: {
+  title:`Urban Naija | All News About ${tagged[0]?.name}`,  
+  description: tagged[0]?.name, 
+ keywords: tagged[0]?.name , 
+    twitter: {
       card: 'summary_large_image',
       title: tagged[0]?.name ,
       description: tagged[0]?.name,  
-      images:['/assets/images/culturays.png' , ...previousImages],  
+      images:['/culturays.png' , ...previousImages],  
     },
        openGraph: { 
-         images: ['/assets/images/culturays.png' ,...previousImages], 
+        title:`Urban Naija | All News About ${tagged[0]?.name}`,  
+         description: tagged[0]?.name, 
+           url: `https://culturays.com/topic/${slug}/`,
+          siteName: 'Urban Naija',
+         images: [{url:'https://culturays.com/culturays.png' ,
+          width: 800,
+          height: 600,...previousImages}], 
          
        },
         alternates: {
@@ -71,7 +77,7 @@ const TagPage = async({params}: Props) => {
        name: "Christina Ngene",
        logo: {
          "@type": "ImageObject",
-         url: "https://culturays.com/assets/images/culturays-no-bg.png",
+         url: "https://culturays.com/culturays-no-bg.png",
        },
      },
       

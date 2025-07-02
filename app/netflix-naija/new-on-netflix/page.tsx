@@ -36,7 +36,7 @@ async function New_On_Netflix() {
     name: 'Christina Ngene',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://culturays.com/assets/images/culturays-no-bg.png',
+      url: 'https://culturays.com/culturays-no-bg.png',
     },
   },
   keywords:'Netflix Naija',

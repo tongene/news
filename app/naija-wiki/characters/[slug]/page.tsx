@@ -33,15 +33,23 @@ import StructuredData from "@/components/StructuredData";
       card: 'summary_large_image',
       title: charactertitles?.charactertitles.filmname ,
       description: charactertitles?.charactertitles.filmAbout, 
-      images:[charactertitles?.charactertitles.filmImg1.node.sourceUrl, ...previousImages],  
+        images: [charactertitles?.charactertitles.filmImg1.node.sourceUrl, ...previousImages],
     },
       openGraph: {
-        images: [charactertitles?.charactertitles.filmImg1.node.sourceUrl, ...previousImages],
+      title: `Naija Wiki | ${charactertitles?.charactertitles.filmname} Characters`,
+       url: `https://culturays.com/naija-wiki/characters/${slug.toLowerCase().replace(/-/g, ' ')}/`,
+      siteName: 'Urban Naija',
+      description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname} `,
+        images:[{url:charactertitles?.charactertitles.filmImg1.node.sourceUrl,
+          width: 800,
+          height: 600,
+           ...previousImages}],
       },
       alternates: {
-     canonical: `https://culturays.com/naija-wiki/charcters/${slug.toLowerCase().replace(/-/g, ' ')}/`,
+     canonical: `https://culturays.com/naija-wiki/characters/${slug.toLowerCase().replace(/-/g, ' ')}/`,
 
 },
+
     } 
   }
 
