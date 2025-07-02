@@ -7,8 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useCallback, useEffect } from 'react'
 import { useState } from 'react'
-import { useInView } from 'react-intersection-observer'
-
+import { useInView } from 'react-intersection-observer' 
 
 const MainBottom = () => {
     const [scrolledContent, setScrolledContent]=useState<LatestProps[]>([])
@@ -22,7 +21,8 @@ const MainBottom = () => {
      const postsX2=xUnsedPosts.postsX2
      const postsX3=xUnsedPosts.postsX3
      const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
-     setXnewsPosts(xtUnused)  
+     setXnewsPosts(xtUnused)
+
    const postsXnewsPosts= await fetchXPosts()  
           const xtCategories= postsXnewsPosts?.categories?.edges 
           setXPosts(xtCategories)
@@ -58,7 +58,7 @@ useEffect(() => {
   }
 }, [inView, hasNewPage, loadMorePosts]);  
  const posts_all = topXnewsPosts?.filter((xy )=> (xy?.node.posts.edges)??[].length>0).map((dy)=> dy?.node.posts.edges).flat() 
-  
+ 
   return (
     <div>       
  <div className='xl:w-11/12 m-auto px-3'>
@@ -72,9 +72,9 @@ useEffect(() => {
  <p>{new Date().toDateString()}</p>
  </div>
  <div className='py-6'> 
-    <div className='grid grid-cols-1 lg:grid-cols-2 lg:justify-center justify-between gap-2 m-auto w-max'> 
+    <div className='grid grid-cols-1 justify-center gap-2 m-auto w-max'> 
       <div>
- { posts_all?.length>0&&posts_all.slice(0,1).map((xy, i)=> 
+ { top_x_Posts?.length>0&&top_x_Posts.slice(0,1).map((xy, i)=> 
 <div key={i + ' ' + Math.random()}  className='border max-w-sm min-[500px]:max-w-md sm:max-w-lg m-auto md:m-0 px-3 py-6 ' > 
 <Link href={`/news/topic/${xy.node.slug}/`}>
  
@@ -113,8 +113,15 @@ useEffect(() => {
 </div> 
 </div>  
 )} 
-  <div className='m-auto max-w-lg lg:m-0 my-4'>
- { posts_all?.length>0&&posts_all.slice(1,3).map((ex)=>
+  
+ </div>
+  
+</div>
+
+  <div className='grid lg:grid-cols-2 justify-center items-center px-10 xl:max-w-6xl mx-auto gap-2'>
+
+     <div className='m-auto max-w-xl lg:m-0 my-4'>
+ { top_x_Posts?.length>0&&top_x_Posts.slice(1,4).map((ex)=>
 <div className='shadow flex my-1' key={ex?.node.title + ' ' + Math.random()}>
  <div className='w-44 m-1'> 
  <Image
@@ -137,71 +144,41 @@ useEffect(() => {
 </div>
 )} 
 
-</div> 
- </div>
-
-  <div>
-     <hr className='lg:hidden'/> 
- <div className='m-auto max-w-lg lg:m-0'>
- { posts_all?.length>0&&posts_all.slice(3,6).map((ex)=>
-<div className='shadow flex w-full my-1' key={ex.node.title + ' ' + Math.random()}>
-  <div className='w-44 m-1'> 
- <Image
- className='xs:h-24 lg:h-32'
- src={ex.node.featuredImage?.node.sourceUrl} 
- width={1200} 
- height={675} 
- alt={ex.node.featuredImage?.node.altText}/>  
- 
- </div> 
- <div className='w-44  mx-2'> 
- <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/topic/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
 </div>
-<div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
-<Link href={`/creator/${ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p> </Link>
- <p>{ dateFormatter?.format(Date.parse(ex?.node.date)) }</p>
-</div>
-</div>
-</div>
-)} 
-
-</div>  
    
- <div className='m-auto max-w-lg lg:m-0 '>
- { posts_all?.length>0&&posts_all.slice(6,9).map((ex)=>
-<div className='shadow flex w-full my-1' key={ex.node.title + ' ' + Math.random()}>
+  
+     <div className='m-auto max-w-xl lg:m-0 my-4'>
+ { top_x_Posts?.length>0&&top_x_Posts.slice(4,7).map((ex)=>
+<div className='shadow flex my-1' key={ex?.node.title + ' ' + Math.random()}>
  <div className='w-44 m-1'> 
  <Image
- className='xs:h-24 lg:h-32'
- src={ex.node.featuredImage?.node.sourceUrl} 
+ className='xs:h-28 sm:h-32'
+ src={ex?.node.featuredImage?.node.sourceUrl} 
  width={1200} 
  height={675} 
- alt={ex.node.featuredImage?.node.altText}/>  
+ alt={ex?.node.featuredImage?.node.altText}/>  
  
  </div> 
- <div className='w-4/5 mx-2'> 
+ <div className='w-44 xs:w-[200px] sm:w-[280px] mx-2'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/topic/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
+ <Link href={`/news/topic/${ex?.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
 </div>
-<div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
+<div className='flex text-gray-400 justify-between items-center leading-8'> 
 <Link href={`/creator/${ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p> </Link>
- <p>{ dateFormatter?.format(Date.parse(ex?.node.date)) }</p>
+ <p>{ dateFormatter?.format(Date?.parse(ex.node?.date)) }</p>
 </div>
 </div>
 </div>
 )} 
 
-</div>  
- 
- </div>  
 </div>
+ </div>
 
   <div className='my-6'> 
 <hr className=' '/> 
 <div className='sm:grid grid-cols-2 xl:grid-cols-4 gap-1 text-gray-600 py-4 max-w-2xl lg:max-w-max m-auto' > 
  
-{ posts_all?.length>0&&posts_all.slice(9,13).map((xy, i)=>
+{ top_x_Posts?.length>0&&top_x_Posts.slice(7,11).map((xy, i)=>
 <div className='max-w-sm m-auto py-11 hover:text-gray-300 border-black border-b-4 px-4 sm:h-52' key={i + ' ' + Math.random()}>
 <Link href={`/news/topic/${xy.node.slug}/`}>
 <h2 className='text-xl font-bold'>{xy.node.title}</h2></Link> 
@@ -224,7 +201,7 @@ useEffect(() => {
 <hr className='bg-black h-1 w-2/3 my-4'/>
 </div>   
   <div className='md:grid md:grid-cols-2  justify-center  m-auto my-11 px-2 md:px-1 max-w-4xl lg:max-w-max' > 
- { posts_all?.length>0&&posts_all.slice(13,15).map((xy, i)=> 
+ { top_x_Posts?.length>0&&top_x_Posts.slice(11,13).map((xy, i)=> 
 <div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'550px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
@@ -247,8 +224,10 @@ useEffect(() => {
 )}   
 </div> 
 <hr className='p-0.5 bg-black'/>
+
+
 <div className='py-3 md:py-0 md:m-0 md:grid grid-cols-2 lg:block xl:grid justify-center 2xl:grid-cols-4 gap-0 xl:max-w-4xl 2xl:max-w-max xl:m-auto' >
- { posts_all?.length>0&&posts_all.slice(15,19).map((ex)=>
+ { top_x_Posts?.length>0&&top_x_Posts.slice(13,17).map((ex)=>
 <div className='shadow flex max-w-xl xl:max-w-md m-auto my-3 m-auto' key={ex.node.title + ' ' + Math.random()}>
   <div className='w-44 mx-2 py-6'> 
   <Image
@@ -274,7 +253,7 @@ useEffect(() => {
  <hr className='p-0.5 bg-black'/>
 
   <div className='md:flex flex-wrap xl:flex-nowrap gap-1 my-11 px-2 md:px-1 m-auto max-w-2xl'> 
- { posts_all?.length>0&&posts_all.slice(19,21).map((xy, i)=> 
+ { top_x_Posts?.length>0&&top_x_Posts.slice(17,19).map((xy, i)=> 
 <div className='shadow-2xl max-w-sm md:max-w-xs m-auto my-4'style={{height:'600px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
@@ -297,8 +276,22 @@ useEffect(() => {
 </div>
 
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div className='md:grid md:grid-cols-2 justify-center m-auto my-11 px-2 md:px-1 max-w-4xl lg:max-w-max' > 
- { top_x_Posts?.length>0&&top_x_Posts.slice(0,2).map((xy, i)=> 
+ { posts_all?.length>0&&posts_all.slice(0,2).map((xy, i)=> 
 <div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'550px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
@@ -323,7 +316,7 @@ useEffect(() => {
  
 <hr className='h-1 w-4/5 m-auto my-4'/>
  <div className='p-3 md:py-0 md:m-0 md:grid grid-cols-2 xl:grid justify-center gap-0 xl:max-w-5xl xl:m-auto' >
- { top_x_Posts?.length>0&&top_x_Posts.slice(2,6).map((ex)=>
+ { posts_all?.length>0&&posts_all.slice(2,6).map((ex)=>
 <div className='flex m-auto my-3' key={ex.node.title + ' ' + Math.random()}>
   <div className='w-44 mx-2 py-6'> 
   <Image
@@ -349,7 +342,7 @@ useEffect(() => {
 </div> 
  
   <div className='flex flex-wrap justify-center py-6'>
-{ top_x_Posts?.length>0&&top_x_Posts.slice(6,9).map((ex,i)=>
+{ posts_all?.length>0&&posts_all.slice(6,9).map((ex,i)=>
 <div className='relative m-3' key={ex?.node.title + ' ' + Math.random()} >
   <div className='max-w-sm m-auto'> 
 
@@ -442,7 +435,7 @@ useEffect(() => {
  <div ref={ref} > 
  {hasNewPage&&
 <p className="p-4">Loading...</p> 
- } </div>
+ } </div> 
   </div>
   )
 }

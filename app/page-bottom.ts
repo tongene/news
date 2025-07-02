@@ -335,7 +335,7 @@ export async function postLastAndScrolledCategories (){
       body: JSON.stringify({
         query:`
         query WPPOSTS {       
-       posts( after:"${endXNews[0]}" , where:{categoryName: "News"}){ 
+       posts(first:22, after:"${endXNews[0]}" , where:{categoryName: "News"}){ 
             pageInfo {
               startCursor
               endCursor

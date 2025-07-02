@@ -1984,7 +1984,12 @@ edges:[]
       } 
     }[]
     node:{
-  
+   tags:{
+        nodes:{
+          slug:string,
+          name:string
+        }[]
+      },
       name:string,
       slug:string,
       excerpt:string,
