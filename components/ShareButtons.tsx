@@ -1,7 +1,7 @@
 "use client"
 import { faFacebook, faWhatsapp, faXTwitter } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome" 
-import { faCopy, faLink } from "@fortawesome/free-solid-svg-icons" 
+import { faLink } from "@fortawesome/free-solid-svg-icons" 
 import { usePathname } from "next/navigation"
 type Share = {
   item:any,
@@ -33,9 +33,18 @@ const firstTwoItems = parts.slice(0, 2);
     <div className="relative share-main" title="share"> 
     {shareOptions &&activeIdx=== String(item.id) &&(
     <div className="share-view absolute text-white flex justify-center items-center mt-1 text-lg rounded-none shadow-4xl p-3 border z-10 bg-slate-800 right-10 w-60"> 
-    <a target="_blank"rel="noreferrer" href={`https://twitter.com/intent/tweet?text=${item?.title}&url=https://culturays.com/${firstTwoItems[0]}/${firstTwoItems[1]}/${item.slug}/`} ><FontAwesomeIcon icon={faXTwitter} width={40} className="shadow-sharebtn p-1.5 hover:opacity-70" /></a> 
- 
-    <a target="_blank" rel="noreferrer"href={`https://web.whatsapp.com/send?text=${item.title}&url=https://culturays.com/${firstTwoItems[0]}/${firstTwoItems[1]}/${item.slug}/`}><FontAwesomeIcon icon={faWhatsapp}width={40} className= "shadow-sharebtn p-1.5 hover:opacity-70"/></a> 
+    <a target="_blank"rel="noreferrer" href={`https://twitter.com/intent/tweet?text=${item?.title}&url=https://culturays.com/${firstTwoItems[0]}/${firstTwoItems[1]}/${item.slug}/`} ><FontAwesomeIcon icon={faXTwitter} width={40} className="shadow-sharebtn p-1.5 hover:opacity-70" /></a>  
+    <a
+  target="_blank"
+  rel="noreferrer"
+  href={`https://wa.me/?text=${encodeURIComponent(`${item.title} https://culturays.com/post/${firstTwoItems[0]}/${firstTwoItems[1]}/${item.slug}/`)}`}
+>
+  <FontAwesomeIcon
+    icon={faWhatsapp}
+    width={40}
+    className="shadow-sharebtn p-1.5 hover:opacity-70"
+  />
+</a>
 
     <a target="_blank"rel="noreferrer"href={`https://www.facebook.com/sharer/sharer.php?u=https://culturays.com/${firstTwoItems[0]}/${firstTwoItems[1]}/${item.slug}&t=${item?.title}/`}><FontAwesomeIcon width={40}icon={faFacebook} className= "shadow-sharebtn p-1.5 hover:opacity-70" /></a> 
     <p onClick={()=>copyToClipboard(`https://culturays.com/${firstTwoItems[0]}/${firstTwoItems[1]}/${item.slug}/` )} ><FontAwesomeIcon width={40}icon={faLink} className="cursor-pointer shadow-sharebtn p-1.5 hover:opacity-70" /></p> 
