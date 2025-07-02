@@ -68,8 +68,7 @@ export const newsByLatest=async()=>{
      
     }).then((res) => res.json())
     .then((data)=>data.data)
-    .catch((err) => console.log("err", err)) 
-  
+    .catch((err) => console.log("err", err))   
 
     const wprestLive = fetch('https://content.culturays.com/graphql',{ 
       method: 'POST',
@@ -79,7 +78,7 @@ export const newsByLatest=async()=>{
       body: JSON.stringify({
         query: `
          query WPLives {
-         lives {
+         lives { 
          edges{     
       node {
       contentTypeName

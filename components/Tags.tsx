@@ -184,11 +184,8 @@ ex.contentTypeName ==='video'?
 
 )}
  </div> 
- 
-
 </div> 
-</div>
-   
+</div> 
  
  </div>
 
@@ -211,7 +208,6 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 
  {ex.contentTypeName ==='naija-wiki' ?<Link href={`/naija-wiki/character/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">Character</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>}
  </div> 
-  
    
 
   {ex.contentTypeName ==='post'?<div className="mx-2">
@@ -407,7 +403,7 @@ ex.contentTypeName ==='video'?
  <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
  </div>
 <div className="flex justify-between py-5 mx-3 gap-1">
-<Link href={`/news/${ex.contentTypeName}/${ex.slug}`}><h2 className="search-title text-xl md:text-2xl underline">{ex.title}</h2></Link>
+<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><h2 className="search-title text-xl md:text-2xl underline">{ex.title}</h2></Link>
 <button> 
  <Link href={`/news/video/${ex.slug}/`}><span className="rounded-full border py-2 px-4   hover:text-gray-50 text-2xl"><FontAwesomeIcon icon={faPlay}/></span></Link>  
 </button>

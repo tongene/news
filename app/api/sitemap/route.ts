@@ -66,9 +66,13 @@ const contentFeed = async()=>{
        lives(first:100) {
        nodes {
          date
-         contentTypeName 
-           id
-           title
+         contentTypeName
+         id
+      databaseId
+        date
+        modified
+        excerpt
+        title
            slug 
             author {
            node {
@@ -168,7 +172,7 @@ export async function GET() {
 
   const live_posts: Post[] = liveData.map((post)=>({ 
     title:post.title,
-   url:`https://culturays.com/news/live/${post.databaseId}/`,
+   url:`https://culturays.com/news/live/${post.databaseId}/${post.slug}/`,
    lastModified:new Date(post.date),
    changeFrequency:'always', 
   priority:0.8,
@@ -188,7 +192,7 @@ export async function GET() {
  
 
 const allPosts = [...content_posts, ...live_posts]; 
- 
+ console.log(live_posts)
 const xml = generateNewsSitemap(allPosts);
   return new NextResponse(xml, {
     headers: {
