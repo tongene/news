@@ -2,10 +2,9 @@
 import Tags from "@/components/Tags"; 
 import { contentTag, tag } from "../taghandles";
 import type { Metadata, ResolvingMetadata } from 'next'
-import type { NewsArticle, WithContext } from 'schema-dts';
-
-import StructuredData from "@/components/StructuredData";
-import { redirect } from "next/navigation";
+import type { NewsArticle, WithContext } from 'schema-dts'; 
+import StructuredData from "@/components/StructuredData"; 
+import { TagProps } from "../sitemap";
 type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -16,23 +15,22 @@ export async function generateMetadata(
   parent: ResolvingMetadata 
 ): Promise<Metadata> {
      const slug =(await params).slug
-     const tag_details= await contentTag(slug[0])
-     const tag_response = await tag(slug)    
-     const tagged=tag_details?.nodes.concat(tag_response.nodes)
+     const tag_details= await contentTag(slug[0]) 
      const previousImages = (await parent).openGraph?.images || [] 
+    
      return {
-  title:`Urban Naija | All News About ${tagged[0]?.name}`,  
-  description: tagged[0]?.name, 
- keywords: tagged[0]?.name , 
+  title:`Urban Naija | All News About ${tag_details.nodes[0]?.name}`,  
+  description: tag_details.nodes[0]?.name, 
+ keywords: tag_details.nodes[0]?.name , 
     twitter: {
       card: 'summary_large_image',
-      title: tagged[0]?.name ,
-      description: tagged[0]?.name,  
+      title: tag_details.nodes[0]?.name ,
+      description: tag_details.nodes[0]?.name,  
       images:['/culturays.png' , ...previousImages],  
     },
        openGraph: { 
-        title:`Urban Naija | All News About ${tagged[0]?.name}`,  
-         description: tagged[0]?.name, 
+        title:`Urban Naija | All News About ${tag_details.nodes[0]?.name}`,  
+         description: tag_details.nodes[0]?.name, 
            url: `https://culturays.com/topic/${slug}/`,
           siteName: 'Urban Naija',
          images: [{url:'https://culturays.com/culturays.png' ,
@@ -50,14 +48,15 @@ const TagPage = async({params}: Props) => {
   const slug =(await params).slug
 // const id= params.slug[1].replace('%3D',''),
  const content_tag_response = await contentTag(slug[0])
-  const tag_response = await tag(slug)
-  const tagged=content_tag_response?.nodes.concat(tag_response.nodes)
+  const tag_response = await tag(slug[0]) 
+ const taggedContent= content_tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map((dy:{nodes:TagProps})=> dy.nodes).flat() 
+const taggedPosts = tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map((dy:{nodes:TagProps})=> dy.nodes).flat()
 
   const jsonLd: WithContext<NewsArticle> = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
-     name:tagged[0]?.name,
-     headline:tagged[0]?.name , 
+     name:tag_response.nodes[0]?.name,
+     headline:tag_response.nodes[0]?.name , 
      description:"This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world",
      author: {
        "@type": "Person",
@@ -68,9 +67,9 @@ const TagPage = async({params}: Props) => {
      dateModified:"2025-04-09T12:00:00Z",
       mainEntityOfPage: {
        "@type": "WebPage",
-       "@id":tagged[0]?.slug ,
+       "@id":tag_response.nodes[0]?.slug ,
      },
-     url:tagged[0]?.slug,
+     url:tag_response.nodes[0]?.slug,
      image: "https://culturays.com/assets/images/opengraph-image.png" ,
      publisher: {
        "@type": "Organization",
@@ -81,20 +80,20 @@ const TagPage = async({params}: Props) => {
        },
      },
       
-     keywords:tagged[0]?.name ,    
+     keywords:tag_response.nodes[0]?.name ,    
      
    };
  
- //if(tagged.length < 10) return redirect('/')
+ 
      
   return (
     <div>
-      <StructuredData schema={jsonLd} />
+    <StructuredData schema={jsonLd} /> 
      <Tags
-     slug={slug}
-        content_tag_response={content_tag_response}
-        tag_response={tag_response} 
-      /> 
+        slug={slug}
+        content_tag_response={taggedContent}
+        tag_response={taggedPosts} 
+      />  
       
     </div>
   )

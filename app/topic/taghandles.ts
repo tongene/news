@@ -15,9 +15,10 @@ tags(first:100, where: {search: "${slug}"}){
     name
     id
     slug
-     posts { 
+     contentNodes {
         nodes {
-        id
+          ... on Post {
+            id
           slug
           title
           contentTypeName
@@ -34,9 +35,11 @@ tags(first:100, where: {search: "${slug}"}){
           sourceUrl
           }
           }
+
+          }
         }
-     
-    } 
+      }
+      
     }
     }
     }
@@ -60,306 +63,93 @@ export async function contentTag (slug:string) {
       },
       body: JSON.stringify({
         query:`
-        query POSTTAGS {
-contentTags(first:100, where: {search: "${slug}"}){
+        query POSTTAGS { 
+     contentTags(first:500, where: {search: "${slug}"}){
     nodes { 
-      name
+     name
       id
-      slug 
-       awards { 
-          nodes {
-          id
-            slug
-            title
-            contentTypeName
-            contentTags {
-            nodes{
-            id
-            name
-            slug
-            }
-            }
-            featuredImage{
-            node{
-            altText
-            sourceUrl
-            }
-            }
-          }
-       
-      }
-            healths { 
-          nodes { id
-            slug
-            title
-            contentTypeName
-               contentTags {
-            nodes{  id
-            name
-            slug
-            }
-            }
-            featuredImage{
-            node{
-            altText
-            sourceUrl
-            }
-            }  
-          }
-       
-      }
-       businesses { 
-          nodes { id
-            slug
-            title
-            contentTypeName
-               contentTags {
-            nodes{  id
-            name
-            slug
-            }
-            }
-            featuredImage{
-            node{
-            altText
-            sourceUrl
-            }
-            }
-        }
-      }
-         
-      societies{
-        nodes { id
-          slug
-          title
-          contentTypeName
-               contentTags {
-            nodes{  id
-            name
-            slug
-            }
-            }
-             featuredImage{
-            node{
-            altText
-            sourceUrl
-            }
-            }
-        }
-      }
-      technologies{
-        nodes { id
-          slug
-          title
-          contentTypeName
-               contentTags {
-            nodes{  id
-            name
-            slug
-            }
-            }
-             featuredImage{
-            node{
-            altText
-            sourceUrl
-            }
-            }
-        }
-      }
-      trends{
-        nodes { id
-          slug
-          title
-          contentTypeName
-               contentTags {
-            nodes{  id
-            name
-            slug
-            }
-            }
-             featuredImage{
-            node{
-            altText
-            sourceUrl
-            }
-            }
-        }
-      }
-     articles{
-        nodes { id
-          slug
-          title
-          contentTypeName
-               contentTags {
-            nodes{  id
-            name
-            slug
-            }
-            }
-             featuredImage{
-            node{
-            altText
-            sourceUrl
-            }
-            }
-        }
-      }
-     naijaOnNetflix {
+      slug
+   contentNodes {
         nodes {
-          netflixCategories(where: {name: "news"}) {
-            nodes {
-              naijaOnNetflix {
-            nodes {
-              id
-              slug
-              title
-              contentTypeName
-              contentTags {
-                nodes {
-                  id
-                  name
-                  slug
-                }
-              }
-              featuredImage {
-                node {
-                  altText
-                  sourceUrl
-                }
-              }
-            }
-          }
-            }
-          }
-        }
-      }
-       nollywoods { 
-          nodes { id
-            slug
-            title
-            contentTypeName
-               contentTags {
-            nodes{  id
-            name
-            slug
-            }
-            }
-               featuredImage{
-            node{
-            altText
-            sourceUrl
-            }
-            }
-         
-        }
-      }
-        environments{ 
-          nodes { id
-            slug
-            title
-            contentTypeName
-               contentTags {
-            nodes{  id
-            name
-            slug
-            }
-            }
-               featuredImage{
-            node{
-            altText
-            sourceUrl
-            }
-            }
-         
-        }
-      }
-        economies { 
-          nodes { id
-            slug
-            title
-            contentTypeName
-               contentTags {
-            nodes{  id
-            name
-            slug
-            }
-            }
-          featuredImage{
-            node{
-            altText
-            sourceUrl
-            }
-            }
-         
-        }
-      }
-            naijaWikis{
-      nodes {
-       id
-        slug
-        title
-        contentTypeName
-        contentTags {
-          nodes{ 
-           id
-          name
-          slug
-          }
-          }
-           featuredImage{
-          node{
-          altText
-          sourceUrl
-          }
-          }
-             charactertitles {
-        relatedPosts {
-          nodes {
+          ... on Article {
+            id
+             slug
+          title
           contentTypeName
-            ... on Nollywood {
-              id
-              title
-              slug
-          contentTags {
-          nodes{ 
-           id
+          contentTags{
+          nodes{
+          id
           name
           slug
           }
           }
-           featuredImage{
+          featuredImage{
           node{
           altText
           sourceUrl
           }
           }
-            }
-          ... on Post {
-              id
-              title
-              slug
-                tags {
-          nodes{ 
-           id
+          }
+          ... on Business {
+            id
+             slug
+          title
+          contentTypeName
+          contentTags{
+          nodes{
+          id
           name
           slug
           }
           }
-           featuredImage{
+          featuredImage{
           node{
           altText
           sourceUrl
           }
           }
-            }
           }
-        }
-      }
-      }
-    } 
-        videos { 
-          nodes { id
-            slug
+          ... on Health {
+            id
+             slug
+          title
+          contentTypeName
+          contentTags{
+          nodes{
+          id
+          name
+          slug
+          }
+          }
+          featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+          }
+          ... on Economy {
+            id
+             slug
+          title
+          contentTypeName
+          contentTags{
+          nodes{
+          id
+          name
+          slug
+          }
+          }
+          featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+          }
+          ... on Video {
+            id
+             slug
             title
             contentTypeName
           videosGroup {
@@ -395,19 +185,195 @@ contentTags(first:100, where: {search: "${slug}"}){
             sourceUrl
             }
             }
-         
+          }
+          ... on NaijaWiki {
+            id
+            charactertitles {
+              relatedPosts {
+                nodes {
+                  ... on Nollywood {
+                    id
+                     title
+              slug
+          contentTags {
+          nodes{ 
+           id
+          name
+          slug
+          }
+          }
+           featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+                  }
+                  ... on Post {
+                    id
+                     title
+              slug
+          tags {
+          nodes{ 
+           id
+          name
+          slug
+          }
+          }
+           featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+                  }
+                }
+              }
+            }
+          }
+          ... on Trending {
+            id
+             slug
+          title
+          contentTypeName
+          contentTags{
+          nodes{
+          id
+          name
+          slug
+          }
+          }
+          featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+          }
+          ... on Technology {
+            id
+             slug
+          title
+          contentTypeName
+          contentTags{
+          nodes{
+          id
+          name
+          slug
+          }
+          }
+          featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+          }
+          ... on Society {
+            id
+             slug
+          title
+          contentTypeName
+          contentTags{
+          nodes{
+          id
+          name
+          slug
+          }
+          }
+          featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+          }
+          ... on Nollywood {
+            id
+             slug
+          title
+          contentTypeName
+          contentTags{
+          nodes{
+          id
+          name
+          slug
+          }
+          }
+          featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+          }
+          ... on Live {
+            id
+             slug
+          title
+          contentTypeName
+          contentTags{
+          nodes{
+          id
+          name
+          slug
+          }
+          }
+          featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+          }
+          ... on Health {
+            id
+             slug
+          title
+          contentTypeName
+          contentTags{
+          nodes{
+          id
+          name
+          slug
+          }
+          }
+          featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+          }
+          ... on Environment {
+            id
+             slug
+          title
+          contentTypeName
+          contentTags{
+          nodes{
+          id
+          name
+          slug
+          }
+          }
+          featuredImage{
+          node{
+          altText
+          sourceUrl
+          }
+          }
+          }
         }
       }
-      }
-      }
-      }
-        `  
+
+  }}}  `  
         
       })
       
-      }).then(response => response.json())    
-      .then(data =>data.data.contentTags) 
-      .catch(error => console.error('Error:', error));
+      }).then(response =>response.json())    
+    .then(data =>data.data.contentTags) 
+    .catch(error => console.error('Error:', error));
      
       // const xtagged= response.filter((vx:{slug:string})=> vx.slug !== slug)
       return wprest

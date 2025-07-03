@@ -34,36 +34,16 @@ type TagProps={
 
 }
 
-const Tags = ({tag_response,content_tag_response, slug}:{tag_response:{nodes:TagProps[]},content_tag_response:{nodes:TagProps[]}, slug:string }) => { 
-const posts= tag_response.nodes.map((xy)=>xy?.posts.nodes??[]).flat() 
-const awards= content_tag_response.nodes.map((xy)=>xy?.awards.nodes??[]).flat() 
-const businesses= content_tag_response.nodes.map((xy)=>xy?.businesses.nodes??[]).flat()
-const culturaysVideos= content_tag_response.nodes.map((xy)=>xy?.videos.nodes??[]).flat()
-const economies= content_tag_response.nodes.map((xy)=>xy?.economies.nodes??[]).flat()
-const environments= content_tag_response.nodes.map((xy)=>xy?.environments.nodes??[]).flat()
-const health= content_tag_response.nodes.map((xy)=>xy?.healths.nodes??[]).flat() 
-const societies= content_tag_response.nodes.map((xy)=>xy?.societies.nodes??[]).flat()
-const technologies= content_tag_response.nodes.map((xy)=>xy?.technologies.nodes??[]).flat()
-const trends= content_tag_response.nodes.map((xy)=>xy.trends.nodes??[]).flat()
-const netflix_Naija = content_tag_response.nodes.map((xy)=>xy.naijaOnNetflix.nodes??[]).flat()
-const netflixNaijas= netflix_Naija.map((xy)=>xy.netflixCategories.nodes??[]).flat()
- const netflixNaijaPosts=netflixNaijas.map((xy)=>xy?.naijaOnNetflix.nodes??[]).flat()
-
-const newsArticles= content_tag_response.nodes.map((xy)=>xy.articles.nodes??[]).flat()
-const nollywood= content_tag_response.nodes.map((xy)=>xy.nollywoods.nodes??[]).flat()
-const tagged=content_tag_response?.nodes.concat(tag_response.nodes) 
-const charsPosts= content_tag_response.nodes.map((xy)=>xy?.naijaWikis?.nodes).flat() 
-const tagged_reses=awards.concat(businesses).concat(culturaysVideos).concat(economies).concat(environments).concat(health).concat(societies).concat(trends).concat(technologies).concat(newsArticles).concat(nollywood).concat(netflixNaijaPosts).concat(posts).concat(charsPosts).concat(technologies)
-
-const taggedX = tagged_reses.filter((item, index, self) =>  index === self.findIndex((t) => t.title === item.title))
- 
+const Tags = ({tag_response, content_tag_response, slug}:{tag_response:TagProps[],content_tag_response:TagProps[], slug:string }) => { 
+  const taggedAll = tag_response.concat(content_tag_response)
+  
    return (
    <div className="search_all" > 
   <div className="m-auto bg-white dark:bg-black sm:px-4 xl:px-28 px-2"style={{maxWidth:'1550px'}}> 
-   <h2 className="py-3 font-bold text-3xl font-bold">{tagged[0]?.name}</h2>
+   <h2 className="py-3 font-bold text-3xl font-bold capitalize">{slug[0].replace(/-/g," ")}</h2>
  <div className="sm:flex justify-center py-6 " >
   <div >
-{taggedX.slice(0,1)?.map((ex, index)=>
+{taggedAll.slice(0,1)?.map((ex, index)=>
 ex.contentTypeName ==='video'? 
 <div key={ex.id + Math.random()}className="max-w-4xl">  
 <div className="shadow-sm my-3"> 
@@ -153,7 +133,7 @@ ex.contentTypeName ==='video'?
    
 
   <div className="max-w-xl"> 
-{taggedX.slice(1,4)?.map((ex, index)=> 
+{taggedAll.slice(1,4)?.map((ex, index)=> 
   ex.contentTypeName ==='video'?
 <div key={ex.id + Math.random()} className="shadow-sm my-1 xs:my-0 py-2"> 
 <div className="px-2">
@@ -202,14 +182,12 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
  alt={ex.featuredImage.node.altText}
  priority={true}
  />
- {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki'  ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>}
+ {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki'  ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">News</p>}
 
  {ex.contentTypeName ==='netflix-naija' ?<Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-sm font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-sm font-bold text-center capitalize"></p>}
 
- {ex.contentTypeName ==='naija-wiki' ?<Link href={`/naija-wiki/character/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">Character</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>}
- </div> 
-   
-
+ {ex.contentTypeName ==='naija-wiki' ?<Link href={`/naija-wiki/character/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">Character</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>}
+ </div>  
   {ex.contentTypeName ==='post'?<div className="mx-2">
     <Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> 
  
@@ -272,7 +250,7 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 </div>  
 
 <div className="xs:grid grid-cols-2 md:grid-cols-3 my-6 max-w-max xl:max-w-3xl m-auto xl:m-0 gap-1" > 
-{taggedX.slice(4,7).map((ex,index)=>ex.contentTypeName ==='video'?
+{taggedAll.slice(4,7).map((ex,index)=>ex.contentTypeName ==='video'?
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
@@ -303,7 +281,7 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
    alt={ex.featuredImage.node.altText}
    priority={true}
    />
-      {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki' ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>} 
+      {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki' ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">News</p>} 
 
       {ex.contentTypeName ==='netflix-naija' ?<Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>}
 
@@ -338,7 +316,7 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 </div>
    
 <div className="sm:flex max-w-max m-auto lg:m-0"> 
-{taggedX.slice(7,9).map((ex,index)=>ex.contentTypeName ==='video'?
+{taggedAll.slice(7,9).map((ex,index)=>ex.contentTypeName ==='video'?
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
@@ -388,7 +366,7 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 
 
 <div className="grid xs:grid-cols-2 gap-1 max-w-6xl "> 
-{taggedX.slice(9,11).map((ex, index)=>
+{taggedAll.slice(9,11).map((ex, index)=>
 ex.contentTypeName ==='video'?
 <div className="my-3 shadow" key={ex.id + Math.random()}> 
 <div> 
@@ -485,7 +463,7 @@ ex.contentTypeName ==='video'?
  
 
  <div className="xs:grid xs:grid-cols-2 sm:grid-cols-3 gap-2 my-6 max-w-6xl m-auto lg:m-0" > 
-{taggedX.slice(11,16).map((ex,index)=>ex.contentTypeName ==='video'?
+{taggedAll.slice(11,16).map((ex,index)=>ex.contentTypeName ==='video'?
 <div key={ex.id + Math.random()}className="m-auto my-3 shadow max-w-xs  md:max-w-5xl">   
   <Image
   className="max-h-36 sm:max-h-28 md:max-h-40 lg:max-h-48 xl:max-h-52"
@@ -535,7 +513,7 @@ ex.contentTypeName ==='video'?
 </div>
 
 <div className="grid xs:grid-cols-2 lg:grid-cols-4 max-w-max md:max-w-3xl lg:max-w-6xl m-auto lg:m-0 gap-2"> 
-{taggedX.slice(16,20).map((ex, index)=> 
+{taggedAll.slice(16,20).map((ex, index)=> 
   ex.contentTypeName ==='video'?
   <div key={index + Math.random()}className="m-auto my-3 shadow max-w-xs md:max-w-md">   
     <Image
@@ -588,7 +566,7 @@ ex.contentTypeName ==='video'?
 
 
  <div className="xs:grid xs:grid-cols-2 sm:grid-cols-3 gap-2 my-6 max-w-6xl m-auto lg:m-0" > 
-{taggedX.slice(20,26).map((ex,index)=>ex.contentTypeName ==='video'?
+{taggedAll.slice(20,26).map((ex,index)=>ex.contentTypeName ==='video'?
 <div key={index}className="m-auto my-3 shadow max-w-xs  md:max-w-5xl">   
   <Image
   className="max-h-44 sm:max-h-28 md:max-h-40 lg:max-h-48 xl:max-h-52"
@@ -639,7 +617,7 @@ ex.contentTypeName ==='video'?
 
 
 <div className="sm:flex max-w-max m-auto lg:m-0"> 
-{taggedX.slice(26,29).map((ex,index)=>ex.contentTypeName ==='video'?
+{taggedAll.slice(26,29).map((ex,index)=>ex.contentTypeName ==='video'?
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
@@ -688,7 +666,7 @@ ex.contentTypeName ==='video'?
 </div>  
 
 <div className="xs:grid xs:grid-cols-2 sm:grid-cols-3 gap-2 my-6 max-w-6xl m-auto lg:m-0" > 
-{taggedX.slice(29,35).map((ex,index)=>ex.contentTypeName ==='video'?
+{taggedAll.slice(29,35).map((ex,index)=>ex.contentTypeName ==='video'?
 <div key={index}className="m-auto my-3 shadow max-w-xs  md:max-w-5xl">   
   <Image
   className="max-h-36 sm:max-h-28 md:max-h-40 lg:max-h-48 xl:max-h-52"
@@ -762,7 +740,7 @@ ex.contentTypeName ==='video'?
   
 
 <div className="sm:flex max-w-max m-auto lg:m-0"> 
-{taggedX.slice(35,37).map((ex,index)=>ex.contentTypeName ==='video'?
+{taggedAll.slice(35,37).map((ex,index)=>ex.contentTypeName ==='video'?
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
@@ -811,7 +789,7 @@ ex.contentTypeName ==='video'?
 </div> 
 
 <div className="grid xs:grid-cols-2 lg:grid-cols-4 max-w-max md:max-w-3xl lg:max-w-6xl m-auto lg:m-0 gap-2"> 
-{taggedX.slice(37,41).map((ex, index)=> 
+{taggedAll.slice(37,41).map((ex, index)=> 
   ex.contentTypeName ==='video'?
   <div key={index + Math.random()}className="m-auto my-3 shadow max-w-xs md:max-w-md">   
     <Image
@@ -868,7 +846,7 @@ ex.contentTypeName ==='video'?
  </div>
 
  <div className="sm:flex"> 
-{taggedX.slice(41,44).map((ex,index)=>ex.contentTypeName ==='video'?
+{taggedAll.slice(41,44).map((ex,index)=>ex.contentTypeName ==='video'?
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
@@ -918,7 +896,7 @@ ex.contentTypeName ==='video'?
 
 <div className="sm:flex justify-center py-6" >
   <div >
-{taggedX.slice(44,46)?.map((ex, index)=>
+{taggedAll.slice(44,46)?.map((ex, index)=>
 ex.contentTypeName ==='video'? 
 <div key={ex.id + Math.random()}className="max-w-4xl">  
 <div className="shadow-sm my-3"> 
@@ -1009,7 +987,7 @@ ex.contentTypeName ==='video'?
   </div>
  
   <div className="max-w-xl"> 
-{taggedX.slice(46,48)?.map((ex, index)=> 
+{taggedAll.slice(46,48)?.map((ex, index)=> 
   ex.contentTypeName ==='video'?
 <div key={ex.id} className="shadow-sm my-1 xs:my-0 py-2"> 
 <div className="px-2">
@@ -1110,7 +1088,7 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 
 
 <div className="xs:grid grid-cols-2 md:grid-cols-3 my-6 max-w-max xl:max-w-3xl m-auto xl:m-0 gap-1" > 
-{taggedX.slice(48,51).map((ex,index)=>ex.contentTypeName ==='video'?
+{taggedAll.slice(48,51).map((ex,index)=>ex.contentTypeName ==='video'?
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
@@ -1177,7 +1155,7 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
   
 
 <div className="sm:flex max-w-max m-auto lg:m-0"> 
-{taggedX.slice(51,53).map((ex,index)=>ex.contentTypeName ==='video'?
+{taggedAll.slice(51,53).map((ex,index)=>ex.contentTypeName ==='video'?
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"

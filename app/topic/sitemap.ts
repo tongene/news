@@ -1,7 +1,10 @@
 import { MetadataRoute } from "next";
+import { PostProps } from "../types";
   export type TagProps={
     name:string
     slug:string
+    contentNodes:PostProps[]
+
   }
 
  const topicFeed = async()=>{ 
