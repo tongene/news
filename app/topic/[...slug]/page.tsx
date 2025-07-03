@@ -85,7 +85,7 @@ const TagPage = async({params}: Props) => {
      
    };
  
- if(tagged.length < 10) redirect('/')
+ //if(tagged.length < 10) return redirect('/')
      
   return (
     <div>

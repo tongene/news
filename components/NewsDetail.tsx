@@ -199,7 +199,7 @@ return html2pdfRef.current().set(opt).from(element).save();
        
      <div className="px-2 md:w-2/3 lg:w-4/5 md:px-0 md:m-0 lg:m-auto m-auto"> 
      <Image 
-     src={ex.node.featuredImage?.node.sourceUrl}
+     src={ex.node.featuredImage?.node.sourceUrl||'/culturays-no-bg.png'}
      width={1200}
      height={675}
      alt={ex.node.featuredImage?.node.altText}
@@ -236,7 +236,7 @@ return html2pdfRef.current().set(opt).from(element).save();
        
      <div className="px-2 md:w-2/3 lg:w-4/5 md:px-0 md:m-0 lg:m-auto m-auto"> 
      <Image 
-     src={ex.node.featuredImage?.node.sourceUrl}
+     src={ex.node.featuredImage?.node.sourceUrl || '/culturays-no-bg.png'}
      width={1200}
      height={675}
      alt={ex.node.featuredImage?.node.altText}
