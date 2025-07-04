@@ -20,7 +20,7 @@ const VideoDetail = ({vid_details}:{vid_details:VidProps}) => {
       <h2 className='p-4 text-4xl'>{vid_details.title}</h2>
       <div className='flex flex-wrap justify-between'> 
       <Link href={`/creator/${vid_details?.author.node.slug}/`}><p className='text-lg p-3 underline'>{vid_details.author.node.name} </p></Link> 
-       <p className='text-sm p-3 text-red-600 italic text-end'>{moment(vid_details.date).fromNow()} </p>
+       <p className='text-sm p-3 text-red-600 italic text-end'>{moment(vid_details.date).subtract(1, 'hour').fromNow()} </p>
      
      </div>
     

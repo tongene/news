@@ -134,7 +134,7 @@ className='rounded-xl'
    <div dangerouslySetInnerHTML={{__html:xy.excerpt}} className="leading-8 text-lg"/>
  </div>
   <div className='flex py-3'>
-  <p className=''>{moment(xy.date).fromNow()} </p>
+  <p className=''>{moment(xy.date).subtract(1, 'hour').fromNow()} </p>
 
    </div>
    </div>
@@ -150,7 +150,7 @@ className='rounded-xl'
   <Link href={`/news/article/${xy.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis hover:text-gray-500 py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
       <div className='py-2 text-sm flex flex-wrap'>
       <h3 className="m-1">{xy.articlesCategories.nodes[0].name} |</h3>
-        <p className='m-1 text-gray-400'>{moment(xy.date).fromNow()}</p>
+        <p className='m-1 text-gray-400'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p>
 
       </div>
 
@@ -183,7 +183,7 @@ className='rounded-xl object-cover max-w-40 h-28'
   </Link>
       <div className='py-2 text-sm flex flex-wrap'>
       <h3 className="m-1">{xy.articlesCategories.nodes[0].name} |</h3>
-        <p className='m-1 text-gray-400'>{moment(xy.date).fromNow()}</p>
+        <p className='m-1 text-gray-400'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p>
 
       </div>
       </div>
@@ -212,7 +212,7 @@ alt={xy?.featuredImage?.node.altText }
  <div dangerouslySetInnerHTML={{__html:xy.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="leading-8 text-lg overflow-hidden text-ellipsis"/>
 </div>
 <div className='flex py-3'>
-<p className=''>{moment(xy.date).fromNow()} </p>
+<p className=''>{moment(xy.date).subtract(1, 'hour').fromNow()} </p>
 
  </div>
  </div>
@@ -228,7 +228,7 @@ alt={xy?.featuredImage?.node.altText }
 <Link href={`/news/article/${xy.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
     <div className='py-2 text-sm flex flex-wrap'>
     <h3 className="m-1">{xy.articlesCategories.nodes[0].name}</h3>
-      <p className='m-1 text-gray-600'>{moment(xy.date).fromNow()}</p>
+      <p className='m-1 text-gray-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p>
 
     </div>
 
@@ -257,7 +257,7 @@ className='h-28 rounded-xl object-cover max-w-40'
    <Link href={`/news/article/${x1.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{x1.title}</h2></Link>
    <div className='py-2 flex flex-wrap'>
       <h3 className="m-1 text-sm">{x1.articlesCategories.nodes[0].name} |</h3>
-        <p className='m-1 text-gray-400'>{moment(x1.date).fromNow()} </p>
+        <p className='m-1 text-gray-400'>{moment(x1.date).subtract(1, 'hour').fromNow()} </p>
 
       </div>
        </div>
@@ -286,7 +286,7 @@ className='h-28 rounded-xl object-cover max-w-40'
    <Link href={`/news/article/${x1.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{x1.title}</h2></Link>
    <div className='py-2 flex flex-wrap'>
       <h3 className="m-1 text-sm">{x1.articlesCategories.nodes[0].name}</h3>
-        <p className='m-1 text-gray-400'>{moment(x1.date).fromNow()} </p>
+        <p className='m-1 text-gray-400'>{moment(x1.date).subtract(1, 'hour').fromNow()} </p>
 
       </div>
        </div>
@@ -313,7 +313,7 @@ className='rounded-xl'
    <div dangerouslySetInnerHTML={{__html:xy.excerpt}} className="leading-8"/>
  </div>
   <div className='flex py-3'>
-  <p className=''>{moment(xy.date).fromNow()} </p>
+  <p className=''>{moment(xy.date).subtract(1, 'hour').fromNow()} </p>
 
    </div>
    </div>
@@ -329,7 +329,7 @@ className='rounded-xl'
   <Link href={`/news/article/${xy.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
       <div className='py-2 text-sm flex flex-wrap'>
       <h3 className="m-1">{xy.articlesCategories.nodes[0].name}</h3>
-        <p className='m-1 text-gray-400'>{moment(xy.date).fromNow()}</p>
+        <p className='m-1 text-gray-400'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p>
 
       </div>
 
@@ -359,7 +359,7 @@ className='h-28 rounded-xl object-cover max-w-40'
    <Link href={`/news/article/${x1.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{x1.title}</h2></Link>
    <div className='py-2 flex flex-wrap'>
       <h3 className="m-1 text-sm">{x1.articlesCategories.nodes[0].name}</h3>
-        <p className='m-1 text-gray-400'>{moment(x1.date).fromNow()} </p>
+        <p className='m-1 text-gray-400'>{moment(x1.date).subtract(1, 'hour').fromNow()} </p>
 
       </div>
        </div>
@@ -383,7 +383,7 @@ className='h-28 rounded-xl object-cover max-w-40'
    <Link href={`/news/article/${x1.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis p-1 px-2"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{x1.title}</h2></Link>
    <div className='py-2 text-sm flex flex-wrap '>
       <h3 className="m-1">{x1.articlesCategories.nodes[0].name}</h3>
-        <p className='m-1 text-gray-400'>{moment(x1.date).fromNow()} </p>
+        <p className='m-1 text-gray-400'>{moment(x1.date).subtract(1, 'hour').fromNow()} </p>
 
       </div>
        </div>
@@ -411,7 +411,7 @@ className='h-28 rounded-xl object-cover max-w-40'
    <Link href={`/news/article/${x1.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis p-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{x1.title}</h2></Link>
    <div className='py-2 flex flex-wrap'>
       <h3 className="m-1 text-sm">{x1.articlesCategories.nodes[0].name}</h3>
-        <p className='m-1 text-gray-400'>{moment(x1.date).fromNow()} </p>
+        <p className='m-1 text-gray-400'>{moment(x1.date).subtract(1, 'hour').fromNow()} </p>
 
       </div>
        </div>
@@ -437,7 +437,7 @@ className='overflow-hidden first:border-r first:md:border-r-0 first:md:border-b 
 <div className='my-3 sm:my-0 md:px-1 '>
 <Link href={`/news/article/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700  md:my-0 md:py-0 font-bold text-xl'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-700'>{it.contentTags.nodes[0].name }</h4></Link>
-<span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
+<span className='text-sm italic text-red-600'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>
 
  </div>
@@ -465,7 +465,7 @@ className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-a
 <div className='my-3 sm:my-0 md:px-1 '>
 <Link href={`/news/article/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold text-xl'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-700'>{it.contentTags.nodes[0].name }</h4></Link>
-<span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
+<span className='text-sm italic text-red-600'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>
 
  </div>
@@ -497,7 +497,7 @@ className='rounded-xl object-cover'
 <Link href={`/news/article/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold text-xl'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <div className="flex flex-wrap py-2">
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end underline hover:text-gray-500'>{it.contentTags.nodes[0].name } | </h4></Link>
-<span className='text-sm italic text-red-600 px-1'>{moment(it.date).fromNow()}</span>
+<span className='text-sm italic text-red-600 px-1'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>
 </div>
  </div>}
@@ -505,7 +505,7 @@ className='rounded-xl object-cover'
  <div className='my-3 md:px-1 border-b py-4'>
 <Link href={`/news/article/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-700'>{it.contentTags.nodes[0].name }</h4></Link>
-<span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
+<span className='text-sm italic text-red-600'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>}
 
  </div>
@@ -528,7 +528,7 @@ className='rounded-xl object-cover'
 <Link href={`/news/article/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <div className="flex flex-wrap py-2">
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end underline hover:text-gray-700'>{it.contentTags.nodes[0].name } | </h4></Link>
-<span className='text-sm italic text-red-600 px-1'>{moment(it.date).fromNow()}</span>
+<span className='text-sm italic text-red-600 px-1'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>
 </div>
  </div>}
@@ -536,7 +536,7 @@ className='rounded-xl object-cover'
  <div className='my-3 md:px-1 border-b py-4'>
 <Link href={`/news/article/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-700'>{it.contentTags.nodes[0].name }</h4></Link>
-<span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
+<span className='text-sm italic text-red-600'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>}
 
  </div>
@@ -560,7 +560,7 @@ className='rounded-xl object-cover'
 <Link href={`/news/article/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <div className="flex flex-wrap py-2">
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end underline hover:text-gray-500'>{it.contentTags.nodes[0].name } | </h4></Link>
-<span className='text-sm italic text-red-600 px-1'>{moment(it.date).fromNow()}</span>
+<span className='text-sm italic text-red-600 px-1'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>
 </div>
  </div>}
@@ -568,7 +568,7 @@ className='rounded-xl object-cover'
  <div className='my-3 md:px-1 border-b py-4'>
 <Link href={`/news/article/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-700'>{it.contentTags.nodes[0].name }</h4></Link>
-<span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
+<span className='text-sm italic text-red-600'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>}
 
  </div>
@@ -592,7 +592,7 @@ className='rounded-xl object-cover'
 <Link href={`/news/article/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <div className="flex flex-wrap py-2">
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end underline hover:text-gray-700'>{it.contentTags.nodes[0].name } | </h4></Link>
-<span className='text-sm italic text-red-600 px-1'>{moment(it.date).fromNow()}</span>
+<span className='text-sm italic text-red-600 px-1'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>
 </div>
  </div>}
@@ -600,7 +600,7 @@ className='rounded-xl object-cover'
  <div className='my-3 md:px-1 border-b py-4'>
 <Link href={`/news/article/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-500'>{it.contentTags.nodes[0].name }</h4></Link>
-<span className='text-sm italic text-red-600'>{moment(it.date).fromNow()}</span>
+<span className='text-sm italic text-red-600'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>}
 
  </div>

@@ -392,7 +392,7 @@ alt={xy?.node.featuredImage?.node.altText}
     <Link href={`/topic/${xy.node.contentTags.nodes?.slug}/`}></Link> <h3 className='text-red-500 text-sm italic py-1 hover:text-gray-700 cursor-pointer font-bold'>{xy.node.contentTags.nodes?.name} </h3>
     <Link href={`/netflix-naija/new-on-netflix/${xy.node.slug}/`}><h2 className="hover:text-gray-700 text-lg font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2></Link>            
       <div className='py-2 text-sm'> 
-        <p className=''>{moment(xy.node.date).fromNow()}</p> 
+        <p className=''>{moment(xy.node.date).subtract(1, 'hour').fromNow()}</p> 
         <Link href={`/creator/${xy.node.author.node.slug}/`}>
           <p className='py-2 text-gray-800 font-medium hover:text-red-400 font-bold'>{xy.node.author.node.name}</p>
         </Link> 

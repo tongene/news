@@ -66,7 +66,7 @@ const Nollywood = ({nollywood_news, sidebarItems, news_outline }:{nollywood_news
       <div className="py-2"> 
     <Link href={`/news/nollywood/${nt.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}  className='overflow-hidden text-ellipsis text-xl xs:text-3xl md:text-4xl leading-8 hover:text-gray-600'> {nt.title}</h2></Link></div>
     <Link href={`/news/nollywood/${nt.slug}/`}><div dangerouslySetInnerHTML={{__html:nt.excerpt}} className='overflow-hidden text-ellipsis xs:text-lg text-sm xs:block leading-6 w-3/4 hover:text-gray-600'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/></Link> 
-    <span className='text-end text-sm mt-11 italic py-2'>{moment(nt.date).fromNow()} </span>
+    <span className='text-end text-sm mt-11 italic py-2'>{moment(nt.date).subtract(1, 'hour').fromNow()} </span>
     </div>
     </div> 
        )    
@@ -87,7 +87,7 @@ const Nollywood = ({nollywood_news, sidebarItems, news_outline }:{nollywood_news
      <div className='relative h-max text-white font-bold'>
         <div className='absolute bottom-8 xs:bottom-1 z-10'>
         <Link href={`/news/nollywood/${nt.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className='hover:text-gray-500 overflow-hidden text-ellipsis mx-2 sm:w-56 lg:w-64 text-lg xs:text-base sm:text-lg lg:text-xl'>{nt.title}</h2></Link>
-        <Link href={`/topic/${nt.contentTags.nodes[0]?.slug}/`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.date).fromNow()} |</span> {nt.contentTags.nodes[0]?.name}</p ></Link> 
+        <Link href={`/topic/${nt.contentTags.nodes[0]?.slug}/`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.date).subtract(1, 'hour').fromNow()} |</span> {nt.contentTags.nodes[0]?.name}</p ></Link> 
 
       </div> 
       

@@ -43,7 +43,7 @@ const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:Vi
       <div className='absolute z-20 top-0 sm:top-28 xs:mx-8 py-5 font-bold text-white mx-2 xs:w-3/4'>   
     <Link href={`/news/video/${nt.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}  className='hover:text-gray-500 overflow-hidden text-ellipsis text-xl xs:text-3xl md:text-4xl md:py-2'> {nt.title}</h2></Link>
     <Link href={`/news/video/${nt.slug}/`}><p className='overflow-hidden text-ellipsis xs:text-lg text-sm xs:block xs:leading-6 hover:text-gray-500'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} >{replaceHTMLTags(nt.excerpt)}</p ></Link> 
-    <span className='text-end text-sm mt-11 italic py-2'>{moment(nt.date).fromNow()} </span>
+    <span className='text-end text-sm mt-11 italic py-2'>{moment(nt.date).subtract(1, 'hour').fromNow()} </span>
     </div>
     </div> 
        )    
@@ -65,7 +65,7 @@ const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:Vi
       <div className='relative h-max text-white'>
         <div className='absolute bottom-8 xs:bottom-1 z-10'>
     <Link href={`/news/video/${nt.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className='hover:text-gray-500 overflow-hidden text-ellipsis mx-2 sm:w-56 lg:w-64 text-lg xs:text-base sm:text-lg lg:text-xl'>{nt.title}</h2></Link>
-    <Link href={`/topic/${nt.contentTags.nodes[0]?.slug}/`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.date).fromNow()} |</span> {nt.contentTags.nodes[0]?.name}</p ></Link> 
+    <Link href={`/topic/${nt.contentTags.nodes[0]?.slug}/`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.date).subtract(1, 'hour').fromNow()} |</span> {nt.contentTags.nodes[0]?.name}</p ></Link> 
 
       </div> 
     <button className="absolute text-gray-300 hover:text-gray-50 hover:animate-in z-30 bottom-0 right-5 text-center text-4xl cursor-pointer">

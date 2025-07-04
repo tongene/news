@@ -45,7 +45,7 @@ const Paginate = ({content, pathString}:{content:any[], pathString:string}) => {
    {currentPosts.map((itx,index)=> 
    <div key={index} className="border-b flex" > 
    <div className="xs:w-3/4 xl:w-2/3 m-1 sm:m-4">   
-        <p className="italic text-red-600 text-right py-4">{moment(itx.node?.date).fromNow()}</p> 
+        <p className="italic text-red-600 text-right py-4">{moment(itx.node?.date).subtract(1, 'hour').fromNow()}</p> 
  <Image 
  className="h-44 md:h-52 xl:h-64"
         width={1200}

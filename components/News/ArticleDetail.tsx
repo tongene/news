@@ -41,7 +41,7 @@ priority={true}
 
    </div>  
 <Link href={`/creator/${news_detail?.author?.node?.slug}/`}><p className='text-lg p-3 underline font-bold dark:text-gray-900'>{news_detail?.author?.node?.name} </p></Link> </div>
-<p className='text-sm dark:text-gray-900 text-red-600 italic my-1 px-2'>{moment(news_detail?.date).fromNow()} </p>
+<p className='text-sm dark:text-gray-900 text-red-600 italic my-1 px-2'>{moment(news_detail?.date).subtract(1, 'hour').fromNow()} </p>
 </div> 
 <hr className='bg-black p-0.5 m-0.5'/>
 <hr className='bg-black p-0.5 m-0.5'/>
@@ -119,7 +119,7 @@ priority={true}
     <Link href={`/topic/${xy?.contentTags?.nodes[0]?.slug}/`}><h3 className='font-bold text-red-500 text-sm italic py-2 hover:text-gray-500'>{xy?.contentTags?.nodes[0]?.name} </h3></Link> 
     <Link href={`/news/${xy.contentTypeName}/${xy.slug}/`}><h2 className="text-gray-800 hover:text-gray-700 text-lg font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer "style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>            
       <div className='py-2 text-sm'> 
-        <p className='text-gray-600 dark:text-red-600'>{moment(xy.date).fromNow()}</p> 
+        <p className='text-gray-600 dark:text-red-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 
   
         <Link href={`/creator/${xy.author.node.slug}/`}><p className='py-2 text-blue-400 hover:text-gray-700 py-2 text-gray-800 font-medium'><span className='text-gray-700 italic pr-2 text-xs'>by </span>{xy?.author?.node?.name}</p></Link> 
       </div>   

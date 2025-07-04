@@ -340,7 +340,7 @@ alt={xy?.node.featuredImage?.node.altText}
     <Link href={`/topic/${(xy.node.contentTags.nodes??[][0]).slug}/`}></Link> <h3 className='text-red-500 text-sm italic'>{(xy.node.contentTags.nodes??[][0]).name} </h3>
     <Link href={`/netflix-naija/coming-to-netflix/${xy.node.slug}/`}><h2 className="text-gray-800 hover:text-gray-700 text-base font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2></Link>            
       <div className='py-2 text-sm'> 
-        <p className='text-gray-600'>{moment(xy.node.date).fromNow()}</p> 
+        <p className='text-gray-600'>{moment(xy.node.date).subtract(1, 'hour').fromNow()}</p> 
         <Link href={`/creator/${xy.node.author.node.slug}/`}>
           <p className='py-2 text-gray-800 font-medium'>{xy.node.author.node.name}</p>
         </Link> 

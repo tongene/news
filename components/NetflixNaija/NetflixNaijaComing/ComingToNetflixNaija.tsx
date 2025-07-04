@@ -173,7 +173,7 @@ width={1200}
     <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}>
     <div className="py-2 xs:py-3">
     <div dangerouslySetInnerHTML={{__html:nt.node.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:1, WebkitBoxOrient: 'vertical' }} className='overflow-hidden text-ellipsis xs:block hover:text-gray-500'/></div></Link> 
-    <span className='italic text-sm'>{moment(nt.node.date).fromNow()} </span>
+    <span className='italic text-sm'>{moment(nt.node.date).subtract(1, 'hour').fromNow()} </span>
     </div>
     </div> 
        )
@@ -194,7 +194,7 @@ width={1200}
   <div className='relative h-max text-white font-bold'>
         <div className='absolute bottom-8 xs:bottom-1 z-10'>
         <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className='hover:text-gray-500 overflow-hidden text-ellipsis mx-2 sm:w-56 lg:w-64 text-lg xs:text-base sm:text-lg lg:text-xl'>{nt.node.title}</h2></Link>
-    <Link href={`/topic/${nt.node.contentTags.nodes?.slug}/`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.node.date).fromNow()} |</span> {nt.node.contentTags.nodes?.name}</p ></Link> 
+    <Link href={`/topic/${nt.node.contentTags.nodes?.slug}/`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.node.date).subtract(1, 'hour').fromNow()} |</span> {nt.node.contentTags.nodes?.name}</p ></Link> 
 
       </div> 
       
@@ -253,7 +253,7 @@ alt={xy?.featuredImage?.node.altText}
 
 </div>
 <div className='px-2 font-bold'>
-<p className='text-red-600'>{moment(xy.date).fromNow()}</p> 
+<p className='text-red-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 
 <Link href={`/netflix-naija/news/${xy.slug}/`}><h2 className='hover:text-gray-400 text-gray-600'>{xy.title} </h2></Link>
 </div> 
 </div> 

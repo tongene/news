@@ -129,7 +129,7 @@ activeIndices.includes(i)&&
 <div className='x-main-x-slider float-left p-1 h-96' key={i}>
  
 <div className="main-slider-container px-2 py-11 bg-gray-200 bg-opacity-60 rounded-xl w-72 border">
-  <p className='italic text-red-600 px-1 text-left'>{moment(xy.node.date).fromNow()}</p>
+  <p className='italic text-red-600 px-1 text-left'>{moment(xy.node.date).subtract(1, 'hour').fromNow()}</p>
  <h2 onClick={() => handleSlideClick(`/news/topic/${xy.node.slug}/`)}className="overflow-hidden leading-8 py-6 text-gray-600 text-xl py-4 px-3 h-32 font-bold hover:text-gray-500 cursor-pointer dark:text-gray-200" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2> 
   
    <Image      

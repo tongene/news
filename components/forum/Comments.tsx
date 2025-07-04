@@ -470,7 +470,7 @@ alt={postData?.user_email as string}/></Link> }
 <div className='m-2 p-3'>  
 <div className='relative ' >
 <small className="my-4">
-{moment(postData.created_at, "YYYYMMDD").fromNow() }  
+{moment(postData.created_at, "YYYYMMDD").subtract(1, 'hour').fromNow() }  
 </small> 
 <Link href={`/forum/post/${postData.slug}/${postData.id}/`}><h3 className='text-2xl p-3 underline text-center capitalize'>{postData?.title ||postData?.article_title?.replace(/-/g, ' ') } </h3> </Link>
  {postData.user_id === user?.id&& <p onClick={() => setNavDropper(prev=> !prev)} className='absolute z-50 opacity-80 cursor-pointer text-xl right-0 top-0'> <FontAwesomeIcon icon={faEllipsisVertical} /></p>}

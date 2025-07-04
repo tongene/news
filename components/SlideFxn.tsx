@@ -69,7 +69,7 @@ const SlideFxn = ({content}:{content:SlideProps[]}) => {
   ))}
 </div>
 
- <small className="text-sm my-3 p y-2 text-red-500"><em>{moment(item?.date).fromNow()}</em></small> 
+ <small className="text-sm my-3 p y-2 text-red-500"><em>{moment(item?.date).subtract(1, 'hour').fromNow()}</em></small> 
   </div >  
  </div>
  ) }  

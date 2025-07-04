@@ -285,7 +285,7 @@ return html2pdfRef.current().set(opt).from(element).save();
     <Link href={`/topic/${xy.tags.nodes[0]?.slug}/`}> <h3 className='text-red-500 text-sm italic py-2 hover:dark:text-gray-500'>{xy.tags?.nodes[0]?.name} </h3></Link>
     <Link href={`/news/topic/${xy.slug}`}><h2 className="text-gray-800 hover:text-gray-700 text-xl hover:dark:text-gray-500 dark:text-gray-300 font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer "style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>            
       <div className='py-2 text-sm'> 
-        <p className='text-gray-600 dark:text-red-600'>{moment(xy.date).fromNow()}</p> 
+        <p className='text-gray-600 dark:text-red-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 
         <Link href={`/creator/${xy.author.node.slug}/`}>
           <p className='py-2 text-gray-800 font-medium hover:dark:text-gray-500 dark:text-gray-300'>{xy.author.node.name}</p>
         </Link> 

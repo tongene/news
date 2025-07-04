@@ -46,7 +46,7 @@ const NaijaWikiNetflixNewsDetails =({next_on_netflix_naija, content_videos, news
       <div className="bg-white dark:bg-black my-2 py-10 rounded-lg sm:mx-4 xs:mx-8 sm:m-auto sm:px-11 lg:px-16">
        <h2 className="font-bold py-4 sm:px-8 text-3xl md:text-5xl text-gray-800 dark:text-gray-200 leading-10">{news_details.title} </h2>
        <div className="flex justify-between bg-gray-700">
-       <p className="p-4 italic text-red-500 ">{moment(news_details.date).fromNow() } </p> 
+       <p className="p-4 italic text-red-500 ">{moment(news_details.date).subtract(1, 'hour').fromNow() } </p> 
        <Link href={`/creator/${news_details.author.node.slug}/`}><p className="p-4 text-end text-lg  text-gray-200 mx-4 xs:mx-20 hover:text-red-400"><small className="italic p-3"> by</small>{ news_details.author.node.name } </p></Link></div>
        <div className="relative -mx-5 sm:-mx-8 border border-4 border-yellow-700"> 
        <Image src={news_details.featuredImage.node.sourceUrl}
@@ -130,7 +130,7 @@ alt={ex.node.featuredImage.node.altText}
  
     <Link href={`/netflix-naija/news/${xy.slug}/`}><h2 className="text-gray-800 text-lg font-bold overflow-hidden text-ellipsis hover:text-red-400 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link> 
      <div className='py-2 text-sm'> 
-        <p className='text-gray-600'>{moment(xy.date).fromNow()}</p> 
+        <p className='text-gray-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 
         <Link href={`/creator/${xy.author.node.slug}/`}>
           <p className='py-2 text-gray-800 font-medium hover:text-red-400 font-bold'>{xy.author.node.name}</p>
         </Link> 

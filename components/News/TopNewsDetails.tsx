@@ -90,7 +90,7 @@ alt={news_detail.featuredImage.node.altText}
 </div>
 <hr className='bg-black p-0.5 m-0.5'/>
 <hr className='bg-black p-0.5 m-0.5'/>
-</div><p className='text-sm  text-red-600 italic my-1 text-end'>{moment(news_detail.date).fromNow()} </p>
+</div><p className='text-sm  text-red-600 italic my-1 text-end'>{moment(news_detail.date).subtract(1, 'hour').fromNow()} </p>
 <div className="[&_.share-view]:bg-white [&_.share-view]:xs:absolute [&_.share-view]:relative [&_.share-view]:max-w-max [&_.share-view]:xs:flex-col [&_.share-view]:items-stretch [&_.share-view]:w-full [&_.share-view]:text-gray-800 text-xl [&_.shadow-sharebtn]:px-3 [&_.shadow-sharebtn]:xs:py-3  xs:my-11">
   <ShareButtons 
  item={news_detail} 

@@ -88,7 +88,7 @@ const Economy = ({economy_news }:{economy_news:TopNews[]}) => {
             <div className="cursor-pointer">
            <Link href={`/news/economy/${xy?.slug}/`}><h2 className="text-xl font-medium hover:text-gray-500">{xy?.title}</h2></Link> 
            </div>
-            <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).fromNow()}</em></small>
+            <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small>
          </div>
     </div>
       </div> 
@@ -122,7 +122,7 @@ height={675}
 alt={xy?.featuredImage.node.altText}
 /> 
 <Link href={`/news/economy/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis my-2 text-lg hover:text-gray-500 py-2 leading-9"/></Link>
- <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).fromNow()}</em></small> 
+ <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small> 
 </div>
 )}
 </div>
@@ -149,7 +149,7 @@ alt={xy?.featuredImage.node.altText}
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
 <Link href={`/news/economy/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis  leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
 <Link href={`/news/economy/${xy?.slug}/`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base">{replaceHTMLTags(xy?.excerpt)} </p></Link>
- <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).fromNow()}</em></small> 
+ <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small> 
 </div>
 )}
 </div>
@@ -159,7 +159,7 @@ alt={xy?.featuredImage.node.altText}
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
 <Link href={`/news/economy/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis  leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
 <Link href={`/news/economy/${xy?.slug}/`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base">{replaceHTMLTags(xy?.excerpt)} </p></Link>
- <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).fromNow()}</em></small> 
+ <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small> 
 </div>
 )}
 </div>

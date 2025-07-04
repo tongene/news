@@ -223,7 +223,7 @@ const africa_made = made_in_africa.map((ex)=> ex.node.addedOnNetflixNaijas?.node
       <div className='absolute z-20 top-0 sm:top-28 xs:mx-8 py-5 font-bold text-white mx-2 lg:w-1/2'>   
     <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}><h2 className='text-xl xs:text-3xl md:text-4xl md:py-2 hover:text-gray-500'> {nt.node.title}</h2></Link>
     <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}><div className='xs:text-lg text-sm py-2 xs:block hover:text-gray-500' dangerouslySetInnerHTML={{__html:nt.node.excerpt}}/>  </Link> 
-    <span className='text-end text-sm mt-11 italic'>{moment(nt.node.date).fromNow()} </span>
+    <span className='text-end text-sm mt-11 italic'>{moment(nt.node.date).subtract(1, 'hour').fromNow()} </span>
     </div>
     </div> 
        )
@@ -244,7 +244,7 @@ const africa_made = made_in_africa.map((ex)=> ex.node.addedOnNetflixNaijas?.node
   <div className='relative h-max text-white'>
         <div className='absolute bottom-8 xs:bottom-1 z-10'>
         <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className='hover:text-gray-500 overflow-hidden text-ellipsis mx-2 sm:w-56 lg:w-64 text-lg xs:text-base sm:text-lg lg:text-xl'>{nt.node.title}</h2></Link>
-    <Link href={`/topic/${(nt.node.contentTags.nodes??[][0])?.slug}/`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.node.date).fromNow()} |</span> {(nt.node.contentTags.nodes??[][0]).name}</p ></Link>
+    <Link href={`/topic/${(nt.node.contentTags.nodes??[][0])?.slug}/`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.node.date).subtract(1, 'hour').fromNow()} |</span> {(nt.node.contentTags.nodes??[][0]).name}</p ></Link>
       </div> 
       
     </div>

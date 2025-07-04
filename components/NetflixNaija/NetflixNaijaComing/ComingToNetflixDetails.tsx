@@ -375,7 +375,7 @@ alt={xy?.node.featuredImage?.node.altText}
  
  </div>
  <div className='px-2 font-bold '>
- <p className='text-red-600'>{moment(xy.date).fromNow()}</p> 
+ <p className='text-red-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 
  <Link href={`/netflix-naija/news/${xy.slug}/`}><h2 className='overflow-hidden text-ellipsis text-base hover:text-gray-400 text-gray-600 dark:text-gray-200'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>{xy.title} </h2></Link>
   </div> 
  </div> 
