@@ -144,14 +144,14 @@ alt={xy?.featuredImage.node.altText}
  </div>
 </div>
  
-<div className="justify-between 2xl:flex my-5 max-w-xl md:max-w-max lg:max-w-xl xl:max-w-5xl m-auto">
+<div className="justify-between 2xl:flex my-5 max-w-xl md:max-w-max lg:max-w-xl xl:max-w-5xl m-auto"> 
 
 <div className="mx-1 h-max px-2 py-4 max-w-lg"><h2 onClick={()=> setActiveSet(prev => !prev)}className={!activeSet?"text-3xl font-bold":'text-3xl cursor-pointer'}>Africa</h2>
 <hr className={!activeSet?"bg-red-500 py-0.5 font-bold":''}/>
 { tech_news.slice(0,5).map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
 <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis leading-8 text-xl font-bold py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
-<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base">{replaceHTMLTags(xy?.excerpt)} </p></Link>
+<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"/></Link>
  <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).fromNow()}</em></small> 
 </div>
 )}

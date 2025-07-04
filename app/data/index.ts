@@ -1,6 +1,5 @@
 "use server"
-import { newsByLatest } from "../page-data";
-import { InnerEdges } from "../types";
+import { newsByLatest } from "../page-data"; 
  
  export async function postCategories(){
  
@@ -12,7 +11,7 @@ import { InnerEdges } from "../types";
         body: JSON.stringify({
           query:`
           query WPPOSTS { 
-         categories( where: {name: "Topics"}) {          
+         categories(where: {name: "Topics"}) {          
          edges {
           cursor      
           node {
@@ -23,7 +22,7 @@ import { InnerEdges } from "../types";
        cursor
         }
         }
-         children {
+         children (where: {exclude: "dGVybTo0MDQ="}){
             
          edges {
           cursor
@@ -185,7 +184,7 @@ import { InnerEdges } from "../types";
         node {
       name
       slug
-       posts( after:$after,first:8){ 
+       posts( after:$after,first:6){ 
             pageInfo {
               startCursor
               endCursor

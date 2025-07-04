@@ -13,7 +13,7 @@ const MainPosts = ({posts_notIn_newsPosts}:{posts_notIn_newsPosts:PostXNode  }) 
  <div className="sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 justify-center sm:items-start items-center max-w-2xl md:max-w-max m-auto py-8 gap-2"> 
  
  <div className='max-w-sm m-auto md:m-0 border-r'>   
- { postsY?.length>0&& postsY.slice(0,4).map((it, index:number)=> 
+ { postsY?.length>0&& postsY.slice(0,3).map((it, index:number)=> 
  <div key={index} className="px-4">  
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto px-1 pt-3 '>
@@ -47,7 +47,7 @@ className='rounded-xl h-44 object-cover'
 </div>   
   
  <div className='max-w-sm m-auto md:m-0 border-r'>   
- { postsY?.length>0&&postsY.slice(4,8).map((it, index:number)=> 
+ { postsY?.length>0&&postsY.slice(3,6).map((it, index:number)=> 
  <div key={index} className="px-4"> 
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto px-1 pt-3 '> 

@@ -112,7 +112,7 @@ export const newsByLatest=async()=>{
       })
    
       }) 
-      .then(response => response.json() )
+      .then(response => response.json() ) 
       .then(data => data.data.lives.edges)
       .catch(error => console.error('Error:', error));
 

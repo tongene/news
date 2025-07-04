@@ -112,8 +112,8 @@ const newsAll=news1.concat(news2).concat(news3).concat(news4).concat(news5).conc
   const ycontent=newsAll.sort(function(a, b) { return Number(new Date(b.date ))-Number( new Date(a.date )) })
   return (
  
-    <div className="bg-gray-50 px-10">
-    <div className="bg-white mx-2 px-2 lg:mx-8 dark:bg-black">
+    <div className="bg-gray-50 px-10 dark:px-0">
+    <div className="bg-white lg:mx-8 dark:bg-black">
     <h2 className='text-3xl text-gray-200 font-bold py-6 px-3 bg-orange-500 text-center'>Naija People</h2>
     <hr/>
 <div className='flex flex-wrap xl:flex-nowrap justify-center'style={{maxWidth:'1500px',margin:'0 auto'}} >
@@ -209,7 +209,7 @@ alt={xy?.featuredImage?.node.altText }
     />
     <div>
  <Link href={`/news/article/${xy.slug}/`}><h2 className='text-2xl font-bold py-3 hover:text-gray-700'>{xy.title} </h2></Link>
- <div dangerouslySetInnerHTML={{__html:xy.excerpt}} className="leading-8 text-lg"/>
+ <div dangerouslySetInnerHTML={{__html:xy.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="leading-8 text-lg overflow-hidden text-ellipsis"/>
 </div>
 <div className='flex py-3'>
 <p className=''>{moment(xy.date).fromNow()} </p>

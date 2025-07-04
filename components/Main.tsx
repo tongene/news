@@ -28,7 +28,7 @@ const x_wiki =async ()=>{
   const txPlus=sidebarxItems.posts?.edges.map((dy:InnerEdges)=>dy.node )
   setSidebarxItems(txPlus)
   
-  const post_data = await postCategories()
+const post_data = await postCategories()
 
 const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
 setTopPostsCa(postCategory_Children ) 
@@ -69,14 +69,13 @@ setCategoryPost(currentPosts)
       }
       googleTxt()
     },[]) 
-
+ 
   return ( 
     <section className='clear-left'> 
     <div className="lg:flex justify-center sm:px-11 px-4 m-auto" style={{maxWidth:'1700px'}}> 
-<div className='max-w-7xl mx-auto'>  
-
+<div className='max-w-7xl mx-auto'> 
   <div className='lg:flex xl:px-4'> 
- <div className='py-20 md:px-1 m-auto' > 
+ <div className='py-20 md:px-1 m-auto'> 
 <div className='py-5'>
 <div className='flex border-b shadow-sm justify-around items-center '> 
 <h3 data-test="header-1" className='text-xl font-bold w-60'>Don&#39;t Miss</h3>  

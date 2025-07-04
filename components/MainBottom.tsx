@@ -71,11 +71,11 @@ useEffect(() => {
 <p>Special Edition</p>
  <p>{new Date().toDateString()}</p>
  </div>
- <div className='py-6'> 
+ <div className='py-6'>  
     <div className='grid grid-cols-1 justify-center gap-2 m-auto w-max'> 
       <div>
  { top_x_Posts?.length>0&&top_x_Posts.slice(0,1).map((xy, i)=> 
-<div key={i + ' ' + Math.random()}  className='border max-w-sm min-[500px]:max-w-md sm:max-w-lg m-auto md:m-0 px-3 py-6 ' > 
+<div key={i + ' ' + Math.random()} className='border max-w-sm min-[500px]:max-w-md sm:max-w-lg m-auto md:m-0 px-3 py-6 ' > 
 <Link href={`/news/topic/${xy.node.slug}/`}>
  
 <h2 className='py-4 my-4 text-4xl lg:text-5xl font-bold hover:text-gray-400 px-1' style={{lineHeight:'55px'}} >{xy?.node.title}</h2></Link >
@@ -100,16 +100,16 @@ useEffect(() => {
   alt={xy?.node.featuredImage?.node.altText}/>   
   </div>
 
-  <hr className='h-3 bg-black my-1'/> 
-<hr className='h-1 bg-black my-1'/> 
-<div className='flex text-gray-600 justify-between py-4 px-4 overflow-hidden first:border-r first:border-r-4 first:border-r-black'> 
-<Link href={`/topic/${xy?.node.tags?.nodes[0]?.slug}/`}><p className='hover:text-gray-300 px-4 w-32'>{xy?.node.tags.nodes[0]?.name}</p></Link> 
+  <hr className='h-3 bg-gray-500 my-1'/> 
+<hr className='h-1 bg-gray-500 my-1'/> 
+<div className='flex justify-between py-4 px-3 overflow-hidden first:border-r first:border-r-4 first:border-r-black'> 
+<Link href={`/topic/${xy?.node.tags?.nodes[0]?.slug}/`}><p className='hover:text-gray-300 w-32'>{xy?.node.tags.nodes[0]?.name}</p></Link> 
  
-  <hr className='h-10 bg-black p-0.5 w-auto'/> 
-  <Link href={`/topic/${xy?.node.tags?.nodes[1]?.slug}/`}><p className='hover:text-gray-300 px-4 w-32'>{xy?.node.tags?.nodes[1]?.name}</p></Link>
+  <hr className='h-10 bg-gray-500 p-0.5 w-auto'/> 
+  <Link href={`/topic/${xy?.node.tags?.nodes[1]?.slug}/`}><p className='hover:text-gray-300 w-32'>{xy?.node.tags?.nodes[1]?.name}</p></Link>
 </div> 
-<hr className='h-3 bg-black my-1'/> 
-<hr className='h-1 bg-black  my-1'/>   
+<hr className='h-3 bg-gray-500 my-1'/> 
+<hr className='h-1 bg-gray-500 my-1'/>   
 </div> 
 </div>  
 )} 
@@ -176,7 +176,7 @@ useEffect(() => {
 
   <div className='my-6'> 
 <hr className=' '/> 
-<div className='sm:grid grid-cols-2 xl:grid-cols-4 gap-1 text-gray-600 py-4 max-w-2xl lg:max-w-max m-auto' > 
+<div className='sm:grid grid-cols-2 xl:grid-cols-4 gap-1 py-4 max-w-2xl lg:max-w-max m-auto' > 
  
 { top_x_Posts?.length>0&&top_x_Posts.slice(7,11).map((xy, i)=>
 <div className='max-w-sm m-auto py-11 hover:text-gray-300 border-black border-b-4 px-4 sm:h-52' key={i + ' ' + Math.random()}>
