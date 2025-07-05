@@ -1,7 +1,7 @@
 "use client"
   
 import { fetchNewPosts, fetchXPosts, nextXXPosts } from '@/app/page-bottom'
-import { LatestProps, PostXNode } from '@/app/types'
+import { InnerEdges, LatestProps, PostXNode } from '@/app/types'
 import { dateFormatter } from '@/utils/dateformat'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,22 +15,7 @@ const MainBottom = () => {
     const [top_x_Posts, setXnewsPosts] = useState<PostXNode[]>([]) 
     const [debouncedValue, setDebouncedValue] = useState<string>('') 
     const [topXnewsPosts, setXPosts] = useState<PostXNode[]>([])
-    const postsEnd =async()=>{  
-   const xUnsedPosts= await nextXXPosts() 
-  const postsX1=xUnsedPosts.postsX1
-     const postsX2=xUnsedPosts.postsX2
-     const postsX3=xUnsedPosts.postsX3
-     const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
-     setXnewsPosts(xtUnused)
-
-   const postsXnewsPosts= await fetchXPosts()  
-          const xtCategories= postsXnewsPosts?.categories?.edges 
-          setXPosts(xtCategories)
-      }
-      useEffect(()=>{
-        postsEnd()
- 
-     },[])
+ const [loading, setLoading]= useState(false)
 const [hasNewPage, setHasNewPage] = useState(true);
 const loadMorePosts = useCallback(async () => {
  
@@ -56,11 +41,32 @@ useEffect(() => {
   if (hasNewPage) {
     loadMorePosts();
   }
-}, [inView, hasNewPage, loadMorePosts]);  
- const posts_all = topXnewsPosts?.filter((xy )=> (xy?.node.posts.edges)??[].length>0).map((dy)=> dy?.node.posts.edges).flat() 
+}, [inView, hasNewPage, loadMorePosts]); 
+
+
+const postsEnd =async()=>{ 
+  setLoading(true)
+   const xUnsedPosts= await nextXXPosts() 
+    const postsXnewsPosts= await fetchXPosts()  
+          const xtCategories= postsXnewsPosts?.categories?.edges 
+    
+ const posts_all = postsXnewsPosts?.categories?.edges.map((dy:PostXNode)=> dy?.node.posts.edges).flat() 
+  const postsX1=xUnsedPosts.postsX1
+     const postsX2=xUnsedPosts.postsX2
+     const postsX3=xUnsedPosts.postsX3
+     const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
+     setXnewsPosts([...xtUnused, ...posts_all])
+    setLoading(false)
+   }
+      useEffect(()=>{
+        postsEnd()
  
+     },[])
+
+   
   return (
-    <div>       
+    <div> 
+
  <div className='xl:w-11/12 m-auto px-3'>
 <div className='flex justify-around items-center py-4'> 
 <h2 className='text-5xl font-bold w-max mx-4 font-mono py-6 italic'>News Bin</h2>
@@ -71,6 +77,7 @@ useEffect(() => {
 <p>Special Edition</p>
  <p>{new Date().toDateString()}</p>
  </div>
+ {loading&&<p>Loading...</p>}
  <div className='py-6'>  
     <div className='grid grid-cols-1 justify-center gap-2 m-auto w-max'> 
       <div>
@@ -277,21 +284,8 @@ useEffect(() => {
 
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div className='md:grid md:grid-cols-2 justify-center m-auto my-11 px-2 md:px-1 max-w-4xl lg:max-w-max' > 
- { posts_all?.length>0&&posts_all.slice(0,2).map((xy, i)=> 
+ { top_x_Posts?.length>0&&top_x_Posts.slice(19,21).map((xy, i)=> 
 <div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'550px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
@@ -316,7 +310,7 @@ useEffect(() => {
  
 <hr className='h-1 w-4/5 m-auto my-4'/>
  <div className='p-3 md:py-0 md:m-0 md:grid grid-cols-2 xl:grid justify-center gap-0 xl:max-w-5xl xl:m-auto' >
- { posts_all?.length>0&&posts_all.slice(2,6).map((ex)=>
+ { top_x_Posts?.length>0&&top_x_Posts.slice(21,25).map((ex)=>
 <div className='flex m-auto my-3' key={ex.node.title + ' ' + Math.random()}>
   <div className='w-44 mx-2 py-6'> 
   <Image
@@ -342,7 +336,7 @@ useEffect(() => {
 </div> 
  
   <div className='flex flex-wrap justify-center py-6'>
-{ posts_all?.length>0&&posts_all.slice(6,9).map((ex,i)=>
+{ top_x_Posts?.length>0&&top_x_Posts.slice(25,28).map((ex,i)=>
 <div className='relative m-3' key={ex?.node.title + ' ' + Math.random()} >
   <div className='max-w-sm m-auto'> 
 

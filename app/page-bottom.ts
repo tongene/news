@@ -335,7 +335,7 @@ export async function postLastAndScrolledCategories (){
       body: JSON.stringify({
         query:`
         query WPPOSTS {       
-       posts(first:22, after:"${endXNews[0]}" , where:{categoryName: "News"}){ 
+       posts(first:30, after:"${endXNews[0]}" , where:{categoryName: "News"}){ 
             pageInfo {
               startCursor
               endCursor
@@ -466,7 +466,7 @@ export async function postLastAndScrolledCategories (){
       body: JSON.stringify({
         query:`
         query WPPOSTS($notIn:[ID]) {       
-       posts(first:20, where:{categoryName: "Topics", notIn:$notIn }){ 
+       posts(first:25, where:{categoryName: "Topics", notIn:$notIn }){ 
             pageInfo {
               startCursor
               endCursor

@@ -174,7 +174,7 @@ export async function GET() {
     title:post.title,
    url:`https://culturays.com/news/live/${post.databaseId}/${post.slug}/`,
    lastModified:new Date(post.date),
-   changeFrequency:'always', 
+  changeFrequency:'always', 
   priority:0.8,
    images: [post?.featuredImage?.node?.sourceUrl],
    news: [
@@ -192,7 +192,6 @@ export async function GET() {
  
 
 const allPosts = [...content_posts, ...live_posts]; 
- console.log(live_posts)
 const xml = generateNewsSitemap(allPosts);
   return new NextResponse(xml, {
     headers: {
