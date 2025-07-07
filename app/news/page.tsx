@@ -10,11 +10,11 @@ async function news__Articles(){
  body: JSON.stringify({
  query:`
  query PASSAGENEWS{ 
-    articlesCategories(first:15){
+    articlesCategories(first:20, where:{hideEmpty:true}){
       nodes{
      name
      slug
- articles{
+ articles(first:30){
  nodes{ 
  id
  title
@@ -142,6 +142,7 @@ const NewsPage = async() => {
      }
    }
  }
+  
  return (  
    <div>
      <StructuredData schema={jsonLd} />

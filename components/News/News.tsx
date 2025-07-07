@@ -37,42 +37,11 @@ articlesCategories:{
   }]
  
 }
-}
+} 
 
 const News = ({newsData}:{newsData:DataProps[]}) => {
   const [activeIndices, setActiveIndices] = useState([0, 1]);
- const news1 = newsData[0]?.articles.nodes
- const news1_name = newsData[0]?.name
- 
- const news2 = newsData[1]?.articles.nodes
- const news2_name = newsData[1]?.name
-
- const news3 = newsData[2]?.articles.nodes
- const news3_name = newsData[2]?.name
-
- const news4 = newsData[3]?.articles.nodes
- const news4_name = newsData[3]?.name
-
- const news5 = newsData[4]?.articles.nodes
- const news5_name = newsData[4]?.name
-
- const news6 = newsData[5]?.articles.nodes
- const news6_name = newsData[5]?.name
-
- const news7 = newsData[6]?.articles.nodes
- const news7_name = newsData[6]?.name
-
- const news8 = newsData[7]?.articles.nodes
- const news8_name = newsData[7]?.name
-
- const news9 = newsData[8]?.articles.nodes
- const news9_name = newsData[8]?.name
-
- const news10 = newsData[9]?.articles.nodes
- const news10_name = newsData[9]?.name
-
- const news11 = newsData[10]?.articles.nodes
- const news11_name = newsData[10]?.name
+  const newsXData = newsData.map((xy)=> xy.articles).map((dy)=>dy.nodes).flat() 
 
     // const left_slide = () => {
     //   setActiveIndices(([left, right]) => {
@@ -108,8 +77,11 @@ const right_slide = () => {
   });
 };
 {/* <h2 className='text-2xl text-gray-800 font-bold py-4 text-center'>{news3_name}</h2> */}
-const newsAll=news1.concat(news2).concat(news3).concat(news4).concat(news5).concat(news6).concat(news7).concat(news8).concat(news9).concat(news10).concat(news11)
-  const ycontent=newsAll.sort(function(a, b) { return Number(new Date(b.date ))-Number( new Date(a.date )) })
+ 
+// sortedNews.sort(function(a, b) { return Number(new Date(b.date ))-Number( new Date(a.date )) })
+const sortedNews = [...newsXData].sort((a, b) => 
+  Number(new Date(b.date ))-Number( new Date(a.date )) 
+);
   return (
  
     <div className="bg-gray-50 px-10 dark:px-0">
@@ -119,7 +91,7 @@ const newsAll=news1.concat(news2).concat(news3).concat(news4).concat(news5).conc
 <div className='flex flex-wrap xl:flex-nowrap justify-center'style={{maxWidth:'1500px',margin:'0 auto'}} >
 <div className="max-w-5xl m-auto xl:max-w-7xl">
    <div className='xl:border-r sm:flex-row flex-col flex rounded-xl my-4 max-w-4xl xl:max-w-6xl m-auto h-max py-11 md:px-8 lg:px-4 xl:px-0 sm:px-0'>
-  {ycontent.slice(0,1).map((xy,i)=>
+  {sortedNews.slice(0,1).map((xy,i)=>
 <div className='max-w-xl m-auto sm:m-0 xs:px-11 sm:px-3 sm:max-w-xs md:max-w-md lg:max-w-2xl' key={xy.title}>
   <div className="max-w-xs xs:max-w-sm sm:max-w-md m-auto px-1">
 <Image
@@ -144,7 +116,7 @@ className='rounded-xl'
  
    <div className="flex overflow-auto w-56 xxs:w-64 min-[320px]:w-72 min-[360px]:w-80 xs:w-96 sm:w-auto m-auto sm:overflow-hidden pt-4 sm:pt-0 hidden-scroll sm:m-0 px-2 xxs:px-0" >
     <div className='flex sm:block sm:max-w-lg'>
-    {ycontent.slice(1,4).map((xy,i)=>
+    {sortedNews.slice(1,4).map((xy,i)=>
     <div className='border w-96 xxs:w-96 px-5 xl:px-0 pt-5 sm:pt-0 sm:border-none sm:w-auto' key={i + ' ' + Math.random()}>
    <Link href={`/topic/${xy.contentTags.nodes[0].slug}/`} > <h3 className='text-red-500 text-sm italic py-1'>{xy.contentTags.nodes[0].name} </h3></Link>
   <Link href={`/news/article/${xy.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis hover:text-gray-500 py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
@@ -166,7 +138,7 @@ className='rounded-xl'
  <div className="bg-white dark:bg-black rounded-xl">
 
   <div className="grid sm:grid-cols-2 sm:max-w-6xl sm:m-0 px-5 xs:px-11 sm:px-2 py-8 max-w-xl" >
-    {ycontent.slice(4,8).map((xy,i)=>
+    {sortedNews.slice(4,8).map((xy,i)=>
     <div className='pt-2 sm:pt-0 border-b flex my-2 mx-1' key={i + ' ' + Math.random()}>
        <div>
     <Image
@@ -197,7 +169,7 @@ className='rounded-xl object-cover max-w-40 h-28'
 <hr/>
   <div className='xl:border-r sm:flex-row flex-col flex rounded-xl my-4 max-w-4xl xl:max-w-6xl m-auto h-max py-11 md:px-8 lg:px-4 xl:px-0 sm:px-0'>
 
-  {ycontent.slice(8,9).map((xy,i)=>
+  {sortedNews.slice(8,9).map((xy,i)=>
 <div className='max-w-xl m-auto sm:m-0 xs:px-11 sm:px-3 sm:max-w-xs md:max-w-md lg:max-w-2xl' key={xy.title}>
 <div className="max-w-xs xs:max-w-sm sm:max-w-md m-auto px-1">
 <Image
@@ -222,7 +194,7 @@ alt={xy?.featuredImage?.node.altText }
 
  <div className="flex overflow-auto w-56 xxs:w-64 min-[320px]:w-72 min-[360px]:w-80 xs:w-96 sm:w-auto m-auto sm:overflow-hidden pt-4 sm:pt-0 hidden-scroll sm:m-0 px-2 xxs:px-0" >
   <div className='flex sm:block sm:max-w-lg'>
-  {ycontent.slice(9,12).map((xy,i)=>
+  {sortedNews.slice(9,12).map((xy,i)=>
   <div className='border w-96 xxs:w-96 px-5 xl:px-0 pt-5 sm:pt-0 sm:border-none sm:w-auto' key={i + ' ' + Math.random()}>
  <Link href={`/topic/${xy.contentTags.nodes[0].slug}/`} > <h3 className='text-red-500 text-sm italic py-1'>{xy.contentTags.nodes[0].name} </h3></Link>
 <Link href={`/news/article/${xy.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
@@ -242,7 +214,7 @@ alt={xy?.featuredImage?.node.altText }
 <hr/>
   <div className="grid sm:grid-cols-2 gap-1 justify-center ">
  <div className="bg-white dark:bg-black rounded-xl my-2 py-2 max-w-lg">
-{ycontent.slice(12,14).map((x1,i)=>
+{sortedNews.slice(12,14).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2' key={i + ' ' + Math.random()}>
       <div>
     <Image
@@ -270,7 +242,7 @@ className='h-28 rounded-xl object-cover max-w-40'
 
 {/* <hr/> */}
 
-  {ycontent?.slice(14,16).map((x1,i)=>
+  {sortedNews?.slice(14,16).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2' key={i + ' ' + Math.random()}>
       <div>
     <Image
@@ -298,7 +270,7 @@ className='h-28 rounded-xl object-cover max-w-40'
 
  {/* <h2 className='text-2xl text-gray-200 font-bold text-center py-6 px-3 bg-orange-500 '>{news4_name}</h2> */}
  <div className='xl:border-r sm:flex-row flex-col flex rounded-xl my-4 max-w-4xl xl:max-w-6xl m-auto h-max py-11 md:px-8 lg:px-4 xl:px-0 sm:px-0'>
-  {ycontent?.slice(16,17).map((xy,i)=>
+  {sortedNews?.slice(16,17).map((xy,i)=>
 <div className='max-w-xl m-auto sm:m-0 xs:px-11 sm:px-3 sm:max-w-xs md:max-w-md lg:max-w-2xl' key={xy.title}>
   <div className="max-w-xs xs:max-w-sm sm:max-w-md m-auto px-1">
 <Image
@@ -323,7 +295,7 @@ className='rounded-xl'
 
    <div className="flex overflow-auto w-56 xxs:w-64 min-[320px]:w-72 min-[360px]:w-80 xs:w-96 sm:w-auto m-auto sm:overflow-hidden pt-4 sm:pt-0 hidden-scroll sm:m-0 px-2 xxs:px-0" >
     <div className='flex sm:block sm:max-w-lg'>
-    {ycontent.slice(17,20).map((xy,i)=>
+    {sortedNews.slice(17,20).map((xy,i)=>
     <div className='border w-96 xxs:w-96 px-5 xl:px-0 pt-5 sm:pt-0 sm:border-none sm:w-auto' key={i + ' ' + Math.random()}>
    <Link href={`/topic/${xy.contentTags.nodes[0].slug}/`} > <h3 className='text-red-500 text-sm italic py-1'>{xy.contentTags.nodes[0].name} </h3></Link>
   <Link href={`/news/article/${xy.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
@@ -344,7 +316,7 @@ className='rounded-xl'
   <hr/>
    <div className="xs:grid grid-cols-2 gap-1 justify-center">
   <div className="bg-white dark:bg-black rounded-xl my-2 py-2 max-w-lg">
-{ycontent.slice(20,22).map((x1,i)=>
+{sortedNews.slice(20,22).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2 gap-3' key={i + ' ' + Math.random()}>
       <div>
     <Image
@@ -368,7 +340,7 @@ className='h-28 rounded-xl object-cover max-w-40'
 
 </div>
   <div className="rounded-xl my-2 py-2 max-w-lg">
-{ycontent.slice(22,24).map((x1,i)=>
+{sortedNews.slice(22,24).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2 gap-1' key={i + ' ' + Math.random()}>
      <div>
     <Image
@@ -396,7 +368,7 @@ className='h-28 rounded-xl object-cover max-w-40'
   <div className="xl:max-w-3xl">
   <div className="md:flex xl:block ">
   <div className="rounded-xl my-4 xl:mx-2 m-auto max-w-xl md:max-w-md min-[900px]:max-w-xl lg:max-w-2xl xl:max-w-xl h-max">
-  {ycontent.slice(24,26).map((x1,i)=>
+  {sortedNews.slice(24,26).map((x1,i)=>
   <div className='border-b mx-1 px-3 pt-5 sm:pt-0 py-3 flex my-2' key={i + ' ' + Math.random()}>
       <div>
     <Image
@@ -422,7 +394,7 @@ className='h-28 rounded-xl object-cover max-w-40'
  <div className="bg-white dark:bg-black rounded-xl my-1 px-2 md:mx-1 overflow-hidden py-4 my-4 max-w-xs xs:max-w-sm m-auto">
 {/* <h2 className='text-3xl font-bold text-center  opacity-80 border-b'>{news7_name} </h2> */}
 <div className='flex md:block xl:flex justify-between'>
- { ycontent.slice(26,30).map((it, index)=>
+ { sortedNews.slice(26,30).map((it, index)=>
  activeIndices.includes(index) &&
 <div
 key={index}
@@ -457,7 +429,7 @@ className='overflow-hidden first:border-r first:md:border-r-0 first:md:border-b 
 </div>
 
   <div className='bg-white dark:bg-black max-w-xs xs:max-w-sm m-auto xl:m-1'>
- { ycontent.slice(30,34).map((it, index)=>
+ { sortedNews.slice(30,34).map((it, index)=>
 
 <div
 key={index}
@@ -482,7 +454,7 @@ className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-a
   <div className="bg-white dark:bg-black w-full my-8">
  <div className="xs:grid grid-cols-2 justify-center xs:items-start items-center lg:grid-cols-4 max-w-2xl lg:max-w-max m-auto py-8 ">
   <div className='max-w-sm m-auto  border-r xs:m-0'>
- { ycontent.slice(33,36).map((it, index)=>
+ { sortedNews.slice(33,36).map((it, index)=>
  <div key={index} className="px-4">
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
@@ -513,7 +485,7 @@ className='rounded-xl object-cover'
 
 </div>
  <div className='max-w-sm m-auto border-r xs:m-0'>
- { ycontent.slice(36,39).map((it, index)=> 
+ { sortedNews.slice(36,39).map((it, index)=> 
  <div key={index} className="px-4">
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
@@ -545,7 +517,7 @@ className='rounded-xl object-cover'
 </div>
 
 <div className='max-w-sm m-auto xs:m-0 border-r'>
- { ycontent.slice(39,42).map((it, index)=>
+ { sortedNews.slice(39,42).map((it, index)=>
  <div key={index} className="px-4">
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
@@ -577,7 +549,7 @@ className='rounded-xl object-cover'
 </div>
 
  <div className='max-w-sm m-auto xs:m-0 border-r'>
- { ycontent.slice(42,45).map((it, index)=>
+ { sortedNews.slice(42,45).map((it, index)=>
  <div key={index} className="px-4">
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
