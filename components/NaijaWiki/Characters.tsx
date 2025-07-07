@@ -5,16 +5,15 @@ import Image from "next/image"
 import Link from "next/link"
 import { CharacterProps } from "@/app/types"
 const Characters = ({listChars, listOtherChars}:{listChars:CharacterProps[],listOtherChars:CharacterProps[]}) => {
-  const [charactertitles]= listChars 
+  const [charactertitles]= listChars.filter((tx)=>tx.charactertitles.filmAbout!== null)
   const titleIdx = listChars.map((ex)=>ex.charactertitles.charRel?.edges??[] ).flat() 
    const char_itx = titleIdx.filter((e, i, a) => {
     return a?.findIndex(item => item?.node?.title === e?.node?.title) === i  
   } ); 
  
  const nextFilms= listOtherChars.map((xy)=> xy.charactertitles) 
-  const fixFilmname = nextFilms.filter((item, index, self) =>  index === self.findIndex((t) => t.filmname === item.filmname)) 
- 
- 
+  // const fixFilmname = nextFilms.filter((item, index, self) =>  index === self.findIndex((t) => t.filmname === item.filmname)) 
+ const fixFilmname = nextFilms.filter((item ) => charactertitles.charactertitles.filmname !== item.filmname)  
   return (
     <div> 
   <div className=' p-11 text-center text-4xl font-bold bg-gray-700 text-white '>  
@@ -51,7 +50,7 @@ const Characters = ({listChars, listOtherChars}:{listChars:CharacterProps[],list
   <table className="border lg:w-1/2"><tbody>{ listChars.map((xx, i)=><tr key={i + ' ' + xx?.title} ><td className="border"> 
  <Link href={`/naija-wiki/character/${xx?.slug}/`}><h3 className="text-xl font-bold p-3 text-center"> {xx?.title} </h3></Link> 
        <div className=" border p-2 m-2 "> 
-       <div className="w-1/4">
+       <div className="w-44">
      
       <Image
   className=""
@@ -85,7 +84,7 @@ const Characters = ({listChars, listOtherChars}:{listChars:CharacterProps[],list
    alt={xy.filmImg1.node.altText}/>
    </div>
  
-    <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().replace(/ /g,'-')}/`}> <h3 className='text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis py-3'>{xy.characterWiki}</h3></Link> 
+    <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().replace(/ /g,'-').replace(/\./g, '')}/`}> <h3 className='text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis py-3'>{xy.characterWiki}</h3></Link> 
 </div>
 )}
 </div>  

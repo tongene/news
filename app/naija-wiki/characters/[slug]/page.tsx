@@ -3,6 +3,7 @@ import { charsFilms, newchars, relatedChars } from "../../newCharHandle"
 import type { Metadata, ResolvingMetadata } from 'next' 
 import { Article, ProfilePage, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
+import { CharacterProps } from "@/app/types";
   
   interface Character {
     content: string;
@@ -16,15 +17,17 @@ import StructuredData from "@/components/StructuredData";
     params: Promise<{ slug: string }>
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
   }
+
   export async function generateMetadata(
     { params }: Props,
     parent: ResolvingMetadata 
   ): Promise<Metadata> {  
     const slug =(await params).slug
     const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))   
-    const [charactertitles]= charsList  
+    const naijaWikis= charsList.map((xy:CharacterProps)=> xy.naijaWikis.nodes).flat()
+    const [charactertitles]=naijaWikis
     const previousImages = (await parent).openGraph?.images || []
-  
+     
     return {
       title: `Urban Naija | ${charactertitles?.charactertitles.filmname} Characters`,
       description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname} `,
@@ -52,13 +55,12 @@ import StructuredData from "@/components/StructuredData";
 
     } 
   }
-
 const CharactersPage =async ({params}: Props) => {
 const slug =(await params).slug
 const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))   
-const [charactertitles]= charsList
-
-const listOtherChars =await relatedChars() 
+  const naijaWikis= charsList.map((xy:CharacterProps)=> xy.naijaWikis.nodes).flat()
+    const [charactertitles]=naijaWikis
+  const listOtherChars =await relatedChars() 
  
 const jsonLd:WithContext<Article> = {
   '@context': 'https://schema.org',
@@ -81,10 +83,12 @@ const jsonLd:WithContext<Article> = {
    keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),   
    
  };
+
    return ( 
-    <div> <StructuredData schema={jsonLd} />  
+    <div> 
+      <StructuredData schema={jsonLd} />  
  <Characters
- listChars={charsList} 
+ listChars={naijaWikis} 
  listOtherChars={listOtherChars}
  />  
  </div>

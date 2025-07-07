@@ -44,7 +44,7 @@ onMouseEnter={() => setHidden(prev => !prev)}
 <span className='text-2xl cursor-pointer hover:scale-150 '>&#10095;</span>
 </div>
 <div className='flex justify-between m-4'> 
-<Link href= {`/topic/${character_data.charactertitles.portrayedby.toLowerCase().replace(/ /g,'-')}/`}><li onClick={navSelect} className='text-lg'>{character_data.title } </li></Link>
+<Link href= {`/topic/${character_data.charactertitles.portrayedby.toLowerCase().replace(/ /g,'-')}/`}><li onClick={navSelect} className='text-lg'>{character_data.charactertitles.portrayedby } </li></Link>
 <span className='text-2xl cursor-pointer hover:scale-150 '>&#10095; </span>
 </div>
 <div className='flex justify-between m-4'> 

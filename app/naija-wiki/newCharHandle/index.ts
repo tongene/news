@@ -172,7 +172,7 @@ export async function relatedChars(){
         body: JSON.stringify({
           query: `
           query WPChars {
-            naijaWikis(first:5) {
+            naijaWikis(first:6) {
                 nodes {
                   content
                   excerpt
@@ -423,7 +423,9 @@ export async function charsFilms(findString: string){
         body: JSON.stringify({
           query: `
           query WPChars($search: String) {
-           naijaWikis(where: {search:$search}) {
+          contentTags(where: {search:$search}) {
+    nodes {
+           naijaWikis{
                 nodes {
                   content
                   excerpt
@@ -553,7 +555,7 @@ export async function charsFilms(findString: string){
           
         } }}
 
-         }  
+        } }}
          ` , variables:{
           search: findString
          }
@@ -561,7 +563,7 @@ export async function charsFilms(findString: string){
         })
         
         }).then(response => response.json())  
-       .then(data =>data?.data.naijaWikis.nodes) 
+       .then(data =>data?.data.contentTags.nodes) 
        .catch(error => console.error('Error:', error));
        const response = wprest
        return wprest

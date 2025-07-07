@@ -17,6 +17,7 @@ title:string
 slug:string,
 excerpt:string
 content:string
+naijaWikis:{nodes:[]}
 node:{
 title:string,
 slug:string
