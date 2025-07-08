@@ -9,7 +9,9 @@ const Character = ({ character_data, related_chars }:{character_data:CharacterPr
 //     const children = typeObj.children.map((item, itemindex) => item.text ) ;
 // return children      
 //   })  
-
+   const containsNumbers = /[0-9]/.test(character_data.slug); 
+   const stringWithoutNumbers = character_data.slug.replace(/\d+/g, ''); 
+ 
 const [hiddenState, setHidden] = useState(true);
 const[changeRandom, setChangeRandom]=useState(0)
  const navSelect=()=>{
@@ -28,10 +30,10 @@ const replaceHTMLTags=(string:string)=>{
   return ( 
     <div >      
  <nav className="sticky bg-white dark:bg-gray-800 flex justify-center p-8 my-8 z-20 " style={navShadow}>  
-<h1 className='opacity-70 italic text-2xl'>{character_data.title.toLowerCase()} </h1>     
+<h1 className='opacity-70 italic text-2xl'>{character_data.title?.toLowerCase()} </h1>     
 <div className='flex justify-center'>
 <h3 className='m-3 text-3xl text-center'> 
-{character_data.title} </h3>
+{character_data?.title} </h3>
 <span className='cursor-pointer opacity-70 text-3xl mt-5' 
 onMouseEnter={() => setHidden(prev => !prev)}
 >&#9660;</span>
@@ -44,11 +46,11 @@ onMouseEnter={() => setHidden(prev => !prev)}
 <span className='text-2xl cursor-pointer hover:scale-150 '>&#10095;</span>
 </div>
 <div className='flex justify-between m-4'> 
-<Link href= {`/topic/${character_data.charactertitles.portrayedby.toLowerCase().replace(/ /g,'-')}/`}><li onClick={navSelect} className='text-lg'>{character_data.charactertitles.portrayedby } </li></Link>
+<Link href= {`/topic/${character_data.charactertitles.portrayedby?.toLowerCase().replace(/ /g,'-')}/`}><li onClick={navSelect} className='text-lg'>{character_data.charactertitles?.portrayedby } </li></Link>
 <span className='text-2xl cursor-pointer hover:scale-150 '>&#10095; </span>
 </div>
 <div className='flex justify-between m-4'> 
-<Link href= {`/topic/${character_data.charactertitles.filmname.toLowerCase().replace(/ /g,'-')}/`}><li className='text-lg'>{character_data.charactertitles.filmname} </li></Link> 
+<Link href= {`/topic/${character_data.charactertitles.filmname?.toLowerCase().replace(/ /g,'-')}/`}><li className='text-lg'>{character_data.charactertitles?.filmname} </li></Link> 
 <span className='text-2xl cursor-pointer hover:scale-150'>&#10095;</span></div>
 </ul>
  </div>
@@ -61,9 +63,9 @@ onMouseEnter={() => setHidden(prev => !prev)}
   {character_data.contentTags.nodes.map((xy, i)=><Link key={i}href={`/topic/${xy.slug}/`}><p className='p-2 text-gray-100 relative z-0 hover:text-blue-600'>  
 { xy.name }</p></Link> )} 
 </div>  
-<Link href={`/naija-wiki/characters/${character_data.charactertitles.filmname.toLowerCase().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
+<Link href={`/naija-wiki/characters/${character_data.charactertitles.filmname?.toLowerCase().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
 All {character_data.charactertitles.filmname} Characters</p></Link>
-<Link href={`/naija-wiki/movies/${character_data.charactertitles.portrayedby.toLowerCase().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
+<Link href={`/naija-wiki/movies/${character_data.charactertitles.portrayedby?.toLowerCase().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
 {character_data.charactertitles.portrayedby} Movies</p></Link> 
 </div>
 <div className='relative' >
@@ -100,19 +102,19 @@ All {character_data.charactertitles.filmname} Characters</p></Link>
   </div> 
   
   <div className='p-2 sm:w-11/12 m-auto px-4 text-white'> 
-  <div className='py-2 text-lg' dangerouslySetInnerHTML={{__html:character_data.excerpt
+  <div className='py-2 text-lg' dangerouslySetInnerHTML={{__html:character_data?.excerpt
 }}/> 
  
   <h3 className='text-2xl font-bold py-2'> Bios </h3 >
   <hr/>  
-  {character_data.charactertitles.charBios.split('\n').map((line)=>
+  {character_data.charactertitles?.charBios.split('\n').map((line)=>
   <div key={Math.random()} className='py-1 text-lg leading-8' dangerouslySetInnerHTML={{__html:line
 }}/> 
    )}
 
   <span className='text-2xl py-2 font-bold'>Information</span>
   <hr/>
-  {character_data.content.split('\n').map((line)=>
+  {character_data?.content.split('\n').map((line)=>
   <div key={Math.random()} className='py-1 text-lg leading-8 [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800' dangerouslySetInnerHTML={{__html:line
 }}/> 
    )}

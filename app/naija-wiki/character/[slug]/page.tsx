@@ -46,9 +46,9 @@ export async function generateMetadata(
   }
 }  
  async function CharacterPage ({ params  }: Props) {
-  const slug =(await params).slug
- const character_data = await newcharCall(slug) 
-const related_chars = await relatedChars()
+    const slug =(await params).slug  
+    const character_data = await newcharCall(slug)  
+   const related_chars = await relatedChars()
 const replaceHTMLTags=(string:string)=>{
   const regex = /(<([^>]+)>)/gi;
   const newString = string?.replace(regex, "");
@@ -80,8 +80,8 @@ const jsonLd:WithContext<ProfilePage> = {
 
    return (  
    <> 
-    <StructuredData schema={jsonLd} />
-   <Character 
+     <StructuredData schema={jsonLd} />  
+  <Character 
    character_data={character_data}
    related_chars={related_chars}
    />  

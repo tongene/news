@@ -54,13 +54,13 @@ const SearchItems = () => {
       params.delete('name');
     }
     replace(`${pathname}?${params.toString()}`);
-  }, 500);
+  }, 200);
   
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoading(true);
-    const value = e.target.value;
-    setNameX1(value);
+    const value = e.target.value; 
     debouncedUpdateURL(value);
+      setNameX1(value);
   };  
   
  
@@ -99,7 +99,7 @@ className='absolute z-20 w-full p-2 border-2 focus:outline-none text-lg'
 type="text" 
 name='name' 
 onChange={handleSearch}
-value={nameX1}
+value={nameX1.toLowerCase()}
 /> 
 <div className="relative z-40 top-3 -right-3/4 ml-22 sm:ml-28 md:ml-32">
 <FontAwesomeIcon icon={faAngleDoubleRight}width={20} className="cursor-pointer opacity-70 text-xl hover:scale-150" onClick={()=>!nameX1?replace('/search/')
