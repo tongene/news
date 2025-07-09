@@ -3,7 +3,14 @@ import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_SECRET!);
-
+// `
+//     <html>
+//       <body style="font-family: Arial; text-align: center; padding: 40px;">
+//         <h2>You have been unsubscribed.</h2>
+//         <p>You’ll no longer receive emails from GoWork Africa Reinvented.</p>
+//       </body>
+//     </html>
+//   ` 
 export async function POST(req: NextRequest, res: NextApiResponse) {
   const resp=await req.json()
   if (!resp.email || typeof resp.email !== 'string') {
@@ -16,17 +23,10 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
     .eq('email', resp.email.toLowerCase());
 
   if (error) {
-    return res.status(500).json({ message: 'Failed to unsubscribe.', error });
+    return NextResponse.json({ message: 'Failed to unsubscribe.' });
   }
  return NextResponse.json(
-      { message: `
-    <html>
-      <body style="font-family: Arial; text-align: center; padding: 40px;">
-        <h2>You have been unsubscribed.</h2>
-        <p>You’ll no longer receive emails from GoWork Africa Reinvented.</p>
-      </body>
-    </html>
-  ` },
+      { message: `Success` },
       { status: 500 }
     );
  
