@@ -4,7 +4,7 @@ import { NextRequest } from 'next/server';
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_SECRET!);
 
-export default async function POST(req: NextRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest, res: NextApiResponse) {
   const resp=await req.json()
   if (!resp.email || typeof resp.email !== 'string') {
     return res.status(400).json({ message: 'Invalid email.' });
