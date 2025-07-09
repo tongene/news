@@ -2,8 +2,7 @@
 import { postsOutline, sidePlusViews } from "@/app/page-data";
 import { InnerEdges } from "@/app/types";
 import NewsDetail from "@/components/NewsDetail" 
-import StructuredData from "@/components/StructuredData";
-import { createClient } from "@/utils/supabase/server";
+import StructuredData from "@/components/StructuredData"; 
 import { NewsArticle, WithContext } from "schema-dts";
   async function newsDetailData(slug:string){ 
   
@@ -370,10 +369,10 @@ const {slug} =await params
   const tags= news_detail.tags.nodes.map((ex:{name:string})=>ex.name).join(', ')
   const news_related = news_detail?.postnewsgroup.relatedPosts?.edges
 const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]
- const next_naija_news = await readNextContent([news_detail.id,exitinginrelated].flat())
- const sidebarItems=await sidePlusViews()  
-  const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)          
-     const news_outline=await postsOutline()
+const next_naija_news = await readNextContent([news_detail.id,exitinginrelated].flat())
+const sidebarItems=await sidePlusViews()  
+const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)          
+const news_outline=await postsOutline()
 //      const naija_wiki =async ()=>{  
 //       const supabase =await createClient() 
 //       const { data:cinema_titles , error } = await supabase 

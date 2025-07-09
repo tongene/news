@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';  
 import { FeedProps } from '@/app/types';
+import { createClient } from '@/utils/supabase/server';
 type Post = {
   url: string;
   lastModified: Date;
@@ -189,7 +190,7 @@ export async function GET() {
   ],
 }) )
 
- 
+
 
 const allPosts = [...content_posts, ...live_posts]; 
 const xml = generateNewsSitemap(allPosts);

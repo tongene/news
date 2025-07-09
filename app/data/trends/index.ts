@@ -3,7 +3,7 @@ import { CronJob } from 'cron';
 import axios from 'axios';
 import { createClient } from '@/utils/supabase/server';
  
-const ourPassword = process.env.NEXT_PUBLIC_WP_SECRET
+const ourPassword = process.env.WP_SECRET
 const ourUsername = "Christina Ngene"
 type Obj={
   title :string
@@ -110,12 +110,12 @@ return () => clearTimeout(fxnTimeout);
 }
 
  const fxnTimeout = setTimeout(() => {
-    CronJob.from({
-    cronTime: '10 8 * * *', 
-    onTick: insertFacts(),
-    start: true,
-    timeZone: 'Africa/Lagos'
-    });
+    // CronJob.from({
+    // cronTime: '10 8 * * *', 
+    // onTick: insertFacts(),
+    // start: true,
+    // timeZone: 'Africa/Lagos'
+    // });
   }, 5000);
  
 return response

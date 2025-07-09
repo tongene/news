@@ -3,6 +3,7 @@ import { newcharCall,relatedChars } from '../../newCharHandle'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { ProfilePage, WithContext } from 'schema-dts'
 import StructuredData from '@/components/StructuredData'
+
 type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>

@@ -103,7 +103,7 @@ className='rounded-xl'
       />
       <div>
    <Link href={`/news/article/${xy.slug}/`}><h2 className='text-2xl font-bold py-3 hover:text-gray-700'>{xy.title} </h2></Link>
-   <div dangerouslySetInnerHTML={{__html:xy.excerpt}} className="leading-8 text-lg"/>
+   <div dangerouslySetInnerHTML={{__html:xy.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="leading-8 text-lg overflow-hidden text-ellipsis "/>
  </div>
   <div className='flex py-3'>
   <p className=''>{moment(xy.date).subtract(1, 'hour').fromNow()} </p>

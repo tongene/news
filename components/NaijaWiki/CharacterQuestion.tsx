@@ -20,7 +20,7 @@ function CharacterQuestion() {
     }));
   }
 
-  const ourPassword = process.env.NEXT_PUBLIC_WP_SECRET
+  const ourPassword = process.env.WP_SECRET
   const ourUsername = "Christina Ngene"
   const submitForm = (e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault() 

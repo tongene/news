@@ -2,7 +2,7 @@
 import axios from "axios";
 import * as cheerio from 'cheerio'; 
 import { CronJob } from "cron";
-const ourPassword = process.env.NEXT_PUBLIC_WP_SECRET
+const ourPassword = process.env.WP_SECRET
 const ourUsername = "Christina Ngene"
 type Obj={
   title :string
