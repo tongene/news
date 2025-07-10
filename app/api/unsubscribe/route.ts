@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_SECRET!);
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   const resp=await req.json()
   if (!resp.email || typeof resp.email !== 'string') {
     return NextResponse.json({ message: 'Invalid email.' },

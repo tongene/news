@@ -58,7 +58,7 @@ return;
         subject: 'News Headlines Today',
         html: `
   <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-    <img src=${image} alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />
+    <img src=${image} alt="Newsletter Banner" style="width: 50%; border-radius: 6px; margin-bottom: 20px;" />
 
     <p style="font-size: 16px; color: #333333;">Hi ${safeName},</p>
 
