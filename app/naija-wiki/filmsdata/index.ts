@@ -75,7 +75,7 @@ date:date
 // //  }) 
  
 }).then(response =>response) 
-.catch(err => { 
+.catch(err => {  
 return
 }); 
 // await new Promise(resolve => setTimeout(resolve, 1000)); 

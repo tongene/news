@@ -225,7 +225,7 @@ return {resp, resp1Live, resp2Post}
 
   export const newsViews=async()=>{
     const latestPosts=await newsByLatest() 
-    const postX = latestPosts?.resp?.categories?.nodes.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts?.pageInfo?.endCursor).flat()
+    const postX = latestPosts?.resp?.categories?.nodes.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts?.pageInfo?.endCursor).flat()??[]
  
      const wprest = fetch('https://content.culturays.com/graphql',{     
         method: 'POST',

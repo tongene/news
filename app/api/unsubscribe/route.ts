@@ -3,21 +3,42 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_SECRET!);
 
-export async function GET(req: NextRequest) {
-  const resp=await req.json()
-  if (!resp.email || typeof resp.email !== 'string') {
-    return NextResponse.json({ message: 'Invalid email.' },
-      { status: 400 });
+// export async function GET(req: NextRequest) {
+//   const resp=await req.json()
+//   if (!resp.email || typeof resp.email !== 'string') {
+//     return NextResponse.json({ message: 'Invalid email.' },
+//       { status: 400 });
+//   }
+
+//   const { error } = await supabase
+//     .from('newsletter')
+//     .update({ unsubscribed: true })
+//     .eq('email', resp.email.toLowerCase());
+
+//   if (error) {
+//     return NextResponse.json({ message: error },
+//       { status: 500 });
+//   }
+
+
+// }
+
+
+ export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const email = searchParams.get('email');
+
+  if (!email) {
+    return new NextResponse('Missing email.', { status: 400 });
   }
 
   const { error } = await supabase
     .from('newsletter')
     .update({ unsubscribed: true })
-    .eq('email', resp.email.toLowerCase());
+    .eq('email', email.toLowerCase());
 
   if (error) {
-    return NextResponse.json({ message: 'Failed to unsubscribe.' },
-      { status: 500 });
+    return new NextResponse('Failed to unsubscribe.', { status: 500 });
   }
     const html = `
     <html>
@@ -37,5 +58,5 @@ export async function GET(req: NextRequest) {
     'Content-Type': 'text/html',
   },
 });
-
+ // return NextResponse.redirect(new URL('/unsubscribe-success', req.url));
 }

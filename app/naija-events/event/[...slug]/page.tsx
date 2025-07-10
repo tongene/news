@@ -71,6 +71,9 @@ const { data, error} = await supabase
 .select()
 .eq('slug', slug[0])
 .single()
+  if (!data) {
+    return  
+    }
 if (error) {
 console.error('Error fetching posts:', error.message);
 return;
@@ -103,7 +106,7 @@ const jsonLd: WithContext<Event> = {
   image: [
    `https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}/`
   ],
-  keywords:[eventTitle.genre].join(', ')
+  keywords:[eventTitle?.genre].join(', ')
   // organizer: {
   //   "@type": "Organization",
   //   name: "Culturays",
