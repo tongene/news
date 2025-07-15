@@ -5,6 +5,20 @@ import { type User } from "@supabase/supabase-js";
 //   email:string,
 
 // } ;
+export type PagesProps= {
+    id:string
+    title:string 
+    slug:string
+    date:string
+    featuredImage:{
+node:{
+sourceUrl:string
+caption:string
+altText:string
+}
+}
+    contents:{nodes:[]}
+}
 export type SearchedData={
 id:string;
 title:string;

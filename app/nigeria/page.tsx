@@ -2,13 +2,7 @@ import StructuredData from '@/components/StructuredData';
 import { CollectionPage, WithContext } from 'schema-dts'; 
 import { fetchGeo, fetchInd, fetchGov, fetchEco } from './pages-action';
 import Link from 'next/link';
- 
-type PagesProps= {
-    id:string
-    title:string 
-    slug:string 
-    contents:{nodes:[]}
-}
+import { PagesProps } from '../types';
 
 const Industry = async() => {
 const contentPages = await fetchInd()

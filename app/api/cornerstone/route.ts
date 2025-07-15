@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';  
-import { FeedProps } from '@/app/types';
-import { createClient } from '@/utils/supabase/server';
+import { FeedProps, PagesProps } from '@/app/types'; 
+import { fetchPages } from '@/app/nigeria/pages-action';
 type Post = {
   url: string;
   lastModified: Date;
@@ -18,86 +18,7 @@ type Post = {
     article_title: string;
   }[];
 };
-const contentFeed = async()=>{  
-    const wprest =fetch('https://content.culturays.com/graphql',{
-       method: 'POST',
-       headers:{ 
-       'Content-Type':'application/json'
-       },
-       body: JSON.stringify({
-         query: `query CONTENTFEED{
-       posts(first:500) {
-       nodes {
-         date
-         contentTypeName 
-           id
-           title
-           slug 
-            author {
-           node {
-             name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }  
-       }
-      }`})
-       
-       }).then(response => response.json())   
-       .then(data => data.data.posts.nodes )
-       .catch(error => console.error('Error:', error));
-      // const response = wprest?.data.contentNodes.nodes 
-       return wprest 
-   
-   }
-  const livesFeed = async()=>{  
-    const wprest =fetch('https://content.culturays.com/graphql',{
-       method: 'POST',
-       headers:{ 
-       'Content-Type':'application/json'
-       },
-       body: JSON.stringify({
-         query: `query CONTENTFEED{
-       lives(first:100) {
-       nodes {
-         date
-         contentTypeName
-         id
-      databaseId
-        date
-        modified
-        excerpt
-        title
-           slug 
-            author {
-           node {
-             name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }  
-       }
-      }`})
-       
-       }).then(response => response.json())   
-       .then(data => data.data.lives.nodes )
-       .catch(error => console.error('Error:', error));
-      // const response = wprest?.data.contentNodes.nodes 
-       return wprest 
-   
-   }
+ 
 const generateNewsSitemap = (content_posts: Post[]) => {
   const xmlContent = content_posts
     .map((post) => {
@@ -150,11 +71,10 @@ ${xmlContent}
 
 
 export async function GET() {  
-  const postsData:FeedProps[]=await contentFeed() 
-  const liveData:FeedProps[]=await livesFeed() 
-   
-  const content_posts: Post[] = postsData.map((post) => ({
-    url: `https://culturays.com/news/topic/${post.slug}/`,
+  const postsData=await fetchPages()  
+  const pages= postsData.filter((xy:PagesProps)=> xy.contents.nodes.length>0).map((dy:PagesProps)=> dy.contents.nodes).flat()  
+  const content_posts= pages.map((post:PagesProps) => ({
+    url: `https://culturays.com/nigeria/${post.slug}/`,
     lastModified: new Date(post.date),
     changeFrequency: 'always',
     priority: 0.8,
@@ -171,26 +91,9 @@ export async function GET() {
     ],
   })); 
 
-  const live_posts: Post[] = liveData.map((post)=>({ 
-    title:post.title,
-   url:`https://culturays.com/news/live/${post.databaseId}/${post.slug}/`,
-   lastModified:new Date(post.date),
-  changeFrequency:'always', 
-  priority:0.8,
-   images: [post?.featuredImage?.node?.sourceUrl],
-   news: [
-    {
-      publication: {
-        name: 'Urban Naija News',
-        language: 'en',
-      },
-      publication_date: new Date(post.date).toISOString(),
-      article_title: post.title,
-    },
-  ],
-}) )
+  
  
-const allPosts = [...content_posts, ...live_posts]; 
+const allPosts = [...content_posts]; 
 const xml = generateNewsSitemap(allPosts);
   return new NextResponse(xml, {
     headers: {
