@@ -32,6 +32,16 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/news/topic/:path*',
+        destination: '/news/:path*',
+        permanent: true,
+      }, 
+      {
+        source: '/news/article/:path*',
+        destination: '/news/:path*',
+        permanent: true,
+      },
        {
         source: '/moviewikiafrica/wiki/:path*',
         destination: '/naija-wiki/character/:path*',

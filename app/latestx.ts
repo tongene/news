@@ -1,12 +1,11 @@
-import { sidePanelNewsItems } from "./sidex";
-  const controller = new AbortController();
+import { sidePlusViews } from "./page-data";
+ // const controller = new AbortController();
 // const timeout = setTimeout(() => controller.abort(), 8000);
-  export async function altPageNewsItems(){
-    const txPosts=await sidePanelNewsItems()
-    const postX = txPosts?.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts.pageInfo.endCursor).flat()
+  export async function altPageNewsItems(){    
+ const latestPosts=await sidePlusViews()
+
     try{
-const wprest = fetch('https://content.culturays.com/graphql',{
-   
+      const wprest = fetch('https://content.culturays.com/graphql',{ 
       method: 'POST',
       headers:{
           'Content-Type':'application/json'
@@ -14,7 +13,7 @@ const wprest = fetch('https://content.culturays.com/graphql',{
       body: JSON.stringify({
         query:`
         query WPPOSTS {                  
-           posts(where: {categoryName: "Opinions" }, after:"${postX[0]}") {
+           posts( where: {categoryName: "Latest" }, after:"${latestPosts.posts.pageInfo.endCursor}") {
               pageInfo {
             startCursor
             endCursor
@@ -70,10 +69,8 @@ const wprest = fetch('https://content.culturays.com/graphql',{
       
       }),
      
-      }).then(response =>{
- 
-    return response.json();
-  }).then(data => data.data.posts.edges)         
+      }).then(response =>  response.json())
+      .then(data =>data.data )         
       .catch(error =>{
        console.log(error)
   }) 

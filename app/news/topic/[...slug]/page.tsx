@@ -6,7 +6,7 @@ import StructuredData from "@/components/StructuredData";
 import { NewsArticle, WithContext } from "schema-dts";
   async function newsDetailData(slug:string){ 
   
-     const wprest =   fetch('https://content.culturays.com/graphql',{
+  const wprest = fetch('https://content.culturays.com/graphql',{
   method: 'POST', 
   headers:{
   'Content-Type':'application/json' 
@@ -364,8 +364,9 @@ export async function generateMetadata({ params }: {
 const NewsDetailPage = async ({params}: {
   params: Promise<{ slug: string }>
 }) => {
-const {slug} =await params 
-  const news_detail= await newsDetailData(slug[0])
+const {slug} =await params  
+  const news_detail= await newsDetailData(slug[0]) 
+
   const tags= news_detail.tags.nodes.map((ex:{name:string})=>ex.name).join(', ')
   const news_related = news_detail?.postnewsgroup.relatedPosts?.edges
 const exitinginrelated= news_related?.map((fx:{cursor:string})=>fx.cursor)??[]

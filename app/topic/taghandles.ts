@@ -1,6 +1,3 @@
- 
- 
- 
 export async function tag (slug:string) { 
   const wprest = fetch('https://content.culturays.com/graphql',{
     method: 'POST',     
@@ -188,6 +185,21 @@ export async function contentTag (slug:string) {
           }
           ... on NaijaWiki {
             id
+             slug
+            title
+            contentTypeName
+              contentTags {
+            nodes{  id
+            name
+            slug
+            }
+            }
+               featuredImage{
+            node{
+            altText
+            sourceUrl
+            }
+            }
             charactertitles {
               relatedPosts {
                 nodes {

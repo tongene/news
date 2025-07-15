@@ -1,4 +1,5 @@
  
+import { createClient } from '@/utils/supabase/server';
 import {google} from 'googleapis'
 import { type NextRequest, NextResponse } from 'next/server';
 export async function POST(req:NextRequest){
@@ -36,7 +37,10 @@ const response =await sheets.spreadsheets.values.append({
         ],
     }
 })
-
+const supabase = await createClient()
+  const { error } = await supabase
+    .from('newsletter')
+    .insert({ unsubscribed: false, email:resp.email.toLowerCase(), name:resp.name }) 
 return NextResponse.json({ message: response }, {status:200}) 
 
 }catch(err){

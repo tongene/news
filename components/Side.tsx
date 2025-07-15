@@ -79,7 +79,7 @@ alt={news_outline[0]?.featuredImage?.node.altText}/>
  </div> 
  <div className='w-4/5 mx-2 py-3'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/topic/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex?.title}</h2></Link>
+ <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex?.title}</h2></Link>
 </div>
 <div className='flex text-gray-400 justify-between items-center leading-8 '> 
 <Link href={`/creator/${ex?.author.node.slug}/`}><p >{ ex?.author.node.name }</p> </Link>
@@ -103,7 +103,7 @@ alt={news_outline[0]?.featuredImage?.node.altText}/>
  alt={ex?.featuredImage?.node.altText}/> 
  
  </div> 
-<Link href={`/news/topic/${ex.slug}/`}><h2 className='text-2xl font-bold py-4 hover:text-gray-400 border-t my-2'>{ex.title}</h2></Link>
+<Link href={`/news/${ex.slug}/`}><h2 className='text-2xl font-bold py-4 hover:text-gray-400 border-t my-2'>{ex.title}</h2></Link>
 </div>
 )}
 

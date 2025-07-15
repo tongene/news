@@ -1,4 +1,3 @@
- 
 import Tags from "@/components/Tags"; 
 import { contentTag, tag } from "../taghandles";
 import type { Metadata, ResolvingMetadata } from 'next'
@@ -16,22 +15,22 @@ export async function generateMetadata(
 ): Promise<Metadata> {
      const slug =(await params).slug
      const tag_details= await contentTag(slug[0]) 
-     const previousImages = (await parent).openGraph?.images || [] 
-    
-     return {
-  title:`Urban Naija | All News About ${tag_details.nodes[0]?.name}`,  
-  description: tag_details.nodes[0]?.name, 
- keywords: tag_details.nodes[0]?.name , 
-    twitter: {
-      card: 'summary_large_image',
-      title: tag_details.nodes[0]?.name ,
-      description: tag_details.nodes[0]?.name,  
-      images:['/culturays.png' , ...previousImages],  
-    },
+     const previousImages = (await parent).openGraph?.images || []
+ 
+return {
+title:`Urban Naija | All News About ${tag_details.nodes[0]?.name }`,  
+description: tag_details.nodes[0]?.name,  
+keywords: tag_details.nodes[0]?.name , 
+twitter: {
+card: 'summary_large_image',
+title: tag_details.nodes[0]?.name ,
+description: tag_details.nodes[0]?.name,  
+images:['/culturays.png', ...previousImages],  
+},
        openGraph: { 
-        title:`Urban Naija | All News About ${tag_details.nodes[0]?.name}`,  
-         description: tag_details.nodes[0]?.name, 
-           url: `https://culturays.com/topic/${slug}/`,
+        title:`Urban Naija | All News About ${slug[0].toUpperCase()}`,  
+         description: tag_details.nodes[0]?.name,  
+           url: `https://culturays.com/topic/${slug[0]}/`,
           siteName: 'Urban Naija',
          images: [{url:'https://culturays.com/culturays.png' ,
           width: 800,
@@ -45,18 +44,18 @@ export async function generateMetadata(
      }
    } 
 const TagPage = async({params}: Props) => {  
-  const slug =(await params).slug
+const slug =(await params).slug
 // const id= params.slug[1].replace('%3D',''),
- const content_tag_response = await contentTag(slug[0])
-  const tag_response = await tag(slug[0]) 
- const taggedContent= content_tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map((dy:{nodes:TagProps})=> dy.nodes).flat() 
+const content_tag_response = await contentTag(slug[0])
+const tag_response = await tag(slug[0]) 
+const taggedContent= content_tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map((dy:{nodes:TagProps})=> dy.nodes).flat() 
 const taggedPosts = tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map((dy:{nodes:TagProps})=> dy.nodes).flat()
 
   const jsonLd: WithContext<NewsArticle> = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
-     name:tag_response.nodes[0]?.name,
-     headline:tag_response.nodes[0]?.name , 
+     name:slug[0].toUpperCase(),
+     headline:slug[0].toUpperCase(), 
      description:"This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world",
      author: {
        "@type": "Person",
@@ -67,9 +66,9 @@ const taggedPosts = tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map(
      dateModified:"2025-04-09T12:00:00Z",
       mainEntityOfPage: {
        "@type": "WebPage",
-       "@id":tag_response.nodes[0]?.slug ,
+       "@id":slug ,
      },
-     url:tag_response.nodes[0]?.slug,
+     url:slug,
      image: "https://culturays.com/assets/images/opengraph-image.png" ,
      publisher: {
        "@type": "Organization",
@@ -83,9 +82,7 @@ const taggedPosts = tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map(
      keywords:tag_response.nodes[0]?.name ,    
      
    };
- 
- 
-     
+  
   return (
     <div>
     <StructuredData schema={jsonLd} /> 

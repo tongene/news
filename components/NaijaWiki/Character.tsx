@@ -46,11 +46,11 @@ onMouseEnter={() => setHidden(prev => !prev)}
 <span className='text-2xl cursor-pointer hover:scale-150 '>&#10095;</span>
 </div>
 <div className='flex justify-between m-4'> 
-<Link href= {`/topic/${character_data.charactertitles.portrayedby?.toLowerCase().replace(/ /g,'-')}/`}><li onClick={navSelect} className='text-lg'>{character_data.charactertitles?.portrayedby } </li></Link>
+<Link href= {`/topic/${character_data.charactertitles.portrayedby?.toLowerCase().trim().replace(/ /g,'-')}/`}><li onClick={navSelect} className='text-lg'>{character_data.charactertitles?.portrayedby } </li></Link>
 <span className='text-2xl cursor-pointer hover:scale-150 '>&#10095; </span>
 </div>
 <div className='flex justify-between m-4'> 
-<Link href= {`/topic/${character_data.charactertitles.filmname?.toLowerCase().replace(/ /g,'-')}/`}><li className='text-lg'>{character_data.charactertitles?.filmname} </li></Link> 
+<Link href= {`/topic/${character_data.charactertitles.filmname?.toLowerCase().trim().replace(/ /g,'-')}/`}><li className='text-lg'>{character_data.charactertitles?.filmname} </li></Link> 
 <span className='text-2xl cursor-pointer hover:scale-150'>&#10095;</span></div>
 </ul>
  </div>
@@ -63,9 +63,9 @@ onMouseEnter={() => setHidden(prev => !prev)}
   {character_data.contentTags.nodes.map((xy, i)=><Link key={i}href={`/topic/${xy.slug}/`}><p className='p-2 text-gray-100 relative z-0 hover:text-blue-600'>  
 { xy.name }</p></Link> )} 
 </div>  
-<Link href={`/naija-wiki/characters/${character_data.charactertitles.filmname?.toLowerCase().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
+<Link href={`/naija-wiki/characters/${character_data.charactertitles.filmname?.toLowerCase().trim().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
 All {character_data.charactertitles.filmname} Characters</p></Link>
-<Link href={`/naija-wiki/movies/${character_data.charactertitles.portrayedby?.toLowerCase().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
+<Link href={`/naija-wiki/movies/${character_data.charactertitles.portrayedby?.toLowerCase().trim().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
 {character_data.charactertitles.portrayedby} Movies</p></Link> 
 </div>
 <div className='relative' >

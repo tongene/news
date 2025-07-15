@@ -11,8 +11,7 @@ import { createClient } from "@/utils/supabase/server";
 import { CronJob } from "cron"; 
 import { BlogPosting, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData"; 
-import { nextNewsPosts } from "./data";
- 
+import { nextNewsPosts } from "./data"  
  
  interface ObjType { 
   title: string[];
@@ -218,6 +217,7 @@ return (
     posts_notIn_newsPosts={posts_notIn_newsPosts}
    
     />  
+ 
     </div>
   ); 
 }

@@ -1,5 +1,6 @@
  
 import { nextNewsPosts, postCategories } from "./data";
+import { altPageNewsItems } from "./latestx";
 import { sidePlusViews } from "./page-data";
 import { InnerEdges } from "./types";
  
@@ -317,10 +318,11 @@ export async function postLastAndScrolledCategories (){
                return wprest 
        
          }
-     export async function nextXXPosts(){
-          const latestPosts=await sidePlusViews()
-        const news_notIn_newsPosts= await nextNewsPosts()   
-   const endXNews = news_notIn_newsPosts.categories.edges.map((dy :InnerEdges[])=> dy ).flat().map((xy :{node:{posts:{pageInfo:{endCursor:string}}}})=> xy?.node?.posts.pageInfo.endCursor).flat()  
+
+export async function nextXXPosts(){
+const latestPosts=await altPageNewsItems() 
+const news_notIn_newsPosts= await nextNewsPosts()       
+const endXNews = news_notIn_newsPosts.categories.edges.map((dy :InnerEdges[])=> dy ).flat().map((xy :{node:{posts:{pageInfo:{endCursor:string}}}})=> xy?.node?.posts.pageInfo.endCursor).flat()  
 
    const endXCate = await postCategories()   
      const postCategory_Children =(endXCate?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[]
@@ -390,8 +392,7 @@ export async function postLastAndScrolledCategories (){
       
       }).then(response =>response.json())
       .then(data => data.data)
-      .catch(error => console.error('Error:', error));
-       
+      .catch(error => console.error('Error:', error));       
 
   const wpXXrest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
@@ -401,7 +402,7 @@ export async function postLastAndScrolledCategories (){
       body: JSON.stringify({
         query:`
         query WPPOSTS {       
-       posts(first:20, after:"${latestPosts.posts.pageInfo.endCursor}" , where:{categoryName: "Latest"}){ 
+       posts(first:30 ,after:"${latestPosts.posts.pageInfo.endCursor}" , where:{categoryName: "Latest"}){ 
             pageInfo {
               startCursor
               endCursor
@@ -455,7 +456,7 @@ export async function postLastAndScrolledCategories (){
       })
       
       }).then(response =>response.json())
-      .then(data =>  data.data  )
+      .then(data =>  data.data)
       .catch(error => console.error('Error:', error));
 
   const wpRestXX = fetch('https://content.culturays.com/graphql',{

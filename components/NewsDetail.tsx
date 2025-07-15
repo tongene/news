@@ -194,7 +194,7 @@ return html2pdfRef.current().set(opt).from(element).save();
        <div key={ex.node.title + ' ' + Math.random()} className=" py-4 first:border-b border px-3 lg:px-0"> 
        <div className="md:flex lg:block justify-center"> 
        <div className="px-1 md:w-4/5 m-auto">
-       <Link href={`/news/topic/${ex.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-lg py-1 font-bold">{ex.node.title} </h2></Link>
+       <Link href={`/news/${ex.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-lg py-1 font-bold">{ex.node.title} </h2></Link>
        </div>
        
      <div className="px-2 md:w-2/3 lg:w-4/5 md:px-0 md:m-0 lg:m-auto m-auto"> 
@@ -207,7 +207,7 @@ return html2pdfRef.current().set(opt).from(element).save();
       </div> 
      
        </div>
-        <Link href={`/news/topic/${ex.node.slug}/`}><button className="m-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
+        <Link href={`/news/${ex.node.slug}/`}><button className="m-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
    
         </div>  
        )} 
@@ -231,7 +231,7 @@ return html2pdfRef.current().set(opt).from(element).save();
        <div key={ex.node.title + ' ' + Math.random()} className=" py-4 first:border-b border px-3 lg:px-0"> 
        <div className="md:flex lg:block justify-center"> 
        <div className="px-1 md:w-4/5 m-auto">
-       <Link href={`/news/topic/${ex.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-lg py-1 font-bold">{ex.node.title} </h2></Link>
+       <Link href={`/news/${ex.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-lg py-1 font-bold">{ex.node.title} </h2></Link>
        </div> 
        
      <div className="px-2 md:w-2/3 lg:w-4/5 md:px-0 md:m-0 lg:m-auto m-auto"> 
@@ -244,7 +244,7 @@ return html2pdfRef.current().set(opt).from(element).save();
       </div> 
      
        </div>
-        <Link href={`/news/topic/${ex.node.slug}/`}><button className="m-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
+        <Link href={`/news/${ex.node.slug}/`}><button className="m-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
    
         </div>   
        )} 
@@ -262,7 +262,7 @@ return html2pdfRef.current().set(opt).from(element).save();
 <div className='flex flex-wrap py-2'> 
   {post?.tags?.nodes.map((xy)=>
 <div key={xy?.name + ' ' + Math.random()} className='m-1'>
- <Link href={`/topic/${xy?.slug}/`}><h4 className='hover:bg-gray-600 hover:text-gray-200 border border-gray-600 bg-gray-50 text-gray-600 p-2 text-lg w-max text-center'>{xy?.name} </h4></Link>
+ <Link href={`/${xy?.slug}/`}><h4 className='hover:bg-gray-600 hover:text-gray-200 border border-gray-600 bg-gray-50 text-gray-600 p-2 text-lg w-max text-center'>{xy?.name} </h4></Link>
 
 </div>)} 
 </div>
@@ -279,11 +279,11 @@ return html2pdfRef.current().set(opt).from(element).save();
      </div>
   <div className="max-w-7xl m-auto overflow-auto pt-4 px-1 hidden-scroll" > 
    <div className='flex' style={{width:'1000px'}}> 
-   {nextPosts.filter((vx)=> vx.contentTypeName==='post').slice(0,3).map((xy,i)=>   
+   {nextPosts.filter(vx => Object.keys(vx).length > 0).slice(0,3).map((xy,i)=>   
    <div className='border pt-5 px-3 w-96' key={i + ' ' + Math.random()}> 
   
-    <Link href={`/topic/${xy.tags.nodes[0]?.slug}/`}> <h3 className='text-red-500 text-sm italic py-2 hover:dark:text-gray-500'>{xy.tags?.nodes[0]?.name} </h3></Link>
-    <Link href={`/news/topic/${xy.slug}`}><h2 className="text-gray-800 hover:text-gray-700 text-xl hover:dark:text-gray-500 dark:text-gray-300 font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer "style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>            
+    <Link href={`/${xy.tags.nodes[0]?.slug}/`}> <h3 className='text-red-500 text-sm italic py-2 hover:dark:text-gray-500'>{xy.tags?.nodes[0]?.name} </h3></Link>
+    <Link href={`/news/${xy.slug}`}><h2 className="text-gray-800 hover:text-gray-700 text-xl hover:dark:text-gray-500 dark:text-gray-300 font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer "style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>            
       <div className='py-2 text-sm'> 
         <p className='text-gray-600 dark:text-red-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 
         <Link href={`/creator/${xy.author.node.slug}/`}>

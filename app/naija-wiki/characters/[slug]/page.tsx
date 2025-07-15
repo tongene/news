@@ -20,10 +20,10 @@ import { CharacterProps } from "@/app/types";
 
   export async function generateMetadata(
     { params }: Props,
-    parent: ResolvingMetadata 
+    parent: ResolvingMetadata  
   ): Promise<Metadata> {  
     const slug =(await params).slug
-    const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))   
+    const charsList = await charsFilms(slug.toLowerCase().trim().replace(/-/g, ' '))   
     const naijaWikis= charsList.map((xy:CharacterProps)=> xy.naijaWikis.nodes).flat()
     const [charactertitles]=naijaWikis
     const previousImages = (await parent).openGraph?.images || []
@@ -40,7 +40,7 @@ import { CharacterProps } from "@/app/types";
     },
       openGraph: {
       title: `Naija Wiki | ${charactertitles?.charactertitles.filmname} Characters`,
-       url: `https://culturays.com/naija-wiki/characters/${slug.toLowerCase().replace(/-/g, ' ')}/`,
+       url: `https://culturays.com/naija-wiki/characters/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`,
       siteName: 'Urban Naija',
       description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname} `,
         images:[{url:charactertitles?.charactertitles.filmImg1.node.sourceUrl,
@@ -49,7 +49,7 @@ import { CharacterProps } from "@/app/types";
            ...previousImages}],
       },
       alternates: {
-     canonical: `https://culturays.com/naija-wiki/characters/${slug.toLowerCase().replace(/-/g, ' ')}/`,
+     canonical: `https://culturays.com/naija-wiki/characters/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`,
 
 },
 
@@ -67,7 +67,7 @@ const jsonLd:WithContext<Article> = {
   '@type': 'Article',
    headline: `Culturays - ${charactertitles?.charactertitles.filmname} | Characters `, 
    description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
-   url:`https://culturays.com/naija-wiki/characters/${slug.toLowerCase().replace(/-/g, ' ')}/`,
+   url:`https://culturays.com/naija-wiki/characters/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`,
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.filmname} - Movies`,     
@@ -76,7 +76,7 @@ const jsonLd:WithContext<Article> = {
    
     mainEntityOfPage: {
      "@type": "WebPage",
-     "@id":`https://culturays.com/naija-wiki/characters/${slug.toLowerCase().replace(/-/g, ' ')}/`, 
+     "@id":`https://culturays.com/naija-wiki/characters/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`, 
    },
 
   image: charactertitles?.charactertitles.filmImg1.node.sourceUrl, 

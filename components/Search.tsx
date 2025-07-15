@@ -120,14 +120,14 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=> it?.content
  <div className="flex flex-wrap pt-4" >
    {it?.contentTags?.nodes?.slice(0,5)?.map((ex, i)=>
  <div  key={i + Math.random()}>
-  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name}  
+  <Link href={`/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name}  
 </span>}</Link>  
 
 </div>)}</div> 
 <div className="flex flex-wrap pt-4" >
    {it?.tags?.nodes?.slice(0,5)?.map((ex, i)=>
  <div  key={i + Math.random()}>
-  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name}  
+  <Link href={`/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name}  
 </span>}</Link>  
 
 </div>)}</div>
@@ -155,14 +155,14 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=> it?.content
 <div className="flex flex-wrap pt-4" >
    {it?.contentTags?.nodes?.slice(0,5)?.map((ex, i)=>
  <div  key={i + Math.random()}>
-  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
+  <Link href={`/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
 </span>}</Link>  
 
 </div>)}</div>
 <div className="flex flex-wrap pt-4" >
    {it?.tags?.nodes?.slice(0,5)?.map((ex, i)=>
  <div  key={i + Math.random()}>
-  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
+  <Link href={`/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
 </span>}</Link>  
 
 </div>)}</div>
@@ -185,18 +185,18 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=> it?.content
      />
      </div>
      <div className="mx-4 xs:py-5">            
- <Link href={`/news/topic/${it?.slug}/`}><h3 className="hover:opacity-50 text-xl cursor-pointer font-medium leading-tight">{it?.title }</h3></Link> 
+ <Link href={`/news/${it?.slug}/`}><h3 className="hover:opacity-50 text-xl cursor-pointer font-medium leading-tight">{it?.title }</h3></Link> 
  <div className="flex flex-wrap pt-4" >
    {it?.contentTags?.nodes?.slice(0,5)?.map((ex, i)=>
  <div  key={i + Math.random()}>
-  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
+  <Link href={`/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
 </span>}</Link>  
 
 </div>)}</div>
 <div className="flex flex-wrap pt-4" >
    {it?.tags?.nodes?.slice(0,5)?.map((ex, i)=>
  <div  key={i + Math.random()}>
-  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
+  <Link href={`/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
 </span>}</Link>  
 
 </div>)}</div>
@@ -221,14 +221,14 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=> it?.content
  <div className="flex flex-wrap pt-4" >
    {it?.contentTags?.nodes?.slice(0,5)?.map((ex, i)=>
  <div  key={i + Math.random()}>
-  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
+  <Link href={`/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
 </span>}</Link>  
 
 </div>)}</div>
 <div className="flex flex-wrap pt-4" >
    {it?.tags?.nodes?.slice(0,5)?.map((ex, i)=>
  <div  key={i + Math.random()}>
-  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
+  <Link href={`/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
 </span>}</Link>  
 
 </div>)}</div>
@@ -245,7 +245,7 @@ searchItem?.length>0&&searchItem?.map((it, index)=>
 <div className="m-6">          
  <Link href={`/forum/post/${it.slug}/${it.id}/`}><h3 className="search-title hover:opacity-50 text-lg m-4 cursor-pointer font-medium h-3/4 leading-tight">{it.title }</h3></Link> 
 {it.tags.nodes.slice(0,5)?.map((ex, i:number)=>
- <div className="flex flex-wrap justify-between pt-4"key={i}> <Link href={`/topic/${String(ex).replace('.','')}/${ex.id}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 p-4">#
+ <div className="flex flex-wrap justify-between pt-4"key={i}> <Link href={`/${String(ex).replace('.','')}/${ex.id}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 p-4">#
 {String(ex).replace('.','').split(' ').join(' ') }  
 </span>}</Link>  
 

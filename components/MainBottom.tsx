@@ -63,7 +63,7 @@ const postsEnd =async()=>{
  
      },[])
 
-   
+
   return (
     <div> 
 
@@ -83,11 +83,11 @@ const postsEnd =async()=>{
       <div>
  { top_x_Posts?.length>0&&top_x_Posts.slice(0,1).map((xy, i)=> 
 <div key={i + ' ' + Math.random()} className='border max-w-sm min-[500px]:max-w-md sm:max-w-lg m-auto md:m-0 px-3 py-6 ' > 
-<Link href={`/news/topic/${xy.node.slug}/`}>
+<Link href={`/news/${xy.node.slug}/`}>
  
 <h2 className='py-4 my-4 text-4xl lg:text-5xl font-bold hover:text-gray-400 px-1' style={{lineHeight:'55px'}} >{xy?.node.title}</h2></Link >
   <div className='text-ellipsis overflow-hidden' style={{display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/topic/${xy.node.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 xl:px-4 hover:text-gray-400 text-xl' /></Link ></div>  
+  <Link href={`/news/${xy.node.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 xl:px-4 hover:text-gray-400 text-xl' /></Link ></div>  
  <div>
 <hr className='h-3 bg-black my-1'/> 
 <hr className='h-1 bg-black my-1'/> 
@@ -141,7 +141,7 @@ const postsEnd =async()=>{
  </div> 
  <div className='w-44 xs:w-[200px] sm:w-[280px] mx-2'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/topic/${ex?.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
+ <Link href={`/news/${ex?.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
 </div>
 <div className='flex text-gray-400 justify-between items-center leading-8'> 
 <Link href={`/creator/${ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p> </Link>
@@ -168,7 +168,7 @@ const postsEnd =async()=>{
  </div> 
  <div className='w-44 xs:w-[200px] sm:w-[280px] mx-2'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/topic/${ex?.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
+ <Link href={`/news/${ex?.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
 </div>
 <div className='flex text-gray-400 justify-between items-center leading-8'> 
 <Link href={`/creator/${ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p> </Link>
@@ -187,7 +187,7 @@ const postsEnd =async()=>{
  
 { top_x_Posts?.length>0&&top_x_Posts.slice(7,11).map((xy, i)=>
 <div className='max-w-sm m-auto py-11 hover:text-gray-300 border-black border-b-4 px-4 sm:h-52' key={i + ' ' + Math.random()}>
-<Link href={`/news/topic/${xy.node.slug}/`}>
+<Link href={`/news/${xy.node.slug}/`}>
 <h2 className='text-xl font-bold'>{xy.node.title}</h2></Link> 
   <p className='text-sm py-4'>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
   
@@ -219,10 +219,10 @@ const postsEnd =async()=>{
   alt={xy?.node.featuredImage?.node.altText}/> 
   
   </div>
-  <Link href={`/news/topic/${xy.node.slug}/`}>
+  <Link href={`/news/${xy.node.slug}/`}>
   <h2 className='text-ellipsis overflow-hidden h-20 py-4 text-2xl font-bold px-3 xl:px-4 hover:text-gray-400 ' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy?.node.title}</h2></Link >
   <div className=''>
-  <Link href={`/news/topic/${xy.node.slug}/`}> <div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
+  <Link href={`/news/${xy.node.slug}/`}> <div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
 <div className='flex text-gray-400 justify-between py-3 my-4 px-2 overflow-hidden'> 
 <Link href={`/creator/${xy?.node.author.node.slug}/`}><p>{ xy?.node.author.node.name }</p></Link> 
   <p>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
@@ -247,7 +247,7 @@ const postsEnd =async()=>{
   </div> 
   <div className='w-4/5 mx-2 py-6'> 
   <div className=' text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/topic/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex?.node.title}</h2></Link>
+  <Link href={`/news/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex?.node.title}</h2></Link>
  </div>
 <div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
 <Link href={`/creator/${ ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p> </Link>
@@ -271,9 +271,9 @@ const postsEnd =async()=>{
   alt={xy?.node.featuredImage?.node.altText}/> 
   
   </div>
-  <Link href={`/news/topic/${xy.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} className='text-ellipsis overflow-hidden h-28 py-4 text-2xl font-bold px-3 hover:text-gray-400'>{xy?.node.title}</h2></Link >
+  <Link href={`/news/${xy.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} className='text-ellipsis overflow-hidden h-28 py-4 text-2xl font-bold px-3 hover:text-gray-400'>{xy?.node.title}</h2></Link >
   <div className='py-4'>
-  <Link href={`/news/topic/${xy.node.slug}/`}><div style={{ display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }} dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='text-ellipsis overflow-hidden h-32 leading-8 px-3 hover:text-gray-400'/></Link ></div>  
+  <Link href={`/news/${xy.node.slug}/`}><div style={{ display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }} dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='text-ellipsis overflow-hidden h-32 leading-8 px-3 hover:text-gray-400'/></Link ></div>  
 <div className='flex text-gray-400 py-4 justify-between px-4'> 
 <Link href={`/creator/${ xy?.node.author.node.slug}/`}><p className='hover:text-gray-700 px-2'>{ xy?.node.author.node.name }</p></Link> 
   <p className='px-2'>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
@@ -296,10 +296,10 @@ const postsEnd =async()=>{
   alt={xy?.node.featuredImage?.node.altText}/> 
   
   </div>
-  <Link href={`/news/topic/${xy.node.slug}/`}>
+  <Link href={`/news/${xy.node.slug}/`}>
   <h2 className='text-ellipsis overflow-hidden h-20 py-4 text-2xl font-bold px-3 xl:px-4 hover:text-gray-400 leading-8' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy?.node.title}</h2></Link >
   <div className='py-4'>
-  <Link href={`/news/topic/${xy.node.slug}/`}> <div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
+  <Link href={`/news/${xy.node.slug}/`}> <div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
 <div className='flex text-gray-400 justify-between py-3 my-4 px-2'> 
 <Link href={`/creator/${xy?.node.author.node.slug}/`}><p className='hover:text-gray-700'>{ xy?.node.author.node.name }</p></Link> 
   <p>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
@@ -323,7 +323,7 @@ const postsEnd =async()=>{
   </div> 
   <div className='w-4/5 mx-2 py-6'> 
   <div className=' text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/topic/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex?.node.title}</h2></Link>
+  <Link href={`/news/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex?.node.title}</h2></Link>
  </div>
 <div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
 <Link href={`/creator/${ ex?.node.author.node.slug}/`}><p className='hover:text-gray-700 py-4'>{ ex?.node.author.node.name }</p> </Link>
@@ -350,7 +350,7 @@ const postsEnd =async()=>{
   </div> 
  
   <div className="absolute top-0 left-0 bg-gray-900 bg-opacity-70 flex justify-center items-center z-50 h-full w-full">
-    <Link href={`/news/topic/${ex?.node.slug}/`}><div className="text-center px-1">
+    <Link href={`/news/${ex?.node.slug}/`}><div className="text-center px-1">
       <h2 className='text-2xl text-gray-50 hover:text-gray-400'>{ex?.node.title} </h2> 
     </div></Link> 
 </div>
@@ -382,10 +382,10 @@ const postsEnd =async()=>{
  </div> 
  <div className='w-3/4 xs:w-4/5 mx-2 py-4'> 
 
- <Link href={`/news/topic/${ex.slug}/`}>
+ <Link href={`/news/${ex.slug}/`}>
  <h2 className='text-2xl font-bold text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex?.title}</h2></Link > 
   <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>
-    <Link href={`/news/topic/${ex.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 my-2 hover:text-gray-400'/></Link >
+    <Link href={`/news/${ex.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 my-2 hover:text-gray-400'/></Link >
 </div>
  
 <div className='flex text-base text-gray-400 justify-between items-center leading-8'> 
@@ -403,7 +403,7 @@ const postsEnd =async()=>{
 </div>
 
   <div className='lg:m-0 sm:grid grid-cols-2 lg:block gap-1 max-w-3xl m-auto'> 
-   {scrolledContent?.slice(0,5).map((ex, i)=>
+   {scrolledContent?.slice(0,4).map((ex, i)=>
 <div className='shadow-2xl my-4 m-auto max-w-md md:max-w-sm' key={ex.title + ' ' + Math.random()}>
  <div > 
   <Image 
@@ -413,8 +413,8 @@ const postsEnd =async()=>{
   height={675} 
   alt={ex?.featuredImage?.node.sourceUrl }/>  
   </div>
-  <Link href={`/news/topic/${ex.slug}/`}><h2 className='leading-9 my-2 overflow-hidden text-ellipsis text-2xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex?.title}</h2></Link >
-   <Link href={`/news/topic/${ex.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 hover:text-gray-400 overflow-hidden text-ellipsis'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/></Link >
+  <Link href={`/news/${ex.slug}/`}><h2 className='leading-9 my-2 overflow-hidden text-ellipsis text-2xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex?.title}</h2></Link >
+   <Link href={`/news/${ex.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 hover:text-gray-400 overflow-hidden text-ellipsis'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/></Link >
 <div className='flex text-gray-400 justify-between items-center py-2 leading-8'> 
 <Link href={`/creator/${ ex.author.node.slug}/`}><p className='hover:text-gray-700'>{ ex?.author.node.name }</p> </Link>
   <p>{ dateFormatter?.format(Date.parse(ex.date)) }</p>

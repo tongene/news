@@ -122,7 +122,7 @@ xposts?.map((it, index)=> it?.contentTypeName ==='naija-wiki' ?
  :it?.contentTypeName ==='post' ?           
 <div key={it?.id + Math.random()} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 
 <div className="m-6"> 
-<Link href={`/news/topic/${it?.slug }/`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.title}</p></Link> 
+<Link href={`/news/${it?.slug }/`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.title}</p></Link> 
 
 </div>
 </div>: it?.contentTypeName ==='netflix-naija' &&it?.netflixCategories?.nodes.length>0? it?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes?.flat()?.map((itx, index)=> 

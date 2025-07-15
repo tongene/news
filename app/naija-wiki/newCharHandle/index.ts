@@ -413,6 +413,7 @@ export async function newcharCall(slug:string){
     return wprest 
 } 
 export async function charsFilms(findString: string){ 
+ const clearString= findString.toLowerCase().trim().replace(/-/g, ' ')
  
   try {
     const wprest =fetch('https://content.culturays.com/graphql',{
@@ -557,7 +558,7 @@ export async function charsFilms(findString: string){
 
         } }}
          ` , variables:{
-          search: findString
+          search: clearString
          }
         
         })

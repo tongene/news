@@ -35,14 +35,14 @@ type TagProps={
 }
 
 const Tags = ({tag_response, content_tag_response, slug}:{tag_response:TagProps[],content_tag_response:TagProps[], slug:string }) => { 
-  const taggedAll = tag_response.concat(content_tag_response)
-  
-   return (
-   <div className="search_all" > 
-  <div className="m-auto bg-white dark:bg-black sm:px-4 xl:px-28 px-2"style={{maxWidth:'1550px'}}> 
-   <h2 className="py-3 font-bold text-3xl font-bold capitalize">{slug[0].replace(/-/g," ")}</h2>
- <div className="sm:flex justify-center py-6 " >
-  <div >
+const taggedAll = tag_response.concat(content_tag_response).filter(vx => Object.keys(vx).length > 0)
+ 
+return (
+<div className="search_all" > 
+<div className="m-auto bg-white dark:bg-black sm:px-4 xl:px-28 px-2"style={{maxWidth:'1550px'}}> 
+<h2 className="py-3 font-bold text-3xl font-bold capitalize">{slug[0].replace(/-/g," ")}</h2>
+<div className="lg:flex justify-center py-6" >
+<div>
 {taggedAll.slice(0,1)?.map((ex, index)=>
 ex.contentTypeName ==='video'? 
 <div key={ex.id + Math.random()}className="max-w-4xl">  
@@ -80,11 +80,9 @@ ex.contentTypeName ==='video'?
   
 </div> 
  
-</div>:
-
+</div>: 
 <div key={ex.id + Math.random()}className="max-w-4xl">  
- <div className="shadow-sm my-3">
- 
+ <div className="shadow-sm"> 
   <div className=""> 
  <Image
  src={ex?.featuredImage?.node.sourceUrl}
@@ -100,7 +98,7 @@ ex.contentTypeName ==='video'?
  </div> 
 
  <div className="flex flex-col justify-between py-4 mx-3" >
-     { ex.contentTypeName ==='post'&& <Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title leading-9 hover:opacity-50 text-3xl font-bold cursor-pointer font-medium underline">{ex.title}</h3></Link> }
+     { ex.contentTypeName ==='post'&& <Link href={`/news/${ex.slug}/`}><h3 className="search-title leading-9 hover:opacity-50 text-3xl font-bold cursor-pointer font-medium underline">{ex.title}</h3></Link> }
 
      { ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className="search-title leading-9 hover:opacity-50 text-3xl font-bold cursor-pointer font-medium underline">{ex.title}</h3></Link> }
 
@@ -129,19 +127,17 @@ ex.contentTypeName ==='video'?
 </div>
 )}  
 
-  </div>
-   
+  </div> 
 
   <div className="max-w-xl"> 
 {taggedAll.slice(1,4)?.map((ex, index)=> 
   ex.contentTypeName ==='video'?
 <div key={ex.id + Math.random()} className="shadow-sm my-1 xs:my-0 py-2"> 
 <div className="px-2">
-  <div className="flex">        
- <div > 
-  
+  <div className="flex">     
+ <div >  
  <Image
- className="max-w-28 sm:max-w-32 md:max-w-44 "
+ className="max-w-28 md:max-w-44"
  src={ex.featuredImage.node.sourceUrl}
  width={1200}
  height={675}
@@ -170,8 +166,8 @@ ex.contentTypeName ==='video'?
  </div>
 
 </div>:
-<div key={ex.id + Math.random()} className="shadow-sm my-1 xs:my-0 py-2"> 
- <div className="px-2">
+<div key={ex.id + Math.random()} className="shadow-sm my-1 xs:my-0"> 
+  <div className="px-2">
   <div className="flex">        
  <div> 
  <Image
@@ -182,14 +178,14 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
  alt={ex.featuredImage.node.altText}
  priority={true}
  />
- {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki'  ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">News</p>}
+ {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki'  ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>}
 
  {ex.contentTypeName ==='netflix-naija' ?<Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-sm font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-sm font-bold text-center capitalize"></p>}
 
  {ex.contentTypeName ==='naija-wiki' ?<Link href={`/naija-wiki/character/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">Character</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>}
  </div>  
   {ex.contentTypeName ==='post'?<div className="mx-2">
-    <Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> 
+    <Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> 
  
     <div className="flex py-2 text-sm"> 
       <p>All tags:</p>{ex.tags?.nodes.filter((vx:{slug:string})=>!slug.includes(vx.slug)).slice(0,3)?.map((ex:{name:string, slug:string}, i:number)=> 
@@ -281,7 +277,7 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
    alt={ex.featuredImage.node.altText}
    priority={true}
    />
-      {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki' ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">News</p>} 
+      {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki' ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>} 
 
       {ex.contentTypeName ==='netflix-naija' ?<Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>}
 
@@ -289,13 +285,13 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 
   </div>
   <div className="mx-2" >
-   {ex.contentTypeName ==='post'&& <Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link>}
+   {ex.contentTypeName ==='post'&& <Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link>}
 
    {ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link>} 
 
    {ex.contentTypeName ==='netflix-naija'&& <Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link>} 
 
-   {ex.contentTypeName !=='naija-wiki'&& ex.contentTypeName !=='netflix-naija'&&ex.contentTypeName !=='post'&& <Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link>} 
+   {ex.contentTypeName !=='naija-wiki'&& ex.contentTypeName !=='netflix-naija'&&ex.contentTypeName !=='post'&& <Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link>} 
  
     {ex.contentTypeName ==='post'?<div className="flex py-2 text-sm"> 
       <p>All tags:</p>{ex.tags?.nodes.filter((vx:{slug:string})=>!slug.includes(vx.slug)).slice(0,3)?.map((ex:{name:string, slug:string}, i:number)=> 
@@ -339,13 +335,13 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
   <div className="shadow p-5 my-1 max-w-md sm:w-96  m-auto lg:m-0" key={ex.id + Math.random()} > 
    <p className="text-gray-100 p-3 bg-red-600 text-xl max-w-max my-1">{ex.contentTypeName}</p>
      
-      { ex.contentTypeName ==='post'&&<Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
+      { ex.contentTypeName ==='post'&&<Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
 
       { ex.contentTypeName ==='naija-wiki'&&<Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> } 
 
       { ex.contentTypeName ==='netflix-naija'&&<Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
 
-      {ex.contentTypeName !=='naija-wiki'&& ex.contentTypeName !=='netflix-naija'&& ex.contentTypeName !=='post'&&<Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> } 
+      {ex.contentTypeName !=='naija-wiki'&& ex.contentTypeName !=='netflix-naija'&& ex.contentTypeName !=='post'&&<Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> } 
   
        {ex.contentTypeName ==='post'?<div className="flex py-2 text-sm"> 
       <p>All tags:</p>{ex.tags?.nodes.filter((vx:{slug:string})=>!slug.includes(vx.slug)).slice(0,3)?.map((ex:{name:string, slug:string}, i:number)=> 
@@ -405,7 +401,7 @@ ex.contentTypeName ==='video'?
 
  </div> 
 {ex.contentTypeName ==='post'?<div className="py-6 mx-3">
-    <Link href={`/news/topic/${ex.slug}/`}><h2 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h2></Link> 
+    <Link href={`/news/${ex.slug}/`}><h2 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h2></Link> 
  
     <div className="flex py-2 text-sm"> 
       <p>All tags:</p>{ex.tags?.nodes.filter((vx:{slug:string})=>!slug.includes(vx.slug)).slice(0,3)?.map((ex:{name:string, slug:string}, i:number)=> 
@@ -500,7 +496,7 @@ ex.contentTypeName ==='video'?
       {ex.contentTypeName ==='naija-wiki' ? <Link href={`/naija-wiki/character/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">Character</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>}
 
    <div className="py-5 mx-3">
-   {ex.contentTypeName ==='post'&& <Link href={`/news/topic/${ex.slug}/`}><h3  className='mx-1 text-2xl my-2 underline'>{ex.title}</h3></Link>}
+   {ex.contentTypeName ==='post'&& <Link href={`/news/${ex.slug}/`}><h3  className='mx-1 text-2xl my-2 underline'>{ex.title}</h3></Link>}
 
 {ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className=' mx-1 text-2xl my-2 underline'>{ex.title}</h3></Link> }
 
@@ -550,7 +546,7 @@ ex.contentTypeName ==='video'?
 
   {ex.contentTypeName ==='naija-wiki'?<Link href={`/naija-wiki/character/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>} 
 
-  {ex.contentTypeName ==='post'&& <Link href={`/news/topic/${ex.slug}/`}><h3  className='mx-1 text-2xl my-2 underline'>{ex.title}</h3></Link>}
+  {ex.contentTypeName ==='post'&& <Link href={`/news/${ex.slug}/`}><h3  className='mx-1 text-2xl my-2 underline'>{ex.title}</h3></Link>}
 
 {ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className=' mx-1 text-2xl my-2 underline'>{ex.title}</h3></Link> }
 
@@ -558,7 +554,7 @@ ex.contentTypeName ==='video'?
 
 {ex.contentTypeName !=='post'&& ex.contentTypeName !=='naija-wiki'&&ex.contentTypeName !=='netflix-naija'&& <Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><h3 className=' mx-1 text-2xl my-2 underline'>{ex.title}</h3></Link> }
 
-</div>
+</div> 
 
 )} 
 
@@ -604,7 +600,7 @@ ex.contentTypeName ==='video'?
 
    <div className="py-5 mx-3"> 
 
-   {ex.contentTypeName ==='post'&& <Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link>}
+   {ex.contentTypeName ==='post'&& <Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link>}
 
 {ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
 
@@ -640,7 +636,7 @@ ex.contentTypeName ==='video'?
   <div className="shadow p-5 my-1 max-w-md sm:w-96 m-auto lg:m-0" key={ex.id + Math.random()}> 
    <p className="text-gray-100 p-3 bg-red-600 text-xl max-w-max my-1">{ex.contentTypeName}</p>
 
-      {ex.contentTypeName ==='post'&& <Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link>}
+      {ex.contentTypeName ==='post'&& <Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link>}
 
       {ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
 
@@ -679,7 +675,7 @@ ex.contentTypeName ==='video'?
      <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> 
     <div className="flex justify-between py-5 mx-3 gap-1">
  
-   { ex.contentTypeName ==='post'?<Link href={`/news/topic/${ex.slug}/`}><h3 className="hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-9 underline">{ex.title}</h3></Link>:''}
+   { ex.contentTypeName ==='post'?<Link href={`/news/${ex.slug}/`}><h3 className="hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-9 underline">{ex.title}</h3></Link>:''}
 
 { ex.contentTypeName ==='netflix-naija'? <Link href={`/netflix-naija/news/${ex.slug}/`}><h3 className="hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-9 underline">{ex.title}</h3></Link>:''}
 
@@ -712,7 +708,7 @@ ex.contentTypeName ==='video'?
 
   </div>
   <div className="mx-2" >
-    {ex.contentTypeName ==='post'&&<Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link>} 
+    {ex.contentTypeName ==='post'&&<Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link>} 
 
    {ex.contentTypeName ==='naija-wiki'&& <Link href={`/naia-wiki/character/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> }
 
@@ -763,7 +759,7 @@ ex.contentTypeName ==='video'?
   <div className="shadow p-5 my-1 max-w-md sm:w-96 m-auto lg:m-0" key={ex.id + Math.random()} > 
    <p className="text-gray-100 p-3 bg-red-600 text-xl max-w-max my-1">{ex.contentTypeName}</p>
 
-       {ex.contentTypeName ==='post'&&<Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> } 
+       {ex.contentTypeName ==='post'&&<Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> } 
 
       {ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
 
@@ -803,7 +799,7 @@ ex.contentTypeName ==='video'?
        <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
       <div className="flex justify-between py-5 mx-3 gap-1">
    
-      {ex.contentTypeName ==='post'?<Link href={`/news/topic/${ex.slug}/`}><h3 className="hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-9 underline">{ex.title}</h3></Link>:''}
+      {ex.contentTypeName ==='post'?<Link href={`/news/${ex.slug}/`}><h3 className="hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-9 underline">{ex.title}</h3></Link>:''}
 
 {ex.contentTypeName ==='netflix-naija'? <Link href={`/netflix-naija/news/${ex.slug}/`}><h3 className="hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-9 underline">{ex.title}</h3></Link>:''}
 
@@ -832,7 +828,7 @@ ex.contentTypeName ==='video'?
 
   {ex.contentTypeName ==='naija-wiki'?<Link href={`/naija-wiki/character/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">Character</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>}
 
-{ ex.contentTypeName ==='post'&&<Link href={`/news/topic/${ex.slug}/`}><h3 className="hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-9 underline p-4">{ex.title}</h3></Link>}
+{ ex.contentTypeName ==='post'&&<Link href={`/news/${ex.slug}/`}><h3 className="hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-9 underline p-4">{ex.title}</h3></Link>}
 
 {ex.contentTypeName ==='netflix-naija'&& <Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><h3 className="hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-9 underline p-4">{ex.title}</h3></Link>}
 
@@ -868,10 +864,10 @@ ex.contentTypeName ==='video'?
 </div>:
   <div className="shadow p-5 my-1 max-w-md" key={index + Math.random()} > 
    <p className="text-gray-100 p-3 bg-red-600 text-xl max-w-max my-1">{ex.contentTypeName}</p>
-     { ex.contentTypeName ==='post'&& <Link href={ex.contentTypeName ==='post'?`/news/topic/${ex.slug}/`:`/news/${ex.contentTypeName}/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
+     { ex.contentTypeName ==='post'&& <Link href={ex.contentTypeName ==='post'?`/news/${ex.slug}/`:`/news/${ex.contentTypeName}/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
   
 
-     { ex.contentTypeName ==='naija-wiki'&& <Link href={ex.contentTypeName ==='post'?`/news/topic/${ex.slug}/`:`/news/${ex.contentTypeName}/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link>}
+     { ex.contentTypeName ==='naija-wiki'&& <Link href={ex.contentTypeName ==='post'?`/news/${ex.slug}/`:`/news/${ex.contentTypeName}/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link>}
 
       { ex.contentTypeName ==='netflix-naija'&&<Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link>
 }
@@ -956,7 +952,7 @@ ex.contentTypeName ==='video'?
  </div>
 
  <div className="flex flex-col justify-between py-4 mx-3" >
-     { ex.contentTypeName ==='post'&& <Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title leading-9 hover:opacity-50 text-3xl font-bold cursor-pointer font-medium underline">{ex.title}</h3></Link> }
+     { ex.contentTypeName ==='post'&& <Link href={`/news/${ex.slug}/`}><h3 className="search-title leading-9 hover:opacity-50 text-3xl font-bold cursor-pointer font-medium underline">{ex.title}</h3></Link> }
  { ex.contentTypeName ==='netflix-naija'&& <Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><h3 className="search-title leading-9 hover:opacity-50 text-3xl font-bold cursor-pointer font-medium underline">{ex.title}</h3></Link> }
 
  { ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className="search-title leading-9 hover:opacity-50 text-3xl font-bold cursor-pointer font-medium underline">{ex.title}</h3></Link> }
@@ -1052,7 +1048,7 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 
  </div>  
     <div className="mx-2" >
-   {ex.contentTypeName ==='post'&& <Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> }
+   {ex.contentTypeName ==='post'&& <Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> }
 
 {ex.contentTypeName ==='netflix-naija'&& <Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> }
 
@@ -1127,7 +1123,7 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 
   </div>
   <div className="mx-2" >
-   { ex.contentTypeName ==='post'&&<Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> }
+   { ex.contentTypeName ==='post'&&<Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> }
 
    {  ex.contentTypeName ==='naija-wiki'&&<Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> }
 
@@ -1177,7 +1173,7 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 </div>:
   <div className="shadow p-5 my-1 max-w-md sm:w-96 m-auto lg:m-0" key={ex.id + Math.random()}> 
    <p className="text-gray-100 p-3 bg-red-600 text-xl max-w-max my-1">{ex.contentTypeName}</p>
-   { ex.contentTypeName ==='post'&& <Link href={`/news/topic/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
+   { ex.contentTypeName ==='post'&& <Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
 
    { ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className="search-title hover:opacity-50 lg:text-xl font-bold cursor-pointer font-medium leading-7 underline my-3">{ex.title}</h3></Link> }
 

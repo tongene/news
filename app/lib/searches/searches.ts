@@ -34,7 +34,7 @@ export const searchValues = async (name:string) => {
           body: JSON.stringify({ 
             query: `
             query SEARCHES {
-     contentNodes(first:20, where: { search: "${name}"}) {
+     contentNodes( where: { search: "${name}"}) {
      nodes {
       slug
       id
@@ -208,5 +208,7 @@ export const searchValues = async (name:string) => {
         .catch(error => console.error('Error:', error)); 
         return singular_response
     
-    }}
+    }
+  
+  }
     

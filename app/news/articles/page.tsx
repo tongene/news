@@ -9,7 +9,7 @@ export const metadata = {
   metadataBase: new URL(defaultUrl), 
    title:"Urban News | Environment",
     alternates: {
-    canonical:  `https://culturays.com/news/environment/`,
+    canonical:  `https://culturays.com/news/articles/`,
  
   }
 };

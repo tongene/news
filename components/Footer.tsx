@@ -41,7 +41,9 @@ Copyright{" "}
 © Ngenet Studio, 2024
 </p>
 </Link>
-
+   <p className="mt-8 text-sm text-gray-500">
+  Learn more about <Link href="/nigeria/" className="text-blue-600 underline">Topics we cover</Link>.
+</p>
 </div>  
 <ThemeSwitcher /> 
 </footer>

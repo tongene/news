@@ -153,7 +153,7 @@ height={675}
    </div> 
  
   <div className=" w-3/4 mx-1 px-1 text-lg"> 
- <Link href={`/news/topic/${ex.node.slug}/`}>
+ <Link href={`/news/${ex.node.slug}/`}>
  <div dangerouslySetInnerHTML={{__html:ex.node.excerpt}} className="text-ellipsis overflow-hidden " style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/>
  </Link> 
 </div>

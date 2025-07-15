@@ -3,27 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_SECRET!);
 
-// export async function GET(req: NextRequest) {
-//   const resp=await req.json()
-//   if (!resp.email || typeof resp.email !== 'string') {
-//     return NextResponse.json({ message: 'Invalid email.' },
-//       { status: 400 });
-//   }
-
-//   const { error } = await supabase
-//     .from('newsletter')
-//     .update({ unsubscribed: true })
-//     .eq('email', resp.email.toLowerCase());
-
-//   if (error) {
-//     return NextResponse.json({ message: error },
-//       { status: 500 });
-//   }
-
-
-// }
-
-
  export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const email = searchParams.get('email');
@@ -55,7 +34,7 @@ const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env
  return new NextResponse(html, {
   status: 200,
   headers: {
-    'Content-Type': 'text/html',
+    'Content-Type': 'text/html; charset=utf-8',
   },
 });
  // return NextResponse.redirect(new URL('/unsubscribe-success', req.url));

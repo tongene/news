@@ -6,16 +6,18 @@ import Link from "next/link"
 import { CharacterProps } from "@/app/types"
 
 const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],listOtherChars:CharacterProps[]}) => {
-  const [charactertitles]= listMovies 
-  const titleIdx = listMovies.filter((ex)=>ex.charactertitles.charRel?.edges??[]?.length>0 ).flat() 
-   const char_itx = titleIdx.map((xy)=> xy.charactertitles.charRel.edges).flat(); 
+const naijaWikis:CharacterProps[]= listMovies.map((xy )=> xy.naijaWikis.nodes).map((dy )=> dy).flat() 
+const [charactertitles]= naijaWikis
+const characterItems=listMovies.map((ex)=>ex.naijaWikis.nodes).flat() 
+const titleIdx = characterItems.filter((xy:CharacterProps)=> xy.charactertitles?.charRel?.edges??[]?.length>0 )
+const char_itx = titleIdx.map((xy:CharacterProps)=> xy.charactertitles.charRel.edges).flat(); 
  
      const nextFilms= listOtherChars.map((xy)=> xy.charactertitles) 
      const fixFilmname = nextFilms.filter((item, index, self) =>  index === self.findIndex((t) => t.filmname === item.filmname))
  
   return (
     <div> 
-  <div className=''> 
+   <div className=''> 
 <h3 className="p-20 text-center text-4xl font-bold bg-gray-700 text-white">{charactertitles?.charactertitles.portrayedby} Movies</h3>
 
 </div> 
@@ -24,10 +26,10 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
     <div className="border p-3 h-1/5 md:w-1/2 lg:w-1/3"> 
   <Image
   className=""
-    src={charactertitles.charactertitles.filmImg1?.node.sourceUrl}
+    src={charactertitles?.charactertitles.filmImg1?.node.sourceUrl}
     width={1250}
     height={650}
-    alt={charactertitles.charactertitles.filmname}/> 
+    alt={charactertitles?.charactertitles.filmname}/> 
     </div>
 <div className="md:w-1/2 lg:w-3/4"> 
   <div className="flex border"> 
@@ -45,14 +47,14 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
 </div> 
 </div>
  </div> 
- 
-  <table className="border w-2/3 xl:w-1/2"><thead><tr ><td className="text-2xl p-11 font-bold w-full">Characters of {charactertitles.charactertitles.portrayedby}</td></tr></thead><tbody className="md:flex justify-center">{ listMovies.map((xx, i)=>   
+
+  <table className="border w-2/4 md:w-3/4 lg:w-1/2 mx-auto"><thead><tr ><td className="text-2xl p-8 font-bold">Characters of {charactertitles.charactertitles.portrayedby}</td></tr></thead><tbody className="md:flex justify-center">{ (characterItems as CharacterProps[]).map((xx, i)=>   
     <tr className="border" key={i + ' ' + xx.title}><td>
-       <div className="border p-2 m-2 "> 
-       <div className="w-max m-auto ">
+       <div className="border p-2 m-2 w-80"> 
+      <div className="">
      
       <Image      
-      className="h-64 w-96"  
+      className="h-56 w-80"  
     src={xx?.featuredImage?.node.sourceUrl}
     width={1250}
     height={650}
@@ -60,10 +62,10 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
     </div> 
      
   <ul className="text-xl font-bold flex jusify-between my-2"> 
-    <Link href={`/naija-wiki/character/${xx.slug}/`}><h3> {xx.title} <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4"/></h3></Link>
-  {/* <p className="list-disc text-xl font-bold hover:text-gray-400"> {xx.charactertitles.portrayedby} </p>  */}
+    <Link href={`/naija-wiki/character/${xx.slug}/`}><h3> {xx.title} <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4"/>{xx?.charactertitles.filmname}</h3></Link>
+ 
  </ul> 
- <ul><li dangerouslySetInnerHTML={{__html:xx.charactertitles.charBios}}className="list-disc text-lg overflow-hidden text-ellipsis leading-8"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></ul>
+ <ul><li dangerouslySetInnerHTML={{__html:xx?.charactertitles.charBios}}className="list-disc text-lg overflow-hidden text-ellipsis leading-8"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></ul>
     </div>
     </td></tr>) }</tbody><thead><tr ><td className="text-2xl p-11 font-bold w-full">Related Actors</td></tr></thead><tbody>  
   {char_itx.map((xx, i)=><tr key={i + ' ' + xx?.node.title} >    
@@ -90,11 +92,11 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
 <div className="px-11 py-4 text-center text-2xl font-bold w-max">
   <h3>Next Actors</h3> 
 </div>
-<div className="max-w-7xl m-auto overflow-auto pt-4 px-1 hidden-scroll" > 
+  <div className="max-w-7xl m-auto overflow-auto pt-4 px-1 hidden-scroll" > 
 <div className='flex' style={{width:'1000px'}}>  
   {fixFilmname.slice(0,10).map((xy)=>
     <div key={xy.filmname + ' ' + Math.random()}className='border pt-5 px-3 w-96'>
-     <Link href={`/naija-wiki/movies/${xy.portrayedby.toLowerCase().replace(/ /g,'-')}/`}> <h3 className='text-red-500 hover:bg-black italic py-2 hover:dark:text-gray-500 p-2 font-bold text-2xl'>{xy.portrayedby}</h3></Link> 
+     <Link href={`/naija-wiki/movies/${xy.portrayedby.toLowerCase().trim().replace(/ /g,'-')}/`}> <h3 className='text-red-500 hover:bg-black italic py-2 hover:dark:text-gray-500 p-2 font-bold text-2xl'>{xy.portrayedby}</h3></Link> 
 <div className="w-72 h-44">
   <Image
   className="w-72 h-44"
@@ -103,12 +105,12 @@ const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[],
    src={xy.actorImgs.node.sourceUrl}
    alt={xy.actorImgs.node.altText}/>
    </div>
-   <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().replace(/ /g,'-')}/`}><h2 className="text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis py-3" >{xy.characterWiki.slice(0, -5)}</h2></Link> 
+   <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().trim().replace(/ /g,'-')}/`}><h2 className="text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis py-3" >{xy.characterWiki.slice(0, -5)}</h2></Link> 
  
 </div>
 )}
 </div>
-</div>
+</div>  
    </div>
   )
 }
