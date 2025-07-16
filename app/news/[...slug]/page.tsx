@@ -975,7 +975,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {  
   const slug =(await params).slug 
   async function resolveContent(slug: string) {
-  for (const type of ["article", "business", "economy", "Award", "Technology", "Health", "Society","Environment", "Nollywood"]) {
+  for (const type of ["article", "business", "economy", "award", "technology", "health", "society","environment", "nollywood"]) {
     const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}/`);
     if (res?.title) {
       return { ...res, __typename: type };
@@ -1043,6 +1043,7 @@ const ArticleDetailPage = async ({params}: Props) => {
 const slug =(await params).slug  
 async function resolveContent(slug: string) {
   for (const type of ["article", "business", "economy", "award", "technology", "health", "society","environment", "nollywood"]) {
+    console.log(type)
     const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}/`);
     if (res?.title) {
       return { ...res, __typename: type };

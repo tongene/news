@@ -41,6 +41,18 @@ const nextConfig = {
         source: '/news/article/:path*',
         destination: '/news/:path*',
         permanent: true,
+      } 
+      , 
+      {
+        source: '/news/economy/:path*',
+        destination: '/news/:path*',
+        permanent: true,
+      }
+      , 
+      {
+        source: '/news/business/:path*',
+        destination: '/news/:path*',
+        permanent: true,
       },
        {
         source: '/moviewikiafrica/wiki/:path*',
