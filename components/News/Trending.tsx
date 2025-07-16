@@ -6,14 +6,9 @@ import Link from "next/link";
 import { useState } from "react";
  
 const Trending = ({related_to_trend, trends_categories, trends}:{related_to_trend:TrendsProps[],trends_categories:TrendsProps[], trends:TrendsProps}) => {  
- const replaceHTMLTags=(string:string)=>{
-  const regex = /(<([^>]+)>)/gi;
-  //(/<\/?[^>]+(>|$)/g, "")
-  const newString =string?.replace(regex, "")  
-  return newString 
-   } 
-   const [readAll, setReadAll]=useState(false)
+ const [readAll, setReadAll]=useState(true)
  const trendsAll = trends_categories[0].trends.nodes?.concat(trends_categories[1].trends.nodes)?.concat(trends_categories[2].trends.nodes)?.concat(trends_categories[3].trends.nodes)?.concat(trends_categories[4].trends.nodes)?.concat(trends_categories[5].trends.nodes)
+ 
   return ( 
     <div className="m-auto px-4" style={{maxWidth:'1700px'}}> 
     <div className="xl:flex justify-center" style={{maxWidth:'1600px'}}>
@@ -51,7 +46,7 @@ alt={trends.featuredImage.node.altText}
 <div> 
 <small className="text-md italic py-2">{moment(xy.date).subtract(1, 'hour').fromNow()} </small>
 <Link href={`/news/trending/${xy.slug}/`}><h3 className="hover:text-gray-500 text-2xl font-bold overflow-hidden text-ellipsis leading-8"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link>
-<Link href={`/news/trending/${xy.slug}/`}><p className='hover:text-gray-500 text-lg font-serif overflow-hidden text-ellipsis my-1'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} > {replaceHTMLTags(xy.excerpt)} </p></Link>
+<Link href={`/news/trending/${xy.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}} className='hover:text-gray-500 text-lg font-serif overflow-hidden text-ellipsis my-1'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} /> </Link>
 </div>
  
 </div>
@@ -67,7 +62,7 @@ alt={trends.featuredImage.node.altText}
 <div key={xy.title + ' ' + i} className="p-4 border rounded"> 
 <small className="text-md italic text-red-600">{moment(xy.date).subtract(1, 'hour').fromNow()} </small>
 <Link href={`/news/trending/${xy.slug}/`}><h3 className="hover:text-gray-500 text-2xl  overflow-hidden text-ellipis leading-8 dark:text-gray-300" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link> 
-<Link href={`/news/trending/${xy.slug}/`}><p className='hover:text-gray-500 overflow-hidden text-ellipis my-2'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}> {replaceHTMLTags(xy.excerpt)} </p></Link>
+<Link href={`/news/trending/${xy.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}}className='hover:text-gray-500 overflow-hidden text-ellipis my-2'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/></Link>
 <div className='py-2'>
 <Image
 src={xy.featuredImage.node.sourceUrl}
@@ -88,11 +83,11 @@ alt={xy.featuredImage.node.altText}
  <div className="0 dbg-gray-20ark:bg-black m-auto border max-w-2xl xl:max-w-sm">
   {/* <h2 className="text-center p-3 text-3xl text-gray-700 font-bold dark:text-gray-200">Popular Trends</h2>   <hr className="p-0.5 bg-gray-600 w-1/2 m-auto m-1"/>*/}
 
-{trendsAll?.slice(10,15).map((xy,i)=>
+{trendsAll?.slice(10,13).map((xy,i)=>
 <div key={xy.title + ' ' + i} className="flex m-4 border-b border-b-4 border-black"> 
 <div className="w-1/2"> 
-<Link href={`/news/trending/${xy.slug}/`}><h3 className="hover:text-gray-500 text-2xl py-2 font-bold truncate ">{xy.title} </h3></Link>
-<Link href={`/news/trending/${xy.slug}/`}><p className='hover:text-gray-500 text-lg font-serif text-gray-600 dark:text-gray-300' > {replaceHTMLTags(xy.excerpt)} </p></Link>
+<Link href={`/news/trending/${xy.slug}/`}><h3 className="overflow-hidden text-ellipsis hover:text-gray-500 text-2xl my-2 font-bold" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link>
+<Link href={`/news/trending/${xy.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className='overflow-hidden text-ellipsis my-2  hover:text-gray-500 text-lg font-serif text-gray-600 dark:text-gray-300'/></Link>
 </div>
 <div className="w-1/2 p-1">
 <Image
@@ -110,7 +105,7 @@ alt={xy.featuredImage.node.altText}
 <div className="bg-gray-200 dark:bg-black border max-w-2xl my-3 lg:my-0 lg:m-0 xl:my-3 m-auto xl:max-w-sm h-max"> 
 <h2 className="text-center p-3 text-3xl text-gray-700 dark:text-gray-200 font-bold pt-8">Still on the Topic </h2>
  <div className="my-4 xs:grid grid-cols-2 lg:block xl:grid justify-center mx-2"> 
-{trendsAll?.slice(15,20).map((xy,i)=>
+{trendsAll?.slice(13,16).map((xy,i)=>
 <div key={xy.title + ' ' + i} className="flex shadow px-2 py-4 justify-center"> 
 
 <div className="max-w-xs"> 
@@ -134,7 +129,7 @@ alt={xy.featuredImage.node.altText}
 <div className="xl:flex justify-center py-8"> 
 <div className="md:flex justify-center"> 
 <div className="mx-2 px-8"> 
-  {trendsAll?.slice(20,25).map((xy,i)=> 
+  {trendsAll?.slice(16,20).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="my-3 [&:not(:last-child)]:border-b">  
   <ul>
   <Link href={`/news/trending/${xy.slug}/`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 overflow-hidden text-ellipsis leading-9 dark:text-gray-300' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </li></Link> 
@@ -146,8 +141,8 @@ alt={xy.featuredImage.node.altText}
   }
   </div>
   <div className="my-4 lg:border-r md:border-l md:border-b h-max p-3 ">  
-{trendsAll?.slice(25,30).map((xy,i)=> 
-<div key={xy.title + ' ' + i} className="max-w-2xl ">   
+{trendsAll?.slice(20,23).map((xy,i)=> 
+<div key={xy.title + ' ' + i} className="max-w-sm m-auto">   
 <div className="[&:not(:last-child)]:border-b my-3"> 
  
 <Link href={`/news/trending/${xy.slug}/`}><h3 className="hover:text-gray-500 text-2xl text-gray-800 overflow-hidden text-ellipsis leading-8 my-3 dark:text-gray-300"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </h3></Link> 
@@ -170,7 +165,7 @@ alt={xy.featuredImage.node.altText}
 </div>
  
   <div className="m-2 p-8 max-w-2xl"> 
-  {related_to_trend?.slice(0,5).map((xy,i)=> 
+  {related_to_trend?.slice(0,4).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="[&:not(:last-child)]:border-b my-3">  
   <ul>
   <Link href={`/news/trending/${xy.slug}/`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 dark:text-gray-300 dark:hover:text-gray-500'>{xy.title} </li></Link>
