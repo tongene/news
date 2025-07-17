@@ -53,9 +53,10 @@ return;
     const safeName = name || 'there';
  
      await resend.emails.send({
-        from: 'contact@culturays.com',
+        from: 'News Headlines Today <contact@culturays.com>',
         to: email,
-        subject: 'News Headlines Today',
+        replyTo: 'contact@culturays.com',
+        subject: title,
         html: `
   <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
     <img src=${image} alt="Newsletter Banner" style="width: 50%; border-radius: 6px; margin-bottom: 20px;" />
