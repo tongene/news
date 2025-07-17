@@ -53,7 +53,7 @@ return;
     const safeName = name || 'there';
  
      await resend.emails.send({
-        from: 'culturays',
+        from: 'contact@culturays.com',
         to: email,
         subject: 'News Headlines Today',
         html: `
