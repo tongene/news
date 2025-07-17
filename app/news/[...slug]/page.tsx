@@ -969,13 +969,14 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
  
+ 
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata 
 ): Promise<Metadata> {  
   const slug =(await params).slug 
   async function resolveContent(slug: string) {
-  for (const type of ["article", "business", "economy", "award", "technology", "health", "society","environment", "nollywood"]) {
+  for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) {
     const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}/`);
     if (res?.title) {
       return { ...res, __typename: type };
@@ -1042,8 +1043,7 @@ export async function generateMetadata(
 const ArticleDetailPage = async ({params}: Props) => {
 const slug =(await params).slug  
 async function resolveContent(slug: string) {
-  for (const type of ["article", "business", "economy", "award", "technology", "health", "society","environment", "nollywood"]) {
-    console.log(type)
+  for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) { 
     const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}/`);
     if (res?.title) {
       return { ...res, __typename: type };

@@ -15,6 +15,7 @@ const nextConfig = {
       NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
       EMAILJS_PUBLIC_API: process.env.EMAILJS_PUBLIC_API,
   },
+ 
    async redirects() {
     return [
          {
@@ -36,7 +37,18 @@ const nextConfig = {
         source: '/news/topic/:path*',
         destination: '/news/:path*',
         permanent: true,
-      }, 
+      },
+       {
+        source: '/news/health/:path*',
+        destination: '/news/:path*',
+        permanent: true,
+      } ,
+       {
+        source: '/news/technology/:path*',
+        destination: '/news/:path*',
+        permanent: true,
+      } 
+      , 
       {
         source: '/news/article/:path*',
         destination: '/news/:path*',
@@ -45,6 +57,23 @@ const nextConfig = {
       , 
       {
         source: '/news/economy/:path*',
+        destination: '/news/:path*',
+        permanent: true,
+      }
+        , 
+      {
+        source: '/news/environment/:path*',
+        destination: '/news/:path*',
+        permanent: true,
+      }, 
+      {
+        source: '/news/nollywood/:path*',
+        destination: '/news/:path*',
+        permanent: true,
+      }
+       , 
+      {
+        source: '/news/award/:path*',
         destination: '/news/:path*',
         permanent: true,
       }
