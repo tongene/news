@@ -91,17 +91,19 @@ const jsonLd: WithContext<Event> = {
   endDate: eventTitle?.day,
   eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
-  location: {
+   performer:eventTitle?.title,
+   organizer:eventTitle?.organizer,
+   offers:eventTitle?.offers,
+   location: {
     "@type": "Place",
     name: eventTitle?.location,
-    // address: {
-    //   "@type": "PostalAddress",
-    //   streetAddress: "123 Innovation Road",
-    //   addressLocality: "Lagos",
-    //   addressRegion: "LA",
-    //   postalCode: "100001",
-    //   addressCountry: "NG"
-    // }
+    address: {
+     "@type": "PostalAddress",
+     streetAddress: eventTitle?.location,    
+     addressLocality: eventTitle?.location,
+     addressRegion:  eventTitle?.location,
+   
+    }
   },
   image: [
    `https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}/`

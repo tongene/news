@@ -105,7 +105,8 @@ const ven = $(element).text()
 fullObj['data'].push( {ven:ven.trim().replace(/\t/g,'').replace(/\n/g,'')} ) 
 fullObj['data'].push( {venSlug:ven?.trim().toLowerCase().split(',')[0]})
   
-})  
+}) 
+ 
 $('.eps-event-tags', html).each((index, element)=>{      
 const gnr = $(element).text()
 fullObj['data'].push( {gnr:gnr.trim().replace(/\t/g,'').replace(/\n/g,'')} ) 
@@ -114,11 +115,13 @@ fullObj['data'].push( {gnrSlug:gnr?.trim().toLowerCase().split(',')[0]})
 }) 
 //#event-detail-fade > 
 $('.event-time-label', html).each( (index, element)=>{      
- const day = $(element).text() 
-   
+ const day = $(element).text()  
 fullObj['data'].push( {day:day.trim().replace(/\t/g,'').replace(/\n/g,'')} ) 
 }) 
-          
+    $('.eps-org-name', html).each( (index, element)=>{      
+ const organizer = $(element).text()  
+fullObj['data'].push( {organizer:organizer.trim().replace(/\t/g,'').replace(/\n/g,'')} ) 
+})       
  }).catch(error => {
   console.log(error.response.data.error)
   if(error)throw new Error('An error has occured')

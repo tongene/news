@@ -13,7 +13,6 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { title, excerpt, image, url } = body;
-    console.log(title, excerpt, image, url)
     if (!title || !excerpt) {
       return NextResponse.json(
         { message: 'Missing title or excerpt' },

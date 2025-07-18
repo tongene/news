@@ -21,7 +21,8 @@ import { nextNewsPosts } from "./data"
    day: string[]
    loc_slug: string  
    genre: string 
-   genre_slug:string  
+   genre_slug:string 
+   organizer:string
    location:string 
 }
 interface CineType { 
@@ -37,8 +38,7 @@ interface CineType {
   const dailyEv3 =async()=>{ 
      const eventExp= await getNaijaEvents3();
      const result= await Promise.all(eventExp?.titleAObj.map(async( one:{atitle:string})=> {  
-    const evData = await events3Details(one.atitle)
-    
+    const evData = await events3Details(one.atitle) 
      return evData 
       })) 
 
@@ -51,7 +51,8 @@ interface CineType {
         loc_slug:'', 
         genre:'',
         genre_slug:'' ,
-        location:''
+        location:'',
+        organizer:''
       };
        
       const data = result.map((ex)=> ex.data)
@@ -74,7 +75,10 @@ interface CineType {
          grouped.img_url= imgMime as string 
        
        } 
-       
+       if (ex.organizer !== undefined ){
+         grouped.organizer=ex.organizer  
+          
+        }
         if (ex.desc !== undefined ){
          grouped.desc=ex.desc  
           
@@ -155,7 +159,7 @@ export default async function Home() {
  const postData= latestPosts?.resp2Post?.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
  const news_outline=await postsOutline()
  const posts_notIn_newsPosts= await nextNewsPosts() 
-  
+ 
      CronJob.from({
       cronTime: '10 8 * * *',  
       onTick: dailyEv3(),

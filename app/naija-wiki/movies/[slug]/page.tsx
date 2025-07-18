@@ -54,6 +54,9 @@ const ActorsMoviePage =async ({params}: Props) => {
 const slug =(await params).slug
 const charsList = await charsFilms(slug) 
 const charactertitles= charsList.map((xy:CharacterProps)=> xy.naijaWikis.nodes).map((dy:CharacterProps)=> dy).flat()
+const [filmname]=charactertitles
+const filmsChar = await charsFilms(filmname.charactertitles.portrayedby) 
+ const filmsName = await charsFilms(filmname.charactertitles.filmname) 
 const listOtherChars =await relatedChars()  
 
 const jsonLd:WithContext<ProfilePage> = {
@@ -84,6 +87,8 @@ const jsonLd:WithContext<ProfilePage> = {
 <StructuredData schema={jsonLd} />
   <ActorsMovie
  listMovies={charsList}
+ filmsChar={filmsChar}
+ filmsName={filmsName}
  listOtherChars={listOtherChars}
  />  
  </div>

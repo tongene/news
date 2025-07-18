@@ -520,6 +520,13 @@ export async function charsFilms(findString: string){
                 filmDirector
                 characterWiki
                 actorWiki
+                 filmAbout
+          characterOtherName
+          prequel
+          sequel
+          filmProducer
+          filmMedia
+          filmFamily
               }
                 }
               }
