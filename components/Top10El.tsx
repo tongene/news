@@ -35,14 +35,15 @@ const [loading,setLoading]=useState(false)
    
      <div className='p-4 flex w-max'> 
     {latest10.filter((ux)=> ux.img).map((ex,i)=> 
-    <div key={i} className="w-5/12" >  
+    <div key={i} >  
+    <div className="w-[300px] h-[200px] relative m-auto" >
         <Image  
-        src={ex.img} 
-        width={280} 
-        height={280}
+        src={ex.img}  
+        fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         alt='Top 10 on Nextflix Naija' 
         /> 
-
+</div>
      <div className='text-xl py-4 text-center'>
       {top10Names.map((xx, ix)=> ix === i&&
     <h2 key={ix} className="py-2">

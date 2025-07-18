@@ -129,6 +129,7 @@ const jsonLd: WithContext<Event> = {
     .from('events')
     .select("*")
     .neq('slug', slug[0])
+    .neq('title','[]')
     .range(0,2)
    
     if (error) {

@@ -119,7 +119,7 @@ $('.event-time-label', html).each( (index, element)=>{
 fullObj['data'].push( {day:day.trim().replace(/\t/g,'').replace(/\n/g,'')} ) 
 }) 
     $('.eps-org-name', html).each( (index, element)=>{      
- const organizer = $(element).text()  
+ const organizer = $(element).text()
 fullObj['data'].push( {organizer:organizer.trim().replace(/\t/g,'').replace(/\n/g,'')} ) 
 })       
  }).catch(error => {
