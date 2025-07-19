@@ -1,8 +1,8 @@
-import Character from '@/components/NaijaWiki/Character' 
-import { newcharCall,relatedChars } from '../../newCharHandle' 
+import Character from '@/components/NaijaWiki/Character'  
 import type { Metadata, ResolvingMetadata } from 'next'
 import { ProfilePage, WithContext } from 'schema-dts'
 import StructuredData from '@/components/StructuredData'
+import { newcharCall, relatedChars } from '@/app/naija-wiki/newCharHandle'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -30,7 +30,7 @@ export async function generateMetadata(
     openGraph: { 
       title:`Naija Wiki | Movie Character - ${char_details?.title}`,
       description:char_details?.excerpt, 
-       url: `https://culturays.com/naija-wiki/character/${slug}/`,
+       url: `https://culturays.com/character/${slug}/`,
       siteName: 'Urban Naija',
       images: [{url:char_details?.featuredImage.node.sourceUrl, 
           width: 800,
@@ -41,15 +41,15 @@ export async function generateMetadata(
       publishedTime:char_details?.date
     },
     alternates: {
-    canonical:  `https://culturays.com/naija-wiki/character/${slug}/`,
+    canonical:  `https://culturays.com/character/${slug}/`,
  
   }
   }
 }  
  async function CharacterPage ({ params  }: Props) {
-    const slug =(await params).slug  
-    const character_data = await newcharCall(slug)  
-   const related_chars = await relatedChars()
+const slug =(await params).slug  
+const character_data = await newcharCall(slug)  
+const related_chars = await relatedChars()
 const replaceHTMLTags=(string:string)=>{
   const regex = /(<([^>]+)>)/gi;
   const newString = string?.replace(regex, "");
@@ -60,7 +60,7 @@ const jsonLd:WithContext<ProfilePage> = {
   '@type': 'ProfilePage',
    headline: `Culturays - ${character_data?.title}`, 
    description:replaceHTMLTags(character_data?.excerpt) , 
-   url:`https://culturays.com/naija-wiki/character/${slug}/`,
+   url:`https://culturays.com/character/${slug}/`,
    mainEntity: {
     "@type": "Person",
     name:character_data?.title,     
@@ -70,7 +70,7 @@ const jsonLd:WithContext<ProfilePage> = {
    
     mainEntityOfPage: {
      "@type": "WebPage",
-     "@id":`https://culturays.com/naija-wiki/character/${slug}/`, 
+     "@id":`https://culturays.com/character/${slug}/`, 
    },
 
    image: character_data?.featuredImage.node.sourceUrl, 

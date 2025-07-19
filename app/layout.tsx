@@ -82,75 +82,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
    
     ],
   }
-// export const metadata:Metadata = {
-  
-//   creator: 'Christina Ngene',
-//   publisher: 'Christina Ngene',
-//   metadataBase: new URL('https://culturays.com/'),
-//   openGraph: {
-//   title: 'Urban Naija | News, Nigeria',
-//   description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
-//   url: 'https://culturays.com/', 
-//   siteName: 'Urban Naija News', 
-//   images: [
-//   {
-//   url: 'https://culturays.com/assets/images/culturays.png',  
-//   width: 800,
-//   height: 600,
-//   alt: 'Culturays Image & Logo',
-//   },
-//     {
-//           url: 'https://culturays.com/assets/images/culturays.png', 
-//           width: 1800,
-//           height: 1600,
-//           alt: 'Culturays Image & Logo',
-//         },
-//       ], 
-//       locale: 'en_NG',
-//       type: 'website',
-//     },
-//     robots: {
-//       // index: false,
-//       // follow: true,
-//       // nocache: true,
-//       googleBot: {
-//         index: true,
-//        // follow: false,
-//         noimageindex: false,
-//         'max-video-preview': -1,
-//         'max-image-preview': 'large',
-//         'max-snippet': -1,
-//       } ,
-//     },
-   
-//     icons: { 
-//       shortcut: ['/favicon.ico'],
-//       apple: [
-//         { url: '/favicon.ico' }, 
-//       ],
-   
-//     },
-  
-//     alternates: {
-//       canonical: 'https://culturays.com/', 
-//       languages: { 
-//           'en-US': '/en-US',          
-//       },
-//     },
-   
-//    manifest: 'https://culturays.com/site.webmanifest',
-//     twitter: {
-//       card: 'summary_large_image',
-//       title: 'Urban Naija | News, Nigeria, Business, Economy, Nollywood, Netflix Naija, Inflation, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Money, Lifestyle, People, Culture, Finance, Industry, Production, Crisis, Conflict, GDP, Investment, Market, Dangote, CBN, Sollar, Naira,Binanace, Bitcoin, Crude Oil, Gold, Mining, Stocks',
-//       description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',    
-//       images: ['https://culturays.com/assets/images/culturays.png'],  
-//     },    
-    
-//     verification: {
-//       google: 'google',  
-//     },
-    
-// };
+
  
 export const metadata = {
   metadataBase: new URL(defaultUrl),

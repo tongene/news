@@ -1,9 +1,9 @@
 import NewOnNetflixDetails from "@/components/NetflixNaija/NetflixNaijaNew/NewOnNetflixDetails"
-import { netflixDetails } from "../../netflix-news"
  
 import type { Metadata, ResolvingMetadata } from 'next'
 import StructuredData from "@/components/StructuredData"
 import { NewsArticle, WithContext } from "schema-dts"
+import { netflixDetails } from "@/app/netflix-naija/netflix-news"
 const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
 type Props = {
   params: Promise<{ slug: string }>

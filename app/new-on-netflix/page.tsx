@@ -1,9 +1,10 @@
  
  
 import NewlyRealeasedNetflixNaija from "@/components/NetflixNaija/NetflixNaijaNew/NewlyReleasedNetflixNaija"
-import { addedOnCategory, netflixNews, newsbyNewOnCategory } from "../netflix-news"   
+ 
 import StructuredData from "@/components/StructuredData"
 import { NewsArticle, WithContext } from "schema-dts"
+import { addedOnCategory, netflixNews, newsbyNewOnCategory } from "../netflix-naija/netflix-news"
 async function New_On_Netflix() {
  const new_on_netflix_naija = await newsbyNewOnCategory([])
  const added_on_netflix_naija =await addedOnCategory()

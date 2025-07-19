@@ -63,9 +63,9 @@ onMouseEnter={() => setHidden(prev => !prev)}
   {character_data.contentTags.nodes.map((xy, i)=><Link key={i}href={`/topic/${xy.slug}/`}><p className='p-2 text-gray-100 relative z-0 hover:text-blue-600'>  
 { xy.name }</p></Link> )} 
 </div>  
-<Link href={`/naija-wiki/characters/${character_data.charactertitles.filmname?.toLowerCase().trim().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
+<Link href={`/characters/${character_data.charactertitles.filmname?.toLowerCase().trim().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
 All {character_data.charactertitles.filmname} Characters</p></Link>
-<Link href={`/naija-wiki/movies/${character_data.charactertitles.portrayedby?.toLowerCase().trim().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
+<Link href={`/movies/${character_data.charactertitles.portrayedby?.toLowerCase().trim().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  
 {character_data.charactertitles.portrayedby} Movies</p></Link> 
 </div>
 <div className='relative' >
@@ -167,9 +167,9 @@ height={550}
 alt={ itex.title }
 />  
 <div className='w-1/2 m-auto mx-3'>
-  <Link href={`/naija-wiki/character/${itex.slug}/`}>
+  <Link href={`/character/${itex.slug}/`}>
 <h3 className='text-2xl text-center py-4 font-bold'>{ itex.title }</h3></Link> 
-<Link href={`/naija-wiki/character/${itex.slug}/`}>
+<Link href={`/character/${itex.slug}/`}>
 <div className='text-lg overflow-hidden text-ellipsis'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} dangerouslySetInnerHTML={{__html:itex.excerpt}}/></Link> 
 </div>  
   </div>  

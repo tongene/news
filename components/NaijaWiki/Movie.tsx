@@ -149,14 +149,14 @@ xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{
     </div> 
      
   <ul className="text-xl font-bold flex jusify-between my-2"> 
-    <Link href={`/naija-wiki/character/${xx.slug}/`}><h3> {xx.title} <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4"/>{xx?.charactertitles.filmname}</h3></Link>
+    <Link href={`/character/${xx.slug}/`}><h3> {xx.title} <FontAwesomeIcon icon={faArrowRight} className="text-sm font-lighter mx-4"/>{xx?.charactertitles.filmname}</h3></Link>
  
  </ul> 
  <ul><li dangerouslySetInnerHTML={{__html:xx?.charactertitles.charBios}}className="list-disc text-lg overflow-hidden text-ellipsis leading-8"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}/></ul>
     </div>
     </td></tr>) }</tbody><thead><tr ><td className="text-2xl p-11 font-bold w-full">Related Actors</td></tr></thead><tbody>  
   {char_itx.map((xx, i)=><tr key={i + ' ' + xx?.node.title} >    
-   {xx?.node.title&& <td className="border"><Link href={`/naija-wiki/character/${xx?.node?.slug}/`}><h3 className="text-xl font-bold p-3 text-center"> {xx?.node?.charactertitles?.portrayedby} </h3></Link>  
+   {xx?.node.title&& <td className="border"><Link href={`/character/${xx?.node?.slug}/`}><h3 className="text-xl font-bold p-3 text-center"> {xx?.node?.charactertitles?.portrayedby} </h3></Link>  
        <div className=" border p-2 m-2 "> 
      <div className="w-44">     
       <Image
@@ -183,7 +183,7 @@ xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{
 <div className='flex' style={{width:'1000px'}}>  
   {fixFilmname.slice(0,10).map((xy)=>
     <div key={xy.filmname + ' ' + Math.random()}className='border pt-5 px-3 w-96'>
-     <Link href={`/naija-wiki/movies/${xy.portrayedby.toLowerCase().trim().replace(/ /g,'-')}/`}> <h3 className='text-red-500 hover:bg-black italic py-2 hover:dark:text-gray-500 p-2 font-bold text-2xl'>{xy.portrayedby}</h3></Link> 
+     <Link href={`/movies/${xy.portrayedby.toLowerCase().trim().replace(/ /g,'-')}/`}> <h3 className='text-red-500 hover:bg-black italic py-2 hover:dark:text-gray-500 p-2 font-bold text-2xl'>{xy.portrayedby}</h3></Link> 
 <div className="w-72 h-44">
   <Image
   className="w-72 h-44"
@@ -192,7 +192,7 @@ xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{
    src={xy.actorImgs.node.sourceUrl}
    alt={xy.actorImgs.node.altText}/>
    </div>
-   <Link href={`/naija-wiki/character/${xy.characterWiki.slice(0, -5).toLowerCase().trim().replace(/ /g,'-')}/`}><h2 className="text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis py-3" >{xy.characterWiki.slice(0, -5)}</h2></Link> 
+   <Link href={`/character/${xy.characterWiki.slice(0, -5).toLowerCase().trim().replace(/ /g,'-')}/`}><h2 className="text-gray-800 hover:text-gray-700 hover:dark:text-gray-500 dark:text-gray-300 font-bold hover:bg-red-500 hover:text-white cursor-pointer text-center overflow-hidden text-ellipsis py-3" >{xy.characterWiki.slice(0, -5)}</h2></Link> 
  
 </div>
 )}

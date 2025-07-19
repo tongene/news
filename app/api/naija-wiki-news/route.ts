@@ -73,7 +73,7 @@ const generateNewsSitemap = (content_posts: Post[]) => {
   const news_blog =netflix_News?.map((ex)=> ex?.node.naijaOnNetflix).map((xy)=> (xy?.nodes??{})).flat()
  
     const content_posts: Post[] = news_blog.map((post) => ({ 
-      url: `https://culturays.com/netflix-naija/news/${post.slug}/`,
+      url: `https://culturays.com/netflix-naija/${post.slug}/`,
       lastModified: new Date(post.date),
       changeFrequency: 'always',
       priority: 0.8,

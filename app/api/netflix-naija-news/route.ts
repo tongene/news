@@ -68,7 +68,7 @@ const generateNewsSitemap = (content_posts: Post[]) => {
             const netflixFeed2 =coming_to_netflix_naija?.map((ex)=> ex.node.naijaOnNetflix.edges).flat()  
     
     const content_posts: Post[] = netflixFeed.map((post) => ({
-      url: `https://culturays.com/netflix-naija/new-on-netflix/${post.node.slug}/`,
+      url: `https://culturays.com/new-on-netflix/${post.node.slug}/`,
       lastModified: new Date(post.node.date),
       changeFrequency: 'always',
       priority: 0.8,
@@ -85,7 +85,7 @@ const generateNewsSitemap = (content_posts: Post[]) => {
       ],
     })); 
     const content2_posts: Post[] = netflixFeed2.map((post) => ({
-        url: `https://culturays.com/netflix-naija/coming-to-netflix/${post.node.slug}/`,
+        url: `https://culturays.com/coming-to-netflix/${post.node.slug}/`,
         lastModified: new Date(post.node.date),
         changeFrequency: 'always',
         priority: 0.8,

@@ -169,8 +169,8 @@ width={1200}
       />  
       </div>  
       <div className='absolute z-20 top-5 xs:mx-8 xs:top-20 sm:top-36 font-bold text-white mx-2 lg:w-1/2'>   
-    <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} className='overflow-hidden text-ellipsis text-xl xs:text-3xl md:text-4xl  hover:text-gray-500 '> {nt.node.title}</h2></Link>
-    <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}>
+    <Link href={`/${slug.node.slug}/${nt.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} className='overflow-hidden text-ellipsis text-xl xs:text-3xl md:text-4xl  hover:text-gray-500 '> {nt.node.title}</h2></Link>
+    <Link href={`/${nt.node.slug}/`}>
     <div className="py-2 xs:py-3">
     <div dangerouslySetInnerHTML={{__html:nt.node.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:1, WebkitBoxOrient: 'vertical' }} className='overflow-hidden text-ellipsis xs:block hover:text-gray-500'/></div></Link> 
     <span className='italic text-sm'>{moment(nt.node.date).subtract(1, 'hour').fromNow()} </span>
@@ -193,7 +193,7 @@ width={1200}
   </div>
   <div className='relative h-max text-white font-bold'>
         <div className='absolute bottom-8 xs:bottom-1 z-10'>
-        <Link href={`/netflix-naija/${slug.node.slug}/${nt.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className='hover:text-gray-500 overflow-hidden text-ellipsis mx-2 sm:w-56 lg:w-64 text-lg xs:text-base sm:text-lg lg:text-xl'>{nt.node.title}</h2></Link>
+        <Link href={`/${slug.node.slug}/${nt.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className='hover:text-gray-500 overflow-hidden text-ellipsis mx-2 sm:w-56 lg:w-64 text-lg xs:text-base sm:text-lg lg:text-xl'>{nt.node.title}</h2></Link>
     <Link href={`/topic/${nt.node.contentTags.nodes?.slug}/`}><p className='text-sm mx-2 xs:text-xs sm:text-sm hover:text-gray-500 py-2'><span>{moment(nt.node.date).subtract(1, 'hour').fromNow()} |</span> {nt.node.contentTags.nodes?.name}</p ></Link> 
 
       </div> 
@@ -216,7 +216,7 @@ width={1200}
 
 <div className='py-5 flex flex-col justify-center w-full cursor-pointer my-2 text-gray-600 px-2'> 
 <FontAwesomeIcon icon={faClapperboard}className='text-xl'/>
-<Link href='/netflix-naija/new-on-netflix/'prefetch={false}><p className='p-2 font-bold text-center text-lg'>On Netflix Naija</p></Link> 
+<Link href='/new-on-netflix/'><p className='p-2 font-bold text-center text-lg'>On Netflix Naija</p></Link> 
 </div> 
 <hr/>
 <div className='py-5 flex flex-col justify-center w-full cursor-pointer my-2 bg-transparent text-gray-600'> 
@@ -230,7 +230,7 @@ width={1200}
 <div className='hidden lg:block mx-1 py-4 max-w-sm'> 
 
  <div className="cursor-pointer py-6 shadow max-w-sm border px-3 font-bold text-gray-600 flex items-center justify-between my-1"> 
- <Link href='/netflix-naija/new-on-netflix/'><li className='hover:text-gray-400 list-none'>New on Netflix Naija</li></Link>
+ <Link href='/new-on-netflix/'><li className='hover:text-gray-400 list-none'>New on Netflix Naija</li></Link>
 <FontAwesomeIcon icon={faAngleRight}/>
 </div> 
 
@@ -254,7 +254,7 @@ alt={xy?.featuredImage?.node.altText}
 </div>
 <div className='px-2 font-bold'>
 <p className='text-red-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 
-<Link href={`/netflix-naija/news/${xy.slug}/`}><h2 className='hover:text-gray-400 text-gray-600'>{xy.title} </h2></Link>
+<Link href={`/netflix-naija/${xy.slug}/`}><h2 className='hover:text-gray-400 text-gray-600'>{xy.title} </h2></Link>
 </div> 
 </div> 
 )}</div>

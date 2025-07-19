@@ -45,7 +45,7 @@ export async function generateMetadata(
     openGraph: { 
       title:`Urban Naija | Event - ${eventTitle?.title}`,
       description:eventTitle?.title,
-      url: `https://culturays.com/naija-events/event/${slug}/`,
+      url: `https://culturays.com/event/${slug}/`,
       siteName: 'Urban Naija',
       images: [{url:`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`,
       width: 800,
@@ -56,7 +56,7 @@ export async function generateMetadata(
       publishedTime:eventTitle?.created_at
     },
      alternates: {
-    canonical:  `https://culturays.com/naija-events/event/${slug}/`,
+    canonical:  `https://culturays.com/event/${slug}/`,
  
   },
   }
@@ -92,8 +92,19 @@ const jsonLd: WithContext<Event> = {
   eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
    performer:eventTitle?.title,
-   organizer:eventTitle?.organizer,
-   offers:eventTitle?.offers,
+   organizer:{
+    '@type':eventTitle?.organizer,
+    url:`https://culturays.com/event/${slug[0]}`
+   },
+   offers:{
+    '@type':'Offer',
+    price:'N/A',
+    priceCurrency:'N/A',
+    url:`https://culturays.com/event/${slug[0]}` ,
+    validFrom:eventTitle?.day,
+    availability: "https://schema.org/InStock",
+  },
+ 
    location: {
     "@type": "Place",
     name: eventTitle?.location,
@@ -109,19 +120,7 @@ const jsonLd: WithContext<Event> = {
    `https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}/`
   ],
   keywords:[eventTitle?.genre].join(', ')
-  // organizer: {
-  //   "@type": "Organization",
-  //   name: "Culturays",
-  //   url: "https://culturays.com"
-  // },
-  // offers: {
-  //   "@type": "Offer",
-  //   url: "https://culturays.com/events/workshop",
-  //   price: "0.00",
-  //   priceCurrency: "NGN",
-  //   availability: "https://schema.org/InStock",
-  //   validFrom: "2025-04-01T12:00:00+01:00"
-  // }
+
 };
   const simValues = async () => {  
     const supabase =await createClient();  

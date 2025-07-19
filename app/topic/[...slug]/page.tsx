@@ -66,7 +66,7 @@ const taggedPosts = tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map(
      dateModified:"2025-04-09T12:00:00Z",
       mainEntityOfPage: {
        "@type": "WebPage",
-       "@id":slug ,
+       "@id":slug[0] ,
      },
      url:slug,
      image: "https://culturays.com/assets/images/opengraph-image.png" ,

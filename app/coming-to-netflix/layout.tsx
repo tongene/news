@@ -2,8 +2,8 @@
 import { Open_Sans, Nokora } from 'next/font/google';  
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-? `${process.env.NEXT_PUBLIC_BASE_URL}/netflix-naija/coming-to-netflix/` 
-: "http://localhost:3000/netflix-naija/coming-to-netflix/";
+? `${process.env.NEXT_PUBLIC_BASE_URL}/coming-to-netflix/` 
+: "http://localhost:3000/coming-to-netflix/";
  
 export const metadata = {
 metadataBase: new URL(defaultUrl), 
@@ -14,7 +14,7 @@ openGraph: {
     
 },
  alternates: {
-    canonical:  `https://culturays.com/netflix-naija/coming-to-netflix/`,
+    canonical:  `https://culturays.com/coming-to-netflix/`,
  
   }
 }; 

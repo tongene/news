@@ -66,8 +66,8 @@ const handleClick = (id:string)=> {
 <Link href='/'><h1 className="head-forum font-bold text-7xl sm:mb-4 mt-4 my-4 md:mt-11 lg:mt-6 mb-4 mx-4 font-mono"> 
 <span className='px-2 head-forum-span-dark dark:head-forum-span-light'>U</span><span className="tightest text-center">rban News</span> 
 </h1></Link>
- {pathname.includes('netflix-naija')?<Link href={`/${pathname.split('/')[1]}/${pathname.split('/')[2]}/`}><p className="text-xl mt-20 mb-2">{`/${pathname.split('/')[2]}/`}</p></Link>:<Link href={`/${pathname.split('/')[1]}/`}><p className="text-xl mt-20 mb-2">{`/${pathname.split('/')[1]}/`}</p></Link>}
-
+<Link href={`/${pathname.split('/')[1]}/`}><p className="text-xl mt-20 mb-2">{`/${pathname.split('/')[1]}/`}</p></Link>
+{/*  {pathname.includes('netflix-naija')?<Link href={`/${pathname.split('/')[1]}/${pathname.split('/')[2]}/`}><p className="text-xl mt-20 mb-2">{`/${pathname.split('/')[2]}/`}</p></Link>:<Link href={`/${pathname.split('/')[1]}/`}><p className="text-xl mt-20 mb-2">{`/${pathname.split('/')[1]}/`}</p></Link>} */}
 </div>
 
 {barState&&

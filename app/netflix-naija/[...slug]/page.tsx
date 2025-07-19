@@ -1,5 +1,5 @@
 import NaijaWikiNetflixNewsDetails from "@/components/NetflixNaija/NaijaWikiNetflixNewsDetails" 
-import { netflixNewsDets, nextNetflixNews } from "../../netflix-news"  
+ 
 import SideBar from "@/components/Side" 
 import { postsOutline, sidePlusViews } from "@/app/page-data";
 import { createClient } from "@/utils/supabase/server";
@@ -7,6 +7,7 @@ import { getTop10 } from "@/app/naija-wiki/filmsdata";
 import StructuredData from "@/components/StructuredData";
 import { NewsArticle, WithContext } from "schema-dts";
 import { InnerEdges } from "@/app/types";
+import { netflixNewsDets, nextNetflixNews } from "../netflix-news";
 const vids = async()=>{  
  
   const wprest = fetch('https://content.culturays.com/graphql',{
@@ -102,7 +103,7 @@ export async function generateMetadata({ params  }: {
     openGraph: {
       title:`Urban Naija | Naija Wiki News- ${news_details?.title}`,
       description: news_details?.title,
-      url: `https://culturays.com/netflix-naija/news/${slug}/`,
+      url: `https://culturays.com/netflix-naija/${slug}/`,
       siteName: 'Urban Naija',
       images: [{url:news_details?.featuredImage.node.sourceUrl,
         width: 800,
@@ -111,7 +112,7 @@ export async function generateMetadata({ params  }: {
       publishedTime:news_details?.date
     },
      alternates: {
-    canonical:  `https://culturays.com/netflix-naija/news/${slug}/`,
+    canonical:  `https://culturays.com/netflix-naija/${slug}/`,
  
   }
   }

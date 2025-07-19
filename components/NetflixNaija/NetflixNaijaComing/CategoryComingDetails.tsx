@@ -238,7 +238,7 @@ alt={xy?.node.featuredImage?.node.altText}
 />   
 </div>
   <div className='px-2 py-4 text-gray-700 font-light text-lg flex flex-col xs:max-w-xs flex-col-reverse'> 
-  <Link href={`/netflix-naija/coming-to-netflix/${xy.node.slug}/`}><h2 className='text-xl font-bold overflow-hidden text-ellipsis'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2></Link> 
+  <Link href={`/coming-to-netflix/${xy.node.slug}/`}><h2 className='text-xl font-bold overflow-hidden text-ellipsis'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2></Link> 
   <div className='flex my-3'>
       <FontAwesomeIcon icon={faUser} width={14}/>
       <Link href={`/creator/${xy?.node.author.node.slug}/`}><p className='mx-2'>{xy.node.author.node.name}</p></Link>
@@ -281,11 +281,11 @@ alt={xy?.node.featuredImage?.node.altText}
    <div className='h-max mx-1 rounded-t lg:hidden absolute -right-28 -mr-2 md:bg-transparent md:relative hover:right-0 md:right-0 md:w-auto cursor-pointer '>   
  <div className='py-5 text-gray-200 flex flex-col justify-center w-32 h-32 cursor-pointer bg-gray-500 my-2 md:bg-transparent md:text-gray-600 md:rounded-none rounded-full'> 
  <FontAwesomeIcon icon={faClapperboard}className='text-xl'/>
- <Link href='/netflix-naija/new-on-netflix/'><p className='p-3 font-bold text-center'>On Netflix Naija</p></Link> 
+ <Link href='/new-on-netflix/'><p className='p-3 font-bold text-center'>On Netflix Naija</p></Link> 
  </div>
  <div className='py-5 text-gray-200 flex flex-col justify-center w-32 h-32 cursor-pointer bg-yellow-500 my-2 md:bg-transparent md:text-gray-600 md:rounded-none rounded-full'> 
  <FontAwesomeIcon icon={faFilm} className='text-xl p-2'/>
- <Link href='/netflix-naija/coming-to-netflix/'><p className='p-3 font-bold text-center'>Coming to Netflix Naija</p></Link>  
+ <Link href='/coming-to-netflix/'><p className='p-3 font-bold text-center'>Coming to Netflix Naija</p></Link>  
  </div> 
  <div className='py-5 text-gray-200 flex flex-col justify-center w-32 h-32 cursor-pointer bg-yellow-500 my-2 md:bg-transparent md:text-gray-600 md:rounded-none rounded-full'> 
  <FontAwesomeIcon icon={faNewspaper} className='text-2xl p-2'/>
@@ -294,11 +294,11 @@ alt={xy?.node.featuredImage?.node.altText}
  </div>
  <div className='hidden lg:block mx-1 py-4 max-w-sm'>  
    <div className="cursor-pointer text-base py-6 shadow max-w-sm border px-3 font-bold text-gray-600 flex items-center justify-between my-1"> 
-   <Link href='/netflix-naija/new-on-netflix/'><li className='hover:text-gray-400 list-none'>New on Netflix Naija</li></Link>
+   <Link href='/new-on-netflix/'><li className='hover:text-gray-400 list-none'>New on Netflix Naija</li></Link>
   <FontAwesomeIcon icon={faAngleRight}/>
   </div> 
     <div className="cursor-pointer text-sm py-6 shadow max-w-sm border px-3 font-bold text-gray-600 flex items-center justify-between my-1"> 
-    <Link href='/netflix-naija/coming-to-netflix/'><li className='hover:text-gray-400 list-none'>Coming to Netflix Naija</li></Link>
+    <Link href='/coming-to-netflix/'><li className='hover:text-gray-400 list-none'>Coming to Netflix Naija</li></Link>
   <FontAwesomeIcon icon={faAngleRight}/>
   </div> 
 
@@ -318,7 +318,7 @@ alt={xy?.node.featuredImage?.node.altText}
  
  </div>
  <div className='px-2  font-bold flex items-center justify-between my-1'>
- <Link href={`/netflix-naija/news/${xy.slug}/`}><h2 className='text-base hover:text-gray-400 text-gray-600'>{xy.title} </h2></Link>
+ <Link href={`/netflix-naija/${xy.slug}/`}><h2 className='text-base hover:text-gray-400 text-gray-600'>{xy.title} </h2></Link>
   </div> 
  </div> 
  )}</div>
@@ -338,7 +338,7 @@ alt={xy?.node.featuredImage?.node.altText}
    {next_posts.slice(0,3).map((xy,i)=> 
     <div className='border pt-5 px-3 w-96' key={i + ' ' + Math.random()}>   
     <Link href={`/topic/${(xy.node.contentTags.nodes??[][0]).slug}/`}></Link> <h3 className='text-red-500 text-sm italic'>{(xy.node.contentTags.nodes??[][0]).name} </h3>
-    <Link href={`/netflix-naija/coming-to-netflix/${xy.node.slug}/`}><h2 className="text-gray-800 hover:text-gray-700 text-base font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2></Link>            
+    <Link href={`/coming-to-netflix/${xy.node.slug}/`}><h2 className="text-gray-800 hover:text-gray-700 text-base font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.node.title}</h2></Link>            
       <div className='py-2 text-sm'> 
         <p className='text-gray-600'>{moment(xy.node.date).subtract(1, 'hour').fromNow()}</p> 
         <Link href={`/creator/${xy.node.author.node.slug}/`}>

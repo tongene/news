@@ -51,14 +51,14 @@ naija_wiki()
 
   <div className="py-8 text-gray-600 flex justify-evenly hover:scale-105 px-2"> 
  <hr className="w-1/6 my-3 bg-gray-800"/> 
-  <Link href='/netflix-naija/coming-to-netflix/' prefetch={false}><h3 className="cursor-pointer px-1">Coming to Netflix Naija </h3></Link> 
+  <Link href='/coming-to-netflix/'><h3 className="cursor-pointer px-1">Coming to Netflix Naija </h3></Link> 
  <hr className="w-1/6 my-3 bg-gray-600"/> 
   
  </div> 
  
  <div className="py-8 text-gray-600 flex justify-evenly hover:scale-105 px-2"> 
  <hr className="w-1/6 my-3 bg-gray-600"/>
- <Link href='/netflix-naija/new-on-netflix/'prefetch={false}><h3 className="cursor-pointer px-1">New on Netflix Naija </h3></Link> 
+ <Link href='/new-on-netflix/'><h3 className="cursor-pointer px-1">New on Netflix Naija </h3></Link> 
  <hr className="w-1/6 my-3 bg-gray-600"/> 
  
  </div>

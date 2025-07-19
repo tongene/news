@@ -37,6 +37,12 @@ const nextConfig = {
         source: '/news/topic/:path*',
         destination: '/news/:path*',
         permanent: true,
+      } 
+      ,
+      {
+        source: '/naija-events/event/:path*',
+        destination: '/event/:path*',
+        permanent: true,
       },
        {
         source: '/news/health/:path*',
@@ -83,9 +89,44 @@ const nextConfig = {
         destination: '/news/:path*',
         permanent: true,
       },
+      {
+        source: '/naija-wiki/characters/:path*',
+        destination: '/characters/:path*',
+        permanent: true,
+      },
+      {
+        source: '/naija-wiki/movies/:path*',
+        destination: '/movies/:path*',
+        permanent: true,
+      },
+      {
+        source: '/netflix-naija/coming-to-netflix/:path*',
+        destination: '/coming-to-netflix/:path*',
+        permanent: true,
+      },
+      {
+        source: '/netflix-naija/coming-to-netflix/',
+        destination: '/coming-to-netflix/',
+        permanent: true,
+      },
+      {
+        source: '/netflix-naija/new-on-netflix/:path*',
+        destination: '/new-on-netflix/:path*',
+        permanent: true,
+      },
+      {
+        source: '/netflix-naija/new-on-netflix/',
+        destination: '/new-on-netflix/',
+        permanent: true,
+      },
+      {
+        source: '/naija-wiki/character/:path*',
+        destination: '/character/:path*',
+        permanent: true,
+      },
        {
         source: '/moviewikiafrica/wiki/:path*',
-        destination: '/naija-wiki/character/:path*',
+        destination: '/character/:path*',
         permanent: true,
       }, 
       {
@@ -100,22 +141,22 @@ const nextConfig = {
       }, 
        {
         source: '/comingtonetflix/naija/:path*',
-        destination: '/netflix-naija/coming-to-netflix/',
+        destination: '/coming-to-netflix/',
         permanent: true,
       },
         {
         source: '/newonnetflix/naija/:path*',
-        destination: '/netflix-naija/new-on-netflix/',
+        destination: '/new-on-netflix/',
         permanent: true,
       },  
        {
         source: '/comingtonetflix',
-        destination: '/netflix-naija/coming-to-netflix/',
+        destination: '/coming-to-netflix/',
         permanent: true,
       },
       {
         source: '/newonnetflix',
-        destination: '/netflix-naija/new-on-netflix/',
+        destination: '/new-on-netflix/',
         permanent: true,
       },
        {

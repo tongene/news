@@ -46,6 +46,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     return [
       {
+        title:'Urban Naija',
+        name:'Urban Naija',
         url: `https://culturays.com/`,
         lastModified: new Date(),
         changeFrequency: 'hourly',
@@ -90,7 +92,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         images: ['https://culturays.com/culturays.png']
       },
       {
-        url:`https://culturays.com/netflix-naija/coming-to-netflix/`,
+        url:`https://culturays.com/coming-to-netflix/`,
         lastModified: new Date(),
         changeFrequency:"daily"  ,
         priority: 0.8,

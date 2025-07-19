@@ -115,7 +115,7 @@ value={nameX1.toLowerCase()}
 xposts?.map((it, index)=> it?.contentTypeName ==='naija-wiki' ?
 <div key={it?.id + Math.random()} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 
 <div className="m-6"> 
-<Link href={`/naija-wiki/character/${it?.slug }/`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.title}</p></Link> 
+<Link href={`/character/${it?.slug }/`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.title}</p></Link> 
 
 </div>
 </div>
@@ -129,7 +129,7 @@ xposts?.map((it, index)=> it?.contentTypeName ==='naija-wiki' ?
 <div key={itx?.id + Math.random()} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 
 
 <div className="m-6"> 
-<Link href={`/netflix-naija/news/${itx?.slug}/`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{itx?.title}</p></Link> 
+<Link href={`/netflix-naija/${itx?.slug}/`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{itx?.title}</p></Link> 
 
 </div>
 </div>)):

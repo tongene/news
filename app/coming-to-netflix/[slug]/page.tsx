@@ -1,9 +1,9 @@
-import ToNetflixDetails from "@/components/NetflixNaija/NetflixNaijaComing/ComingToNetflixDetails"
-import {netflixDetails, netflixNews, newsbyComingtoCategory} from "../../netflix-news" 
+import ToNetflixDetails from "@/components/NetflixNaija/NetflixNaijaComing/ComingToNetflixDetails" 
 import CategoryComingDetails from "@/components/NetflixNaija/NetflixNaijaComing/CategoryComingDetails"
 import ComingToNetflixClassDetails from "@/components/NetflixNaija/NetflixNaijaComing/ComingToNetflixClassDetails"
 import StructuredData from "@/components/StructuredData"
 import { NewsArticle, WithContext } from "schema-dts"
+import { netflixDetails, netflixNews, newsbyComingtoCategory } from "@/app/netflix-naija/netflix-news"
  
 export async function generateMetadata({ params }: {
   params: Promise<{ slug: string }>
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: {
     openGraph: { 
      title:`Netflix Naija News — ${news_details?.title}`,
     keywords:tags,
-    url: `https://culturays.com/netflix-naija/coming-to-netflix/${slug}/`,
+    url: `https://culturays.com/coming-to-netflix/${slug}/`,
     siteName: 'Urban Naija',
     description:news_details?.excerpt, 
       images: [{url:news_details?.featuredImage.node.sourceUrl,
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: {
       publishedTime:news_details?.date
     },
     alternates: {
-    canonical:  `https://culturays.com/netflix-naija/coming-to-netflix/${slug}/`,
+    canonical:  `https://culturays.com/coming-to-netflix/${slug}/`,
  
   }
   }

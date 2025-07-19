@@ -150,7 +150,7 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=> it?.content
      />
      </div>
      <div className="mx-4 py-5">            
- <Link href={`/naija-wiki/character/${it?.slug}/`}><h3 className="hover:opacity-50 text-xl cursor-pointer font-medium leading-tight">{it?.title }</h3></Link> 
+ <Link href={`/character/${it?.slug}/`}><h3 className="hover:opacity-50 text-xl cursor-pointer font-medium leading-tight">{it?.title }</h3></Link> 
  
 <div className="flex flex-wrap pt-4" >
    {it?.contentTags?.nodes?.slice(0,5)?.map((ex, i)=>

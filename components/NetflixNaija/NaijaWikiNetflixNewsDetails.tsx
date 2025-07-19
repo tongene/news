@@ -36,13 +36,13 @@ const NaijaWikiNetflixNewsDetails =({next_on_netflix_naija, content_videos, news
 },[])
   return (
     <article className="px-5 2xl:px-0"> 
-   <div style={{width:"1170px"}} className="overflow-hidden m-auto"> 
+   <div style={{width:"1000px"}} className="overflow-hidden m-auto"> 
     <div className="xs:flex justify-between items-center"> 
    <h2 className="text-4xl font-bold py-2 px-6 text-gray-800"> Videos </h2> <hr className="h-0.5 bg-gray-700 w-full"/> </div>
     <SlidingSide newsItems={content_videos} speed={60000}/>  
       </div> 
 
-       <div className="bg-gray-50 dark:bg-black m-auto py-8 max-w-7xl px-6 ">    
+       <div className="bg-gray-50 dark:bg-black m-auto py-8 max-w-6xl px-5">    
       <div className="bg-white dark:bg-black my-2 py-10 rounded-lg sm:mx-4 xs:mx-8 sm:m-auto sm:px-11 lg:px-16">
        <h2 className="font-bold py-4 sm:px-8 text-3xl md:text-5xl text-gray-800 dark:text-gray-200 leading-10">{news_details.title} </h2>
        <div className="flex justify-between bg-gray-700">
@@ -96,7 +96,7 @@ alt={ex.node.featuredImage.node.altText}
  </div> 
 
   </div>
-   <Link href={`/netflix-naija/news/${ex.node.slug}/`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
+   <Link href={`/netflix-naija/${ex.node.slug}/`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black font-medium rounded-lg">Read</button></Link> 
    </div> 
   )}  
     
@@ -128,7 +128,7 @@ alt={ex.node.featuredImage.node.altText}
     <div className='border pt-5 px-3 w-96' key={i + ' ' + Math.random()}>   
     <Link href={`/topic/${ xy.contentTags.nodes[0].slug}/`}></Link> <h3 className='text-red-500 text-sm italic py-1 hover:text-gray-700 cursor-pointer font-bold'>{xy.contentTags.nodes[0].name} </h3>
  
-    <Link href={`/netflix-naija/news/${xy.slug}/`}><h2 className="text-gray-800 text-lg font-bold overflow-hidden text-ellipsis hover:text-red-400 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link> 
+    <Link href={`/netflix-naija/${xy.slug}/`}><h2 className="text-gray-800 text-lg font-bold overflow-hidden text-ellipsis hover:text-red-400 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link> 
      <div className='py-2 text-sm'> 
         <p className='text-gray-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 
         <Link href={`/creator/${xy.author.node.slug}/`}>

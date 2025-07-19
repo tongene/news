@@ -217,7 +217,7 @@ export const newsByLatest=async()=>{
         .then((data)=>data.data.categories.nodes)
         .catch((error) => console.error('Error:', error));
 
-const resp =await wprest ??[] 
+const resp =await wprest 
 const resp1Live =await wprestLive 
 const resp2Post =await wprestPost 
 return {resp, resp1Live, resp2Post}

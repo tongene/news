@@ -1,7 +1,7 @@
-import ComingToNetflixNaija from "@/components/NetflixNaija/NetflixNaijaComing/ComingToNetflixNaija"
-import { netflixNews, newsbyComingtoCategory } from "../netflix-news"  
+import ComingToNetflixNaija from "@/components/NetflixNaija/NetflixNaijaComing/ComingToNetflixNaija" 
 import { NewsArticle, WithContext } from "schema-dts"
 import StructuredData from "@/components/StructuredData"
+import { netflixNews, newsbyComingtoCategory } from "../netflix-naija/netflix-news"
  
 const ComingToNetflixNaijaPage = async() => {
 const coming_to_netflix_naija = await newsbyComingtoCategory([]) 
@@ -27,9 +27,9 @@ const jsonLd: WithContext<NewsArticle>= {
   dateModified:new Date().toDateString(),
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://culturays.com/netflix-naija/coming-to-netflix/',
+    '@id': 'https://culturays.com/coming-to-netflix/',
   },
-  url:'https://culturays.com/netflix-naija/coming-to-netflix/', 
+  url:'https://culturays.com/coming-to-netflix/', 
   image: coming_to_netflix_grouped[0].featuredImage?.node?.sourceUrl,
   publisher: {
     '@type': 'Organization',
