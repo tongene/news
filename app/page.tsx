@@ -9,7 +9,7 @@ import { replaceSpecialCharacters } from "@/utils/replacechars";
 import { scrapeSilverBird } from "./naija-wiki/filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
 import { CronJob } from "cron"; 
-import { BlogPosting, WithContext } from "schema-dts";
+import { BlogPosting, WebSite, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData"; 
 import { nextNewsPosts } from "./data"  
  
@@ -174,10 +174,11 @@ export default async function Home() {
           timeZone: 'Africa/Lagos'
          });   
         
-  const jsonLd:WithContext<BlogPosting>={
+  const jsonLd:WithContext<WebSite>={
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Urban - Covering News in Nigeria, Africa, and Beyond",
+    "name":"Urban Naija",
+    "@type": "WebSite",
+    "headline": "Urban Naija News- Covering News in Nigeria, Africa, and Beyond",
     "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
     "url": "https://culturays.com/",
     "mainEntityOfPage": {

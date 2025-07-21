@@ -84,7 +84,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   }
 
  
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Urban Naija | News, Nigeria",
   description: "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",

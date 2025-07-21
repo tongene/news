@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next'
 export default function manifest(): MetadataRoute.Manifest {
     return {
-      name: 'Culturays',
-      short_name: 'Culturays',
+      name: 'Urban Naija News',
+      short_name: 'Urban Naija',
       description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
       start_url: '/',
       display: 'standalone',
