@@ -282,7 +282,7 @@ className='rounded-xl'
       />
       <div>
    <Link href={`/news/${xy.slug}/`}><h2 className='text-2xl font-bold py-3 hover:text-gray-700'>{xy.title} </h2></Link>
-   <div dangerouslySetInnerHTML={{__html:xy.excerpt}} className="leading-8"/>
+   <div dangerouslySetInnerHTML={{__html:xy.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="leading-8 overflow-hidden text-ellipsis"/>
  </div>
   <div className='flex py-3'>
   <p className=''>{moment(xy.date).subtract(1, 'hour').fromNow()} </p>
@@ -293,17 +293,17 @@ className='rounded-xl'
 </div>
 )}
 
-   <div className="flex overflow-auto w-56 xxs:w-64 min-[320px]:w-72 min-[360px]:w-80 xs:w-96 sm:w-auto m-auto sm:overflow-hidden pt-4 sm:pt-0 hidden-scroll sm:m-0 px-2 xxs:px-0" >
-    <div className='flex sm:block sm:max-w-lg'>
-    {sortedNews.slice(17,20).map((xy,i)=>
-    <div className='border w-96 xxs:w-96 px-5 xl:px-0 pt-5 sm:pt-0 sm:border-none sm:w-auto' key={i + ' ' + Math.random()}>
-   <Link href={`/topic/${xy.contentTags.nodes[0].slug}/`} > <h3 className='text-red-500 text-sm italic py-1'>{xy.contentTags.nodes[0].name} </h3></Link>
-  <Link href={`/news/${xy.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
-      <div className='py-2 text-sm flex flex-wrap'>
-      <h3 className="m-1">{xy.articlesCategories.nodes[0].name}</h3>
-        <p className='m-1 text-gray-400'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p>
+<div className="flex overflow-auto w-56 xxs:w-64 min-[320px]:w-72 min-[360px]:w-80 xs:w-96 sm:w-auto m-auto sm:overflow-hidden pt-4 sm:pt-0 hidden-scroll sm:m-0 px-2 xxs:px-0" >
+<div className='flex sm:block sm:max-w-lg'>
+{sortedNews.slice(17,20).map((xy,i)=>
+<div className='border w-96 xxs:w-96 px-5 xl:px-0 pt-5 sm:pt-0 sm:border-none sm:w-auto' key={i + ' ' + Math.random()}>
+<Link href={`/topic/${xy.contentTags.nodes[0].slug}/`} > <h3 className='text-red-500 text-sm italic py-1'>{xy.contentTags.nodes[0].name} </h3></Link>
+<Link href={`/news/${xy.slug}/`}><h2 className="hover:text-gray-700 text-xl font-bold overflow-hidden text-ellipsis py-1"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>
+<div className='py-2 text-sm flex flex-wrap'>
+<h3 className="m-1">{xy.articlesCategories.nodes[0].name}</h3>
+<p className='m-1 text-gray-400'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p>
 
-      </div>
+</div>
 
     </div>
    )}
@@ -314,7 +314,7 @@ className='rounded-xl'
   </div>
 
   <hr/>
-   <div className="xs:grid grid-cols-2 gap-1 justify-center">
+   <div className="md:grid grid-cols-2 gap-1 justify-center">
   <div className="bg-white dark:bg-black rounded-xl my-2 py-2 max-w-lg">
 {sortedNews.slice(20,22).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2 gap-3' key={i + ' ' + Math.random()}>
@@ -364,11 +364,9 @@ className='h-28 rounded-xl object-cover max-w-40'
 
 </div>
 </div>
-</div>
-  <div className="xl:max-w-3xl">
-  <div className="md:flex xl:block ">
+
   <div className="rounded-xl my-4 xl:mx-2 m-auto max-w-xl md:max-w-md min-[900px]:max-w-xl lg:max-w-2xl xl:max-w-xl h-max">
-  {sortedNews.slice(24,26).map((x1,i)=>
+  {sortedNews.slice(43,45).map((x1,i)=>
   <div className='border-b mx-1 px-3 pt-5 sm:pt-0 py-3 flex my-2' key={i + ' ' + Math.random()}>
       <div>
     <Image
@@ -389,12 +387,17 @@ className='h-28 rounded-xl object-cover max-w-40'
        </div>
    </div>
 )}
+</div> 
 </div>
+   
+  <div className="xl:max-w-3xl">
+  <div className="lg:flex xl:block ">
+
 <div className="">
  <div className="bg-white dark:bg-black rounded-xl my-1 px-2 md:mx-1 overflow-hidden py-4 my-4 max-w-xs xs:max-w-sm m-auto">
 {/* <h2 className='text-3xl font-bold text-center  opacity-80 border-b'>{news7_name} </h2> */}
 <div className='flex md:block xl:flex justify-between'>
- { sortedNews.slice(26,30).map((it, index)=>
+ { sortedNews.slice(24,28).map((it, index)=>
  activeIndices.includes(index) &&
 <div
 key={index}
@@ -429,7 +432,7 @@ className='overflow-hidden first:border-r first:md:border-r-0 first:md:border-b 
 </div>
 
   <div className='bg-white dark:bg-black max-w-xs xs:max-w-sm m-auto xl:m-1'>
- { sortedNews.slice(30,34).map((it, index)=>
+ { sortedNews.slice(28,32).map((it, index)=>
 
 <div
 key={index}
@@ -452,9 +455,9 @@ className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-a
  </div>  
 
   <div className="bg-white dark:bg-black w-full my-8">
- <div className="xs:grid grid-cols-2 justify-center xs:items-start items-center lg:grid-cols-4 max-w-2xl lg:max-w-max m-auto py-8 ">
+ <div className="md:grid grid-cols-2 justify-center xs:items-start items-center lg:grid-cols-4 max-w-2xl lg:max-w-max m-auto py-8 ">
   <div className='max-w-sm m-auto  border-r xs:m-0'>
- { sortedNews.slice(33,36).map((it, index)=>
+ { sortedNews.slice(32,35).map((it, index)=>
  <div key={index} className="px-4">
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
@@ -485,7 +488,7 @@ className='rounded-xl object-cover'
 
 </div>
  <div className='max-w-sm m-auto border-r xs:m-0'>
- { sortedNews.slice(36,39).map((it, index)=> 
+ { sortedNews.slice(35,38).map((it, index)=> 
  <div key={index} className="px-4">
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
@@ -517,7 +520,7 @@ className='rounded-xl object-cover'
 </div>
 
 <div className='max-w-sm m-auto xs:m-0 border-r'>
- { sortedNews.slice(39,42).map((it, index)=>
+ { sortedNews.slice(38,41).map((it, index)=>
  <div key={index} className="px-4">
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
@@ -549,7 +552,7 @@ className='rounded-xl object-cover'
 </div>
 
  <div className='max-w-sm m-auto xs:m-0 border-r'>
- { sortedNews.slice(42,45).map((it, index)=>
+ { sortedNews.slice(41,43).map((it, index)=>
  <div key={index} className="px-4">
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
