@@ -137,7 +137,7 @@ className='rounded-xl'
 <hr/>
  <div className="bg-white dark:bg-black rounded-xl">
 
-  <div className="grid sm:grid-cols-2 sm:max-w-6xl sm:m-0 px-5 xs:px-11 sm:px-2 py-8 max-w-xl" >
+  <div className="grid md:grid-cols-2 md:max-w-6xl sm:m-0 px-5 xs:px-11 sm:px-2 py-8 max-w-xl" >
     {sortedNews.slice(4,8).map((xy,i)=>
     <div className='pt-2 sm:pt-0 border-b flex my-2 mx-1' key={i + ' ' + Math.random()}>
        <div>
@@ -212,7 +212,7 @@ alt={xy?.featuredImage?.node.altText }
 
 </div>
 <hr/>
-  <div className="grid sm:grid-cols-2 gap-1 justify-center ">
+  <div className="grid md:grid-cols-2 gap-1 justify-center ">
  <div className="bg-white dark:bg-black rounded-xl my-2 py-2 max-w-lg">
 {sortedNews.slice(12,14).map((x1,i)=>
   <div className='border-b mx-1 pt-5 sm:pt-0 py-5 flex my-2' key={i + ' ' + Math.random()}>
