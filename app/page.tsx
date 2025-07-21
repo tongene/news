@@ -178,6 +178,7 @@ export default async function Home() {
     "@context": "https://schema.org",
     "name":"Urban Naija",
     "@type": "WebSite",
+    "alternateName": "Urban Naija News",
     "headline": "Urban Naija News- Covering News in Nigeria, Africa, and Beyond",
     "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
     "url": "https://culturays.com/",
