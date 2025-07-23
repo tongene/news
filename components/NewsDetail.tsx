@@ -137,13 +137,13 @@ return html2pdfRef.current().set(opt).from(element).save();
  
  <Image 
   className="flex flex-col items-center justify-center bg-cover bg-center h-1/2 w-full object-cover border-t border-t-8 rounded-t border-t-orange-600"
-     src={post.featuredImage.node.sourceUrl}
+     src={post.featuredImage?.node.sourceUrl}
      width={1250}
      height={675}
-     alt={post.featuredImage.node.altText}
+     alt={post.featuredImage?.node.altText}
      />
  <div className="bg-gray-600 relative text-gray-200">
-  <div dangerouslySetInnerHTML={{__html:post.featuredImage.node.caption}} className="absolute bottom-20 left-8 p-6 leading-8 shadow-xl font-mono"/> 
+  <div dangerouslySetInnerHTML={{__html:post.featuredImage?.node.caption}} className="absolute bottom-20 left-8 p-6 leading-8 shadow-xl font-mono"/> 
  </div>
 </div> 
 <div className="lg:flex mx-auto"style={{maxWidth:'1450px'}}> 
