@@ -121,7 +121,7 @@ priority={true}
      <div className='py-2 text-sm'> 
         <p className='text-gray-600 dark:text-red-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 
   
-        <Link href={`/creator/${xy?.author?.node?.slug}/`}><p className='py-2 text-blue-400 hover:text-gray-700 py-2 text-gray-800 font-medium'><span className='text-gray-700 italic pr-2 text-xs'>by </span>{xy?.author?.node?.name}</p></Link> 
+        {/* <Link href={`/creator/${xy?.author?.node?.slug}/`}><p className='py-2 text-blue-400 hover:text-gray-700 py-2 text-gray-800 font-medium'><span className='text-gray-700 italic pr-2 text-xs'>by </span>{xy?.author?.node?.name}</p></Link>  */}
       </div>  
    
     </div>   

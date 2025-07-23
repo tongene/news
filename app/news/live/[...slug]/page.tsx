@@ -1,8 +1,7 @@
 import SideBar from "@/components/Side" 
 import LiveNews from "@/components/LiveNews" 
 import type { Metadata, ResolvingMetadata } from 'next' 
-import { Suspense } from "react"
-import { createClient } from "@/utils/supabase/server"
+import { Suspense } from "react" 
 import { postsOutline, sidePlusViews } from "@/app/page-data"
 import { liveNewsFeed } from "../live"
 import { NewsArticle, WithContext } from "schema-dts"

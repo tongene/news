@@ -40,7 +40,7 @@ import { PostProps } from "../types";
       body: JSON.stringify({
         query:
          `query CONTENTFEED{
-       postsTags(first:500) {
+      tags(first:500) {
        nodes {     
           name
           slug

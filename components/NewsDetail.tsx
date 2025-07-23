@@ -10,7 +10,7 @@ import moment from "moment";
 
 import { useEffect, useRef, useState } from "react";
 const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline }:{post:PostTypeProps, next_naija_news:NextTypeProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => { 
-
+ 
   const $ = cheerio.load( post.content ) 
   let data_texts= ''
   let data_link:number[]= [] 
@@ -286,9 +286,9 @@ return html2pdfRef.current().set(opt).from(element).save();
     <Link href={`/news/${xy.slug}`}><h2 className="text-gray-800 hover:text-gray-700 text-xl hover:dark:text-gray-500 dark:text-gray-300 font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer "style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>            
       <div className='py-2 text-sm'> 
         <p className='text-gray-600 dark:text-red-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 
-        <Link href={`/creator/${xy.author.node.slug}/`}>
+        {/* <Link href={`/creator/${xy.author.node.slug}/`}>
           <p className='py-2 text-gray-800 font-medium hover:dark:text-gray-500 dark:text-gray-300'>{xy.author.node.name}</p>
-        </Link> 
+        </Link>  */}
       </div> 
      
     </div> 
@@ -302,8 +302,6 @@ return html2pdfRef.current().set(opt).from(element).save();
  </div>
   <SideBar sidebarItems={sidebarItems}news_outline={news_outline} /> 
   </div>
-
-
  </div> 
 </article>
   )
