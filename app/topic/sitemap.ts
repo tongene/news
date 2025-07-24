@@ -51,7 +51,7 @@ import { PostProps } from "../types";
     `})
       
       }).then(response =>response.json() )  
-      .then(data => data.data.postsTags.nodes)
+      .then(data => data.data.tags.nodes)  
       .catch(error => console.error('Error:', error));
       //const response = wprest?.data.postsTags.nodes 
       return wprest
