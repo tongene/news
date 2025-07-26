@@ -2,8 +2,8 @@ import Economy from "@/components/News/Economy"
 import StructuredData from "@/components/StructuredData";
 import { BlogPosting, WithContext } from "schema-dts";
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/economy/` 
-  : "http://localhost:3000/economy/";
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}/news/economy/` 
+  : "http://localhost:3000/news/economy/";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl), 

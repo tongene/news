@@ -710,7 +710,7 @@ ex.contentTypeName ==='video'?
   <div className="mx-2" >
     {ex.contentTypeName ==='post'&&<Link href={`/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link>} 
 
-   {ex.contentTypeName ==='naija-wiki'&& <Link href={`/naia-wiki/character/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> }
+   {ex.contentTypeName ==='naija-wiki'&& <Link href={`/naija-wiki/character/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> }
 
   { ex.contentTypeName ==='netflix-naija' && <Link href={`/${ex.contentTypeName}/news/${ex.slug}/`}><h3 className="search-title hover:opacity-50 text-2xl font-bold cursor-pointer font-medium leading-tight underline">{ex.title}</h3></Link> }
 

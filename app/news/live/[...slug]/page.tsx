@@ -92,7 +92,7 @@ const slug =(await params).slug
         "@type": "WebPage",
         "@id": news?.slug,
       },
-      url:news?.slug,
+      url:`https://culturays.com/news/live/${news.slug}/`,
       image: news?.featuredImage.node.sourceUrl ,
       publisher: {
         "@type": "Organization",

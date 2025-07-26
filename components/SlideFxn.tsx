@@ -4,12 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import Link from "next/link";
 import { useState } from "react";
-const replaceHTMLTags=(string:string)=>{
-  const regex = /(<([^>]+)>)/gi;
-  //(/<\/?[^>]+(>|$)/g, "") 
-  const newString = string?.replace(regex, "");
-  return newString
-   }
 
   type SlideProps={
     slug:string

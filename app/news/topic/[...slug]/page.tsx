@@ -408,7 +408,7 @@ const news_outline=await postsOutline()
      "@type": "WebPage",
      "@id": news_detail?.slug,
    },
-   url:news_detail?.slug,
+   url:`https://culturays.com/news/topic/${slug}/`,
    image: news_detail?.featuredImage?.node.sourceUrl ,
    publisher: {
      "@type": "Organization",

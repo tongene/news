@@ -6,14 +6,14 @@ import { createClient } from "@/utils/supabase/server";
 import { BlogPosting, WithContext } from "schema-dts";
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/nollywood/` 
-  : "http://localhost:3000/nollywood/";
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}/news/nollywood/` 
+  : "http://localhost:3000/news/nollywood/";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl), 
    title:"Urban News | Nollywood", 
     alternates: {
-    canonical:  `https://culturays.com/neews/nollywood/`,
+    canonical:  `https://culturays.com/news/nollywood/`,
  
   }
 };

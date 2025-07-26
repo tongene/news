@@ -5,11 +5,11 @@ import StructuredData from "@/components/StructuredData";
 import { createClient } from "@/utils/supabase/server";
 import { BlogPosting, WithContext } from "schema-dts";
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/award` 
-  : "http://localhost:3000/award";
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}/news/award/` 
+  : "http://localhost:3000/news/award/";
+
   async function awardsBlog(){
- 
-        const wprest = fetch('https://content.culturays.com/graphql',{
+   const wprest = fetch('https://content.culturays.com/graphql',{
           method: 'POST', 
           headers:{ 
           'Content-Type':'application/json', 

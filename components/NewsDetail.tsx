@@ -262,7 +262,7 @@ return html2pdfRef.current().set(opt).from(element).save();
 <div className='flex flex-wrap py-2'> 
   {post?.tags?.nodes.map((xy)=>
 <div key={xy?.name + ' ' + Math.random()} className='m-1'>
- <Link href={`/${xy?.slug}/`}><h4 className='hover:bg-gray-600 hover:text-gray-200 border border-gray-600 bg-gray-50 text-gray-600 p-2 text-lg w-max text-center'>{xy?.name} </h4></Link>
+ <Link href={`/topic/${xy?.slug}/`}><h4 className='hover:bg-gray-600 hover:text-gray-200 border border-gray-600 bg-gray-50 text-gray-600 p-2 text-lg w-max text-center'>{xy?.name} </h4></Link>
 
 </div>)} 
 </div>
@@ -282,7 +282,7 @@ return html2pdfRef.current().set(opt).from(element).save();
    {nextPosts.filter(vx => Object.keys(vx).length > 0).slice(0,3).map((xy,i)=>   
    <div className='border pt-5 px-3 w-96' key={i + ' ' + Math.random()}> 
   
-    <Link href={`/${xy.tags.nodes[0]?.slug}/`}> <h3 className='text-red-500 text-sm italic py-2 hover:dark:text-gray-500'>{xy.tags?.nodes[0]?.name} </h3></Link>
+    <Link href={`/topic/${xy.tags.nodes[0]?.slug}/`}> <h3 className='text-red-500 text-sm italic py-2 hover:dark:text-gray-500'>{xy.tags?.nodes[0]?.name} </h3></Link>
     <Link href={`/news/${xy.slug}`}><h2 className="text-gray-800 hover:text-gray-700 text-xl hover:dark:text-gray-500 dark:text-gray-300 font-bold overflow-hidden text-ellipsis hover:text-gray-500 cursor-pointer "style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link>            
       <div className='py-2 text-sm'> 
         <p className='text-gray-600 dark:text-red-600'>{moment(xy.date).subtract(1, 'hour').fromNow()}</p> 

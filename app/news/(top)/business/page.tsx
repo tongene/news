@@ -4,8 +4,8 @@ import StructuredData from "@/components/StructuredData";
 import { BlogPosting, WithContext } from "schema-dts";
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/business/` 
-  : "http://localhost:3000/business/";
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}/news/business/` 
+  : "http://localhost:3000/news/business/";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl), 

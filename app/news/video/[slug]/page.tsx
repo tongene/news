@@ -171,7 +171,7 @@ const VideoDetailsPage=async ({params}: Props) => {
        "@type": "WebPage",
        "@id": vid_details?.slug,
      },
-     url:vid_details?.slug,
+     url: `https://culturays.com/news/video/${slug}/`,
      image: vid_details?.featuredImage.node.sourceUrl ,
      publisher: {
        "@type": "Organization",

@@ -2,12 +2,12 @@ import ArticlesX from "@/components/News/Articles"
 import StructuredData from "@/components/StructuredData";
 import { BlogPosting, WithContext } from "schema-dts";
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-  ? `${process.env.NEXT_PUBLIC_BASE_URL}/environment/` 
-  : "http://localhost:3000/environment/";
+  ? `${process.env.NEXT_PUBLIC_BASE_URL}/news/articles/` 
+  : "http://localhost:3000/news/articles/";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl), 
-   title:"Urban News | Environment",
+   title:"Urban News | Articles",
     alternates: {
     canonical:  `https://culturays.com/news/articles/`,
  

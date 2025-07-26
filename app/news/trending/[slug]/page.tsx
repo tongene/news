@@ -263,7 +263,7 @@ const TrendingDetails =async ({params}: {
      "@type": "WebPage",
      "@id": trends_detail?.slug,
    },
-   url:trends_detail?.slug,
+   url:`https://culturays.com/news/trending/${slug}/`,
    image: trends_detail?.featuredImage.node.sourceUrl ,
    publisher: {
      "@type": "Organization",

@@ -51,7 +51,7 @@ const Paginate = ({content, pathString}:{content:any[], pathString:string}) => {
        src={itx.featuredImage?.node?.sourceUrl}
        alt={itx.title} 
        />
-         </div>   
+         </div>    
          <div className="w-full m-1 sm:m-3 py-5">    
            <div className="py-2"><Link href={`/news/${pathString}/${itx.slug}/`}><h2 className="text-2xl overflow-hidden text-ellipsis font-bold hover:text-gray-600" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical', lineHeight:'35px' }}>{itx.title}</h2></Link></div> 
          <Link href={`/news/${pathString}/${itx.slug}/`}><p className="text-lg hover:text-gray-600 overflow-hidden text-ellipsis" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical', lineHeight:'35px' }} >{replaceHTMLTags(itx.excerpt)} </p></Link>

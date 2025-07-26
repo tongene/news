@@ -56,7 +56,7 @@ export default async function ManufacturingPag({params}: {
   return (
     <main className="max-w-4xl mx-auto py-10 px-4">
       <p className='shadow-2xl border p-4 w-max'>
-      <Link href='/nigeria'><FontAwesomeIcon icon={faAngleLeft} /> </Link></p>
+      <Link href='/nigeria/'><FontAwesomeIcon icon={faAngleLeft} /> </Link></p>
     <h1 className="text-3xl font-bold mb-6">{page.title}</h1>
      <div dangerouslySetInnerHTML={{__html:page?.excerpt}}className='py-4 text-lg italic'/> 
    <div className='relative'> <div dangerouslySetInnerHTML={{__html:page?.featuredImage?.node?.caption}} className="absolute top-0 left-6 p-4 leading-6 shadow-xl font-mono max-w-xl"/> 

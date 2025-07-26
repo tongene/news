@@ -1083,7 +1083,7 @@ const news_outline=await postsOutline()
         "@type": "WebPage",
         "@id": news_detail?.slug||newsXdetail?.slug,
       },
-      url:news_detail?.slug||newsXdetail?.slug,
+      url:`https://culturays.com/news/${news_detail?.slug}` || `https://culturays.com/news/${newsXdetail?.slug}`, 
       image: news_detail?.featuredImage?.node?.sourceUrl ||newsXdetail?.featuredImage?.node?.sourceUrl,
       publisher: {
         "@type": "Organization",

@@ -3,8 +3,6 @@ import NewsLetter from "./NewsLetter"
 import Image from "next/image"
 import Link from "next/link"
 import { dateFormatter } from "@/utils/dateformat"
-
-import MoviesWidget from "./MoviesWidget"
 import { Cursors } from "@/app/types"
 
 type SideNode ={
