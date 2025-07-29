@@ -27,7 +27,7 @@ import { charsFilms, relatedChars } from '@/app/naija-wiki/newCharHandle';
    const previousImages = (await parent).openGraph?.images || []
  
     return {
-      title: `Urban Naija | Movies - ${charactertitles[0]?.charactertitles.portrayedby} `,
+      title: `Urban Naija | Movies - ${charactertitles[0]?.charactertitles.portrayedby ||''} `,
       description:`${charactertitles[0]?.title}, ${charactertitles[0]?.charactertitles.portrayedby}, ${charactertitles[0]?.charactertitles.filmname}`, 
       keywords:[charactertitles[0]?.title, charactertitles[0]?.charactertitles.portrayedby, charactertitles[0]?.charactertitles.filmname].join(', '),
      twitter: {
@@ -38,14 +38,14 @@ import { charsFilms, relatedChars } from '@/app/naija-wiki/newCharHandle';
     },
       openGraph: {
       title: `Naija Wiki | Movies - ${charactertitles[0]?.charactertitles.portrayedby} `,
-      url: `https://culturays.com/movies/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`,
+      url: `https://culturays.com/movies/${slug}/`,
       siteName: 'Urban Naija',
       description:`${charactertitles[0]?.title}, ${charactertitles[0]?.charactertitles.portrayedby}, ${charactertitles[0]?.charactertitles.filmname}`, 
         images: [{url: charactertitles[0]?.charactertitles.actorImgs.node.sourceUrl, width: 800,
           height: 600, ...previousImages}]       
       },
       alternates: {
-    canonical:  `https://culturays.com/movies/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`,
+    canonical:  `https://culturays.com/movies/${slug}/`,
  
   }
     } 
@@ -53,19 +53,19 @@ import { charsFilms, relatedChars } from '@/app/naija-wiki/newCharHandle';
 
 const ActorsMoviePage =async ({params}: Props) => {
 const slug =(await params).slug
-const charsList = await charsFilms(slug) 
+const charsList = await charsFilms(slug)  
 const charactertitles= charsList.map((xy:CharacterProps)=> xy.naijaWikis.nodes).map((dy:CharacterProps)=> dy).flat()
+
+ 
 const [filmname]=charactertitles
-const filmsChar = await charsFilms(filmname.charactertitles.portrayedby) 
- const filmsName = await charsFilms(filmname.charactertitles.filmname) 
 const listOtherChars =await relatedChars()  
 
 const jsonLd:WithContext<ProfilePage> = {
    '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-  headline: `Culturays - ${charactertitles[0]?.charactertitles.portrayedby} | Movies `, 
+  headline: `Urban Naija - ${charactertitles[0]?.charactertitles.portrayedby} | Movies `, 
    description: `${charactertitles[0]?.title}, ${charactertitles[0]?.charactertitles.portrayedby}, ${charactertitles[0]?.charactertitles.filmname}`, 
-   url:`https://culturays.com/movies/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`,
+   url:`https://culturays.com/movies/${slug}/`,
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles[0]?.charactertitles.portrayedby} - Movies`,     
@@ -75,7 +75,7 @@ const jsonLd:WithContext<ProfilePage> = {
    
   //   mainEntityOfPage: {
   //    "@type": "WebPage",
-  //    "@id":`https://culturays.com/movies/${slug.toLowerCase().replace(/-/g, ' ')}/`, 
+  //    "@id":`https://culturays.com/movies/${slug}/`, 
   //  },
 
    image: charactertitles[0]?.charactertitles.actorImgs.node.sourceUrl, 
@@ -85,11 +85,9 @@ const jsonLd:WithContext<ProfilePage> = {
  
   return ( 
   <div>
-<StructuredData schema={jsonLd} />
-  <ActorsMovie
- listMovies={charsList}
- filmsChar={filmsChar}
- filmsName={filmsName}
+ <StructuredData schema={jsonLd} />  
+ <ActorsMovie
+ listMovies={charsList} 
  listOtherChars={listOtherChars}
  />  
  </div>

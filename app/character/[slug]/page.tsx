@@ -58,7 +58,7 @@ const replaceHTMLTags=(string:string)=>{
 const jsonLd:WithContext<ProfilePage> = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-   headline: `Culturays - ${character_data?.title}`, 
+   headline: `Urban Naija - ${character_data?.title}`, 
    description:replaceHTMLTags(character_data?.excerpt) , 
    url:`https://culturays.com/character/${slug}/`,
    mainEntity: {
@@ -78,7 +78,7 @@ const jsonLd:WithContext<ProfilePage> = {
    
  };
 
-
+ 
    return (  
    <> 
      <StructuredData schema={jsonLd} />  

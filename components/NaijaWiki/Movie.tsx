@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { CharacterProps } from "@/app/types"
 
-const ActorsMovie = ({listMovies, filmsChar,filmsName,listOtherChars }:{listMovies:CharacterProps[],filmsChar:CharacterProps[], filmsName:CharacterProps[], listOtherChars:CharacterProps[]}) => {
+const ActorsMovie = ({listMovies, listOtherChars }:{listMovies:CharacterProps[], listOtherChars:CharacterProps[]}) => {
 const naijaWikis:CharacterProps[]= listMovies.map((xy )=> xy.naijaWikis.nodes).map((dy )=> dy).flat() 
 const [charactertitles]= naijaWikis
 
@@ -15,20 +15,17 @@ const char_itx = titleIdx.map((xy:CharacterProps)=> xy.charactertitles.charRel.e
  
      const nextFilms= listOtherChars.map((xy)=> xy.charactertitles) 
      const fixFilmname = nextFilms.filter((item, index, self) =>  index === self.findIndex((t) => t.filmname === item.filmname))
- const filmsStory:CharacterProps[] = filmsChar.map((xy)=>
-xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{  
-  return dy.charactertitles.filmAbout !== null
- })).flat()
-  const filmsId:CharacterProps[] = filmsName.map((xy)=>
-xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{  
-  return dy.charactertitles.filmAbout !== null &&dy.charactertitles.portrayedby!==charactertitles?.charactertitles.portrayedby
- })).flat()
-  const filmsIdFull:CharacterProps[] = filmsChar.map((xy)=>
-xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{  
-  return dy.charactertitles.filmAbout !== null &&dy.charactertitles.portrayedby===charactertitles?.charactertitles.portrayedby
- })).flat()
+//  const filmsStory:CharacterProps[] = filmsChar.map((xy)=>
+// xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{  
+//   return dy.charactertitles.filmAbout !== null
+//  })).flat()
 
- const filmsList= filmsChar.map((xy)=> xy.naijaWikis.nodes).flat()
+//   const filmsIdFull:CharacterProps[] = filmsChar.map((xy)=>
+// xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{  
+//   return dy.charactertitles.filmAbout !== null &&dy.charactertitles.portrayedby===charactertitles?.charactertitles.portrayedby
+//  })).flat()
+
+//  const filmsList= filmsChar.map((xy)=> xy.naijaWikis.nodes).flat()
  
   return (
     <div> 
@@ -57,7 +54,7 @@ xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{
 </div> 
 
  <section > 
-  {filmsId.map((xy:CharacterProps)=> (xy.charactertitles.filmname===charactertitles.charactertitles.filmname&&
+  {/* {filmsId.map((xy:CharacterProps)=> (xy.charactertitles.filmname===charactertitles.charactertitles.filmname&&
  <div className='lg:flex p-4 sm:w-4/5 md:w-3/5 lg:w-full'key={xy.id} >  
     <div className="border lg:w-1/3 xl:w-1/4" >   
   <Image 
@@ -82,8 +79,34 @@ xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{
 <p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Release Date/Year: </p><span className="text-lg w-3/4 p-4">{xy.charactertitles.releaseDate}</span>
 </div> 
 </div>
+ </div>) )}  */}
+  {characterItems.map((xy:CharacterProps)=> (
+ <div className='lg:flex p-4 sm:w-4/5 md:w-3/5 lg:w-full'key={xy.id} >  
+    <div className="border lg:w-1/3 xl:w-1/4" >   
+  <Image 
+  className="h-80"
+    src={xy.charactertitles?.filmImg1?.node.sourceUrl}
+    width={1250}
+    height={650}
+    alt={xy.charactertitles.filmname}/> 
+    </div>
+<div className="lg:w-1/2 xl:w-1/3"> 
+  <div className="flex border"> 
+<p className="text-xl bg-gray-700 p-3 text-white w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Title: </p><span className="text-2xl font-bold w-3/4 p-3">{xy.charactertitles.filmname}</span>  
+</div> 
+
+<div className="flex border">
+<p className="text-xl bg-gray-700 p-3 text-white w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4"> Description: </p><span className="text-lg w-3/4 p-3"> {xy.charactertitles.filmAbout}</span> </div>
+<div className="flex border">
+<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Genre:</p><span className="text-lg w-3/4  p-4"> {xy.charactertitles.genre}</span> </div>
+<div className="flex border">
+<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Director: </p><span className="text-lg w-3/4 p-4" style={{lineHeight:'50px'}}>{xy.charactertitles.filmDirector}</span></div> 
+<div className="flex border">
+<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Release Date/Year: </p><span className="text-lg w-3/4 p-4">{xy.charactertitles.releaseDate}</span>
+</div> 
+</div>
  </div>) )} 
-  {filmsList.map((xy:CharacterProps)=> (xy.charactertitles.filmname!==charactertitles.charactertitles.filmname&&
+  {/* {filmsIdFull.map((xy:CharacterProps)=> (xy.charactertitles.filmname===charactertitles.charactertitles.filmname&&
  <div className='lg:flex p-4 sm:w-4/5 md:w-3/5 lg:w-full'key={xy.id} >  
     <div className="border lg:w-1/3 xl:w-1/4" >   
   <Image 
@@ -108,33 +131,7 @@ xy.naijaWikis.nodes.filter((dy:CharacterProps)=>{
 <p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Release Date/Year: </p><span className="text-lg w-3/4 p-4">{xy.charactertitles.releaseDate}</span>
 </div> 
 </div>
- </div>) )} 
-  {filmsIdFull.map((xy:CharacterProps)=> (xy.charactertitles.filmname===charactertitles.charactertitles.filmname&&
- <div className='lg:flex p-4 sm:w-4/5 md:w-3/5 lg:w-full'key={xy.id} >  
-    <div className="border lg:w-1/3 xl:w-1/4" >   
-  <Image 
-  className="h-80"
-    src={xy.charactertitles?.filmImg1?.node.sourceUrl}
-    width={1250}
-    height={650}
-    alt={xy.charactertitles.filmname}/> 
-    </div>
-<div className="lg:w-1/2 xl:w-1/3"> 
-  <div className="flex border"> 
-<p className="text-xl bg-gray-700 p-3 text-white w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Title: </p><span className="text-2xl font-bold  p-3">{xy.charactertitles.filmname}</span>  
-</div> 
-
-<div className="flex border">
-<p className="text-xl bg-gray-700 p-3 text-white w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4"> Description: </p><span className="text-lg w-3/4 p-3"> {xy.charactertitles.filmAbout}</span> </div>
-<div className="flex border">
-<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Genre:</p><span className="text-lg w-3/4  p-4"> {xy.charactertitles.genre}</span> </div>
-<div className="flex border">
-<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Director: </p><span className="text-lg w-3/4 p-4" style={{lineHeight:'50px'}}>{xy.charactertitles.filmDirector}</span></div> 
-<div className="flex border">
-<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Release Date/Year: </p><span className="text-lg w-3/4 p-4">{xy.charactertitles.releaseDate}</span>
-</div> 
-</div>
- </div>) )} 
+ </div>) )}  */}
   <table className="border w-2/4 md:w-3/4 lg:w-1/2 mx-auto"><thead><tr ><td className="text-2xl p-8 font-bold">Characters of {charactertitles.charactertitles.portrayedby}</td></tr></thead><tbody className="md:flex justify-center">{ (characterItems as CharacterProps[]).map((xx, i)=>   
     <tr className="border" key={i + ' ' + xx.title}><td>
        <div className="border p-2 m-2 w-80"> 

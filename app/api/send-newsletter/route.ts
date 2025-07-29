@@ -70,7 +70,7 @@ return;
 
     <p style="margin-top: 30px; font-size: 15px; color: #333333;">
       Warm regards,<br>
-      <strong>Culturays</strong>
+      <strong>Urban Naija</strong>
     </p>
 
     <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />

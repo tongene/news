@@ -26,7 +26,7 @@ const email = rawEmail.normalize('NFKC').toLowerCase();
       </head>
       <body style="font-family: Arial; text-align: center; padding: 40px;">
         <h2>You have been unsubscribed.</h2>
-        <p>You’ll no longer receive emails from Culturays.</p>
+        <p>You’ll no longer receive emails from Urban Naija.</p>
       </body>
     </html>
   `;

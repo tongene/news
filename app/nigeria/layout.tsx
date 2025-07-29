@@ -11,7 +11,7 @@ export const metadata = {
  
   },
   openGraph: {
-    title: 'Culturays | News in Nigeria, Business, Economy, Nollywood, Netflix Naija', 
+    title: 'Urban Naija | News in Nigeria, Business, Economy, Nollywood, Netflix Naija', 
       
   }
 };

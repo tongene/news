@@ -3,14 +3,14 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
 : "http://localhost:3000/sign-in";
 export const metadata = {
 metadataBase: new URL(defaultUrl), 
- title:"Urban News | Sign In",  
+ title:"Urban Naija | Sign In",  
 description: "Sign in to Explore Topics",
 alternates: {
   canonical: 'https://culturays.com/sign-in/',
 
 }, 
  openGraph: {
-  title: 'Culturays | Sign In',
+  title: 'Urban Naija | Sign In',
 }
  
 }; 

@@ -23,13 +23,13 @@ import { charsFilms, relatedChars } from "@/app/naija-wiki/newCharHandle";
     parent: ResolvingMetadata  
   ): Promise<Metadata> {  
     const slug =(await params).slug
-    const charsList = await charsFilms(slug.toLowerCase().trim().replace(/-/g, ' '))   
+    const charsList = await charsFilms(slug)   
     const naijaWikis= charsList.map((xy:CharacterProps)=> xy.naijaWikis.nodes).flat()
     const [charactertitles]=naijaWikis
     const previousImages = (await parent).openGraph?.images || []
-     
+    
     return {
-      title: `Urban Naija | ${charactertitles?.charactertitles.filmname} Characters`,
+      title: `Urban Naija | ${charactertitles?.charactertitles.filmname ||''} Characters`,
       description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname} `,
       keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),
       twitter: {
@@ -40,7 +40,7 @@ import { charsFilms, relatedChars } from "@/app/naija-wiki/newCharHandle";
     },
       openGraph: {
       title: `Naija Wiki | ${charactertitles?.charactertitles.filmname} Characters`,
-       url: `https://culturays.com/characters/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`,
+       url: `https://culturays.com/characters/${slug}/`,
       siteName: 'Urban Naija',
       description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname} `,
         images:[{url:charactertitles?.charactertitles.filmImg1.node.sourceUrl,
@@ -49,7 +49,7 @@ import { charsFilms, relatedChars } from "@/app/naija-wiki/newCharHandle";
            ...previousImages}],
       },
       alternates: {
-     canonical: `https://culturays.com/characters/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`,
+     canonical: `https://culturays.com/characters/${slug}/`,
 
 },
 
@@ -65,9 +65,9 @@ const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))
 const jsonLd:WithContext<Article> = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-   headline: `Culturays - ${charactertitles?.charactertitles.filmname} | Characters `, 
+   headline: `Urban Naija - ${charactertitles?.charactertitles.filmname} | Characters `, 
    description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
-   url:`https://culturays.com/characters/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`,
+   url:`https://culturays.com/characters/${slug}/`,
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.filmname} - Movies`,     
@@ -76,18 +76,18 @@ const jsonLd:WithContext<Article> = {
    
     mainEntityOfPage: {
      "@type": "WebPage",
-     "@id":`https://culturays.com/characters/${slug.toLowerCase().trim().replace(/-/g, ' ')}/`, 
+     "@id":`https://culturays.com/characters/${slug}/`, 
    },
 
   image: charactertitles?.charactertitles.filmImg1.node.sourceUrl, 
    keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),   
    
  };
-
+ 
    return ( 
     <div> 
       <StructuredData schema={jsonLd} />  
- <Characters
+  <Characters
  listChars={naijaWikis} 
  listOtherChars={listOtherChars}
  />  

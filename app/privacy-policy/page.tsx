@@ -4,7 +4,7 @@ const Privacy = () => {
 <div className="pb-8">  
 <div className="p-11 md:p-24 bg-gray-800"> 
 <h1 className="text-white text-5xl text-center"><strong>Privacy Policy</strong></h1>  
-<p className="text-white pt-4 text-center leading-relaxed">This privacy policy applies to the Culturays app (hereby referred to as &quot;Application&quot;) for mobile devices that was created by Ngenet Studio (hereby referred to as &quot;Service Provider&quot;) as a Free service. This service is intended for use &quot;AS IS&quot;.</p>
+<p className="text-white pt-4 text-center leading-relaxed">This privacy policy applies to the Urban Naija app (hereby referred to as &quot;Application&quot;) for mobile devices that was created by Ngenet Studio (hereby referred to as &quot;Service Provider&quot;) as a Free service. This service is intended for use &quot;AS IS&quot;.</p>
 </div>
 <div className="p-5 md:px-28 text-lg opacity-80 max-w-7xl m-auto">
 

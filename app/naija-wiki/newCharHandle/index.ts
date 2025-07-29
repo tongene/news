@@ -413,8 +413,9 @@ export async function newcharCall(slug:string){
     return wprest 
 } 
 export async function charsFilms(findString: string){ 
- const clearString= findString.toLowerCase().trim().replace(/-/g, ' ')
- 
+ if (typeof findString !== 'string') return; 
+  const clearString = findString.toLowerCase().trim().split('-').splice(0,2 ).join(' ');
+
   try {
     const wprest =fetch('https://content.culturays.com/graphql',{
         method: 'POST',
@@ -565,13 +566,13 @@ export async function charsFilms(findString: string){
 
         } }}
          ` , variables:{
-          search: clearString
+          search: clearString.replace(/-/g, ' ')
          }
         
         })
         
         }).then(response => response.json())  
-       .then(data =>data?.data.contentTags.nodes) 
+       .then(data =>  data?.data.contentTags.nodes )
        .catch(error => console.error('Error:', error));
        const response = wprest
        return wprest

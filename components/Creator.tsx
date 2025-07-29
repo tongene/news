@@ -28,7 +28,7 @@ alt="Christina Ngene"
 <p>From a young age, writing has been my outlet—my sanctuary. It’s where I’ve always found clarity, courage, and the freedom to dream. Today, I continue to channel that passion into every project I take on, weaving ambition, empathy, and integrity into my work and identity as a woman. </p>
 <br/>
 <p>I hope to unravel the tapestry of humanity, emotions and paint vivid idea of imagination and introspection with each stroke of the pen.</p> 
-<p>Through *Culturays*, I hope to move beyond personal expression and into meaningful service—exploring the depth of human experience, inspiring introspection, and amplifying voices that deserve to be heard.</p> 
+<p>Through *Urban Naija*, I hope to move beyond personal expression and into meaningful service—exploring the depth of human experience, inspiring introspection, and amplifying voices that deserve to be heard.</p> 
 <p className="py-3">I hope that my journey transcends mere self-expression and extend into the realm of service and altruism through. </p>
 
 <p>I’ve equipped myself with the necessary educational background, and I approach my work with discipline, professionalism, and a strong ethical foundation. I believe in building with purpose—not chasing trends or quick wins, but focusing on lasting value and impact. </p>

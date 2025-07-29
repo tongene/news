@@ -26,10 +26,10 @@ const replaceHTMLTags=(string:string)=>{
   const newString = string.replace(regex, "");
   return newString
    }
-
+ 
   return ( 
     <div >      
- <nav className="sticky bg-white dark:bg-gray-800 flex justify-center p-8 my-8 z-20 " style={navShadow}>  
+ <nav className="sticky bg-white dark:bg-gray-800 flex justify-center p-8 my-8 z-20" style={navShadow}>  
 <h1 className='opacity-70 italic text-2xl'>{character_data.title?.toLowerCase()} </h1>     
 <div className='flex justify-center'>
 <h3 className='m-3 text-3xl text-center'> 

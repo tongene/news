@@ -13,36 +13,39 @@ const Characters = ({listChars, listOtherChars}:{listChars:CharacterProps[],list
  
  const nextFilms= listOtherChars.map((xy)=> xy.charactertitles) 
   // const fixFilmname = nextFilms.filter((item, index, self) =>  index === self.findIndex((t) => t.filmname === item.filmname)) 
- const fixFilmname = nextFilms.filter((item ) => charactertitles.charactertitles.filmname !== item.filmname)  
+
+ const fixFilmname = nextFilms.filter((item ) => charactertitles?.charactertitles.filmname !== item.filmname)  
+ 
   return (
     <div> 
+
   <div className=' p-11 text-center text-4xl font-bold bg-gray-700 text-white '>  
 <h3 >{charactertitles?.charactertitles.filmname} Characters</h3>
 
 </div> 
- <section > 
+{listChars.length>0 && <section > 
   <div className='md:flex p-11 border lg:w-4/5' >  
     <div className="border p-3 h-1/5 md:w-1/2 lg:w-1/3"> 
   <Image
   className=""
-    src={charactertitles.charactertitles.filmImg1?.node.sourceUrl}
+    src={charactertitles?.charactertitles.filmImg1?.node.sourceUrl}
     width={1250}
     height={650}
-    alt={charactertitles.charactertitles.filmname}/> 
+    alt={charactertitles?.charactertitles.filmname}/> 
     </div>
 <div className="md:w-1/2 lg:w-3/4"> 
   <div className="flex border"> 
-<p className="text-xl bg-gray-700 p-3 text-white w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Title: </p><span className="text-2xl font-bold w-3/4 p-3">{charactertitles.charactertitles.filmname}</span>  
+<p className="text-xl bg-gray-700 p-3 text-white w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Title: </p><span className="text-2xl font-bold w-3/4 p-3">{charactertitles?.charactertitles.filmname}</span>  
 </div> 
 
 <div className="flex border">
-<p className="text-xl bg-gray-700 p-3 text-white w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4"> Description: </p><span className="text-lg w-3/4 p-3"> {charactertitles.charactertitles.filmAbout}</span> </div>
+<p className="text-xl bg-gray-700 p-3 text-white w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4"> Description: </p><span className="text-lg w-3/4 p-3"> {charactertitles?.charactertitles.filmAbout}</span> </div>
 <div className="flex border">
-<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Genre:</p><span className="text-lg w-3/4  p-4"> {charactertitles.charactertitles.genre}</span> </div>
+<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Genre:</p><span className="text-lg w-3/4  p-4"> {charactertitles?.charactertitles.genre}</span> </div>
 <div className="flex border">
-<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Director: </p><span className="text-lg w-3/4 p-4" style={{lineHeight:'50px'}}>{charactertitles.charactertitles.filmDirector}</span></div> 
+<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Director: </p><span className="text-lg w-3/4 p-4" style={{lineHeight:'50px'}}>{charactertitles?.charactertitles.filmDirector}</span></div> 
 <div className="flex border">
-<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Year: </p><span className="text-lg w-3/4 p-4">{charactertitles.charactertitles.releaseDate}</span>
+<p className="text-xl bg-gray-700 p-4 text-white  w-1/2 xs:w-1/3 md:w-1/2 lg:w-1/4">Year: </p><span className="text-lg w-3/4 p-4">{charactertitles?.charactertitles.releaseDate}</span>
 </div> 
 </div>
  </div> 
@@ -66,7 +69,10 @@ const Characters = ({listChars, listOtherChars}:{listChars:CharacterProps[],list
       
  </ul>
     </div></td></tr>) }</tbody>
-    </table></section>  
+    </table></section>  }
+
+
+    
 <div className="px-11 py-4 text-center text-xl font-bold w-max">
   <h3>Next Characters</h3> 
 </div>

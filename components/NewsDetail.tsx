@@ -166,7 +166,7 @@ return html2pdfRef.current().set(opt).from(element).save();
 <div dangerouslySetInnerHTML={{__html: post.postnewsgroup?.heroImage?.node.caption}} className="italic py-2 text-sm"/>
  <div id="post-content">
  <div className="p-4"  > 
- <div id='add-child'className={!revealChild?'hidden':'block'}><h2 className="text-2xl font-bold text-center dark:from-white dark:to-green-400 text-gradient-to-r to-sky-500 from-red-600 bg-clip-text">Culturays</h2>
+ <div id='add-child'className={!revealChild?'hidden':'block'}><h2 className="text-2xl font-bold text-center dark:from-white dark:to-green-400 text-gradient-to-r to-sky-500 from-red-600 bg-clip-text">Urban Naija</h2>
  <h3>{post.title}</h3>
 
    <Image 

@@ -520,7 +520,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Culturays News',
+           name: 'Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -538,7 +538,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Culturays News',
+           name: 'Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -556,7 +556,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Culturays News',
+           name: 'Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -574,7 +574,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Culturays News',
+           name: 'Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -591,7 +591,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Culturays News',
+           name: 'Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -608,7 +608,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Culturays News',
+           name: 'Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -625,7 +625,7 @@ const he_posts: Post[] = he_news.map((post) => ({
      news: [
        {
          publication: {
-           name: 'Culturays News',
+           name: 'Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -643,7 +643,7 @@ const env_posts: Post[] = env_news.map((post) => ({
      news: [
        {
          publication: {
-           name: 'Culturays News',
+           name: 'Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),

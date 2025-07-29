@@ -118,8 +118,8 @@ const content_videos = await vids();
         },
         "mainEntity": {
           "@type": "VideoObject",
-          "name": "Culturays - Coverage of Events in Nigeria, Africa and Beyond",
-          "description": "This video features Culturays' coverage of major events in Nigeria, Africa, and across the globe.",
+          "name": "Urban Naija - Coverage of Events in Nigeria, Africa and Beyond",
+          "description": "This video features Urban Naija' coverage of major events in Nigeria, Africa, and across the globe.",
           "thumbnailUrl": "https://culturays.com/opengraph-image.png",
           "uploadDate": "2025-04-15T08:00:00Z",
           "contentUrl": `https://culturays.com/news/video/${content_videos[0]?.videosGroup.videoUrl.node.mediaItemUrl}/`,
