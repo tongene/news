@@ -8,7 +8,7 @@ import moment from "moment";
 const Paginate = ({content, pathString}:{content:any[], pathString:string}) => {
     const [posts, setPosts]=useState<any[]>([]) 
     const [currPg, setCurrPg]=useState(1)
-    const [postPerPage, setPostPerP]=useState(10)  
+    const [postPerPage, setPostPerP]=useState(5)  
  
     function decrement() {
      setCurrPg(currPg - 1); 

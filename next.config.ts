@@ -56,7 +56,7 @@ const nextConfig = {
       } 
       , 
       {
-        source: '/news/article/:path*',
+        source: '/news/article/:path+',
         destination: '/news/:path*',
         permanent: true,
       } 
@@ -73,19 +73,19 @@ const nextConfig = {
         permanent: true,
       }, 
       {
-        source: '/news/nollywood/:path*',
+        source: '/news/nollywood/:path+',
         destination: '/news/:path*',
         permanent: true,
       }
        , 
       {
-        source: '/news/award/:path*',
+        source: '/news/award/:path+',
         destination: '/news/:path*',
         permanent: true,
       }
       , 
       {
-        source: '/news/business/:path*',
+        source: '/news/business/:path+',
         destination: '/news/:path*',
         permanent: true,
       },
@@ -100,7 +100,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/netflix-naija/coming-to-netflix/:path*',
+        source: '/netflix-naija/coming-to-netflix/:path+',
         destination: '/coming-to-netflix/:path*',
         permanent: true,
       },
@@ -110,7 +110,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/netflix-naija/new-on-netflix/:path*',
+        source: '/netflix-naija/new-on-netflix/:path+',
         destination: '/new-on-netflix/:path*',
         permanent: true,
       },
