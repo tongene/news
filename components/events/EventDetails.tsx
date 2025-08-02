@@ -13,15 +13,15 @@ return (
   
 <div className="xl:p-32 hover:shadow-3xl border border-t-8 hover:opacity-70 cursor-pointer p-3 bg-gray-700 opacity-80 w-11/12 my-6" >
   {/* <p className="text-lg border bg-white ml-14 m-2 w-14 rounded-full p-3 text-center relative bottom-32 left-full cursor-pointer" onClick={openForm} ><FontAwesomeIcon icon={faPen} /></p> */}
- <h2 className="text-3xl xl:text-5xl font-bold text-center text-white my-4">{eventTitle.title}</h2>  
-<p className="text-xl font-bold py-3 text-center text-white my-4">Location: {eventTitle.location}</p>
-<p className="text-xl font-bold py-3 text-center text-white my-4">Organizer: {eventTitle.organizer ||'N/A'}</p>
-<p className="text-xl font-bold py-3 text-center text-white my-4">Genre: {eventTitle.genre}</p>
-<p className="text-xl font-bold py-3 text-center text-white my-4">Date: {eventTitle.day}</p>
+ <h2 className="text-3xl xl:text-5xl font-bold text-center text-white my-4">{eventTitle?.title}</h2>  
+<p className="text-xl font-bold py-3 text-center text-white my-4">Location: {eventTitle?.location}</p>
+<p className="text-xl font-bold py-3 text-center text-white my-4">Organizer: {eventTitle?.organizer ||'N/A'}</p>
+<p className="text-xl font-bold py-3 text-center text-white my-4">Genre: {eventTitle?.genre}</p>
+<p className="text-xl font-bold py-3 text-center text-white my-4">Date: {eventTitle?.day}</p>
 {/* <p className="text-xl font-bold py-3 text-center text-white">{eventTitle.date}</p>
  {eventTitle.genre.split(' ').map((xy, i)=><p key={i}className="text-xl font-bold py-3 text-center text-white">{xy}</p> )}  */}
  <div className="my-4 ">
-<p className="text-xl text-white text-center leading-9 opacity-90 overflow-hidden text-ellipsis"style={{ display: '-webkit-box', WebkitLineClamp:6, WebkitBoxOrient: 'vertical' }}>{eventTitle.desc}</p>
+<p className="text-xl text-white text-center leading-9 opacity-90 overflow-hidden text-ellipsis"style={{ display: '-webkit-box', WebkitLineClamp:6, WebkitBoxOrient: 'vertical' }}>{eventTitle?.desc}</p>
 </div>
 
 </div> 

@@ -3,6 +3,7 @@ import EventDetail from "@/components/events/EventDetails";
 import StructuredData from "@/components/StructuredData";
 import { createClient } from "@/utils/supabase/server";
 import type { Metadata, ResolvingMetadata } from 'next'
+import { redirect } from "next/navigation";
 import { Event, WithContext } from "schema-dts";
 type Props = {
   params: Promise<{ slug: string }>
@@ -23,7 +24,7 @@ export async function generateMetadata(
     .eq('slug', slug[0] )
     .single() 
     if (error) {
-    console.error('Error fetching posts:', error );
+ //  console.error('Error fetching posts:', error );
     return;
     }
     return event
@@ -31,23 +32,23 @@ export async function generateMetadata(
     const eventTitle = await eventView()
   const previousImages = (await parent).openGraph?.images || [] 
   
-  
+
   return {
     title:`Urban Naija | Event - ${eventTitle?.title}`,
     description:eventTitle?.title,
-    keywords:[eventTitle.genre].join(', '),
+    keywords:[eventTitle?.genre].join(', '),
     twitter: {
     card: 'summary_large_image',
     title: eventTitle?.title  ,
     description: eventTitle?.title ,  
-     images:[`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`, ...previousImages],  
+     images:[`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle?.img_url}`, ...previousImages],  
     }, 
     openGraph: { 
       title:`Urban Naija | Event - ${eventTitle?.title}`,
       description:eventTitle?.title,
       url: `https://culturays.com/event/${slug}/`,
       siteName: 'Urban Naija',
-      images: [{url:`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}`,
+      images: [{url:`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle?.img_url}`,
       width: 800,
       height: 600,
       ...previousImages
@@ -75,13 +76,14 @@ const { data, error} = await supabase
     return  
     }
 if (error) {
-console.error('Error fetching posts:', error.message);
-return;
+//console.error('Error fetching posts:', error.message);
+return [];
 }   
 return data 
 }
  
-const eventTitle = await eventView() 
+const eventTitle = await eventView()
+  if(!eventTitle)return redirect ('/naija-events')
 const jsonLd: WithContext<Event> = {
   "@context": "https://schema.org",
   "@type": "Event",
@@ -117,7 +119,7 @@ const jsonLd: WithContext<Event> = {
     }
   },
   image: [
-   `https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle.img_url}/`
+   `https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle?.img_url}/`
   ],
   keywords:[eventTitle?.genre].join(', ')
 
@@ -132,7 +134,8 @@ const jsonLd: WithContext<Event> = {
     .range(0,2)
    
     if (error) {
-    console.error('Error fetching posts:', error.message);   
+   // console.error('Error fetching posts:', error.message);
+    return [];
     }
     
    return data??[];

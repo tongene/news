@@ -56,14 +56,14 @@ const postsEnd =async()=>{
      const postsX3=xUnsedPosts.postsX3
      const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
      setXnewsPosts([...xtUnused, ...posts_all])
-    setLoading(false)
+
    }
       useEffect(()=>{
         postsEnd()
+     setLoading(false)
+     },[loading])
+
  
-     },[])
-
-
   return (
     <div> 
 

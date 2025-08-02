@@ -40,7 +40,7 @@ import { charsFilms, relatedChars } from "@/app/naija-wiki/newCharHandle";
     },
       openGraph: {
       title: `Naija Wiki | ${charactertitles?.charactertitles.filmname} Characters`,
-       url: `https://culturays.com/characters/${slug}/`,
+       url: `https://culturays.com/characters/${slug.toLowerCase().trim().replace(/ /g,'-')}/`,
       siteName: 'Urban Naija',
       description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname} `,
         images:[{url:charactertitles?.charactertitles.filmImg1.node.sourceUrl,
@@ -49,7 +49,7 @@ import { charsFilms, relatedChars } from "@/app/naija-wiki/newCharHandle";
            ...previousImages}],
       },
       alternates: {
-     canonical: `https://culturays.com/characters/${slug}/`,
+     canonical: `https://culturays.com/characters/${slug.toLowerCase().trim().replace(/ /g,'-')}/`,
 
 },
 
@@ -67,7 +67,7 @@ const jsonLd:WithContext<Article> = {
   '@type': 'Article',
    headline: `Urban Naija - ${charactertitles?.charactertitles.filmname} | Characters `, 
    description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
-   url:`https://culturays.com/characters/${slug}/`,
+   url:`https://culturays.com/characters/${slug.toLowerCase().trim().replace(/ /g,'-')}/`,
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.filmname} - Movies`,     
@@ -76,7 +76,7 @@ const jsonLd:WithContext<Article> = {
    
     mainEntityOfPage: {
      "@type": "WebPage",
-     "@id":`https://culturays.com/characters/${slug}/`, 
+     "@id":`https://culturays.com/characters/${slug.toLowerCase().trim().replace(/ /g,'-')}/`, 
    },
 
   image: charactertitles?.charactertitles.filmImg1.node.sourceUrl, 
