@@ -61,7 +61,7 @@ const postsEnd =async()=>{
       useEffect(()=>{
         postsEnd()
      setLoading(false)
-     },[loading])
+     },[])
 
  
   return (

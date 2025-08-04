@@ -5,7 +5,6 @@ import "./globals.css";
 import HeaderAuth from "@/components/header-auth";  
 import Script from "next/script";  
 import "./globals.css";
-import localFont from 'next/font/local';
 // import GoogleAnalytics from "@/components/Analytics";
 import Footer from "@/components/Footer";
 import Latests from "@/components/Latests";
@@ -26,51 +25,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
     subsets: ["latin"],
   });
 
-  const nokora= localFont({
-    src:[
-    {path:'./fonts/Nokora-Bold.ttf',
-    weight:'700',
-    style:'normal'
-    },
-    {path:'./fonts/Nokora-Light.ttf',
-      weight:'300',
-      style:'normal'
-      },
-      {path:'./fonts/Nokora-Black.ttf',
-        weight:'400',
-        style:'normal'
-        },
-    ],
- variable:'--font-nakora'
-      })
-  const Bellota= localFont({
-      src:[
-      {path:'./fonts/BellotaText-Bold.ttf',
-      weight:'700',
-      style:'normal'
-      },
-      {path:'./fonts/BellotaText-LightItalic.ttf',
-        weight:'300',
-        style:'normal'
-        },
-        {path:'./fonts/BellotaText-BoldItalic.ttf',
-          weight:'400',
-          style:'normal'
-          },
-      ],
-   variable:'--font-bellota'
-        })
- 
-     const monoton =localFont({
-      src:[
-      {path:'./fonts/Monoton-Regular.ttf',
-      weight:'400',
-      style:'normal'
-      },
-      
-      ],
-   variable:'--font-monoton'
-        })
+
   export const viewport = {
     width: 'device-width',
     initialScale: 1,

@@ -105,12 +105,12 @@ const [end_inter_cursor, setEnd_inter_cursor] = useState('');
 
  const prevSlide=()=> { 
    const slide =activeSlide - 1 < 0
-     ?5 - 1
+     ?10 - 1
      :activeSlide -1;
      setActiveSlide(slide);
  }
  const nextSlide=()=> {
-   let slide = activeSlide + 1 < 5
+   let slide = activeSlide + 1 < 10
      ? activeSlide + 1
      : 0;
      setActiveSlide(slide);  
