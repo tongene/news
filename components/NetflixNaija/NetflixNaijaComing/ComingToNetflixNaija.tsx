@@ -3,7 +3,7 @@ import Link from "next/link"
 import moment from "moment/moment"
 import Image from "next/image"    
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAngleRight, faAward, faClapperboard, faFilm } from "@fortawesome/free-solid-svg-icons" 
+import { faAngleRight, faClapperboard, faFilm } from "@fortawesome/free-solid-svg-icons" 
  
 import Paginate from "../Paginate" 
 import NewsLetter from "@/components/NewsLetter"

@@ -77,7 +77,13 @@ const nextConfig = {
         destination: '/news/:path*',
         permanent: true,
       }
-       , 
+         , 
+      {
+        source: '/news/award/',
+        destination: '/daily/',
+        permanent: true,
+      },  
+       
       {
         source: '/news/award/:path+',
         destination: '/news/:path*',

@@ -141,7 +141,8 @@ const AwardsPage = async() => {
  sidebarItems={txPlus}
  news_outline={news_outline} 
  
- />  
+ /> 
+ <hr/> 
    <AllBirthdays data={peopleObj} datax={data} /> 
     </div>
   )

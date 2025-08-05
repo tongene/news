@@ -1,8 +1,8 @@
 
 import { Open_Sans, Nokora } from 'next/font/google';  
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
-? `${process.env.NEXT_PUBLIC_BASE_URL}/naija-birthdays` 
-: "http://localhost:3000/naija-birthdays";
+? `${process.env.NEXT_PUBLIC_BASE_URL}/naija-birthdays/` 
+: "http://localhost:3000/naija-birthdays/";
  
 export const metadata = {
 metadataBase: new URL(defaultUrl), 
@@ -17,13 +17,6 @@ openGraph: {
     
 } 
 }; 
-
- const openSans = Open_Sans({ 
-    subsets: ['latin'], 
-    variable:'--font-opensans',
-    weight:'300',
-    display: 'swap',  
-});
 
   const noko =Nokora({
   subsets:['latin'], 

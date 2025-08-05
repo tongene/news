@@ -1,6 +1,6 @@
 "use client"
 import { faClock, faNewspaper, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faAngleRight, faAsterisk, faAward, faBook, faClapperboard, faFilm } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faClapperboard, faFilm } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link'; 

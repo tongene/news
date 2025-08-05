@@ -41,8 +41,8 @@ const todayBirthdays = Object.values(gx).flat()
 const personObj = todayBirthdays.filter((dx)=> dx.person_obj.length<4) 
  
   return (
-     <div > 
-      <section className="">
+     <div className="my-11" > 
+      <section>
   <h2 className="border-dotted border-b-2 py-2 text-4xl my-4 font-bold text-center">Naija Birthdays This Month: {new Date().toLocaleString('en-US', { month: 'long' })} <small>{todaysBd.toLocaleString().split(',')[0].slice(0,-5) }</small>
 </h2> 
 { datax.flat()?.length >0

@@ -1,6 +1,6 @@
-import AllBirthdays from "@/components/AllBirthdays"
+import AllBirthdays from "@/components/AllBirthdays" 
 import StructuredData from "@/components/StructuredData"
-import { createClient } from "@/utils/supabase/server"
+import { createClient } from "@/utils/supabase/server"  
 import { BlogPosting, WithContext } from "schema-dts"
 
 const BdaysPage = async() => {
@@ -13,44 +13,11 @@ const BdaysPage = async() => {
         if(error)throw new Error('An Error has Occured')
           return bday  
       }
-       const data = await forumBdays()     
-
-  const jsonLd:WithContext<BlogPosting>={
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Urban News - Covering News in Nigeria, Africa, and Beyond",
-    "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-    "url": "https://culturays.com/naija-birthdays/",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://culturays.com/naija-birthdays/"
-    },
-    "inLanguage": "en",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https://culturays.com/opengraph-image.png/"
-    },
-    "datePublished": "2025-04-15T08:00:00Z",
-    "dateModified": "2025-04-15T08:00:00Z",
-    "author": {
-      "@type": "Organization",
-      "name": "Culturays"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Ngenet Studio",
-      "url": "https://www.culturays.com/naija-birthdays/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://culturays.com/culturays-no-bg.png/"
-      }
-    }
-  }
+ const data = await forumBdays()
  const peopleObj = data.map((dy)=> dy.person_obj) 
- 
+  
   return (  
-    <div> 
-      <StructuredData schema={jsonLd} /> 
+    <div>  
     <AllBirthdays data={peopleObj} datax={data} /> 
     </div>
   )

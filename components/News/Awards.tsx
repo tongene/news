@@ -40,14 +40,14 @@ const Awards = ({awards_content, sidebarItems, news_outline }:{awards_content:Po
     const title_item=awards_content.map((ex)=>ex.contentTypeName)[0]
     return (
       <div className="bg-gray-100">  
- <div className="bg-white dark:bg-black m-auto md:flex justify-center px-3" style={{maxWidth:'1750px'}} >  
-    <div className= "max-w-7xl"> 
+ <div className="bg-white dark:bg-black m-auto md:flex justify-between px-3">  
+    <div className= "mx-auto max-w-6xl" > 
     <SlideFxn content={awards_content}/> 
         <div className="text-center py-5"> 
-        <h2 className="text-4xl font-bold text-gray-800 py-4">award</h2>
+        <h2 className="text-4xl font-bold text-gray-800 py-4">Awards</h2>
        <div className="sm:flex justify-center w-3/4 m-auto"> 
         <p className="bg-blue-900 p-2 text-gray-200 m-2">{new Date().toDateString()} </p>
-         <p className="text-gray-800 text-xl m-2">Recent award</p>
+         <p className="text-gray-800 text-xl m-2">Recent Awards</p>
         </div>
         </div> 
         <hr className="bg-gray-700 h-1 w-4/5 m-auto"/> 
@@ -68,7 +68,7 @@ height={100}
  
 <div className="relative max-w-sm"> 
 <div className="bg-blue-900 absolute -bottom-64 lg:relative lg:bottom-0 py-11"> 
-  <h2 className="text-2xl text-white p-4 text-center">Top award News</h2>
+  <h2 className="text-2xl text-white p-4 text-center">News</h2>
 { awards_content.slice(5,11).map((ex,i)=>
 <div key={ex.title + ' '+ i} className="mx-4 py-2 ">
   <ul className="text-gray-300 text-xl px-2 mx-1"> 

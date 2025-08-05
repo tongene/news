@@ -158,6 +158,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
         images: ['https://culturays.com/culturays.png']
       } 
+      , { 
+        url:`https://culturays.com/daily/`,
+        lastModified: new Date(),
+        changeFrequency: 'daily',
+        priority: 0.8,
+        images: ['https://culturays.com/culturays.png']
+      } 
       , 
       {
         url:`https://culturays.com/nigeria/`,

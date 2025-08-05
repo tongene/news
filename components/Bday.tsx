@@ -2,7 +2,7 @@
 
 import { createClient } from '@/utils/supabase/client';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useMemo, useState} from 'react'; 
@@ -86,7 +86,8 @@ const personObj = todayBirthdays.filter((dx)=> dx.person_obj.length<4)
   }
  
   return (
- <div>  
+ <div> 
+ 
        {personObj?.length === 0 && bdaysData.length===0&&<small className='m-1'>Checking for Birthdays...</small>}
        {error&& <small className='ml-1'>{error}</small>}
        <h2 className="border-dotted border-b-2 py-2 text-2xl my-4 font-bold text-center">Naija Birthdays Today {new Date().toLocaleDateString()} 
@@ -128,8 +129,9 @@ alt='Naija Birthdays'/>
 
  <div className="card-data overflow-hidden flex flex-col items-center bg-slate-100 p-4 justify-center text-black font-bold">
 
- <Link href='/naija-birthdays/'><small className='text-green-600 py-2 hover:text-black'>See all Birthdays in {new Date().toLocaleString('en-US', { month: 'long' })}</small></Link> 
+ <Link href='/daily/'><small className='text-green-600 py-2 hover:text-black'>See all Birthdays in {new Date().toLocaleString('en-US', { month: 'long' })}</small></Link> 
 </div> 
+
  </div>
   );
 };

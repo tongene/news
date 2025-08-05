@@ -25,7 +25,7 @@ type SideNode ={
    }
 }
 
- 
+
 
 const SideBar = ({sidebarItems, news_outline }:{sidebarItems:Cursors[], news_outline:SideNode[]}) => { 
  
@@ -33,7 +33,7 @@ const SideBar = ({sidebarItems, news_outline }:{sidebarItems:Cursors[], news_out
  <div className='side_view_lg py-3 px-3 m-auto lg:m-0 border-l-4 max-w-lg h-max'>  
  <div className='py-3 px-3 m-auto lg:m-0 border-l-4 max-w-sm '>
   <div className="flex justify-between flex-wrap"> 
-<h2 className='text-gray-600 font-bold text-4xl text-center lg:text-left py-4 dark:text-gray-300 summary-side'>Summary</h2>
+<h2 className='text-gray-600 font-bold text-4xl text-center lg:text-left py-4 dark:text-gray-300 summary-side'>Announcements / Notice!!!</h2>
 <p className='text-gray-600 font-bold text-sm text-center lg:text-left  dark:text-gray-300 summary-side'>{new Date().toDateString()}</p>
 </div>
 <hr className='h-1 w-4/5 m-auto my-4'/>

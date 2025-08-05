@@ -23,7 +23,7 @@ Urban Naija News</h2></Link>
  
 <li className="text list-disc p-3 mx-11 hover:text-gray-500"><Link href='/naija-wiki/'>Naija Wiki</Link></li> 
 <li className="text list-disc p-3 mx-11 hover:text-gray-500 "><Link href='/naija-events/'>Naija Events</Link></li> 
-<li className="text list-disc p-3 mx-11 hover:text-gray-500 "><Link href='/naija-birthdays/'>Naija Birthdays</Link> </li>  
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 "><Link href='/daily/'>Dailys</Link> </li>  
 </ul> 
   <ContactUs />  
 
