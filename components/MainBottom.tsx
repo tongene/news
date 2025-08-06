@@ -43,9 +43,13 @@ useEffect(() => {
   }
 }, [inView, hasNewPage, loadMorePosts]); 
 
-
+  useEffect(()=>{  
+        setLoading(true)
+        postsEnd()
+  
+     },[])
 const postsEnd =async()=>{ 
-  setLoading(true)
+
    const xUnsedPosts= await nextXXPosts() 
     const postsXnewsPosts= await fetchXPosts()  
           const xtCategories= postsXnewsPosts?.categories?.edges 
@@ -56,12 +60,9 @@ const postsEnd =async()=>{
      const postsX3=xUnsedPosts.postsX3
      const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
      setXnewsPosts([...xtUnused, ...posts_all])
-
+   setLoading(false)
    }
-      useEffect(()=>{
-        postsEnd()
-     setLoading(false)
-     },[])
+    
 
  
   return (
