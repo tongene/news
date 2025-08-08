@@ -12,7 +12,7 @@ import { sidePlusViews } from '@/app/page-data';
 import MainPosts from './MainPosts';
 import { getGoogleNewsTitles } from '@/app/data/news-data'
 
-const Main = ({top_PostsData, news_outline, posts_notIn_newsPosts }:{top_PostsData:InnerEdges[],  news_outline:SideNode[], posts_notIn_newsPosts:PostXNode  }) => { 
+const Main = ({top_PostsData, news_outline, posts_notIn_newsPosts, top_x_Posts }:{top_PostsData:InnerEdges[],  news_outline:SideNode[], posts_notIn_newsPosts:PostXNode, top_x_Posts:PostXNode[]}) => { 
 const [activeSet, setActiveSet]=useState(true)
 const [actIdx ,setActIdx]=useState(-1)
 const [categoryPost,setCategoryPost]=useState<InnerEdges[]>([])
@@ -220,6 +220,7 @@ fill
      />  
   </div> </div>
     <MainBottom 
+    top_x_Posts={top_x_Posts}
    />   
    </section>
   )

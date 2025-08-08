@@ -1,5 +1,5 @@
 import Main from "@/components/Main"; 
-import { InnerEdges } from '@/app/types'   
+import { InnerEdges, PostXNode } from '@/app/types'   
 import MainSlider from "@/components/MainSlider";
 import { newsByLatest, postsOutline } from "./page-data";
 import { events3Details, getNaijaEvents3 } from "./naija-events/eventData/eventContent";
@@ -12,6 +12,7 @@ import { CronJob } from "cron";
 import { BlogPosting, WebSite, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData"; 
 import { nextNewsPosts } from "./data"  
+import { fetchXPosts, nextXXPosts } from "./page-bottom";
  
  interface ObjType { 
   title: string[];
@@ -207,7 +208,21 @@ export default async function Home() {
       }
     }
   }
-    
+    const postsEnd =async()=>{ 
+     const xUnsedPosts= await nextXXPosts() 
+     const postsXnewsPosts= await fetchXPosts()  
+    const xtCategories= postsXnewsPosts?.categories?.edges 
+    const posts_all = postsXnewsPosts?.categories?.edges.map((dy:PostXNode)=> dy?.node.posts.edges).flat() 
+  const postsX1=xUnsedPosts.postsX1
+         const postsX2=xUnsedPosts.postsX2
+         const postsX3=xUnsedPosts.postsX3
+  const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
+  const topXcontent= [...xtUnused, ...posts_all]
+  return topXcontent
+    //      setXnewsPosts([...xtUnused, ...posts_all])
+    //    setLoading(false)
+       }
+       const top_x_Posts= await postsEnd()
 return (
     <div> 
    
@@ -219,7 +234,7 @@ return (
     top_PostsData={postData} 
     news_outline={news_outline}
     posts_notIn_newsPosts={posts_notIn_newsPosts}
-   
+   top_x_Posts={top_x_Posts}
     />  
  
     </div>
