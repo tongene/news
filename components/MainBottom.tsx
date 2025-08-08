@@ -9,14 +9,37 @@ import React, { useCallback, useEffect } from 'react'
 import { useState } from 'react'
 import { useInView } from 'react-intersection-observer' 
 
-const MainBottom = ({top_x_Posts}:{top_x_Posts:PostXNode[]}) => {
+const MainBottom = () => {
     const [scrolledContent, setScrolledContent]=useState<LatestProps[]>([])
-    const {ref, inView } =useInView();  
-    const [debouncedValue, setDebouncedValue] = useState<string>('')  
+    const {ref, inView } =useInView();     
+    const [top_x_Posts, setXnewsPosts] = useState<PostXNode[]>([]) 
+    const [debouncedValue, setDebouncedValue] = useState<string>('') 
+    const [topXnewsPosts, setXPosts] = useState<PostXNode[]>([])
  const [loading, setLoading]= useState(false)
 const [hasNewPage, setHasNewPage] = useState(true);
 
-const loadMorePosts = useCallback(async () => { 
+  useEffect(()=>{  
+        setLoading(true)
+        postsEnd()
+  
+     },[])
+const postsEnd =async()=>{ 
+   const xUnsedPosts= await nextXXPosts() 
+    const postsXnewsPosts= await fetchXPosts()  
+          const xtCategories= postsXnewsPosts?.categories?.edges 
+    
+ const posts_all = postsXnewsPosts?.categories?.edges.map((dy:PostXNode)=> dy?.node.posts.edges).flat() 
+  const postsX1=xUnsedPosts.postsX1
+     const postsX2=xUnsedPosts.postsX2
+     const postsX3=xUnsedPosts.postsX3
+     const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
+     setXnewsPosts([...xtUnused, ...posts_all])
+   setLoading(false)
+   }
+    
+
+const loadMorePosts = useCallback(async () => {
+ 
   const apiP = await fetchNewPosts(debouncedValue); 
   const naijaNew_content = apiP.posts.nodes;
   const hasMorePosts = apiP.posts.pageInfo.hasNextPage;
@@ -40,6 +63,9 @@ useEffect(() => {
     loadMorePosts();
   }
 }, [inView, hasNewPage, loadMorePosts]); 
+
+
+
  
   return (
     <div> 
@@ -54,7 +80,7 @@ useEffect(() => {
 <p>Special Edition</p>
  <p>{new Date().toDateString()}</p>
  </div>
- {/* {loading&&<p>Loading...</p>} */}
+ {loading&&<p>Loading...</p>}
  <div className='py-6'>  
     <div className='grid grid-cols-1 justify-center gap-2 m-auto w-max'> 
       <div>

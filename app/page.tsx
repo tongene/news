@@ -233,8 +233,7 @@ return (
        <Main 
     top_PostsData={postData} 
     news_outline={news_outline}
-    posts_notIn_newsPosts={posts_notIn_newsPosts}
-   top_x_Posts={top_x_Posts}
+    posts_notIn_newsPosts={posts_notIn_newsPosts} 
     />  
  
     </div>
