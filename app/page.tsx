@@ -161,19 +161,19 @@ export default async function Home() {
  const news_outline=await postsOutline()
  const posts_notIn_newsPosts= await nextNewsPosts() 
  
-     CronJob.from({
-      cronTime: '10 8 * * *',  
-      onTick: dailyEv3(),
-      start: true,
-      timeZone: 'Africa/Lagos'
-      });
+    //  CronJob.from({
+    //   cronTime: '10 8 * * *',  
+    //   onTick: dailyEv3(),
+    //   start: true,
+    //   timeZone: 'Africa/Lagos'
+    //   });
     
-         CronJob.from({
-          cronTime: '10 8 * * *',  
-          onTick: dailyWiki(), 
-          start: true,
-          timeZone: 'Africa/Lagos'
-         });   
+    //      CronJob.from({
+    //       cronTime: '10 8 * * *',  
+    //       onTick: dailyWiki(), 
+    //       start: true,
+    //       timeZone: 'Africa/Lagos'
+    //      });   
         
   const jsonLd:WithContext<WebSite>={
     "@context": "https://schema.org",
@@ -208,21 +208,11 @@ export default async function Home() {
       }
     }
   }
-    const postsEnd =async()=>{ 
-     const xUnsedPosts= await nextXXPosts() 
-     const postsXnewsPosts= await fetchXPosts()  
-    const xtCategories= postsXnewsPosts?.categories?.edges 
-    const posts_all = postsXnewsPosts?.categories?.edges.map((dy:PostXNode)=> dy?.node.posts.edges).flat() 
-  const postsX1=xUnsedPosts.postsX1
-         const postsX2=xUnsedPosts.postsX2
-         const postsX3=xUnsedPosts.postsX3
-  const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
-  const topXcontent= [...xtUnused, ...posts_all]
-  return topXcontent
-    //      setXnewsPosts([...xtUnused, ...posts_all])
-    //    setLoading(false)
-       }
-       const top_x_Posts= await postsEnd()
+    const xUnsedPosts= await nextXXPosts() 
+        const postsXnewsPosts= await fetchXPosts() 
+            const postsX1=xUnsedPosts.postsX1 
+     const postsX2=xUnsedPosts.postsX2
+     const postsX3=xUnsedPosts.postsX3
 return (
     <div> 
    
@@ -233,9 +223,14 @@ return (
        <Main 
     top_PostsData={postData} 
     news_outline={news_outline}
-    posts_notIn_newsPosts={posts_notIn_newsPosts} 
+    posts_notIn_newsPosts={posts_notIn_newsPosts}  
+    postsX1={postsX1}
+postsX2={postsX2}
+postsX3={postsX3}
+    postsXnewsPosts={postsXnewsPosts}
     />  
  
     </div>
   ); 
 }
+ 

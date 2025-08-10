@@ -2,7 +2,7 @@
 import { nextNewsPosts, postCategories } from "./data";
 import { altPageNewsItems } from "./latestx";
 import { sidePlusViews } from "./page-data";
-import { InnerEdges } from "./types";
+import { InnerEdges, PostXNode } from "./types";
  
   export const fetchXPosts = async () => { 
 const wp_naija = fetch('https://content.culturays.com/graphql',{
@@ -526,10 +526,10 @@ notIn: postCategory_cursor
       }).then(response =>response.json())
       .then(data => data.data)
       .catch(error => console.error('Error:', error)); 
- const postsX1= await wprest 
+ const postsX1= await wprest
     const postsX2= await wpRestXX 
      const postsX3= await wpXXrest 
  
-      return {postsX1, postsX2, postsX3}  
+      return {postsX1, postsX2, postsX3}
         
      } 

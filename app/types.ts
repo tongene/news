@@ -1931,12 +1931,14 @@ edges:[]
           name:string
         }[]
       },
+    
   featuredImage:{
     node:{
       sourceUrl:string,
       altText:string
     }
   }
+  
     categories:{
       edges:{
  node:{
@@ -2034,9 +2036,7 @@ edges:[]
     }
   
   }
-   interface PostsAllPost{
-
-  }
+ 
   export interface PostsNotInPost{
     
     cursor:string

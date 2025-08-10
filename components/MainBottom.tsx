@@ -1,7 +1,7 @@
 "use client"
   
-import { fetchNewPosts, fetchXPosts, nextXXPosts } from '@/app/page-bottom'
-import { InnerEdges, LatestProps, PostXNode } from '@/app/types'
+import { fetchNewPosts } from '@/app/page-bottom'
+import { LatestProps, PostXNode } from '@/app/types'
 import { dateFormatter } from '@/utils/dateformat'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,35 +9,25 @@ import React, { useCallback, useEffect } from 'react'
 import { useState } from 'react'
 import { useInView } from 'react-intersection-observer' 
 
-const MainBottom = () => {
-    const [scrolledContent, setScrolledContent]=useState<LatestProps[]>([])
-    const {ref, inView } =useInView();     
-    const [top_x_Posts, setXnewsPosts] = useState<PostXNode[]>([]) 
-    const [debouncedValue, setDebouncedValue] = useState<string>('') 
-    const [topXnewsPosts, setXPosts] = useState<PostXNode[]>([])
- const [loading, setLoading]= useState(false)
+const MainBottom = ({ postsXnewsPosts, postsX1,postsX2,postsX3}:{ postsXnewsPosts:PostXNode,postsX1:{  posts:{  
+        edges: PostXNode[]
+       
+      }},postsX2:{  posts:{  
+        edges: PostXNode
+        
+      }},postsX3:{  posts:{  
+        edges: PostXNode
+        
+      }}}) => {
+const [scrolledContent, setScrolledContent]=useState<LatestProps[]>([])
+const {ref, inView } =useInView();  
+const [debouncedValue, setDebouncedValue] = useState<string>('')  
 const [hasNewPage, setHasNewPage] = useState(true);
 
-  useEffect(()=>{  
-        setLoading(true)
-        postsEnd()
-  
-     },[])
-const postsEnd =async()=>{ 
-   const xUnsedPosts= await nextXXPosts() 
-    const postsXnewsPosts= await fetchXPosts()  
-          const xtCategories= postsXnewsPosts?.categories?.edges 
-    
- const posts_all = postsXnewsPosts?.categories?.edges.map((dy:PostXNode)=> dy?.node.posts.edges).flat() 
-  const postsX1=xUnsedPosts.postsX1
-     const postsX2=xUnsedPosts.postsX2
-     const postsX3=xUnsedPosts.postsX3
+     const posts_all = postsXnewsPosts?.categories?.edges.map((dy)=> dy?.node.posts.edges).flat()  
      const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
-     setXnewsPosts([...xtUnused, ...posts_all])
-   setLoading(false)
-   }
-    
 
+const top_x_Posts=[...xtUnused, ...posts_all] 
 const loadMorePosts = useCallback(async () => {
  
   const apiP = await fetchNewPosts(debouncedValue); 
@@ -65,8 +55,6 @@ useEffect(() => {
 }, [inView, hasNewPage, loadMorePosts]); 
 
 
-
- 
   return (
     <div> 
 
@@ -80,7 +68,7 @@ useEffect(() => {
 <p>Special Edition</p>
  <p>{new Date().toDateString()}</p>
  </div>
- {loading&&<p>Loading...</p>}
+ {/* {loading&&<p>Loading...</p>} */}
  <div className='py-6'>  
     <div className='grid grid-cols-1 justify-center gap-2 m-auto w-max'> 
       <div>
