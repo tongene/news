@@ -61,13 +61,7 @@ setCurrPg(currPg - 1);
  setCurrPg(pageNumber) 
  }
 
-  
-  const replaceHTMLTags=(string:string)=>{
-    const regex = /(<([^>]+)>)/gi;
-    //(/<\/?[^>]+(>|$)/g, "") 
-    const newString = string?.replace(regex, "");
-    return newString
-     }
+ 
      const [activeSet , setActiveSet]=useState(false)    
      const title_item=environment_items.map((ex)=>ex.contentTypeName)[0]
    const ycontent=environment_items.sort(function(a, b) { return Number(new Date(b.date ))-Number( new Date(a.date )) })

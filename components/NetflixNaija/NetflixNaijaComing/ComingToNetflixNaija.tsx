@@ -138,12 +138,6 @@ const ComingToNetflixNaija = ({coming_to_netflix_grouped, netflix_news_data,comi
   const news_items = netflix_news_data.map((ex)=> ex.node.naijaOnNetflix?.nodes
  ).flat() 
  
- const replaceHTMLTags=(string:string)=>{
-  // const regex = /(<([^>]+)>)/gi;
-  // //(/<\/?[^>]+(>|$)/g, "")
-  // const newString = string.replace(regex, "");
-  // return newString
-   }
    
   return (
  <div className='bg-gray-50'>  

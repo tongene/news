@@ -148,7 +148,7 @@ alt={xy?.featuredImage.node.altText}
 { africa_news.slice(0,5).map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
 <Link href={`/news/economy/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis  leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
-<Link href={`/news/economy/${xy?.slug}/`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base">{replaceHTMLTags(xy?.excerpt)} </p></Link>
+<Link href={`/news/economy/${xy?.slug}/`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base" dangerouslySetInnerHTML={{__html:xy?.excerpt}} /></Link>
  <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small> 
 </div>
 )}
@@ -158,7 +158,7 @@ alt={xy?.featuredImage.node.altText}
 { world_news.slice(0,5).map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
 <Link href={`/news/economy/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis  leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
-<Link href={`/news/economy/${xy?.slug}/`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base">{replaceHTMLTags(xy?.excerpt)} </p></Link>
+<Link href={`/news/economy/${xy?.slug}/`}><p style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"dangerouslySetInnerHTML={{__html:xy?.excerpt}} /></Link>
  <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small> 
 </div>
 )}

@@ -31,12 +31,7 @@ const Paginate = ({content, pathString}:{content:any[], pathString:string}) => {
    const paginating=(pageNumber:number)=>{  
    setCurrPg(pageNumber) 
    }
-   const replaceHTMLTags=(string:string)=>{
-    const regex = /(<([^>]+)>)/gi;
-    //(/<\/?[^>]+(>|$)/g, "")
-    const newString = string?.replace(regex, "");
-    return newString
-     }
+  
  
   return (
     <div>       
@@ -57,7 +52,7 @@ const Paginate = ({content, pathString}:{content:any[], pathString:string}) => {
           <div className="w-full m-1 sm:m-3 py-5">
           <div className="py-2">
             <Link href={`/netflix-naija/${pathString}/${itx.node?.slug}/`}><h2 className="text-2xl overflow-hidden text-ellipsis font-bold hover:text-gray-600 font-bold"style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical', lineHeight:'35px' }}>{itx.node?.title}</h2></Link>
-         <Link href={`/netflix-naija/${pathString}/${itx.node?.slug}/`}><p className="text-lg hover:text-gray-600 overflow-hidden text-ellipsis"  style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical', lineHeight:'35px' }}  >{replaceHTMLTags(itx.node?.excerpt)} </p></Link>  
+         <Link href={`/netflix-naija/${pathString}/${itx.node?.slug}/`}><div className="text-lg hover:text-gray-600 overflow-hidden text-ellipsis"  style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical', lineHeight:'35px' }} dangerouslySetInnerHTML={{__html:itx.node?.excerpt}} /></Link>  
       </div> 
       <div className="max-w-max flex flex-wrap"> {itx.node.contentTags.nodes.map((tx:{name:string, slug:string} ,index:number)=> 
             <div key={index}>

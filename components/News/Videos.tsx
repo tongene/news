@@ -8,12 +8,7 @@ import SideBar from '../Side'
 import { Cursors, SideNode, VidProps } from '@/app/types' 
 import Paginate from '../Paginate'
 const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:VidProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => { 
- const replaceHTMLTags=(string:string)=>{
-  const regex = /(<([^>]+)>)/gi;
-  //(/<\/?[^>]+(>|$)/g, "")
-  const newString = string.replace(regex, "");
-  return newString
-   }
+  
    
   return (
     <div className='bg-gray-50'>  
@@ -42,7 +37,7 @@ const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:Vi
    </div>
       <div className='absolute z-20 top-0 sm:top-28 xs:mx-8 py-5 font-bold text-white mx-2 xs:w-3/4'>   
     <Link href={`/news/video/${nt.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}  className='hover:text-gray-500 overflow-hidden text-ellipsis text-xl xs:text-3xl md:text-4xl md:py-2'> {nt.title}</h2></Link>
-    <Link href={`/news/video/${nt.slug}/`}><p className='overflow-hidden text-ellipsis xs:text-lg text-sm xs:block xs:leading-6 hover:text-gray-500'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} >{replaceHTMLTags(nt.excerpt)}</p ></Link> 
+    <Link href={`/news/video/${nt.slug}/`}><p className='overflow-hidden text-ellipsis xs:text-lg text-sm xs:block xs:leading-6 hover:text-gray-500'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}dangerouslySetInnerHTML={{__html:nt?.excerpt}} /></Link> 
     <span className='text-end text-sm mt-11 italic py-2'>{moment(nt.date).subtract(1, 'hour').fromNow()} </span>
     </div>
     </div> 

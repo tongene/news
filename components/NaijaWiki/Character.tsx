@@ -20,12 +20,7 @@ setHidden(true)
 const navShadow = {
 boxShadow: "0 3px 10px rgb(68, 65, 65)"
 };
-const replaceHTMLTags=(string:string)=>{
-  const regex = /(<([^>]+)>)/gi;
-  //(/<\/?[^>]+(>|$)/g, "")
-  const newString = string.replace(regex, "");
-  return newString
-   }
+ 
  
   return ( 
     <div >      

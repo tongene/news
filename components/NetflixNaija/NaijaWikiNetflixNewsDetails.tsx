@@ -8,14 +8,7 @@ import SlidingSide from "../SlidingSide";
 import { NAPINewsProps, VidProps } from "@/app/types"; 
 
 const NaijaWikiNetflixNewsDetails =({next_on_netflix_naija, content_videos, news_details}:{content_videos:VidProps[], news_details:NAPINewsProps, next_on_netflix_naija:NAPINewsProps[]}) => {
-
-  const videoRef = useRef(null);
-  const replaceHTMLTags=(string:string)=>{
-    const regex = /(<([^>]+)>)/gi;
-    //(/<\/?[^>]+(>|$)/g, "") 
-    const newString = string.replace(regex, "");
-    return newString
-     } 
+ 
      
      const related_content=news_details.netflixNewsGroup.netflixNewsRelated?.edges
      const next_posts_naija=next_on_netflix_naija.map((tx)=> tx.naijaOnNetflix).flat()
