@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';  
 import { FeedProps } from '@/app/types';
 import { createClient } from '@/utils/supabase/server';
+import { fetchWithTrace } from '@/utils/fetchWithTrace';
 type Post = {
   url: string;
   lastModified: Date;
@@ -19,7 +20,7 @@ type Post = {
   }[];
 };
 const contentFeed = async()=>{  
-    const wprest =fetch('https://content.culturays.com/graphql',{
+    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -57,7 +58,7 @@ const contentFeed = async()=>{
    
    }
   const livesFeed = async()=>{  
-    const wprest =fetch('https://content.culturays.com/graphql',{
+    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'

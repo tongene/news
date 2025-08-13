@@ -1,3 +1,4 @@
+import { fetchWithTrace } from "@/utils/fetchWithTrace";
 import { sidePlusViews } from "./page-data";
  // const controller = new AbortController();
 // const timeout = setTimeout(() => controller.abort(), 8000);
@@ -5,7 +6,7 @@ import { sidePlusViews } from "./page-data";
  const latestPosts=await sidePlusViews()
 
     try{
-      const wprest = fetch('https://content.culturays.com/graphql',{ 
+      const wprest = fetchWithTrace('https://content.culturays.com/graphql',{ 
       method: 'POST',
       headers:{
           'Content-Type':'application/json'

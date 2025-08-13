@@ -3,6 +3,7 @@ import { InnerEdges } from "@/app/types";
 import AllBirthdays from "@/components/AllBirthdays";
 import Awards from "@/components/News/Awards"   
 import StructuredData from "@/components/StructuredData";
+import { fetchWithTrace } from "@/utils/fetchWithTrace";
 import { createClient } from "@/utils/supabase/server";
 import { BlogPosting, WithContext } from "schema-dts";
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
@@ -10,7 +11,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   : "http://localhost:3000/news/award/";
 
   async function awardsBlog(){
-   const wprest = fetch('https://content.culturays.com/graphql',{
+   const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
           method: 'POST', 
           headers:{ 
           'Content-Type':'application/json', 

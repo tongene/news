@@ -10,7 +10,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   : "http://localhost:3000/news/award/";
 
   async function awardsBlog(){
-   const wprest = fetch('https://content.culturays.com/graphql',{
+   const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
           method: 'POST', 
           headers:{ 
           'Content-Type':'application/json', 

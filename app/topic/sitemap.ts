@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { PostProps } from "../types";
+import { fetchWithTrace } from "@/utils/fetchWithTrace";
   export type TagProps={
     name:string
     slug:string
@@ -8,7 +9,7 @@ import { PostProps } from "../types";
   }
 
  const topicFeed = async()=>{ 
-    const wprest =   fetch('https://content.culturays.com/graphql',{
+    const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{ 
       'Content-Type':'application/json'
@@ -32,7 +33,7 @@ import { PostProps } from "../types";
   }
 
  const tagFeed = async()=>{  
-    const wprest = fetch('https://content.culturays.com/graphql',{
+    const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{ 
       'Content-Type':'application/json'

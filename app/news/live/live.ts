@@ -1,5 +1,7 @@
+import { fetchWithTrace } from "@/utils/fetchWithTrace";
+
 export const liveNewsFeed =async(id:string)=>{
-    const wprest =   fetch('https://content.culturays.com/graphql',{
+    const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{ 
       'Content-Type':'application/json'

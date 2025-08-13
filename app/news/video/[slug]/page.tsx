@@ -1,5 +1,6 @@
 import VideoDetail from "@/components/News/VideoDetail" 
 import StructuredData from "@/components/StructuredData"
+import { fetchWithTrace } from "@/utils/fetchWithTrace"
 import type { Metadata, ResolvingMetadata } from 'next'
 import { NewsArticle, WithContext } from "schema-dts"
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
 } 
  async function viddetails(slug:string){
  
- const wprest = fetch('https://content.culturays.com/graphql',{
+ const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
 method: 'POST', 
 headers:{
 'Content-Type':'application/json' 

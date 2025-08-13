@@ -161,19 +161,19 @@ export default async function Home() {
  const news_outline=await postsOutline()
  const posts_notIn_newsPosts= await nextNewsPosts() 
  
-     CronJob.from({
-      cronTime: '10 8 * * *',  
-      onTick: dailyEv3(),
-      start: true,
-      timeZone: 'Africa/Lagos'
-      });
+    //  CronJob.from({
+    //   cronTime: '10 8 * * *',  
+    //   onTick: dailyEv3(),
+    //   start: true,
+    //   timeZone: 'Africa/Lagos'
+    //   });
     
-         CronJob.from({
-          cronTime: '10 8 * * *',  
-          onTick: dailyWiki(), 
-          start: true,
-          timeZone: 'Africa/Lagos'
-         });   
+    //      CronJob.from({
+    //       cronTime: '10 8 * * *',  
+    //       onTick: dailyWiki(), 
+    //       start: true,
+    //       timeZone: 'Africa/Lagos'
+    //      });   
         
   const jsonLd:WithContext<WebSite>={
     "@context": "https://schema.org",

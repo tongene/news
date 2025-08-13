@@ -7,11 +7,12 @@ import { NewsArticle, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
 import { InnerEdges } from "@/app/types";
 import NewsDetail from "@/components/NewsDetail"; 
+import { fetchWithTrace } from "@/utils/fetchWithTrace";
  
 const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
 
 async function news_details_all(uri:string){ 
-const wprest = fetch('https://content.culturays.com/graphql',{
+const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
 method: 'POST', 
 headers:{
 'Content-Type':'application/json'
@@ -727,7 +728,7 @@ idType: 'URI'
 }
 const readNextContent = async(notIn:string[])=>{ 
   
-  const wprest = fetch('https://content.culturays.com/graphql',{
+  const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
     method: 'POST',
     headers:{ 
     'Content-Type':'application/json'
@@ -923,7 +924,7 @@ const readNextContent = async(notIn:string[])=>{
 
 
 const readNextPosts = async(notIn:string[])=>{  
-  const wprest = fetch('https://content.culturays.com/graphql',{
+  const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
     method: 'POST',
     headers:{ 
     'Content-Type':'application/json'

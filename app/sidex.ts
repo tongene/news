@@ -1,6 +1,8 @@
-  export async function sidePanelNewsItems(){
+import { fetchWithTrace } from "@/utils/fetchWithTrace";
+
+ export async function sidePanelNewsItems(){
     
-const wprest = fetch('https://content.culturays.com/graphql',{
+const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{
           'Content-Type':'application/json'

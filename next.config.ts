@@ -230,5 +230,5 @@ experimental: {
 },
 
 };
-
+ 
 export default nextConfig;

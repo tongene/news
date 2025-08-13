@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation"; 
 import { sidePanelNewsItems } from "@/app/sidex";
 import MoviesWidget from "./MoviesWidget";
+import { fetchWithTrace } from "@/utils/fetchWithTrace";
 
 type Node ={
     node:{
@@ -55,7 +56,7 @@ const [closeQuestion, setCloseQuestion]= useState(false)
       const accurate = formData.get('accurate')=== "on"
       const inaccurate = formData.get('inaccurate')=== "on"
       const form = {name , email , content , biased , unbiased, accurate, inaccurate} 
-      const response =await fetch('/api/surveyhandler', {
+      const response =await fetchWithTrace('/api/surveyhandler', {
       method: "POST",
       headers:{ 
       'Accept': 'application/json',

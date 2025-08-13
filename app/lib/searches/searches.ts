@@ -1,4 +1,5 @@
 "use server"
+import { fetchWithTrace } from "@/utils/fetchWithTrace";
 import { createClient } from "@/utils/supabase/server";
 export const searchValues = async (name:string) => {
  
@@ -26,7 +27,7 @@ export const searchValues = async (name:string) => {
  
     }
      
-        const post_response = fetch('https://content.culturays.com/graphql', {
+        const post_response = fetchWithTrace('https://content.culturays.com/graphql', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -50,7 +51,7 @@ export const searchValues = async (name:string) => {
         const response =await post_response??[]
         const resx=response.map((xy:{id:string})=>xy.id)
        
-        const singular_response = fetch('https://content.culturays.com/graphql', {
+        const singular_response = fetchWithTrace('https://content.culturays.com/graphql', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

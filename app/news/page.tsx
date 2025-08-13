@@ -1,8 +1,9 @@
 import News from '@/components/News/News' 
 import StructuredData from '@/components/StructuredData';
-import { BlogPosting, NewsArticle, WebPage, WithContext } from 'schema-dts';
+import { fetchWithTrace } from '@/utils/fetchWithTrace';
+import { BlogPosting, WithContext } from 'schema-dts';
 async function news__Articles(){  
-  const wprest = fetch('https://content.culturays.com/graphql',{
+  const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
  method: 'POST', 
  headers:{
  'Content-Type':'application/json'
