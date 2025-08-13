@@ -2,7 +2,6 @@ import { postsOutline, sidePlusViews } from "@/app/page-data";
 import { InnerEdges } from "@/app/types";
 import Nollywood from "@/components/News/Nollywood";
 import StructuredData from "@/components/StructuredData";
-import { fetchWithTrace } from "@/utils/fetchWithTrace";
 import { createClient } from "@/utils/supabase/server";
 import { BlogPosting, WithContext } from "schema-dts";
 
@@ -19,7 +18,7 @@ export const metadata = {
   }
 };
   async function nollywoodBlog(){ 
-    const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST', 
       headers:{ 
       'Content-Type':'application/json', 

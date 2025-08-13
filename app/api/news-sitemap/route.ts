@@ -1,6 +1,5 @@
  import { NextResponse } from 'next/server';  
  import { FeedProps } from '@/app/types';
-import { fetchWithTrace } from '@/utils/fetchWithTrace';
  type Post = {
    url: string;
    lastModified: Date;
@@ -19,7 +18,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    }[];
  };
   const businessFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -57,7 +56,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    
    }
     const ecoFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -95,7 +94,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    
    }
     const envFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -133,7 +132,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    
    }
     const techFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -172,7 +171,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    }
 
     const societyFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -211,7 +210,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    }
 
     const nolFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -250,7 +249,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    }
 
     const awFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -288,7 +287,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    
    }
     const trendFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -326,7 +325,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    
    }
     const vidFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -364,7 +363,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    
    }
      const heFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
@@ -402,7 +401,7 @@ import { fetchWithTrace } from '@/utils/fetchWithTrace';
    
    }
       const articlesFeed = async()=>{  
-    const wprest =fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'

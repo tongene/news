@@ -1,10 +1,7 @@
 "use server"
-
-import { fetchWithTrace } from "@/utils/fetchWithTrace";
-
 export const newsByLatest=async()=>{ 
 
-    const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest = fetch('https://content.culturays.com/graphql',{
       method: "POST",
        headers: {
            'Content-Type':'application/json'
@@ -73,7 +70,7 @@ export const newsByLatest=async()=>{
     .then((data)=>data.data)
     .catch((err) => console.log("err", err))   
 
-    const wprestLive = fetchWithTrace('https://content.culturays.com/graphql',{ 
+    const wprestLive = fetch('https://content.culturays.com/graphql',{ 
       method: 'POST',
       headers:{ 
       'Content-Type':'application/json'
@@ -119,7 +116,7 @@ export const newsByLatest=async()=>{
       .then(data => data.data.lives.edges)
       .catch(error => console.error('Error:', error));
 
-      const wprestPost = fetchWithTrace('https://content.culturays.com/graphql',{     
+      const wprestPost = fetch('https://content.culturays.com/graphql',{     
         method: 'POST', 
         headers:{
             'Content-Type':'application/json'
@@ -230,7 +227,7 @@ return {resp, resp1Live, resp2Post}
     const latestPosts=await newsByLatest() 
     const postX = latestPosts?.resp?.categories?.nodes.map((xy:{posts:{pageInfo:{endCursor:string}}})=> xy.posts?.pageInfo?.endCursor).flat()??[]
  
-     const wprest = fetchWithTrace('https://content.culturays.com/graphql',{     
+     const wprest = fetch('https://content.culturays.com/graphql',{     
         method: 'POST',
         headers:{
             'Content-Type':'application/json'
@@ -306,7 +303,7 @@ return {resp, resp1Live, resp2Post}
   
   export async function sidePlusViews(){
     const latestPosts=await newsViews()
-     const wprest = fetchWithTrace('https://content.culturays.com/graphql', { 
+     const wprest = fetch('https://content.culturays.com/graphql', { 
         method: 'POST',
         headers:{
             'Content-Type':'application/json'
@@ -381,7 +378,7 @@ return {resp, resp1Live, resp2Post}
 
   export const postsOutline =async()=>{
     
-    const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest = fetch('https://content.culturays.com/graphql',{
            method: 'POST',
            headers:{
                'Content-Type':'application/json'

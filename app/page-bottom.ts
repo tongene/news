@@ -1,11 +1,11 @@
  
-import { fetchWithTrace } from "@/utils/fetchWithTrace";
 import { nextNewsPosts, postCategories } from "./data";
-import { altPageNewsItems } from "./latestx"; 
-import { InnerEdges } from "./types";
+import { altPageNewsItems } from "./latestx";
+import { sidePlusViews } from "./page-data";
+import { InnerEdges, PostXNode } from "./types";
  
   export const fetchXPosts = async () => { 
-const wp_naija = fetchWithTrace('https://content.culturays.com/graphql',{
+const wp_naija = fetch('https://content.culturays.com/graphql',{
       method: 'POST', 
       headers:{
       'Content-Type':'application/json'
@@ -110,7 +110,7 @@ const wp_naija = fetchWithTrace('https://content.culturays.com/graphql',{
  
   export const fetchNewPosts = async (afterA:string) => { 
      
-const wp_naija = fetchWithTrace('https://content.culturays.com/graphql',{
+const wp_naija = fetch('https://content.culturays.com/graphql',{
       method: 'POST', 
       headers:{
       'Content-Type':'application/json'
@@ -212,7 +212,7 @@ const wp_naija = fetchWithTrace('https://content.culturays.com/graphql',{
  
 export async function postLastAndScrolledCategories (){
      
-     const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+     const wprest = fetch('https://content.culturays.com/graphql',{
                method: 'POST',
                headers:{
                    'Content-Type':'application/json'
@@ -329,7 +329,7 @@ const endXNews = news_notIn_newsPosts.categories.edges.map((dy :InnerEdges[])=> 
  
      const postCategory_cursor = postCategory_Children.map((dx:InnerEdges)=>dx.node.posts.edges).flat().map((xy:InnerEdges)=> xy.cursor)      
  
-      const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+      const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{
           'Content-Type':'application/json'
@@ -394,7 +394,7 @@ const endXNews = news_notIn_newsPosts.categories.edges.map((dy :InnerEdges[])=> 
       .then(data => data.data)
       .catch(error => console.error('Error:', error));       
 
-  const wpXXrest = fetchWithTrace('https://content.culturays.com/graphql',{
+  const wpXXrest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{
           'Content-Type':'application/json'
@@ -459,7 +459,7 @@ const endXNews = news_notIn_newsPosts.categories.edges.map((dy :InnerEdges[])=> 
       .then(data =>  data.data)
       .catch(error => console.error('Error:', error));
 
-  const wpRestXX = fetchWithTrace('https://content.culturays.com/graphql',{
+  const wpRestXX = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{
           'Content-Type':'application/json'

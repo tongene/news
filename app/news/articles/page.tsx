@@ -1,6 +1,5 @@
 import ArticlesX from "@/components/News/Articles" 
 import StructuredData from "@/components/StructuredData";
-import { fetchWithTrace } from "@/utils/fetchWithTrace";
 import { BlogPosting, WithContext } from "schema-dts";
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}/news/articles/` 
@@ -16,7 +15,7 @@ export const metadata = {
 };
     async function businessBlog(){
    
-      const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+      const wprest = fetch('https://content.culturays.com/graphql',{
         method: 'POST', 
         headers:{ 
         'Content-Type':'application/json', 
@@ -96,7 +95,7 @@ export const metadata = {
   }  
 
     async function economyBlog(){ 
-      const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+      const wprest = fetch('https://content.culturays.com/graphql',{
         method: 'POST', 
         headers:{ 
         'Content-Type':'application/json', 
@@ -178,7 +177,7 @@ export const metadata = {
   } 
     async function environmentBlog(){
   
-      const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+      const wprest =  fetch('https://content.culturays.com/graphql',{
         method: 'POST', 
         headers:{ 
         'Content-Type':'application/json', 
@@ -256,7 +255,7 @@ export const metadata = {
          return wprest  
   } 
    async function healthBlog(){ 
-      const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+      const wprest =   fetch('https://content.culturays.com/graphql',{
         method: 'POST', 
         headers:{ 
         'Content-Type':'application/json', 
@@ -338,7 +337,7 @@ export const metadata = {
   
   }  
       async function techBlog(){  
-      const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+      const wprest = fetch('https://content.culturays.com/graphql',{
         method: 'POST', 
         headers:{ 
         'Content-Type':'application/json', 

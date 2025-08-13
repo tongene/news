@@ -13,17 +13,17 @@ export async function fetchWithTrace(url:string, options = {}) {
   console.log(`[TRACE] Fetching: ${url}`);
 
   try {
-    const res = await fetch(url, options);
+    const res = fetch(url, options);
     const duration = Date.now() - start;
-
-    console.log(`[TRACE] ${url} → Status: ${res.status} (${duration} ms)`);
+      const resp=await res
+    console.log(`[TRACE] ${url} → Status: ${resp} (${duration} ms)`);
 
     // Read the body as text first so we can inspect it
-    const text = await res.text();
+    const text = await resp.text();
     console.log(`[TRACE] First chars: "${text.slice(0, 80).replace(/\n/g, " ")}"`);
 
     // Try parsing JSON if it looks like JSON
-    if (res.headers.get("content-type")?.includes("application/json")) {
+    if (resp.headers.get("content-type")?.includes("application/json")) {
       try {
         return JSON.parse(text);
       } catch (err) {

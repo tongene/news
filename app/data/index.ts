@@ -1,10 +1,9 @@
 "use server"
-import { fetchWithTrace } from "@/utils/fetchWithTrace";
 import { newsByLatest } from "../page-data"; 
  
  export async function postCategories(){
  
-  const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+  const wprest = fetch('https://content.culturays.com/graphql',{
         method: 'POST',
         headers:{
             'Content-Type':'application/json'
@@ -96,7 +95,7 @@ import { newsByLatest } from "../page-data";
   } 
 
   export async function categoriesUnusedPosts (notIn:string[] ){ 
-  const wprest = fetchWithTrace('https://content.culturays.com/graphql',{ 
+  const wprest = fetch('https://content.culturays.com/graphql',{ 
       method: 'POST',
       headers:{
           'Content-Type':'application/json'
@@ -171,7 +170,7 @@ import { newsByLatest } from "../page-data";
   export async function nextNewsPosts(){ 
     const latestPosts=await newsByLatest()  
   const endX= latestPosts?.resp2Post?.map((xy:{posts:{ pageInfo:{endCursor:string}}})=> xy.posts.pageInfo.endCursor)  
-  const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+  const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{
           'Content-Type':'application/json'

@@ -3,11 +3,10 @@ import { postsOutline, sidePlusViews } from "@/app/page-data";
 import { InnerEdges } from "@/app/types";
 import NewsDetail from "@/components/NewsDetail" 
 import StructuredData from "@/components/StructuredData"; 
-import { fetchWithTrace } from "@/utils/fetchWithTrace";
 import { NewsArticle, WithContext } from "schema-dts";
   async function newsDetailData(slug:string){ 
   
-  const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+  const wprest = fetch('https://content.culturays.com/graphql',{
   method: 'POST', 
   headers:{
   'Content-Type':'application/json' 
@@ -122,7 +121,7 @@ import { NewsArticle, WithContext } from "schema-dts";
     
   }
 const readNextContent = async(notIn:string[])=>{  
-    const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{ 
       'Content-Type':'application/json'

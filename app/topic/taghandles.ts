@@ -1,7 +1,5 @@
-import { fetchWithTrace } from "@/utils/fetchWithTrace";
-
 export async function tag (slug:string) { 
-  const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+  const wprest = fetch('https://content.culturays.com/graphql',{
     method: 'POST',     
     headers:{
     'Content-Type':'application/json'
@@ -55,7 +53,7 @@ tags(first:100, where: {search: "${slug}"}){
  }
 
 export async function contentTag (slug:string) { 
-    const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{
       'Content-Type':'application/json'
@@ -395,7 +393,7 @@ export async function contentTag (slug:string) {
  
 
 export async function content_TAGS () { 
-    const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+    const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',
       headers:{
       'Content-Type':'application/json'

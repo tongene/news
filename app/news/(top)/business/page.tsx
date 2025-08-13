@@ -1,7 +1,6 @@
  
 import Business from "@/components/News/Business"
 import StructuredData from "@/components/StructuredData";
-import { fetchWithTrace } from "@/utils/fetchWithTrace";
 import { BlogPosting, WithContext } from "schema-dts";
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
@@ -18,7 +17,7 @@ export const metadata = {
 }; 
     async function businessBlog(){
    
-      const wprest = fetchWithTrace('https://content.culturays.com/graphql',{
+      const wprest = fetch('https://content.culturays.com/graphql',{
         method: 'POST', 
         headers:{ 
         'Content-Type':'application/json', 

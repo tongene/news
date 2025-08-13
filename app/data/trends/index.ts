@@ -2,7 +2,6 @@ import googleTrends from 'google-trends-api'
 import { CronJob } from 'cron'; 
 import axios from 'axios';
 import { createClient } from '@/utils/supabase/server';
-import { fetchWithTrace } from '@/utils/fetchWithTrace';
  
 const ourPassword = process.env.WP_SECRET
 const ourUsername = "Christina Ngene"
@@ -90,7 +89,7 @@ await googleTrends.dailyTrends({
    }
  
  export async function getNaijaFake1() {  
- const newsRest=await fetchWithTrace(`https://factchecktools.googleapis.com/v1alpha1/claims:search?query=nigeria&key=${process.env.GOOGLE_API}&pageSize=100`)
+ const newsRest=await fetch(`https://factchecktools.googleapis.com/v1alpha1/claims:search?query=nigeria&key=${process.env.GOOGLE_API}&pageSize=100`)
  .then(response => response.json())
  .then(data => data)
  .catch(error => console.error("Error:", error));
