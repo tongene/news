@@ -1,4 +1,3 @@
-
 import { netflixNews } from "@/app/netflix-news";
 import { FeedProps } from "@/app/types";
 import { NextResponse } from 'next/server';  
