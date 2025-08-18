@@ -1,6 +1,6 @@
 import Main from '@/components/NaijaWiki/Main'  
 import StructuredData from '@/components/StructuredData';
-import { BlogPosting, NewsArticle,  WebPage,  WithContext } from 'schema-dts';
+import { BlogPosting, WithContext } from 'schema-dts';
 import { newchars } from './newCharHandle';
 import { netflixNews } from '../netflix-news';
 

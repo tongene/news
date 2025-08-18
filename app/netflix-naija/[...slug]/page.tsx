@@ -3,7 +3,7 @@ import SideBar from "@/components/Side"
 import StructuredData from "@/components/StructuredData";
 import { NewsArticle, WithContext } from "schema-dts";
 import { InnerEdges } from "@/app/types";
-import { netflixNewsDets, nextNetflixNews } from "@/app/netflix-news";
+import { netflixNewsDets, nextNetflixNews } from "../../netflix-news";
 import NaijaWikiNetflixNewsDetails from "@/components/NaijaWikiNetflixNewsDetails"; 
 
     async function sidePlusViews(){
