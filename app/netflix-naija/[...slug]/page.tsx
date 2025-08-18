@@ -4,7 +4,7 @@ import StructuredData from "@/components/StructuredData";
 import { NewsArticle, WithContext } from "schema-dts";
 import { InnerEdges } from "@/app/types";
 import { netflixNewsDets, nextNetflixNews } from "../../netflix-news";
-import NaijaWikiNetflixNewsDetails from "@/components/NaijaWikiNetflixNewsDetails"; 
+import NaijaWikiNetflixNewsDetails from "../../../components/NaijaWikiNetflixNewsDetails"; 
 
     async function sidePlusViews(){
   
