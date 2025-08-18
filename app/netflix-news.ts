@@ -1,7 +1,4 @@
 
- 
-
-//this
   export async function netflixNews() {
     const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST',      

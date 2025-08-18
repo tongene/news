@@ -1,4 +1,4 @@
-import { netflixNews } from "@/app/netflix-news";
+import { netflixNews } from "../../netflix-news";
 import { FeedProps } from "@/app/types";
 import { NextResponse } from 'next/server';  
 const generateNewsSitemap = (content_posts: Post[]) => {
