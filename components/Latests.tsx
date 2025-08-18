@@ -1,6 +1,5 @@
-"use client"  
-import { altPageNewsItems } from "@/app/latestx" 
-import { newsViews } from "@/app/page-data"
+"use client"   
+ 
 import Image from "next/image"
 import Link from "next/link"    
 import { useEffect, useState } from "react"
@@ -17,19 +16,197 @@ type Node ={
   
   }; 
 }
+const newsViews=async()=>{ 
+           const res= fetch('https://content.culturays.com/graphql',{ 
+              method: "POST",
+               headers: {
+                   'Content-Type':'application/json'
+                  },
+              body: JSON.stringify({
+                query:`
+                query WPPOSTS { 
+             posts(first: 10, where: {categoryName: "Latest"})  { 
+                     pageInfo {
+        endCursor
+      }
+      edges{ 
+            node{
+             categories {
+                  nodes {
+                    name
+                    slug
+                  }
+                } 
+       
+          } }}}  ` 
+              
+              }) 
+            }).then((res) => res.json() )
+            .then((data) => data.data) 
+           .catch((err) => console.log("err", err)) 
+     const dataView= await res
+    const postX = dataView?.posts.pageInfo?.endCursor 
+  
+if(!postX)return
+      const wprest = fetch('https://content.culturays.com/graphql',{     
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS($after: String) {                  
+             posts(first:4 ,after:$after, where: {categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+                edges{
+               cursor
+              node{
+               id
+                title
+                  slug
+                  tags {
+                    nodes {
+                    id
+                      name
+                      slug
+                    }
+                  }
+              
+                   categories {
+                    nodes {
+                      name
+                      slug
+                    }
+                  }
+                excerpt
+                  date
+                   author {
+                 node {
+                firstName
+                lastName
+                name
+                slug
+                description
+              }
+            }
+                  featuredImage {
+                    node {
+                      altText
+                      sourceUrl
+                    }
+                  }
+       
+         }
+           }  } 
+        } 
+         `, variables:{
+          after:postX
+         }
+        
+        })
+        })
+        .then(response => response.json() )  
+        .then(data => data.data.posts ) 
+        .catch(error => console.error('Error:', error));  
+
+     return wprest
+  }
+    
+  async function sidePlusViews(){
+   const latestPosts=await newsViews()
+   const latestStr=latestPosts?.pageInfo?.endCursor 
+
+     const wprest = fetch('https://content.culturays.com/graphql', { 
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS {                  
+             posts(first:4 ,after:"${latestStr}", where: {categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            }  
+         }
+           }  
+         ` 
+        
+        })
+        , 
+        }).then(response => response.json()) 
+        .then(data => data.data) 
+        .catch(error => console.error('Error:', error)); 
+      // const response = wprest?.data?.posts?.edges
+   
+    return wprest
+  }
+  const altPageNewsItems= async ()=>{
+     const latestPosts=await sidePlusViews()  
+     const trest=latestPosts?.posts?.pageInfo?.endCursor  
+      
+     try{
+      const wprest = fetch('https://content.culturays.com/graphql',{ 
+      method: 'POST',
+      headers:{
+          'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query:`
+        query WPPOSTS {                  
+           posts( where: {categoryName: "Latest" }, after:"${trest}") {
+              pageInfo {
+            startCursor
+            endCursor
+            hasNextPage
+          } 
+              edges{ 
+              cursor
+            node{
+             id
+              title
+                slug
+              
+          }
+                 
+       }
+         }   
+      } 
+       ` 
+      
+      }) 
+     
+      }).then(response => response.json()) 
+      .then(data => data.data) 
+      .catch(error =>{
+       console.log(error)
+  }) 
+  
+    return wprest 
+ 
+    }catch(err){
+      console.log(err)
+    }
+  }
 const Latests = () => {   
   const [bottom_news_data, set_bottom_News_data]=useState<Node[]>([])
   const [alt_news_data, set_alt_News_data]=useState<Node[]>([])
  
 const newsContent=async()=>{ 
- const bottom_latest = await newsViews();
- const xLatest = bottom_latest.edges.map((xy:{node:[]})=> xy?.node).flat() 
- set_bottom_News_data(xLatest) 
- const altNews = await altPageNewsItems()
+  const bottom_latest = await newsViews(); 
+  const xLatest = bottom_latest.edges.map((xy:{node:[]})=> xy?.node).flat() 
+  set_bottom_News_data(xLatest) 
+  const altNews = await altPageNewsItems() 
  set_alt_News_data(altNews.posts.edges)
 }
  
-useEffect(()=>{
+useEffect(()=>{ 
   newsContent() 
 },[])
 
@@ -40,7 +217,7 @@ useEffect(()=>{
       <div className="flex border-b border-t border-t-4 border-t-black border-b-4 m-auto" style={{width:'1500px'}}> 
       {alt_news_data?.slice(0,3).map((ex, index)=>
          <div className="first:border-r [&:nth-child(2)]:border-r px-8 m-auto" key={index + Math.random()}> 
- <Link href={`/news/${ex.node.slug}/`}><h2 className=" hover:text-gray-400 py-8 text-2xl font-mono leading-10 font-thin my-11">{ex.node.title} </h2></Link>
+ <Link href={`/news/${ex.node.slug}/`}><h2 className="max-w-96 hover:text-gray-400 py-8 text-2xl font-mono leading-10 font-thin my-8">{ex.node.title} </h2></Link>
   </div>)}
 </div>
 </div>

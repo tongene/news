@@ -14,6 +14,12 @@ type PostProps={
   excerpt:string
   date:string
   contentTypeName:string
+  contentTags:{
+    nodes:{
+      name:string 
+      slug:string
+    }[]
+  }
   featuredImage:{
     node:{
     sourceUrl:string
@@ -22,7 +28,9 @@ type PostProps={
     }
     }
 }
- 
+
+
+
 const ArticlesX = ({
     environment_news,
     business_news,
@@ -32,12 +40,9 @@ health_news }:{environment_news:TopNews[],business_news:TopNews[],eco_news:TopNe
 
 const [posts, setPosts]=useState<PostProps[]>([]) 
 const [currPg, setCurrPg]=useState(1)
-const [postPerPage, setPostPerP]=useState(10) 
-
-const world_news = environment_news.filter((ex)=>ex.environmentCategories?.nodes[0].name==="World")
-const africa_news = environment_news.filter((ex)=>ex.environmentCategories?.nodes[0].name==="Africa") 
-// const environment_items=environment_news.filter((ex)=>ex.environmentCategories?.nodes[0].name!=="World").filter((ex)=>ex.environmentCategories?.nodes[0].name!=="Africa")
- const environment_items= environment_news.concat(business_news).concat(eco_news)
+const [postPerPage, setPostPerP]=useState(5)  
+ 
+ const environment_items= environment_news?.concat(business_news)?.concat(eco_news)
 function decrement() {
 setCurrPg(currPg - 1);
  }
@@ -45,27 +50,26 @@ setCurrPg(currPg - 1);
    setCurrPg(currPg + 1);
  }
 
- 
+ const ycontent=environment_items.sort(function(a, b) { return Number(new Date(b.date ))-Number( new Date(a.date )) })
+
  useEffect(()=>{
-   const fetchPs= async()=>{ 
-     setPosts([...ycontent.slice(8)]) 
+   const fetchPs= async()=>{  
+     setPosts(prev=> [...prev, ...ycontent.slice(8)]) 
    }
    fetchPs()
- },[environment_news]) 
+ },[]) 
   
  const idxLastPs= currPg * postPerPage
  const idxFsPage = idxLastPs - postPerPage
- const currentPosts = posts.slice(idxFsPage, idxLastPs)
- 
+ const currentPosts = posts.slice(idxFsPage, idxLastPs) 
  const paginating=(pageNumber:number)=>{ 
  setCurrPg(pageNumber) 
  }
 
  
-     const [activeSet , setActiveSet]=useState(false)    
-     const title_item=environment_items.map((ex)=>ex.contentTypeName)[0]
-   const ycontent=environment_items.sort(function(a, b) { return Number(new Date(b.date ))-Number( new Date(a.date )) })
-  
+const [activeSet , setActiveSet]=useState(false)    
+const title_item=environment_items.map((ex)=>ex.contentTypeName)[0]
+
   return (
     <div> 
     <div className="bg-gray-50 dark:bg-black py-4 m-auto" style={{maxWidth:'1800px'}}> 
@@ -87,7 +91,8 @@ setCurrPg(currPg - 1);
             <div className="cursor-pointer">
            <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 className="text-xl font-medium hover:text-gray-500">{xy?.title}</h2></Link> 
            </div>
-            <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small>
+            {/* <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small> */}
+            {/* <Link href={`/topic/${xy.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500 hover:text-gray-300"><em>{xy.contentTags.nodes[0].name}</em></small></Link>  */}
          </div>
     </div>
       </div> 
@@ -102,7 +107,7 @@ setCurrPg(currPg - 1);
     
  <section>
 <div className="xl:flex mx-auto p-6 gap-4 justify-center 2xl:mx-0 lg:w-[1100px] 2xl:w-[1500px]"> 
-<div className="pl-11 lg:max-w-md m-auto">
+<div className="pl-11 lg:max-w-md mx-auto">
 <h2 className="text-5xl font-bold m-4">News</h2>
 <hr className="bg-black py-0.5"/>
 <div className="grid sm:grid-cols-2 lg:block xl:grid-cols-2 gap-2 justify-center">
@@ -119,7 +124,8 @@ height={675}
 alt={xy?.featuredImage.node.altText}
 /> 
 <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis my-2 text-lg hover:text-gray-500 py-2 leading-9"/></Link>
- <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small> 
+ {/* <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small>  */}
+<Link href={`/topic/${xy.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500 hover:text-gray-300"><em>{xy.contentTags.nodes[0].name}</em></small> </Link>
 </div>
 )}
 </div>
@@ -138,15 +144,16 @@ alt={xy?.featuredImage.node.altText}
  </div>
 </div>
  
-<div className="justify-between 2xl:flex my-5 max-w-xl md:max-w-max lg:max-w-xl xl:max-w-5xl m-auto"> 
+<div className="justify-between 2xl:flex my-5 max-w-xl md:max-w-max lg:max-w-xl xl:max-w-5xl mx-auto"> 
 
 <div className="mx-1 h-max px-2 py-4 max-w-lg"><h2 onClick={()=> setActiveSet(prev => !prev)}className={!activeSet?"text-3xl font-bold":'text-3xl cursor-pointer'}>Africa</h2>
 <hr className={!activeSet?"bg-red-500 py-0.5 font-bold":''}/>
 { tech_news.slice(0,5).map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
-<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis leading-8 text-xl font-bold py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
-<Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"/></Link>
- <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small> 
+<Link href={`/news/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis leading-8 text-xl font-bold py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
+<Link href={`/news/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"/></Link>
+ {/* <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small>  */}
+ <Link href={`/topic/${xy.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500 hover:text-gray-300"><em>{xy.contentTags.nodes[0].name}</em></small> </Link>  
 </div>
 )}
 </div>
@@ -156,7 +163,8 @@ alt={xy?.featuredImage.node.altText}
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
 <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis font-bold leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title}</h2></Link>
 <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"/></Link>
- <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small> 
+ {/* <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small>  */}
+ <Link href={`/topic/${xy.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500   hover:text-gray-300"><em>{xy.contentTags.nodes[0].name}</em></small> </Link>  
 </div>
 )}
 </div> 

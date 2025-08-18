@@ -91,21 +91,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
         images: ['https://culturays.com/culturays.png']
       },
-      {
-        url:`https://culturays.com/coming-to-netflix/`,
-        lastModified: new Date(),
-        changeFrequency:"daily"  ,
-        priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
-      },
-     
-      {
-        url:`https://culturays.com/netflix-naija/new-on-netflix/`,
-        lastModified: new Date(),
-        changeFrequency: 'daily',
-        priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
-      },
       
       {
         url:`https://culturays.com/news/nollywood/`,

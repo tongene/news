@@ -1660,6 +1660,7 @@ parent_id: string
     date:string
     modified:Date
     contentTypeName:string
+   
     author:{
       node:{
         slug:string,
@@ -1684,6 +1685,12 @@ parent_id: string
   contentTypeName:string
   databaseId:string
   modified:Date
+     tags:{
+        nodes:{
+          slug:string,
+          name:string
+        }[]
+      },  
   author:{
     node:{
       slug:string,
@@ -1726,6 +1733,12 @@ node:{
   contentTypeName:string
   databaseId:string
   modified:Date
+     tags:{
+        nodes:{
+          slug:string,
+          name:string
+        }[]
+      },  
   author:{
     node:{
       slug:string,
@@ -1780,6 +1793,12 @@ export type EvObjType= {
           slug:string,
           name:string
         }[]
+      },  
+         categories:{
+        nodes:{
+          slug:string,
+          name:string
+        } 
       }, 
       posts:{ 
          nodes:InnerEdges[]

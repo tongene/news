@@ -245,7 +245,7 @@ searchItem?.length>0&&searchItem?.map((it, index)=>
 <div className="m-6">          
  <Link href={`/forum/post/${it.slug}/${it.id}/`}><h3 className="search-title hover:opacity-50 text-lg m-4 cursor-pointer font-medium h-3/4 leading-tight">{it.title }</h3></Link> 
 {it.tags.nodes.slice(0,5)?.map((ex, i:number)=>
- <div className="flex flex-wrap justify-between pt-4"key={i}> <Link href={`/${String(ex).replace('.','')}/${ex.id}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 p-4">#
+ <div className="flex flex-wrap justify-between pt-4"key={i}> <Link href={`/topic/${String(ex).replace('.','')}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 p-4">#
 {String(ex).replace('.','').split(' ').join(' ') }  
 </span>}</Link>  
 

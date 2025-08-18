@@ -18,15 +18,7 @@ type Node ={
     };  
   } 
 const TabNav = () => {
- const [sideBarData, setSideBarData]= useState<Node[]>([])
- const [formData, setFormData] = useState({
-  name: "",
-  email: "",
-  content:"",
-  inaccurate:"",
-  biased:"",
-});
-
+ const [sideBarData, setSideBarData]= useState<Node[]>([]) 
 const [closeQuestion, setCloseQuestion]= useState(false) 
   const [success, setSuccess] = useState({
     succeeded: false, 

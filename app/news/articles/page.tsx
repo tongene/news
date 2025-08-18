@@ -11,7 +11,7 @@ export const metadata = {
     alternates: {
     canonical:  `https://culturays.com/news/articles/`,
  
-  }
+  } 
 };
     async function businessBlog(){
    

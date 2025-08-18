@@ -25,7 +25,6 @@ export const getComments = async (startScroll:number, count:number, post:PostPro
       }catch(err){
         if(err) return
       }
-    
   
   }
    

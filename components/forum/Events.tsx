@@ -42,7 +42,7 @@ height={150}
 alt={xx.title}
 />  
 <div className="my-2 mx-2 text-center">
-<Link href={`/event/${xx.slug}/` } ><h2 className="py-2 text-white cursor-pointer text-2xl hover:text-gray-400" >Title: {xx.title}</h2></Link>
+<Link href={`/event/${xx.slug}/`} ><h2 className="py-2 text-white cursor-pointer text-2xl hover:text-gray-400" >Title: {xx.title}</h2></Link>
  
  <p className="text-white mx-0.5 text-md mt-1">Genre: {xx?.genre||'Not Available'}</p> 
 <p className="text-white mx-0.5 text-md mt-1"suppressHydrationWarning>Date: {nlp(xx?.day)?.dates()?.text()?.split('at')[0]}</p>

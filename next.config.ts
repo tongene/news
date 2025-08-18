@@ -107,22 +107,22 @@ const nextConfig: NextConfig ={
       },
       {
         source: '/netflix-naija/coming-to-netflix/:path+',
-        destination: '/coming-to-netflix/:path*',
+        destination: '/naija-wiki/',
         permanent: true,
       },
       {
         source: '/netflix-naija/coming-to-netflix/',
-        destination: '/coming-to-netflix/',
+        destination: '/naija-wiki/',
         permanent: true,
       },
       {
         source: '/netflix-naija/new-on-netflix/:path+',
-        destination: '/new-on-netflix/:path*',
+        destination: '/naija-wiki/',
         permanent: true,
       },
       {
         source: '/netflix-naija/new-on-netflix/',
-        destination: '/new-on-netflix/',
+        destination: '/naija-wiki/',
         permanent: true,
       },
       {
@@ -147,22 +147,22 @@ const nextConfig: NextConfig ={
       }, 
        {
         source: '/comingtonetflix/naija/:path*',
-        destination: '/coming-to-netflix/',
+        destination: '/naija-wiki/',
         permanent: true,
       },
         {
         source: '/newonnetflix/naija/:path*',
-        destination: '/new-on-netflix/',
+        destination: '/naija-wiki/',
         permanent: true,
       },  
        {
         source: '/comingtonetflix',
-        destination: '/coming-to-netflix/',
+        destination: '/naija-wiki/',
         permanent: true,
       },
       {
         source: '/newonnetflix',
-        destination: '/new-on-netflix/',
+        destination: '/naija-wiki/',
         permanent: true,
       },
        {

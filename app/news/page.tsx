@@ -1,6 +1,7 @@
 import News from '@/components/News/News' 
 import StructuredData from '@/components/StructuredData';
 import { BlogPosting, NewsArticle, WebPage, WithContext } from 'schema-dts';
+import { InnerEdges, PostXNode } from '../types';
 async function news__Articles(){  
   const wprest = fetch('https://content.culturays.com/graphql',{
  method: 'POST', 
@@ -107,10 +108,10 @@ async function news__Articles(){
        return wprest
   
  }
- 
+
 const NewsPage = async() => {
   const newsData= await news__Articles() 
-  
+ 
  const jsonLd:WithContext<BlogPosting>={
    "@context": "https://schema.org",
    "@type": "BlogPosting",
@@ -142,7 +143,8 @@ const NewsPage = async() => {
      }
    }
  }
-  
+ 
+
  return (  
    <div>
      <StructuredData schema={jsonLd} />

@@ -1,4 +1,4 @@
-import { postsOutline, sidePlusViews } from "@/app/page-data";
+
 import { InnerEdges } from "@/app/types";
 import AllBirthdays from "@/components/AllBirthdays";
 import Awards from "@/components/News/Awards"   
@@ -65,7 +65,177 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
           // const response = wprest
            return wprest 
     } 
+    async function sidePlusViews(){
+  
+           const res= fetch('https://content.culturays.com/graphql',{ 
+              method: "POST",
+               headers: {
+                   'Content-Type':'application/json'
+                  },
+              body: JSON.stringify({
+                query:`
+                query WPPOSTS { 
+             posts(first: 10, where: {categoryName: "Latest"}) { 
+           pageInfo {
+        endCursor
+      }
+         edges{ 
+            node{
+             
+            categories {
+                  nodes {
+                    name
+                    slug
+                  }
+                } 
+       }
+          } }} 
+               ` 
+              
+              }) 
+            }).then((res) => res.json() )
+            .then((data) => data.data ) 
+           .catch((err) => console.log("err", err)) 
+           const dataView= await res
+    const postX = dataView.posts?.pageInfo?.endCursor 
+if(!postX)return
+      const wpx = fetch('https://content.culturays.com/graphql',{     
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS($after: String) {                  
+             posts(first:4 ,after:$after, where: {categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+           } 
+        } 
+         `, variables:{
+          after:postX 
+         }
+        
+        })
+        })
+        .then(response => response.json() )  
+        .then(data => data.data.posts ) 
+        .catch(error => console.error('Error:', error));  
+
+    const latestPosts= await wpx  
+  const latestStr=latestPosts?.pageInfo?.endCursor 
+
+     const wprest = fetch('https://content.culturays.com/graphql', { 
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS {                  
+             posts(first:4 ,after:"${latestStr}", where: {categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+                edges{
+               cursor
+              node{
+               id
+                title
+                  slug
+                  tags {
+                    nodes {
+                    id
+                      name
+                      slug
+                    }
+                  }
+                  
+                   categories {
+                    nodes {
+                      name
+                      slug
+                    }
+                  }
+                excerpt
+                  date
+                   author {
+                 node {
+                firstName
+                lastName
+                name
+                slug
+                description
+              }
+            }
+                  featuredImage {
+                    node {
+                      altText
+                      sourceUrl
+                    }
+                  }
+       
+         }
+           }  } 
+        } 
+         ` 
+        
+        })
+        , 
+        }).then(response => response.json()) 
+        .then(data => data.data) 
+        .catch(error => console.error('Error:', error)); 
+      // const response = wprest?.data?.posts?.edges
+   
+    return wprest
+  } 
+     const postsOutline =async()=>{
     
+    const wprest = fetch('https://content.culturays.com/graphql',{
+           method: 'POST',
+           headers:{
+               'Content-Type':'application/json'
+           },
+           body: JSON.stringify({
+             query:`
+             query OUTLINEPOST{
+         outlines(first: 1) {
+       nodes {
+         content
+         featuredImage{
+         node{
+         sourceUrl
+         altText
+         }
+         }
+         outlineGroup {
+           outlineVideos {
+             node {
+               altText
+               caption
+               date
+               title
+                mediaItemUrl
+               slug
+             }
+           }
+         }
+       }
+           } } ` 
+           
+           })
+           
+           }).then(response => response.json())
+           .then(data => data.data?.outlines?.nodes)        
+           .catch(error => console.error('Error:', error));
+           //const response = wprest?.data?.outlines?.nodes 
+           return wprest
+  } 
 export const metadata = {
   metadataBase: new URL(defaultUrl), 
    title:"Urban News | Awards",

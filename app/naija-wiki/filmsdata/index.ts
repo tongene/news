@@ -52,7 +52,7 @@ $('td.title > button').each(function(index, element) {
  )
 
  });
-        $('td > img').each(function(index, element){      
+$('td > img').each(function(index, element){      
 const img = $(element).attr('src') 
 
 top10Names.push({ 

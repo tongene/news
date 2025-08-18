@@ -147,7 +147,7 @@ return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMon
 const jsonLd:WithContext<DiscussionForumPosting> = {
   '@context': 'https://schema.org',
   '@type': 'DiscussionForumPosting', 
-  "@id":`https://culturays.com/post/${slug}/${post.id}/`,
+  "@id":`https://culturays.com/forum/post/${slug}/${post.id}/`,
   "headline":post?.title||post?.article_title?.toUpperCase().replace(/-/g," "),
   "author": {
     "@type": "Person",

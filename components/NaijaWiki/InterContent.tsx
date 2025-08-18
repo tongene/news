@@ -1,5 +1,5 @@
 "use client"
-import { fetchNewInter } from "@/app/netflix-naija/netflix-news"
+import { fetchNewInter } from "@/app/netflix-news"
 import { NAPINewsProps } from "@/app/types"
 import moment from "moment"
 import Image from "next/image"

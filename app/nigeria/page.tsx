@@ -21,24 +21,24 @@ const pages= contentPages.filter((xy:PagesProps)=> xy.contents.nodes.length>0).m
     {
       "@type": "Article",
       "name": `${pages[0].title}` ,
-      "url":`https://culturays.com/nigeria/${pages[0].slug}`
+      "url":`https://culturays.com/nigeria/${pages[0].slug}/`
     },
   {
       "@type": "Article",
       "name": `${geoAnalysis[0]?.title}` ,
-      "url":`https://culturays.com/nigeria/${geoAnalysis[0]?.slug}`
+      "url":`https://culturays.com/nigeria/${geoAnalysis[0]?.slug}/`
     },
      
   {
       "@type": "Article",
       "name": `${govAnalysis[0]?.title}` ,
-      "url":`https://culturays.com/nigeria/${govAnalysis[0]?.slug}`
+      "url":`https://culturays.com/nigeria/${govAnalysis[0]?.slug}/`
     } 
     ,
   {
       "@type": "Article",
       "name": `${ecomsAnalysis[0]?.title}` ,
-      "url":`https://culturays.com/nigeria/${ecomsAnalysis[0]?.slug}`
+      "url":`https://culturays.com/nigeria/${ecomsAnalysis[0]?.slug}/`
     },
   ]
 }

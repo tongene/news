@@ -1,15 +1,13 @@
 "use client"
 import moment from "moment";
-import Image from "next/image"
-import ShareButtons from "../ShareButtons";
-import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";  
-import SlidingSide from "../SlidingSide";
+import Image from "next/image" 
+import React, { useEffect, useState } from "react";
+import Link from "next/link";   
 import { NAPINewsProps, VidProps } from "@/app/types"; 
+import SlidingSide from "./SlidingSide";
+import ShareButtons from "./ShareButtons";
 
-const NaijaWikiNetflixNewsDetails =({next_on_netflix_naija, content_videos, news_details}:{content_videos:VidProps[], news_details:NAPINewsProps, next_on_netflix_naija:NAPINewsProps[]}) => {
- 
-     
+const NaijaWikiNetflixNewsDetails =({next_on_netflix_naija, content_videos, news_details}:{content_videos:VidProps[], news_details:NAPINewsProps, next_on_netflix_naija:NAPINewsProps[]}) => {     
      const related_content=news_details.netflixNewsGroup.netflixNewsRelated?.edges
      const next_posts_naija=next_on_netflix_naija.map((tx)=> tx.naijaOnNetflix).flat()
      const next_posts= next_posts_naija.map((tx)=> tx.nodes).flat()

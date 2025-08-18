@@ -55,7 +55,7 @@ alt={trends.featuredImage.node.altText}
 </div> 
  </div>
  
-<div className="my-10 md:my-0 max-w-xs xs:max-w-max md:max-w-xs m-auto"> 
+<div className="my-10 md:my-0 max-w-xs xs:max-w-max md:max-w-80 m-auto"> 
   <h2 className="text-4xl text-gray-800 dark:text-gray-300">Popular Trends</h2>
 <div className="grid xs:grid-cols-2 md:grid-cols-1 my-4 gap-1 h-max">
 {trendsAll?.slice(5,10).map((xy,i)=>

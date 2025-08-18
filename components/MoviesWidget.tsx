@@ -44,25 +44,6 @@ naija_wiki()
  
  )} 
 
- <div className='flex py-3 items-center px-1'> 
-<h2 className="text-gray-700  font-medium text-3xl p-3 leading-10">Netflix Naija</h2>
-<hr className='h-1 w-1/2 mt-4 bg-black'/>
-</div>
-
-  <div className="py-8 text-gray-600 flex justify-evenly hover:scale-105 px-2"> 
- <hr className="w-1/6 my-3 bg-gray-800"/> 
-  <Link href='/coming-to-netflix/'><h3 className="cursor-pointer px-1">Coming to Netflix Naija </h3></Link> 
- <hr className="w-1/6 my-3 bg-gray-600"/> 
-  
- </div> 
- 
- <div className="py-8 text-gray-600 flex justify-evenly hover:scale-105 px-2"> 
- <hr className="w-1/6 my-3 bg-gray-600"/>
- <Link href='/new-on-netflix/'><h3 className="cursor-pointer px-1">New on Netflix Naija </h3></Link> 
- <hr className="w-1/6 my-3 bg-gray-600"/> 
- 
- </div>
-
  </div>
 </div>
     </div>

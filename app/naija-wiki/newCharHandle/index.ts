@@ -1,10 +1,5 @@
 "use server"
-interface Character {
-  charactertitles: {
-    filmname: string;
-  };
-  
-}
+
 export async function newchars(){ 
   
   try {

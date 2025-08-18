@@ -1,15 +1,184 @@
  
 import SideBar from "@/components/Side" 
 import ArticleDetail from "@/components/News/ArticleDetail" 
-import type { Metadata, ResolvingMetadata } from 'next'
-import { postsOutline, sidePlusViews } from "@/app/page-data";
+import type { Metadata, ResolvingMetadata } from 'next' 
 import { NewsArticle, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
 import { InnerEdges } from "@/app/types";
 import NewsDetail from "@/components/NewsDetail"; 
  
 const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
+    async function sidePlusViews(){
+  
+           const res= fetch('https://content.culturays.com/graphql',{ 
+              method: "POST",
+               headers: {
+                   'Content-Type':'application/json'
+                  },
+              body: JSON.stringify({
+                query:`
+                query WPPOSTS { 
+             posts(first: 10, where: {categoryName: "Latest"}) { 
+           pageInfo {
+        endCursor
+      }
+         edges{ 
+            node{
+             
+            categories {
+                  nodes {
+                    name
+                    slug
+                  }
+                } 
+       }
+          } }} 
+               ` 
+              
+              }) 
+            }).then((res) => res.json() )
+            .then((data) => data.data ) 
+           .catch((err) => console.log("err", err)) 
+           const dataView= await res
+    const postX = dataView.posts?.pageInfo?.endCursor 
+if(!postX)return
+      const wpx = fetch('https://content.culturays.com/graphql',{     
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS($after: String) {                  
+             posts(first:4 ,after:$after, where: {categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+           } 
+        } 
+         `, variables:{
+          after:postX 
+         }
+        
+        })
+        })
+        .then(response => response.json() )  
+        .then(data => data.data.posts ) 
+        .catch(error => console.error('Error:', error));  
 
+    const latestPosts= await wpx  
+  const latestStr=latestPosts?.pageInfo?.endCursor 
+
+     const wprest = fetch('https://content.culturays.com/graphql', { 
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS {                  
+             posts(first:4 ,after:"${latestStr}", where: {categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+                edges{
+               cursor
+              node{
+               id
+                title
+                  slug
+                  tags {
+                    nodes {
+                    id
+                      name
+                      slug
+                    }
+                  }
+                  
+                   categories {
+                    nodes {
+                      name
+                      slug
+                    }
+                  }
+                excerpt
+                  date
+                   author {
+                 node {
+                firstName
+                lastName
+                name
+                slug
+                description
+              }
+            }
+                  featuredImage {
+                    node {
+                      altText
+                      sourceUrl
+                    }
+                  }
+       
+         }
+           }  } 
+        } 
+         ` 
+        
+        })
+        , 
+        }).then(response => response.json()) 
+        .then(data => data.data) 
+        .catch(error => console.error('Error:', error)); 
+      // const response = wprest?.data?.posts?.edges
+   
+    return wprest
+  } 
+     const postsOutline =async()=>{
+    
+    const wprest = fetch('https://content.culturays.com/graphql',{
+           method: 'POST',
+           headers:{
+               'Content-Type':'application/json'
+           },
+           body: JSON.stringify({
+             query:`
+             query OUTLINEPOST{
+         outlines(first: 1) {
+       nodes {
+         content
+         featuredImage{
+         node{
+         sourceUrl
+         altText
+         }
+         }
+         outlineGroup {
+           outlineVideos {
+             node {
+               altText
+               caption
+               date
+               title
+                mediaItemUrl
+               slug
+             }
+           }
+         }
+       }
+           } } ` 
+           
+           })
+           
+           }).then(response => response.json())
+           .then(data => data.data?.outlines?.nodes)        
+           .catch(error => console.error('Error:', error));
+           //const response = wprest?.data?.outlines?.nodes 
+           return wprest
+  }
 async function news_details_all(uri:string){ 
 const wprest = fetch('https://content.culturays.com/graphql',{
 method: 'POST', 
@@ -987,7 +1156,7 @@ export async function generateMetadata(
  const newsXdetail = await resolveContent(slug[0]); 
   const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/`)
   const previousImages = (await parent).openGraph?.images || []
-  const tags= news_details?.tgs?.nodes.map((ex:{name:string})=>ex.name).join(', ')
+  const tags= news_details?.tags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
   const keyTags= newsXdetail?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
   return !newsXdetail?{
     title: `Urban Naija | ${news_details?.title}`,

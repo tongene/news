@@ -1,36 +1,623 @@
-"use client"
-  
+"use client" 
 import { fetchNewPosts } from '@/app/page-bottom'
-import { LatestProps, PostXNode } from '@/app/types'
+import { InnerEdges, LatestProps, PostXNode } from '@/app/types'
 import { dateFormatter } from '@/utils/dateformat'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useCallback, useEffect } from 'react'
 import { useState } from 'react'
-import { useInView } from 'react-intersection-observer' 
-
-const MainBottom = ({ postsXnewsPosts, postsX1,postsX2,postsX3}:{ postsXnewsPosts:PostXNode,postsX1:{  posts:{  
-        edges: PostXNode[]
+import { useInView } from 'react-intersection-observer'  
+  
+ async function sidePlusViews(){
+    // const latestPosts=await newsViews(['txcx'])
+    const res= fetch('https://content.culturays.com/graphql',{ 
+              method: "POST",
+               headers: {
+                   'Content-Type':'application/json'
+                  },
+              body: JSON.stringify({
+                query:`
+                query WPPOSTS { 
+             posts(first: 10, where: {categoryName: "Latest"})  { 
+              pageInfo {
+             endCursor
+                    }
+                      }}  ` 
+              
+              }) 
+            }).then((res) => res.json() )
+            .then((data) => data.data) 
+           .catch((err) => console.log("err", err)) 
+     const dataView= await res
+    const postX = dataView?.posts.pageInfo?.endCursor 
+  
+       const wprest = fetch('https://content.culturays.com/graphql',{     
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS($after: String) {                  
+             posts(first:4 ,after:$after, where: {categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            }  
        
-      }},postsX2:{  posts:{  
-        edges: PostXNode
+         }
+           }  
         
-      }},postsX3:{  posts:{  
-        edges: PostXNode
+         `, variables:{
+          after:postX
+         }
         
-      }}}) => {
+        })
+        })
+        .then(response => response.json() )  
+        .then(data => data.data.posts ) 
+        .catch(error => console.error('Error:', error));  
+      const dataXView= await wprest 
+    const latestStr = dataXView?.pageInfo?.endCursor  
+
+     const wpxrest = fetch('https://content.culturays.com/graphql', { 
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS {                  
+             posts(first:4 ,after:"${latestStr}", where: {categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            }  
+         }
+           }  
+         ` 
+        
+        })
+        , 
+        }).then(response => response.json()) 
+        .then(data => data.data) 
+        .catch(error => console.error('Error:', error)); 
+
+     const newsStr=await wpxrest
+     const trest=newsStr?.posts?.pageInfo?.endCursor 
+   
+      const wparest = fetch('https://content.culturays.com/graphql',{ 
+      method: 'POST',
+      headers:{
+          'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query:`
+        query WPPOSTS {                  
+           posts( where: {categoryName: "Latest" }, after:"${trest}") {
+              pageInfo {
+            startCursor
+            endCursor
+            hasNextPage
+          }  
+            }
+          } 
+       `  
+      }) 
+     
+      }).then(response => response.json()) 
+      .then(data => data.data) 
+      .catch(error =>{
+       console.log(error)
+  }) 
+    return wparest
+  }
+  
+ 
+const fetchXPosts2 =async () => { 
+const wp_world = fetch('https://content.culturays.com/graphql',{
+method: 'POST', 
+headers:{
+'Content-Type':'application/json'
+},
+
+body: JSON.stringify({
+  query:`
+  query WPPOSTS { 
+  posts( where: {categoryName: "world" }){
+    pageInfo {
+        startCursor
+        endCursor
+        hasNextPage
+      } 
+      
+  nodes {        
+    title
+    slug
+    date
+    content
+    id
+    
+  tags {
+      nodes {
+        id
+        slug
+        name
+        posts {
+          edges {
+            node {
+              id 
+              slug
+              title 
+              date
+              categories {
+                nodes {
+                  id
+                  name
+                  slug 
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
+    }
+    excerpt
+    categories {
+      nodes {
+        name
+        slug
+        posts {
+              nodes {
+                title
+                slug
+                featuredImage {
+                  node {
+                    sourceUrl
+                    altText
+                  }
+                }
+          }
+        }
+      }
+    }
+    author {
+      node {
+        firstName
+        lastName
+        name
+        description
+      }
+    }
+  }
+}  }  
+
+` 
+})
+
+}).then(response => response.json()) 
+.then(data => data.data)
+.catch(error => console.error('Error:', error)); 
+//const res_naija = wp_naija?.data 
+return wp_world
+
+}
+
+
+const nextPostsX2=async()=>{
+const latestPosts=await sidePlusViews()
+const trest=latestPosts?.posts?.pageInfo?.endCursor 
+const wpXXrest = fetch('https://content.culturays.com/graphql',{
+method: 'POST',
+headers:{
+  'Content-Type':'application/json'
+},
+body: JSON.stringify({
+query:`
+query WPPOSTS {       
+posts( after:"${trest}" , where:{categoryName: "Latest"}){ 
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+    } 
+ 
+  nodes {
+    contentTypeName
+    author {
+      node {
+        name
+        slug
+      }
+    }
+        categories {
+      nodes {
+        name
+        slug
+      }
+    }
+      tags {
+      nodes { 
+      id
+        name
+        slug
+      }
+    }
+    date
+    excerpt
+      slug
+    title
+    featuredImage {
+      node {
+        altText
+        sourceUrl
+      }
+    }
+    
+}
+ 
+} 
+}
+`  }) 
+
+}).then(response =>response.json() ) 
+.then(data =>data.data ) 
+.catch(error => console.error('Error:', error));
+return wpXXrest
+}
+async function nextPostsX1(){  
+const wprestPost = fetch('https://content.culturays.com/graphql',{     
+method: 'POST', 
+headers:{
+    'Content-Type':'application/json'
+},
+body: JSON.stringify({
+  query:`
+query WPPOSTS  {               
+posts(first:11, where: {categoryName: "News"}) {
+pageInfo{
+endCursor
+startCursor
+hasNextPage
+    }
+
+}} 
+` 
+
+})
+, 
+
+}).then((response) => response.json()) 
+.then((data)=>data.data.posts )
+.catch((error) => console.error('Error:', error)); 
+const endX = await wprestPost
+if(!endX)return 
+
+const xwp = fetch('https://content.culturays.com/graphql',{
+method: 'POST',
+headers:{
+  'Content-Type':'application/json'
+},
+
+body: JSON.stringify({
+query:`
+query WPPOSTS {       
+posts(first:20, after:"${endX.pageInfo.endCursor}" , where:{categoryName: "News"}){ 
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+    } 
+ 
+  nodes {
+    contentTypeName
+    author {
+      node {
+        name
+        slug
+      }
+    }
+        categories {
+      nodes {
+        name
+        slug
+      }
+    }
+     tags {
+      nodes { 
+      id
+        name
+        slug
+      }
+    }
+    date
+    excerpt
+      slug
+    title
+    featuredImage {
+      node {
+        altText
+        sourceUrl
+      }
+    }
+    
+}
+ 
+} 
+}
+` 
+
+} )
+}).then(response =>response.json())
+.then(data =>data.data) 
+.catch(error => console.error('Error:', error)); 
+return xwp
+} 
+
+const afriNewsNext =async()=>{
+const wp_naija = fetch('https://content.culturays.com/graphql',{
+  method: 'POST', 
+  headers:{
+  'Content-Type':'application/json'
+  },
+
+  body: JSON.stringify({
+    query:`
+    query WPPOSTS { 
+      posts(first:1, where: {categoryName: "africa" }){
+      pageInfo {
+          startCursor
+          endCursor
+          hasNextPage
+  } 
+          
+}  }   ` 
+  })
+  
+  }).then((res) => res.json() )
+    .then((data) => data.data) 
+    .catch((err) => console.log("err", err)) 
+  const moreX = await wp_naija
+  const fill =moreX.posts.pageInfo.endCursor
+
+const wpNextAf = fetch('https://content.culturays.com/graphql',{
+  method: 'POST', 
+  headers:{
+  'Content-Type':'application/json'
+  },
+
+  body: JSON.stringify({
+    query:`
+    query WPPOSTS { 
+      posts(  after:"${fill}", where: {categoryName: "africa" }){
+      pageInfo {
+          startCursor
+          endCursor
+          hasNextPage
+        } 
+        
+  nodes {        
+    title
+    slug
+    date
+    content
+    id
+    
+  tags {
+      nodes {
+        id
+        slug
+        name
+        posts {
+          edges {
+            node {
+              id 
+              slug
+              title 
+              date
+              categories {
+                nodes {
+                  id
+                  name
+                  slug 
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
+    }
+    excerpt
+    categories {
+      nodes {
+        name
+        slug
+        posts {
+              nodes {
+                title
+                slug
+                featuredImage {
+                  node {
+                    sourceUrl
+                    altText
+                  }
+                }
+          }
+        }
+      }
+    }
+    author {
+      node {
+        firstName
+        lastName
+        name
+        description
+      }
+    }
+  } }} 
+          ` 
+  })
+  
+  }).then((res) => res.json() )
+    .then((data) => data.data) 
+    .catch((err) => console.log("err", err)) 
+
+  return wpNextAf  
+
+} 
+
+  //const afriNewsNext =async()=>{}
+  //const fetchXPosts2 =async () => { } 
+
+ const nextPostsX3=async()=>{     
+ const wprest = fetch('https://content.culturays.com/graphql',{
+ method: 'POST',
+ headers:{
+     'Content-Type':'application/json'
+ },
+ body: JSON.stringify({
+   query:`
+   query WPPOSTS { 
+   categories(where: {name: "Topics"}) {          
+   edges {
+   cursor      
+   node {
+ name
+ slug
+ posts{
+ edges{
+ cursor
+ }
+ }
+   children (where: {exclude: "dGVybTo0MDQ="}){ 
+   edges {
+   cursor 
+ node {
+ name
+ slug
+ posts(first:5) {
+ pageInfo{
+ endCursor
+ startCursor
+ hasNextPage
+ }
+ edges{
+ cursor
+ 
+ }
+ 
+ }  }
+ }  }}
+ }
+ } } `  
+ 
+ })
+ 
+ }).then(response => response.json()) 
+ .then(data => data.data)
+ .catch(error => console.error('Error:', error)); 
+ const endXCate = await wprest   
+ const postCategory_Children =(endXCate?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[] 
+ const top_posts = postCategory_Children.map((xy:InnerEdges)=> xy.node.posts.edges).flat()
+ const topCursors=top_posts.map((vx)=> vx.cursor)
+ 
+    const wpRestXX = fetch('https://content.culturays.com/graphql',{
+       method: 'POST',
+       headers:{
+           'Content-Type':'application/json'
+       },
+       body: JSON.stringify({
+         query:`
+         query WPPOSTS($notIn:[ID]) {       
+        posts(where:{categoryName: "Topics", notIn:$notIn }){ 
+             pageInfo {
+               startCursor
+               endCursor
+               hasNextPage
+             } 
+           
+           nodes {
+            contentTypeName
+             author {
+               node {
+                 name
+                 slug
+               }
+             }
+                categories {
+               nodes {
+                 name
+                 slug
+               }
+             }
+              tags {
+               nodes { 
+               id
+                 name
+                 slug
+               }
+             }
+             date
+             excerpt
+              slug
+             title
+             featuredImage {
+               node {
+                 altText
+                 sourceUrl
+               }
+             } 
+       }}  
+     }
+   ` , variables:{
+ notIn: topCursors 
+ 
+   }  })
+        }).then(response =>response.json())
+       .then(data => data.data)
+       .catch(error => console.error('Error:', error)); 
+      
+        return wpRestXX
+ } 
+const MainBottom = () => { 
 const [scrolledContent, setScrolledContent]=useState<LatestProps[]>([])
 const {ref, inView } =useInView();  
 const [debouncedValue, setDebouncedValue] = useState<string>('')  
-const [hasNewPage, setHasNewPage] = useState(true);
+const [hasNewPage, setHasNewPage] = useState(true); 
+ const [postsXnewsPosts, setPostsXnewsPosts]= useState<PostXNode[]>([])  
+ 
+      useEffect(() => { 
+        const fetchData = async () => {
+         const response2 = await fetchXPosts2() 
+        const newsX12= await nextPostsX2()          
+            const response3 = await afriNewsNext() 
+            const news_notIn_newsPosts= await nextPostsX1(); //should not slice 5. Already up to 20 at the time
+            const startWith = await nextPostsX3()  
+            setPostsXnewsPosts(prev => [...prev, ...response2.posts?.nodes, ...newsX12.posts?.nodes, ...response3.posts?.nodes, ...news_notIn_newsPosts.posts?.nodes, ...startWith.posts?.nodes]) 
+      setScrolledContent(prev => [...prev, ...response2.posts?.nodes.slice(5), ...newsX12.posts?.nodes.slice(5), ...response3.posts?.nodes.slice(5), ...startWith.posts?.nodes.slice(5)]) 
+        };
 
-     const posts_all = postsXnewsPosts?.categories?.edges.map((dy)=> dy?.node.posts.edges).flat()  
-     const xtUnused= postsX1?.posts?.edges.concat(postsX2.posts?.edges).concat(postsX3.posts?.edges)
-
-const top_x_Posts=[...xtUnused, ...posts_all] 
+        fetchData();
+      }, []); 
+ 
 const loadMorePosts = useCallback(async () => {
  
   const apiP = await fetchNewPosts(debouncedValue); 
+  if(apiP.posts.nodes.length===25)return
   const naijaNew_content = apiP.posts.nodes;
   const hasMorePosts = apiP.posts.pageInfo.hasNextPage;
  
@@ -54,116 +641,57 @@ useEffect(() => {
   }
 }, [inView, hasNewPage, loadMorePosts]); 
 
-
   return (
     <div> 
-
  <div className='xl:w-11/12 m-auto px-3'>
-<div className='flex justify-around items-center py-4'> 
-<h2 className='text-5xl font-bold w-max mx-4 font-mono py-6 italic'>News Bin</h2>
-<hr className='bg-black h-1 w-3/4 my-4'/>
-</div>
-
-<div className='flex bg-black py-6 text-gray-300 italic justify-between mx-4 px-4'>
-<p>Special Edition</p>
- <p>{new Date().toDateString()}</p>
- </div>
+ 
  {/* {loading&&<p>Loading...</p>} */}
- <div className='py-6'>  
-    <div className='grid grid-cols-1 justify-center gap-2 m-auto w-max'> 
-      <div>
- { top_x_Posts?.length>0&&top_x_Posts.slice(0,1).map((xy, i)=> 
-<div key={i + ' ' + Math.random()} className='border max-w-sm min-[500px]:max-w-md sm:max-w-lg m-auto md:m-0 px-3 py-6 ' > 
-<Link href={`/news/${xy.node.slug}/`}>
- 
-<h2 className='py-4 my-4 text-4xl lg:text-5xl font-bold hover:text-gray-400 px-1' style={{lineHeight:'55px'}} >{xy?.node.title}</h2></Link >
-  <div className='text-ellipsis overflow-hidden' style={{display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/${xy.node.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 xl:px-4 hover:text-gray-400 text-xl' /></Link ></div>  
- <div>
-<hr className='h-3 bg-black my-1'/> 
-<hr className='h-1 bg-black my-1'/> 
-  <div className='flex text-gray-400 justify-between py-4 px-2 overflow-hidden'> 
-<Link href={`/creator/${xy?.node.author.node.slug}/`}><p className='w-44'>{xy?.node.author.node.name}</p></Link>
-<hr className='h-10 bg-black p-0.5 w-auto'/>
-  <p className='w-44'>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
-</div>  
-
-<hr className='h-3 bg-black my-1'/> 
-<hr className='h-1 bg-black  my-1'/> 
-<div> 
-  <Image  
-  src={xy?.node.featuredImage?.node.sourceUrl} 
-  width={1200} 
-  height={675} 
-  alt={xy?.node.featuredImage?.node.altText}/>   
-  </div>
-
-  <hr className='h-3 bg-gray-500 my-1'/> 
-<hr className='h-1 bg-gray-500 my-1'/> 
-<div className='flex justify-between py-4 px-3 overflow-hidden first:border-r first:border-r-4 first:border-r-black'> 
-<Link href={`/topic/${xy?.node.tags?.nodes[0]?.slug}/`}><p className='hover:text-gray-300 w-32'>{xy?.node.tags.nodes[0]?.name}</p></Link> 
- 
-  <hr className='h-10 bg-gray-500 p-0.5 w-auto'/> 
-  <Link href={`/topic/${xy?.node.tags?.nodes[1]?.slug}/`}><p className='hover:text-gray-300 w-32'>{xy?.node.tags?.nodes[1]?.name}</p></Link>
-</div> 
-<hr className='h-3 bg-gray-500 my-1'/> 
-<hr className='h-1 bg-gray-500 my-1'/>   
-</div> 
-</div>  
-)} 
-  
- </div>
-  
-</div>
-
   <div className='grid lg:grid-cols-2 justify-center items-center px-10 xl:max-w-6xl mx-auto gap-2'>
 
      <div className='m-auto max-w-xl lg:m-0 my-4'>
- { top_x_Posts?.length>0&&top_x_Posts.slice(1,4).map((ex)=>
-<div className='shadow flex my-1' key={ex?.node.title + ' ' + Math.random()}>
+ { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(0,3).map((ex)=>
+<div className='shadow flex my-1' key={ex.title + ' ' + Math.random()}>
  <div className='w-44 m-1'> 
  <Image
  className='xs:h-28 sm:h-32'
- src={ex?.node.featuredImage?.node.sourceUrl} 
+ src={ex.featuredImage?.node.sourceUrl} 
  width={1200} 
  height={675} 
- alt={ex?.node.featuredImage?.node.altText}/>  
+ alt={ex.featuredImage?.node.altText}/>  
  
  </div> 
  <div className='w-44 xs:w-[200px] sm:w-[280px] mx-2'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/${ex?.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
+ <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.title}</h2></Link>
 </div>
 <div className='flex text-gray-400 justify-between items-center leading-8'> 
-<Link href={`/creator/${ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p> </Link>
- <p>{ dateFormatter?.format(Date?.parse(ex.node?.date)) }</p>
+{/* <Link href={`/creator/${ex.author.node.slug}/`}><p >{ ex.author.node.name }</p> </Link> */}
+ <p>{ dateFormatter?.format(Date?.parse(ex.date)) }</p>
 </div>
 </div>
 </div>
 )} 
 
 </div>
-   
-  
-     <div className='m-auto max-w-xl lg:m-0 my-4'>
- { top_x_Posts?.length>0&&top_x_Posts.slice(4,7).map((ex)=>
-<div className='shadow flex my-1' key={ex?.node.title + ' ' + Math.random()}>
+ <div className='m-auto max-w-xl lg:m-0 my-4'>
+ { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(3,6).map((ex)=>
+<div className='shadow flex my-1' key={ex.title + ' ' + Math.random()}>
  <div className='w-44 m-1'> 
  <Image
  className='xs:h-28 sm:h-32'
- src={ex?.node.featuredImage?.node.sourceUrl} 
+ src={ex.featuredImage?.node.sourceUrl} 
  width={1200} 
  height={675} 
- alt={ex?.node.featuredImage?.node.altText}/>  
+ alt={ex.featuredImage?.node.altText}/>  
  
  </div> 
  <div className='w-44 xs:w-[200px] sm:w-[280px] mx-2'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/${ex?.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.node.title}</h2></Link>
+ <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.title}</h2></Link>
 </div>
 <div className='flex text-gray-400 justify-between items-center leading-8'> 
-<Link href={`/creator/${ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p> </Link>
- <p>{ dateFormatter?.format(Date?.parse(ex.node?.date)) }</p>
+{/* <Link href={`/creator/${ex.author.node.slug}/`}><p >{ex.author.node.name }</p> </Link> */}
+ <p>{ dateFormatter?.format(Date?.parse(ex?.date)) }</p>
 </div>
 </div>
 </div>
@@ -176,11 +704,11 @@ useEffect(() => {
 <hr className=' '/> 
 <div className='sm:grid grid-cols-2 xl:grid-cols-4 gap-1 py-4 max-w-2xl lg:max-w-max m-auto' > 
  
-{ top_x_Posts?.length>0&&top_x_Posts.slice(7,11).map((xy, i)=>
+{ postsXnewsPosts?.length>0&&postsXnewsPosts.slice(6,10).map((xy, i)=>
 <div className='max-w-sm m-auto py-11 hover:text-gray-300 border-black border-b-4 px-4 sm:h-52' key={i + ' ' + Math.random()}>
-<Link href={`/news/${xy.node.slug}/`}>
-<h2 className='text-xl font-bold'>{xy.node.title}</h2></Link> 
-  <p className='text-sm py-4'>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
+<Link href={`/news/${xy.slug}/`}>
+<h2 className='text-xl font-bold'>{xy.title}</h2></Link> 
+  <p className='text-sm py-4'>{ dateFormatter?.format(Date.parse(xy?.date)) }</p>
   
 </div> 
 
@@ -189,34 +717,33 @@ useEffect(() => {
 </div>
 <hr /> 
 </div> 
- </div>   
+ </div>  
 
-</div>
-  
-  <div className='m-auto py-5 w-full'>  
+ 
+   <div className='m-auto py-5 w-full'>  
   <div className='flex border-b shadow justify-around items-center py-6'> 
 <h3 className='text-2xl font-bold w-max mx-4 px-2'>What&#39;s New</h3>
 <hr className='bg-black h-1 w-2/3 my-4'/>
 </div>   
   <div className='md:grid md:grid-cols-2  justify-center  m-auto my-11 px-2 md:px-1 max-w-4xl lg:max-w-max' > 
- { top_x_Posts?.length>0&&top_x_Posts.slice(11,13).map((xy, i)=> 
+ { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(10,12).map((xy, i)=> 
 <div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'550px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
    className='h-44 xs:h-64 md:h-56 lg:h-64'
-  src={xy?.node.featuredImage?.node.sourceUrl} 
+  src={xy.featuredImage?.node.sourceUrl} 
   width={1200} 
   height={675} 
-  alt={xy?.node.featuredImage?.node.altText}/> 
+  alt={xy.featuredImage?.node.altText}/> 
   
   </div>
-  <Link href={`/news/${xy.node.slug}/`}>
-  <h2 className='text-ellipsis overflow-hidden h-20 py-4 text-2xl font-bold px-3 xl:px-4 hover:text-gray-400 ' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy?.node.title}</h2></Link >
+  <Link href={`/news/${xy.slug}/`}>
+  <h2 className='text-ellipsis overflow-hidden h-20 py-4 text-2xl font-bold px-3 xl:px-4 hover:text-gray-400 ' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link >
   <div className=''>
-  <Link href={`/news/${xy.node.slug}/`}> <div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
+  <Link href={`/news/${xy.slug}/`}> <div dangerouslySetInnerHTML={{__html:xy.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
 <div className='flex text-gray-400 justify-between py-3 my-4 px-2 overflow-hidden'> 
-<Link href={`/creator/${xy?.node.author.node.slug}/`}><p>{ xy?.node.author.node.name }</p></Link> 
-  <p>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
+{/* <Link href={`/creator/${xy.author.node.slug}/`}><p>{ xy.author.node.name }</p></Link>  */}
+  <p>{ dateFormatter?.format(Date.parse(xy.date)) }</p>
 </div>
 </div>  
 )}   
@@ -225,24 +752,24 @@ useEffect(() => {
 
 
 <div className='py-3 md:py-0 md:m-0 md:grid grid-cols-2 lg:block xl:grid justify-center 2xl:grid-cols-4 gap-0 xl:max-w-4xl 2xl:max-w-max xl:m-auto' >
- { top_x_Posts?.length>0&&top_x_Posts.slice(13,17).map((ex)=>
-<div className='shadow flex max-w-xl xl:max-w-md m-auto my-3 m-auto' key={ex.node.title + ' ' + Math.random()}>
+ { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(12,16).map((ex)=>
+<div className='shadow flex max-w-xl xl:max-w-md m-auto my-3 m-auto' key={ex.title + ' ' + Math.random()}>
   <div className='w-44 mx-2 py-6'> 
   <Image
   className='h-11 xxs:h-20 xs:h-24 '
-  src={ex?.node.featuredImage?.node.sourceUrl} 
+  src={ex.featuredImage?.node.sourceUrl} 
   width={1200} 
   height={675} 
-  alt={ex?.node.featuredImage?.node.altText}/> 
+  alt={ex.featuredImage?.node.altText}/> 
   
   </div> 
   <div className='w-4/5 mx-2 py-6'> 
   <div className=' text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex?.node.title}</h2></Link>
+  <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex.title}</h2></Link>
  </div>
 <div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
-<Link href={`/creator/${ ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p> </Link>
-  <p>{ dateFormatter?.format(Date.parse(ex?.node.date)) }</p>
+{/* <Link href={`/creator/${ex.author.node.slug}/`}><p >{ex.author.node.name }</p> </Link> */}
+  <p>{ dateFormatter?.format(Date.parse(ex.date)) }</p>
 </div>
 </div>
 </div>
@@ -251,24 +778,24 @@ useEffect(() => {
  <hr className='p-0.5 bg-black'/>
 
   <div className='md:flex flex-wrap xl:flex-nowrap gap-1 my-11 px-2 md:px-1 m-auto max-w-2xl'> 
- { top_x_Posts?.length>0&&top_x_Posts.slice(17,19).map((xy, i)=> 
+ { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(16,18).map((xy, i)=> 
 <div className='shadow-2xl max-w-sm md:max-w-xs m-auto my-4'style={{height:'600px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
    className='h-44 xxs:h-56 md:h-64 xl:h-56'
-  src={xy?.node.featuredImage?.node.sourceUrl} 
+  src={xy.featuredImage?.node.sourceUrl} 
   width={1200} 
   height={675} 
-  alt={xy?.node.featuredImage?.node.altText}/> 
+  alt={xy.featuredImage?.node.altText}/> 
   
   </div>
-  <Link href={`/news/${xy.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} className='text-ellipsis overflow-hidden h-28 py-4 text-2xl font-bold px-3 hover:text-gray-400'>{xy?.node.title}</h2></Link >
+  <Link href={`/news/${xy.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} className='text-ellipsis overflow-hidden h-28 py-4 text-2xl font-bold px-3 hover:text-gray-400'>{xy.title}</h2></Link >
   <div className='py-4'>
-  <Link href={`/news/${xy.node.slug}/`}><div style={{ display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }} dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='text-ellipsis overflow-hidden h-32 leading-8 px-3 hover:text-gray-400'/></Link ></div>  
-<div className='flex text-gray-400 py-4 justify-between px-4'> 
-<Link href={`/creator/${ xy?.node.author.node.slug}/`}><p className='hover:text-gray-700 px-2'>{ xy?.node.author.node.name }</p></Link> 
-  <p className='px-2'>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
-</div>
+  <Link href={`/news/${xy.slug}/`}><div style={{ display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }} dangerouslySetInnerHTML={{__html:xy.excerpt}}className='text-ellipsis overflow-hidden h-32 leading-8 px-3 hover:text-gray-400'/></Link ></div>  
+{/* <div className='flex text-gray-400 py-4 justify-between px-4'> 
+<Link href={`/creator/${ xy.author.node.slug}/`}><p className='hover:text-gray-700 px-2'>{ xy.author.node.name }</p></Link> 
+  <p className='px-2'>{ dateFormatter?.format(Date.parse(xy.date)) }</p>
+</div> */}
 </div>  
 )}  
 </div>
@@ -276,80 +803,80 @@ useEffect(() => {
  
 
 <div className='md:grid md:grid-cols-2 justify-center m-auto my-11 px-2 md:px-1 max-w-4xl lg:max-w-max' > 
- { top_x_Posts?.length>0&&top_x_Posts.slice(19,21).map((xy, i)=> 
+ { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(18,20).map((ex, i)=> 
 <div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'550px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
    className='h-44 xs:h-64 md:h-56 lg:h-64'
-  src={xy?.node.featuredImage?.node.sourceUrl} 
+  src={ex.featuredImage?.node.sourceUrl} 
   width={1200} 
   height={675} 
-  alt={xy?.node.featuredImage?.node.altText}/> 
+  alt={ex.featuredImage?.node.altText}/> 
   
   </div>
-  <Link href={`/news/${xy.node.slug}/`}>
-  <h2 className='text-ellipsis overflow-hidden h-20 py-4 text-2xl font-bold px-3 xl:px-4 hover:text-gray-400 leading-8' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy?.node.title}</h2></Link >
+  <Link href={`/news/${ex.slug}/`}>
+  <h2 className='text-ellipsis overflow-hidden h-20 py-4 text-2xl font-bold px-3 xl:px-4 hover:text-gray-400 leading-8' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.title}</h2></Link >
   <div className='py-4'>
-  <Link href={`/news/${xy.node.slug}/`}> <div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
-<div className='flex text-gray-400 justify-between py-3 my-4 px-2'> 
-<Link href={`/creator/${xy?.node.author.node.slug}/`}><p className='hover:text-gray-700'>{ xy?.node.author.node.name }</p></Link> 
-  <p>{ dateFormatter?.format(Date.parse(xy?.node.date)) }</p>
-</div>
+  <Link href={`/news/${ex.slug}/`}> <div dangerouslySetInnerHTML={{__html:ex.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
+{/* <div className='flex text-gray-400 justify-between py-3 my-4 px-2'> 
+<Link href={`/creator/${ex.author.node.slug}/`}><p className='hover:text-gray-700'>{ex.author.node.name }</p></Link> 
+  <p>{ dateFormatter?.format(Date.parse(ex.date)) }</p>
+</div> */}
 </div>  
 )}  
 </div>  
  
 <hr className='h-1 w-4/5 m-auto my-4'/>
- <div className='p-3 md:py-0 md:m-0 md:grid grid-cols-2 xl:grid justify-center gap-0 xl:max-w-5xl xl:m-auto' >
- { top_x_Posts?.length>0&&top_x_Posts.slice(21,25).map((ex)=>
-<div className='flex m-auto my-3' key={ex.node.title + ' ' + Math.random()}>
+ <div className='p-3 md:py-0 md:m-0 md:grid grid-cols-2 xl:grid justify-center gap-0 xl:max-w-5xl xl:m-auto' > 
+  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(20,24).map((ex)=>
+<div className='flex m-auto my-3' key={ex.title + ' ' + Math.random()}>
   <div className='w-44 mx-2 py-6'> 
   <Image
   className='h-11 xxs:h-16 xs:h-24 lg:h-28'
-  src={ex?.node.featuredImage?.node.sourceUrl} 
+  src={ex.featuredImage?.node.sourceUrl} 
   width={1200} 
   height={675} 
-  alt={ex?.node.featuredImage?.node.altText}/> 
+  alt={ex.featuredImage?.node.altText}/> 
   
   </div> 
   <div className='w-4/5 mx-2 py-6'> 
   <div className=' text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex?.node.title}</h2></Link>
+  <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex.title}</h2></Link>
  </div>
 <div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
-<Link href={`/creator/${ ex?.node.author.node.slug}/`}><p className='hover:text-gray-700 py-4'>{ ex?.node.author.node.name }</p> </Link>
-  <p>{ dateFormatter?.format(Date.parse(ex?.node.date)) }</p>
+<Link href={`/creator/${ex.author.node.slug}/`}><p className='hover:text-gray-700 py-4'>{ex.author.node.name }</p> </Link>
+  <p>{ dateFormatter?.format(Date.parse(ex.date)) }</p>
 </div>
 </div>
 </div>
-)} 
+)}  
  </div> 
 </div> 
- 
+
   <div className='flex flex-wrap justify-center py-6'>
-{ top_x_Posts?.length>0&&top_x_Posts.slice(25,28).map((ex,i)=>
-<div className='relative m-3' key={ex?.node.title + ' ' + Math.random()} >
+{ postsXnewsPosts?.length>0&&postsXnewsPosts.slice(24,27).map((ex,i)=>
+<div className='relative m-3' key={ex.title + ' ' + Math.random()} >
   <div className='max-w-sm m-auto'> 
 
   <Image
   className='h-56 block'
-  src={ex?.node.featuredImage?.node.sourceUrl} 
+  src={ex.featuredImage?.node.sourceUrl} 
   width={1200} 
   height={675} 
-  alt={ex?.node.featuredImage?.node.altText}/> 
+  alt={ex.featuredImage?.node.altText}/> 
   
   </div> 
  
   <div className="absolute top-0 left-0 bg-gray-900 bg-opacity-70 flex justify-center items-center z-50 h-full w-full">
-    <Link href={`/news/${ex?.node.slug}/`}><div className="text-center px-1">
-      <h2 className='text-2xl text-gray-50 hover:text-gray-400'>{ex?.node.title} </h2> 
+    <Link href={`/news/${ex.slug}/`}><div className="text-center px-1">
+      <h2 className='text-2xl text-gray-50 hover:text-gray-400'>{ex.title} </h2> 
     </div></Link> 
 </div>
 
   </div>
 )}
-
-</div>  
+ 
+</div>    
 
 <hr className='h-1 w-4/5 m-auto my-4'/>
  <div className='lg:flex lg:px-3 lg:m-auto justify-between' style={{maxWidth:'1450px'}}> 
@@ -416,12 +943,12 @@ useEffect(() => {
 </div>   
 </div>
   
-</div> 
+</div>  
  <div ref={ref} > 
  {hasNewPage&&
 <p className="p-4">Loading...</p> 
- } </div> 
-  </div>
+ } </div>  
+  </div>  
   )
 }
 

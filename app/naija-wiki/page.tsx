@@ -1,8 +1,8 @@
 import Main from '@/components/NaijaWiki/Main'  
-import { netflixNews } from '../netflix-naija/netflix-news'
 import StructuredData from '@/components/StructuredData';
 import { BlogPosting, NewsArticle,  WebPage,  WithContext } from 'schema-dts';
 import { newchars } from './newCharHandle';
+import { netflixNews } from '../netflix-news';
 
 const NaijaWikiPage =async () => {  
   const netflix_News = await netflixNews()  

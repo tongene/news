@@ -1,7 +1,6 @@
 import Main from "@/components/Main"; 
 import { InnerEdges, PostXNode } from '@/app/types'   
-import MainSlider from "@/components/MainSlider";
-import { newsByLatest, postsOutline } from "./page-data";
+import MainSlider from "@/components/MainSlider"; 
 import { events3Details, getNaijaEvents3 } from "./naija-events/eventData/eventContent";
 import { processImgs } from "@/utils/process_imgs";
 import { processSbImages } from "@/utils/processImages";
@@ -10,10 +9,9 @@ import { scrapeSilverBird } from "./naija-wiki/filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
 import { CronJob } from "cron"; 
 import { BlogPosting, WebSite, WithContext } from "schema-dts";
-import StructuredData from "@/components/StructuredData"; 
-import { nextNewsPosts } from "./data"  
-import { fetchXPosts, nextXXPosts } from "./page-bottom";
- 
+import StructuredData from "@/components/StructuredData";   
+import { Suspense } from "react";
+
  interface ObjType { 
   title: string[];
   slug:string  
@@ -34,7 +32,7 @@ interface CineType {
    release_date:string 
    dur:string 
 }
- 
+  
  
   const dailyEv3 =async()=>{ 
      const eventExp= await getNaijaEvents3();
@@ -155,12 +153,338 @@ interface CineType {
     
        // return () => clearTimeout(fxnTimeout);
         } 
-export default async function Home() {     
- const latestPosts=await newsByLatest() 
- const postData= latestPosts?.resp2Post?.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
- const news_outline=await postsOutline()
- const posts_notIn_newsPosts= await nextNewsPosts() 
+        
+const newsByLatest =()=>{ 
+
+const res= fetch('https://content.culturays.com/graphql',{ 
+method: "POST",
+  headers: {
+      'Content-Type':'application/json'
+    },
+body: JSON.stringify({
+  query:`
+  query WPPOSTS { 
+posts(first: 10, where: {categoryName: "Latest"})  { 
  
+pageInfo {
+endCursor
+} 
+edges{
+cursor 
+node{
+id
+title
+  slug
+  
+  tags {
+nodes {
+name
+slug
+}
+}
+categories {
+    nodes {
+      name
+      slug
+    }
+  }
+excerpt
+  date
+    author {
+  node {
+firstName
+lastName
+name
+slug
+description
+}
+}
+  featuredImage {
+    node {
+      altText
+      sourceUrl
+    }
+  }
+
+}
+ }}}  
+ 
+  ` 
+
+}) 
+}).then((res) => res.json() )
+.then((data) => data.data ) 
+.catch((err) => console.log("err", err))  
+return res
+}
+
+   const nextResp=()=>{ 
+      const wprestPost = fetch('https://content.culturays.com/graphql',{     
+        method: 'POST', 
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+query WPPOSTS  {               
+        posts(first: 5, where: {categoryName: "News"}) {
+    pageInfo{
+        endCursor
+      startCursor
+      hasNextPage
+           }
+   edges{
+     cursor     
+           node{
+          title
+           slug
+             date
+             content
+             id
+              postsTags {
+              nodes {
+                name
+                slug
+              }
+            }
+             tags {
+              nodes { 
+               id
+                id
+                slug
+                name
+                posts {
+                  edges {
+                    node {
+                      id 
+                      slug
+                      title 
+                      date
+                      categories {
+                        nodes {
+                          id
+                          name
+                          slug 
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
+            }
+            excerpt
+            categories {
+              nodes {
+                name
+                slug
+                 posts {
+                      nodes {
+                        title
+                        slug
+                        featuredImage {
+                          node {
+                            sourceUrl
+                            altText
+                          }
+                        }
+                  }
+                }
+              }
+            }
+            author {
+              node {
+                firstName
+                lastName
+                name
+                slug
+                description
+              }
+            }
+        }} 
+  }} ` 
+        
+        })
+        , 
+     
+        }).then((response) => response.json()) 
+        .then((data)=>data.data.posts )
+        .catch((error) => console.error('Error:', error)); 
+ 
+        return wprestPost
+          }
+   const postsOutline =async()=>{
+    
+    const wprest = fetch('https://content.culturays.com/graphql',{
+           method: 'POST',
+           headers:{
+               'Content-Type':'application/json'
+           },
+           body: JSON.stringify({
+             query:`
+             query OUTLINEPOST{
+         outlines(first: 1) {
+       nodes {
+         content
+         featuredImage{
+         node{
+         sourceUrl
+         altText
+         }
+         }
+         outlineGroup {
+           outlineVideos {
+             node {
+               altText
+               caption
+               date
+               title
+                mediaItemUrl
+               slug
+             }
+           }
+         }
+       }
+           } } ` 
+           
+           })
+           
+           }).then(response => response.json())
+           .then(data => data.data?.outlines?.nodes)        
+           .catch(error => console.error('Error:', error));
+           //const response = wprest?.data?.outlines?.nodes 
+           return wprest
+  }  
+ function nextNewsPosts(endX:string){  
+ if(!endX)return
+  const wprest = fetch('https://content.culturays.com/graphql',{
+      method: 'POST',
+      headers:{
+          'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query:`
+        query WPPOSTS($after:String) { 
+           posts( after:$after, first:6 , where:{categoryName: "News"}){ 
+            pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+       edges{
+       cursor
+          node {
+            author {
+              node {
+                name
+                slug
+              }
+            }
+               categories {
+              nodes {
+                name
+                slug
+              }
+            }
+              tags {
+              nodes { 
+              id
+                name
+                slug
+              }
+            }
+            date
+            excerpt
+             slug
+            title
+            featuredImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+           
+      }
+          }
+        } 
+       
+ 
+  } `,variables:{
+    after:endX
+  }
+      
+      })
+      
+      }).then(response =>response.json())
+      .then(data =>  data.data )
+      .catch(error => console.error('Error:', error)); 
+      return wprest
+  
+  } 
+  const liveResp=()=>{
+  const wprestLive = fetch('https://content.culturays.com/graphql',{ 
+      method: 'POST',
+      headers:{ 
+      'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query: `
+         query WPLives {
+         lives { 
+         edges{     
+      node {
+      contentTypeName
+      id
+      databaseId
+        date
+        modified
+        excerpt
+        slug
+        title
+       contentTags{
+           nodes{
+           slug
+           name
+           }
+           
+           } 
+            
+        featuredImage{
+        node{
+        sourceUrl
+        altText
+        }
+        
+        }
+      }  }
+    }
+    }
+      
+      `
+      })
+   
+      }) 
+      .then(response => response.json() ) 
+      .then(data => data.data.lives.edges)
+      .catch(error => console.error('Error:', error))
+      return wprestLive
+     }
+
+const Home=async() =>{  
+const latestPosts=await newsByLatest()  
+const response2 = await nextResp() 
+// const postData= response2.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
+  
+const endX= response2.pageInfo.endCursor
+const news_outline=await postsOutline()
+const posts_notIn_newsPosts= await nextNewsPosts(endX) 
+const livexnews =await liveResp() 
+
      CronJob.from({
       cronTime: '10 8 * * *',  
       onTick: dailyEv3(),
@@ -208,29 +532,24 @@ export default async function Home() {
       }
     }
   }
-    const xUnsedPosts= await nextXXPosts() 
-        const postsXnewsPosts= await fetchXPosts() 
-            const postsX1=xUnsedPosts.postsX1 
-     const postsX2=xUnsedPosts.postsX2
-     const postsX3=xUnsedPosts.postsX3
+     
+ 
 return (
     <div> 
-   
   <StructuredData schema={jsonLd} /> 
- <MainSlider 
-     livesNews={latestPosts.resp1Live}
-     latestPosts={latestPosts.resp}/> 
-       <Main 
-    top_PostsData={postData} 
+    <Suspense fallback={<div>Loading ...</div>}>
+       <MainSlider 
+     livesNews={livexnews}
+     latestPosts={latestPosts.posts.edges}
+     /> 
+      
+      <Main 
+    top_PostsData={response2.edges} 
     news_outline={news_outline}
-    posts_notIn_newsPosts={posts_notIn_newsPosts}  
-    postsX1={postsX1}
-postsX2={postsX2}
-postsX3={postsX3}
-    postsXnewsPosts={postsXnewsPosts}
-    />  
- 
-    </div>
+    posts_notIn_newsPosts={posts_notIn_newsPosts.posts.edges}  
+  
+    />  </Suspense>   
+ </div>
   ); 
 }
- 
+export default Home

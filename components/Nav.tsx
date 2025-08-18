@@ -1,6 +1,4 @@
-"use client" 
-import { newsByLatest } from '@/app/page-data'
-import { trends } from '@/app/trendx'
+"use client"   
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
@@ -34,21 +32,104 @@ slug:string
 ];
 
 } 
+  const liveResp=()=>{
+  const wprestLive = fetch('https://content.culturays.com/graphql',{ 
+      method: 'POST',
+      headers:{ 
+      'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query: `
+         query WPLives {
+         lives(first:1) { 
+         edges{     
+      node {
+      contentTypeName
+      id
+      databaseId
+        date
+        modified 
+        slug
+        title 
+         contentTags{
+           nodes{
+           slug
+           name
+           }
+           
+           } 
+      }  }
+    }
+    }
+      
+      `
+      })
+   
+      }) 
+      .then(response => response.json() ) 
+      .then(data => data.data.lives.edges)
+      .catch(error => console.error('Error:', error))
+      return wprestLive
+     }
+
+  async function trends(){ 
+      
+         const wprest = fetch('https://content.culturays.com/graphql',{
+           method: 'POST', 
+           headers:{ 
+           'Content-Type':'application/json', 
+           },
+           body: JSON.stringify({
+             query:`
+             query WPPOSTS{
+             trends(first:6) {
+             nodes {
+              contentTypeName
+               title
+               slug
+                date
+                content
+                id
+                contentTags {
+                 nodes {
+                   name
+                   slug
+                 }
+               } 
+             
+             }
+           }
+            }  
+            `
+           })
+           
+           }).then(response => response.json()) 
+               .then(data => data.data.trends.nodes) 
+            .catch(error => console.error('Error:', error))
+           
+            //const response = wprest?.data.trends.nodes 
+            return wprest 
+      
+     }
+     
 const Nav =() => {  
  const [trendsData,setTrendsData]=useState<InnerNode[]>([])
  const [liveNewsView, setLiveNewsView]=useState([]) 
  
  const liveData =async()=>{ 
-   const livesNews=await newsByLatest()
-   const livesXNews = livesNews.resp1Live
-     const trends_data:InnerNode[] = await trends() 
-  setTrendsData(trends_data) 
-  setLiveNewsView(livesXNews)
+   await new Promise(resolve => setTimeout(resolve, 1000));
+   const livesXNews =await liveResp()  
+  const trends_data:InnerNode[] = await trends() 
+     setTrendsData(trends_data) 
+    setLiveNewsView(livesXNews)
  }
 useEffect(()=>{ 
   liveData()
 },[]) 
+ 
+
   return (<>
+  
    <div className='flex shadow-detailShadow pt-6 my-1 mt-4 dark:shadow-detailShadowLight justify-center dark:bg-gray-800' > 
     <div className='w-full py-4'> 
     <h3 className='text-center hover:text-gray-500 text-2xl font-bold py-3' >Trending in Nigeria<span></span> <span>&#10141;</span></h3> 
@@ -60,9 +141,7 @@ useEffect(()=>{
     const currentTime = Date.now(); 
     const timeDifference = currentTime - postTime;  
     return timeDifference <= 24 * 60 * 60 * 1000; 
-  })
-  .slice(0, 1)
-  .map((ex: { node: { title: string, slug: string, databaseId: string,content: string, modified: string, author: { node: { name: string } }, contentTags: { nodes: { name: string }[] } } }) => (
+  }).map((ex: { node: { title: string, slug: string, databaseId: string,content: string, modified: string, author: { node: { name: string } }, contentTags: { nodes: { name: string }[] } } }) => (
     <ul key={ex.node.title} className="flex py-3 items-center">
       <span className="animate-pulse mr-2 text-5xl text-red-600">•</span>
       <span className="text-red-600">Live</span>
@@ -75,13 +154,13 @@ useEffect(()=>{
             WebkitBoxOrient: 'vertical',
           }}
         >
-          {ex.node.contentTags.nodes[0]?.name}
+         {ex.node.contentTags.nodes[0]?.name} 
         </li>
       </Link>
     </ul>
   ))}
 
-    {trendsData?.slice(0,6)?.map((ex)=> 
+    {trendsData?.map((ex)=> 
     <ul key={ex.title} className='py-3'> 
      <Link href={`/news/trending/${ex.slug}/`}><li className='m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.contentTags.nodes[0].name}</li></Link> 
     </ul> 

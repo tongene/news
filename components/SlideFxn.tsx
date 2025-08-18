@@ -11,6 +11,12 @@ import { useState } from "react";
     excerpt:string 
     date:string
     contentTypeName:string
+      contentTags:{
+    nodes:{
+      name:string 
+      slug:string
+    }[]
+  }
   }
  
 const SlideFxn = ({content}:{content:SlideProps[]}) => {
@@ -62,8 +68,8 @@ const SlideFxn = ({content}:{content:SlideProps[]}) => {
     </Link>
   ))}
 </div>
-
- <small className="text-sm my-3 p y-2 text-red-500"><em>{moment(item?.date).subtract(1, 'hour').fromNow()}</em></small> 
+ <Link href={`/topic/${item.contentTags.nodes[0].slug}`}><small className="text-sm my-3 p y-2 text-red-500"><em>{item.contentTags.nodes[0].name}</em></small> 
+</Link> 
   </div >  
  </div>
  ) }  

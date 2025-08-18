@@ -21,18 +21,8 @@ setBarState(prev=> !prev)
   a:"Latest",
   b:"/news/articles/"
 
-},
- {
-  a:"Local",
-  b:"/news/local/"
-
-},
+}, 
  
- {
-  a:"Foreign",
-  b:"/news/foreign/" 
-
-},
 {
   a:"Netflix Naija",
   b:"/naija-wiki/"
@@ -67,7 +57,7 @@ const handleClick = (id:string)=> {
 <span className='px-2 head-forum-span-dark dark:head-forum-span-light'>U</span><span className="tightest text-center">rban News</span> 
 </h1></Link>
 <Link href={`/${pathname.split('/')[1]}/`}><p className="text-xl mt-20 mb-2">{`/${pathname.split('/')[1]}/`}</p></Link>
-{/*  {pathname.includes('netflix-naija')?<Link href={`/${pathname.split('/')[1]}/${pathname.split('/')[2]}/`}><p className="text-xl mt-20 mb-2">{`/${pathname.split('/')[2]}/`}</p></Link>:<Link href={`/${pathname.split('/')[1]}/`}><p className="text-xl mt-20 mb-2">{`/${pathname.split('/')[1]}/`}</p></Link>} */}
+
 </div>
 
 {barState&&
@@ -79,8 +69,8 @@ const handleClick = (id:string)=> {
 {  navAddress.map((xy)=> 
 <ul key={xy.b + Math.random()}className="text-white p-3 flex flex-col text-center justify-center items-center h-max"> 
  <li
-  className={`p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full ${
-    pathname=== xy.b ? 'border-green-700' : {}
+  className={`p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full font-bold${
+    pathname=== xy.b ? 'border-green-700 font-lighter' : {}
   }`}
   onClick={() => handleClick(xy.a)} 
 >
@@ -109,8 +99,8 @@ height={35} />
 navAddress.map((xy)=> 
 <ul key={xy.b + Math.random()}> 
  <li
-  className={`p-2 m-1 mx-4 opacity-80 hover:scale-105 text-lg border-b-4 ${
-    pathname=== xy.b  ? 'border-green-700' : {}
+  className={`p-2 m-1 mx-4 opacity-80 hover:scale-105 text-lg border-b-4 font-bold ${
+    pathname=== xy.b  ? 'border-green-700 font-thin' : {}
   }`}
   onClick={() => handleClick(xy.a)} 
 >

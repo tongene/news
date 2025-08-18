@@ -1,7 +1,5 @@
-import AllBirthdays from "@/components/AllBirthdays" 
-import StructuredData from "@/components/StructuredData"
-import { createClient } from "@/utils/supabase/server"  
-import { BlogPosting, WithContext } from "schema-dts"
+import AllBirthdays from "@/components/AllBirthdays"  
+import { createClient } from "@/utils/supabase/server"   
 
 const BdaysPage = async() => {
      const forumBdays =async ()=>{

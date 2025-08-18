@@ -25,23 +25,23 @@ const Events= ({ events }:{events:EventsProps[] } ) => {
 <Link href={`/event/${xx.slug}/` } ><h2 className="py-2 text-white cursor-pointer text-2xl hover:text-gray-400" >Title: {xx.title}</h2></Link>
  
  <p className="text-white mx-0.5 text-lg mt-1">Genre: {xx?.genre||'Not Available'}</p> 
-<p className="text-white mx-0.5 text-lg mt-1"suppressHydrationWarning>Date: {nlp(xx?.day)?.dates()?.text()?.split('at')[0]}</p>
-<p className="text-white mx-0.5 text-lg mt-1"suppressHydrationWarning>Ends: {nlp(xx?.day?.split('to')[1])?.dates()?.text()?.split(' at ')[0] }</p>
- <p className="text-white mx-0.5 text-lg mt-1"suppressHydrationWarning>Time: {nlp(xx?.day)?.times()?.text()||'See Details'}</p>  
+<p className="text-white mx-0.5 text-lg mt-1" >Date: {nlp(xx?.day)?.dates()?.text()?.split('at')[0]}</p>
+<p className="text-white mx-0.5 text-lg mt-1" >Ends: {nlp(xx?.day?.split('to')[1])?.dates()?.text()?.split(' at ')[0] }</p>
+ <p className="text-white mx-0.5 text-lg mt-1" >Time: {nlp(xx?.day)?.times()?.text()||'See Details'}</p>  
 
 </div>
-<div className="relative w-[350px] h-[300px] my-3">
+<div className="w-[350px] h-[200px] overflow-y-hidden">
 {xx.img_url &&xx.img_url.endsWith('.jpg')||xx.img_url.endsWith('.jpeg')||xx.img_url.endsWith('.png')? <Image 
-className="rounded-xl mt-5"
+className="rounded-xl mt-2 block"
 src={`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${xx.img_url}`}
 width={300}
-height={300}
+height={200}
 alt={xx.title}  
 /> : <Image 
 className="rounded-xl mt-5"
 src={'/assets/images/culturays_events.png'}
-fill
-sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
+width={300}
+height={100}
 alt={xx.title}  
 />}
 </div>

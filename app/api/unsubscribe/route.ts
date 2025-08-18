@@ -22,7 +22,7 @@ const email = rawEmail.normalize('NFKC').toLowerCase();
     const html = `
     <html>
       <head>
-        <title>Unsubscribed</title>
+        <title>Unsubscribe</title>
       </head>
       <body style="font-family: Arial; text-align: center; padding: 40px;">
         <h2>You have been unsubscribed.</h2>

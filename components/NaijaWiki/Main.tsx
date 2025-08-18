@@ -8,11 +8,11 @@ import { useEffect, useState } from 'react'
 import NewsLetter from '../NewsLetter'
 import NaijaContent from './NaijaContent' 
 import InterContent from './InterContent'
-import { netflixAfrica, netflixInter, netflixNews, netflixNigNaija, netflixPopular } from '@/app/netflix-naija/netflix-news'
-import { newchars, vids } from '@/app/naija-wiki/newCharHandle' 
+import { vids } from '@/app/naija-wiki/newCharHandle' 
 import { getTop10 } from '@/app/naija-wiki/filmsdata'
 import { AllObj, CharacterProps, NAPINewsProps, VidProps } from '@/app/types'
-import { createClient } from '@/utils/supabase/client'
+import { createClient } from '@/utils/supabase/client' 
+import { netflixAfrica, netflixInter, netflixNigNaija, netflixPopular } from '@/app/netflix-news'
 
 type NAPIProps={
 title:string
@@ -276,7 +276,7 @@ width={1250}
 height={675}
 alt={xy.title}/> 
 <div className='m-4'> 
-<Link href={`/netflix-naja/news/${xy.slug}/`}><h3 className='my-1 text-xl font-medium'>{xy.title}</h3></Link> 
+<Link href={`/netflix-naija/news/${xy.slug}/`}><h3 className='my-1 text-xl font-medium'>{xy.title}</h3></Link> 
 <Link href={`/topic/${xy.contentTags.nodes[0].slug}/`}><h4 className="text-md mt-4 hover:text-gray-400"> 
 <FontAwesomeIcon 
 className='mx-1 text-red-500' 
