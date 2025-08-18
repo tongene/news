@@ -27,6 +27,14 @@ type PostProps={
     altText:string
     }
     }
+      contentTags:{
+    nodes:{
+      name:string 
+      slug:string
+    }[]
+  }
+ 
+
     contentTypeName:string
 }
 const Awards = ({awards_content, sidebarItems, news_outline }:{awards_content:PostProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => {  
