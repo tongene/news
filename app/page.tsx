@@ -1,4 +1,5 @@
-import Main from "@/components/Main";    
+import Main from "@/components/Main"; 
+import { InnerEdges, PostXNode } from '@/app/types'   
 import MainSlider from "@/components/MainSlider"; 
 import { events3Details, getNaijaEvents3 } from "./naija-events/eventData/eventContent";
 import { processImgs } from "@/utils/process_imgs";
@@ -8,7 +9,8 @@ import { scrapeSilverBird } from "./naija-wiki/filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
 import { CronJob } from "cron"; 
 import { BlogPosting, WebSite, WithContext } from "schema-dts";
-import StructuredData from "@/components/StructuredData"; 
+import StructuredData from "@/components/StructuredData";   
+import { Suspense } from "react";
 
  interface ObjType { 
   title: string[];
@@ -534,7 +536,8 @@ const livexnews =await liveResp()
  
 return (
     <div> 
-  <StructuredData schema={jsonLd} />  
+  <StructuredData schema={jsonLd} /> 
+    <Suspense fallback={<div>Loading ...</div>}>
        <MainSlider 
      livesNews={livexnews}
      latestPosts={latestPosts.posts.edges}
@@ -545,7 +548,7 @@ return (
     news_outline={news_outline}
     posts_notIn_newsPosts={posts_notIn_newsPosts.posts.edges}  
   
-    /> 
+    />  </Suspense>   
  </div>
   ); 
 }

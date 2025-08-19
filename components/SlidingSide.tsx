@@ -8,24 +8,24 @@ import { useEffect } from 'react';
 const SlidingSide = ({ newsItems, speed = 50000} :{newsItems:VidProps[], speed:number}) => {
   const tickerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null); 
-  useEffect(() => {
-    const tickerElement = tickerRef.current as HTMLDivElement ;
-    let startPosition = tickerElement?.scrollWidth as number;
+ useEffect(() => {
+  const tickerElement = tickerRef.current as HTMLDivElement;
+  let startPosition = tickerElement.scrollWidth;
 
-    const animateTicker = () => {
-      startPosition--;
-      tickerElement.style.transform = `translateX(-${startPosition}px)`;
+  const animateTicker = () => {
+    startPosition--;
+    tickerElement.style.transform = `translateX(-${startPosition}px)`;
 
-      if (startPosition <=0) {
-        startPosition = tickerElement.scrollWidth ;
-      }
- 
-      requestAnimationFrame(animateTicker);
-    }; 
+    if (startPosition <= 0) {
+      startPosition = tickerElement.scrollWidth;
+    }
 
-    const tickerInterval = setInterval(animateTicker, speed);
-    return () => clearInterval(tickerInterval);
-  }, [tickerRef]);
+    requestAnimationFrame(animateTicker);
+  };
+
+  requestAnimationFrame(animateTicker);
+
+}, [tickerRef]);
  
 
   return (  

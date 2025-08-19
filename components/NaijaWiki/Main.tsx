@@ -114,9 +114,8 @@ const [end_inter_cursor, setEnd_inter_cursor] = useState('');
      ? activeSlide + 1
      : 0;
      setActiveSlide(slide);  
- } 
-
- 
+ }
+  
   const left_slide = () => {
     setActiveIndices(([left, right]) => {
       const newLeft = left - 1 < 0 ? africa_blog.slice(27,35).length - 1 : left - 1;
@@ -299,8 +298,9 @@ icon={faTags}/>{xy.contentTags.nodes[0].name}</h4></Link>
    width={18}/></span></button></Link>
    </div>
     <h3 className='text-white text-2xl px-8'>Videos from our newest collection</h3>
-  <div className='grid xs:grid-cols-2 lg:grid-cols-4 gap-2 justify-center p-8'>   
-  {naijaWikiVideos.slice(0,4).map((it, index)=>  
+  <div className='grid xs:grid-cols-2 lg:grid-cols-4 gap-2 justify-center p-8'>
+ 
+  {naijaWikiVideos.length >0 &&naijaWikiVideos.slice(0,4).map((it, index)=>  
      <div 
      key={index}className='border'>
       <video
