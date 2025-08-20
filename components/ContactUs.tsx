@@ -81,7 +81,7 @@ placeholder='your message'
 onChange={(e)=> setSubNm({...subNm, message:e.target.value} )}
 
 />
-<button type="submit" className="bg-gray-400 mt-3 p-2 cursor-pointer bg-opacity-20 hover:bg-opacity-40 rounded border" >
+<button type="submit" className="bg-gray-400 mt-3 p-2 cursor-pointer bg-opacity-20 hover:bg-opacity-40 rounded border text-lg" >
 Submit
 </button> 
 

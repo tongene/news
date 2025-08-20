@@ -327,7 +327,7 @@ setCategoryPost(currentPosts)
  {!categoryName&&top_PostsData.length>0?top_PostsData?.slice(0,1).map((ex, i)=>
 <div className='shadow-2xl h-3/4' key={ex.node.title + ' ' + Math.random()}>
 
-<div className=" my-3"> 
+<div className="my-3 "> 
   <Image 
   src={ex?.node.featuredImage?.node.sourceUrl } 
 className='object-cover'

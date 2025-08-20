@@ -324,13 +324,22 @@ position: relative;
     border-radius: 50%;
     cursor: pointer;
   }
-  .main_slider{
-    height:30em
-  }
-  .x-main-x-slider {
-  width:600px;
-  
-  } 
+
+  .main_slider {
+  height: 30em;
+  overflow: hidden;
+  position: relative;
+}
+
+.main-x-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* GPU-accelerated */
+}
+
+.x-main-x-slider {
+  flex-shrink: 0;
+  width: 300px; /* mobile */
+}
   @media (min-width: 481px){
     .vidx2 {
       height:18.5vw;    
@@ -340,12 +349,12 @@ position: relative;
   }
   
   @media (min-width: 640px) {
-   .x-main-x-slider {
-      width:300px;
-    } 
-    .main-slider{
-      width:600px
-    }
+     .x-main-x-slider {
+    width: 600px; /* md */
+  }
+  .main_slider {
+    width: 600px;
+  }
     .netflix-list:not(:last-child){
       border-bottom:0
   }

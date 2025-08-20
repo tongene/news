@@ -18,12 +18,12 @@ alt='Urban Naija Logo Image'/>
 <h2 className="cursor-pointer text-4xl my-1 font-bold hover:text-gray-500">  
 Urban Naija News</h2></Link>
 <ul> 
-<li className="text list-disc p-3 mx-11 hover:text-gray-500 "><Link href='/news/'aria-label="News">News</Link></li>
-<li className="text list-disc p-3 mx-11 hover:text-gray-500"><Link href='/forum/'>Forum</Link></li>  
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/news/'aria-label="News">News</Link></li>
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/forum/'>Forum</Link></li>  
  
-<li className="text list-disc p-3 mx-11 hover:text-gray-500"><Link href='/naija-wiki/'>Naija Wiki</Link></li> 
-<li className="text list-disc p-3 mx-11 hover:text-gray-500 "><Link href='/naija-events/'>Naija Events</Link></li> 
-<li className="text list-disc p-3 mx-11 hover:text-gray-500 "><Link href='/daily/'>Dailys</Link> </li>  
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/naija-wiki/'>Naija Wiki</Link></li> 
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/naija-events/'>Naija Events</Link></li> 
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/daily/'>Dailys</Link> </li>  
 </ul> 
   <ContactUs />  
 
