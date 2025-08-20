@@ -257,7 +257,7 @@ export async function generateMetadata({ params  }: {
   const {slug} =await params 
   const news_details = await netflixNewsDets(slug[0]) 
   const previousImages = (await parent).openGraph?.images || []
-  const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+  const tags= news_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
    
   return {
     title:`Urban Naija | Naija Wiki News- ${news_details?.title}`,

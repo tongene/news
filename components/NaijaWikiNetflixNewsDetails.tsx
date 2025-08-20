@@ -8,7 +8,7 @@ import SlidingSide from "./SlidingSide";
 import ShareButtons from "./ShareButtons";
 
 const NaijaWikiNetflixNewsDetails =({next_on_netflix_naija, content_videos, news_details}:{content_videos:VidProps[], news_details:NAPINewsProps, next_on_netflix_naija:NAPINewsProps[]}) => {     
-     const related_content=news_details.netflixNewsGroup.netflixNewsRelated?.edges
+     const related_content=news_details?.netflixNewsGroup.netflixNewsRelated?.edges
      const next_posts_naija=next_on_netflix_naija.map((tx)=> tx.naijaOnNetflix).flat()
      const next_posts= next_posts_naija.map((tx)=> tx.nodes).flat()
 
@@ -97,9 +97,9 @@ alt={ex.node.featuredImage.node.altText}
    </React.Fragment>
   ) )}
 <div className="flex flex-wrap mx-8">
-  {news_details.contentTags.nodes.map((xy)=> 
-    <div key={xy.name +  ' ' + Math.random()} > 
-<Link href={`/topic/${xy.slug}/`}><p className="shadow-2xl border text-base font-bold text-green-700 py-5 px-3 mx-2 hover:text-green-400">{xy.name}</p></Link>  
+  {news_details?.contentTags.nodes.map((xy)=> 
+    <div key={xy?.name +  ' ' + Math.random()} > 
+<Link href={`/topic/${xy.slug}/`}><p className="shadow-2xl border text-base font-bold text-green-700 py-5 px-3 mx-2 hover:text-green-400">{xy?.name}</p></Link>  
 </div>)} 
 </div>
   </div>

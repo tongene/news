@@ -121,14 +121,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) { 
   const GA_ID = process.env.GA_ID as string
-  // const headerStore = (await headers()).get('referer') as string
-  // const searchParams = Object.fromEntries(
-  //   new URLSearchParams(headerStore.get("confirm") || "")
-  // ); <pre>{JSON.stringify(searchParams, null, 2)}</pre>
- {/* <TagManager/> */}  {/* <GoogleAnalytics/> 
-  <Header/><SocialNav/><HeaderAuth /><Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense><div className="flex flex-col">{children}</div><Latests/><Footer/>*/} 
+ 
   return (
-    <html lang="en" className={geistSans.className} suppressHydrationWarning><Script async strategy="afterInteractive" src="//clickiocmp.com/t/consent_234292.js"/><Script
+    <html lang="en" className={geistSans.className} suppressHydrationWarning><Script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/59a9b3a3d624c41b3150d9c6/script.js"/><Script
 id='gt-manager'
 strategy="afterInteractive"
 dangerouslySetInnerHTML={{
@@ -140,14 +135,22 @@ dangerouslySetInnerHTML={{
 }
 
 }
-/><Script async strategy="afterInteractive" 
+/><Script dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                   gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });` }}></Script><Script async strategy="afterInteractive" 
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA}`}/><Script id='google-analytics'strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                 __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-
                 gtag('config', '${process.env.GA}');`, 
                 }}
             /><Script async strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.AW}`}/><Script dangerouslySetInnerHTML={{
