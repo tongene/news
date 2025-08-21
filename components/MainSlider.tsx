@@ -105,7 +105,7 @@ const slides=livesNews?.filter((ex) => {
   return ( 
     <section className='flex flex-col justify-center items-center my-11'> 
     <h2 className='text-gray-600 font-bold text-4xl text-center py-4 dark:text-gray-300'>Recently Added</h2> 
-      <div className='relative lg:w-2/3 xl:w-2/4 w-full xs:w-3/4 md:w-11/12 top-60 px-1'>
+<div className='relative lg:w-2/3 xl:w-2/4 w-full xs:w-3/4 md:w-11/12 top-60 px-1'>
 <div className="flex justify-between z-50 "> 
      <div onClick={left_slide} className='text-5xl text-white opacity-70 bg-gray-600 cursor-pointer hover:scale-105'> 
      <FontAwesomeIcon icon={faAngleLeft}/> 
@@ -115,8 +115,7 @@ const slides=livesNews?.filter((ex) => {
      <FontAwesomeIcon icon={faAngleRight}/>
       </div> 
      </div> </div>
-    <hr className='w-1/2 m-auto h-1 dark:bg-gray-300 bg-gray-600'/> 
- 
+    <hr className='w-1/2 m-auto h-1 dark:bg-gray-300 bg-gray-600'/>  
 <div 
   className="w-[300px] md:w-[600px] overflow-hidden relative main_slider"  
   onMouseEnter={() => setPaused(true)}
@@ -124,7 +123,7 @@ const slides=livesNews?.filter((ex) => {
 >
   <div
     className="main-x-slider flex transition-transform duration-500 ease-in-out"
-    style={{ transform: `translateX(-${index * slideWidth}px)` }}
+    style={{ transform: `translateX(-${index}px)` }}
     ref={sliderRef}
   >
     {slides?.map((xy, i) => (
@@ -143,8 +142,8 @@ const slides=livesNews?.filter((ex) => {
               <Image
                 className="h-56 w-[300px] px-1 py-2 hover:opacity-50"
                 src={xy.node.featuredImage.node.sourceUrl}
-                width={1200}
-                height={675}
+                width={400}
+                height={400}
                 alt={xy.node.featuredImage.node.altText}
               />
             </>
@@ -160,10 +159,10 @@ const slides=livesNews?.filter((ex) => {
                 </h2>
               </Link>
               <Image
-                className="h-56 px-1 py-2 hover:opacity-50"
+                className="h-56 w-[300px] px-1 py-2 hover:opacity-50"
                 src={xy.node.featuredImage.node.sourceUrl}
-                width={1200}
-                height={675}
+                width={400}
+                height={400}
                 alt={xy.node.featuredImage.node.altText}
               />
             </div>

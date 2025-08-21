@@ -145,24 +145,22 @@ useEffect(()=>{
     <ul key={ex.node.title} className="flex py-3 items-center">
       <span className="animate-pulse mr-2 text-5xl text-red-600">•</span>
       <span className="text-red-600">Live</span>
-      <Link href={`/news/live/${ex.node.databaseId}/${ex.node.slug}/`}>
-        <li
+      <li
           className="m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold"
           style={{
             display: '-webkit-box',
             WebkitLineClamp: 2,
             WebkitBoxOrient: 'vertical',
           }}
-        >
+        > <Link href={`/news/live/${ex.node.databaseId}/${ex.node.slug}/`}>
          {ex.node.contentTags.nodes[0]?.name} 
-        </li>
-      </Link>
+         </Link></li>
+     
     </ul>
   ))}
 
     {trendsData?.map((ex)=> 
-    <ul key={ex.title} className='py-3'> 
-     <Link href={`/news/trending/${ex.slug}/`}><li className='m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.contentTags.nodes[0].name}</li></Link> 
+    <ul key={ex.title} className='py-3'><li className='m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}> <Link href={`/news/trending/${ex.slug}/`}>{ex.contentTags.nodes[0].name}</Link></li>    
     </ul> 
      )}  
   

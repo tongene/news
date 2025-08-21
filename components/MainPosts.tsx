@@ -101,7 +101,7 @@ import { useEffect, useState } from 'react'
  
 const MainPosts = ({posts_notIn_newsPosts}:{posts_notIn_newsPosts:PostXNode[] }) => {  
    const [postsXnewsPosts, setPostsXnewsPosts]= useState<PostXNode[]>([]) 
-      const [loading, setLoading] = useState(true); 
+  
       useEffect(() => {
         const fetchData = async () => {
           try {
@@ -140,8 +140,8 @@ const MainPosts = ({posts_notIn_newsPosts}:{posts_notIn_newsPosts:PostXNode[] })
  
    <Image
 className='rounded-xl h-44 object-cover'
-  width={1200} 
-  height={675}    
+  width={600} 
+  height={400}    
   src={it?.node?.featuredImage?.node.sourceUrl}     
   alt={it?.node?.featuredImage?.node.altText } 
   /> 
@@ -173,8 +173,8 @@ className='rounded-xl h-44 object-cover'
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto px-1 pt-3 '> 
      <Image
 className='rounded-xl h-44 object-cover'
-  width={1200} 
-  height={675}    
+  width={600} 
+  height={400}    
   src={it.node.featuredImage?.node.sourceUrl}     
   alt={it?.node.featuredImage?.node.altText } 
   />   

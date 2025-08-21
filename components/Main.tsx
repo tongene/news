@@ -241,43 +241,58 @@ const [sidebarItems, setSidebarxItems]=useState<Cursors[]>([])
 
 // const [top_Last_categories, setLast_categories]=useState([])   
 const rmMain =top_PostsData.map((xy)=> xy.cursor)
-const x_wiki =async ()=>{
+const x_wiki =async ()=>{ 
+const post_data = await postCategories() 
+const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[] 
+setTopPostsCa(postCategory_Children ) 
+
+await new Promise(resolve => setTimeout(resolve, 3000)); 
 const sidebarxItems= await sidePlusViews() 
 const txPlus=sidebarxItems.posts?.edges.map((dy:InnerEdges)=>dy.node )
 setSidebarxItems(txPlus)
-  await new Promise(resolve => setTimeout(resolve, 3000));  
-  const post_data = await postCategories() 
-const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[] 
-setTopPostsCa(postCategory_Children )
 
-return
 }
-  useEffect(()=>{        
-        x_wiki()
-        //dep top_PostsData
-      },[])
-useEffect(()=>{
-//setCategoryPost(top_PostsData)  
-const currentPosts= top_PostsCa?.flat()?.filter((ex)=> ex?.node?.name=== categoryName)?.map((xy)=> xy?.node?.posts).map((ex)=> ex?.edges as InnerEdges).flat()
-setCategoryPost(currentPosts)
- 
-// else { 
-// setCategoryPost(top_PostsData)  
-// }
+useEffect(()=>{        
+x_wiki()
+//dep top_PostsData
+},[]) 
 
-},[categoryName])
+const changeSet = (i: number, name: string) => {
+  if (i === -1) {
+    // Handle the "All" button
+    setActIdx(-1);
+    setCategoryName('');
+    setCategoryPost(
+      top_PostsCa
+        ?.flat()
+        ?.map((xy) => xy?.node?.posts)
+        .map((ex) => ex?.edges as InnerEdges)
+        .flat() ?? []
+    );
+    return;
+  }
 
-  const changeSet = () => {
-     setActiveSet(true)
-     setActIdx(-1);
-     setCategoryName('')  
-   };
+  // Handle a specific category
+  setActIdx(i);
+  setCategoryName(name);
+
+  const currentPosts = top_PostsCa
+    ?.flat()
+    ?.filter((ex) => ex?.node?.name === name)
+    ?.map((xy) => xy?.node?.posts)
+    .map((ex) => ex?.edges as InnerEdges)
+    .flat();
+
+  setCategoryPost(currentPosts ?? []);
+};
+
  
-  const changeView = (i:number,name:string) =>{
-    setActiveSet(false)
+  const changeView = async(i:number,name:string) =>{
+     setActiveSet(prev => !prev)
     setActIdx(i);
     setCategoryName(name) 
-  
+
+ 
     }; 
     useEffect(()=>{
       const googleTxt=async()=>{
@@ -299,19 +314,24 @@ setCategoryPost(currentPosts)
  <hr className='bg-black h-1 w-3/4 my-4'/>
  <div className='w-2/3' >
    <ul className='flex justify-end flex-wrap py-2'> 
-  <li 
-      className={activeSet ? 
-        'font-bold text-base cursor-pointer text-gray-500 mx-2 decoration-cyan-400 underline decoration-4' : 
-        'text-base cursor-pointer text-gray-500 mx-2'} 
-           onClick={changeSet} >
-      All
-    </li> 
+ <li
+  className={
+    actIdx === -1
+      ? 'font-bold cursor-pointer text-gray-700 bg-gray-100 p-2 rounded underline decoration-cyan-500 decoration-4 hover:text-gray-900'
+      : 'cursor-pointer text-gray-600 bg-gray-100 p-2 rounded hover:text-gray-900'
+  }
+  onClick={() => changeSet(-1, '')}
+>
+  All
+</li>
+ 
     {top_PostsCa?.map((xy, idx) =>  
       <li 
-        className={actIdx === idx ? 
-          'font-bold text-base cursor-pointer text-gray-500 mx-2 decoration-cyan-400 underline decoration-4 hover:text-gray-800' : 
-          'text-base cursor-pointer text-gray-400 mx-2 hover:text-gray-800'} 
-          onClick={() => changeView(idx, xy.node.name)}  
+    className={
+    actIdx === idx
+      ? 'font-bold cursor-pointer text-gray-500 bg-gray-100 p-2 rounded underline decoration-cyan-500 decoration-4 hover:text-gray-800 my-0.5'
+      : 'cursor-pointer text-gray-600 bg-gray-100 p-2 rounded hover:text-gray-800 m-0.5'}
+      onClick={() => changeSet(idx, xy.node.name)}  
         key={xy.node.name + ' ' + Math.random()}>
         {xy.node.name}
       </li> 
@@ -325,14 +345,14 @@ setCategoryPost(currentPosts)
   <div className='xl:flex justify-center max-w-4xl md:w-10/12 xl:w-auto xl:max-w-7xl m-auto'> 
 <div> 
  {!categoryName&&top_PostsData.length>0?top_PostsData?.slice(0,1).map((ex, i)=>
-<div className='shadow-2xl h-3/4' key={ex.node.title + ' ' + Math.random()}>
+<div className='shadow-2xl h-3/4 max-w-[700px] mx-auto lg:max-w-[1200px]' key={ex.node.title + ' ' + Math.random()}>
 
-<div className="my-3 "> 
+<div className="my-3"> 
   <Image 
   src={ex?.node.featuredImage?.node.sourceUrl } 
 className='object-cover'
- width={1200}
- height={768}
+ width={700}
+ height={600}
   alt={ex?.node.featuredImage?.node.sourceUrl } />  
 
  </div>
@@ -345,15 +365,15 @@ className='object-cover'
  <p >{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p> 
 </div>  
 </div>
-):<> {categoryName==='Fake News'?<p className="italic text-xl p-4">In 2025, there has been at least 30 fake news and propaganda circulating the internet. About 27 of those in January alone. Be careful what you read. The good things is, we are here to fact-check the news.</p> :''}
+):<> 
 {categoryPost?.slice(0,1).map((ex, i)=>
-  <div className='shadow-2xl' key={ex.node.title + ' ' + Math.random()}>   
+  <div className='shadow-2xl h-3/4 max-w-[700px] mx-auto lg:max-w-[1200px]' key={ex.node.title + ' ' + Math.random()}>   
 <div className="my-3">
   <Image 
   src={ex?.node.featuredImage?.node.sourceUrl } 
  className='object-cover'
- width={1200}
- height={768}
+ width={700}
+ height={600}
   alt={ex?.node.featuredImage?.node.sourceUrl } />  
 
  </div>
@@ -397,27 +417,27 @@ className='object-cover'
 </div>
 ):categoryPost?.slice(1).map((ex)=>
   <div className='shadow flex gap-4 first:md:my-0 first:md:py-0 md:pb-4' key={ex.node.title + ' ' + Math.random()}>
-  <div className="relative w-44 h-24 m-auto xl:h-[100px] my-2">
-    <Image 
-    src={ex?.node.featuredImage?.node.sourceUrl} 
+<div className="relative w-44 h-24 m-auto xl:h-[100px] my-2">
+<Image 
+src={ex?.node.featuredImage?.node.sourceUrl} 
 fill
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-    alt={ex?.node.featuredImage?.node.altText}/> 
-    
-    </div>
-  
-    <div className='w-4/5 xl:w-full'>  
-    <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-    <Link href={`/news/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
-   </div>
-  <div className='sm:flex text-base text-gray-400 justify-between items-center leading-8 '> 
-  <Link href={`/creator/${ ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p></Link> 
-    <p>{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p>
+sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+alt={ex?.node.featuredImage?.node.altText}/> 
+
+</div>
+
+<div className='w-4/5 xl:w-full'>  
+  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
+  <Link href={`/news/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
   </div>
-  </div>
-  </div>
-  )}  
- </div> 
+<div className='sm:flex text-base text-gray-400 justify-between items-center leading-8 '> 
+<Link href={`/creator/${ ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p></Link> 
+  <p>{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p>
+</div>
+</div>
+</div>
+)}  
+</div> 
  
 </div>  
 
