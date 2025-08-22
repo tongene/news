@@ -1146,12 +1146,13 @@ export async function generateMetadata(
   const slug =(await params).slug 
   async function resolveContent(slug: string) {
   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) {
-    const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}/`);
+ const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/`);
+  
     if (res?.title) {
       return { ...res, __typename: type };
     }
   }
-  return null;
+  return null; 
 }
  const newsXdetail = await resolveContent(slug[0]); 
   const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/`)
@@ -1171,7 +1172,7 @@ export async function generateMetadata(
      openGraph: {
       title: `Urban Naija | ${news_details?.title}`,
       description:news_details?.excerpt, 
-      url: `https://culturays.com/news/${news_details?.contentTypeName}/${slug}/`,
+      url: `https://culturays.com/news/${slug}/`,
       siteName: 'Urban Naija',
       images: [{url:news_details?.featuredImage?.node?.sourceUrl, width: 800,
           height: 600, ...previousImages}],
@@ -1179,7 +1180,7 @@ export async function generateMetadata(
       publishedTime:news_details?.date,
     },
      alternates: {
-    canonical:  `https://culturays.com/news/${news_details?.contentTypeName}/${slug}/`,
+    canonical:  `https://culturays.com/news/${slug}/`,
  
   },
   }: {
@@ -1195,7 +1196,7 @@ export async function generateMetadata(
      openGraph: {
       title: `Urban Naija | ${newsXdetail?.title}`,
       description:newsXdetail?.excerpt, 
-      url: `https://culturays.com/news/${newsXdetail?.contentTypeName}/${slug}/`,
+      url: `https://culturays.com/news/${slug}/`,
       siteName: 'Urban Naija',
       images: [{url:newsXdetail?.featuredImage?.node?.sourceUrl, width: 800,
           height: 600, ...previousImages}],
@@ -1203,7 +1204,7 @@ export async function generateMetadata(
       publishedTime:newsXdetail?.date,
     },
      alternates: {
-    canonical:  `https://culturays.com/news/${newsXdetail?.contentTypeName}/${slug}/`,
+    canonical:  `https://culturays.com/news/${slug}/`,
  
   },
   }
@@ -1213,7 +1214,7 @@ const ArticleDetailPage = async ({params}: Props) => {
 const slug =(await params).slug  
 async function resolveContent(slug: string) {
   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) { 
-    const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}/`);
+    const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/`);
     if (res?.title) {
       return { ...res, __typename: type };
     }
