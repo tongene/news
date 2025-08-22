@@ -50,21 +50,21 @@ const handleClick = (id:string)=> {
 
  return ( 
  <>
- <Suspense> <ConfirmModal /> </Suspense>  
-  <header className="flex flex-wrap justify-between w-full relative"> 
+<Suspense> <ConfirmModal /> </Suspense>  
+<header className="flex flex-wrap justify-between w-full relative"> 
 <div className="md:m-3 flex mt-6 z-20"> 
 <h1 className="head-forum font-bold text-7xl sm:mb-4 mt-4 my-4 md:mt-11 lg:mt-6 mb-4 mx-4 font-mono">
-  <Link href='/' className="no-underline">
-    <span className='px-2 head-forum-span-dark dark:head-forum-span-light'>U</span><span className="tightest text-center">rban News</span>
-  </Link>
-</h1>
-
-<Link href={`/${pathname.split('/')[1]}/`}>
-  <p className="text-sm mt-20 mb-2">
-    {pathname.split('/')[1] ? `Now viewing ${pathname.split('/')[1]} section` : 'Main'}
-  </p>
+<Link href='/' className="no-underline">
+<span className='px-2 head-forum-span-dark dark:head-forum-span-light'>U</span><span className="tightest text-center">rban News</span>
 </Link>
-
+</h1>
+{pathname.split('/')[1] ? 
+<Link href={`/${pathname.split('/')[1]}/`}>
+<p className="text-sm mt-20 mb-2">
+Now viewing ${pathname.split('/')[1]} section
+</p>
+</Link>
+:  <p className="text-sm mt-20 mb-2">Now Viewing Main</p> }
 </div>
 
 {barState&&
@@ -72,16 +72,16 @@ const handleClick = (id:string)=> {
 <p className="opacity-70 mx-2" >
 <FontAwesomeIcon icon={faXmark} className="text-white w-6 h-11 cursor-pointer"/>
 </p>
-  <nav className="animate-in"> 
+<nav className="animate-in"> 
 {  navAddress.map((xy)=> 
 <ul key={xy.b + Math.random()}className="text-white p-3 flex flex-col text-center justify-center items-center h-max"> 
- <li
-  className={`p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full font-bold ${
-    pathname=== xy.b ? 'border-green-700 font-lighter' : {}
-  }`}
-  onClick={() => handleClick(xy.a)} 
+<li
+className={`p-2 m-1 mx-4 cursor-pointer border-b-2 opacity-80 hover:scale-105 text-lg py-4 w-full font-bold ${
+  pathname=== xy.b ? 'border-green-700 font-lighter' : {}
+}`}
+onClick={() => handleClick(xy.a)} 
 >
- <Link href={xy.b}>{xy.a}</Link>
+<Link href={xy.b}>{xy.a}</Link>
 
 </li>
 </ul> 

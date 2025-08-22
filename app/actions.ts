@@ -135,14 +135,14 @@ export const resetPasswordAction = async (formData: FormData) => {
 export const signOutAction = async () => {
   const supabase = await createClient();
   await supabase.auth.signOut();
-  return redirect("/sign-in");
+  return redirect("/sign-in/");
 };
 export const handleOauthLogin = async () => {
   const origin = (await headers()).get("origin");
   const supabase = await createClient();
 
   const redirectTo = origin
-    ? `${origin}/auth/callback?redirect_to=${encodeURIComponent('/forum')}`
+    ? `${origin}/auth/callback?redirect_to=${encodeURIComponent('/')}`
     : undefined;
 
   const { data, error } = await supabase.auth.signInWithOAuth({
