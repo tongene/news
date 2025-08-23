@@ -147,9 +147,7 @@ export const handleOauthLogin = async () => {
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
-    options: {
-      redirectTo, 
-    },
+    options: { redirectTo: `${origin}/auth/callback` }
   });
 
   if (error instanceof Error) {
