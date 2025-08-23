@@ -164,7 +164,7 @@ dangerouslySetInnerHTML={{
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange 
-        ><main className="m-auto"style={{maxWidth:'100%'}} ><div><Header/><SocialNav/><HeaderAuth /><Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense><div className="flex flex-col">{children}</div><Latests/><Footer/></div></main></ThemeProvider></body></html>
+        ><main className="m-auto"style={{maxWidth:'100%'}} ><div><Header/><SocialNav/><Nav /><Suspense fallback={<p>Loading...</p>}><SearchItems/><TabNav /></Suspense><div className="flex flex-col">{children}</div><Latests/><Footer/></div></main></ThemeProvider></body></html>
   );
 }
  

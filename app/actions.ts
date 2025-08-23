@@ -140,7 +140,7 @@ export const signOutAction = async () => {
 export const handleOauthLogin = async () => {
   const origin = (await headers()).get("origin");
   const supabase = await createClient();
-
+console.log(origin)
   const redirectTo = origin
     ? `${origin}/auth/callback?redirect_to=${encodeURIComponent('/')}`
     : undefined;
