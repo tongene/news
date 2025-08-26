@@ -1,7 +1,7 @@
 import News from '@/components/News/News' 
 import StructuredData from '@/components/StructuredData';
-import { BlogPosting, NewsArticle, WebPage, WithContext } from 'schema-dts';
-import { InnerEdges, PostXNode } from '../types';
+import { BlogPosting, WithContext } from 'schema-dts';
+
 async function news__Articles(){  
   const wprest = fetch('https://content.culturays.com/graphql',{
  method: 'POST', 
@@ -11,11 +11,11 @@ async function news__Articles(){
  body: JSON.stringify({
  query:`
  query PASSAGENEWS{ 
-    articlesCategories(first:20, where:{hideEmpty:true}){
+    articlesCategories( where:{hideEmpty:true}){
       nodes{
-     name
+     name 
      slug
- articles(first:30){
+ articles(first:18){
  nodes{ 
  id
  title
@@ -104,8 +104,8 @@ async function news__Articles(){
  }).then(response =>  response.json())
  .then(data => data.data.articlesCategories.nodes )
 .catch(error => console.error('Error:', error)) 
-         //const response = wprest?.data.articlesCategories.nodes
-       return wprest
+  //const response = wprest?.data.articlesCategories.nodes
+  return wprest
   
  }
 
@@ -144,7 +144,7 @@ const NewsPage = async() => {
    }
  }
  
-
+ 
  return (  
    <div>
      <StructuredData schema={jsonLd} />

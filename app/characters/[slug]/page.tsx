@@ -3,7 +3,7 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import { Article, ProfilePage, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
 import { CharacterProps } from "@/app/types";
-import { charsFilms, relatedChars } from "@/app/naija-wiki/newCharHandle";
+import { charsFilms, relatedChars } from "@/app/newCharHandle";
   
   interface Character {
     content: string;

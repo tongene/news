@@ -29,13 +29,13 @@ const NaijaWikiNetflixNewsDetails =({next_on_netflix_naija, content_videos, news
     <article className="px-5 2xl:px-0"> 
    <div style={{width:"1000px"}} className="overflow-hidden m-auto"> 
     <div className="xs:flex justify-between items-center"> 
-   <h2 className="text-4xl font-bold py-2 px-6 text-gray-800"> Videos </h2> <hr className="h-0.5 bg-gray-700 w-full"/> </div>
+   <h2 className="text-4xl font-bold py-2 my-4 px-6 text-gray-800"> Videos </h2> <hr className="h-0.5 bg-gray-700 w-full"/> </div>
     <SlidingSide newsItems={content_videos} speed={60000}/>  
       </div> 
 
-       <div className="bg-gray-50 dark:bg-black m-auto py-8 max-w-6xl px-5">    
-      <div className="bg-white dark:bg-black my-2 py-10 rounded-lg sm:mx-4 xs:mx-8 sm:m-auto sm:px-11 lg:px-16">
-       <h2 className="font-bold py-4 sm:px-8 text-3xl md:text-5xl text-gray-800 dark:text-gray-200 leading-10">{news_details.title} </h2>
+       <div className="bg-gray-50 dark:bg-black m-auto py-8 max-w-5xl px-5"> 
+          <h2 className="font-bold py-4 w-10/12 mx-auto text-3xl sm:text-4xl lg:text-6xl text-gray-800 dark:text-gray-200 leading-10">{news_details.title} </h2>
+           <div className="bg-white dark:bg-black my-2 rounded-lg sm:mx-4 xs:mx-8 sm:m-auto sm:px-11 lg:px-16">     
        <div className="flex justify-between bg-gray-700">
        <p className="p-4 italic text-red-500 ">{moment(news_details.date).subtract(1, 'hour').fromNow() } </p> 
        <Link href={`/creator/${news_details.author.node.slug}/`}><p className="p-4 text-end text-lg  text-gray-200 mx-4 xs:mx-20 hover:text-red-400"><small className="italic p-3"> by</small>{ news_details.author.node.name } </p></Link></div>

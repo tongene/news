@@ -21,13 +21,8 @@ setBarState(prev=> !prev)
   a:"Latest",
   b:"/news/articles/"
 
-}, 
- 
-{
-  a:"Netflix Naija",
-  b:"/naija-wiki/"
+},  
 
-},
 {
   a:"Events",
   b:"/naija-events/"
@@ -61,7 +56,7 @@ const handleClick = (id:string)=> {
 {pathname.split('/')[1] ? 
 <Link href={`/${pathname.split('/')[1]}/`}>
 <p className="text-sm mt-20 mb-2">
-Now viewing ${pathname.split('/')[1]} section
+Now viewing {pathname.split('/')[1]} section
 </p>
 </Link>
 :  <p className="text-sm mt-20 mb-2">Now Viewing Main</p> }

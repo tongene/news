@@ -5,7 +5,7 @@ import { events3Details, getNaijaEvents3 } from "./naija-events/eventData/eventC
 import { processImgs } from "@/utils/process_imgs";
 import { processSbImages } from "@/utils/processImages";
 import { replaceSpecialCharacters } from "@/utils/replacechars";
-import { scrapeSilverBird } from "./naija-wiki/filmsdata";
+import { scrapeSilverBird } from "./filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
 import { CronJob } from "cron"; 
 import { BlogPosting, WebSite, WithContext } from "schema-dts";
@@ -485,19 +485,19 @@ const news_outline=await postsOutline()
 const posts_notIn_newsPosts= await nextNewsPosts(endX) 
 const livexnews =await liveResp() 
 
-     CronJob.from({
-      cronTime: '10 8 * * *',  
-      onTick: dailyEv3(),
-      start: true,
-      timeZone: 'Africa/Lagos'
-      });
+    //  CronJob.from({
+    //   cronTime: '10 8 * * *',  
+    //   onTick: dailyEv3(),
+    //   start: true,
+    //   timeZone: 'Africa/Lagos'
+    //   });
     
-         CronJob.from({
-          cronTime: '10 8 * * *',  
-          onTick: dailyWiki(), 
-          start: true,
-          timeZone: 'Africa/Lagos'
-         });   
+    //      CronJob.from({
+    //       cronTime: '10 8 * * *',  
+    //       onTick: dailyWiki(), 
+    //       start: true,
+    //       timeZone: 'Africa/Lagos'
+    //      });   
         
   const jsonLd:WithContext<WebSite>={
     "@context": "https://schema.org",

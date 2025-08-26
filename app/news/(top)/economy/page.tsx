@@ -14,8 +14,7 @@ export const metadata = {
   }
 };
 
-
-    async function economyBlog(){ 
+ async function economyBlog(){ 
       const wprest = fetch('https://content.culturays.com/graphql',{
         method: 'POST', 
         headers:{ 
@@ -24,7 +23,7 @@ export const metadata = {
         body: JSON.stringify({
           query:`
           query WPPOSTS {
-          economies {
+          economies(first: 25) {
           nodes {
              contentTypeName
             title

@@ -62,7 +62,7 @@ const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline }:{post:P
   
   const html2pdfRef = useRef<any>(null);
   useEffect(() => {
-    import('html2pdf.js').then((mod) => {
+    import('html2pdf.js').then((mod) => { 
       html2pdfRef.current = mod.default;
     });
   }, []);

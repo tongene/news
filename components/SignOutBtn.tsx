@@ -1,12 +1,8 @@
 "use client"
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
-import { useState } from "react"
+import Link from "next/link" 
 
 const SignOutBtn = ({rtx}:{rtx:string}) => {
-    const router = useRouter()
-    const pathname = usePathname()
-    const [load, setLoading]=useState(false)
+    
   return (
     <div>
     <div className="m-1 flex m-auto justify-center">  

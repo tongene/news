@@ -88,7 +88,8 @@ const config = {
       '1xl': '3px 3px 20px rgba(0,0,0,0.5)',        
       'bottomShadow':'inset 0 15px 5px -16px #111',
       "detailShadow":"-50px 20px 50px -5px rgba(0, 0, 0, 0.5)",
-      "detailShadowLight": "-50px 20px 50px -5px rgba(250, 250, 250, 0.5)",
+       "detailedShadow":"-50px 20px 50px -5px rgba(0, 0, 0, 0.5)",
+      "detailShadowLight": "-10px 20px 10px -5px rgba(250, 250, 250, 0.5)",
       "headForumSpanDark":"0 3px 30px rgb(0, 0, 0)",
       "headForumSpanLight":"0 4px 10px 5px rgb(242, 242, 242)",
       

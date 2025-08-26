@@ -1,3 +1,4 @@
+ 
 import ArticlesX from "@/components/News/Articles" 
 import StructuredData from "@/components/StructuredData";
 import { BlogPosting, WithContext } from "schema-dts";
@@ -175,6 +176,7 @@ export const metadata = {
   
    
   } 
+
     async function environmentBlog(){
   
       const wprest =  fetch('https://content.culturays.com/graphql',{
@@ -416,8 +418,77 @@ export const metadata = {
          return wprest  
 
   } 
-const Articles =async () => { 
 
+   async function netflixNews() {
+    const wprest = fetch('https://content.culturays.com/graphql',{
+      method: 'POST',      
+      headers:{
+      'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query:`
+      query WPPOSTS { 
+ netflixCategories(where: {name: "News"}) {
+    edges {
+      node {
+      name
+      slug         
+          naijaOnNetflix { 
+          nodes { 
+          id
+            slug
+            title
+            date
+            excerpt 
+             featuredImage {
+                node {
+                  altText
+                  sourceUrl 
+                }
+              }
+         author{
+      node{
+      name
+      }
+      }
+  netflixNewsGroup { 
+  intro 
+  
+  } 
+   netflixCategories {
+              nodes {
+                slug
+                name
+              }
+            }
+            contentTags{
+              nodes{
+              name
+              slug
+              }
+              }
+          }
+        }
+      }
+              
+  }
+        }
+      }
+     ` 
+      
+      })
+      
+      }).then(response => response.json()) 
+      .then(data =>data?.data.netflixCategories.edges) 
+      .catch(error => console.error('Error:', error));     
+      const response = wprest
+      return wprest
+  }
+const Articles =async () => { 
+const netflix_News = await netflixNews()  
+
+//  <Main netflix_News={netflix_News}  
+//  newChars={newChars} /> 
    const environment_news = await environmentBlog() 
     const business_news = await businessBlog() 
     const eco_news = await economyBlog() 
@@ -455,7 +526,7 @@ const Articles =async () => {
     }
   }
  
-
+ 
   return (
     <div>
          <StructuredData schema={jsonLd} />   
@@ -465,6 +536,7 @@ const Articles =async () => {
           eco_news={eco_news} 
           tech_news={tech_news} 
           health_news={health_news}
+          netflix_News={netflix_News}
         />  
     </div>
   )

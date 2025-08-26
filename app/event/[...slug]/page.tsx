@@ -1,4 +1,4 @@
-import { getTop10 } from "@/app/naija-wiki/filmsdata";
+
 import EventDetail from "@/components/events/EventDetails";  
 import StructuredData from "@/components/StructuredData";
 import { createClient } from "@/utils/supabase/server";

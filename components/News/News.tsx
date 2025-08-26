@@ -48,16 +48,16 @@ articlesCategories:{
  
 
 const News = ({newsData}:{newsData:DataProps[]}) => {
-  const [activeIndices, setActiveIndices] = useState([0, 1]);  
-  const newsXData = newsData.map((xy)=> xy.articles).map((dy)=>dy.nodes).flat()  
+const [activeIndices, setActiveIndices] = useState([0, 1]);  
+const newsXData = newsData.map((xy)=> xy.articles).map((dy)=>dy.nodes).flat() 
 
-    const left_slide = () => {
-  setActiveIndices(([left, right]) => {
-    const len = newsData.length;
-    const newLeft = (left - 1 + 4) % 4;
-    const newRight = (right - 1 + 4) % 4;
-    return [newLeft, newRight];
-  });
+const left_slide = () => {
+setActiveIndices(([left, right]) => {
+const len = newsData.length;
+const newLeft = (left - 1 + 4) % 4;
+const newRight = (right - 1 + 4) % 4;
+return [newLeft, newRight];
+});
 };
 
 const right_slide = () => {
@@ -450,8 +450,8 @@ className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-a
  </div>  
 
   <div className="bg-white dark:bg-black w-full my-8">
- <div className="md:grid grid-cols-2 justify-center xs:items-start items-center lg:grid-cols-4 max-w-2xl lg:max-w-max m-auto py-8 ">
-  <div className='max-w-sm m-auto  border-r xs:m-0'>
+ <div className="md:grid grid-cols-2 justify-center xs:items-start items-center lg:grid-cols-3 max-w-2xl lg:max-w-max m-auto py-8 "> 
+  <div className='max-w-sm mx-auto border-r'>
  { sortedNews.slice(32,35).map((it, index)=>
  <div key={index} className="px-4">
  { index === 0 &&
@@ -482,7 +482,7 @@ className='rounded-xl object-cover'
  )}
 
 </div>
- <div className='max-w-sm m-auto border-r xs:m-0'>
+ <div className='max-w-sm mx-auto border-r '>
  { sortedNews.slice(35,38).map((it, index)=> 
  <div key={index} className="px-4">
  { index === 0 &&
@@ -514,7 +514,7 @@ className='rounded-xl object-cover'
 
 </div>
 
-<div className='max-w-sm m-auto xs:m-0 border-r'>
+<div className='max-w-sm mx-auto border-r'>
  { sortedNews.slice(38,41).map((it, index)=>
  <div key={index} className="px-4">
  { index === 0 &&
@@ -538,38 +538,6 @@ className='rounded-xl object-cover'
  <div className='my-3 md:px-1 border-b py-4'>
 <Link href={`/news/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-700 text-red-600'>{it.contentTags.nodes[0].name }</h4></Link>
-{/* <span className='text-sm italic text-red-600'>{moment(it.date).subtract(1, 'hour').fromNow()}</span> */}
-</div>}
-
- </div>
- )}
-
-</div>
-
- <div className='max-w-sm m-auto xs:m-0 border-r'>
- { sortedNews.slice(41,43).map((it, index)=>
- <div key={index} className="px-4">
- { index === 0 &&
-<div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
-     <Image
-className='rounded-xl object-cover'
-  width={1200}
-  height={675}
-  src={it.featuredImage?.node.sourceUrl}
-  alt={it?.featuredImage?.node.altText }
-  />
-<div className='my-3 sm:my-0 md:px-1 py-4'>
-<Link href={`/news/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
-<div className="flex flex-wrap py-2">
-<Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end underline hover:text-gray-700 text-red-600'>{it.contentTags.nodes[0].name } | </h4></Link>
-{/* <span className='text-sm italic text-red-600 px-1'>{moment(it.date).subtract(1, 'hour').fromNow()}</span> */}
-</div>
-</div>
- </div>}
- {index !==0 &&
- <div className='my-3 md:px-1 border-b py-4'>
-<Link href={`/news/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
-<Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end py-2 md:px-0 underline hover:text-gray-500 text-red-600'>{it.contentTags.nodes[0].name }</h4></Link>
 {/* <span className='text-sm italic text-red-600'>{moment(it.date).subtract(1, 'hour').fromNow()}</span> */}
 </div>}
 

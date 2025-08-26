@@ -2,7 +2,7 @@ import Character from '@/components/NaijaWiki/Character'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { ProfilePage, WithContext } from 'schema-dts'
 import StructuredData from '@/components/StructuredData'
-import { newcharCall, relatedChars } from '@/app/naija-wiki/newCharHandle'
+import { newcharCall, relatedChars } from '@/app/newCharHandle'
 
 type Props = {
   params: Promise<{ slug: string }>

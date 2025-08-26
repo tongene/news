@@ -96,9 +96,9 @@ const checkBiased = (e: React.ChangeEvent<HTMLInputElement>) => {
  
   return (
  
-  <div className="">  
-   <div className={closeQuestion ||name?'hidden': "text-8xl -mt-6 text-orange-600 ml-24 cursor-pointer hover:text-gray-400"} onClick={()=>setCloseQuestion(prev=> !prev)}> 
-  <FontAwesomeIcon icon={faCaretDown} width={50} />  
+  <div className="relative">  
+   <div className={"absolute text-orange-600 ml-24 cursor-pointer hover:text-gray-400"} onClick={()=>setCloseQuestion(prev=> !prev)}> 
+  <FontAwesomeIcon icon={faCaretDown} size="6x"/>  
  </div>
    <div className={closeQuestion?'fixed text-6xl w-max h-8 mt-6 -ml-3 text-orange-600 cursor-pointer bottom-0 top-0 left-0': "hidden"} onClick={()=>setCloseQuestion(prev=> !prev)}> 
   <FontAwesomeIcon icon={faCaretLeft} width={50}/>  
@@ -114,13 +114,8 @@ const checkBiased = (e: React.ChangeEvent<HTMLInputElement>) => {
 <Link href='/news/nollywood/'><h3 className="cursor-pointer" >Nollywood </h3></Link> 
 <hr className="w-1/4 my-3"/> 
  
-</div>
- 
-<div className="p-6 text-gray-200 flex justify-between hover:scale-105"> 
-<hr className="w-1/4 my-3"/> 
-<Link href='/daily/'><h3 className="cursor-pointer" onClick={()=>setCloseQuestion(false)}>Awards</h3></Link>  
-<hr className="w-1/4 my-3"/>  
-</div>
+</div> 
+
 <div className="p-6 text-gray-200 flex justify-between hover:scale-105"> 
 <hr className="w-1/4 my-3"/> 
 <Link href='/news/videos/'><h3 className="cursor-pointer">Videos</h3></Link>  

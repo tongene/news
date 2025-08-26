@@ -4,7 +4,7 @@ import ActorsMovie from "@/components/NaijaWiki/Movie";
 import StructuredData from "@/components/StructuredData";
 import { ProfilePage, WithContext } from "schema-dts";
 import { CharacterProps } from "@/app/types";
-import { charsFilms, relatedChars } from '@/app/naija-wiki/newCharHandle';
+import { charsFilms, relatedChars } from '@/app/newCharHandle';
 
   interface Character {
     charactertitles: {

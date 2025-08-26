@@ -13,7 +13,7 @@
       node {
       name
       slug         
-          naijaOnNetflix(first:250) { 
+          naijaOnNetflix(first:50) { 
           nodes { 
           id
             slug

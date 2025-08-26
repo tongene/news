@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image" 
-import { getTop10 } from "@/app/naija-wiki/filmsdata";
+import { getTop10 } from "@/app/filmsdata";
 import { useEffect, useState } from "react";
 import { useAmp } from "next/amp";
 

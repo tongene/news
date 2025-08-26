@@ -92,16 +92,16 @@ const SearchItems = () => {
 return ( 
 
 <div> 
- <div className="">  
+ <div className="relative z-20 ">  
 <input  
 placeholder='search'
-className='absolute z-20 w-full p-2 border-2 focus:outline-none text-lg'
+className='w-full p-2 border-2 focus:outline-none text-lg'
 type="text" 
 name='name' 
 onChange={handleSearch}
 value={nameX1.toLowerCase()}
 /> 
-<div className="relative z-40 top-3 -right-3/4 ml-22 sm:ml-28 md:ml-32">
+<div className="absolute z-40 top-3 right-20">
 <FontAwesomeIcon icon={faAngleDoubleRight}width={20} className="cursor-pointer opacity-70 text-xl hover:scale-150" onClick={()=>!nameX1?replace('/search/')
 :replace(`/search?name=${nameX1}`)}/> 
  

@@ -26,12 +26,9 @@ width={1200}
 height={675}
 alt={trends.featuredImage.node.altText}
 />
-<div dangerouslySetInnerHTML={{__html:trends.featuredImage.node.caption}} className="text-sm italic my-2 underline"/>
- 
+<div dangerouslySetInnerHTML={{__html:trends.featuredImage.node.caption}} className="text-sm italic my-2 underline"/> 
  </div>
-
  <div dangerouslySetInnerHTML={{__html:trends.trendinggroup.intro}} className="text-xl py-1 leading-8"/>
-
   {readAll&& trends.content.split('\n').filter((line)=> line !=="").map((linex)=> <div key={Math.random()} >
  <div dangerouslySetInnerHTML={{__html:linex}} className="text-xl py-1 leading-8 [&_img]:my-4 [&_figure>figcaption]:italic [&_figure>figcaption]:mb-3 [&_figure>figcaption]:underline [&_figure>figcaption]:text-sm dark:text-gray-300 whitespace-pre-line [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800 [&_h2]:text-3xl [&_h2]:py-3 [&_h2]:mt-4 [&_h2]:font-bold [&_h3]:text-3xl [&_h2]:py-3 [&_h3]:mt-4 [&_h3]:font-bold"/><br/> </div>
  ) } 
@@ -105,7 +102,7 @@ alt={xy.featuredImage.node.altText}
 <div className="bg-gray-200 dark:bg-black border max-w-2xl my-3 lg:my-0 lg:m-0 xl:my-3 m-auto xl:max-w-sm h-max"> 
 <h2 className="text-center p-3 text-3xl text-gray-700 dark:text-gray-200 font-bold pt-8">Still on the Topic </h2>
  <div className="my-4 xs:grid grid-cols-2 lg:block xl:grid justify-center mx-2"> 
-{trendsAll?.slice(13,16).map((xy,i)=>
+{trendsAll?.slice(13,15).map((xy,i)=>
 <div key={xy.title + ' ' + i} className="flex shadow px-2 py-4 justify-center"> 
 
 <div className="max-w-xs"> 
@@ -129,7 +126,7 @@ alt={xy.featuredImage.node.altText}
 <div className="xl:flex justify-center py-8"> 
 <div className="md:flex justify-center"> 
 <div className="mx-2 px-8"> 
-  {trendsAll?.slice(16,20).map((xy,i)=> 
+  {trendsAll?.slice(15,20).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="my-3 [&:not(:last-child)]:border-b">  
   <ul>
   <Link href={`/news/trending/${xy.slug}/`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 overflow-hidden text-ellipsis leading-9 dark:text-gray-300' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </li></Link> 

@@ -7,7 +7,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"  
 import Pagination from "../Pagination"
 import SlideFxn from "../SlideFxn"
-import { TopNews } from "@/app/types"
+import { NAPINewsProps, TopNews } from "@/app/types"
 type PostProps={
   title:string
   slug:string
@@ -36,11 +36,13 @@ const ArticlesX = ({
     business_news,
 eco_news,
 tech_news,
-health_news }:{environment_news:TopNews[],business_news:TopNews[],eco_news:TopNews[],health_news:TopNews[],tech_news:TopNews[]}) => {
+health_news,
+netflix_News
+}:{environment_news:TopNews[],business_news:TopNews[],eco_news:TopNews[],health_news:TopNews[],tech_news:TopNews[], netflix_News:NAPINewsProps[]}) => {
 
 const [posts, setPosts]=useState<PostProps[]>([]) 
 const [currPg, setCurrPg]=useState(1)
-const [postPerPage, setPostPerP]=useState(5)  
+const [postPerPage, setPostPerP]=useState(3)  
  
  const environment_items= environment_news?.concat(business_news)?.concat(eco_news)
 function decrement() {
@@ -54,7 +56,7 @@ setCurrPg(currPg - 1);
 
  useEffect(()=>{
    const fetchPs= async()=>{  
-     setPosts(prev=> [...prev, ...ycontent.slice(8)]) 
+     setPosts(prev=> [...prev, ...ycontent.slice(3)]) 
    }
    fetchPs()
  },[]) 
@@ -69,7 +71,8 @@ setCurrPg(currPg - 1);
  
 const [activeSet , setActiveSet]=useState(false)    
 const title_item=environment_items.map((ex)=>ex.contentTypeName)[0]
-
+const news_blog =netflix_News?.map((ex)=> ex?.node.naijaOnNetflix).map((xy)=> (xy?.nodes??{})).flat()
+ 
   return (
     <div> 
     <div className="bg-gray-50 dark:bg-black py-4 m-auto" style={{maxWidth:'1800px'}}> 
@@ -148,18 +151,18 @@ alt={xy?.featuredImage.node.altText}
 
 <div className="mx-1 h-max px-2 py-4 max-w-lg"><h2 onClick={()=> setActiveSet(prev => !prev)}className={!activeSet?"text-3xl font-bold":'text-3xl cursor-pointer'}>Africa</h2>
 <hr className={!activeSet?"bg-red-500 py-0.5 font-bold":''}/>
-{ tech_news.slice(0,5).map((xy, ix)=> 
+{ news_blog.slice(0,5).map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
-<Link href={`/news/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis leading-8 text-xl font-bold py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
-<Link href={`/news/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"/></Link>
+<Link href={`/netflix-naija/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis leading-8 text-xl font-bold py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
+<Link href={`/netflix-naija/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"/></Link>
  {/* <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small>  */}
- <Link href={`/topic/${xy.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500 hover:text-gray-300"><em>{xy.contentTags.nodes[0].name}</em></small> </Link>  
+ <Link href={`/topic/${xy.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500 hover:text-gray-300"><em>{xy.contentTags.nodes[0].name}</em></small> </Link> 
 </div>
 )}
 </div>
 <div className="mx-1 h-max px-2 py-4 max-w-lg"><h2 onClick={()=> setActiveSet(prev => !prev)}className={activeSet?"text-3xl font-bold":'text-3xl cursor-pointer'}>World</h2>
 <hr className={activeSet?"bg-red-500 py-0.5 font-bold":''}/>
-{ health_news.slice(0,5).map((xy, ix)=> 
+{ tech_news.concat(health_news).slice(0,5).map((xy, ix)=> 
 <div className="my-2 px-2 m-auto border-b border-l" key={xy?.title + ' ' + ix}>
 <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis font-bold leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title}</h2></Link>
 <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"/></Link>

@@ -342,7 +342,7 @@ const content_videos = await vids();
   return (
   <>
   <StructuredData schema={jsonLd} />
-    <div className="2xl:flex justify-center m-auto px-4 bg-white">
+    <div className="2xl:flex justify-center px-4 bg-white">
       
       {news_details.netflixCategories.nodes[0].slug ==="news"?
       <NaijaWikiNetflixNewsDetails

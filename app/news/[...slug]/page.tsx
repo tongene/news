@@ -8,9 +8,8 @@ import { InnerEdges } from "@/app/types";
 import NewsDetail from "@/components/NewsDetail"; 
  
 const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
-    async function sidePlusViews(){
-  
-           const res= fetch('https://content.culturays.com/graphql',{ 
+    async function sidePlusViews(slug:string){ 
+    const res= fetch('https://content.culturays.com/graphql',{ 
               method: "POST",
                headers: {
                    'Content-Type':'application/json'
@@ -69,8 +68,7 @@ if(!postX)return
         .catch(error => console.error('Error:', error));  
 
     const latestPosts= await wpx  
-  const latestStr=latestPosts?.pageInfo?.endCursor 
-
+  const latestStr=latestPosts?.pageInfo?.endCursor  
      const wprest = fetch('https://content.culturays.com/graphql', { 
         method: 'POST',
         headers:{
@@ -79,7 +77,7 @@ if(!postX)return
         body: JSON.stringify({
           query:`
           query WPPOSTS {                  
-             posts(first:4 ,after:"${latestStr}", where: {categoryName: "Latest"}) {
+             posts(first:4 ,after:"${latestStr}" , where: {notIn:["${slug}"],categoryName: "Latest"}) {
                 pageInfo {
               startCursor
               endCursor
@@ -129,7 +127,7 @@ if(!postX)return
          ` 
         
         })
-        , 
+        
         }).then(response => response.json()) 
         .then(data => data.data) 
         .catch(error => console.error('Error:', error)); 
@@ -857,7 +855,7 @@ contentNode(id: $id, idType: $idType) {
                     slug
                   }
                 }
-                      techCategories {
+                techCategories {
                   nodes {
                     name
                     slug
@@ -1144,9 +1142,11 @@ export async function generateMetadata(
   parent: ResolvingMetadata 
 ): Promise<Metadata> {  
   const slug =(await params).slug 
+  
   async function resolveContent(slug: string) {
   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) {
- const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/`);
+     if(!type)return
+ const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug[0]}/`);
   
     if (res?.title) {
       return { ...res, __typename: type };
@@ -1154,8 +1154,8 @@ export async function generateMetadata(
   }
   return null; 
 }
- const newsXdetail = await resolveContent(slug[0]); 
-  const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/`)
+ const newsXdetail = await resolveContent(slug); 
+  const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug}/`)
   const previousImages = (await parent).openGraph?.images || []
   const tags= news_details?.tags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
   const keyTags= newsXdetail?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
@@ -1214,18 +1214,21 @@ const ArticleDetailPage = async ({params}: Props) => {
 const slug =(await params).slug  
 async function resolveContent(slug: string) {
   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) { 
-    const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/`);
+    if(!type)return
+    const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}`);
     if (res?.title) {
       return { ...res, __typename: type };
     }
   }
   return null;
 }
-const newsXdetail = await resolveContent(slug[0]); 
-const news_detail= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}/`)
-const news_related = newsXdetail?.newsGroup?.related?.edges.map((tx:{node:{id:string}})=> tx.node.id)
 
-const sidebarItems=await sidePlusViews()
+const newsXdetail = await resolveContent(slug) 
+const news_detail= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug}`)
+const news_related = newsXdetail?.newsGroup?.related?.edges.map((tx:{node:{id:string}})=> tx.node.id)
+ 
+
+const sidebarItems=await sidePlusViews(news_detail?.id||newsXdetail?.id) 
 const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)       
 const news_outline=await postsOutline()     
 

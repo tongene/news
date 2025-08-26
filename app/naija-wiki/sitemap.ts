@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";  
 import { FeedProps } from "../types"; 
-import { newchars } from "./newCharHandle";
+import { newchars } from "../newCharHandle";
 //export const revalidate = 0;
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}` 
