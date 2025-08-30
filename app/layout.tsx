@@ -15,6 +15,7 @@ import Nav from "@/components/Nav";
 import SocialNav from "@/components/SociaNav"; 
 import { Suspense } from "react";
 import type { Metadata } from 'next' 
+import AuthButton from "@/components/header-auth";
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `https://${process.env.NEXT_PUBLIC_BASE_URL}/`
@@ -164,7 +165,7 @@ dangerouslySetInnerHTML={{
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange 
-        ><main className="m-auto"style={{maxWidth:'100%'}} ><div><Header/><SocialNav/><Nav /><Suspense fallback={<p>Loading...</p>}><TabNav /><SearchItems/></Suspense><div className="flex flex-col">{children}</div><Latests/><Footer/></div></main></ThemeProvider></body></html>
+        ><main className="m-auto"style={{maxWidth:'100%'}} ><div><Header/><SocialNav/><AuthButton/><Nav /><Suspense fallback={<p>Loading...</p>}><TabNav /><SearchItems/></Suspense><div className="flex flex-col">{children}</div><Latests/><Footer/></div></main></ThemeProvider></body></html>
   );
 }
  

@@ -9,39 +9,42 @@ export default function Avatar({ url, size, alternativeUrl }:{url:string, size:n
     async function downloadImage(path:string) { 
       try {
         const { data, error } = await supabase.storage.from('profile_avatars').download(path)
-        if (error) {
-          throw error
-        }
        
-        const url = URL.createObjectURL(data)
-        setAvatarUrl(url)
+        if (error) {
+         setAvatarUrl(alternativeUrl)
+           return
+         // throw error
+        }
+
+        const urlx = URL.createObjectURL(data)
+        setAvatarUrl(urlx)
       } catch (error) {
         console.log('Error downloading image: ', error)
       }
     }
 
     if (url) downloadImage(url)
-  }, [url, supabase]) 
+  }, [url, supabase])  
   return (
     <> 
-    {avatarUrl ? (
+    {alternativeUrl ? (
     <div className='h-screen w-screen'>
       
     <div 
     className='h-screen w-screen' 
     style={{
-      backgroundImage: `url(${avatarUrl||alternativeUrl})`, 
+      backgroundImage: `url(${alternativeUrl||avatarUrl})`, 
       backgroundRepeat: 'no-repeat',
       backgroundPosition: '',  
       backgroundColor: 'transparent',
       backgroundSize: 'cover', 
     }} 
-  />
+  />  
   <div className='relative h-full w-full bottom-full my-3 sm:my-1 lg:my-1'> 
-      <div 
+  <div 
     className="absolute rounded-bl-full border w-3/4 h-1/2 sm:h-4/5 left-1/3 lg:left-1/2 xl:h-full" 
     style={{
-      backgroundImage: `url(${avatarUrl|| alternativeUrl})`, 
+      backgroundImage: `url(${alternativeUrl||avatarUrl})`, 
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover', 
     }} 
@@ -53,4 +56,3 @@ export default function Avatar({ url, size, alternativeUrl }:{url:string, size:n
   </>
   )
 }
-

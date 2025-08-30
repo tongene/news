@@ -53,4 +53,3 @@ setSelectedImages={setSelectedImages}
 }
 
 export default AllComments
-

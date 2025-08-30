@@ -18,7 +18,7 @@ setBarState(prev=> !prev)
   b:"/news/"
 
 },{
-  a:"Latest",
+  a:"Daily",
   b:"/news/articles/"
 
 },  
@@ -45,7 +45,7 @@ const handleClick = (id:string)=> {
 
  return ( 
  <>
-<Suspense> <ConfirmModal /> </Suspense>  
+{/* <Suspense> <ConfirmModal /> </Suspense>   */}
 <header className="flex flex-wrap justify-between w-full relative"> 
 <div className="md:m-3 flex mt-6 z-20"> 
 <h1 className="head-forum font-bold text-7xl sm:mb-4 mt-4 my-4 md:mt-11 lg:mt-6 mb-4 mx-4 font-mono">
@@ -56,10 +56,10 @@ const handleClick = (id:string)=> {
 {pathname.split('/')[1] ? 
 <Link href={`/${pathname.split('/')[1]}/`}>
 <p className="text-sm mt-20 mb-2">
-Now viewing {pathname.split('/')[1]} section
+Viewing {pathname.split('/')[1]} section
 </p>
 </Link>
-:  <p className="text-sm mt-20 mb-2">Now Viewing Main</p> }
+:  <p className="text-sm mt-20 mb-2">Viewing Main</p> }
 </div>
 
 {barState&&

@@ -2295,25 +2295,4 @@ export type CineProps={
      }
   }
 }
-  // export type Cursors={
-  //   cursor: string 
-  //   node:{
-  //     title:string
-  //     slug:string
-  //     date:string
-  //     featuredImage:{
-  //       node:{
-  //         sourceUrl:string
-  //         caption:string
-  //         altText:string
-  //        }
-  //      }
-  //      author:{
-  //       node:{
-  //         name:string
-  //         slug:string 
-  //        }
-  //      }
-  //   }
-  // }
-  
+ 

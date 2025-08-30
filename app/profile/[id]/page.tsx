@@ -51,14 +51,13 @@ export async function generateMetadata(
   }
 }
 const UserPage =async({params}: Props) => {
-  const id =(await params).id
+    const id =(await params).id
   const supabase =await createClient()    
   const {
   data: { user }, 
   } = await supabase.auth.getUser();
 
-  const currentProfile = await getProfile(id)
- 
+ const currentProfile = await getProfile(id) 
   if(!currentProfile){
     notFound()
   }
@@ -99,16 +98,16 @@ const UserPage =async({params}: Props) => {
        "@id":`https://culturays.com/profile/${id}/`, 
      },
 
-     image:currentProfile.avatar_url, 
+     image:user?.user_metadata.avatar_url, 
      keywords:[`${currentProfile.fullname || currentProfile?.full_name}`],    
      
    };
   
   return (
     <div>
-      <StructuredData schema={jsonLd} />
+    <StructuredData schema={jsonLd} />  
       <Suspense>  
-   <Profile
+     <Profile
      profile={currentProfile}
      user={user as User}
      userPosts={userPosts} 

@@ -98,8 +98,7 @@ const [userProfile,setUserProfile]=useState<UserDataProps>({
   full_name: "",
   username: ""
 }) 
-const [avatar_url, setAvatarUrl] = useState(null)
-const [password, setPassword] = useState(null)
+ 
 const { pending, action } = useFormStatus();
 const [editId,setEditId]=useState('') 
 const [userActions,setUserActions]=useState(false) 
@@ -293,7 +292,7 @@ getProfile()
     return ()=> clearTimeout(clearNotify) 
   }
  
-
+   
  const uploadAvatar = async (event:React.ChangeEvent<HTMLInputElement>) => {
   try {
     setUploading(true)
@@ -508,9 +507,7 @@ const deletePostAction=async (id_:string| number )=>{
               }  
             
           
-        },[val, searchParams, router ])
-
-
+        },[val, searchParams, router ])  
       async function resetImg(imgs:UserPostProps,img:string) {
         const supabase= createClient()
         setImgZoom({
@@ -602,7 +599,7 @@ const deletePostAction=async (id_:string| number )=>{
       <div style={{ width: 150 }} className="text-center w-1/2 p-2 relative cursor-pointer">
       <div className="border-4 p-5"> 
         <FontAwesomeIcon icon={faUpload} className="text-gray-700" />           
-        <label className="button primary block text-lg cursor-pointer" htmlFor="single">
+        <label className="button text-gray-700 block text-lg cursor-pointer" htmlFor="single">
           {uploading ? 'Uploading ...' : 'Upload'}
         </label>
         </div>
@@ -626,7 +623,7 @@ const deletePostAction=async (id_:string| number )=>{
  <div className="relative top-96 mx-2" ref={updaterRef}> 
   {profileUpdater?( 
 
-  <div className="absolute w-max z-40 px-8 shadow-2xl mx-2 bg-gray-500 rounded py-6 top-0"> 
+  <div className="absolute w-max z-50 px-8 shadow-2xl mx-2 bg-gray-500 rounded py-6 top-0"> 
 <div className="p-1 text-xl m-1 flex justify-center text-gray-300">
 <label htmlFor="email" className="m-1 p-3">Email:</label>
 <input id="email" type="text" className="bg-transparent m-1" value={user?.email} disabled />
@@ -725,7 +722,7 @@ disabled={loading}
  </div>
    <Avatar
    alternativeUrl={user.user_metadata.avatar_url}
-url={userProfile.avatar_url}
+url={profile.avatar_url}
 size={150}
 /> 
   
@@ -749,7 +746,7 @@ size={150}
 null
 }  
  </div> 
- <div className="absolute left-0 right-0 m-auto p-4 cursor-pointer w-3/4 bottom-full z-50 bg-gray-900 bg-opacity-90"> 
+ <div className="absolute left-0 right-0 m-auto p-4 cursor-pointer w-3/4 bottom-full z-40 bg-gray-900 bg-opacity-90"> 
   <div className="flex justify-center my-2 px-2"> 
  
   <h2 className={!userProfile.avatar_url &&!user?.user_metadata.avatar_url?`text-gray-600 text-2xl sm:text-4xl m-1 font-bold p-4 font-bold ${chosenFont}`:` ${chosenFont} text-2xl sm:text-4xl m-1 font-bold p-4 text-white font-bold`}>{userProfile.fullname || user?.user_metadata.full_name}</h2>

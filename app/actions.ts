@@ -135,7 +135,7 @@ export const resetPasswordAction = async (formData: FormData) => {
 export const signOutAction = async () => {
   const supabase = await createClient();
   await supabase.auth.signOut();
-  return redirect("/sign-in/");
+  //return redirect("/sign-in");
 };
 export const handleOauthLogin = async () => {
   const origin = (await headers()).get("origin");
@@ -146,7 +146,7 @@ export const handleOauthLogin = async () => {
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: `${origin}/auth/callback/` }
+    options: { redirectTo: `${origin}/auth/callback` }
   });
 
   if (error instanceof Error) {

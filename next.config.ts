@@ -248,9 +248,11 @@ const nextConfig: NextConfig ={
  
  
 trailingSlash: true,
-experimental: {
-  taint: true, 
-},
+// skipTrailingSlashRedirect: true,
+// experimental: {
+//   taint: true, 
+
+// },
 
 };
  

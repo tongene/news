@@ -1,7 +1,7 @@
 import { FormMessage, Message } from "@/components/form-message";
 import Link from "next/link";
-import LoginForm from "./form";
- 
+import LoginForm from "./form"; 
+
 export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
   if ("message" in searchParams) {
@@ -11,7 +11,7 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
       </div>
     );
   } 
-
+ 
   return (
   
     <div className='flex flex-col items-center justify-center w-full py-6'> 

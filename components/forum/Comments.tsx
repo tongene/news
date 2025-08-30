@@ -878,4 +878,3 @@ setSelectedImages={setSelectedImages}
   )
  }
 export default CommentX
-

@@ -295,15 +295,7 @@ position: relative;
   
   }
   
-  @media (min-width: 640px) {
-     .x-main-x-slider {
-    width: 600px; /* md */
-  }
-  .main_slider {
-    width: 600px;
-  }
-
-}
+ 
 @media (min-width: 768px) {
 .home_grid:after {
     box-shadow: inset 0 -50px 100px 0 #504f4f;

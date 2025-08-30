@@ -21,7 +21,7 @@ Urban Naija News</h2></Link>
 <li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/news/'aria-label="News">News</Link></li>
 <li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/forum/'>Forum</Link></li>  
 <li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/naija-events/'>Naija Events</Link></li> 
-<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/daily/'>Dailys</Link> </li>  
+ <li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/news/articles/'>Daily</Link> </li> 
 </ul> 
   <ContactUs />  
 

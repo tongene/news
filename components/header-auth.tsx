@@ -4,20 +4,17 @@ import { createClient } from "@/utils/supabase/server";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { faUser } from "@fortawesome/free-solid-svg-icons"; 
-import SignOutBtn from "./SignOutBtn";   
-import { headers } from "next/headers"; 
+import { signOutAction } from "@/app/actions";
+ 
 export default async function AuthButton() {
-  const supabase = await createClient();
-  const headersList = await headers() 
-  const router = headersList?.get('x-url') ||''
+  const supabase = await createClient(); 
   const { 
     data: { user },
   } = await supabase.auth.getUser();
 
  
   return user ? (
-  <> 
- 
+  <>  
  <div className="flex flex-col items-center pb-2 leading-none"> 
 <div className="flex items-center"> 
 <Link href={`/profile/${user.id}/`}><p className="m-1 text-lg hover:scale-105">Hey, {user.user_metadata.full_name}!</p></Link>  
@@ -40,7 +37,13 @@ export default async function AuthButton() {
  alt={user.user_metadata.full_name}
  /> 
  </div></Link> }
- <SignOutBtn rtx={router}/>   
+ <div>
+    <div className="m-1 flex m-auto justify-center">  
+       <form className="m-1 flex m-auto justify-center">  
+    <button formAction={signOutAction} className="button block m-1 ml-2 rounded-md no-underline bg-btn-background text-xl hover:scale-105 mt-5" type="submit"> Sign out </button> 
+       </form>
+</div>
+ </div>   
  
 </div>
 </div> 
@@ -61,4 +64,3 @@ className="flex rounded-md no-underline bg-btn-background hover:bg-btn-backgroun
     </>
   );
 }
-
