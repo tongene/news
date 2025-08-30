@@ -1,9 +1,24 @@
 import NaijaEvents from '@/components/events/NaijaEvents'
 import StructuredData from '@/components/StructuredData'
 import { createClient } from '@/utils/supabase/server'  
-import { BlogPosting, SpecialAnnouncement, WebPage, WithContext } from 'schema-dts'
- 
+import { BlogPosting, WithContext } from 'schema-dts'
+ import { processImgs } from "@/utils/process_imgs";
+ import { replaceSpecialCharacters } from "@/utils/replacechars";
+import { events3Details, getNaijaEvents3 } from './eventData/eventContent';
+import { CronJob } from 'cron';
 //export const revalidate = 10
+ interface ObjType { 
+  title: string[];
+  slug:string  
+  img_url: string
+   desc: string[]
+   day: string[]
+   loc_slug: string  
+   genre: string 
+   genre_slug:string 
+   organizer:string
+   location:string 
+}
 const Events_Naija = async() => { 
 const forumEvents =async ()=>{
 const supabase =await createClient() 
@@ -49,7 +64,95 @@ const jsonLd:WithContext<BlogPosting>={
     }
   }
 }
+  const dailyEv3 =async()=>{ 
+      const eventExp= await getNaijaEvents3();
+      const result= await Promise.all(eventExp?.titleAObj.map(async( one:{atitle:string})=> {  
+     const evData = await events3Details(one.atitle) 
+      return evData 
+       })) 
  
+       const grouped: ObjType = { 
+         title: [], 
+         slug:'', 
+         img_url:'', 
+         desc:[], 
+         day:[], 
+         loc_slug:'', 
+         genre:'',
+         genre_slug:'' ,
+         location:'',
+         organizer:''
+       };
+        
+       const data = result.map((ex)=> ex.data)
+  
+      for (const ez of data ) {      
+        for (const ex of ez ) {
+          if (ex.title !== undefined){
+          grouped['title']||=[]
+         grouped.title=ex.title.replace(/\t/g, '').replace(/\n/g, '')
+          
+        }
+        if (ex.slug !== undefined){ 
+         grouped.slug=replaceSpecialCharacters(ex.slug.replace(/’/g, "-").replace(/&/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/ /g,"-") )  
+          
+        } 
+        
+       //&& (ex.imgMime.includes('.jpg')|| ex.imgMime.includes('.png'))
+        if (ex.img !== undefined ){ 
+          const imgMime  =await processImgs(ex.img, 'event_avatars') 
+          grouped.img_url= imgMime as string 
+        
+        } 
+        if (ex.organizer !== undefined ){
+          grouped.organizer=ex.organizer  
+           
+         }
+         if (ex.desc !== undefined ){
+          grouped.desc=ex.desc  
+           
+         }
+         if (ex.day !== undefined ){ 
+          grouped.day=ex.day 
+            
+         }
+            if (ex.venSlug !== undefined ){ 
+          grouped.loc_slug=replaceSpecialCharacters( ex.venSlug.replace(/’/g, "-").replace(/&/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/ /g,"-").replace(/,/g,"-") )  
+           
+         } 
+       
+         if (ex.gnr !== undefined ){ 
+          grouped.genre =replaceSpecialCharacters(ex.gnr.replace(/’/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/&/g, "-") )
+           
+         } 
+         if (ex.gnrSlug !== undefined ){ 
+          grouped.genre_slug=replaceSpecialCharacters(ex.gnrSlug.replace(/’/g, "-").replace(/&/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/ /g,"-").replace(/,/g,"-"))  
+           
+         } 
+       
+         if (ex.ven !== undefined ){ 
+          grouped.location=replaceSpecialCharacters(ex.ven.replace(/’/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/&/g, "-"))
+           
+         } 
+        } 
+    
+         const supabase =await createClient()
+         const { data, error } = await supabase
+           .from('events')
+           .upsert([grouped], { onConflict: 'slug' })
+           .select();                     
+         if (error) { 
+           console.error('Error inserting items:', error);
+         } 
+      
+      }  
+     }
+         CronJob.from({
+      cronTime: '10 8 * * *',  
+      onTick: dailyEv3(),
+      start: true,
+      timeZone: 'Africa/Lagos'
+      });
 return ( 
 <> 
 <StructuredData schema={jsonLd} />

@@ -12,18 +12,6 @@ import { BlogPosting, WebSite, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";   
 import { Suspense } from "react"; 
 
- interface ObjType { 
-  title: string[];
-  slug:string  
-  img_url: string
-   desc: string[]
-   day: string[]
-   loc_slug: string  
-   genre: string 
-   genre_slug:string 
-   organizer:string
-   location:string 
-}
 interface CineType { 
   title: string 
   img_url: string
@@ -31,92 +19,9 @@ interface CineType {
    url:string 
    release_date:string 
    dur:string 
-}
-  
+} 
  
-  const dailyEv3 =async()=>{ 
-     const eventExp= await getNaijaEvents3();
-     const result= await Promise.all(eventExp?.titleAObj.map(async( one:{atitle:string})=> {  
-    const evData = await events3Details(one.atitle) 
-     return evData 
-      })) 
-
-      const grouped: ObjType = { 
-        title: [], 
-        slug:'', 
-        img_url:'', 
-        desc:[], 
-        day:[], 
-        loc_slug:'', 
-        genre:'',
-        genre_slug:'' ,
-        location:'',
-        organizer:''
-      };
-       
-      const data = result.map((ex)=> ex.data)
  
-     for (const ez of data ) {      
-       for (const ex of ez ) {
-         if (ex.title !== undefined){
-         grouped['title']||=[]
-        grouped.title=ex.title.replace(/\t/g, '').replace(/\n/g, '')
-         
-       }
-       if (ex.slug !== undefined){ 
-        grouped.slug=replaceSpecialCharacters(ex.slug.replace(/’/g, "-").replace(/&/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/ /g,"-") )  
-         
-       } 
-       
-      //&& (ex.imgMime.includes('.jpg')|| ex.imgMime.includes('.png'))
-       if (ex.img !== undefined ){ 
-         const imgMime  =await processImgs(ex.img, 'event_avatars') 
-         grouped.img_url= imgMime as string 
-       
-       } 
-       if (ex.organizer !== undefined ){
-         grouped.organizer=ex.organizer  
-          
-        }
-        if (ex.desc !== undefined ){
-         grouped.desc=ex.desc  
-          
-        }
-        if (ex.day !== undefined ){ 
-         grouped.day=ex.day 
-           
-        }
-           if (ex.venSlug !== undefined ){ 
-         grouped.loc_slug=replaceSpecialCharacters( ex.venSlug.replace(/’/g, "-").replace(/&/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/ /g,"-").replace(/,/g,"-") )  
-          
-        } 
-      
-        if (ex.gnr !== undefined ){ 
-         grouped.genre =replaceSpecialCharacters(ex.gnr.replace(/’/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/&/g, "-") )
-          
-        } 
-        if (ex.gnrSlug !== undefined ){ 
-         grouped.genre_slug=replaceSpecialCharacters(ex.gnrSlug.replace(/’/g, "-").replace(/&/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/ /g,"-").replace(/,/g,"-"))  
-          
-        } 
-      
-        if (ex.ven !== undefined ){ 
-         grouped.location=replaceSpecialCharacters(ex.ven.replace(/’/g, "-").replace(/\t/g, '-').replace(/\n/g, '-').replace(/&/g, "-"))
-          
-        } 
-       } 
-   
-        const supabase =await createClient()
-        const { data, error } = await supabase
-          .from('events')
-          .upsert([grouped], { onConflict: 'slug' })
-          .select();                     
-        if (error) { 
-          console.error('Error inserting items:', error);
-        } 
-     
-     }  
-    }
    const dailyWiki =async()=>{
         const silverBTitles= await scrapeSilverBird()
         const silverB_titles = silverBTitles.filter((xy)=> xy.title !==undefined).map((ex)=> ex.title)  
@@ -476,21 +381,14 @@ query WPPOSTS  {
      }
 
 const Home=async() =>{  
-const latestPosts=await newsByLatest()  
-const response2 = await nextResp() 
-// const postData= response2.map((xy:{posts:{edges:InnerEdges[]}})=> xy.posts.edges).flat() 
-  
-const endX= response2.pageInfo.endCursor
-const news_outline=await postsOutline()
-const posts_notIn_newsPosts= await nextNewsPosts(endX) 
-const livexnews =await liveResp() 
+ const latestPosts=await newsByLatest()  
+  const response2 = await nextResp() 
+// const postData= response2.edges.map((xy:{node:InnerEdges})=> xy).flat() 
 
-     CronJob.from({
-      cronTime: '10 8 * * *',  
-      onTick: dailyEv3(),
-      start: true,
-      timeZone: 'Africa/Lagos'
-      });
+ const endX= response2.pageInfo.endCursor
+ const news_outline=await postsOutline()
+ const posts_notIn_newsPosts= await nextNewsPosts(endX) 
+  const livexnews =await liveResp()  
     
          CronJob.from({
           cronTime: '10 8 * * *',  
@@ -536,19 +434,18 @@ const livexnews =await liveResp()
   
 return (
     <div> 
-  <StructuredData schema={jsonLd} /> 
-    <Suspense fallback={<div>Loading ...</div>}>
+ <StructuredData schema={jsonLd} />   
+  <Suspense fallback={<div>Loading ...</div>}>
        <MainSlider 
      livesNews={livexnews}
      latestPosts={latestPosts.posts.edges}
      /> 
-      
-      <Main 
+     <Main 
     top_PostsData={response2.edges} 
     news_outline={news_outline}
     posts_notIn_newsPosts={posts_notIn_newsPosts.posts.edges}  
   
-    />  </Suspense>   
+    />  </Suspense>  
  </div>
   ); 
 }
