@@ -11,47 +11,38 @@ const resend = new Resend(process.env.RESEND_API_KEY);
  
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+ const body = await request.json();
     const { title, excerpt, image, url } = body;
+
     if (!title || !excerpt) {
-      return NextResponse.json(
-        { message: 'Missing title or excerpt' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Missing title or excerpt' }, { status: 400 });
     }
 
-    // Optional: Verify secret header for security (recommended)
     const wpSecret = request.headers.get('x-wp-secret');
     if (wpSecret !== process.env.WP_SECRET) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
-const supabase = await createClient()
-const { data: newsletter, error } = await supabase
-  .from('newsletter')
-  .select('email, name')
-  .eq('unsubscribed', false);
-  
 
-if (error) {
-console.error('Failed to fetch newsletter subscribers:', error);
-return;
-  }
+    const supabase = await createClient();
+    const { data: newsletter, error } = await supabase
+      .from('newsletter')
+      .select('email, name')
+      .eq('unsubscribed', false);
 
-  if (!newsletter || newsletter.length === 0) {
-    console.warn('No subscribers found.');
-    return;
-  }
+    if (error) {
+      console.error(error);
+      return NextResponse.json({ message: 'Failed to fetch subscribers' }, { status: 500 });
+    }
 
-  console.log(`📨 Sending personalized emails to ${newsletter.length} subscribers...`);
+    if (!newsletter || newsletter.length === 0) {
+      return NextResponse.json({ message: 'No subscribers found' }, { status: 200 });
+    }
 
-  for (const person of newsletter) {
-    const { email, name} = person;
-
-    if (!email) continue;
-
-    const safeName = name || 'there';
- 
-     await resend.emails.send({
+    for (const person of newsletter) { 
+      const { email, name } = person;
+          const safeName = name || 'there';
+      if (!email) continue;
+       await resend.emails.send({
         from: 'News Headlines Today <contact@culturays.com>',
         to: email,
         replyTo: 'contact@culturays.com',
@@ -82,13 +73,11 @@ return;
 `, 
       });
 
-   
-  }
+    }
+ 
 
-  console.log('📬 All personalized emails processed.');
-   // await sendPersonalizedNewsletter(title, excerpt);
-
-    return NextResponse.json({ message: 'Newsletter sent' }, { status: 200 });
+  console.log(`📨 Sending personalized emails to ${newsletter.length} subscribers...`); 
+ return NextResponse.json({ message: 'Newsletter sent' }, { status: 200 })as NextResponse;
   } catch (error) {
     console.error('Error sending newsletter:', error);
     return NextResponse.json(
