@@ -59,8 +59,14 @@ const nextConfig: NextConfig ={
         source: '/news/article/:path+',
         destination: '/news/:path*',
         permanent: true,
-      } ,
-        
+      }
+       //  ,
+      //      {
+      //   source: '/forum/post/:path*',
+      //   destination: '/post/:path*', 
+      //   permanent: true,
+      // }
+      ,
       {
         source: '/news/economy/',
         destination: '/news/articles/', 

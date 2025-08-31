@@ -495,14 +495,14 @@ related={related}
 width={80} 
 height={80}
 className='rounded-full'
-alt={postData?.user_email as string}/></Link>:
+alt={postData?.user_email as string||'User Image'}/></Link>:
 <Link href={`/profile/${postData?.user_id}`}><Image src={'/culturays.png'} 
 width={80} 
 height={80} 
 className='rounded-full'
-alt={postData?.user_email as string}/></Link> }  
+alt={postData?.user_email as string||'User Image'}/></Link> }  
 <Link href={`/profile/${postData?.user_id}/`}><h3 className='p-3 text-lg font-bold'>{postData?.user_email} </h3></Link>
-</div> 
+</div>  
  
 {!editId ?
 <div ref={replyRef}> 

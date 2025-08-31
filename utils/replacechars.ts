@@ -7,8 +7,12 @@ export function replaceSpecialCharacters(str: string )   {
       'ó': 'o', 'ò': 'o', 'õ': 'o', 'ô': 'o', 'ö': 'o',
       'ú': 'u', 'ù': 'u', 'û': 'u', 'ü': 'u',
       'ç': 'c', 'ñ': 'n',
-      '%20': ' ', '@': '', '#': '', '!': '', ',': '', '.': '', '_': ' ',  
+      '%20': ' ', '@': '', '#': '', '!': '', ',': '', '.': '', '_': ' ', '|': ''  
     };
     
     return str.split('').map(char => charMap[char] || char).join('') ;
   }
+
+  export function sanitizeInput(input:string) {
+  return input.replace(/[^a-zA-Z0-9 ]/g, ''); 
+}

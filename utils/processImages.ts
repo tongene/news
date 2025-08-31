@@ -44,7 +44,7 @@ const basename = path.basename(pathname || '');
 }
 
 
-   export async function processSbImages(url:string ) { 
+   export async function processSbImages(url:string ) {  
  if(url=== undefined )return
   const fileName = await getFileNameFromSilverBirds(url) as string
         const fileBuffer:any = await downloadSBImage(url)

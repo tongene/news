@@ -204,7 +204,7 @@ export async function generateMetadata(
     },
     openGraph: {
       title: `Urban Naija | Live News ${news_details?.title||'' } `, 
-       url: `https://culturays.com/news/live/${slug}/`,
+       url: `https://culturays.com/news/live/${slug[0]}/`,
       siteName: 'Urban Naija',
       images: [{url:news_details?.featuredImage.node.sourceUrl, width: 800,
        height: 600, ...previousImages}],
@@ -214,7 +214,7 @@ export async function generateMetadata(
 
     },
      alternates: {
-    canonical:  `https://culturays.com/news/live/${slug}/`,
+    canonical:  `https://culturays.com/news/live/${slug[0]}/`,
  
   },
   } 

@@ -21,20 +21,20 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata ): Promise<Metadata> {
     const slug =(await params).slug
+    const slugStr=slug[slug.length - 1]
   const postView = async () => { 
     const supabase =await createClient();  
     const { data:post, error} = await supabase
     .from('posts')
     .select('*') 
-    .eq('id', slug.slice(-1) )
-    .single() 
-    if (error) {
-  
-    console.error('Error fetching posts:', error );
+    .eq('id', slugStr )
+    .single()  
+    if (error) {   
     return;
     }
     return post
     }
+    
    const post = await postView()  
   const previousImages = (await parent).openGraph?.images || []
     
@@ -45,24 +45,24 @@ export async function generateMetadata(
       card: 'summary_large_image',
       title: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),
       description: post?.title || post?.article_title?.toUpperCase().replace(/-/g," "),  
-      images:[`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/posts_imgs/${post?.files[0]}`,...previousImages],  
+     images:[`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/posts_imgs/${post?.files[0]}`,...previousImages],  
     }, 
-    openGraph: { 
-      url: `https://culturays.com/forum/post/${slug}/${post.id}/`,
+ openGraph: { 
+ url: `https://culturays.com/forum/post/${slug[0]}/${post.id}/`,
       siteName: 'Urban Naija',
       images: [{
-      url: post.files,
+      url:`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/posts_imgs/${post?.files[0]}`,
       width: 800,
       height: 600,
       ...previousImages,  
-    } ],
+} ],
        
       type: "article",
       publishedTime:post?.created_at,
 
-    },
+ },
       alternates: {
-    canonical:  `https://culturays.com/forum/post/${slug}/`,
+    canonical:  `https://culturays.com/forum/post/${slug[0]}/${post.id}/`,
  
   },
   
@@ -77,13 +77,13 @@ const PostPage =async ({params}: Props) => {
   } = await supabase.auth.getUser(); 
   
   const slug =(await params).slug
- 
+  const slugStr=slug.slice(-1)[0]
 const postView = async () => { 
   const supabase =await createClient();  
   const { data:post, error} = await supabase
   .from('posts')
   .select('*') 
-  .eq('id', slug.slice(-1) )
+  .eq('id',slugStr)
   .single()
 
   if (error) {
@@ -147,7 +147,7 @@ return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMon
 const jsonLd:WithContext<DiscussionForumPosting> = {
   '@context': 'https://schema.org',
   '@type': 'DiscussionForumPosting', 
-  "@id":`https://culturays.com/forum/post/${slug}/${post.id}/`,
+  // "@id":`https://culturays.com/forum/post/${slug[0]}/${post.id}/`,
   "headline":post?.title||post?.article_title?.toUpperCase().replace(/-/g," "),
   "author": {
     "@type": "Person",
@@ -156,10 +156,10 @@ const jsonLd:WithContext<DiscussionForumPosting> = {
  
  };
  
-
+ 
 return (
 <div> 
-<StructuredData schema={jsonLd} />
+ <StructuredData schema={jsonLd} />  
  <Suspense> <Post  
   postData={post} 
   initiaComms={initiaComms}

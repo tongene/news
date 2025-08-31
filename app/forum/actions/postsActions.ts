@@ -1,5 +1,6 @@
 "use server" 
 import { CommentProps, InitialComments, InitialPosts, PostProps, UserPostProps  } from "@/app/types";
+import { sanitizeInput } from "@/utils/replacechars";
 import { createClient } from "@/utils/supabase/server" ;
 import { PostgrestError } from "@supabase/supabase-js";
 import nlp from "compromise/three"; 
@@ -34,45 +35,23 @@ export const getUserPosts = async (offset:number,limit:number, id:string) => {
       if(err) return
     } 
 }
-
-
-const postView = async () => { 
-  const headersList = new URL((await headers())?.get('x-url')||'')  
-  const params = headersList
-    // const searchParams = headersList.get('searchParams')
-  const { searchParams } = new URL(headersList);
-  const id= searchParams?.get("id")
-  const pathname=headersList.pathname 
-     
- const confirmParam= searchParams?.get("confirm")
-  const supabase =await createClient();  
-  const { data:post, error} = await supabase
-  .from('posts')
-  .select('*') 
-  .eq('id', params )
-  .single() 
-  if (error) {
-
-  console.error('Error fetching posts:', error );
-  return;
-  }
-  return post
-  }
+ 
 
 export const createPost = async (formData: FormData, titleX:string) => { 
   const supabase =await createClient();
   const user =await userObj()
 
-   const title = formData.get('title') 
+   const title = formData.get('title') as string
    const story = formData.get('story') 
    const family = formData.get('family')
    const work = formData.get('work')
    const school = formData.get('school')  
    const friends = formData.get('friends')
    const folktale = formData.get('folktale')
-   const entertainment = formData.get('entertainment')
+   const entertainment = formData.get('entertainment') 
    const files = formData.getAll("files");
-   const slug=(title as string)?.trim()?.toLowerCase().replace(/ /g,"-")
+   const slug=sanitizeInput(title?.trim()?.toLowerCase() )
+ 
    const storyX =(story as string)?.split(' ').filter((ex:string)=> !ex.includes('#')).join(' ')
   const genre=[{
   family,
@@ -146,7 +125,7 @@ export const createPost = async (formData: FormData, titleX:string) => {
     tags:[hashNo], 
    files: allFiles, 
    is_approved:false,
-   slug,
+   slug:slug.replace(/ /g,"-").slice(0,40),
    avatar_url: user?.user_metadata.picture,
    user_email:user?.email,
     genre: genreList,

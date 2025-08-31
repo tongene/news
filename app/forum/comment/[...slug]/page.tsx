@@ -45,7 +45,7 @@ export async function generateMetadata(  { params }: Props,
       type: "article",
       publishedTime:comment?.created_at, 
       siteName: 'Urban Naija News', 
-      images: [{url:comment?.files[0],
+      images: [{url:`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/posts_imgs/${comment?.files[0]}`,
         ...previousImages,
           width: 800,
           height: 600

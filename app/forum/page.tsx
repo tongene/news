@@ -88,7 +88,7 @@ const jsonLd:WithContext<DiscussionForumPosting>={
   }
 }
 
-
+ 
 return ( 
 <div> 
   <StructuredData schema={jsonLd} />

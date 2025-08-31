@@ -83,10 +83,10 @@ const { ref, inView } = useInView()
     //const titleX= titlesX.split('-').slice(3,-1).join('-')
  
     useEffect(() => {
-      const xIntialPosts = initialPosts.filter((xy)=> xy.article_title!==null) 
-       const titleXIntialPosts = initialPosts.filter((xy)=> xy.article_title===null)
+      const xIntialPosts = initialPosts.filter((xy)=> xy.article_title)  
+       const titleXIntialPosts = initialPosts.filter((xy)=> !xy.article_title )
       const title_X=xIntialPosts.filter((xy)=>xy.article_title===topic)
-      const titleXIntialPosts2 = initialPosts.filter((xy)=> xy.title!==null) 
+      const titleXIntialPosts2 = initialPosts.filter((xy)=> xy.title) 
       const btTitlesA=xIntialPosts.concat( titleXIntialPosts2) 
      
       if(!topic){
@@ -94,15 +94,15 @@ const { ref, inView } = useInView()
       }else{
            setScrolledPosts(title_X )
       } 
-     
-      }, [topic]);  
     
+      }, [topic]);  
+
 
     const loadMorePosts = async () => {
      const apiP =await postsItems(startScroll, count)??[]
-     const apiXIntialPosts = apiP.filter((xy)=> xy.article_title!==null)
+     const apiXIntialPosts = apiP.filter((xy)=> xy.article_title)
      const title_X=apiXIntialPosts.filter((xy)=>xy.article_title===topic)
-      const apiXIntialTitles = apiP.filter((xy)=> xy.article_title===null)
+      const apiXIntialTitles = apiP.filter((xy)=> !xy.article_title )
     if(apiP &&apiP?.length>0){
       if(!topic){ 
         setScrolledPosts([...scrolledPosts, ...apiXIntialTitles])
@@ -127,7 +127,7 @@ const { ref, inView } = useInView()
       
     }, [inView])
  
-    const opTitles=scrolledPosts?.sort(sortAscending)  
+    const opTitles=scrolledPosts?.sort(sortAscending) 
     function enlargeImgs(i:number, ix: number) {
       const files = (scrolledPosts[i]?.files ??[]).filter((xy:string)=>!xy?.includes('undefined'))
           setImgIndex(files[ix])
@@ -415,12 +415,12 @@ scrolledPosts={scrolledPosts}
 setScrolledPosts={setScrolledPosts}
 setUserActions={setUserActions}
 setEditId={setEditId}
-  /> 
- 
-    {val && 
+  />
+  {val && 
    <p className="absolute w-full top-0 left-0 text-center text-white p-3 bg-gray-400">
     {val} 
     </p>}
+
     </div> 
   </div> 
   <div className="lg:w-96">
@@ -431,21 +431,19 @@ setEditId={setEditId}
  <hr />
      {!topic&& 
     <main className="bg-mainBg py-6">  
-<div className={opTitles.length===0?'hidden':"block relative top-20 z-30 w-max"}style={arrowOpens}onClick={rotateArrow}>
-<div >  
-  <div className="flex border-b border-gray-200 hover:bg-gray-900 dark:bg-gray-800 w-80 bg-white" > 
-    {gnrItx.length>0 && <h2 className="text-2xl font-bold dark:bg-gray-800 bg-white  text-center text-2xl font-bold dark:bg-gray-800 px-5 py-3 bg-white w-full">Articles</h2>} 
- <div className="relative "> 
-{titleOpens&& <p className="text-2xl p-4 cursor-pointer w-max hover:scale-100 hover:bg-gray-400 dark:bg-gray-800 hover:dark:bg-gray-900" > 
+<div className={opTitles.length===0?'hidden':"block relative top-20 z-30 w-max"}style={arrowOpens}onClick={rotateArrow}>  
+
+  <div className="flex hover:bg-gray-900 dark:bg-gray-800 w-80 bg-white justify-end" > 
+    {gnrItx.length>0 && <h2 className="text-2xl font-bold dark:bg-gray-800 bg-white text-center text-2xl font-bold dark:bg-gray-800 px-5 py-3 bg-white w-full">Articles</h2>} 
+ <div className="w-max ml-full"> 
+{titleOpens&& <p className="text-2xl p-4 cursor-pointer w-max hover:scale-100 hover:bg-gray-400 dark:bg-gray-800 hover:dark:bg-gray-900 border-b border-gray-200" > 
 <FontAwesomeIcon icon={faAngleRight}/>
 </p> }
- {!titleOpens&&<p className={`text-2xl p-4 cursor-pointer w-max hover:bg-gray-400 dark:bg-gray-800 hover:dark:bg-gray-900 hover:scale-100`} > 
+ {!titleOpens&&<p className={`text-2xl p-4 cursor-pointer w-max hover:bg-gray-400 dark:bg-gray-800 hover:dark:bg-gray-900 hover:scale-100 border-b border-gray-200`} > 
 <FontAwesomeIcon icon={faAngleLeft}/>
 </p> }
  </div>
-  </div>
-
-   </div>
+  </div> 
 
   <div className='absolute'>
   {gnrItx.map((vx, i)=>vx.article_title &&
@@ -458,14 +456,13 @@ setEditId={setEditId}
 </div>
  
  {userActions &&<LoginModal setUserActions={setUserActions}/>}  
-    {opTitles?.filter((xy)=>xy.title!==null).filter((xy)=>xy.article_title===null).map((xx , i)=> (
-       xx.slug &&   
+    {opTitles.map((xx , i)=> (
+       xx.slug &&(xx.article_title===null || xx.article_title==='')&&
     <div key={xx.title +  ' ' + i }className="sm:max-w-lg md:max-w-xl m-auto p-4 border my-1 border-t-4 border-gray-900 hover:bg-gray-900 cursor-pointer">  
    <div className="w-full overflow-hidden md:block justify-center" >
-    
+   
   <div ref={createRef}> 
-{xx?.title&&!xx?.article_title&&  <Link href={`/forum/post/${xx.slug}/${xx.id}/`}><h3 className="text-white opacity-70 text-2xl cursor-pointer px-4 text-center underline">{xx?.title}</h3></Link>}
- 
+{xx?.title&&!xx?.article_title&& <Link href={`/forum/post/${xx.slug}/${xx.id}/`}><h3 className="text-white opacity-70 text-2xl cursor-pointer px-4 text-center underline">{xx?.title}</h3></Link>} 
    <p className="text-white font-bold text-center text-lg my-1">Genres:</p>
    {xx?.genre?.slice(0,3)?.map((xy, vi)=>
    <div className="text-white text-center" key={vi}>

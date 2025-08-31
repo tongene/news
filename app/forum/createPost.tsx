@@ -8,6 +8,7 @@ import { createPost, postEdit } from "./actions/postsActions";
 import { usePathname, useRouter } from "next/navigation";
 import { type User } from '@supabase/supabase-js'
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { sanitizeInput } from "@/utils/replacechars";
 interface SetPostProps {
   setPost: React.Dispatch<React.SetStateAction<PostProps>>; 
   post:PostProps
@@ -37,14 +38,15 @@ const CreateForm: React.FC<SetPostProps>= ({ scrolledPosts, setScrolledPosts, po
 }, [createPost, postEdit]);
 
 const createAction= async(formData:FormData)=>{
+ 
 if(!user){
 setUserActions(true)
 }else{ 
 const data= await createPost(formData, titleX)   
-const title = formData.get('title')
+const title = formData.get('title')as string
 
-const slug=(title as string)?.trim()?.toLowerCase().replace(/ /g,"-")  
-const pt = scrolledPosts.filter((jx)=> jx?.slug!== slug) 
+const slug=sanitizeInput(title?.trim()?.toLowerCase())  
+const pt = scrolledPosts.filter((jx)=> jx?.slug!== slug.replace(/ /g,"-").slice(0,40)) 
 setScrolledPosts([...pt, ...(data ?? [])])
 selectedImages.forEach((imageUrl) => URL.revokeObjectURL(imageUrl)); 
 setSelectedImages([]); 
@@ -58,7 +60,6 @@ if(titleX){
   else{
 router.push(pathname+'?message=Post Created/', {scroll:false}) 
   }
-
  }
 // window.scrollTo({ top:-1500, behavior: "smooth" })
 }
