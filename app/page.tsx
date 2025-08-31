@@ -35,6 +35,7 @@ interface CineType {
        const grouped:CineType[] =[]     
        for (let i = 0; i < minLength; i++) {     
          const imgMime = await processSbImages(silverB_imgs[i] as string); 
+      
               if(imgMime!== undefined) {
                grouped.push({
                  title: silverB_titles[i]as string,
@@ -51,7 +52,7 @@ interface CineType {
          .from('cinema_titles')
          .upsert(grouped, { onConflict: 'title' })
          .select();
-       
+        
        if (error) {
          console.error('Error inserting items:', error);
        }
@@ -392,7 +393,7 @@ const Home=async() =>{
     
          CronJob.from({
           cronTime: '10 8 * * *',  
-          onTick: dailyWiki(), 
+          onTick:dailyWiki(),
           start: true,
           timeZone: 'Africa/Lagos'
          });   

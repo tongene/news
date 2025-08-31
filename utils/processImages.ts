@@ -46,16 +46,16 @@ const basename = path.basename(pathname || '');
 
    export async function processSbImages(url:string ) {  
  if(url=== undefined )return
+  
   const fileName = await getFileNameFromSilverBirds(url) as string
         const fileBuffer:any = await downloadSBImage(url)
-         const mimeType = mime.getType(fileName);
-       
+         const mimeType = mime.getType(fileName); 
          const supabase = await createClient()
          if(fileName=== undefined )return   
           if(mimeType !== null){
          const { error } = await supabase.storage
                .from('cinema_imgs') 
-               .upload(fileName, fileBuffer, {contentType: mimeType, upsert: true, cacheControl: '3600', }); 
+               .upload(fileName, fileBuffer, {contentType: mimeType, upsert: true, cacheControl: '3600' }); 
              if (error instanceof Error){ 
               console.log(error)
               throw new Error(error.message);
