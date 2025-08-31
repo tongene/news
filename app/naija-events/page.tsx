@@ -21,18 +21,22 @@ import { CronJob } from 'cron';
 }
 const Events_Naija = async() => { 
 const forumEvents =async ()=>{
-const supabase =await createClient() 
-const { data:events , error } = await supabase 
-.from('events')
-.select('*')
-.order('id', { ascending: false }) 
+const supabase =await createClient()  
+const today = new Date()
+const monthName = today.toLocaleString('default', { month: 'long' })  
+const { data: events, error } = await supabase
+  .from('events')
+  .select('*') 
+  .order('id', { ascending: false }) 
 if (error) {
     throw new Error(error.message) 
  }
 return {events} 
     
-} 
+}
+
 const {events} =await forumEvents()
+
 const jsonLd:WithContext<BlogPosting>={
   "@context": "https://schema.org",
   "@type": "BlogPosting",

@@ -195,7 +195,7 @@ const [end_inter_cursor, setEnd_inter_cursor] = useState('');
       />  
     <div className='m-auto py-5 lg:py-0 lg:mx-0 md:absolute md:text-white z-20 bottom-11 xl:bottom-16 text-gray-600 hover:text-gray-400 px-4'>   
     <Link href={`/netflix-naija/${nt.slug}/`}><h2 className='overflow-hidden text-ellipsis hover:text-gray-200 text-xl underline lg:no-underlinelg:text-xl'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}> {nt.title}</h2></Link>
-   <Link href={`/topic/${nt.contentTags.nodes[0].slug}/`}><p className='lg:absolute text-md xl:text-md py-3  text-end z-10 lg:text-sm'><span>{moment(nt.date).subtract(1, 'hour').fromNow()} |</span> {nt.contentTags.nodes[0].name}</p ></Link> 
+   <Link href={`/topic/${nt?.contentTags.nodes[0].slug}/`}><p className='lg:absolute text-md xl:text-md py-3  text-end z-10 lg:text-sm'><span>{moment(nt.date).subtract(1, 'hour').fromNow()} |</span> {nt?.contentTags.nodes[0].name}</p ></Link> 
     </div> 
     </div> 
        )    
@@ -276,10 +276,10 @@ height={675}
 alt={xy.title}/> 
 <div className='m-4'> 
 <Link href={`/netflix-naija/news/${xy.slug}/`}><h3 className='my-1 text-xl font-medium'>{xy.title}</h3></Link> 
-<Link href={`/topic/${xy.contentTags.nodes[0].slug}/`}><h4 className="text-md mt-4 hover:text-gray-400"> 
+<Link href={`/topic/${xy?.contentTags.nodes[0].slug}/`}><h4 className="text-md mt-4 hover:text-gray-400"> 
 <FontAwesomeIcon 
 className='mx-1 text-red-500' 
-icon={faTags}/>{xy.contentTags.nodes[0].name}</h4></Link>  
+icon={faTags}/>{xy?.contentTags.nodes[0].name}</h4></Link>  
 <span className='italic my-3 text-sm'>{moment(xy.date 
 ).subtract(1, 'hour').fromNow()}</span >
 </div>   
@@ -344,7 +344,7 @@ className='max-w-40 max-h-40 px-1'
   alt={item.title}
   width={1200}
   height={675} /> </div> 
-<Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className=' py-1 font-bold'>&#8212; {item.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${item?.contentTags.nodes[0].slug}/`}><h4 className=' py-1 font-bold'>&#8212; {item?.contentTags.nodes[0].name }</h4></Link> 
      <p className='italic text-red-600 text-sm'>{moment(item.date).subtract(1, 'hour').fromNow()}</p> 
   </div>
   )) }
@@ -362,7 +362,7 @@ className='w-1/2 md:w-auto lg:w-full max-h-44'
   height={675} /> 
   <div className='w-80'>
 <Link href={`/netflix-naija/${item.slug}/`}><h3 className='text-lg lg:text-xl py-3'>{item.title}</h3></Link> 
-<Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className='py-1 font-bold'> &#8212; {item.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${item?.contentTags.nodes[0].slug}/`}><h4 className='py-1 font-bold'> &#8212; {item?.contentTags.nodes[0].name }</h4></Link> 
      <p className='italic text-red-600 text-sm'>{moment(item.date).subtract(1, 'hour').fromNow()}</p>
   </div>
   </div>
@@ -390,7 +390,7 @@ className='w-1/2 md:w-auto lg:w-full max-h-44'
   <div className='border-r border-b-4 border-orange-300 px-1 h-fit'> 
 <Link href={`/netflix-naija/${item.slug}/`}>
 <h3 className='overflow-hidden text-ellipsis text-base sm:text-2xl font-bold px-2 text-gray-700 hover:text-gray-500'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{item.title}</h3></Link> 
-<Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className=' my-3 hover:text-gray-500 text-red-600'>&#8212; {item.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${item?.contentTags.nodes[0].slug}/`}><h4 className=' my-3 hover:text-gray-500 text-red-600'>&#8212; {item?.contentTags.nodes[0].name }</h4></Link> 
   <p className='createdAt'>{moment(item.date).subtract(1, 'hour').fromNow()}</p> 
   </div> 
   </div>
@@ -419,7 +419,7 @@ className='w-1/2 md:w-auto lg:w-full max-h-44'
   <Link href={`/netflix-naija/${item.slug}/`}><h3 className='text-4xl text-gray-800 hover:text-gray-500 font-bold py-3'>{item.title} </h3></Link>
   <div className='flex items-center text-red-600 font-bold w-1/6'> 
   <span>&#8212; </span>
-  <Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className='m-2 hover:text-gray-500'>{item.contentTags.nodes[0].name}</h4></Link> 
+  <Link href={`/topic/${item?.contentTags.nodes[0].slug}/`}><h4 className='m-2 hover:text-gray-500'>{item?.contentTags.nodes[0].name}</h4></Link> 
   </div>
 </div>
 <span className='italic'>{moment(item.date).subtract(1, 'hour').fromNow()}</span >
@@ -438,7 +438,7 @@ className='h-36 sm:h-48 md:h-64 lg:h-52 xl:h-64'
  alt={item.title}/> 
 <Link href={`/netflix-naija/${item.slug}/`}><h3 className='hover:text-gray-500 text-gray-700 text-xl py-5 pr-2 my-3 font-bold'>{item.title} </h3></Link> 
 
-<Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className='hover:text-gray-500'>&#8212;  {item.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${item?.contentTags.nodes[0].slug}/`}><h4 className='hover:text-gray-500'>&#8212; {item?.contentTags.nodes[0].name }</h4></Link> 
 <span className='italic text-red-600'>{moment(item.date).subtract(1, 'hour').fromNow()}</span>
 </div>  
  
@@ -460,7 +460,7 @@ className='xl:max-h-44 max-w-40 xl:max-w-max max-h-32 px-1'
   width={1200}
   height={675} />
    </div> 
-<Link href={`/topic/${item.contentTags.nodes[0].slug}/`}><h4 className=' py-1 font-bold'>&#8212; {item.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${item?.contentTags.nodes[0].slug}/`}><h4 className=' py-1 font-bold'>&#8212; {item?.contentTags.nodes[0].name }</h4></Link> 
      <p className='italic text-red-600 text-sm'>{moment(item.date).subtract(1, 'hour').fromNow()}</p> 
   </div>
   )) }
@@ -501,7 +501,7 @@ className='max-h-72 px-2 py-3'
  <div className='border-r px-1'>
 <Link href={`/netflix-naija/${oneCategory.slug}/` } >
 <h3 className='hover:text-gray-500 text-gray-800 text-4xl px-2 overflow-hidden text-ellipis leading-9' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{oneCategory.title} </h3></Link>
-<Link href={`/topic/${oneCategory.contentTags.nodes[0].slug}/`}><h4 className='hover:text-gray-500 text-lg my-3'>&#8212; {oneCategory.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${oneCategory?.contentTags.nodes[0].slug}/`}><h4 className='hover:text-gray-500 text-lg my-3'>&#8212; {oneCategory?.contentTags.nodes[0].name }</h4></Link> 
 <span className='italic text-red-500 text-sm'>{moment(oneCategory.date).subtract(1, 'hour').fromNow()}</span>
  </div> 
  </div>
@@ -513,7 +513,7 @@ className='max-h-72 px-2 py-3'
 <div key={oneCategory.id +' ' +index } className='mx-0.5 px-3 border-t py-8 lg:px-3    border-r'> 
  
 <Link href={`/netflix-naija/${oneCategory.slug}/` } ><h3 className='hover:text-gray-500 text-gray-800 text-2xl overflow-hidden text-ellipis leading-9' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{oneCategory.title} </h3></Link>
-<Link href={`/topic/${oneCategory.contentTags.nodes[0].slug}/`}><h4 className='hover:text-gray-500 text-lg my-3'>&#8212; {oneCategory.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${oneCategory?.contentTags.nodes[0].slug}/`}><h4 className='hover:text-gray-500 text-lg my-3'>&#8212; {oneCategory?.contentTags.nodes[0].name }</h4></Link> 
 <span className='italic text-red-500 text-sm'>{moment(oneCategory.date).subtract(1, 'hour').fromNow()}</span>
  </div> 
 
@@ -538,7 +538,7 @@ className='max-h-72 px-2 py-3'
   <div className='sm:py-4'> 
   <Link href={`/netflix-naija/${oneitem.slug}/`}><h3 className='overflow-hidden hover:text-gray-500 text-ellipis leading-9 text-3xl font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{oneitem.title} </h3>
 </Link>
-<Link href={`/topic/${oneitem.contentTags.nodes[0].slug}/`}><h4 className='text-lg my-3 hover:text-gray-500'>&#8212; {oneitem.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${oneitem?.contentTags.nodes[0].slug}/`}><h4 className='text-lg my-3 hover:text-gray-500'>&#8212; {oneitem?.contentTags.nodes[0].name }</h4></Link> 
 <span className='italic'>{moment(oneitem.date).subtract(1, 'hour').fromNow()}</span>
 </div>
  </div> 
@@ -570,7 +570,7 @@ className='sm:flex justify-center md:justify-between lg:justify-start overflow-h
   />
 <div className='my-3 sm:my-0 md:px-1 md:w-9/12 xl:w-1/2'>
 <Link href={`/netflix-naija/${it.slug}/`}><h3 className='hover:text-gray-500 text-2xl md:my-0 md:pr-0 md:py-0 px-1 pr-2'>{it.title}</h3></Link>
-<Link href={`/topic/${it.contentTags.nodes[0].slug}/`}><h4 className='md:text-end md:px-42 py-2 md:px-0 text-lg underline hover:text-gray-500'>{it.contentTags.nodes[0].name }</h4></Link> 
+<Link href={`/topic/${it?.contentTags.nodes[0].slug}/`}><h4 className='md:text-end md:px-42 py-2 md:px-0 text-lg underline hover:text-gray-500'>{it?.contentTags.nodes[0].name }</h4></Link> 
 <span className='italic text-red-600 md:px-4'>{moment(it.date).subtract(1, 'hour').fromNow()}</span>
 </div>  
 

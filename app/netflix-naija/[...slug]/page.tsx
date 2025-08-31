@@ -255,7 +255,8 @@ export async function generateMetadata({ params  }: {
   params: Promise<{ slug: string }>
 }, parent:any) { 
   const {slug} =await params 
-  const news_details = await netflixNewsDets(slug[0]) 
+  const news_details = await netflixNewsDets(slug[0])
+  if(!news_details)return 
   const previousImages = (await parent).openGraph?.images || []
   const tags= news_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
    
@@ -293,8 +294,9 @@ const NetflixNaijaNewsDetailsPage = async({params}: {
 },) => {
 const {slug} =await params 
 const news_details = await netflixNewsDets(slug[0])
+if(!news_details)return
 const content_videos = await vids();
- const netflix_related =news_details.netflixNewsGroup.netflixNewsRelated?.edges 
+ const netflix_related =news_details?.netflixNewsGroup.netflixNewsRelated?.edges 
  const exitinginrelated= netflix_related?.map((fx:{cursor:string})=>fx.cursor)
  const next_on_netflix_naija = await nextNetflixNews([news_details.id, exitinginrelated].flat())
   const sidebarItems=await sidePlusViews()  
@@ -302,7 +304,7 @@ const content_videos = await vids();
       const news_outline=await postsOutline()
 
   //   const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
-    const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+    const tags= news_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
     const replaceHTMLTags=(string:string)=>{
       const regex = /(<([^>]+)>)/gi;
       const newString = string?.replace(regex, "");

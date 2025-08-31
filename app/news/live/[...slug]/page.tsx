@@ -189,8 +189,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {  
   const slug=(await params).slug
   const news_details= await liveNewsFeed(slug[0])
+    if(!news_details )return {}
   const previousImages = (await parent).openGraph?.images || []
- const tags= news_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ') 
+ const tags= news_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ') 
 
   return {
     title: `Urban Naija | Live News ${news_details?.title||'' } `,
@@ -223,22 +224,12 @@ export async function generateMetadata(
 const LiveNewsPage = async ({params}: Props) => {
 const slug =(await params).slug
  const news= await liveNewsFeed(slug[0])
-
+  if(!news)return 
   const sidebarItems=await sidePlusViews() 
     const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)   
       const news_outline=await postsOutline()
-//       const naija_wiki =async ()=>{  
-//        const supabase =await createClient() 
-//        const { data:cinema_titles , error } = await supabase 
-//        .from('cinema_titles') 
-//        .select('*')
-//        if(error)throw new Error('An Error has occured!')
-//  return cinema_titles
-           
-//        }   
-//   const xTitltes= await naija_wiki()
-//     const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon')) 
-   const tags= news.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+
+   const tags= news?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
    const replaceHTMLTags=(string:string)=>{
     const regex = /(<([^>]+)>)/gi;
     const newString = string?.replace(regex, "");

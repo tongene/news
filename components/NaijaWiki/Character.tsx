@@ -55,7 +55,7 @@ onMouseEnter={() => setHidden(prev => !prev)}
 <div className='flex flex-wrap p-4 justify-between bg-gray-900 border-t'> 
   <div className='flex flex-wrap '>
   <span className='p-2 text-blue-600'>tags:</span> 
-  {character_data.contentTags.nodes.map((xy, i)=><Link key={i}href={`/topic/${xy.slug}/`}><p className='p-2 text-gray-100 relative z-0 hover:text-blue-600'>  
+  {character_data?.contentTags.nodes.map((xy, i)=><Link key={i}href={`/topic/${xy.slug}/`}><p className='p-2 text-gray-100 relative z-0 hover:text-blue-600'>  
 { xy.name }</p></Link> )} 
 </div>  
 <Link href={`/characters/${character_data.charactertitles.filmname?.toLowerCase().trim().replace(/ /g,'-') }/`}><p className='p-2 text-blue-600 hover:text-gray-400 relative z-0'>  

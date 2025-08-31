@@ -117,7 +117,7 @@ alt={ex.node.featuredImage.node.altText}
    <div className='flex' style={{width:'1000px'}}> 
    {next_posts.slice(0,3).map((xy,i)=> 
     <div className='border pt-5 px-3 w-96' key={i + ' ' + Math.random()}>   
-    <Link href={`/topic/${ xy.contentTags.nodes[0].slug}/`}></Link> <h3 className='text-red-500 text-sm italic py-1 hover:text-gray-700 cursor-pointer font-bold'>{xy.contentTags.nodes[0].name} </h3>
+    <Link href={`/topic/${xy?.contentTags.nodes[0].slug}/`}></Link> <h3 className='text-red-500 text-sm italic py-1 hover:text-gray-700 cursor-pointer font-bold'>{xy?.contentTags.nodes[0].name} </h3>
  
     <Link href={`/netflix-naija/${xy.slug}/`}><h2 className="text-gray-800 text-lg font-bold overflow-hidden text-ellipsis hover:text-red-400 cursor-pointer"style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link> 
      <div className='py-2 text-sm'> 

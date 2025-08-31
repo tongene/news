@@ -114,8 +114,9 @@ export async function generateMetadata(
   parent: ResolvingMetadata ): Promise<Metadata> {
     const slug =(await params).slug
      const vid_details= await viddetails(slug)
+        if(!vid_details)return {}
      const previousImages = (await parent).openGraph?.images || []
-     const tags= vid_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+     const tags= vid_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
   
      return {
        title:`Urban Naija | Video - ${vid_details?.title}`,
@@ -147,7 +148,8 @@ export async function generateMetadata(
 const VideoDetailsPage=async ({params}: Props) => {
   const slug =(await params).slug
   const vid_details= await viddetails(slug)
-  const tags= vid_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+   if(!vid_details)return 
+  const tags= vid_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
   const replaceHTMLTags=(string:string)=>{
     const regex = /(<([^>]+)>)/gi;
     const newString = string?.replace(regex, "");

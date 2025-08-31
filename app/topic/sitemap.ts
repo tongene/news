@@ -24,7 +24,7 @@ import { PostProps } from "../types";
   }`})
       
       }).then(response => response.json())   
-      .then(data => data.data.contentTags.nodes)
+      .then(data => data.data?.contentTags.nodes)
       .catch(error => console.error('Error:', error));
       //const response = wprest?.data.contentTags.nodes 
       return wprest

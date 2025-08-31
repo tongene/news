@@ -200,7 +200,8 @@ export async function generateMetadata({ params }: {
 }, parent:any) {
  const {slug} =await params 
     const trending_details= await trending(slug)
-    const tags= trending_details.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+      if(!trending_details)return 
+    const tags= trending_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
     const previousImages = (await parent).openGraph?.images || []
      
     return {
@@ -234,7 +235,8 @@ const TrendingDetails =async ({params}: {
 }) => {
   const {slug} =await params 
   const trends_detail =await trending(slug)
-  const tags= trends_detail.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
+   if(!trends_detail)return 
+  const tags= trends_detail?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
   const related_to_trend_id= trends_detail?.trendinggroup?.related?.nodes.map((xy:{id:string})=> xy.id)
   const related_to_trend= trends_detail?.trendinggroup?.related?.nodes
  const rm_ids = (related_to_trend_id??[])?.concat(trends_detail?.id)

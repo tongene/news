@@ -128,7 +128,7 @@ alt={xy?.featuredImage.node.altText}
 /> 
 <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis my-2 text-lg hover:text-gray-500 py-2 leading-9"/></Link>
  {/* <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small>  */}
-<Link href={`/topic/${xy.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500 hover:text-gray-300"><em>{xy.contentTags.nodes[0].name}</em></small> </Link>
+<Link href={`/topic/${xy?.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500 hover:text-gray-300"><em>{xy?.contentTags.nodes[0].name}</em></small> </Link>
 </div>
 )}
 </div>
@@ -156,7 +156,7 @@ alt={xy?.featuredImage.node.altText}
 <Link href={`/netflix-naija/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis leading-8 text-xl font-bold py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title} </h2></Link>
 <Link href={`/netflix-naija/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"/></Link>
  {/* <small className="text-sm my-3 text-red-500"><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small>  */}
- <Link href={`/topic/${xy.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500 hover:text-gray-300"><em>{xy.contentTags.nodes[0].name}</em></small> </Link> 
+ <Link href={`/topic/${xy?.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500 hover:text-gray-300"><em>{xy?.contentTags.nodes[0].name}</em></small> </Link> 
 </div>
 )}
 </div>
@@ -167,7 +167,7 @@ alt={xy?.featuredImage.node.altText}
 <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis font-bold leading-8 text-xl py-1 mt-4 hover:text-gray-600 cursor-pointer">{xy?.title}</h2></Link>
 <Link href={`/news/${xy.contentTypeName}/${xy?.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.excerpt}} style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }} className="overflow-hidden text-ellipsis my-2 hover:text-gray-600 text-base"/></Link>
  {/* <small className="text-sm my-3 text-red-500 "><em>{moment(xy?.date).subtract(1, 'hour').fromNow()}</em></small>  */}
- <Link href={`/topic/${xy.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500   hover:text-gray-300"><em>{xy.contentTags.nodes[0].name}</em></small> </Link>  
+ <Link href={`/topic/${xy?.contentTags.nodes[0].slug}`}><small className="text-sm my-3 text-red-500   hover:text-gray-300"><em>{xy?.contentTags.nodes[0].name}</em></small> </Link>  
 </div>
 )}
 </div> 

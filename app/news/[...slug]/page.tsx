@@ -1142,7 +1142,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata 
 ): Promise<Metadata> {  
   const slug =(await params).slug 
-  
+ 
   async function resolveContent(slug: string) {
   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) {
      if(!type)return
@@ -1155,7 +1155,8 @@ export async function generateMetadata(
   return null; 
 }
  const newsXdetail = await resolveContent(slug[0]); 
-  const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug}/`)
+  const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug}/`) 
+      if(!news_details &&!newsXdetail) return {}
   const previousImages = (await parent).openGraph?.images || []
   const tags= news_details?.tags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
   const keyTags= newsXdetail?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
@@ -1225,8 +1226,8 @@ async function resolveContent(slug: string) {
 
 const newsXdetail = await resolveContent(slug[0]) 
 const news_detail= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}`)
-const news_related = newsXdetail?.newsGroup?.related?.edges.map((tx:{node:{id:string}})=> tx.node.id)
- 
+  if(!news_detail &&!newsXdetail)return 
+const news_related = newsXdetail?.newsGroup?.related?.edges.map((tx:{node:{id:string}})=> tx.node.id) 
 
 const sidebarItems=await sidePlusViews(news_detail?.id||newsXdetail?.id) 
 const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)       

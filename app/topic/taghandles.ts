@@ -384,7 +384,7 @@ export async function contentTag (slug:string) {
       })
       
       }).then(response =>response.json())    
-    .then(data =>data.data.contentTags) 
+    .then(data =>data.data?.contentTags) 
     .catch(error => console.error('Error:', error));
      
       // const xtagged= response.filter((vx:{slug:string})=> vx.slug !== slug)
@@ -489,7 +489,7 @@ export async function content_TAGS () {
       })
       
       }).then(response => response.json())    
-      .then(data =>data.data.contentTags) 
+      .then(data =>data.data?.contentTags) 
       .catch(error => console.error('Error:', error));
        return wprest
  }

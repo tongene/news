@@ -567,7 +567,7 @@ export async function charsFilms(findString: string){
         })
         
         }).then(response => response.json())  
-       .then(data =>  data?.data.contentTags.nodes )
+       .then(data =>  data?.data?.contentTags.nodes )
        .catch(error => console.error('Error:', error));
        const response = wprest
        return wprest
