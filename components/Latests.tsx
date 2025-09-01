@@ -46,7 +46,7 @@ const newsViews=async()=>{
            .catch((err) => console.log("err", err)) 
      const dataView= await res
     const postX = dataView?.posts.pageInfo?.endCursor 
-  
+ 
 if(!postX)return
       const wprest = fetch('https://content.culturays.com/graphql',{     
         method: 'POST',
@@ -119,7 +119,7 @@ if(!postX)return
   async function sidePlusViews(){
    const latestPosts=await newsViews()
    const latestStr=latestPosts?.pageInfo?.endCursor 
-
+ 
      const wprest = fetch('https://content.culturays.com/graphql', { 
         method: 'POST',
         headers:{
@@ -149,8 +149,7 @@ if(!postX)return
   }
   const altPageNewsItems= async ()=>{
      const latestPosts=await sidePlusViews()  
-     const trest=latestPosts?.posts?.pageInfo?.endCursor  
-      
+     const trest=latestPosts?.posts?.pageInfo?.endCursor   
      try{
       const wprest = fetch('https://content.culturays.com/graphql',{ 
       method: 'POST',
@@ -194,6 +193,9 @@ if(!postX)return
       console.log(err)
     }
   }
+
+ 
+ 
 const Latests = () => {   
   const [bottom_news_data, set_bottom_News_data]=useState<Node[]>([])
   const [alt_news_data, set_alt_News_data]=useState<Node[]>([])

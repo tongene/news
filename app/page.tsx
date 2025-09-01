@@ -224,6 +224,8 @@ query WPPOSTS  {
  
         return wprestPost
           }
+
+          
    const postsOutline =async()=>{
     
     const wprest = fetch('https://content.culturays.com/graphql',{
@@ -391,12 +393,12 @@ const Home=async() =>{
  const posts_notIn_newsPosts= await nextNewsPosts(endX) 
   const livexnews =await liveResp()  
     
-         CronJob.from({
-          cronTime: '10 8 * * *',  
-          onTick:dailyWiki(),
-          start: true,
-          timeZone: 'Africa/Lagos'
-         });   
+        //  CronJob.from({
+        //   cronTime: '10 8 * * *',  
+        //   onTick:dailyWiki(),
+        //   start: true,
+        //   timeZone: 'Africa/Lagos'
+        //  });   
         
   const jsonLd:WithContext<WebSite>={
     "@context": "https://schema.org",

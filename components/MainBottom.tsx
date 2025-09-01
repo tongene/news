@@ -281,7 +281,7 @@ headers:{
 },
 body: JSON.stringify({
   query:`
-query WPPOSTS  {               
+query WPPOSTS  {          
 posts(first:11, where: {categoryName: "News"}) {
 pageInfo{
 endCursor
@@ -310,7 +310,7 @@ headers:{
 body: JSON.stringify({
 query:`
 query WPPOSTS {       
-posts(first:20, after:"${endX.pageInfo.endCursor}" , where:{categoryName: "News"}){ 
+posts(first:22, after:"${endX.pageInfo.endCursor}" , where:{categoryName: "News"}){ 
     pageInfo {
       startCursor
       endCursor
@@ -480,8 +480,6 @@ const wpNextAf = fetch('https://content.culturays.com/graphql',{
 
 } 
 
-  //const afriNewsNext =async()=>{}
-  //const fetchXPosts2 =async () => { } 
 
  const nextPostsX3=async()=>{     
  const wprest = fetch('https://content.culturays.com/graphql',{

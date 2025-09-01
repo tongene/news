@@ -902,7 +902,7 @@ const readNextContent = async(notIn:string[])=>{
     body: JSON.stringify({
       query: 
       `query NEXTCONTENT($notIn:[ID]){
-  contentNodes(first:50, where: {notIn:$notIn}){
+  contentNodes(first:5, where: {notIn:$notIn}){
  nodes {
     ... on Article {
       id
@@ -1146,7 +1146,7 @@ export async function generateMetadata(
   async function resolveContent(slug: string) {
   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) {
      if(!type)return
- const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug[0]}/`);
+ const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}/`);
   
     if (res?.title) {
       return { ...res, __typename: type };
@@ -1154,7 +1154,7 @@ export async function generateMetadata(
   }
   return null; 
 }
- const newsXdetail = await resolveContent(slug[0]); 
+ const newsXdetail = await resolveContent(slug); 
   const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug}/`) 
       if(!news_details &&!newsXdetail) return {}
   const previousImages = (await parent).openGraph?.images || []
@@ -1212,11 +1212,13 @@ export async function generateMetadata(
 } 
  
 const ArticleDetailPage = async ({params}: Props) => {
-const slug =(await params).slug  
+const slug =(await params).slug 
 async function resolveContent(slug: string) {
   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) { 
+
     if(!type)return
-    const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug[0]}`);
+  
+    const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}`);
     if (res?.title) {
       return { ...res, __typename: type };
     }
@@ -1224,11 +1226,12 @@ async function resolveContent(slug: string) {
   return null;
 }
 
-const newsXdetail = await resolveContent(slug[0]) 
-const news_detail= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug[0]}`)
-  if(!news_detail &&!newsXdetail)return 
-const news_related = newsXdetail?.newsGroup?.related?.edges.map((tx:{node:{id:string}})=> tx.node.id) 
+const newsXdetail = await resolveContent(slug) 
+const news_detail= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug}`)
 
+  if(!news_detail &&!newsXdetail)return <p>Content not found.</p>
+const news_related = newsXdetail?.postnewsgroup?.relatedPosts?.edges.map((tx:{node:{id:string}})=> tx.node.id) 
+const news2related = news_detail?.postnewsgroup?.relatedPosts?.edges.map((tx:{node:{id:string}})=> tx.node.id) 
 const sidebarItems=await sidePlusViews(news_detail?.id||newsXdetail?.id) 
 const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)       
 const news_outline=await postsOutline()     
@@ -1273,8 +1276,8 @@ const news_outline=await postsOutline()
 };
 const post_related = news_detail?.postnewsgroup.relatedPosts?.edges
 const exitingPosts= post_related?.map((fx:{cursor:string})=>fx.cursor)??[]
-const next_top_news = await readNextContent([newsXdetail?.id, news_related, exitingPosts].flat())
-const next_x_news = await readNextPosts([news_detail?.id, news_related, exitingPosts].flat())
+const next_top_news = await readNextContent([newsXdetail?.id, news_related, news2related, exitingPosts].flat())
+const next_x_news = await readNextPosts([news_detail?.id, news_related, news2related, exitingPosts].flat())
 
 if(!news_detail &&!newsXdetail)return <p>Content not found.</p>
  
