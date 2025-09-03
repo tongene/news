@@ -55,11 +55,20 @@ const replaceHTMLTags=(string:string)=>{
   const newString = string?.replace(regex, "");
   return newString
    }
+  function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
 const jsonLd:WithContext<ProfilePage> = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
    headline: `Urban Naija - ${character_data?.title}`, 
    description:replaceHTMLTags(character_data?.excerpt) , 
+   datePublished:toIsoDate(character_data?.data),
+   dateModified:toIsoDate(character_data?.data),
    url:`https://culturays.com/character/${slug}/`,
    mainEntity: {
     "@type": "Person",

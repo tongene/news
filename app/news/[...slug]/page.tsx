@@ -902,7 +902,7 @@ const readNextContent = async(notIn:string[])=>{
     body: JSON.stringify({
       query: 
       `query NEXTCONTENT($notIn:[ID]){
-  contentNodes(first:5, where: {notIn:$notIn}){
+  contentNodes(first:20, where: {notIn:$notIn}){
  nodes {
     ... on Article {
       id
@@ -1097,7 +1097,7 @@ const readNextPosts = async(notIn:string[])=>{
     },
     body: JSON.stringify({
       query: `query NEXTCONTENT($notIn:[ID]) {
-     contentNodes(where: {notIn:$notIn}){
+     contentNodes(first:20, where: {notIn:$notIn}){
  nodes {  
       ... on Post {
         id
@@ -1178,7 +1178,7 @@ export async function generateMetadata(
       images: [{url:news_details?.featuredImage?.node?.sourceUrl, width: 800,
           height: 600, ...previousImages}],
       type: "article",
-      publishedTime:news_details?.date,
+      publishedTime:news_details?.date.toISOString(),
     },
      alternates: {
     canonical:  `https://culturays.com/news/${slug[0]}/`,
@@ -1202,12 +1202,13 @@ export async function generateMetadata(
       images: [{url:newsXdetail?.featuredImage?.node?.sourceUrl, width: 800,
           height: 600, ...previousImages}],
       type: "article",
-      publishedTime:newsXdetail?.date,
+      publishedTime:newsXdetail?.date.toISOString(),
     },
      alternates: {
     canonical:  `https://culturays.com/news/${slug[0]}/`,
  
   },
+  
   }
 } 
  
@@ -1243,6 +1244,13 @@ const news_outline=await postsOutline()
     const newString = string?.replace(regex, "");
     return newString
      }
+ function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
    const jsonLd:WithContext<NewsArticle> = {
      '@context': 'https://schema.org',
      '@type': 'NewsArticle',
@@ -1254,8 +1262,8 @@ const news_outline=await postsOutline()
         name: "Christina Ngene",
         url:'https://culturays.com/creator/christina-ngene/',
       }, 
-      datePublished: new Date(news_detail?.date||newsXdetail?.date).toDateString(), 
-      dateModified: new Date(news_detail?.date||newsXdetail?.date).toDateString(), 
+      datePublished:toIsoDate(news_detail?.date||newsXdetail?.date) , 
+      dateModified:toIsoDate(news_detail?.date||newsXdetail?.date) , 
        mainEntityOfPage: {
         "@type": "WebPage",
         "@id": news_detail?.slug||newsXdetail?.slug,

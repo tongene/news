@@ -393,13 +393,19 @@ const Home=async() =>{
  const posts_notIn_newsPosts= await nextNewsPosts(endX) 
   const livexnews =await liveResp()  
     
-         CronJob.from({
-          cronTime: '10 8 * * *',  
-          onTick:dailyWiki(),
-          start: true,
-          timeZone: 'Africa/Lagos'
-         });   
-        
+        //  CronJob.from({
+        //   cronTime: '10 8 * * *',  
+        //   onTick:dailyWiki(),
+        //   start: true,
+        //   timeZone: 'Africa/Lagos'
+        //  });   
+        function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString();
+}
   const jsonLd:WithContext<WebSite>={
     "@context": "https://schema.org",
     "name":"Urban Naija",
@@ -417,8 +423,8 @@ const Home=async() =>{
       "@type": "ImageObject",
       "url": "https://culturays.com/opengraph-image.png"
     },
-    "datePublished": "2025-04-15T08:00:00Z",
-    "dateModified": "2025-04-15T08:00:00Z",
+    "datePublished":toIsoDate(new Date().toDateString()) ,
+    "dateModified": toIsoDate(new Date().toDateString()),
     "author": {
       "@type": "Organization",
       "name": "Culturays"

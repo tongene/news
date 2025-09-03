@@ -36,6 +36,13 @@ return {events}
 }
 
 const {events} =await forumEvents()
+    function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
 
 const jsonLd:WithContext<BlogPosting>={
   "@context": "https://schema.org",
@@ -52,8 +59,8 @@ const jsonLd:WithContext<BlogPosting>={
     "@type": "ImageObject",
     "url": "https://culturays.com/opengraph-image.png"
   },
-  "datePublished": "2025-04-15T08:00:00Z",
-  "dateModified": "2025-04-15T08:00:00Z",
+   "datePublished":toIsoDate(new Date().toDateString()) ,
+ "dateModified": toIsoDate(new Date().toDateString()),
   "author": {
     "@type": "Organization",
     "name": "Culturays"

@@ -61,13 +61,21 @@ const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))
   const naijaWikis= charsList.map((xy:CharacterProps)=> xy.naijaWikis.nodes).flat()
     const [charactertitles]=naijaWikis
   const listOtherChars =await relatedChars() 
- 
+   function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
 const jsonLd:WithContext<Article> = {
   '@context': 'https://schema.org',
   '@type': 'Article',
    headline: `Urban Naija - ${charactertitles?.charactertitles.filmname} | Characters `, 
    description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
    url:`https://culturays.com/characters/${slug.toLowerCase().trim().replace(/ /g,'-')}/`,
+   datePublished:toIsoDate(charsList.data||new Date().toDateString()),
+   dateModified:toIsoDate(charsList.data||new Date().toDateString()),
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles?.charactertitles.filmname} - Movies`,     

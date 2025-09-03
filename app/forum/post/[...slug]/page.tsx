@@ -144,10 +144,20 @@ const dateDay = date.getDate();
 const dateMonth= date.getMonth() ;
 return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMonth||todayMonth-3===dateMonth; 
 });
+   function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
 const jsonLd:WithContext<DiscussionForumPosting> = {
   '@context': 'https://schema.org',
   '@type': 'DiscussionForumPosting', 
   // "@id":`https://culturays.com/forum/post/${slug[0]}/${post.id}/`,
+
+   datePublished:toIsoDate(post?.created_at),
+   dateModified:toIsoDate(post?.created_at),
   "headline":post?.title||post?.article_title?.toUpperCase().replace(/-/g," "),
   "author": {
     "@type": "Person",

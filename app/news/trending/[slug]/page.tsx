@@ -247,7 +247,13 @@ const TrendingDetails =async ({params}: {
   const newString = string?.replace(regex, "");
   return newString
    }
-
+   function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
  const jsonLd:WithContext<NewsArticle> = {
   '@context': 'https://schema.org',
   '@type': 'NewsArticle',
@@ -259,8 +265,8 @@ const TrendingDetails =async ({params}: {
      name: "Christina Ngene",
      url:'https://culturays.com/creator/christina-ngene/',
    }, 
-   datePublished: new Date( trends_detail?.date).toDateString(), 
-   dateModified: new Date( trends_detail?.date).toDateString(), 
+   datePublished:toIsoDate( trends_detail?.date) , 
+   dateModified:toIsoDate( trends_detail?.date) , 
     mainEntityOfPage: {
      "@type": "WebPage",
      "@id": trends_detail?.slug,

@@ -148,10 +148,19 @@ return data ??[]
   const dateMonth= date.getMonth() ;
   return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMonth||todayMonth-3===dateMonth; 
 });
+ function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
 const jsonLd:WithContext<DiscussionForumPosting> = {
   '@context': 'https://schema.org',
   '@type': 'DiscussionForumPosting', 
   "@id":`https://culturays.com/comment/${comment.id}/`,
+   datePublished:toIsoDate(comment?.created_at),
+   dateModified:toIsoDate(comment?.created_at),
   "headline":comment?.title ,
   "author": {
     "@type": "Person",

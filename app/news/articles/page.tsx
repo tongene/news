@@ -509,8 +509,8 @@ const netflix_News = await netflixNews()
       "@type": "ImageObject",
       "url": "https://culturays.com/opengraph-image.png"
     },
-    "datePublished": "2025-04-15T08:00:00Z",
-    "dateModified": "2025-04-15T08:00:00Z",
+      "datePublished": new Date().toISOString() ,
+          "dateModified":  new Date().toISOString(),
     "author": {
       "@type": "Organization",
       "name": "Culturays"

@@ -272,8 +272,8 @@ const content_videos = await vids();
         "description": "Watch this video report on major African events from Urban Naija.",
         "url": `https://culturays.com/news/video/${content_videos[0]?.slug}/`,
         "image": "https://culturays.com/opengraph-image.png",
-        "datePublished": "2025-04-15T08:00:00Z",
-        "dateModified": "2025-04-15T08:00:00Z",
+          "datePublished": new Date().toISOString()  ,
+         "dateModified":new Date().toISOString() ,
         "author": {
           "@type": "Organization",
           "name": "Culturays"

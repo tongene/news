@@ -84,13 +84,20 @@ return data
  
 const eventTitle = await eventView()
   if(!eventTitle)return redirect ('/naija-events')
+    function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
 const jsonLd: WithContext<Event> = {
   "@context": "https://schema.org",
   "@type": "Event",
   name: eventTitle?.title ,
-  description: eventTitle?.desc, 
-  startDate:eventTitle?.day,
-  endDate: eventTitle?.day,
+  description: eventTitle?.desc,   
+  startDate:toIsoDate(eventTitle?.day) ,
+  endDate: toIsoDate(eventTitle?.day), 
   eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
    performer:eventTitle?.title,

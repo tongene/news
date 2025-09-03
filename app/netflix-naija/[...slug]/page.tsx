@@ -310,6 +310,13 @@ const content_videos = await vids();
       const newString = string?.replace(regex, "");
       return newString
        }
+           function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
   const jsonLd:WithContext<NewsArticle> = {
    '@context': 'https://schema.org',
    '@type': 'NewsArticle',
@@ -322,8 +329,8 @@ const content_videos = await vids();
       url:'https://culturays.com/creator/christina-ngene/',
 
     }, 
-    datePublished:new Date(news_details?.date).toDateString(), 
-    dateModified: new Date(news_details?.date).toDateString(), 
+    datePublished:toIsoDate(news_details?.date), 
+    dateModified:toIsoDate(news_details?.date), 
      mainEntityOfPage: {
       "@type": "WebPage",
       "@id": news_details?.slug,

@@ -561,7 +561,13 @@ const news_outline=await postsOutline()
     const newString = string?.replace(regex, "");
     return newString
      }
-   
+      function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
  const jsonLd:WithContext<NewsArticle> = {
   '@context': 'https://schema.org',
   '@type': 'NewsArticle',
@@ -573,8 +579,8 @@ const news_outline=await postsOutline()
      name: "Christina Ngene",
      url:'https://culturays.com/creator/christina-ngene/',
    }, 
-   datePublished:new Date(news_detail?.date).toDateString(), 
-   dateModified:new Date(news_detail?.date).toDateString(),
+   datePublished:toIsoDate(news_detail?.date) , 
+   dateModified:toIsoDate(news_detail?.date) ,
     mainEntityOfPage: {
      "@type": "WebPage",
      "@id": news_detail?.slug,

@@ -235,6 +235,13 @@ const slug =(await params).slug
     const newString = string?.replace(regex, "");
     return newString
      }
+      function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
    const jsonLd:WithContext<NewsArticle> = {
      '@context': 'https://schema.org',
      '@type': 'NewsArticle',
@@ -246,8 +253,8 @@ const slug =(await params).slug
         name: "Christina Ngene",
         url:'https://culturays.com/creator/christina-ngene/',
       }, 
-      datePublished: new Date(news?.date).toDateString(), 
-      dateModified:  new Date(news?.date).toDateString(), 
+      datePublished:toIsoDate(news?.date) , 
+      dateModified: toIsoDate(news?.date) , 
        mainEntityOfPage: {
         "@type": "WebPage",
         "@id": news?.slug,

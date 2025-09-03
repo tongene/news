@@ -17,6 +17,8 @@ const pages= contentPages.filter((xy:PagesProps)=> xy.contents.nodes.length>0).m
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "The current state of the manufacturing industry in Nigeria. Local production and imports from China into Nigeria.",
+    "datePublished": new Date().toISOString()  ,
+  "dateModified":new Date().toISOString() ,
   "mainEntity": [
     {
       "@type": "Article",

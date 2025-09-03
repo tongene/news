@@ -41,6 +41,7 @@ export async function generateMetadata(
      description:userDetails?.about,
        url: `https://culturays.com/profile/${id}/`,
      siteName: 'Urban Naija',
+     publishedTime:new Date().toISOString(),
     images: [{url:userDetails.avatar_url,width: 800,
        height: 600, ...previousImages}],
     },
@@ -68,7 +69,13 @@ const UserPage =async({params}: Props) => {
   }
   const userPosts = await userItems()
 
-  
+        function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
   const jsonLd:WithContext<ProfilePage> = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
@@ -76,6 +83,8 @@ const UserPage =async({params}: Props) => {
      headline: `${currentProfile?.fullname || currentProfile?.full_name}`, 
      description:currentProfile?.about , 
      url:`https://culturays.com/profile/${id}/`,
+      datePublished:new Date().toISOString() , 
+   dateModified:new Date().toISOString() ,
      mainEntity: {
       "@type": "Person",
       name:`Urban Naija | ${currentProfile.fullname || currentProfile?.full_name} - Profile`,     

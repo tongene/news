@@ -55,7 +55,13 @@ const ActorsMoviePage =async ({params}: Props) => {
 const slug =(await params).slug
 const charsList = await charsFilms(slug)  
 const charactertitles= charsList.map((xy:CharacterProps)=> xy.naijaWikis.nodes).map((dy:CharacterProps)=> dy).flat()
-
+   function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
  
 const [filmname]=charactertitles
 const listOtherChars =await relatedChars()  
@@ -66,6 +72,8 @@ const jsonLd:WithContext<ProfilePage> = {
   headline: `Urban Naija - ${charactertitles[0]?.charactertitles.portrayedby} | Movies `, 
    description: `${charactertitles[0]?.title}, ${charactertitles[0]?.charactertitles.portrayedby}, ${charactertitles[0]?.charactertitles.filmname}`, 
    url:`https://culturays.com/movies/${slug.toLowerCase().trim().replace(/ /g,'-')}/`,
+   datePublished:toIsoDate(charsList.data||new Date().toDateString()),
+   dateModified:toIsoDate(charsList.data||new Date().toDateString()),
    mainEntity: {
     "@type": "Person",
     name:`${charactertitles[0]?.charactertitles.portrayedby} - Movies`,     

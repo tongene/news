@@ -62,8 +62,8 @@ const taggedPosts = tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map(
        name: "Christina Ngene",
        url:'https://culturays.com/creator/christina-ngene/',
      }, 
-     datePublished: "2025-04-09T10:00:00Z", 
-     dateModified:"2025-04-09T12:00:00Z",
+     datePublished: new Date().toISOString()  ,
+         dateModified:new Date().toISOString() ,
       mainEntityOfPage: {
        "@type": "WebPage",
        "@id":slug[0] ,

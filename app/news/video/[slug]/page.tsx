@@ -155,7 +155,13 @@ const VideoDetailsPage=async ({params}: Props) => {
     const newString = string?.replace(regex, "");
     return newString
      }
-
+      function toIsoDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    throw new Error(`Invalid date string: ${dateStr}`);
+  }
+  return d.toISOString(); 
+}
   const jsonLd:WithContext<NewsArticle> = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
@@ -167,8 +173,8 @@ const VideoDetailsPage=async ({params}: Props) => {
        name: "Christina Ngene",
        url:'https://culturays.com/creator/christina-ngene/',
      }, 
-     datePublished: new Date(vid_details?.date).toDateString(), 
-     dateModified: new Date(vid_details?.date).toDateString(), 
+     datePublished:toIsoDate(vid_details?.date) , 
+     dateModified:toIsoDate(vid_details?.date) , 
       mainEntityOfPage: {
        "@type": "WebPage",
        "@id": vid_details?.slug,
