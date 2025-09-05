@@ -1178,7 +1178,7 @@ export async function generateMetadata(
       images: [{url:news_details?.featuredImage?.node?.sourceUrl, width: 800,
           height: 600, ...previousImages}],
       type: "article",
-      publishedTime:news_details?.date.toISOString(),
+      publishedTime:new Date(news_details?.date).toISOString(),
     },
      alternates: {
     canonical:  `https://culturays.com/news/${slug[0]}/`,
@@ -1202,7 +1202,7 @@ export async function generateMetadata(
       images: [{url:newsXdetail?.featuredImage?.node?.sourceUrl, width: 800,
           height: 600, ...previousImages}],
       type: "article",
-      publishedTime:newsXdetail?.date.toISOString(),
+      publishedTime:new Date(news_details?.date).toISOString(),
     },
      alternates: {
     canonical:  `https://culturays.com/news/${slug[0]}/`,

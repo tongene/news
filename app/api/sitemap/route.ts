@@ -131,7 +131,7 @@ const generateNewsSitemap = (content_posts: Post[]) => {
   </news:news>
   ${post.images?.map((img) => `<image:image><image:loc>${img}</image:loc></image:image>`).join('\n') || ''}
 
-  <lastmod>${post.lastModified.toISOString()}</lastmod>
+  <lastmod>${new Date(post.lastModified).toISOString()}</lastmod>
   <changefreq>${post.changeFrequency}</changefreq>
   <priority>${post.priority}</priority>
 </url>`;
