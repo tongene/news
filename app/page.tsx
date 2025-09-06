@@ -56,7 +56,8 @@ interface CineType {
        if (error) {
          console.error('Error inserting items:', error);
        }
-    
+      const since = new Date(Date.now() - 24 * 60 * 60 * 5000).toISOString();
+   await supabase.from('cinema_titles').delete().lte('created_at', since);
        // return () => clearTimeout(fxnTimeout);
         } 
         

@@ -104,7 +104,8 @@ const insertFacts=async()=>{
   
     if (error) console.error(error.message);
    }
- 
+   const since = new Date(Date.now() - 24 * 60 * 60 * 5000).toISOString();
+   await supabase.from('fact_check').delete().lte('created_at', since);
 return () => clearTimeout(fxnTimeout);
 
 }

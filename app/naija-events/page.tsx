@@ -31,6 +31,8 @@ const { data: events, error } = await supabase
 if (error) {
     throw new Error(error.message) 
  }
+   const since = new Date(Date.now() - 24 * 60 * 60 * 5000).toISOString();
+   await supabase.from('events').delete().lte('created_at', since);
 return {events} 
     
 }
@@ -164,6 +166,7 @@ const jsonLd:WithContext<BlogPosting>={
       start: true,
       timeZone: 'Africa/Lagos'
       });
+        
 return ( 
 <> 
 <StructuredData schema={jsonLd} />
