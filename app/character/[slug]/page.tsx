@@ -67,8 +67,8 @@ const jsonLd:WithContext<ProfilePage> = {
   '@type': 'ProfilePage',
    headline: `Urban Naija - ${character_data?.title}`, 
    description:replaceHTMLTags(character_data?.excerpt) , 
-   datePublished:toIsoDate(character_data?.data),
-   dateModified:toIsoDate(character_data?.data),
+   datePublished:toIsoDate(character_data?.date),
+   dateModified:toIsoDate(character_data?.date),
    url:`https://culturays.com/character/${slug}/`,
    mainEntity: {
     "@type": "Person",
@@ -85,9 +85,7 @@ const jsonLd:WithContext<ProfilePage> = {
    image: character_data?.featuredImage.node.sourceUrl, 
    keywords:[character_data?.title, character_data?.charactertitles.portrayedby, character_data?.charactertitles.filmname].join(', '),    
    
- };
-
- 
+ }; 
    return (  
    <> 
      <StructuredData schema={jsonLd} />  

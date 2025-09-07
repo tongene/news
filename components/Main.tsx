@@ -301,19 +301,19 @@ const changeSet = (i: number, name: string) => {
       }
       googleTxt()
     },[]) 
-    
+  
   return ( 
-    <section className='clear-left'> 
-    <div className="lg:flex justify-center sm:px-11 px-4 m-auto" style={{maxWidth:'1700px'}}> 
+<section className='clear-left'> 
+<div className="lg:flex justify-center sm:px-11 px-4 m-auto" style={{maxWidth:'1700px'}}> 
 <div className='max-w-7xl mx-auto'> 
-  <div className='lg:flex xl:px-4'> 
- <div className='py-20 md:px-1 m-auto'> 
+<div className='lg:flex xl:px-4'> 
+<div className='py-20 md:px-1 m-auto'> 
 <div className='py-5'>
 <div className='flex border-b shadow-sm justify-around items-center '> 
 <h3 data-test="header-1" className='text-xl font-bold w-60'>Don&#39;t Miss</h3>  
- <hr className='bg-black h-1 w-3/4 my-4'/>
- <div className='w-2/3' >
-   <ul className='flex justify-end flex-wrap py-2'> 
+<hr className='bg-black h-1 w-3/4 my-4'/>
+<div className='w-2/3' >
+<ul className='flex justify-end flex-wrap py-2'> 
  <li
   className={
     actIdx === -1
@@ -356,9 +356,9 @@ className='object-cover'
   alt={ex?.node.featuredImage?.node.sourceUrl } />  
 
  </div>
-  <Link href={`/news/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-xl sm:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link >
+  <Link href={`/news/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-xl sm:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link>
   <hr className='my-2'/>
-  <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
+  <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link>
  
 <div className='flex text-gray-400 justify-between items-center py-4 leading-8 '> 
 <Link href={`/creator/${ex.node?.author.node.slug}/`}><p>{ ex.node?.author.node.name }</p></Link>  

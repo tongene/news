@@ -1,10 +1,6 @@
-import Main from "@/components/Main"; 
-import { InnerEdges, PostXNode } from '@/app/types'   
-import MainSlider from "@/components/MainSlider"; 
-import { events3Details, getNaijaEvents3 } from "./naija-events/eventData/eventContent";
-import { processImgs } from "@/utils/process_imgs";
-import { processSbImages } from "@/utils/processImages";
-import { replaceSpecialCharacters } from "@/utils/replacechars";
+import Main from "@/components/Main";    
+import MainSlider from "@/components/MainSlider";  
+import { processSbImages } from "@/utils/processImages"; 
 import { scrapeSilverBird } from "./filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
 import { CronJob } from "cron"; 
@@ -19,9 +15,7 @@ interface CineType {
    url:string 
    release_date:string 
    dur:string 
-} 
- 
- 
+}  
    const dailyWiki =async()=>{
         const silverBTitles= await scrapeSilverBird()
         const silverB_titles = silverBTitles.filter((xy)=> xy.title !==undefined).map((ex)=> ex.title)  
@@ -60,7 +54,7 @@ interface CineType {
    await supabase.from('cinema_titles').delete().lte('created_at', since);
        // return () => clearTimeout(fxnTimeout);
         } 
-        
+         
 const newsByLatest =()=>{ 
 
 const res= fetch('https://content.culturays.com/graphql',{ 
@@ -123,8 +117,11 @@ description
 .then((data) => data.data ) 
 .catch((err) => console.log("err", err))  
 return res
+
+
 }
 
+ 
    const nextResp=()=>{ 
       const wprestPost = fetch('https://content.culturays.com/graphql',{     
         method: 'POST', 

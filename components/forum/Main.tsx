@@ -448,7 +448,7 @@ setEditId={setEditId}
   <div className='absolute'>
   {gnrItx.map((vx, i)=>vx.article_title &&
   <div key={vx.article_title + ' ' + Math.random()} className="flex items-center border-b hover:bg-gray-400 dark:bg-gray-800 bg-white w-80 hover:dark:bg-gray-900" > 
-<Link href={{ pathname: pathname, query: { topic:vx.article_title} }}><h2 className="capitalize text-lg p-6 cursor-pointer" >{vx.article_title.replace(/-/g," ")}</h2> </Link>
+<Link href={`/forum/post?topic=${vx.article_title} }`}><h2 className="capitalize text-lg p-6 cursor-pointer" >{vx.article_title.replace(/-/g," ")}</h2> </Link>
 
   </div>
   )}

@@ -177,6 +177,7 @@ if(!postX)return
            //const response = wprest?.data?.outlines?.nodes 
            return wprest
   }
+ 
 async function news_details_all(uri:string){ 
 const wprest = fetch('https://content.culturays.com/graphql',{
 method: 'POST', 
@@ -1073,9 +1074,7 @@ const readNextContent = async(notIn:string[])=>{
             slug
           }
         }
-      }
-    
-    
+      }    
   }
 }
   }`, variables:{notIn:notIn}
@@ -1087,8 +1086,116 @@ const readNextContent = async(notIn:string[])=>{
  //  const response = wprest?.data.contentNodes.nodes 
   return wprest
 } 
+ async function postQuery(slug:string){
+  const wprest = fetch('https://content.culturays.com/graphql',{
+method: 'POST', 
+headers:{
+'Content-Type':'application/json'
+},
+body: JSON.stringify({
+query:` query NODE($id: ID!, $idType: PostIdType!) {
+  post(id: $id, idType: $idType){
+   id
+      title
+      slug
+      excerpt
+      content
+      postnewsgroup {
+        heroImage {
+          node {
+            altText
+            caption
+            sourceUrl
+          }
+        }
+        relatedPosts {
+          edges {
+            cursor
+            node {
+              ... on Post {
+                id
+                content
+                title
+                slug
+                date
+                content
+                excerpt
+                author {
+                  node {
+                    firstName
+                    lastName
+                    name
+                    slug
+                    description
+                  }
+                }
+                featuredImage {
+                  node {
+                    sourceUrl
+                    altText
+                  }
+                }
+                tags {
+                  nodes {
+                    id
+                    name
+                    slug
+                  }
+                }
+                categories {
+                  nodes {
+                    name
+                    slug
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
+      tags {
+        nodes {
+          name
+          slug
+        }
+      }
+      featuredImage {
+        node {
+          altText
+          caption
+          sourceUrl
+        }
+      }
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+}}`,
+variables:{
+id: slug,
+idType: 'SLUG' 
+}
+})
 
+  }).then(response => response.json())    
+.then(data =>data.data.post) 
+  .catch(error => console.error('Error:', error)); 
+      //const response = wprest?.data.contentNode
+      return wprest
 
+} 
 const readNextPosts = async(notIn:string[])=>{  
   const wprest = fetch('https://content.culturays.com/graphql',{
     method: 'POST',
@@ -1135,90 +1242,64 @@ type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
- 
- 
+  
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata 
 ): Promise<Metadata> {  
-  const slug =(await params).slug 
- 
-  async function resolveContent(slug: string) {
+  const slug =(await params).slug
+  const news_details= await postQuery(slug[0])  
+
+  async function resolveContent(slug: string) {  
   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) {
-     if(!type)return
- const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}/`);
-  
+     if(!type&&news_details.id)return
+ const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}/`); 
     if (res?.title) {
       return { ...res, __typename: type };
     }
   }
   return null; 
 }
- const newsXdetail = await resolveContent(slug); 
-  const news_details= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug}/`) 
-      if(!news_details &&!newsXdetail) return {}
-  const previousImages = (await parent).openGraph?.images || []
-  const tags= news_details?.tags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
-  const keyTags= newsXdetail?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
-  return !newsXdetail?{
-    title: `Urban Naija | ${news_details?.title}`,
-    description:news_details?.excerpt,
-    keywords:tags,
-    twitter: {
-      card: 'summary_large_image',
-      title: news_details?.title  ,
-      description: news_details?.excerpt ,  
-      images:[news_details?.featuredImage?.node?.sourceUrl, ...previousImages],  
-    },
-     openGraph: {
-      title: `Urban Naija | ${news_details?.title}`,
-      description:news_details?.excerpt, 
-      url: `https://culturays.com/news/${slug[0]}/`,
-      siteName: 'Urban Naija',
-      images: [{url:news_details?.featuredImage?.node?.sourceUrl, width: 800,
-          height: 600, ...previousImages}],
-      type: "article",
-      publishedTime:new Date(news_details?.date).toISOString(),
-    },
-     alternates: {
-    canonical:  `https://culturays.com/news/${slug[0]}/`,
  
-  },
-  }: {
-    title: `Urban Naija | ${newsXdetail?.title}`,
-    description:newsXdetail?.excerpt,
-    keywords:keyTags,
+ const newsXdetail =  await resolveContent(slug);  
+  const previousImages = (await parent).openGraph?.images || [] 
+  const keyTags= newsXdetail?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
+ const tags= news_details?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
+   return {
+    title: `Urban Naija | ${news_details?.title || newsXdetail?.title }`,
+    description:news_details?.excerpt || newsXdetail?.excerpt ,
+    keywords:keyTags||tags,
     twitter: {
       card: 'summary_large_image',
-      title: newsXdetail?.title  ,
-      description: newsXdetail?.excerpt ,  
-      images:[newsXdetail?.featuredImage?.node?.sourceUrl, ...previousImages],  
+      title: news_details?.title || newsXdetail?.title ,
+      description: news_details?.excerpt || newsXdetail?.excerpt ,  
+      images:[news_details?.featuredImage?.node?.sourceUrl, ...previousImages||newsXdetail?.featuredImage?.node?.sourceUrl, ...previousImages],  
     },
      openGraph: {
-      title: `Urban Naija | ${newsXdetail?.title}`,
-      description:newsXdetail?.excerpt, 
-      url: `https://culturays.com/news/${slug[0]}/`,
+      title: `Urban Naija | ${news_details?.title || newsXdetail?.title}`,
+      description:news_details?.excerpt || newsXdetail?.excerpt, 
+      url:news_details?.slug? `https://culturays.com/news/${news_details?.slug}/`:`https://culturays.com/news/${newsXdetail?.slug}/`,
       siteName: 'Urban Naija',
-      images: [{url:newsXdetail?.featuredImage?.node?.sourceUrl, width: 800,
-          height: 600, ...previousImages}],
+      images: [{url:news_details?.featuredImage?.node?.sourceUrl||newsXdetail?.featuredImage?.node?.sourceUrl, width: 800,
+          height: 600, ...previousImages} ],
       type: "article",
-      publishedTime:new Date(news_details?.date).toISOString(),
+      publishedTime:news_details?.date?new Date(news_details?.date)?.toISOString() :new Date(newsXdetail?.date).toISOString(),
     },
      alternates: {
-    canonical:  `https://culturays.com/news/${slug[0]}/`,
+    canonical:news_details?.slug? `https://culturays.com/news/${news_details?.slug}/`:`https://culturays.com/news/${newsXdetail.slug}/`,
  
   },
   
   }
+ 
 } 
  
 const ArticleDetailPage = async ({params}: Props) => {
-const slug =(await params).slug 
+const slug =(await params).slug  
+const news_details= await postQuery(slug[0])
 async function resolveContent(slug: string) {
   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) { 
-
-    if(!type)return
-  
+  if(!type&&news_details.id)return
     const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}`);
     if (res?.title) {
       return { ...res, __typename: type };
@@ -1227,24 +1308,21 @@ async function resolveContent(slug: string) {
   return null;
 }
 
-const newsXdetail = await resolveContent(slug) 
-const news_detail= await news_details_all(`${CULTURAYS_CONTENT_WP}/${slug}`)
-
-  if(!news_detail &&!newsXdetail)return <p>Content not found.</p>
+const newsXdetail = await resolveContent(slug)  
 const news_related = newsXdetail?.postnewsgroup?.relatedPosts?.edges.map((tx:{node:{id:string}})=> tx.node.id) 
-const news2related = news_detail?.postnewsgroup?.relatedPosts?.edges.map((tx:{node:{id:string}})=> tx.node.id) 
-const sidebarItems=await sidePlusViews(news_detail?.id||newsXdetail?.id) 
+ 
+const sidebarItems=await sidePlusViews(newsXdetail?.id) 
 const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)       
-const news_outline=await postsOutline()     
-
-   const tags= news_detail?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
-    const keyTags= newsXdetail?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
-   const replaceHTMLTags=(string:string)=>{
-    const regex = /(<([^>]+)>)/gi;
-    const newString = string?.replace(regex, "");
-    return newString
-     }
+const news_outline=await postsOutline()   
+const tags= news_details?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
+const keyTags= newsXdetail?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
+const replaceHTMLTags=(string:string)=>{
+const regex = /(<([^>]+)>)/gi;
+const newString = string?.replace(regex, "");
+return newString
+}
  function toIsoDate(dateStr: string): string {
+  if(!dateStr) return new Date().toDateString()
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {
     throw new Error(`Invalid date string: ${dateStr}`);
@@ -1254,22 +1332,22 @@ const news_outline=await postsOutline()
    const jsonLd:WithContext<NewsArticle> = {
      '@context': 'https://schema.org',
      '@type': 'NewsArticle',
-      name: news_detail?.title||newsXdetail?.title,
-      headline:news_detail?.title||newsXdetail?.title, 
-      description:replaceHTMLTags(news_detail?.excerpt||newsXdetail?.excerpt) ,
+      name:news_details?.title||newsXdetail?.title,
+      headline:news_details?.title||newsXdetail?.title, 
+      description:replaceHTMLTags(news_details?.excerpt||newsXdetail?.excerpt) ,
       author: {
         "@type": "Person",
         name: "Christina Ngene",
         url:'https://culturays.com/creator/christina-ngene/',
       }, 
-      datePublished:toIsoDate(news_detail?.date||newsXdetail?.date) , 
-      dateModified:toIsoDate(news_detail?.date||newsXdetail?.date) , 
+      datePublished:toIsoDate(news_details?.date||newsXdetail?.date) , 
+      dateModified:toIsoDate(news_details?.date||newsXdetail?.date) , 
        mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": news_detail?.slug||newsXdetail?.slug,
+        "@id":news_details?.slug||newsXdetail?.slug,
       },
-      url:`https://culturays.com/news/${news_detail?.slug}` || `https://culturays.com/news/${newsXdetail?.slug}`, 
-      image: news_detail?.featuredImage?.node?.sourceUrl ||newsXdetail?.featuredImage?.node?.sourceUrl,
+      url:news_details?`https://culturays.com/news/${news_details?.slug}`:`https://culturays.com/news/${newsXdetail?.slug}`, 
+      image: news_details?.featuredImage?.node?.sourceUrl||newsXdetail?.featuredImage?.node?.sourceUrl,
       publisher: {
         "@type": "Organization",
         name: "Christina Ngene",
@@ -1279,41 +1357,42 @@ const news_outline=await postsOutline()
         },
       },
        
-      keywords:tags || keyTags,    
+      keywords:tags||keyTags    
       
 };
-const post_related = news_detail?.postnewsgroup.relatedPosts?.edges
+
+const news2related = news_details?.postnewsgroup?.relatedPosts?.edges.map((tx:{node:{id:string}})=> tx.node.id)     
+ 
+const post_related = news_details?.postnewsgroup.relatedPosts?.edges
 const exitingPosts= post_related?.map((fx:{cursor:string})=>fx.cursor)??[]
 const next_top_news = await readNextContent([newsXdetail?.id, news_related, news2related, exitingPosts].flat())
-const next_x_news = await readNextPosts([news_detail?.id, news_related, news2related, exitingPosts].flat())
-
-if(!news_detail &&!newsXdetail)return <p>Content not found.</p>
+const next_x_news = await readNextPosts([news_details?.id, news_related, news2related, exitingPosts].flat())
  
   return (
      <> 
   <StructuredData schema={jsonLd} /> 
-  {!newsXdetail&&news_detail&&( 
+    {!newsXdetail&&news_details&&( 
          <NewsDetail
-            post={news_detail}
+            post={news_details}
             next_naija_news={next_x_news}
             sidebarItems={txPlus}
             news_outline={news_outline}  
             />  )}
-       {newsXdetail&&!news_detail&&( 
-         <div className="bg-gray-50">     
+     {newsXdetail&&!news_details&&( 
+      <div className="bg-gray-50">     
     <div className="lg:flex justify-center m-auto px-4 bg-white" style={{maxWidth:'1450px' }}>
+   
     <ArticleDetail 
       news_detail={newsXdetail} 
       next_top_news={next_top_news}
-      />  
-       <div className="[&_h2]:dark:text-gray-900 dark:text-gray-900 h-max">
+      />  <div className="[&_h2]:dark:text-gray-900 dark:text-gray-900 h-max">
     <SideBar 
        sidebarItems={txPlus}
         news_outline={news_outline} 
         />   
+      </div>   
       </div>
-      </div>
- </div> )}
+ </div>)}
  </>  ) 
 }
 

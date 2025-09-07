@@ -310,7 +310,7 @@ headers:{
 body: JSON.stringify({
 query:`
 query WPPOSTS {       
-posts(first:22, after:"${endX.pageInfo.endCursor}" , where:{categoryName: "News"}){ 
+posts(first:30, after:"${endX.pageInfo.endCursor}" , where:{categoryName: "News"}){ 
     pageInfo {
       startCursor
       endCursor
@@ -603,10 +603,11 @@ const [hasNewPage, setHasNewPage] = useState(true);
          const response2 = await fetchXPosts2() 
         const newsX12= await nextPostsX2()          
             const response3 = await afriNewsNext() 
-            const news_notIn_newsPosts= await nextPostsX1(); //should not slice 5. Already up to 20 at the time
+            const news_notIn_newsPosts= await nextPostsX1();
+            console.log(news_notIn_newsPosts)
             const startWith = await nextPostsX3()  
             setPostsXnewsPosts(prev => [...prev, ...response2.posts?.nodes, ...newsX12.posts?.nodes, ...response3.posts?.nodes, ...news_notIn_newsPosts.posts?.nodes, ...startWith.posts?.nodes]) 
-      setScrolledContent(prev => [...prev, ...response2.posts?.nodes.slice(5), ...newsX12.posts?.nodes.slice(5), ...response3.posts?.nodes.slice(5), ...startWith.posts?.nodes.slice(5)]) 
+      setScrolledContent(prev => [...prev, ...response2.posts?.nodes.slice(5), ...newsX12.posts?.nodes.slice(5), ...response3.posts?.nodes.slice(5), , ...news_notIn_newsPosts.posts?.nodes.slice(22), ...startWith.posts?.nodes.slice(5)]) 
         };
 
         fetchData();

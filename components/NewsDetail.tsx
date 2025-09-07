@@ -89,12 +89,10 @@ return ()=> clearTimeout(hideItem)
     };
 return html2pdfRef.current().set(opt).from(element).save();
   };
-  
-
+   
 
   return (
-    <article>
- 
+    <article> 
       <div> 
 <div className="">
 <div className="px-4 lg:px-16 py-8 m-auto max-w-7xl" > 
@@ -269,7 +267,7 @@ return html2pdfRef.current().set(opt).from(element).save();
 
 <div className="text-xl text-center border py-5 my-11 mx-2 bg-red-700 hover:bg-red-900 font-mono font-bold text-white dark:text-auto">
  
- <Link href={`/forum?topic=${post.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
+ <Link href={`/forum/post/?topic=${post.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
 </div>
  
 <div className='bg-white dark:bg-transparent px-3'> 

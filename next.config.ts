@@ -251,7 +251,14 @@ const nextConfig: NextConfig ={
    
  
   },   
- 
+  async rewrites() {
+    return [
+      {
+        source: "/llm.txt",
+        destination: "/api/llm",
+      },
+    ];
+  },
  
 trailingSlash: true,
 // skipTrailingSlashRedirect: true,
