@@ -106,7 +106,7 @@ export async function GET(req: NextRequest) {
   }
   //const body = urls.join("\n");url: `https://culturays.com/news/topic/${post.slug}/`,
   const body = [
-    '# Culturays',
+    '# Culturays | News in Nigeria',
     '',
     '> Short summary: This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
     '',

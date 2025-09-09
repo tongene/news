@@ -6,7 +6,7 @@ import { NextTypeProps, TopNews } from '@/app/types';
 const ArticleDetail = ({news_detail, next_top_news}:{news_detail:TopNews, next_top_news:NextTypeProps[]}) => {
   
 const related_content =news_detail?.newsGroup.related?.edges??[]
-     
+  
   return (    
  <article className='bg-white max-w-6xl lg:max-w-2xl min-[1100px]:max-w-3xl sm:p-6 xl:max-w-4xl 2xl:max-w-5xl xl:p-8 dark:text-gray-900' > 
   <h1 className="text-4xl font-bold md:text-5xl py-8"style={{lineHeight:'50px'}}>{news_detail?.title}</h1>
@@ -85,13 +85,13 @@ priority={true}
      src={ex?.node?.featuredImage?.node?.sourceUrl}
      width={1200}
      height={675}
-     alt={ex?.node?.featuredImage?.node?.altText}
+     alt={ex?.node?.featuredImage?.node?.altText|| ex?.node.title}
      /> 
       
       </div> 
      
        </div>
-        <Link href={`/forum?topic=${ex?.node.slug}/`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black  rounded-lg">Read</button></Link>  
+        <Link href={`/news/${news_detail?.contentTypeName}/${ex?.node?.slug}/`}><button className="my-2 p-3 text-red-700 bg-gray-300 hover:text-red-300 hover:bg-black  rounded-lg">Read</button></Link>  
         </div>  
        )} 
  </div>} 

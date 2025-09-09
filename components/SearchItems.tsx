@@ -1,8 +1,8 @@
  "use client"
 import { searchValues } from "@/app/lib/searches/searches"; 
- import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons"
- import { FontAwesomeIcon } from "@fortawesome/react-fontawesome" 
- import Link from "next/link"  
+import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome" 
+import Link from "next/link"  
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";  
@@ -36,58 +36,54 @@ type NodeProps ={
 }
  
 
-const SearchItems = () => {  
-  const { replace } = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  
-  const [searchData, setSearchData] = useState<NodeProps[]>([]);
-  const [nameX1, setNameX1] = useState('');
-  const [loading, setLoading] = useState(false);
-  
-  const debouncedUpdateURL = useDebouncedCallback((value: string) => {
-    const params = new URLSearchParams(searchParams);
-    if (value.trim()) {
-      params.set('name', value.trim());
-    
-    } else {
-      params.delete('name');
-    }
-    replace(`${pathname}?${params.toString()}`);
-  }, 200);
-  
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoading(true);
-    const value = e.target.value; 
-    debouncedUpdateURL(value);
-      setNameX1(value);
-  };  
-  
- 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!nameX1.trim()) {
-        setSearchData([]);
-        return;
-      } 
-      
-      const results =await searchValues(nameX1.trim());
-      setSearchData(results);
-    
-    };
-  
-    fetchData(); 
-    setLoading(false);
-  }, [nameX1, searchParams]);
-  
- 
-  useEffect(() => {
-    const initial = searchParams.get('name') || '';
-    setNameX1(initial);
-  }, [searchParams]);
-  
+const SearchItems = () => {
+const { replace } = useRouter();
+const pathname = usePathname();
+const searchParams = useSearchParams();
+const [searchData, setSearchData] = useState<NodeProps[]>([]);
+const [nameX1, setNameX1] = useState('');
+const [loading, setLoading] = useState(false);
+  const params = new URLSearchParams(searchParams.toString());
 
-   const xposts = searchData.filter((vz)=> vz.id).flat()
+ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  setLoading(true);
+  const value = e.target.value;
+   setNameX1(value);
+
+debouncedUpdateURL(value);
+ 
+};
+const debouncedUpdateURL = useDebouncedCallback((value: string) => {
+
+  if (value.trim()) {
+    params.set('name', value.trim());
+    
+  } else {
+    params.delete('name');
+   
+  }
+  replace(`${pathname}?${params.toString()}`);
+}, 200);
+
+useEffect(() => {
+  const fetchData = async () => {
+    if (!nameX1.trim()) {
+      setSearchData([]);
+      setLoading(false);
+      return;
+    }
+    try {
+      const results = await searchValues(nameX1.trim());
+      setSearchData(results); 
+    } finally {
+      setLoading(false);
+   
+    }
+  };
+  fetchData();
+}, [searchParams]); 
+
+const xposts = searchData.filter((vz)=> vz.id).flat()
  
 return ( 
 

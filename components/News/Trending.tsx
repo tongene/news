@@ -10,7 +10,7 @@ const Trending = ({related_to_trend, trends_categories, trends}:{related_to_tren
  const trendsAll = trends_categories[0].trends.nodes?.concat(trends_categories[1].trends.nodes)?.concat(trends_categories[2].trends.nodes)?.concat(trends_categories[3].trends.nodes)?.concat(trends_categories[4].trends.nodes)?.concat(trends_categories[5].trends.nodes)
  
   return ( 
-    <div className="m-auto px-4" style={{maxWidth:'1700px'}}> 
+    <div className="m-auto px-2" style={{maxWidth:'1700px'}}> 
     <div className="xl:flex justify-center" style={{maxWidth:'1600px'}}>
     <div className=" my-11 md:flex justify-center lg:px-4 mx-2 xl:px-0 gap-2"> 
       <div className="md:max-w-md m-auto lg:px-4 min-[800px]:max-w-lg min-[900px]:max-w-xl min-[1000px]:max-w-2xl min-[1080px]:max-w-3xl">      
@@ -124,9 +124,11 @@ alt={xy.featuredImage.node.altText}
      <h2 className="text-center p-6 text-3xl text-gray-700 dark:text-gray-300">More Trending Topics</h2>
      <hr className="p-0.5 bg-gray-600 w-1/2 m-auto m-1"/>
 <div className="xl:flex justify-center py-8"> 
-<div className="md:flex justify-center"> 
-<div className="mx-2 px-8"> 
-  {trendsAll?.slice(15,20).map((xy,i)=> 
+
+<div className="md:flex justify-center w-4/5 mx-auto"> 
+
+<div className="mx-1 px-1 xs:w-3/4 mx-auto lg:w-1/2"> 
+  {trendsAll?.slice(15,18).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="my-3 [&:not(:last-child)]:border-b">  
   <ul>
   <Link href={`/news/trending/${xy.slug}/`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 overflow-hidden text-ellipsis leading-9 dark:text-gray-300' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title} </li></Link> 
@@ -137,8 +139,8 @@ alt={xy.featuredImage.node.altText}
   )
   }
   </div>
-  <div className="my-4 lg:border-r md:border-l md:border-b h-max p-3 ">  
-{trendsAll?.slice(20,23).map((xy,i)=> 
+  <div className="my-4 lg:border-r md:border-l md:border-b h-max p-3">  
+{trendsAll?.slice(18,22).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="max-w-sm m-auto">   
 <div className="[&:not(:last-child)]:border-b my-3"> 
  

@@ -603,8 +603,7 @@ const [hasNewPage, setHasNewPage] = useState(true);
          const response2 = await fetchXPosts2() 
         const newsX12= await nextPostsX2()          
             const response3 = await afriNewsNext() 
-            const news_notIn_newsPosts= await nextPostsX1();
-            console.log(news_notIn_newsPosts)
+            const news_notIn_newsPosts= await nextPostsX1(); 
             const startWith = await nextPostsX3()  
             setPostsXnewsPosts(prev => [...prev, ...response2.posts?.nodes, ...newsX12.posts?.nodes, ...response3.posts?.nodes, ...news_notIn_newsPosts.posts?.nodes, ...startWith.posts?.nodes]) 
       setScrolledContent(prev => [...prev, ...response2.posts?.nodes.slice(5), ...newsX12.posts?.nodes.slice(5), ...response3.posts?.nodes.slice(5), , ...news_notIn_newsPosts.posts?.nodes.slice(22), ...startWith.posts?.nodes.slice(5)]) 
