@@ -46,7 +46,7 @@ type SitemapFile = Array<{
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   
       const charsList:FeedProps[] = await newchars() 
-      
+    
       const charPosts = charsList.map((post)=>({
         title:post.title,
         url:`https://culturays.com/character/${post.slug}/`,

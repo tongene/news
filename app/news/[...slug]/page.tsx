@@ -187,703 +187,445 @@ headers:{
 body: JSON.stringify({
 query:`
 query NODE($id: ID!, $idType: ContentNodeIdTypeEnum!) {
-contentNode(id: $id, idType: $idType) {  
+contentNode(id: $id, idType: $idType){  
     id
-    uri 
-    contentTypeName 
-     __typename
- ... on Post {
-      id
-      title
-      slug
-      excerpt
-      content
-         postnewsgroup { 
-       heroImage {
+    uri
+    slug
+    newsGroup {
+      related {
+      edges{
         node {
+          date
+          id
+          slug
+          ... on Article {
+            id
+            title
+            excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Business {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Society {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Nollywood {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Health {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+             ... on Award {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+             ... on Technology {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Environment {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Economy {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+        }
+      }
+}}
+    contentTypeName
+    __typename
+    ... on Article {
+        id
+      content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
           altText
           caption
-          sourceUrl
         }
-      } 
-  relatedPosts {
-  edges{
-  cursor
-  node {
-  ... on Post {
-  id
-  content  
-  title
-   slug
-   date
-   content 
-   excerpt
-    author {
-   node {
-    firstName
-    lastName
-   name
-   slug
-    description
-    }
-   }
-    featuredImage { 
-     node {
-     sourceUrl
-       altText
       }
-   } 
-     tags{
-      nodes{
+    
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+    ... on Technology {
+        id
+      content 
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+    ... on Society {
        id
-      name
-      slug
-      }
-      }
-   categories{
-      nodes{
-      name
-      slug
-      }
-      }
-  }
-   }  } }
-   
-  }
-    categories{
-      nodes{
-      name
-      slug
-      }
-      }
-      tags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-      
-      featuredImage {
-        node {
-          altText
-          caption
-          sourceUrl
-        }
-      }
-      date
-      author {
-        node {
-          name
-          slug
-          avatar{
-          url
-          }
-        }
-      }
-    }
-
-
-      ... on Business {
-      id
-      title
-      slug
-      excerpt
       content
-      contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-      newsGroup {
-        related {
-          edges {
-            node {
-              date
-              id
-              ... on Business {
-                id
-                content
-                title
-                slug
-                 contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                businessCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                featuredImage {
-                  node {
-                    altText
-                    caption
-                    sourceUrl
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      featuredImage {
-        node {
-          altText
-          caption
-          sourceUrl
-        }
-      }
-      date
-      author {
-        node {
-          name
-          slug
-          avatar{
-          url
-          }
-        }
-      }
-    }
-    ... on Award {
-      id
-      title
       slug
-      excerpt
-      content
-         contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-      newsGroup {
-        related {
-          edges {
-            node {
-              date
-              id
-              ... on Award {
-                id
-                content
-                title
-                slug
-                   contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                awardCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                featuredImage {
-                  node {
-                    altText
-                    caption
-                    sourceUrl
-                  }
-                }
-              }
-            }
-          }
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
         }
       }
       featuredImage {
         node {
+          sourceUrl
           altText
           caption
-          sourceUrl
         }
       }
+      excerpt
       date
       author {
         node {
           name
           slug
-            avatar{
-          url
+          avatar {
+            url
           }
         }
       }
     }
     ... on Nollywood {
       id
-      title
-      slug
-      excerpt
       content
-         contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-      newsGroup {
-        related {
-          edges {
-            node {
-              date
-              id
-              ... on Nollywood {
-                id
-                content
-                title
-                slug
-                   contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                nollywoodCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                featuredImage {
-                  node {
-                    altText
-                    caption
-                    sourceUrl
-                  }
-                }
-              }
-            }
-          }
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
         }
       }
       featuredImage {
         node {
+          sourceUrl
           altText
           caption
-          sourceUrl
         }
       }
+      excerpt
       date
       author {
         node {
           name
           slug
-            avatar{
-          url
-          }
-        }
-      }
-    }
-
-    ... on Article {
-      id
-      title
-      slug
-      excerpt
-      content
-         contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-      newsGroup {
-        related {
-          edges {
-            node {
-              date
-              id
-              ... on Article {
-                id
-                content
-                title
-                slug
-                   contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                articlesCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                featuredImage {
-                  node {
-                    altText
-                    caption
-                    sourceUrl
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      featuredImage {
-        node {
-          altText
-          caption
-          sourceUrl
-        }
-      }
-      date
-      author {
-        node {
-          name
-          slug
-            avatar{
-          url
-          }
-        }
-      }
-    }
-    ... on Economy {
-      id
-      title
-      slug
-      excerpt
-      content
-         contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-      featuredImage {
-        node {
-          altText
-          caption
-          sourceUrl
-        }
-      }
-      date
-      author {
-        node {
-          name
-          slug
-            avatar{
-          url
-          }
-        }
-      }
-      newsGroup {
-        related {
-          edges {
-            node {
-              date
-              id
-              ... on Economy {
-                id
-                content
-                title
-                slug
-                   contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                economyCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                featuredImage {
-                  node {
-                    altText
-                    caption
-                    sourceUrl
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    ... on Environment {
-      id
-      title
-      slug
-      excerpt
-      content
-         contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-      featuredImage {
-        node {
-          altText
-          caption
-          sourceUrl
-        }
-      }
-      date
-      author {
-        node {
-          name
-          slug
-            avatar{
-          url
-          }
-        }
-      }
-      newsGroup {
-        related {
-          edges {
-            node {
-              date
-              id
-              ... on Environment {
-                id
-                content
-                title
-                slug
-                   contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                environmentCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                featuredImage {
-                  node {
-                    altText
-                    caption
-                    sourceUrl
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    ... on Society {
-      id
-      title
-      slug
-      excerpt
-      content
-         contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-      featuredImage {
-        node {
-          altText
-          caption
-          sourceUrl
-        }
-      }
-      date
-      author {
-        node {
-          name
-          slug
-            avatar{
-          url
-          }
-        }
-      }
-      newsGroup {
-        related {
-          edges {
-            node {
-              date
-              id
-              ... on Society {
-                id
-                content
-                title
-                slug
-                   contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                societyCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                featuredImage {
-                  node {
-                    altText
-                    caption
-                    sourceUrl
-                  }
-                }
-              }
-            }
+          avatar {
+            url
           }
         }
       }
     }
     ... on Health {
       id
-      title
+       content
       slug
-      excerpt
-      content
-         contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-      featuredImage {
-        node {
-          altText
-          caption
-          sourceUrl
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
         }
       }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
       date
       author {
         node {
           name
           slug
-            avatar{
-          url
-          }
-        }
-      }
-      newsGroup {
-        related {
-          edges {
-            node {
-              date
-              id
-              ... on Health {
-                id
-                content
-                title
-                slug
-                   contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                healthCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                featuredImage {
-                  node {
-                    altText
-                    caption
-                    sourceUrl
-                  }
-                }
-              }
-            }
+          avatar {
+            url
           }
         }
       }
     }
-    ... on Technology {
-      id
-      title
+    ... on Environment {
+   id
+       content
       slug
-      excerpt
-      content
-         contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                     techCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-      featuredImage {
-        node {
-          altText
-          caption
-          sourceUrl
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
         }
       }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
       date
       author {
         node {
           name
           slug
-          avatar{
-          url
+          avatar {
+            url
           }
         }
       }
-      newsGroup {
-        related {
-          edges {
-            node {
-              date
-              id
-              ... on Technology {
-                id
-                content
-                title
-                slug
-                   contentTags{
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                techCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-                featuredImage {
-                  node {
-                    altText
-                    caption
-                    sourceUrl
-                  }
-                }
-              }
-            }
+    }
+    ... on Economy {
+     id
+      content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+    ... on Business {
+     id
+     content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+         
+          }
+        }
+      }
+    }
+    ... on Award {
+      id
+      content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
           }
         }
       }
     } 
-
   }
-}   
+
+ }   
 ` ,
 variables:{
 id: uri,
 idType: 'URI' 
 }
-
+ 
 })
 
 }).then(response => response.json())    
@@ -1251,17 +993,18 @@ export async function generateMetadata(
   const news_details= await postQuery(slug[0])  
 
   async function resolveContent(slug: string) {  
-  for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) {
+  for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) { 
      if(!type&&news_details.id)return
  const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}/`); 
     if (res?.title) {
-      return { ...res, __typename: type };
+      return { ...res, __typename: type };   
     }
   }
   return null; 
 }
  
- const newsXdetail =  await resolveContent(slug);  
+ const newsXdetail =  await resolveContent(slug);
+
   const previousImages = (await parent).openGraph?.images || [] 
   const keyTags= newsXdetail?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
  const tags= news_details?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
@@ -1301,6 +1044,7 @@ async function resolveContent(slug: string) {
   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) { 
   if(!type&&news_details.id)return
     const res = await news_details_all(`${CULTURAYS_CONTENT_WP}/${type}/${slug}`);
+   
     if (res?.title) {
       return { ...res, __typename: type };
     }
@@ -1308,8 +1052,8 @@ async function resolveContent(slug: string) {
   return null;
 }
 
-const newsXdetail = await resolveContent(slug)  
-const news_related = newsXdetail?.postnewsgroup?.relatedPosts?.edges.map((tx:{node:{id:string}})=> tx.node.id) 
+const newsXdetail = await resolveContent(slug)
+const news_related = newsXdetail?.newsGroup?.related?.edges.map((tx:{node:{id:string}}  )=> tx.node.id) 
  
 const sidebarItems=await sidePlusViews(newsXdetail?.id) 
 const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)       
@@ -1378,7 +1122,7 @@ const next_x_news = await readNextPosts([news_details?.id, news_related, news2re
             sidebarItems={txPlus}
             news_outline={news_outline}  
             />  )}
-     {newsXdetail&&!news_details&&( 
+       {newsXdetail&&!news_details&&( 
       <div className="bg-gray-50">     
     <div className="lg:flex justify-center m-auto px-4 bg-white" style={{maxWidth:'1450px' }}>
    
@@ -1392,7 +1136,7 @@ const next_x_news = await readNextPosts([news_details?.id, news_related, news2re
         />   
       </div>   
       </div>
- </div>)}
+ </div>)} 
  </>  ) 
 }
 

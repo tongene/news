@@ -356,7 +356,7 @@ className='object-cover'
   alt={ex?.node.featuredImage?.node.sourceUrl } />  
 
  </div>
-  <Link href={`/news/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-xl sm:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link>
+  <Link href={`/news/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-2xl sm:text-4xl xl:text-5xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link>
   <hr className='my-2'/>
   <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link>
  

@@ -12,11 +12,10 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { title, excerpt, image, url } = body;
-
     if (!title || !excerpt) {
       return NextResponse.json({ message: 'Missing title or excerpt' }, { status: 400 });
     }
-
+   
     const wpSecret = request.headers.get('x-wp-secret');
     if (wpSecret !== process.env.WP_SECRET) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });

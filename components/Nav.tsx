@@ -160,7 +160,7 @@ useEffect(()=>{
   ))}
 
     {trendsData?.map((ex)=> 
-    <ul key={ex.title} className='py-3'><li className='m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}> <Link href={`/news/trending/${ex.slug}/`}>{ex?.contentTags.nodes[0].name}</Link></li>    
+    <ul key={ex?.title} className='py-3'><li className='m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}> <Link href={`/news/trending/${ex?.slug}/`}>{ex?.contentTags.nodes[0]?.name}</Link></li>    
     </ul> 
      )}  
   

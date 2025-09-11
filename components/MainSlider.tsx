@@ -6,11 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
- const SLIDE_INTERVAL = 5000; // 5 seconds
+ const SLIDE_INTERVAL = 5000; 
 const MainSlider = ({livesNews, latestPosts}:{livesNews:LatestProps[],latestPosts:LatestProps[]} ) => {
   
-const router = useRouter()
-const [isAnimating, setIsAnimating] = useState(true); 
+const router = useRouter() 
 const [currentHour, setCurrentHour] = useState('');
 
   useEffect(() => {
@@ -18,8 +17,7 @@ const [currentHour, setCurrentHour] = useState('');
   }, [livesNews]);
   const [activeIndices, setActiveIndices] = useState<number[]>([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
  
-  const left_slide = () => {
-    setIsAnimating(false)
+  const left_slide = () => { 
     setActiveIndices(([left, right]) => {
       const newLeft = left - 1 < 0 ? livesNews
       .concat(latestPosts).length - 1 : left - 1;
@@ -27,36 +25,32 @@ const [currentHour, setCurrentHour] = useState('');
       .concat(latestPosts).length - 1 : right - 1;
       return [newLeft, newRight];
     });
-   
-  const slideTimeOut=  setTimeout(() => {
-      setIsAnimating(true)
-      setActiveIndices((prev) => {
-        const newValues = activeIndices.filter((n) => !prev.includes(n));
+ 
+  const slideTimeOut=  setTimeout(() => { 
+      setActiveIndices((prev) => {       
+        const newValues = activeIndices.filter((n) => !prev.includes(n));  
         return [...newValues, ...prev ];
       });
      
-    },10000);
-    return ()=> clearTimeout(slideTimeOut)
+    },10000); 
   };
   
-  const right_slide = () => {
-    setIsAnimating(false)
+  const right_slide = () => { 
     setActiveIndices(([left, right]) => {
       const newLeft = (left + 1) % livesNews
       .concat(latestPosts).length;
       const newRight = (right + 1) % livesNews
-      .concat(latestPosts).length;
+      .concat(latestPosts).length; 
       return [newLeft, newRight];
     }); 
-    const slideTimeOut= setTimeout(() => { 
-      setIsAnimating(true) 
+    const slideTimeOut= setTimeout(() => {  
       setActiveIndices((prev) => {
         const newValues = activeIndices.filter((n) => !prev.includes(n));
         return [...newValues, ...prev ];
       });
 
   },10000);
-  return ()=> clearTimeout(slideTimeOut)
+ 
   };
  
 
@@ -95,18 +89,18 @@ const slides=livesNews?.filter((ex) => {
     }, SLIDE_INTERVAL);
 
     return () => clearInterval(interval);
-  }, [paused, slides.length, slideWidth]);
+  }, [paused, slides.length, slideWidth ]);
 
 
   const handleSlideClick = (link: string) => {
    return router.push(link);
   };
-
+ 
   return ( 
     <section className='flex flex-col justify-center items-center my-11'> 
     <h2 className='text-gray-600 font-bold text-4xl text-center py-4 dark:text-gray-300'>Recently Added</h2> 
 <div className='relative lg:w-2/3 xl:w-2/4 w-full xs:w-3/4 md:w-11/12 top-60 px-1'>
-<div className="flex justify-between z-50 "> 
+<div className="flex justify-between z-50"> 
      <div onClick={left_slide} className='text-5xl text-white opacity-70 bg-gray-600 cursor-pointer hover:scale-105'> 
      <FontAwesomeIcon icon={faAngleLeft}/> 
      </div>
@@ -116,7 +110,7 @@ const slides=livesNews?.filter((ex) => {
       </div> 
      </div> </div>
     <hr className='w-1/2 m-auto h-1 dark:bg-gray-300 bg-gray-600'/>  
-<div 
+ <div 
   className="w-[300px] md:w-[600px] overflow-hidden relative main_slider"  
   onMouseEnter={() => setPaused(true)}
   onMouseLeave={() => setPaused(false)}
@@ -127,6 +121,7 @@ const slides=livesNews?.filter((ex) => {
     ref={sliderRef}
   >
     {slides?.map((xy, i) => (
+       activeIndices.includes(i)&&
       <div className="x-main-x-slider flex-shrink-0 p-1 h-96" key={xy.node.slug}>
         <div className="main-slider-container px-2 py-11 bg-gray-200 bg-opacity-60 rounded-xl w-72 border">
           {xy.node.contentTypeName !== "live" ? (
@@ -172,7 +167,7 @@ const slides=livesNews?.filter((ex) => {
     ))}
   </div>
 </div>
-
+ 
   
 <hr className='w-11/12 m-auto bg-gray-600 h-1'/>
 

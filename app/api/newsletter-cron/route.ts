@@ -8,13 +8,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
  export async function GET() {
   try {
     const supabase = await createClient(); 
- 
-    const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    const millisecondsInOneDay = 1000 * 60 * 60 * 24;  
+    const millisecondsInTwoDays = millisecondsInOneDay * 3;
+    const since = new Date(Date.now() - millisecondsInTwoDays).toISOString();
     const { data: posts, error: postsError } = await supabase
       .from('queued_posts')
       .select('*')
       .gte('created_at', since);
-
+ 
     if (postsError) {
       console.error('❌ Failed to fetch posts:', postsError);
       return NextResponse.json({ message: 'Failed to fetch posts' }, { status: 500 });

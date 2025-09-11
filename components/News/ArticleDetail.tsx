@@ -6,14 +6,14 @@ import { NextTypeProps, TopNews } from '@/app/types';
 const ArticleDetail = ({news_detail, next_top_news}:{news_detail:TopNews, next_top_news:NextTypeProps[]}) => {
   
 const related_content =news_detail?.newsGroup.related?.edges??[]
-  
+
   return (    
  <article className='bg-white max-w-6xl lg:max-w-2xl min-[1100px]:max-w-3xl sm:p-6 xl:max-w-4xl 2xl:max-w-5xl xl:p-8 dark:text-gray-900' > 
   <h1 className="text-4xl font-bold md:text-5xl py-8"style={{lineHeight:'50px'}}>{news_detail?.title}</h1>
 <hr/>
-  <div dangerouslySetInnerHTML={{__html:news_detail?.excerpt}}className='py-4 text-lg italic'/> 
+  <div dangerouslySetInnerHTML={{__html:news_detail?.excerpt}}className='py-4 text-lg italic'/>  
 <div className="bg-gray-600 relative text-gray-200">
-  <div dangerouslySetInnerHTML={{__html:news_detail?.featuredImage?.node?.caption}} className="absolute top-0 left-6 p-4 leading-6 shadow-xl font-mono max-w-xl"/> 
+  <div dangerouslySetInnerHTML={{__html:news_detail?.featuredImage?.node?.caption}} className="absolute top-0 left-6 p-4 leading-6 shadow-xl font-mono max-w-xl"/>  
  
  </div>
   <Image  
@@ -69,7 +69,7 @@ priority={true}
 <hr className='bg-black p-0.5 m-0.5'/>
 {news_detail?.content?.split('\n').filter((xy)=> xy !=='').map((line, index) =>(
   <div key={index + ' ' + Math.random()}className='p-1 my-1'> 
-    <div dangerouslySetInnerHTML={{__html:line}} className="[&_h2]:text-3xl [&_h2]:py-3 [&_h2]:mt-4 [&_h2]:font-bold [&_h3]:text-3xl [&_h3]:py-3 [&_h2]:mt-4 [&_h3]:font-bold my-1 text-xl leading-9 [&_figure>figcaption]:italic [&_figure>figcaption]:py-2 [&_figure>figcaption]:text-sm [&_figure>figcaption]:text-center [&_img]:max-w-xs [&_img]:sm:max-w-sm [&_img]:md:max-w-md [&_img]:max-h-96 [&_img]:m-auto dark:text-gray-900 [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800 [&_.wp-block-file>a]:text-gray-300 [&_.wp-block-file]:hover:bg-green-800 [&_.wp-block-file]:p-5 [&_.wp-block-file]:text-lg [&_.wp-block-file]:bg-orange-800 [&_.wp-block-file]:flex [&_.wp-block-file]:flex-col [&_.wp-block-file]:sm:flex-row [&_.wp-block-file]:justify-between [&_.wp-block-file]:first:border-r [&_.wp-block-file]:first:border-r-4 [&_.wp-block-file]:border-green-400 [&_.wp-block-file]:items-center [&_.wp-block-file]:font-bold [&_.wp-element-button]:border [&_.wp-element-button]:border-l-4 [&_.wp-element-button]:p-3 [&_.wp-element-button]:border-gray-300 [&_h2]:border-b [&_li]:mx-2 [&_h2]:border-b-4 [&_.wp-element-button]:hover:bg-red-600 lg:max-w-md xl:max-w-xl 2xl:max-w-2xl"/> 
+   <div dangerouslySetInnerHTML={{__html:line}} className="[&_h2]:text-3xl [&_h2]:py-3 [&_h2]:mt-4 [&_h2]:font-bold [&_h3]:text-3xl [&_h3]:py-3 [&_h2]:mt-4 [&_h3]:font-bold my-1 text-xl leading-9 [&_figure>figcaption]:italic [&_figure>figcaption]:py-2 [&_figure>figcaption]:text-sm [&_figure>figcaption]:text-center [&_img]:max-w-xs [&_img]:sm:max-w-sm [&_img]:md:max-w-md [&_img]:max-h-96 [&_img]:m-auto dark:text-gray-900 [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800 [&_.wp-block-file>a]:text-gray-300 [&_.wp-block-file]:hover:bg-green-800 [&_.wp-block-file]:p-5 [&_.wp-block-file]:text-lg [&_.wp-block-file]:bg-orange-800 [&_.wp-block-file]:flex [&_.wp-block-file]:flex-col [&_.wp-block-file]:sm:flex-row [&_.wp-block-file]:justify-between [&_.wp-block-file]:first:border-r [&_.wp-block-file]:first:border-r-4 [&_.wp-block-file]:border-green-400 [&_.wp-block-file]:items-center [&_.wp-block-file]:font-bold [&_.wp-element-button]:border [&_.wp-element-button]:border-l-4 [&_.wp-element-button]:p-3 [&_.wp-element-button]:border-gray-300 [&_h2]:border-b [&_li]:mx-2 [&_h2]:border-b-4 [&_.wp-element-button]:hover:bg-red-600 lg:max-w-md xl:max-w-xl 2xl:max-w-2xl"/>  
  
     {index===5&&
      <div className='bg-white md:flex lg:block xl:flex mx-auto'>  

@@ -10,7 +10,7 @@ import moment from "moment";
 
 import { useEffect, useRef, useState } from "react";
 const NewsDetail = ({post, next_naija_news, sidebarItems, news_outline }:{post:PostTypeProps, next_naija_news:NextTypeProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => { 
- 
+ console.log( )
   const $ = cheerio.load( post.content ) 
   let data_texts= ''
   let data_link:number[]= [] 
@@ -174,7 +174,7 @@ return html2pdfRef.current().set(opt).from(element).save();
      width={50}
      height={50}
      alt={post.title}
-     />  <h3>{post.slug}</h3> </div> 
+     />  <Link href={`/news/${post.slug}/`}><h3 className="text-black">{post.slug}</h3></Link></div> 
       <button
         onClick={handleDownload}
         className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
