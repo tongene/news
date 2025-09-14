@@ -1,6 +1,11 @@
 import Trending from "@/components/News/Trending" 
 import StructuredData from "@/components/StructuredData";
 import { NewsArticle, WithContext } from "schema-dts";
+ const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
 async function trending(slug:string){
 const wprest = fetch('https://content.culturays.com/graphql',{
 method: 'POST',
@@ -204,9 +209,9 @@ export async function generateMetadata({ params }: {
     const tags= trending_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
     const previousImages = (await parent).openGraph?.images || []
      
-    return {
+    return { 
       title:`Urban Naija | Trending - ${trending_details?.title}` ,
-         description:trending_details?.excerpt,
+         description: `Daily news trends on Urban News — Find out what everyone is talking about and what's trending in every region across Nigeria." | ${replaceHTMLTags(trending_details?.excerpt)}`,
           keywords:tags,
           twitter: {
       card: 'summary_large_image',
@@ -240,13 +245,9 @@ const TrendingDetails =async ({params}: {
   const related_to_trend_id= trends_detail?.trendinggroup?.related?.nodes.map((xy:{id:string})=> xy.id)
   const related_to_trend= trends_detail?.trendinggroup?.related?.nodes
  const rm_ids = (related_to_trend_id??[])?.concat(trends_detail?.id)
- //trends_detail.id,related_to_trend_id
+
  const trends_categories=await similarTrending(rm_ids)
- const replaceHTMLTags=(string:string)=>{
-  const regex = /(<([^>]+)>)/gi;
-  const newString = string?.replace(regex, "");
-  return newString
-   }
+
    function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {
@@ -259,7 +260,7 @@ const TrendingDetails =async ({params}: {
   '@type': 'NewsArticle',
     name: trends_detail?.title,
    headline: trends_detail?.title, 
-   description:replaceHTMLTags(trends_detail?.excerpt) ,
+   description: `Daily news trends on Urban News — Find out what everyone is talking about and what's trending in every region across Nigeria." | ${replaceHTMLTags(trends_detail?.excerpt)}`,
    author: {
      "@type": "Person",
      name: "Christina Ngene",

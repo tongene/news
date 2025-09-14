@@ -4,6 +4,7 @@ import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import NewsLetter from "../NewsLetter";
  
 const Trending = ({related_to_trend, trends_categories, trends}:{related_to_trend:TrendsProps[],trends_categories:TrendsProps[], trends:TrendsProps}) => {  
  const [readAll, setReadAll]=useState(true)
@@ -119,7 +120,7 @@ alt={xy.featuredImage.node.altText}
    
     </div>  
    </div>
- 
+  <NewsLetter/>  
      <section>
      <h2 className="text-center p-6 text-3xl text-gray-700 dark:text-gray-300">More Trending Topics</h2>
      <hr className="p-0.5 bg-gray-600 w-1/2 m-auto m-1"/>
@@ -140,7 +141,7 @@ alt={xy.featuredImage.node.altText}
   }
   </div>
   <div className="my-4 lg:border-r md:border-l md:border-b h-max p-3">  
-{trendsAll?.slice(18,22).map((xy,i)=> 
+{trendsAll?.slice(18,21).map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="max-w-sm m-auto">   
 <div className="[&:not(:last-child)]:border-b my-3"> 
  
@@ -164,7 +165,7 @@ alt={xy.featuredImage.node.altText}
 </div>
  
   <div className="m-2 p-8 max-w-2xl"> 
-  {related_to_trend?.slice(0,4).map((xy,i)=> 
+  {related_to_trend?.map((xy,i)=> 
 <div key={xy.title + ' ' + i} className="[&:not(:last-child)]:border-b my-3">  
   <ul>
   <Link href={`/news/trending/${xy.slug}/`}><li className='hover:text-gray-500 list-disc text-2xl text-gray-800 dark:text-gray-300 dark:hover:text-gray-500'>{xy.title} </li></Link>

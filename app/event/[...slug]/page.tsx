@@ -1,6 +1,8 @@
 
 import EventDetail from "@/components/events/EventDetails";  
+import NewsLetter from "@/components/NewsLetter";
 import StructuredData from "@/components/StructuredData";
+import Top10 from "@/components/Top10El";
 import { createClient } from "@/utils/supabase/server";
 import type { Metadata, ResolvingMetadata } from 'next'
 import { redirect } from "next/navigation";
@@ -39,8 +41,8 @@ export async function generateMetadata(
     keywords:[eventTitle?.genre].join(', '),
     twitter: {
     card: 'summary_large_image',
-    title: eventTitle?.title  ,
-    description: eventTitle?.title ,  
+    title: eventTitle?.title ,
+    description: `${eventTitle?.desc} | Find details of all relevant events, conferences and summits happening throughout Nigeria yearly. From tech to entertainment and everything necessary to forward that career.`  ,  
      images:[`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle?.img_url}`, ...previousImages],  
     }, 
     openGraph: { 
@@ -83,11 +85,12 @@ return data
 }
  
 const eventTitle = await eventView()
-  if(!eventTitle)return redirect ('/naija-events')
+  if(!eventTitle || !eventTitle.day)return redirect ('/naija-events')
     function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
-  if (isNaN(d.getTime())) {
-    throw new Error(`Invalid date string: ${dateStr}`);
+  if (isNaN(d?.getTime())) {
+    return new Date().toLocaleDateString()
+   // throw new Error(`Invalid date string: ${dateStr}`);
   }
   return d.toISOString(); 
 }
@@ -95,7 +98,7 @@ const jsonLd: WithContext<Event> = {
   "@context": "https://schema.org",
   "@type": "Event",
   name: eventTitle?.title ,
-  description: eventTitle?.desc,   
+  description: `${eventTitle?.desc} | Find details of all relevant events, conferences and summits happening throughout Nigeria yearly. From tech to entertainment and everything necessary to forward that career.` ,   
   startDate:toIsoDate(eventTitle?.day) ,
   endDate: toIsoDate(eventTitle?.day), 
   eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
@@ -153,6 +156,10 @@ return (
 <div>
   <StructuredData schema={jsonLd} /> 
 <EventDetail eventTitle={eventTitle} similarEvents={similarEvents} /> 
+<Top10 />  
+<div className="flex p-8 lg:px-32"> 
+<NewsLetter/>  
+</div> 
 </div>
   )
 }

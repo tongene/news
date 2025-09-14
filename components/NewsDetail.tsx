@@ -193,7 +193,7 @@ return html2pdfRef.current().set(opt).from(element).save();
        <div key={ex.node.title + ' ' + Math.random()} className=" py-4 first:border-b border px-3 lg:px-0"> 
        <div className="md:flex lg:block justify-center"> 
        <div className="px-1 md:w-4/5 m-auto">
-       <Link href={`/news/${ex.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-lg py-1 font-bold">{ex.node.title} </h2></Link>
+       <Link href={`/news/${ex.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-2xl py-1 font-bold">{ex.node.title} </h2></Link>
        </div>
        
      <div className="px-2 md:w-2/3 lg:w-4/5 md:px-0 md:m-0 lg:m-auto m-auto"> 

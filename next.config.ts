@@ -72,7 +72,12 @@ const nextConfig: NextConfig ={
         destination: '/news/articles/', 
         permanent: true,
       }
-      ,
+        ,
+      {
+        source: '/news/trending/:path*',
+        destination: '/trending/:path*', 
+        permanent: true,
+      } ,
         
       {
         source: '/news/business/',
