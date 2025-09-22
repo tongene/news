@@ -50,7 +50,7 @@ const contentFeed = async()=>{
       }`})
        
        }).then(response => response.json())   
-       .then(data => data.data.posts.nodes )
+       .then(data => data.data.posts.nodes)
        .catch(error => console.error('Error:', error));
       // const response = wprest?.data.contentNodes.nodes 
        return wprest 
