@@ -327,8 +327,9 @@ query WPPOSTS  {
       })
       
       }).then(response =>response.json())
-      .then(data =>  data.data )
-      .catch(error => console.error('Error:', error)); 
+      .then(data => data.data) 
+      .catch(error => console.error('Error:', error));
+
       return wprest
   
   } 
@@ -385,8 +386,8 @@ const Home=async() =>{
  const latestPosts=await newsByLatest()  
   const response2 = await nextResp() 
 // const postData= response2.edges.map((xy:{node:InnerEdges})=> xy).flat() 
-
- const endX= response2.pageInfo.endCursor
+ 
+ const endX= response2?.pageInfo.endCursor
  const news_outline=await postsOutline()
  const posts_notIn_newsPosts= await nextNewsPosts(endX) 
   const livexnews =await liveResp()  

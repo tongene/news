@@ -137,7 +137,7 @@ const MainPosts = ({posts_notIn_newsPosts}:{posts_notIn_newsPosts:PostXNode[] })
  <div key={index} className="px-4">  
  { index === 0 &&
 <div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto px-1 pt-3 '>
- 
+
    <Image
 className='rounded-xl h-44 object-cover'
   width={600} 
