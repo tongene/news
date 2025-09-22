@@ -4,9 +4,10 @@ import { processSbImages } from "@/utils/processImages";
 import { scrapeSilverBird } from "./filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
 import { CronJob } from "cron"; 
-import { BlogPosting, WebSite, WithContext } from "schema-dts";
+ 
 import StructuredData from "@/components/StructuredData";   
 import { Suspense } from "react"; 
+import { WebSite, WithContext } from "schema-dts";
 
 interface CineType { 
   title: string 

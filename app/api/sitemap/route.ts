@@ -18,44 +18,48 @@ type Post = {
     article_title: string;
   }[];
 };
-const contentFeed = async()=>{  
-    const wprest =fetch('https://content.culturays.com/graphql',{
-       method: 'POST',
-       headers:{ 
-       'Content-Type':'application/json'
-       },
-       body: JSON.stringify({
-         query: `query CONTENTFEED{
-       posts(first:500) {
-       nodes {
-         date
-         contentTypeName 
-           id
-           title
-           slug 
-            author {
-           node {
-             name
-             slug
-           }
-         }
-               featuredImage {
-           node {
-             altText
-             sourceUrl
-           }
-         }
-         }  
-       }
-      }`})
-       
-       }).then(response => response.json())   
-       .then(data => data.data.posts.nodes)
-       .catch(error => console.error('Error:', error));
-      // const response = wprest?.data.contentNodes.nodes 
-       return wprest 
-   
-   }
+ 
+const contentFeed = async () => {  
+  try {
+    const response = await fetch('https://content.culturays.com/graphql', {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query: `query CONTENTFEED {
+          posts(first:500) {
+            nodes {
+              date
+              contentTypeName 
+              id
+              title
+              slug 
+              author { node { name slug } }
+              featuredImage { node { altText sourceUrl } }
+            }
+          }
+        }`
+      })
+    });
+
+    // Check if the response is OK
+    if (!response.ok) {
+      console.error('GraphQL request failed:', response.status, response.statusText);
+      return []; // return empty array to prevent build crash
+    }
+
+    const data = await response.json();
+
+    // Make sure data structure exists
+    return data?.data?.posts?.nodes || [];
+  } catch (error) {
+    console.error('Error fetching contentFeed:', error);
+    return []; // fallback
+  }
+};
+
+
   const livesFeed = async()=>{  
     const wprest =fetch('https://content.culturays.com/graphql',{
        method: 'POST',

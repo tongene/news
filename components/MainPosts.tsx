@@ -1,6 +1,5 @@
 "use client"
-import { PostXNode } from '@/app/types' 
-import moment from 'moment'
+import { PostXNode } from '@/app/types'  
 import Image from 'next/image'
 import Link from 'next/link'
 import { dateFormatter } from '@/utils/dateformat'
