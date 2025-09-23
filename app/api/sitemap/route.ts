@@ -21,7 +21,7 @@ type Post = {
  
 
 const contentFeed = async()=>{  
-    const wprest =await fetch('https://content.culturays.com/graphql',{
+    const wprest = fetch('https://content.culturays.com/graphql',{
        method: 'POST',
        headers:{ 
        'Content-Type':'application/json'
