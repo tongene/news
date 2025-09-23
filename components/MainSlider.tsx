@@ -99,8 +99,8 @@ const slides=livesNews?.filter((ex) => {
   return ( 
     <section className='flex flex-col justify-center items-center my-11'> 
     <h2 className='text-gray-600 font-bold text-4xl text-center py-4 dark:text-gray-300'>Recently Added</h2> 
-<div className='relative lg:w-2/3 xl:w-2/4 w-full xs:w-3/4 md:w-11/12 top-60 px-1'>
-<div className="flex justify-between z-50"> 
+<div className='relative lg:w-2/3 xl:w-2/4 w-full xs:w-3/4 md:w-11/12 top-60 px-1 z-50'>
+<div className="flex justify-between"> 
      <div onClick={left_slide} className='text-5xl text-white opacity-70 bg-gray-600 cursor-pointer hover:scale-105'> 
      <FontAwesomeIcon icon={faAngleLeft}/> 
      </div>

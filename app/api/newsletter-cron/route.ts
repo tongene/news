@@ -9,7 +9,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const supabase = await createClient(); 
     const millisecondsInOneDay = 1000 * 60 * 60 * 24;  
-    const millisecondsInTwoDays = millisecondsInOneDay * 3;
+    const millisecondsInTwoDays = millisecondsInOneDay * 30;
     const since = new Date(Date.now() - millisecondsInTwoDays).toISOString();
     const { data: posts, error: postsError } = await supabase
       .from('queued_posts')
@@ -20,7 +20,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
       console.error('❌ Failed to fetch posts:', postsError);
       return NextResponse.json({ message: 'Failed to fetch posts' }, { status: 500 });
     }
-
+ 
     if (!posts || posts.length < 3) {
       console.log('⏩ Not enough posts to send newsletter today.');
       return NextResponse.json({ message: 'Not enough posts today' }, { status: 200 });

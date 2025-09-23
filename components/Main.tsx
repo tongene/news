@@ -360,7 +360,7 @@ className='object-cover'
   <hr className='my-2'/>
   <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link>
  
-<div className='flex text-gray-400 justify-between items-center py-4 leading-8 '> 
+<div className='flex text-xs text-gray-400 justify-between items-center py-3 leading-8 '> 
 <Link href={`/creator/${ex.node?.author.node.slug}/`}><p>{ ex.node?.author.node.name }</p></Link>  
  <p >{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p> 
 </div>  
@@ -382,7 +382,7 @@ className='object-cover'
     <hr className='my-2'/>
     <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
    
-  <div className='flex text-gray-400 justify-between items-center py-4 leading-8 my-3'> 
+  <div className='flex text-xs text-gray-400 justify-between items-center py-3 leading-8 my-3'> 
   <Link href={`/creator/${ex.node?.author.node.slug}/`}><p>{ ex.node?.author.node.name }</p></Link>  
    <p >{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p> 
   </div>  
@@ -392,15 +392,16 @@ className='object-cover'
 
 </div>
 
-  <div className='my-2 m-auto px-4 xl:px-1'>
+  <div className='my-2 m-auto px-2 xl:px-1'>
   {!categoryName?top_PostsData?.slice(1).map((ex)=>
-<div className='shadow flex gap-4 first:md:my-0 first:md:py-0 md:pb-4' key={ex.node.title + ' ' + Math.random()}>
-  <div className="relative w-44 h-24 m-auto xl:h-[100px] my-2">
+<div className='shadow flex gap-4 first:md:pt-0 md:pt-4' key={ex.node.title + ' ' + Math.random()}>
+  <div className="m-auto xl:h-[100px] my-2">
 
   <Image 
   src={ex?.node.featuredImage?.node.sourceUrl} 
- fill
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+ className='object-cover'
+ width={300}
+ height={200}
   alt={ex?.node.featuredImage?.node.altText}/> 
 
   </div>
@@ -409,7 +410,7 @@ className='object-cover'
   <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
   <Link href={`/news/${ex.node.slug}/`}prefetch={false}><h2 className='font-bold text-xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
  </div>
-<div className='sm:flex text-gray-400 justify-between items-center leading-8 my-2'> 
+<div className='xs:flex text-xs text-gray-400 justify-between items-center leading-8 my-2'> 
 {/* <Link href={`/creator/${ ex?.node.author.node.slug}/`}prefetch={false}><p >{ ex?.node.author.node.name }</p></Link>  */}
   <p>{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p>
 </div>

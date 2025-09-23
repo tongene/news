@@ -725,7 +725,7 @@ useEffect(() => {
 </div>   
   <div className='md:grid md:grid-cols-2  justify-center  m-auto my-11 px-2 md:px-1 max-w-4xl lg:max-w-max' > 
  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(10,12).map((xy, i)=> 
-<div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'550px' }} key={i + ' ' + Math.random()}> 
+<div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'450px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
    className='h-44 xs:h-64 md:h-56 lg:h-64'
@@ -777,7 +777,7 @@ useEffect(() => {
 
   <div className='md:flex flex-wrap xl:flex-nowrap gap-1 my-11 px-2 md:px-1 m-auto max-w-2xl'> 
  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(16,18).map((xy, i)=> 
-<div className='shadow-2xl max-w-sm md:max-w-xs m-auto my-4'style={{height:'600px' }} key={i + ' ' + Math.random()}> 
+<div className='shadow-2xl max-w-sm md:max-w-xs m-auto my-4'style={{height:'500px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
    className='h-44 xxs:h-56 md:h-64 xl:h-56'
@@ -798,11 +798,9 @@ useEffect(() => {
 )}  
 </div>
 
- 
-
 <div className='md:grid md:grid-cols-2 justify-center m-auto my-11 px-2 md:px-1 max-w-4xl lg:max-w-max' > 
  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(18,20).map((ex, i)=> 
-<div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'550px' }} key={i + ' ' + Math.random()}> 
+<div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'450px' }} key={i + ' ' + Math.random()}> 
 <div> 
   <Image 
    className='h-44 xs:h-64 md:h-56 lg:h-64'
@@ -830,7 +828,7 @@ useEffect(() => {
 <div className='flex m-auto my-3' key={ex.title + ' ' + Math.random()}>
   <div className='w-44 mx-2 py-6'> 
   <Image
-  className='h-11 xxs:h-16 xs:h-24 lg:h-28'
+  className='h-11 xxs:h-24 lg:h-28'
   src={ex.featuredImage?.node.sourceUrl} 
   width={1200} 
   height={675} 
@@ -838,11 +836,11 @@ useEffect(() => {
   
   </div> 
   <div className='w-4/5 mx-2 py-6'> 
-  <div className=' text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
+  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
   <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex.title}</h2></Link>
  </div>
-<div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
-<Link href={`/creator/${ex.author.node.slug}/`}><p className='hover:text-gray-700 py-4'>{ex.author.node.name }</p> </Link>
+<div className='xs:flex text-gray-400 justify-between items-center text-xs'> 
+<Link href={`/creator/${ex.author.node.slug}/`}><p className='hover:text-gray-700 py-3'>{ex.author.node.name }</p> </Link>
   <p>{ dateFormatter?.format(Date.parse(ex.date)) }</p>
 </div>
 </div>
@@ -904,8 +902,8 @@ useEffect(() => {
     <Link href={`/news/${ex.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 my-2 hover:text-gray-400'/></Link >
 </div>
  
-<div className='flex text-base text-gray-400 justify-between items-center leading-8'> 
-<Link href={`/creator/${ ex?.author.node.slug}/`}><p className='hover:text-gray-700'>{ ex?.author.node.name }</p></Link> 
+<div className='xs:flex text-base text-gray-400 justify-between items-center text-xs'> 
+<Link href={`/creator/${ ex?.author.node.slug}/`}><p className='hover:text-gray-700 py-3'>{ ex?.author.node.name }</p></Link> 
  <p>{ dateFormatter?.format(Date.parse(ex?.date)) }</p>
 </div>
 </div>  

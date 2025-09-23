@@ -7,7 +7,7 @@ import { createClient } from '@/utils/supabase/server';
  * @param {number} batchSize - Max number of recipients per batch (default: 50).
  */ 
   
-
+ 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
