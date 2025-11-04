@@ -2,8 +2,7 @@
 import { createClient } from '@/utils/supabase/server';
 import { NextResponse } from 'next/server'; 
 import { Resend } from 'resend';
-//0 6 * * * curl -s https://culturays.com/api/newsletter-cron >> /var/log/newsletter.log 2>&1
-//
+
 const resend = new Resend(process.env.RESEND_API_KEY);
  export async function GET() {
   try {
@@ -14,14 +13,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
     const { data: posts, error: postsError } = await supabase
       .from('queued_posts')
       .select('*')
-      .gte('created_at', since);
+     // .gte('created_at', since);
  
     if (postsError) {
       console.error('❌ Failed to fetch posts:', postsError);
       return NextResponse.json({ message: 'Failed to fetch posts' }, { status: 500 });
     }
  
-    if (!posts || posts.length < 3) {
+    if (!posts) {
       console.log('⏩ Not enough posts to send newsletter today.');
       return NextResponse.json({ message: 'Not enough posts today' }, { status: 200 });
     }
@@ -68,9 +67,12 @@ const resend = new Resend(process.env.RESEND_API_KEY);
           Warm regards,<br>
           <strong>Urban Naija</strong>
         </p>
-    
         <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />
-    <footer style="font-size: 13px; color: #999999; text-align: center;">
+         <h2 style="font-size: 22px; color: #2c3e50; margin: 10px 0;">Information Made for You</h2>
+        <img src="/tinitasks-poster.JPG" alt="Tini Tasks Poster" style="width: 50%; border-radius: 6px; margin-bottom: 20px;" />
+        <p><a href="https://gowork.africareinvented.com/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Connect. Collaborate. Conquer</a></p>
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />
+       <footer style="font-size: 13px; color: #999999; text-align: center;">
       You are receiving this email because you subscribed to GoWork newsletter.<br>
       <a href="https://culturays.com/api/unsubscribe?email=${encodeURIComponent(p.email)}" style="color: #999999;">Unsubscribe</a>
     </footer>
