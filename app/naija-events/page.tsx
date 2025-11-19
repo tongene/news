@@ -184,7 +184,7 @@ return (
       </textPath>
     </text>
   </svg> */}
-<div className='max-w-lg mx-auto py-4 px-6 rounded-xl shadow-md space-y-4 bg-yellow-50 my-2 h-max dark:bg-yellow-50'>
+<div className='max-w-lg mx-auto py-4 px-6 rounded-xl shadow-md space-y-4 bg-yellow-50 my-2 h-max dark:text-black'>
   <AISuggestions  />
     {/* <h2 className="text-xl font-semibold ">Join the list of our loyal readers.<FontAwesomeIcon icon={faCoins} className="text-yellow-400"/></h2>
     <p className='text-lg font-bold'> What you can get <FontAwesomeIcon icon={faHandPointDown} className=" text-yellow-800"/> </p>
