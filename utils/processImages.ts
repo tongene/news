@@ -21,13 +21,17 @@ const basename = path.basename(pathname || '');
   }
 
 
-  async function downloadSBImage(url: string) {
+  async function downloadSBImage(url: string) {   
     if (url === undefined || url.trim() === '') {
-        console.error('URL is undefined or empty');
+        console.error('URL is undefined');
         return;
     }
-
+   if (!url) {
+     console.error("URL is empty");
+     return;
+   }
     try {
+         console.log(url);
         const extractedUrl = url.split(' ').slice(-2)[0];
        // console.log('Extracted URL:', extractedUrl);
 

@@ -896,14 +896,14 @@ useEffect(() => {
  </div> 
  <div className='w-3/4 xs:w-4/5 mx-2 py-4'> 
 
- <Link href={`/news/${ex.slug}/`}>
+ <Link href={`/news/${ex?.slug}/`}>
  <h2 className='text-2xl font-bold text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex?.title}</h2></Link > 
   <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>
-    <Link href={`/news/${ex.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 my-2 hover:text-gray-400'/></Link >
+    <Link href={`/news/${ex?.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 my-2 hover:text-gray-400'/></Link >
 </div>
  
 <div className='xs:flex text-base text-gray-400 justify-between items-center text-xs'> 
-<Link href={`/creator/${ ex?.author.node.slug}/`}><p className='hover:text-gray-700 py-3'>{ ex?.author.node.name }</p></Link> 
+<Link href={`/creator/${ ex?.author.node?.slug}/`}><p className='hover:text-gray-700 py-3'>{ ex?.author.node.name }</p></Link> 
  <p>{ dateFormatter?.format(Date.parse(ex?.date)) }</p>
 </div>
 </div>  

@@ -440,22 +440,22 @@ const Home=async() =>{
     }
   }
      
- 
+
 return (
-    <div> 
- <StructuredData schema={jsonLd} />   
-  <Suspense fallback={<div>Loading ...</div>}>
-       <MainSlider 
-     livesNews={livexnews}
-     latestPosts={latestPosts.posts.edges}
-     /> 
-     <Main 
-    top_PostsData={response2.edges} 
-    news_outline={news_outline}
-    posts_notIn_newsPosts={posts_notIn_newsPosts.posts.edges}  
-  
-    />  </Suspense>  
- </div>
-  ); 
+  <div>
+    <main className="min-h-screen bg-gray-100 p-8">
+     
+    </main>
+    <StructuredData schema={jsonLd} />
+    <Suspense fallback={<div>Loading ...</div>}>
+      <MainSlider livesNews={livexnews} latestPosts={latestPosts.posts.edges} />
+      <Main
+        top_PostsData={response2.edges}
+        news_outline={news_outline}
+        posts_notIn_newsPosts={posts_notIn_newsPosts.posts.edges}
+      />{" "}
+    </Suspense>
+  </div>
+); 
 }
 export default Home

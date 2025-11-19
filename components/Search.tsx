@@ -77,7 +77,33 @@ type InnerNode ={
       }[]
       }
   }
-const Search = ({ name, content }:{name:string, content:NodeProps[]}) => {
+
+   type XProps ={
+    node:{ 
+    id:number;
+    slug:string;
+    title:string;
+    index:number;    
+     tags:{
+        id:string
+      slug: string
+      name: string 
+      nodes:{
+      slug: string
+      name: string
+      
+      }[]
+      }
+    featuredImage:{
+        node:{
+            sourceUrl:string 
+            altText:string
+        }
+    }
+    }
+  
+  }
+const Search = ({ name, content, searchPageContent }:{name:string, content:NodeProps[], searchPageContent:XProps[]}) => {
    const [loading,setLoading]=useState(false)
 const searchItem:NodeProps[]= []   
 const netflixContent = content?.map((xy)=> xy?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes).flat()).flat()
@@ -89,22 +115,53 @@ const xtcontent = content?.map((xy)=> {
 })
  useEffect(()=>{
   setLoading(true) 
-   if(xtcontent?.length>0){
+   if(xtcontent?.length>0 ||searchPageContent?.length>0){
      setLoading(false)
    }
- },[name])
+ },[name]) 
  
 return (
     
 <div>
 {loading&&<p>Loading...</p>}
-{ !loading&& <div className="bg-gray-50 max-w-2xl m-auto mb-5 dark:text-gray-800">
-{name&&content?.length>0&&<p className="p-5 m-4 font-bold">Search result for {name} — {content?.length}</p>}   
+{ !loading&& <div className="bg-gray-50 max-w-4xl m-auto mb-5 dark:text-gray-800">
+{name&&content?.length>0&&<p className="p-5 m-4 font-bold">Search result for {name} — {content?.length}</p>} 
 
+{!name &&searchPageContent?.length>0&&
+searchPageContent?.map((it, index)=>   
+<div key={it?.node.id + Math.random()} className="shadow bg-white dark:bg-transparent max-w-2xl px-4 m-auto my-2"> 
+<div className="flex justify-center xs:items-center">
+ <div className="max-w-32 xs:max-w-44"> 
+     <Image
+     className="h-28 xs:h-40 object-cover"
+     src={it?.node.featuredImage?.node.sourceUrl}
+     width={1200}
+     height={675}
+     alt={it?.node.featuredImage?.node.altText}
+     />
+     </div>
+     <div className="mx-4 xs:py-5">            
+ <Link href={`/news/${it?.node.slug}/`}><h3 className="hover:opacity-50 text-xl cursor-pointer font-medium leading-tight">{it?.node.title }</h3></Link> 
+
+<div className="flex flex-wrap pt-4" >
+   {it?.node.tags?.nodes?.slice(0,5)?.map((ex, i)=>
+ <div  key={i + Math.random()}>
+  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name}  
+</span>}</Link>  
+
+</div>)}</div>
+
+<div className="gotoforum cursor-pointer py-3 hover:opacity-50"> 
+<Link href="/forum/"><FontAwesomeIcon icon= {faComments} /></Link>
+</div>
+ </div>
+    </div>
+</div>)
+}
  
 {name &&xtcontent?.length>0&&
 xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=> it?.contentTypeName ==='netflix-naija'&&it?.netflixCategories?.nodes.length>0? it?.netflixCategories?.nodes.map((tx)=> tx?.naijaOnNetflix.nodes?.flat()?.map((itx, index)=>   
-<div key={itx?.id + Math.random()} className="shadow bg-white dark:bg-transparent max-w-xl px-4 m-auto my-2"> 
+<div key={itx?.id + Math.random()} className="shadow bg-white dark:bg-transparent max-w-2xl px-4 m-auto my-2"> 
 <div className="flex justify-center xs:items-center">
  <div className="max-w-32 xs:max-w-44"> 
      <Image
@@ -239,6 +296,7 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=> it?.content
  </div>
     </div> 
 </div>) }
+
 { name ?
 searchItem?.length>0&&searchItem?.map((it, index)=> 
 <div key={it.id + Math.random()} className="items_search dark:bg-transparent bg-white max-w-xl m-0 m-auto py-4"> 

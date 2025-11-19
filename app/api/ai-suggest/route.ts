@@ -1,33 +1,29 @@
+ 
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,  
 });
 
 export async function POST(req: Request) {
   try {
-    const { topic, currentText } = await req.json();
-
-    const prompt = `
-      You are an expert content assistant. 
-      Suggest 3 improved directions or next paragraphs for this content about "${topic}".
-      Current draft:
-      ${currentText}
-
-      Reply with markdown-formatted suggestions.
-    `;
-
-    const completion = await client.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.8,
-    });
-
-    const suggestion = completion.choices[0]?.message?.content;
+    const { topic } = await req.json(); 
+const response = await ai.models.generateContent({
+  model: "gemini-2.5-flash",
+  contents: `Find information about ${topic}` ,
+  config: {
+    systemInstruction: "You are a suggestion agent and you have to look for content on the website https://culturays.com/ to get matching content with link.",
+  },
+});
+//console.log(response.text); 
+    const suggestion = response.text || "No suggestion from Gemini"; 
     return NextResponse.json({ suggestion });
-  } catch (error: any) {
-    console.error(error);
-    return NextResponse.json({ error: "Failed to generate suggestion" }, { status: 500 });
+  } catch (err: any) {
+    console.error("Gemini request error:", err);
+    return NextResponse.json(
+      { error: "Gemini request failed", details: err.message },
+      { status: 500 }
+    );
   }
 }

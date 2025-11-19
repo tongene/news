@@ -6,7 +6,11 @@ import { BlogPosting, WithContext } from 'schema-dts'
  import { replaceSpecialCharacters } from "@/utils/replacechars";
 import { events3Details, getNaijaEvents3 } from './eventData/eventContent';
 import { CronJob } from 'cron';
+import { faCoins, faHandPointDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+ import AISuggestions from "@/components/AISuggestions";
 //export const revalidate = 10
+
  interface ObjType { 
   title: string[];
   slug:string  
@@ -166,13 +170,33 @@ const jsonLd:WithContext<BlogPosting>={
       start: true,
       timeZone: 'Africa/Lagos'
       });
-        
+      
+
 return ( 
 <> 
 <StructuredData schema={jsonLd} />
-<div className='xxs:flex xxs:flex-col'> 
+ 
+  {/* <svg viewBox="0 0 500 500">
+    <path id="curve" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97" />
+    <text width="500">
+      <textPath xlinkHref="#curve">
+        Dangerous Curves Ahead
+      </textPath>
+    </text>
+  </svg> */}
+<div className='max-w-lg mx-auto py-4 px-6 rounded-xl shadow-md space-y-4 bg-yellow-50 my-2 h-max'>
+  <AISuggestions  />
+    {/* <h2 className="text-xl font-semibold ">Join the list of our loyal readers.<FontAwesomeIcon icon={faCoins} className="text-yellow-400"/></h2>
+    <p className='text-lg font-bold'> What you can get <FontAwesomeIcon icon={faHandPointDown} className=" text-yellow-800"/> </p>
+    <ul className='list-disc mx-4'>
+      
+      <li>A paid event for free</li> 
+       <li>A Cowry Card Top up</li>
+    </ul> */}
+ </div>
+    <div className='xxs:flex xxs:flex-col'> 
  <NaijaEvents events={events} /> 
-</div> 
+</div>  
 
 </>)
 }

@@ -42,7 +42,16 @@ import axios from 'axios';
                   return
              }
       } 
-       
+      //      if(mimeType !== null && fileName !== undefined|| !fileName.endsWith('jpg')|| !fileName.endsWith('png')){  
+      //        const { error } = await supabase
+      //               .storage
+      //              .from(location) 
+      //              .upload(fileName , fileBuffer, {contentType: mimeType, upsert: true ,cacheControl: '3600', });
+      //        if(error){ 
+      //           console.log(error)
+      //             return
+      //        }
+      // } 
           //console.log(`File uploaded as ${fileName}`);
          // const imgX = await uploadImageToSupabase(fileName, fileBuffer, mimeType);
      
