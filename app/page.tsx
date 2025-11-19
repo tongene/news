@@ -443,10 +443,7 @@ const Home=async() =>{
 
 return (
   <div>
-    <main className="min-h-screen bg-gray-100 p-8">
-     
-    </main>
-    <StructuredData schema={jsonLd} />
+      <StructuredData schema={jsonLd} />
     <Suspense fallback={<div>Loading ...</div>}>
       <MainSlider livesNews={livexnews} latestPosts={latestPosts.posts.edges} />
       <Main
