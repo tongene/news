@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     const { topic } = await req.json(); 
 const response = await ai.models.generateContent({
   model: "gemini-2.5-flash",
-  contents: `Find information about ${topic}` ,
+  contents: `Find information about - ${topic}` ,
   config: {
     systemInstruction: "You are a suggestion agent and you have to look for content on the website https://culturays.com/ to get matching content with link.",
   },
