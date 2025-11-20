@@ -1,11 +1,8 @@
 "use client";
 import { useState } from "react";
-   //find the coin no this page and earn real money from reading and sharing - coind emebede within a concealed share button
-
-// Cowry card rcharge
-// Feature their short videos.
-
-export default function AISuggestions() {
+import { TagProps } from "@/app/topic/sitemap"
+export default function AISuggestions({tag_response}:{
+ tag_response: TagProps[]}) {
   const [topic, setTopic] = useState("");
   const [currentText, setCurrentText] = useState("");
   const [suggestion, setSuggestion] = useState("");
@@ -24,10 +21,11 @@ export default function AISuggestions() {
     setSuggestion(data.suggestion || "No suggestions found.");
     setLoading(false);
   };
-
+ 
   return (
     <div className="max-w-xl p-6 rounded-xl shadow-md space-y-4">     
-          <h2 className="text-lg font-semibold">AI Assitance? Look here for more! Click to get Personalized Suggestions</h2>
+          <h2 className="text-lg font-semibold">Gossip Buddy or Assitance? Ask me about {tag_response[0]?.name}</h2>
+       
         <input
         type="text"
         value={topic}

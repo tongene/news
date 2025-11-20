@@ -23,6 +23,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
    organizer:string
    location:string 
 }
+ async function content_TAGS () { 
+    const wprest = fetch('https://content.culturays.com/graphql',{
+      method: 'POST',
+      headers:{
+      'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        query:`
+   query POSTTAGS {
+   tags(first:1) { 
+       nodes { 
+    name
+    id
+    slug 
+         
+      }
+    }
+  }`  
+        
+      })
+      
+      }).then(response => response.json())    
+      .then(data =>data.data?.tags.nodes) 
+      .catch(error => console.error('Error:', error));
+       return wprest
+ }
 const Events_Naija = async() => { 
 const forumEvents =async ()=>{
 const supabase =await createClient()  
@@ -164,14 +190,15 @@ const jsonLd:WithContext<BlogPosting>={
       
       }  
      }
-         CronJob.from({
-      cronTime: '10 8 * * *',  
-      onTick: dailyEv3(),
-      start: true,
-      timeZone: 'Africa/Lagos'
-      });
+      //    CronJob.from({
+      // cronTime: '10 8 * * *',  
+      // onTick: dailyEv3(),
+      // start: true,
+      // timeZone: 'Africa/Lagos'
+      // });
       
 
+  const tag_response = await content_TAGS()
 return ( 
 <> 
 <StructuredData schema={jsonLd} />
@@ -185,7 +212,7 @@ return (
     </text>
   </svg> */}
 <div className='max-w-lg mx-auto py-4 px-6 rounded-xl shadow-md space-y-4 bg-yellow-50 my-2 h-max dark:text-black'>
-  <AISuggestions  />
+  <AISuggestions tag_response={tag_response} />
     {/* <h2 className="text-xl font-semibold ">Join the list of our loyal readers.<FontAwesomeIcon icon={faCoins} className="text-yellow-400"/></h2>
     <p className='text-lg font-bold'> What you can get <FontAwesomeIcon icon={faHandPointDown} className=" text-yellow-800"/> </p>
     <ul className='list-disc mx-4'>
