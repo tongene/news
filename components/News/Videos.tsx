@@ -80,8 +80,8 @@ const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:Vi
 <Paginate content={content_videos.slice(4)} pathString='video'/>
 <div className="[&_.summary-side]:dark:text-gray-900 h-max dark:text-gray-900 [&_div]:lg:m-auto">
   <SideBar 
-  sidebarItems={sidebarItems}
-news_outline={news_outline} />  
+  sideBarPlus={sidebarItems}
+  outlinePlus={news_outline} />  
  </div> </div> 
  </div>
  )

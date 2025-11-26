@@ -105,8 +105,8 @@ const Nollywood = ({nollywood_news, sidebarItems, news_outline }:{nollywood_news
 <div className="md:flex justify-between max-w-max"> 
 <Paginate content={nollywood_news?.slice(4)} pathString='nollywood'/>
 <SideBar
- sidebarItems={sidebarItems}
-news_outline={news_outline} />
+ sideBarPlus={sidebarItems}
+outlinePlus={news_outline} />
  </div>  
  </div>
  )

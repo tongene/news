@@ -285,8 +285,8 @@ const slug =(await params).slug
       /></Suspense> 
        <div className="[&_.summary-side]:dark:text-gray-900 h-max dark:text-gray-900">
       <SideBar 
-      sidebarItems={txPlus}
-      news_outline={news_outline} /> 
+      sideBarPlus={txPlus}
+      outlinePlus={news_outline} /> 
       </div>
       </div>
  </div>}

@@ -300,9 +300,7 @@ const NollywoodPage =async () => {
   <Nollywood
      nollywood_news={nollywood_news}
      sidebarItems={txPlus}
- news_outline={news_outline} 
- 
-  />  
+      news_outline={news_outline}  />  
     </div>
   )
 } 
