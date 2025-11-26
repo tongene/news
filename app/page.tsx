@@ -8,6 +8,7 @@ import { CronJob } from "cron";
 import StructuredData from "@/components/StructuredData";   
 import { Suspense } from "react"; 
 import { WebSite, WithContext } from "schema-dts";
+import Link from "next/link";
 
 interface CineType { 
   title: string 
@@ -393,12 +394,12 @@ const Home=async() =>{
  const posts_notIn_newsPosts= await nextNewsPosts(endX) 
   const livexnews =await liveResp()  
     
-        //  CronJob.from({
-        //   cronTime: '10 8 * * *',  
-        //   onTick:dailyWiki(),
-        //   start: true,
-        //   timeZone: 'Africa/Lagos'
-        //  });   
+         CronJob.from({
+          cronTime: '10 8 * * *',  
+          onTick:dailyWiki(),
+          start: true,
+          timeZone: 'Africa/Lagos'
+         });   
         function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {
@@ -439,19 +440,18 @@ const Home=async() =>{
       }
     }
   }
-     
-
+  
 return (
   <div>
       <StructuredData schema={jsonLd} />
-    <Suspense fallback={<div>Loading ...</div>}>
-      <MainSlider livesNews={livexnews} latestPosts={latestPosts.posts.edges} />
+   <Suspense fallback={<div>Loading ...</div>}>
+     <MainSlider livesNews={livexnews} latestPosts={latestPosts?.posts.edges} />  
       <Main
         top_PostsData={response2.edges}
         news_outline={news_outline}
         posts_notIn_newsPosts={posts_notIn_newsPosts.posts.edges}
       />{" "}
-    </Suspense>
+    </Suspense>  
   </div>
 ); 
 }

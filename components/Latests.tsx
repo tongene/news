@@ -2,7 +2,7 @@
  
 import Image from "next/image"
 import Link from "next/link"    
-import { useEffect, useState } from "react"
+import {useEffect, useState } from "react"
 type Node ={
   title:string;
   featuredImage:{node:{altText:string,sourceUrl:string}};
@@ -194,21 +194,19 @@ if(!postX)return
     }
   }
 
- 
- 
+
 const Latests = () => {   
   const [bottom_news_data, set_bottom_News_data]=useState<Node[]>([])
   const [alt_news_data, set_alt_News_data]=useState<Node[]>([])
  
-const newsContent=async()=>{ 
+useEffect(()=>{ 
+  const newsContent=async()=>{ 
   const bottom_latest = await newsViews(); 
   const xLatest = bottom_latest.edges.map((xy:{node:[]})=> xy?.node).flat() 
   set_bottom_News_data(xLatest) 
   const altNews = await altPageNewsItems() 
  set_alt_News_data(altNews.posts.edges)
 }
- 
-useEffect(()=>{ 
   newsContent() 
 },[])
 
@@ -218,7 +216,7 @@ useEffect(()=>{
       <div className="overflow-auto pt-4 hidden-scroll" >
       <div className="flex border-b border-t border-t-4 border-t-black border-b-4 m-auto" style={{width:'1500px'}}> 
       {alt_news_data?.slice(0,3).map((ex, index)=>
-         <div className="first:border-r [&:nth-child(2)]:border-r px-8 m-auto" key={index + Math.random()}> 
+         <div className="first:border-r [&:nth-child(2)]:border-r px-8 m-auto" key={ex.node.slug}> 
  <Link href={`/news/${ex.node.slug}/`}><h2 className="max-w-96 hover:text-gray-400 py-8 text-2xl font-mono leading-10 font-thin my-8">{ex.node.title} </h2></Link>
   </div>)}
 </div>
@@ -227,7 +225,7 @@ useEffect(()=>{
   <h2 className="text-3xl text-gray-300 font-bold text-center p-4 border-b border-yellow-600 my-2">News</h2>
   <div className="md:grid grid-cols-2 gap-2 xl:max-w-6xl max-w-xl xl:grid-cols-4 m-auto">
    {bottom_news_data?.map((ex, index)=> 
-<div key={index + Math.random()} className="max-w-max m-auto"> 
+<div key={ex.slug} className="max-w-max m-auto"> 
 <div className="relative h-52 max-w-72 overflow-hidden border border-yellow-600"> 
   <div className="relative w-[300px] h-[300px]">
 <Image 

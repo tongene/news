@@ -2,6 +2,7 @@
 import { fetchNewPosts } from '@/app/page-bottom'
 import { InnerEdges, LatestProps, PostXNode } from '@/app/types'
 import { dateFormatter } from '@/utils/dateformat'
+import moment from 'moment'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useCallback, useEffect } from 'react'
@@ -232,6 +233,7 @@ posts( after:"${trest}" , where:{categoryName: "Latest"}){
  
   nodes {
     contentTypeName
+    id
     author {
       node {
         name
@@ -319,6 +321,7 @@ posts(first:30, after:"${endX.pageInfo.endCursor}" , where:{categoryName: "News"
  
   nodes {
     contentTypeName
+    id
     author {
       node {
         name
@@ -406,6 +409,7 @@ const wpNextAf = fetch('https://content.culturays.com/graphql',{
         
   nodes {        
     title
+    id
     slug
     date
     content
@@ -550,6 +554,7 @@ const wpNextAf = fetch('https://content.culturays.com/graphql',{
            
            nodes {
             contentTypeName
+            id
              author {
                node {
                  name
@@ -606,11 +611,21 @@ const [hasNewPage, setHasNewPage] = useState(true);
             const news_notIn_newsPosts= await nextPostsX1(); 
             const startWith = await nextPostsX3()  
             setPostsXnewsPosts(prev => [...prev, ...response2.posts?.nodes, ...newsX12.posts?.nodes, ...response3.posts?.nodes, ...news_notIn_newsPosts.posts?.nodes, ...startWith.posts?.nodes]) 
-      setScrolledContent(prev => [...prev, ...response2.posts?.nodes.slice(5), ...newsX12.posts?.nodes.slice(5), ...response3.posts?.nodes.slice(5), , ...news_notIn_newsPosts.posts?.nodes.slice(22), ...startWith.posts?.nodes.slice(5)]) 
-        };
+      // setScrolledContent(prev => [...prev, ...response2.posts?.nodes.slice(5), ...newsX12.posts?.nodes.slice(5), ...response3.posts?.nodes.slice(5), ...news_notIn_newsPosts.posts?.nodes.slice(22), ...startWith.posts?.nodes.slice(5)])
 
+       setScrolledContent(prev => {
+      const existingIds = new Set(prev.map(item => item.id));
+      const uniqueNew1 = response2.posts?.nodes.slice(5).filter((item:PostXNode) => !existingIds.has(item.id));
+      const uniqueNew2 = newsX12.posts?.nodes.slice(5).filter((item:PostXNode) => !existingIds.has(item.id));
+      const uniqueNew3 = response3.posts?.nodes.slice(5).filter((item:PostXNode) => !existingIds.has(item.id));
+      const uniqueNew4 = news_notIn_newsPosts.posts?.nodes.slice(22).filter((item:PostXNode) => !existingIds.has(item.id));
+      const uniqueNew5 = startWith.posts?.nodes.slice(5).filter((item:PostXNode) => !existingIds.has(item.id));
+    return [...prev, ...uniqueNew1, ...uniqueNew2, ...uniqueNew3, ...uniqueNew4, ...uniqueNew5];
+    });
+        };
+  
         fetchData();
-      }, []); 
+      }, []);  
  
 const loadMorePosts = useCallback(async () => {
  
@@ -648,8 +663,9 @@ useEffect(() => {
 
      <div className='m-auto max-w-xl lg:m-0 my-4'>
  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(0,3).map((ex)=>
-<div className='shadow flex my-1' key={ex.title + ' ' + Math.random()}>
+<div className='shadow flex my-1' key={ex.id}>
  <div className='w-44 m-1'> 
+
  <Image
  className='xs:h-28 sm:h-32'
  src={ex.featuredImage?.node.sourceUrl} 
@@ -673,7 +689,7 @@ useEffect(() => {
 </div>
  <div className='m-auto max-w-xl lg:m-0 my-4'>
  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(3,6).map((ex)=>
-<div className='shadow flex my-1' key={ex.title + ' ' + Math.random()}>
+<div className='shadow flex my-1' key={ex.title}>
  <div className='w-44 m-1'> 
  <Image
  className='xs:h-28 sm:h-32'
@@ -703,7 +719,7 @@ useEffect(() => {
 <div className='sm:grid grid-cols-2 xl:grid-cols-4 gap-1 py-4 max-w-2xl lg:max-w-max m-auto' > 
  
 { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(6,10).map((xy, i)=>
-<div className='max-w-sm m-auto py-11 hover:text-gray-300 border-black border-b-4 px-4 sm:h-52' key={i + ' ' + Math.random()}>
+<div className='max-w-sm m-auto py-11 hover:text-gray-300 border-black border-b-4 px-4 sm:h-52' key={xy.id}>
 <Link href={`/news/${xy.slug}/`}>
 <h2 className='text-xl font-bold'>{xy.title}</h2></Link> 
   <p className='text-sm py-4'>{ dateFormatter?.format(Date.parse(xy?.date)) }</p>
@@ -715,8 +731,7 @@ useEffect(() => {
 </div>
 <hr /> 
 </div> 
- </div>  
-
+ </div> 
  
    <div className='m-auto py-5 w-full'>  
   <div className='flex border-b shadow justify-around items-center py-6'> 
@@ -725,7 +740,7 @@ useEffect(() => {
 </div>   
   <div className='md:grid md:grid-cols-2  justify-center  m-auto my-11 px-2 md:px-1 max-w-4xl lg:max-w-max' > 
  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(10,12).map((xy, i)=> 
-<div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'450px' }} key={i + ' ' + Math.random()}> 
+<div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'450px' }} key={xy.id}> 
 <div> 
   <Image 
    className='h-44 xs:h-64 md:h-56 lg:h-64'
@@ -748,10 +763,9 @@ useEffect(() => {
 </div> 
 <hr className='p-0.5 bg-black'/>
 
-
 <div className='py-3 md:py-0 md:m-0 md:grid grid-cols-2 lg:block xl:grid justify-center 2xl:grid-cols-4 gap-0 xl:max-w-4xl 2xl:max-w-max xl:m-auto' >
  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(12,16).map((ex)=>
-<div className='shadow flex max-w-xl xl:max-w-md m-auto my-3 m-auto' key={ex.title + ' ' + Math.random()}>
+<div className='shadow flex max-w-xl xl:max-w-md m-auto my-3 m-auto' key={ex.id}>
   <div className='w-44 mx-2 py-6'> 
   <Image
   className='h-11 xxs:h-20 xs:h-24 '
@@ -777,7 +791,7 @@ useEffect(() => {
 
   <div className='md:flex flex-wrap xl:flex-nowrap gap-1 my-11 px-2 md:px-1 m-auto max-w-2xl'> 
  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(16,18).map((xy, i)=> 
-<div className='shadow-2xl max-w-sm md:max-w-xs m-auto my-4'style={{height:'500px' }} key={i + ' ' + Math.random()}> 
+<div className='shadow-2xl max-w-sm md:max-w-xs m-auto my-4'style={{height:'500px' }} key={xy.id}> 
 <div> 
   <Image 
    className='h-44 xxs:h-56 md:h-64 xl:h-56'
@@ -800,7 +814,7 @@ useEffect(() => {
 
 <div className='md:grid md:grid-cols-2 justify-center m-auto my-11 px-2 md:px-1 max-w-4xl lg:max-w-max' > 
  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(18,20).map((ex, i)=> 
-<div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'450px' }} key={i + ' ' + Math.random()}> 
+<div className='shadow-2xl max-w-sm md:max-w-md m-auto my-4 px-1'style={{height:'450px' }} key={ex.title}> 
 <div> 
   <Image 
    className='h-44 xs:h-64 md:h-56 lg:h-64'
@@ -825,7 +839,7 @@ useEffect(() => {
 <hr className='h-1 w-4/5 m-auto my-4'/>
  <div className='p-3 md:py-0 md:m-0 md:grid grid-cols-2 xl:grid justify-center gap-0 xl:max-w-5xl xl:m-auto' > 
   { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(20,24).map((ex)=>
-<div className='flex m-auto my-3' key={ex.title + ' ' + Math.random()}>
+<div className='flex m-auto my-3' key={ex.id}>
   <div className='w-44 mx-2 py-6'> 
   <Image
   className='h-11 xxs:h-24 lg:h-28'
@@ -851,7 +865,7 @@ useEffect(() => {
 
   <div className='flex flex-wrap justify-center py-6'>
 { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(24,27).map((ex,i)=>
-<div className='relative m-3' key={ex.title + ' ' + Math.random()} >
+<div className='relative m-3' key={ex.id} >
   <div className='max-w-sm m-auto'> 
 
   <Image
@@ -883,8 +897,8 @@ useEffect(() => {
 </div> 
  
  {scrolledContent?.slice(4).map((ex,i)=>
- <div className='shadow m-2 flex' key={ex.title + ' ' + Math.random()}>
-  
+ <div className='shadow m-2 flex' key={ex?.id}>
+
  <div className='w-1/2 py-6 mx-1'> 
  <Image
  className='xs:h-32 sm:h-44 md:h-56 max-h-64 object-cover'
@@ -904,7 +918,8 @@ useEffect(() => {
  
 <div className='xs:flex text-base text-gray-400 justify-between items-center text-xs'> 
 <Link href={`/creator/${ ex?.author.node?.slug}/`}><p className='hover:text-gray-700 py-3'>{ ex?.author.node.name }</p></Link> 
- <p>{ dateFormatter?.format(Date.parse(ex?.date)) }</p>
+ <p>{moment(ex?.date).subtract(1, 'hour').fromNow()}</p> 
+
 </div>
 </div>  
 </div>)} 
@@ -918,7 +933,7 @@ useEffect(() => {
 
   <div className='lg:m-0 sm:grid grid-cols-2 lg:block gap-1 max-w-3xl m-auto'> 
    {scrolledContent?.slice(0,4).map((ex, i)=>
-<div className='shadow-2xl my-4 m-auto max-w-md md:max-w-sm' key={ex.title + ' ' + Math.random()}>
+<div className='shadow-2xl my-4 m-auto max-w-md md:max-w-sm' key={ex.id}>
  <div > 
   <Image 
   className='h-60 xs:h-64 sm:h-56'

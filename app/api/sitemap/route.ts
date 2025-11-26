@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';  
 import { FeedProps } from '@/app/types';
-import { createClient } from '@/utils/supabase/server';
+
 type Post = {
   url: string;
   lastModified: Date;
@@ -158,7 +158,7 @@ export async function GET() {
   const liveData:FeedProps[]=await livesFeed() 
  
   const content_posts: Post[] = postsData.map((post) => ({
-    url: `https://culturays.com/news/topic/${post.slug}/`,
+    url: `https://culturays.com/news/${post.slug}/`,
     lastModified: new Date(post.date),
     changeFrequency: 'always',
     priority: 0.8,

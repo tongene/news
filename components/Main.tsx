@@ -1,5 +1,5 @@
 "use client" 
-import React, { useEffect, useState } from 'react' 
+import React, { startTransition, useEffect, useMemo, useState } from 'react' 
 import Image from 'next/image'
 import { dateFormatter } from '@/utils/dateformat'
 import Link from 'next/link'  
@@ -7,7 +7,7 @@ import { Cursors, InnerEdges, PostXNode, SideNode } from '@/app/types'
 import MainBottom from './MainBottom'
 import SideBar from './Side' 
 import MainPosts from './MainPosts';
-import { getGoogleNewsTitles } from '@/app/data/news-data'
+
   const newsViews=async()=>{ 
            const res= fetch('https://content.culturays.com/graphql',{ 
               method: "POST",
@@ -238,53 +238,52 @@ const [categoryPost,setCategoryPost]=useState<InnerEdges[]>([])
 const [categoryName,setCategoryName]=useState('') 
 const [top_PostsCa, setTopPostsCa]=useState<PostXNode[]>([]) 
 const [sidebarItems, setSidebarxItems]=useState<Cursors[]>([])
-
 // const [top_Last_categories, setLast_categories]=useState([])   
 const rmMain =top_PostsData.map((xy)=> xy.cursor)
-const x_wiki =async ()=>{ 
-const post_data = await postCategories() 
-const postCategory_Children =(post_data?.categories?.edges as InnerEdges[])?.map((xy)=> xy?.node?.children?.edges)?.flat()??[] 
-setTopPostsCa(postCategory_Children ) 
 
-await new Promise(resolve => setTimeout(resolve, 3000)); 
-const sidebarxItems= await sidePlusViews() 
-const txPlus=sidebarxItems.posts?.edges.map((dy:InnerEdges)=>dy.node )
-setSidebarxItems(txPlus)
+useEffect(() => {
+  const x_wiki = async () => {
+    const post_data = await postCategories();
 
-}
-useEffect(()=>{        
-x_wiki()
-//dep top_PostsData
-},[]) 
+    const postCategory_Children =
+      (post_data?.categories?.edges as InnerEdges[])
+        ?.map(xy => xy?.node?.children?.edges)
+        ?.flat() ?? [];
 
-const changeSet = (i: number, name: string) => {
-  if (i === -1) {
-    // Handle the "All" button
-    setActIdx(-1);
-    setCategoryName('');
-    setCategoryPost(
-      top_PostsCa
-        ?.flat()
-        ?.map((xy) => xy?.node?.posts)
-        .map((ex) => ex?.edges as InnerEdges)
-        .flat() ?? []
-    );
-    return;
-  }
+    setTopPostsCa(postCategory_Children);
 
-  // Handle a specific category
-  setActIdx(i);
-  setCategoryName(name);
+    const sidebarxItems = await sidePlusViews();
+    const txPlus = sidebarxItems.posts?.edges.map((dy: InnerEdges) => dy.node);
 
-  const currentPosts = top_PostsCa
-    ?.flat()
-    ?.filter((ex) => ex?.node?.name === name)
-    ?.map((xy) => xy?.node?.posts)
-    .map((ex) => ex?.edges as InnerEdges)
-    .flat();
+    setSidebarxItems(txPlus);
+  };
 
-  setCategoryPost(currentPosts ?? []);
+  x_wiki();
+}, []);
+ 
+const categoryMap = useMemo(() => {
+  const map: Record<string, InnerEdges[]| InnerEdges> = {};
+
+  top_PostsCa?.flat().forEach((cat) => {
+    const name = cat.node.name;
+    const posts = cat.node.posts?.edges ?? [] ;
+    map[name] = posts;
+  });
+
+  // Add ALL category
+  map["ALL"]= Object.values(map).flat();
+
+  return map;
+}, [top_PostsCa]);
+
+const changeSet = (i:number, name:string) => {
+  startTransition(() => {
+    setActIdx(i);
+    setCategoryName(name);
+    setCategoryPost(categoryMap[name] as InnerEdges[]?? []);
+  });
 };
+
 
  
   const changeView = async(i:number,name:string) =>{
@@ -293,14 +292,8 @@ const changeSet = (i: number, name: string) => {
     setCategoryName(name) 
 
  
-    }; 
-    useEffect(()=>{
-      const googleTxt=async()=>{
-   const location = 'Lagos, Nigeria'; 
-       await getGoogleNewsTitles(location) 
-      }
-      googleTxt()
-    },[]) 
+    };
+    
   
   return ( 
 <section className='clear-left'> 
@@ -331,8 +324,8 @@ const changeSet = (i: number, name: string) => {
     actIdx === idx
       ? 'font-bold cursor-pointer text-gray-500 bg-gray-100 p-2 rounded underline decoration-cyan-500 decoration-4 hover:text-gray-800 my-0.5'
       : 'cursor-pointer text-gray-600 bg-gray-100 p-2 rounded hover:text-gray-800 m-0.5'}
-      onClick={() => changeSet(idx, xy.node.name)}  
-        key={xy.node.name + ' ' + Math.random()}>
+      onClick={() =>changeSet(idx, xy.node.name)}  
+        key={xy.node.name + ' ' + xy.node.slug}>
         {xy.node.name}
       </li> 
     )}   
@@ -345,7 +338,7 @@ const changeSet = (i: number, name: string) => {
   <div className='xl:flex justify-center max-w-4xl md:w-10/12 xl:w-auto xl:max-w-7xl m-auto'> 
 <div> 
  {!categoryName&&top_PostsData.length>0?top_PostsData?.slice(0,1).map((ex, i)=>
-<div className='shadow-2xl h-3/4 max-w-[700px] mx-auto lg:max-w-[1200px]' key={ex.node.title + ' ' + Math.random()}>
+<div className='shadow-2xl h-3/4 max-w-[700px] mx-auto lg:max-w-[1200px]' key={ex.node.title + ' ' + ex.node.slug}>
 
 <div className="my-3"> 
   <Image 
@@ -367,7 +360,7 @@ className='object-cover'
 </div>
 ):<> 
 {categoryPost?.slice(0,1).map((ex, i)=>
-  <div className='shadow-2xl h-3/4 max-w-[700px] mx-auto lg:max-w-[1200px]' key={ex.node.title + ' ' + Math.random()}>   
+  <div className='shadow-2xl h-3/4 max-w-[700px] mx-auto lg:max-w-[1200px]' key={ex.node.title + ' ' + ex.node.slug}>   
 <div className="my-3">
   <Image 
   src={ex?.node.featuredImage?.node.sourceUrl } 
@@ -380,7 +373,7 @@ className='object-cover'
    
     <Link href={`/news/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-xl sm:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link >
     <hr className='my-2'/>
-    <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
+    <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-xl' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
    
   <div className='flex text-xs text-gray-400 justify-between items-center py-3 leading-8 my-3'> 
   <Link href={`/creator/${ex.node?.author.node.slug}/`}><p>{ ex.node?.author.node.name }</p></Link>  
@@ -394,7 +387,7 @@ className='object-cover'
 
   <div className='my-2 m-auto px-2 xl:px-1'>
   {!categoryName?top_PostsData?.slice(1).map((ex)=>
-<div className='shadow flex gap-4 first:md:pt-0 md:pt-4' key={ex.node.title + ' ' + Math.random()}>
+<div className='shadow flex gap-4 first:md:pt-0 md:pt-4' key={ex.node.title + ' ' + ex.node.slug}>
   <div className="m-auto xl:h-[100px] my-2">
 
   <Image 
@@ -408,7 +401,7 @@ className='object-cover'
 
   <div className='w-4/5 xl:w-full'> 
   <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/${ex.node.slug}/`}prefetch={false}><h2 className='font-bold text-xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
+  <Link href={`/news/${ex.node.slug}/`}prefetch={false}><h2 className='font-bold text-2xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
  </div>
 <div className='xs:flex text-xs text-gray-400 justify-between items-center leading-8 my-2'> 
 {/* <Link href={`/creator/${ ex?.node.author.node.slug}/`}prefetch={false}><p >{ ex?.node.author.node.name }</p></Link>  */}
@@ -417,7 +410,7 @@ className='object-cover'
 </div>
 </div>
 ):categoryPost?.slice(1).map((ex)=>
-  <div className='shadow flex gap-4 first:md:my-0 first:md:py-0 md:pb-4' key={ex.node.title + ' ' + Math.random()}>
+  <div className='shadow flex gap-4 first:md:my-0 first:md:py-0 md:pb-4' key={ex.node.title}>
 <div className="relative w-44 h-24 m-auto xl:h-[100px] my-2">
 <Image 
 src={ex?.node.featuredImage?.node.sourceUrl} 
@@ -454,8 +447,8 @@ alt={ex?.node.featuredImage?.node.altText}/>
 </div>  
 <div > 
      <SideBar 
-     sidebarItems={sidebarItems}
-     news_outline={news_outline}
+     sideBarPlus={sidebarItems}
+     outlinePlus={news_outline}
      />  
   </div> </div>
      <MainBottom />   

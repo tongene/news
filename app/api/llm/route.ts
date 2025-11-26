@@ -93,14 +93,14 @@ export async function GET(req: NextRequest) {
   if (articles_news?.length) {
     urls = urls.concat(
       articles_news.map(
-        (p) => `${baseUrl}/news/${p.contentTypeName}/${p.slug}/`
+        (p) => `${baseUrl}/news/${p.slug}/`
       )
     );
   }
  if (postsData?.length) {
     urls = urls.concat(
       postsData.map(
-        (p) => `${baseUrl}/news/topic/${p.slug}/`
+        (p) => `${baseUrl}/news/${p.slug}/`
       )
     );
   }

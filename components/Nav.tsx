@@ -128,8 +128,8 @@ useEffect(()=>{
 },[]) 
  
 
-  return (<>
-  
+  return (
+  <> 
    <div className='flex shadow-detailedShadow pt-6 my-1 mt-4 dark:shadow-detailShadowLight justify-center dark:bg-gray-800' > 
     <div className='w-full py-4'> 
     <h2 className='text-center hover:text-gray-500 text-2xl font-bold py-3' >Trending in Nigeria<span></span> <span>&#10141;</span></h2> 
@@ -158,7 +158,7 @@ useEffect(()=>{
      
     </ul>
   ))}
-
+ 
     {trendsData?.map((ex)=> 
     <ul key={ex?.title} className='py-3'><li className='m-auto overflow-hidden text-ellipsis underline md:px-4 px-3 hover:text-orange-700 hover:font-bold'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}> <Link href={`/news/trending/${ex?.slug}/`}>{ex?.contentTags.nodes[0]?.name}</Link></li>    
     </ul> 

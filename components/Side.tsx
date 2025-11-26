@@ -25,10 +25,8 @@ type SideNode ={
    }
 }
 
+const SideBar = ({outlinePlus, sideBarPlus}:{sideBarPlus:Cursors[], outlinePlus:SideNode[]}) => { 
 
-
-const SideBar = ({sidebarItems, news_outline }:{sidebarItems:Cursors[], news_outline:SideNode[]}) => { 
- 
   return (
  <div className='side_view_lg py-3 px-3 m-auto lg:m-0 border-l-4 max-w-lg h-max'>  
  <div className='py-3 px-3 m-auto lg:m-0 border-l-4 max-w-sm '>
@@ -38,24 +36,24 @@ const SideBar = ({sidebarItems, news_outline }:{sidebarItems:Cursors[], news_out
 </div>
 <hr className='h-1 w-4/5 m-auto my-4'/>
 <div className='m-auto lg:m-0 max-w-md md:max-w-sm'>
-  {news_outline[0]?.content.split('\n').length>0?news_outline[0]?.content.split('\n').map((line)=>
+  {outlinePlus[0]?.content.split('\n').length>0?outlinePlus[0]?.content.split('\n').map((line)=>
   <div dangerouslySetInnerHTML={{__html: line }}className='text-lg leading-8 py-1 [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-900'key={line + ' ' + Math.random()} />) :<p>Loading...</p>}
-{news_outline[0]?.outlineGroup?.outlineVideos?.node.mediaItemUrl&&
+{outlinePlus[0]?.outlineGroup?.outlineVideos?.node.mediaItemUrl&&
   <video
   className='xs:h-64 lg:h-56'
-  src={news_outline[0]?.outlineGroup?.outlineVideos?.node.mediaItemUrl} 
+  src={outlinePlus[0]?.outlineGroup?.outlineVideos?.node.mediaItemUrl} 
   width={1200} 
   height={675} 
    />
 
   }
-  {!news_outline[0]?.outlineGroup?.outlineVideos?.node.mediaItemUrl&&news_outline?.length>0&& news_outline[0]?.featuredImage?.node.sourceUrl&&
+  {!outlinePlus[0]?.outlineGroup?.outlineVideos?.node.mediaItemUrl&&outlinePlus?.length>0&& outlinePlus[0]?.featuredImage?.node.sourceUrl&&
  <Image
 className='xs:h-64 lg:h-56'
-src={news_outline[0]?.featuredImage?.node.sourceUrl} 
+src={outlinePlus[0]?.featuredImage?.node.sourceUrl} 
 width={1200} 
 height={675} 
-alt={news_outline[0]?.featuredImage?.node.altText}/>
+alt={outlinePlus[0]?.featuredImage?.node.altText}/>
   }
 </div> 
  </div>
@@ -64,7 +62,7 @@ alt={news_outline[0]?.featuredImage?.node.altText}/>
 </div> 
 
  <div className='m-auto max-w-md lg:m-0'>
- {sidebarItems?.slice(1).map((ex)=>
+ {sideBarPlus.length>0&&sideBarPlus?.slice(1).map((ex)=>
 <div className='shadow flex my-2' key={ex.title + ' ' + Math.random()}>
  <div className='w-2/53 lg:w-1/2 mx-1 py-3'> 
  <Image
@@ -90,7 +88,7 @@ alt={news_outline[0]?.featuredImage?.node.altText}/>
 </div>
  
 <div className='max-w-sm lg:max-w-md py-6 m-auto border-b border-t border-yellow-600 border-b-4 border-t-4 lg:m-0 xl:max-w-sm'> 
-{sidebarItems?.slice(0, 1).map((ex, i)=>
+{sideBarPlus?.slice(0, 1).map((ex, i)=>
 <div key={ex.title + ' ' + Math.random()}> 
 <div> 
  <Image

@@ -16,6 +16,7 @@ const wp_naija = fetch('https://content.culturays.com/graphql',{
             } 
         nodes {        
           title
+          id
           slug
            date
            content

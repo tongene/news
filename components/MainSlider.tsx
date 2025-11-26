@@ -51,8 +51,7 @@ const [currentHour, setCurrentHour] = useState('');
 
   },10000);
  
-  };
- 
+  }; 
 
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -125,7 +124,7 @@ const slides=livesNews?.filter((ex) => {
       <div className="x-main-x-slider flex-shrink-0 p-1 h-96" key={xy.node.slug}>
         <div className="main-slider-container px-2 py-11 bg-gray-200 bg-opacity-60 rounded-xl w-72 border">
           {xy.node.contentTypeName !== "live" ? (
-            <>
+            <>        
               <Link href={`/topic/${xy.node.tags.nodes[0].slug}/`}>
                 <p className="italic text-red-600 px-1 text-left">{xy.node.tags.nodes[0].name}</p>
               </Link>
@@ -136,10 +135,10 @@ const slides=livesNews?.filter((ex) => {
               </Link>
               <Image
                 className="h-56 w-[300px] px-1 py-2 hover:opacity-50"
-                src={xy.node.featuredImage.node.sourceUrl}
+                src={xy.node.featuredImage?.node.sourceUrl}
                 width={400}
                 height={400}
-                alt={xy.node.featuredImage.node.altText}
+                alt={xy.node.featuredImage?.node.altText}
               />
             </>
           ) : (
@@ -166,11 +165,9 @@ const slides=livesNews?.filter((ex) => {
       </div>
     ))}
   </div>
-</div>
- 
-  
-<hr className='w-11/12 m-auto bg-gray-600 h-1'/>
+</div> 
 
+<hr className='w-11/12 m-auto bg-gray-600 h-1'/>
 </section>
 )
 };

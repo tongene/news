@@ -3,7 +3,6 @@ import { type User } from "@supabase/supabase-js";
 //   full_name:string,
 //   picture:string,
 //   email:string,
-
 // } ;
 export type PagesProps= {
     id:string
@@ -940,6 +939,7 @@ export type TopNews={
       edges:[{
         node:{
           title:string
+            id:string
           slug:string 
           featuredImage:{
             node:{
@@ -956,6 +956,7 @@ export type TopNews={
     relatedPosts:{
       edges:{
         node:{
+          id:string
           title:string
           slug:string 
           featuredImage:{
@@ -977,6 +978,7 @@ nodes:[
    businesses:{
     nodes:{
 title:string
+  id:string
 slug:string
 date:string
 excerpt:string
@@ -1010,6 +1012,7 @@ economyCategories:{
       name:string
      economies:{
       nodes:{
+        id:string
   title:string
   slug:string
   date:string
@@ -1049,6 +1052,7 @@ economyCategories:{
         nodes:{
     title:string
     slug:string
+      id:string
     date:string
     excerpt:string
     featuredImage:{
@@ -1085,6 +1089,7 @@ economyCategories:{
         healths:{
         nodes:{
     title:string
+      id:string
     slug:string
     date:string
     excerpt:string
@@ -1120,6 +1125,7 @@ economyCategories:{
         societies:{
         nodes:{
     title:string
+      id:string
     slug:string
     date:string
     excerpt:string
@@ -1153,6 +1159,7 @@ economyCategories:{
         technologies:{
         nodes:{
     title:string
+      id:string
     slug:string
     date:string
     excerpt:string
@@ -1186,8 +1193,9 @@ export type PostTypeProps={
     id:string
     contentTypeName:string
     content:string
-    title:string
+    title:string 
     excerpt:string
+    
     date:string
    slug:string
     featuredImage:{
@@ -1242,8 +1250,10 @@ export type PostTypeProps={
       }
        
        relatedPosts:{
-        edges:{
+        edges:{          
+            cursor:string
           node:{
+            id:string
               title:string
           slug:string
           featuredImage:{

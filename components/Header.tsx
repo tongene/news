@@ -12,7 +12,7 @@ const menuClick=()=>{
 setBarState(prev=> !prev)  
 }
 
- const navAddress=[
+ const navAddress=[ 
 {
   a:"News",
   b:"/news/"
