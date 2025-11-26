@@ -1,6 +1,6 @@
 "use client"
 import { Cursors, InnerEdges, NextTypeProps, PostTypeProps, SideNode, TopNews } from "@/app/types"
-import { news_details_all, postsOutline, readNextContent, readNextPosts, resolveContent, returnPost, sidePlusViews } from "@/utils/resolveFunctions"
+import { news_details_all, postsOutline, readNextContent, readNextPosts, returnPost, sidePlusViews } from "@/utils/resolveFunctions"
 import { useParams } from "next/navigation" 
 import { useEffect, useMemo, useState } from "react"
 import NewsDetail from "./NewsDetail"

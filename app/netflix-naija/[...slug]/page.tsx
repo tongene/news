@@ -361,9 +361,9 @@ const content_videos = await vids();
     /> :<></> } 
     
         <div className="[&_.summary-side]:dark:text-gray-900 h-max dark:text-gray-900 [&_div]:lg:m-auto">
-      <SideBar 
-      sidebarItems={txPlus}
-      news_outline={news_outline} /> 
+      <SideBar  
+      sideBarPlus={txPlus}
+      outlinePlus={news_outline} /> 
       </div>
     </div>
  </>  )
