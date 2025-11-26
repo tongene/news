@@ -24,7 +24,7 @@ export default function AISuggestions({tag_response}:{
  
   return (
     <div className="max-w-xl p-6 rounded-xl shadow-md space-y-4">     
-          <h2 className="text-lg font-semibold">Gossip Buddy or Assitance? Ask me about {tag_response[0]?.name}</h2>
+          <h2 className="text-lg font-semibold">Gossip Buddy or Assistance? Ask me about {tag_response[0]?.name}</h2>
        
         <input
         type="text"
