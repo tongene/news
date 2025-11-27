@@ -15,7 +15,7 @@ const Trending = ({related_to_trend, trends_categories, trends}:{related_to_tren
     <div className="xl:flex justify-center" style={{maxWidth:'1600px'}}>
     <div className=" my-11 md:flex justify-center lg:px-4 mx-2 xl:px-0 gap-2"> 
       <div className="md:max-w-md m-auto lg:px-4 min-[800px]:max-w-lg min-[900px]:max-w-xl min-[1000px]:max-w-2xl min-[1080px]:max-w-3xl">      
-   <h3 className="text-4xl py-4" style={{ fontStyle: 'oblique' }}>{trends.title.toUpperCase()} </h3>
+   <h1 className="text-6xl py-4" style={{ fontStyle: 'oblique' }}>{trends.title.toUpperCase()} </h1 >
    <p className="py-4 italic" >{moment(trends.date).subtract(1, 'hour').fromNow()} </p>
    <div dangerouslySetInnerHTML={{__html:trends.excerpt}} className="text-lg"/>
  
