@@ -87,7 +87,7 @@
       }`})
        
        }).then(response => response.json())   
-       .then(data => data.data.economies.nodes )
+       .then(data =>data.data.economies.nodes )
        .catch(error => console.error('Error:', error));
       // const response = wprest?.data.contentNodes.nodes 
        return wprest 
@@ -484,7 +484,7 @@ ${xmlContent}
  export async function GET() {
 
   const business_news:FeedProps[] = await businessFeed()  
-  const ec_news:FeedProps[] = await ecoFeed()  
+  const ec_news:FeedProps[] = await ecoFeed()
   const env_news:FeedProps[] = await envFeed()  
   const tech_news:FeedProps[] = await techFeed()  
   const aw_news:FeedProps[] = await awFeed()  
@@ -499,7 +499,7 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage.node.sourceUrl],
+     images: [post.featuredImage?.node.sourceUrl],
      news: [
        {
           publication: {
@@ -516,7 +516,7 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage.node.sourceUrl],
+     images: [post.featuredImage?.node.sourceUrl],
      news: [
        {
          publication: {
@@ -534,7 +534,7 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage.node.sourceUrl],
+     images: [post.featuredImage?.node.sourceUrl],
      news: [
        {
          publication: {
@@ -552,7 +552,7 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage.node.sourceUrl],
+     images: [post.featuredImage?.node.sourceUrl],
      news: [
        {
          publication: {
@@ -570,7 +570,7 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage.node.sourceUrl],
+     images: [post.featuredImage?.node.sourceUrl],
      news: [
        {
          publication: {
@@ -587,7 +587,7 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage.node.sourceUrl],
+     images: [post.featuredImage?.node.sourceUrl],
      news: [
        {
          publication: {
@@ -604,7 +604,7 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage.node.sourceUrl],
+     images: [post.featuredImage?.node.sourceUrl],
      news: [
        {
          publication: {
@@ -621,7 +621,7 @@ const he_posts: Post[] = he_news.map((post) => ({
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage.node.sourceUrl],
+     images: [post.featuredImage?.node.sourceUrl],
      news: [
        {
          publication: {
@@ -639,7 +639,7 @@ const env_posts: Post[] = env_news.map((post) => ({
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage.node.sourceUrl],
+     images: [post.featuredImage?.node.sourceUrl],
      news: [
        {
          publication: {

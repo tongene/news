@@ -24,15 +24,26 @@ setBarState(prev=> !prev)
 },  
 
 {
-  a:"Events",
-  b:"/naija-events/"
+  a:"Africa",
+  b:"/trending/"
 
 },
 {
-  a:"Forum",
-  b:"/forum/"
+  a:"Business",
+  b:"/nigeria/"
 
-} 
+}
+,
+{
+  a:"Trade",
+  b:"/news/articles/"
+
+},
+{
+  a:"Economy",
+  b:"/news/nigeria/"
+
+}
 ]
  const [addStyle, setAddStyle]=useState('')  
 const handleClick = (id:string)=> { 
