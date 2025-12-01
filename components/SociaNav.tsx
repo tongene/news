@@ -6,7 +6,7 @@ const SocialNav = () => {
 
  return (
   
-   <div className="flex flex-col items-center leading-none my-4">  
+   <div className="w-max mx-auto leading-none my-4">  
 <div className="flex social-forum">
 <a target="_blank"rel="noreferrer"href="https://www.facebook.com/CulturaysSpot"aria-label="Visit our Facebook page">
 <p className="m-1 p-2 shadow-1xl"><FontAwesomeIcon

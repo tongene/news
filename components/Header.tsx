@@ -23,11 +23,7 @@ setBarState(prev=> !prev)
 
 },  
 
-{
-  a:"Africa",
-  b:"/trending/"
-
-},
+ 
 {
   a:"Business",
   b:"/nigeria/"
@@ -41,7 +37,7 @@ setBarState(prev=> !prev)
 },
 {
   a:"Economy",
-  b:"/news/nigeria/"
+  b:"/nigeria/"
 
 }
 ]
