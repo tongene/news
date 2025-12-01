@@ -315,10 +315,6 @@ query WPPOSTS  {
       .catch(error => console.error('Error:', error))
       return wprestLive
      }
-
-const Home=async() =>{ 
-  const response2 = await nextResp() 
-// const postData= response2.edges.map((xy:{node:InnerEdges})=> xy).flat() 
  const newsByLatest =()=>{  
 
 const wprest= fetch('https://content.culturays.com/graphql',{ 
@@ -383,6 +379,8 @@ description
   return wprest; 
 
 }
+const Home=async() =>{ 
+  const response2 = await nextResp()// const postData= response2.edges.map((xy:{node:InnerEdges})=> xy).flat() 
  const latestPosts=await newsByLatest() 
  const endX= response2?.pageInfo.endCursor
  const news_outline=await postsOutline()
@@ -440,7 +438,7 @@ return (
   <div>
       <StructuredData schema={jsonLd} />
    <Suspense fallback={<div>Loading ...</div>}>
-     {response2.edges.length>5&&<MainSlider livesNews={livexnews} latestPosts={latestPosts?.posts.edges} />}  
+    <MainSlider livesNews={livexnews} latestPosts={latestPosts?.posts.edges} />  
       <Main
         top_PostsData={response2.edges}
         news_outline={news_outline}
