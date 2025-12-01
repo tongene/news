@@ -3,12 +3,12 @@ import MainSlider from "@/components/MainSlider";
 import { processSbImages } from "@/utils/processImages"; 
 import { scrapeSilverBird } from "./filmsdata";
 import { createClient } from "@/utils/supabase/server"; 
-import { CronJob } from "cron"; 
- 
+import { CronJob } from "cron";  
 import StructuredData from "@/components/StructuredData";   
 import { Suspense } from "react"; 
 import { WebSite, WithContext } from "schema-dts";
-import Link from "next/link";
+import { F } from "@upstash/redis/zmscore-Cq_Bzgy4";
+ 
 
 interface CineType { 
   title: string 
@@ -55,81 +55,7 @@ interface CineType {
       const since = new Date(Date.now() - 24 * 60 * 60 * 5000).toISOString();
    await supabase.from('cinema_titles').delete().lte('created_at', since);
        // return () => clearTimeout(fxnTimeout);
-        } 
-         
-const newsByLatest =async()=>{ 
-await new Promise((resolve) => setTimeout(resolve, 3000)); 
-
-try{
-const res= await fetch('https://content.culturays.com/graphql',{ 
-method: "POST",
-  headers: {
-      'Content-Type':'application/json'
-    },
-body: JSON.stringify({
-  query:`
-  query WPPOSTS { 
-posts(first: 10, where: {categoryName: "Latest"})  { 
- 
-pageInfo {
-endCursor
-} 
-edges{
-cursor 
-node{
-id
-title
-  slug
-  
-  tags {
-nodes {
-name
-slug
-}
-}
-categories {
-    nodes {
-      name
-      slug
-    }
-  }
-excerpt
-  date
-    author {
-  node {
-firstName
-lastName
-name
-slug
-description
-}
-}
-  featuredImage {
-    node {
-      altText
-      sourceUrl
-    }
-  }
-
-}
- }}}  
- 
-  ` 
-
-}) 
-})
-  const data = await res.json();
-    return data.data;
-} 
-catch(err){
-   console.log("err", err);
-    return null;
-}
- 
-
-}
-
- 
+        }  
    const nextResp=()=>{ 
       const wprestPost = fetch('https://content.culturays.com/graphql',{     
         method: 'POST', 
@@ -390,11 +316,74 @@ query WPPOSTS  {
       return wprestLive
      }
 
-const Home=async() =>{  
- const latestPosts=await newsByLatest()  
+const Home=async() =>{ 
   const response2 = await nextResp() 
 // const postData= response2.edges.map((xy:{node:InnerEdges})=> xy).flat() 
+ const newsByLatest =()=>{  
+
+const wprest= fetch('https://content.culturays.com/graphql',{ 
+method: "POST",
+  headers: {
+      'Content-Type':'application/json'
+    },
+body: JSON.stringify({
+  query:`
+  query WPPOSTS { 
+posts(first: 10, where: {categoryName: "Latest"})  { 
  
+pageInfo {
+endCursor
+} 
+edges{
+cursor 
+node{
+id
+title
+  slug
+  
+  tags {
+nodes {
+name
+slug
+}
+}
+categories {
+    nodes {
+      name
+      slug
+    }
+  }
+excerpt
+  date
+    author {
+  node {
+firstName
+lastName
+name
+slug
+description
+}
+}
+  featuredImage {
+    node {
+      altText
+      sourceUrl
+    }
+  }
+
+}
+ }}}  
+ 
+  ` 
+
+}) 
+}).then((res)=> res.json())
+.then((data)=> data.data)
+.catch(error => console.log('err',error))
+  return wprest; 
+
+}
+ const latestPosts=await newsByLatest() 
  const endX= response2?.pageInfo.endCursor
  const news_outline=await postsOutline()
  const posts_notIn_newsPosts= await nextNewsPosts(endX) 
@@ -451,7 +440,7 @@ return (
   <div>
       <StructuredData schema={jsonLd} />
    <Suspense fallback={<div>Loading ...</div>}>
-     <MainSlider livesNews={livexnews} latestPosts={latestPosts?.posts.edges} />  
+     {response2.edges.length>5&&<MainSlider livesNews={livexnews} latestPosts={latestPosts?.posts.edges} />}  
       <Main
         top_PostsData={response2.edges}
         news_outline={news_outline}

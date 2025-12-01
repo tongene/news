@@ -7,8 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
  const SLIDE_INTERVAL = 5000; 
-const MainSlider = ({livesNews, latestPosts}:{livesNews:LatestProps[],latestPosts:LatestProps[]} ) => {
-  
+const MainSlider = ({livesNews, latestPosts}:{livesNews:LatestProps[],latestPosts:LatestProps[]} ) => {  
 const router = useRouter() 
 const [currentHour, setCurrentHour] = useState('');
 
