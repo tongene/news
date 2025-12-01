@@ -57,9 +57,11 @@ interface CineType {
        // return () => clearTimeout(fxnTimeout);
         } 
          
-const newsByLatest =()=>{ 
+const newsByLatest =async()=>{ 
+await new Promise((resolve) => setTimeout(resolve, 3000)); 
 
-const res= fetch('https://content.culturays.com/graphql',{ 
+try{
+const res= await fetch('https://content.culturays.com/graphql',{ 
 method: "POST",
   headers: {
       'Content-Type':'application/json'
@@ -115,11 +117,15 @@ description
   ` 
 
 }) 
-}).then((res) => res.json() )
-.then((data) => data.data ) 
-.catch((err) => console.log("err", err))  
-return res
-
+})
+  const data = await res.json();
+    return data.data;
+} 
+catch(err){
+   console.log("err", err);
+    return null;
+}
+ 
 
 }
 
