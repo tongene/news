@@ -437,6 +437,7 @@ const Home=async() =>{
 return (
   <div>
       <StructuredData schema={jsonLd} />
+    
    <Suspense fallback={<div>Loading ...</div>}>
     <MainSlider livesNews={livexnews} latestPosts={latestPosts?.posts.edges} />  
       <Main

@@ -31,19 +31,19 @@ export default function AISuggestions({tag_response}:{
         value={topic}
         onChange={(e) => setTopic(e.target.value)}
         placeholder="Enter topic (e.g. asuu strike, world bank)"
-        className="w-full p-2 border rounded-md"
+        className="w-full p-2 border-none focus:outline-none focus:ring rounded-md"
       /> 
 
       <button
         onClick={getSuggestions}
         disabled={loading}
-        className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400"
+        className="px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-gray-700 disabled:bg-gray-400"
       >
         {loading ? "Thinking..." : "Get AI Suggestions"}
       </button>
 
       {suggestion && (
-        <div className="mt-4 p-4 border rounded-md bg-gray-50 whitespace-pre-wrap">
+        <div className="mt-4 p-4 border-none focus:outline-none rounded-md bg-gray-50 whitespace-pre-wrap">
           <h3 className="font-semibold mb-2">Done:</h3>
           <div dangerouslySetInnerHTML={{ __html: suggestion.replace(/\n/g, "<br />") }} />
         </div>

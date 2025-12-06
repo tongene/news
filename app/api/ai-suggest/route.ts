@@ -1,6 +1,7 @@
  
 import { NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, UrlContextMetadata } from "@google/genai";
+import { searchValues } from "@/app/lib/searches/searches";
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,  
@@ -10,13 +11,18 @@ export async function POST(req: Request) {
   try {
     const { topic } = await req.json(); 
 const response = await ai.models.generateContent({
-  model: "gemini-2.5-flash",
-  contents: `Find information about - ${topic}` ,
-  config: {
-    systemInstruction: "You are a suggestion agent and you have to look for content on the website https://culturays.com/ to get matching content with link. Put each link in an 'a' tag — <a></a> — and display it alongside a summary of 2 lines for each content you find.",
-  },
+  model: "gemini-2.5-flash", 
+  
+  contents: [
+ `Retrieve all content related to ${topic} from the site https://culturays.com/. Provide a summary of the content found and display them alongside the titles.`,
+    ],
+     config: {
+       tools: [{urlContext: {}}],
+      // systemInstruction: "Your job is to generate a summary of the content found and display them alongside the titles and link texts.",
+    },
+  
 });
-//console.log(response.text); 
+// const contextMetaData = response.candidates?.map((xy)=> xy.urlContextMetadata).map((tx)=> tx?.urlMetadata) as UrlContextMetadata 
     const suggestion = response.text || "No suggestion from Gemini"; 
     return NextResponse.json({ suggestion });
   } catch (err: any) {
