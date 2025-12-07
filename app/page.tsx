@@ -6,9 +6,7 @@ import { createClient } from "@/utils/supabase/server";
 import { CronJob } from "cron";  
 import StructuredData from "@/components/StructuredData";   
 import { Suspense } from "react"; 
-import { WebSite, WithContext } from "schema-dts";
-import { F } from "@upstash/redis/zmscore-Cq_Bzgy4";
- 
+import { WebSite, WithContext } from "schema-dts";  
 
 interface CineType { 
   title: string 

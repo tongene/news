@@ -1,7 +1,6 @@
  
 import { NextResponse } from "next/server";
 import { GoogleGenAI, UrlContextMetadata } from "@google/genai";
-import { searchValues } from "@/app/lib/searches/searches";
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,  

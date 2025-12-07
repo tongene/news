@@ -265,8 +265,8 @@ const nextConfig: NextConfig ={
     ];
   },
  
-trailingSlash: true,
-// skipTrailingSlashRedirect: true,
+//trailingSlash: true,
+ skipTrailingSlashRedirect: true,
 // experimental: {
 //   taint: true, 
 
