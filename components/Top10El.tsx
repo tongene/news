@@ -1,8 +1,7 @@
 "use client"
 import Image from "next/image" 
 import { getTop10 } from "@/app/filmsdata";
-import { useEffect, useState } from "react";
-import { useAmp } from "next/amp";
+import { useEffect, useState } from "react"; 
 
 type Top10Props={
   title:string
@@ -26,7 +25,7 @@ const [loading,setLoading]=useState(false)
 
   },[latest10])
     const top10Names = latest10.map((ex)=> ex.title) 
-    const isAmp = useAmp() 
+ 
 
   return (
     <div className='bg-gray-800 text-white my-11'> 
