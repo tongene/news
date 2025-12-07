@@ -101,11 +101,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}` 
   : "http://localhost:3000";
 
-export default async function sitemap({
-    id,
-  }: {
-    id: number
-  }): Promise<MetadataRoute.Sitemap>{ 
+export default async function sitemap(): Promise<MetadataRoute.Sitemap>{ 
 
      const topicData:TagProps[]=await topicFeed()
       const tagData:TagProps[]=await tagFeed()
