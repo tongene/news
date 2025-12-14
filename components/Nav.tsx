@@ -160,7 +160,7 @@ useEffect(()=>{
    <div className='relative text-xl hover:text-orange-700'><p className='absolute bottom-0 right-10 lg:right-40'><Link href='/search/'aria-label="Search"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link></p></div> 
    
 <div className='text-md font-medium lg:flex justify-center items-center xs:flex-row flex-wrap'>
-<div className='flex justify-center items-center xs:flex-row flex-wrap h-5 relative'>
+<div className='flex justify-center items-center xs:flex-row flex-wrap relative'>
 <button onClick={openSuggest} className='py-2 mx-2 rounded-full border-4 border-blue-800 text-center text-blue-900 font-bold px-1 hover:bg-gray-700' >AI Search<FontAwesomeIcon icon={faMagicWandSparkles} className='text-lg text-red-400 mx-1'/></button>
   { openCurrent&& <div className="px-6 rounded-xl shadow-md flex"> 
         <input
