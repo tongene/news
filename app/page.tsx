@@ -376,15 +376,17 @@ description
 .catch(error => console.log('err',error))
   return wprest; 
 
-}
+}  
+
+
 const Home=async() =>{ 
   const response2 = await nextResp()// const postData= response2.edges.map((xy:{node:InnerEdges})=> xy).flat() 
  const latestPosts=await newsByLatest() 
  const endX= response2?.pageInfo.endCursor
  const news_outline=await postsOutline()
  const posts_notIn_newsPosts= await nextNewsPosts(endX) 
-  const livexnews =await liveResp()  
-    
+  const livexnews =await liveResp() 
+
          CronJob.from({
           cronTime: '10 8 * * *',  
           onTick:dailyWiki(),
@@ -432,6 +434,8 @@ const Home=async() =>{
     }
   }
   
+
+
 return (
   <div>
       <StructuredData schema={jsonLd} />
