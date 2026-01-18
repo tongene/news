@@ -387,7 +387,7 @@ const Home=async() =>{
  const posts_notIn_newsPosts= await nextNewsPosts(endX) 
   const livexnews =await liveResp() 
 
-         CronJob.frllom({
+         CronJob.from({
           cronTime: '10 8 * * *',  
           onTick:dailyWiki(),
           start: true,
@@ -452,3 +452,4 @@ return (
 ); 
 }
 export default Home
+
