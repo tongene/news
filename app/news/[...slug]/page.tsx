@@ -3,9 +3,7 @@ import SideBar from "@/components/Side"
 import ArticleDetail from "@/components/News/ArticleDetail" 
 import type { Metadata, ResolvingMetadata } from 'next' 
 import { NewsArticle, WithContext } from "schema-dts";
-import StructuredData from "@/components/StructuredData";
-import { InnerEdges } from "@/app/types";
-import NewsDetail from "@/components/NewsDetail"; 
+import StructuredData from "@/components/StructuredData"; 
 import { resolveContent, returnPost } from "@/utils/resolveFunctions"; 
 import LevelOne from "@/components/LevelOne";
 
@@ -14,11 +12,7 @@ export type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-const replaceHTMLTags=(string:string)=>{
-  const regex = /(<([^>]+)>)/gi;
-  const newString = string?.replace(regex, "");
-  return newString
-   }
+
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata 
@@ -26,7 +20,11 @@ export async function generateMetadata(
   const slug =(await params).slug
   const news_details= await returnPost(slug[0])  
  const newsXdetail = await resolveContent(slug, news_details);
-
+const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
   const previousImages = (await parent).openGraph?.images || [] 
   const keyTags= newsXdetail?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
  const tags= news_details?.tags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
@@ -71,6 +69,12 @@ const ArticleDetailPage = async({params}: {
  const newsXdetail = await returnPost(slug[0])
   const news_details = await resolveContent(slug, newsXdetail);
 if(!news_details) return
+const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
+
  const tags= news_details?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
    function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);

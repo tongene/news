@@ -4,7 +4,7 @@ import ShareButtons from "../ShareButtons";
 import Link from 'next/link';
 import { NextTypeProps, TopNews } from '@/app/types'; 
 const ArticleDetail = ({postXPlus, nextContent }:{postXPlus:TopNews, nextContent:NextTypeProps[] }) => {
-
+ 
  const related_content =postXPlus?.newsGroup.related?.edges??[]
 // const news_related = postXPlus?.newsGroup?.related?.edges.map((tx:{node:{id:string}}  )=> tx.node.id)  
   return (  
