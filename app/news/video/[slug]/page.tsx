@@ -129,12 +129,12 @@ export async function generateMetadata(
      twitter: {
       card: 'summary_large_image',
       title: vid_details?.title  ,
-      description:replaceHTMLTags(vid_details?.excerpt ) ,  
+      description: replaceHTMLTags(vid_details?.excerpt ) ,  
       images:[vid_details?.featuredImage.node.sourceUrl, ...previousImages],  
     },
        openGraph: {  
         title:`Urban Naija | Video - ${vid_details?.title}`,
-         description:replaceHTMLTags(vid_details?.excerpt ),
+         description: replaceHTMLTags(vid_details?.excerpt ),
          url: `https://culturays.com/news/video/${slug}/`,
           siteName: 'Urban Naija',
          images: [{url:vid_details?.featuredImage.node.sourceUrl, width: 800,
@@ -158,7 +158,7 @@ const VideoDetailsPage=async ({params}: Props) => {
       function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {
-    throw new Error(`Invalid date string: ${dateStr}`);
+    return new Date().toLocaleDateString()
   }
   return d.toISOString(); 
 }

@@ -3,9 +3,9 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   : "http://localhost:3000/news/";
 
 export const metadata = {
-  metadataBase: new URL(defaultUrl),
+  metadataBase: new URL('https://culturays.com'),
   title: "Urban Naija | News",
-  description:'This is the medium that caters to the daily needs of legitimate global news. We cover news about all technological advancements, economic situations and growth, entertainment, Nollywood, health and societal issues as well as business and environment.',
+  description:'This is the medium that caters to the daily needs of legitimate global news. We cover on technology, economics, trade, entertainment, Nollywood, health and society as well as business and environment.',
   alternates: {
     canonical: 'https://culturays.com/news/',
  

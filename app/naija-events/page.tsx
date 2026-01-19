@@ -71,7 +71,7 @@ const {events} =await forumEvents()
     function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {
-    throw new Error(`Invalid date string: ${dateStr}`);
+     return new Date().toLocaleDateString()
   }
   return d.toISOString(); 
 }

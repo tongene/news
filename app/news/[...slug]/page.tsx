@@ -20,6 +20,7 @@ export async function generateMetadata(
   const slug =(await params).slug
   const news_details= await returnPost(slug[0])  
  const newsXdetail = await resolveContent(slug, news_details);
+
 const replaceHTMLTags=(string:string)=>{
   const regex = /(<([^>]+)>)/gi;
   const newString = string?.replace(regex, "");
@@ -68,7 +69,7 @@ const ArticleDetailPage = async({params}: {
  const {slug} =await params  
  const newsXdetail = await returnPost(slug[0])
   const news_details = await resolveContent(slug, newsXdetail);
-if(!news_details) return
+
 const replaceHTMLTags=(string:string)=>{
   const regex = /(<([^>]+)>)/gi;
   const newString = string?.replace(regex, "");
@@ -78,10 +79,10 @@ const replaceHTMLTags=(string:string)=>{
  const tags= news_details?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
    function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
-  if (isNaN(d.getTime())) {
-    throw new Error(`Invalid date string: ${dateStr}`);
+  if (isNaN(d?.getTime())) {
+    return new Date().toDateString();
   }
-  return d.toISOString(); 
+  return d?.toISOString(); 
 }
   const jsonLd:WithContext<NewsArticle> = {
    '@context': 'https://schema.org',

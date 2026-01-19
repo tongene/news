@@ -8,7 +8,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   : "http://localhost:3000/naija-events/";
 
 export const metadata = {
-  metadataBase: new URL(defaultUrl),
+  metadataBase: new URL('https://culturays.com'),
   title: "Urban News | Naija Events",
   description: "Find details of all relevant events, conferences and summits happening throughout Nigeria yearly. From tech to entertainment and everything necessary to forward that career.",
   alternates: {

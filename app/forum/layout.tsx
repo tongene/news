@@ -6,7 +6,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
 
 
 export const metadata = {
-  metadataBase: new URL(defaultUrl), 
+  metadataBase: new URL('https://culturays.com'), 
    title:"Forum",
   //title:{absolute:"Forum"},
   description: "Start or join great conversations!!! This platform also allows you to create topics and have discussions on trending societal issues.",

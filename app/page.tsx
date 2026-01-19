@@ -396,7 +396,7 @@ const Home=async() =>{
         function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {
-    throw new Error(`Invalid date string: ${dateStr}`);
+  return new Date().toDateString();
   }
   return d.toISOString();
 }

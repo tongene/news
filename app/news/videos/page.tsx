@@ -252,7 +252,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   : "http://localhost:3000/news/videos/";
   
 export const metadata = {
-  metadataBase: new URL(defaultUrl), 
+ metadataBase: new URL('https://culturays.com'), 
    title:"Urban News | Videos", 
    alternates: {
     canonical: 'https://culturays.com/news/videos/',
