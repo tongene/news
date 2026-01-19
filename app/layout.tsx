@@ -60,7 +60,7 @@ metadataBase: new URL('https://culturays.com'),
   siteName: 'Urban Naija', 
   images: [
   {
-  url: '/culturays-no-bg.png',  
+  url: '/opengraph-image.png',  
   width: 800,
   height: 600,
   alt: 'Urban Naija Image & Logo',
@@ -109,7 +109,7 @@ metadataBase: new URL('https://culturays.com'),
       card: 'summary_large_image',
       title: 'Urban Naija | News, Nigeria',
       description: 'This is an upcoming news outlet that gives coverage to legitimate news and events in Nigeria, Africa and the rest of the world.',    
-      images: ['/culturays-no-bg.png'],  
+      images: ['/twitter-image.png'],  
     },    
     
     verification: {
