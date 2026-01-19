@@ -43,7 +43,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Urban Naija | News, Nigeria",
-  description: "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
+  description: "This is an upcoming news outlet that gives coverage to legitimate news and events in Nigeria, Africa and the rest of the world.",
 
  generator: 'Urban Naija',
   applicationName: 'Urban Naija | News, Nigeria',
@@ -55,18 +55,18 @@ export const metadata: Metadata = {
  
   openGraph: {
   title: 'Urban Naija | News, Nigeria',
-  description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
+  description: 'This is an upcoming news outlet that gives coverage to legitimate news and events in Nigeria, Africa and the rest of the world.',
   url: 'https://culturays.com/', 
   siteName: 'Urban Naija', 
   images: [
   {
-  url: 'https://culturays.com/culturays-no-bg.png',  
+  url: '/culturays-no-bg.png',  
   width: 800,
   height: 600,
   alt: 'Urban Naija Image & Logo',
   },
     {
-          url: 'https://culturays.com/culturays.png', 
+          url: '/culturays.png', 
           width: 800,
           height: 600,
           alt: 'Urban Naija Image & Logo',
@@ -104,12 +104,12 @@ export const metadata: Metadata = {
       },
     },
    
-   manifest: 'https://culturays.com/site.webmanifest',
+   manifest: '/site.webmanifest',
     twitter: {
       card: 'summary_large_image',
       title: 'Urban Naija | News, Nigeria',
-      description: 'This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',    
-      images: ['https://culturays.com/culturays-no-bg.png'],  
+      description: 'This is an upcoming news outlet that gives coverage to legitimate news and events in Nigeria, Africa and the rest of the world.',    
+      images: ['/culturays-no-bg.png'],  
     },    
     
     verification: {
