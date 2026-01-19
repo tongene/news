@@ -387,12 +387,12 @@ const Home=async() =>{
  const posts_notIn_newsPosts= await nextNewsPosts(endX) 
   const livexnews =await liveResp() 
 
-        //  CronJob.from({
-        //   cronTime: '10 8 * * *',  
-        //   onTick:dailyWiki(),
-        //   start: true,
-        //   timeZone: 'Africa/Lagos'
-        //  });   
+         CronJob.from({
+          cronTime: '10 8 * * *',  
+          onTick:dailyWiki(),
+          start: true,
+          timeZone: 'Africa/Lagos'
+         });   
         function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {
