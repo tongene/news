@@ -210,27 +210,27 @@ export async function generateMetadata({ params }: {
     const previousImages = (await parent).openGraph?.images || []
      
     return { 
-      title:`Urban Naija | Trending - ${trending_details?.title}` ,
-         description: `Daily news trends on Urban News — Find out what everyone is talking about and what's trending in every region across Nigeria." | ${replaceHTMLTags(trending_details?.excerpt)}`,
-          keywords:tags,
-          twitter: {
-      card: 'summary_large_image',
-      title: trending_details?.title  ,
-      description: trending_details?.excerpt ,  
-      images:[trending_details?.featuredImage.node.sourceUrl, ...previousImages],  
-    },
-      openGraph: { 
-         title:`Urban Naija | Trending - ${trending_details?.title}` ,
-         description:trending_details?.excerpt,
-          url: `https://culturays.com/news/trending/${slug}/`,
-          siteName: 'Urban Naija',
-        images: [{url:trending_details?.featuredImage.node.sourceUrl, width: 800,
-       height: 600,}],
+    title:`Urban Naija | Trending - ${trending_details?.title}` ,
+        description: `Daily news trends on Urban News — Find out what everyone is talking about and what's trending in every region across Nigeria." | ${replaceHTMLTags(trending_details?.excerpt)}`,
+        keywords:tags,
+        twitter: {
+    card: 'summary_large_image',
+    title: trending_details?.title  ,
+    description:replaceHTMLTags(trending_details?.excerpt) ,  
+    images:[trending_details?.featuredImage.node.sourceUrl, ...previousImages],  
+  },
+    openGraph: { 
+        title:`Urban Naija | Trending - ${trending_details?.title}` ,
+        description:replaceHTMLTags(trending_details?.excerpt),
+        url: `https://culturays.com/news/trending/${slug}/`,
+        siteName: 'Urban Naija',
+      images: [{url:trending_details?.featuredImage.node.sourceUrl, width: 800,
+      height: 600,}],
         type: "article",
         publishedTime:trending_details?.date
       },
        alternates: {
-    canonical:  `https://culturays.com/news/trending/${slug}`,
+    canonical:  `https://culturays.com/news/trending/${slug}/`,
  
   }
     }

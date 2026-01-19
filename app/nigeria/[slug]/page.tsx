@@ -10,7 +10,11 @@ type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
-
+const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata 
@@ -21,17 +25,17 @@ export async function generateMetadata(
 
   return {
     title: `Urban Naija | ${page?.title}`,
-    description:page?.excerpt,
-    keywords:["Nigeria", "Industrial", "China", "Aba", "Nnewi"],
+    description: replaceHTMLTags(page?.excerpt) ,
+    keywords:["Nigeria", "Industry", "China", "Aba", "Nnewi", "News", "Manufacturing", "Production", "Trade", "Tariffs", "Farming", "Products", "Market", "Balogun", "Lagos", "Food", "Export", "Import", "Mining", "Factory", "Ajaokuta", "Steel", "Fabric", "Transport", "Tax", "Africa", "ECOWAS"],
     twitter: {
       card: 'summary_large_image',
       title: page?.title  ,
-      description: page?.excerpt ,  
+      description: replaceHTMLTags(page?.excerpt),  
       images:[page?.featuredImage.node.sourceUrl, ...previousImages],  
     },
      openGraph: {
       title: `Urban Naija | ${page?.title}`,
-      description:page?.excerpt, 
+      description: replaceHTMLTags(page?.excerpt), 
       url: `https://culturays.com/nigeria/${page.slug}/`,
       siteName: 'Urban Naija',
       images: [{url:page?.featuredImage.node.sourceUrl, width: 800,

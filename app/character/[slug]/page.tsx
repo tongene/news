@@ -8,7 +8,11 @@ type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
- 
+ const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata 
@@ -19,17 +23,17 @@ export async function generateMetadata(
  
   return {
     title:`Urban Naija | Movie Character - ${char_details?.title}`,
-    description:char_details?.excerpt, 
+    description: replaceHTMLTags(char_details?.excerpt) , 
     keywords:[char_details?.title, char_details?.charactertitles.portrayedby, char_details?.charactertitles.filmname].join(', '),
     twitter: {
       card: 'summary_large_image',
       title: char_details?.title,
-      description:char_details?.excerpt, 
+      description:replaceHTMLTags(char_details?.excerpt), 
       images:[char_details?.featuredImage.node.sourceUrl, ...previousImages],  
     },
     openGraph: { 
       title:`Naija Wiki | Movie Character - ${char_details?.title}`,
-      description:char_details?.excerpt, 
+      description:replaceHTMLTags(char_details?.excerpt), 
        url: `https://culturays.com/character/${slug}/`,
       siteName: 'Urban Naija',
       images: [{url:char_details?.featuredImage.node.sourceUrl, 
@@ -50,11 +54,7 @@ export async function generateMetadata(
 const slug =(await params).slug  
 const character_data = await newcharCall(slug)  
 const related_chars = await relatedChars()
-const replaceHTMLTags=(string:string)=>{
-  const regex = /(<([^>]+)>)/gi;
-  const newString = string?.replace(regex, "");
-  return newString
-   }
+
   function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {

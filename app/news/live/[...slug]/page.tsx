@@ -182,7 +182,13 @@ if(!postX)return
            .catch(error => console.error('Error:', error));
            //const response = wprest?.data?.outlines?.nodes 
            return wprest
-  } 
+  }
+
+  const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata 
@@ -195,12 +201,12 @@ export async function generateMetadata(
 
   return {
     title: `Urban Naija | Live News ${news_details?.title||'' } `,
-    description:news_details?.excerpt,
+    description:replaceHTMLTags(news_details?.excerpt) ,
     keywords: tags,
      twitter: {
       card: 'summary_large_image',
       title: news_details?.title  ,
-      description: news_details?.excerpt ,  
+      description:replaceHTMLTags(news_details?.excerpt) ,  
       images:[news_details?.featuredImage.node.sourceUrl, ...previousImages],  
     },
     openGraph: {
@@ -209,7 +215,7 @@ export async function generateMetadata(
       siteName: 'Urban Naija',
       images: [{url:news_details?.featuredImage.node.sourceUrl, width: 800,
        height: 600, ...previousImages}],
-      description:news_details?.excerpt,
+      description:replaceHTMLTags(news_details?.excerpt) ,
       type: "article",
       publishedTime: news_details?.date,
 
@@ -230,11 +236,7 @@ const slug =(await params).slug
       const news_outline=await postsOutline()
 
    const tags= news?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
-   const replaceHTMLTags=(string:string)=>{
-    const regex = /(<([^>]+)>)/gi;
-    const newString = string?.replace(regex, "");
-    return newString
-     }
+  
       function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {

@@ -108,7 +108,11 @@ idType: 'SLUG'
        return wprest
  
  }
-
+const replaceHTMLTags=(string:string)=>{
+  const regex = /(<([^>]+)>)/gi;
+  const newString = string?.replace(regex, "");
+  return newString
+   }
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata ): Promise<Metadata> {
@@ -120,17 +124,17 @@ export async function generateMetadata(
   
      return {
        title:`Urban Naija | Video - ${vid_details?.title}`,
-       description:vid_details?.excerpt,
+       description:  replaceHTMLTags(vid_details?.excerpt),
      keywords:tags,
      twitter: {
       card: 'summary_large_image',
       title: vid_details?.title  ,
-      description: vid_details?.excerpt ,  
+      description:replaceHTMLTags(vid_details?.excerpt ) ,  
       images:[vid_details?.featuredImage.node.sourceUrl, ...previousImages],  
     },
        openGraph: {  
         title:`Urban Naija | Video - ${vid_details?.title}`,
-         description:vid_details?.excerpt,
+         description:replaceHTMLTags(vid_details?.excerpt ),
          url: `https://culturays.com/news/video/${slug}/`,
           siteName: 'Urban Naija',
          images: [{url:vid_details?.featuredImage.node.sourceUrl, width: 800,
@@ -150,11 +154,7 @@ const VideoDetailsPage=async ({params}: Props) => {
   const vid_details= await viddetails(slug)
    if(!vid_details)return 
   const tags= vid_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
-  const replaceHTMLTags=(string:string)=>{
-    const regex = /(<([^>]+)>)/gi;
-    const newString = string?.replace(regex, "");
-    return newString
-     }
+ 
       function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {

@@ -100,7 +100,7 @@ metadataBase: new URL('https://culturays.com'),
     alternates: {
       canonical: 'https://culturays.com/', 
       languages: { 
-          'en-US': '/en-US',          
+          'en-US': 'https://culturays.com/',          
       },
     },
    

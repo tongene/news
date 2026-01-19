@@ -251,6 +251,11 @@ const vids = async()=>{
     return wprest 
  
   }
+      const replaceHTMLTags=(string:string)=>{
+      const regex = /(<([^>]+)>)/gi;
+      const newString = string?.replace(regex, "");
+      return newString
+       }
 export async function generateMetadata({ params  }: {
   params: Promise<{ slug: string }>
 }, parent:any) { 
@@ -267,7 +272,7 @@ export async function generateMetadata({ params  }: {
     twitter: {
       card: 'summary_large_image',
       title: news_details?.title,
-      description:news_details?.excerpt,    
+      description: replaceHTMLTags(news_details?.excerpt),    
       images:  [news_details?.featuredImage.node.sourceUrl, ...previousImages],
     },    
     
@@ -291,7 +296,7 @@ export async function generateMetadata({ params  }: {
  
 const NetflixNaijaNewsDetailsPage = async({params}: {
   params: Promise<{ slug: string }>
-},) => {
+} ) => {
 const {slug} =await params 
 const news_details = await netflixNewsDets(slug[0])
 if(!news_details)return
@@ -305,11 +310,7 @@ const content_videos = await vids();
 
   //   const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
     const tags= news_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
-    const replaceHTMLTags=(string:string)=>{
-      const regex = /(<([^>]+)>)/gi;
-      const newString = string?.replace(regex, "");
-      return newString
-       }
+
            function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {

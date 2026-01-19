@@ -38,7 +38,7 @@ images:['/culturays.png', ...previousImages],
          
        },
         alternates: {
-    canonical:  `https://culturays.com/topic/${slug}/`,
+    canonical:  `https://culturays.com/topic/${slug[0]}/`,
  
   }
      }
