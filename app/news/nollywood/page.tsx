@@ -300,7 +300,7 @@ const NollywoodPage =async () => {
       <StructuredData schema={jsonLd} />
   <Nollywood
      nollywood_news={nollywood_news}
-     sidebarItems={txPlus} />  
+     sidebarItems={txPlus} />    
     </div>
   )
 } 

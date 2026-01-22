@@ -163,8 +163,8 @@ useEffect(() => {
   return ( 
     <section className='flex flex-col justify-center items-center my-11'> 
     <h2 className='text-gray-600 font-bold text-4xl text-center py-4 dark:text-gray-300'>Recently Added</h2> 
-    {loading && <span className="loader"></span>}
-    
+    {loading && <span className="loader dark:before:border dark:before:border-2 dark:before:border-white dark:after:border dark:after:border-2 dark:after:border-white"></span>}
+ 
 <div className='relative lg:w-2/3 xl:w-2/4 w-full xs:w-3/4 md:w-11/12 top-60 px-1 z-50'>
 <div className="flex justify-between"> 
 
@@ -202,7 +202,7 @@ useEffect(() => {
               <Link href={`/topic/${xy.node.tags.nodes[0].slug}/`}>
                 <p className="italic text-red-600 px-1 text-left">{xy.node.tags.nodes[0].name}</p>
               </Link>
-              <Link href={`/news/highlight/${xy.node.slug}/`}>
+              <Link href={`/news/${xy.node.slug}/`}>
                 <h2 className="overflow-hidden leading-8 py-6 text-gray-600 text-xl py-4 px-3 h-32 font-bold hover:text-gray-500 cursor-pointer dark:text-gray-200" style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>
                   {xy.node.title}
                 </h2>

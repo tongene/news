@@ -128,7 +128,7 @@ const Next = ({categoryName, categoryPost}: { categoryName: string, categoryPost
     <div>
         
         <div className='xl:flex justify-center max-w-4xl md:w-10/12 xl:w-auto xl:max-w-7xl m-auto'>  
-          {loading && <span className="loader"></span>} 
+          {loading && <span className="loader dark:before:border dark:before:border-2 dark:before:border-white dark:after:border dark:after:border-2 dark:after:border-white"></span>} 
 <div> 
  {!categoryName&&(top_PostsData??[]).length>0?top_PostsData?.slice(0,1).map((ex, i)=>
 <div className='shadow-2xl h-3/4 max-w-[700px] mx-auto lg:max-w-[1200px]' key={ex.node.title + ' ' + ex.node.slug}>
@@ -142,9 +142,9 @@ className='object-cover'
   alt={ex?.node.featuredImage?.node.sourceUrl } />  
 
  </div>
-  <Link href={`/news/highlight/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-2xl sm:text-4xl xl:text-5xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link>
+  <Link href={`/news/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-2xl sm:text-4xl xl:text-5xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link>
   <hr className='my-2'/>
-  <Link href={`/news/highlight/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link>
+  <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link>
  
 <div className='flex text-xs text-gray-400 justify-between items-center py-3 leading-8 '> 
 <Link href={`/creator/${ex.node?.author.node.slug}/`}><p>{ ex.node?.author.node.name }</p></Link>  
@@ -164,9 +164,9 @@ className='object-cover'
 
  </div>
    
-    <Link href={`/news/highlight/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-xl sm:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link >
+    <Link href={`/news/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-xl sm:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link >
     <hr className='my-2'/>
-    <Link href={`/news/highlight/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-xl' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
+    <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-xl' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
    
   <div className='flex text-xs text-gray-400 justify-between items-center py-3 leading-8 my-3'> 
   <Link href={`/creator/${ex.node?.author.node.slug}/`}><p>{ ex.node?.author.node.name }</p></Link>  
@@ -194,7 +194,7 @@ className='object-cover'
 
   <div className='w-4/5 xl:w-full'> 
   <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/highlight/${ex.node.slug}/`}prefetch={false}><h2 className='font-bold text-2xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
+  <Link href={`/news/${ex.node.slug}/`}prefetch={false}><h2 className='font-bold text-2xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
  </div>
 <div className='xs:flex text-xs text-gray-400 justify-between items-center leading-8 my-2'> 
 {/* <Link href={`/creator/${ ex?.node.author.node.slug}/`}prefetch={false}><p >{ ex?.node.author.node.name }</p></Link>  */}
@@ -215,7 +215,7 @@ alt={ex?.node.featuredImage?.node.altText}/>
 
 <div className='w-4/5 xl:w-full'>  
   <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/highlight/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
+  <Link href={`/news/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
   </div>
 <div className='sm:flex text-base text-gray-400 justify-between items-center leading-8 '> 
 <Link href={`/creator/${ ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p></Link> 

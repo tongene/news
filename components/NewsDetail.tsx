@@ -8,119 +8,8 @@ import moment from "moment";
 import { useEffect, useRef, useState } from "react"; 
 import { useParams } from "next/navigation";
 
-    export async function postQuery(slug:string){
-  const wprest = fetch('https://content.culturays.com/graphql',{
-method: 'POST', 
-headers:{
-'Content-Type':'application/json'
-},
-next: { revalidate: 60 }, 
-body: JSON.stringify({
-query:` query NODE($id: ID!, $idType: PostIdType!) {
-  post(id: $id, idType: $idType){
-   id
-      title
-      slug
-      excerpt
-      content
-      postnewsgroup {
-        heroImage {
-          node {
-            altText
-            caption
-            sourceUrl
-          }
-        }
-        relatedPosts {
-          edges {
-            cursor
-            node {
-              ... on Post {
-                id
-                content
-                title
-                slug
-                date
-                content
-                excerpt
-                author {
-                  node {
-                    firstName
-                    lastName
-                    name
-                    slug
-                    description
-                  }
-                }
-                featuredImage {
-                  node {
-                    sourceUrl
-                    altText
-                  }
-                }
-                tags {
-                  nodes {
-                    id
-                    name
-                    slug
-                  }
-                }
-                categories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      categories {
-        nodes {
-          name
-          slug
-        }
-      }
-      tags {
-        nodes {
-          name
-          slug
-        }
-      }
-      featuredImage {
-        node {
-          altText
-          caption
-          sourceUrl
-        }
-      }
-      date
-      author {
-        node {
-          name
-          slug
-          avatar {
-            url
-          }
-        }
-      }
-}}`,
-variables:{
-id: slug,
-idType: 'SLUG' 
-}
-})
 
-  }).then(response => response.json())    
-.then(data =>data.data.post) 
-  .catch(error => console.error('Error:', error)); 
-      //const response = wprest?.data.contentNode
-      return wprest
-
-}
-
-export async function sidePlusViews(slug:string){ 
+async function sidePlusViews(slug:string){ 
     const res= fetch('https://content.culturays.com/graphql',{ 
               method: "POST",
                headers: {
@@ -251,7 +140,7 @@ if(!postX)return
   } 
 
   
-export const readNextPosts = async(notIn:string[])=>{  
+const readNextPosts = async(notIn:string[])=>{  
   const wprest = fetch('https://content.culturays.com/graphql',{
     method: 'POST',
     headers:{ 
@@ -293,36 +182,27 @@ export const readNextPosts = async(notIn:string[])=>{
  //  const response = wprest?.data.contentNodes.nodes 
   return wprest
 }
-const NewsDetail = () => { 
-    const [postPlus, setNewsDe] = useState<PostTypeProps>();
+const NewsDetail = ({post}:{post:PostTypeProps}) => {  
      const[loading, setLoading]=useState(false) 
      const [sideBarPlus, setSideBarPlus]=useState <Cursors[]>([])
- const [nextPlus, setNextPlus]=useState <NextTypeProps[]>([])
- const {slug} = useParams()
- //postPlus: PostTypeProps, nextPlus:NextTypeProps[], sideBarPlus:Cursors[]}
-      const slugParam = slug??[] 
-      const news2related = postPlus?.postnewsgroup?.relatedPosts?.edges.map((tx:{node:{id:string}})=> tx.node.id)     
-      const post_related= postPlus?.postnewsgroup.relatedPosts?.edges 
+     const [nextPlus, setNextPlus]=useState <NextTypeProps[]>([])
+      const news2related = post?.postnewsgroup?.relatedPosts?.edges.map((tx:{node:{id:string}})=> tx.node.id)     
+      const post_related= post?.postnewsgroup.relatedPosts?.edges 
       const exitingPosts= post_related?.map((fx)=>(fx?.cursor) )??[]  
-       const getDetails1=async()=>{
-       const nextxnews =await postQuery(slugParam[0]) 
-       setNewsDe(nextxnews) ?? []
-       setLoading(false)
-      
-       const next_x_news = await readNextPosts([postPlus?.id, news2related].flat() as string[])       
+       const getDetails1=async()=>{ 
+       setLoading(false)      
+       const next_x_news = await readNextPosts([post?.id, news2related].flat() as string[])       
        setNextPlus(next_x_news)
-        const sidebarItems=await sidePlusViews(postPlus?.id as string)
+        const sidebarItems=await sidePlusViews(post?.id as string)
        const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node) 
        setSideBarPlus(txPlus)
 
      }
-  
+  console.log(post)
         useEffect(() => {
           setLoading(true)
-        getDetails1()
+         getDetails1()
           }, []);
- 
-//   const news_details = await resolveContent(slug, newsXdetail); 
 
  const nextPosts = nextPlus.filter((tx)=> tx.contentTypeName !== "added-netflix-naija").filter((tx)=> tx.contentTypeName !== "outline").filter((xy)=> xy.contentTypeName!== 'live')?.filter((xy)=> xy.contentTypeName !== 'anticpated-nollywood')?.filter((xy)=> xy.contentTypeName !== 'anticpated-african')?.filter((xy)=> xy.contentTypeName !== 'anticpated-foreign')?.filter((xy)=> xy.contentTypeName !== 'netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'what-to-watch').filter((xy)=> xy.contentTypeName !== 'list-netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'char')?.filter((xy)=> xy.contentTypeName !== 'naija-wiki')?.filter((xy)=> xy.contentTypeName !== 'latest')?.filter((xy)=> xy.contentTypeName !== 'outline')?.filter((xy)=> xy.contentTypeName!== 'page').filter((xy)=> xy.contentTypeName!== 'live')  
 
@@ -347,7 +227,7 @@ return ()=> clearTimeout(hideItem)
     showItem()
     const opt = {
       margin: 0.5,
-      filename: `${postPlus?.title}.pdf`,
+      filename: `${post?.title}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2 },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
@@ -362,52 +242,52 @@ return html2pdfRef.current().set(opt).from(element).save();
 <div className="">
 <div className="px-4 lg:px-16 py-8 m-auto max-w-7xl" > 
 <div className="flex justify-between text-ld py-4 px-2"> 
-   {loading && <span className="loader"></span>} 
-{postPlus?.date &&<p>{new Date(postPlus?.date as string ).toLocaleDateString()}</p>}
-<p>{(postPlus?.categories.nodes??[][0])?.name}</p>
+   {loading && <span className="loader dark:before:border dark:before:border-2 dark:before:border-white dark:after:border dark:after:border-2 dark:after:border-white"></span>} 
+{post?.date &&<p>{new Date(post?.date as string ).toLocaleDateString()}</p>}
+<p>{(post?.categories.nodes??[][0])?.name}</p>
 </div>
     <hr className="bg-black h-1 w-full my-1"/> 
 <hr className="bg-black h-1 w-full my-1"/>  
   
  <h1 className="text-4xl md:text-5xl font-bold  py-4 " style={{lineHeight:'52px'}}>
-   {postPlus?.title} 
+   {post?.title} 
   </h1>
   <div className="border-t border-t-4 border-t-orange-600">
   <div className="xs:flex justify-between items-center py-6">
     <div className="flex"> 
- <small className="text-lg">by:</small>{postPlus?.author.node.avatar.url&&<Image  
+ <small className="text-lg">by:</small>{post?.author.node.avatar.url&&<Image  
    className='rounded-full'
-  src={postPlus?.author.node.avatar.url as string}
+  src={post?.author.node.avatar.url as string}
   width={50}
    height={50}
-  alt={postPlus?.author.node.name as string} 
+  alt={post?.author.node.name as string} 
   />  }
- <Link href={`/creator/${postPlus?.author.node.slug}/`}><h2 className="text-lg px-2 text-orange-600 font-bold hover:text-gray-600 cursor-pointer">{postPlus?.author.node.name}</h2></Link>
+ <Link href={`/creator/${post?.author.node.slug}/`}><h2 className="text-lg px-2 text-orange-600 font-bold hover:text-gray-600 cursor-pointer">{post?.author.node.name}</h2></Link>
   </div>
 
   <div className="
   [&_.share-view]:relative [&_.share-view]:bg-white [&_.share-view]:dark:bg-transparent [&_.shadow-sharebtn]:my-2 [&_.share-view]:text-gray-800 [&_.share-view] [&_.share-view]:dark:text-gray-200 [&_.share-view]:w-64 [&_.share-view]:left-0 [&_.share-view]:right-0 text-xl sm:my-11 [&_.share-view]:p-1"> 
  <ShareButtons 
- item={postPlus} 
+ item={post} 
  shareOptions={true} 
- activeIdx={postPlus?.id}
+ activeIdx={post?.id}
  />
 </div>
  </div>
 <hr/>
-  <div dangerouslySetInnerHTML={{__html:postPlus?.excerpt as string}} className="py-4 my-4 text-xl font-medium italic leading-8"/>
+  <div dangerouslySetInnerHTML={{__html:post?.excerpt as string}} className="py-4 my-4 text-xl font-medium italic leading-8"/>
 </div>  
  </div>
  
-{postPlus?.featuredImage?.node.sourceUrl && <Image 
+{post?.featuredImage?.node.sourceUrl && <Image 
   className="flex flex-col items-center justify-center bg-cover bg-center h-1/2 w-full object-cover border-t border-t-8 rounded-t border-t-orange-600"
-     src={postPlus?.featuredImage?.node.sourceUrl as string}
+     src={post?.featuredImage?.node.sourceUrl as string}
      width={1250}
      height={675}
-     alt={postPlus?.featuredImage?.node.altText as string}
+     alt={post?.featuredImage?.node.altText as string}
      />}
  <div className="bg-gray-600 relative text-gray-200">
-  <div dangerouslySetInnerHTML={{__html:postPlus?.featuredImage?.node.caption as string}} className="absolute bottom-20 left-8 p-6 leading-8 shadow-xl font-mono"/> 
+  <div dangerouslySetInnerHTML={{__html:post?.featuredImage?.node.caption as string}} className="absolute bottom-20 left-8 p-6 leading-8 shadow-xl font-mono"/> 
  </div>
 </div> 
 <div className="lg:flex mx-auto"style={{maxWidth:'1450px'}}> 
@@ -417,29 +297,29 @@ return html2pdfRef.current().set(opt).from(element).save();
  
 <div className="min-[420px]:flex flex-wrap max-w-5xl m-auto">
  <div className="min-[420px]:w-1/2 px-2 h-max">
-{ postPlus?.postnewsgroup?.heroImage?.node.sourceUrl&&
+{ post?.postnewsgroup?.heroImage?.node.sourceUrl&&
 <div className=" h-72 lg:h-96">
  <Image 
   className="object-cover h-full border-t border-t-8 rounded-t border-t-orange-600"
-     src={postPlus?.postnewsgroup?.heroImage?.node.sourceUrl }
+     src={post?.postnewsgroup?.heroImage?.node.sourceUrl }
      width={1200}
      height={675}
-     alt={postPlus?.postnewsgroup?.heroImage?.node.altText}
+     alt={post?.postnewsgroup?.heroImage?.node.altText}
      /> 
  </div>}
-<div dangerouslySetInnerHTML={{__html: postPlus?.postnewsgroup?.heroImage?.node.caption as string}} className="italic py-2 text-sm"/>
+<div dangerouslySetInnerHTML={{__html: post?.postnewsgroup?.heroImage?.node.caption as string}} className="italic py-2 text-sm"/>
  <div id="post-content">
  <div className="p-4"  > 
  <div id='add-child'className={!revealChild?'hidden':'block'}><h2 className="text-2xl font-bold text-center dark:from-white dark:to-green-400 text-gradient-to-r to-sky-500 from-red-600 bg-clip-text">Urban Naija</h2>
- <h3>{postPlus?.title}</h3>
+ <h3>{post?.title}</h3>
 
    <img 
   className="object-cover h-full border-t border-t-8 rounded-t border-t-orange-600"
      src='/culturays-no-bg.png'
      width={50}
      height={50}
-     alt={postPlus?.title as string}
-     />  <Link href={`/news/${postPlus?.slug}/`}><h3 className="text-black">{postPlus?.slug}</h3></Link></div> 
+     alt={post?.title as string}
+     />  <Link href={`/news/${post?.slug}/`}><h3 className="text-black">{post?.slug}</h3></Link></div> 
       <button
         onClick={handleDownload}
         className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
@@ -447,7 +327,7 @@ return html2pdfRef.current().set(opt).from(element).save();
         Save Article as PDF
       </button>
     </div>
-{postPlus?.content.split('\n').filter((xy)=> xy !=='').slice(0, postPlus?.content.split('\n').length/10).map((line, index) =>(
+{post?.content.split('\n').filter((xy)=> xy !=='').slice(0, post?.content.split('\n').length/10).map((line, index) =>(
   <div key={index + ' ' + Math.random()}>
  
      <div>
@@ -485,7 +365,7 @@ return html2pdfRef.current().set(opt).from(element).save();
    </div>
   
   <div className="min-[420px]:w-1/2 px-2 h-max">
-  {postPlus?.content.split('\n').filter((xy)=> xy !=='').slice(postPlus?.content.split('\n').length/10).map((line, index) =>(
+  {post?.content.split('\n').filter((xy)=> xy !=='').slice(post?.content.split('\n').length/10).map((line, index) =>(
   <div key={index + ' ' + Math.random()}>  
    <div>
         <div dangerouslySetInnerHTML={{__html:line}} className="py-2 my-1 text-xl leading-9 [&_figure>figcaption]:italic [&_figure>figcaption]:py-2 [&_figure>figcaption]:text-sm  [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-800 [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-3xl [&_h3]:font-bold [&_h2]:border-b [&_h2]:border-b-4"/>
@@ -524,7 +404,7 @@ return html2pdfRef.current().set(opt).from(element).save();
  </div>
 </div>
 <div className='flex flex-wrap py-2'> 
-  {postPlus?.tags?.nodes.map((xy)=>
+  {post?.tags?.nodes.map((xy)=>
 <div key={xy?.name + ' ' + Math.random()} className='m-1'>
  <Link href={`/topic/${xy?.slug}/`}><h4 className='hover:bg-gray-600 hover:text-gray-200 border border-gray-600 bg-gray-50 text-gray-600 p-2 text-lg w-max text-center'>{xy?.name} </h4></Link>
 
@@ -533,7 +413,7 @@ return html2pdfRef.current().set(opt).from(element).save();
 
 <div className="text-xl text-center border p-5 my-11 mx-2 bg-red-700 hover:bg-red-900 font-mono font-bold text-white dark:text-auto">
  
- <Link href={`/forum?topic=${postPlus?.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
+ <Link href={`/forum?topic=${post?.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
 </div>
  
 <div className='bg-white dark:bg-transparent px-3'> 

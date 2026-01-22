@@ -677,7 +677,7 @@ useEffect(() => {
  </div> 
  <div className='w-44 xs:w-[200px] sm:w-[280px] mx-2'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/highlight/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.title}</h2></Link>
+ <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.title}</h2></Link>
 </div>
 <div className='flex text-gray-400 justify-between items-center leading-8'> 
 {/* <Link href={`/creator/${ex.author.node.slug}/`}><p >{ ex.author.node.name }</p> </Link> */}
@@ -702,7 +702,7 @@ useEffect(() => {
  </div> 
  <div className='w-44 xs:w-[200px] sm:w-[280px] mx-2'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/highlight/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.title}</h2></Link>
+ <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex.title}</h2></Link>
 </div>
 <div className='flex text-gray-400 justify-between items-center leading-8'> 
 {/* <Link href={`/creator/${ex.author.node.slug}/`}><p >{ex.author.node.name }</p> </Link> */}
@@ -721,7 +721,7 @@ useEffect(() => {
  
 { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(6,10).map((xy, i)=>
 <div className='max-w-sm m-auto py-11 hover:text-gray-300 border-black border-b-4 px-4 sm:h-52' key={xy.id}>
-<Link href={`/news/highlight/${xy.slug}/`}>
+<Link href={`/news/${xy.slug}/`}>
 <h2 className='text-xl font-bold'>{xy.title}</h2></Link> 
   <p className='text-sm py-4'>{ dateFormatter?.format(Date.parse(xy?.date)) }</p>
   
@@ -751,10 +751,10 @@ useEffect(() => {
   alt={xy.featuredImage?.node.altText}/> 
   
   </div>
-  <Link href={`/news/highlight/${xy.slug}/`}>
+  <Link href={`/news/${xy.slug}/`}>
   <h2 className='text-ellipsis overflow-hidden h-20 py-4 text-2xl font-bold px-3 xl:px-4 hover:text-gray-400 ' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{xy.title}</h2></Link >
   <div className=''>
-  <Link href={`/news/highlight/${xy.slug}/`}> <div dangerouslySetInnerHTML={{__html:xy.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
+  <Link href={`/news/${xy.slug}/`}> <div dangerouslySetInnerHTML={{__html:xy.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
 <div className='flex text-gray-400 justify-between py-3 my-4 px-2 overflow-hidden'> 
 {/* <Link href={`/creator/${xy.author.node.slug}/`}><p>{ xy.author.node.name }</p></Link>  */}
   <p>{ dateFormatter?.format(Date.parse(xy.date)) }</p>
@@ -778,7 +778,7 @@ useEffect(() => {
   </div> 
   <div className='w-4/5 mx-2 py-6'> 
   <div className=' text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/highlight/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex.title}</h2></Link>
+  <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex.title}</h2></Link>
  </div>
 <div className='flex text-base text-gray-400 justify-between items-center leading-8 '> 
 {/* <Link href={`/creator/${ex.author.node.slug}/`}><p >{ex.author.node.name }</p> </Link> */}
@@ -802,9 +802,9 @@ useEffect(() => {
   alt={xy.featuredImage?.node.altText}/> 
   
   </div>
-  <Link href={`/news/highlight/${xy.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} className='text-ellipsis overflow-hidden h-28 py-4 text-2xl font-bold px-3 hover:text-gray-400'>{xy.title}</h2></Link >
+  <Link href={`/news/${xy.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} className='text-ellipsis overflow-hidden h-28 py-4 text-2xl font-bold px-3 hover:text-gray-400'>{xy.title}</h2></Link >
   <div className='py-4'>
-  <Link href={`/news/highlight/${xy.slug}/`}><div style={{ display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }} dangerouslySetInnerHTML={{__html:xy.excerpt}}className='text-ellipsis overflow-hidden h-32 leading-8 px-3 hover:text-gray-400'/></Link ></div>  
+  <Link href={`/news/${xy.slug}/`}><div style={{ display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }} dangerouslySetInnerHTML={{__html:xy.excerpt}}className='text-ellipsis overflow-hidden h-32 leading-8 px-3 hover:text-gray-400'/></Link ></div>  
 {/* <div className='flex text-gray-400 py-4 justify-between px-4'> 
 <Link href={`/creator/${ xy.author.node.slug}/`}><p className='hover:text-gray-700 px-2'>{ xy.author.node.name }</p></Link> 
   <p className='px-2'>{ dateFormatter?.format(Date.parse(xy.date)) }</p>
@@ -825,10 +825,10 @@ useEffect(() => {
   alt={ex.featuredImage?.node.altText}/> 
   
   </div>
-  <Link href={`/news/highlight/${ex.slug}/`}>
+  <Link href={`/news/${ex.slug}/`}>
   <h2 className='text-ellipsis overflow-hidden h-20 py-4 text-2xl font-bold px-3 xl:px-4 hover:text-gray-400 leading-8' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.title}</h2></Link >
   <div className='py-4'>
-  <Link href={`/news/highlight/${ex.slug}/`}> <div dangerouslySetInnerHTML={{__html:ex.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
+  <Link href={`/news/${ex.slug}/`}> <div dangerouslySetInnerHTML={{__html:ex.excerpt}}className='leading-8 px-3 xl:px-4 hover:text-gray-400 text-ellipsis overflow-hidden'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }} /></Link ></div>  
 {/* <div className='flex text-gray-400 justify-between py-3 my-4 px-2'> 
 <Link href={`/creator/${ex.author.node.slug}/`}><p className='hover:text-gray-700'>{ex.author.node.name }</p></Link> 
   <p>{ dateFormatter?.format(Date.parse(ex.date)) }</p>
@@ -852,7 +852,7 @@ useEffect(() => {
   </div> 
   <div className='w-4/5 mx-2 py-6'> 
   <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/highlight/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex.title}</h2></Link>
+  <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400'>{ex.title}</h2></Link>
  </div>
 <div className='xs:flex text-gray-400 justify-between items-center text-xs'> 
 <Link href={`/creator/${ex.author.node.slug}/`}><p className='hover:text-gray-700 py-3'>{ex.author.node.name }</p> </Link>
@@ -879,7 +879,7 @@ useEffect(() => {
   </div> 
  
   <div className="absolute top-0 left-0 bg-gray-900 bg-opacity-70 flex justify-center items-center z-50 h-full w-full">
-    <Link href={`/news/highlight/${ex.slug}/`}><div className="text-center px-1">
+    <Link href={`/news/${ex.slug}/`}><div className="text-center px-1">
       <h2 className='text-2xl text-gray-50 hover:text-gray-400'>{ex.title} </h2> 
     </div></Link> 
 </div>
@@ -911,10 +911,10 @@ useEffect(() => {
  </div> 
  <div className='w-3/4 xs:w-4/5 mx-2 py-4'> 
 
- <Link href={`/news/highlight/${ex?.slug}/`}>
+ <Link href={`/news/${ex?.slug}/`}>
  <h2 className='text-2xl font-bold text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex?.title}</h2></Link > 
   <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}>
-    <Link href={`/news/highlight/${ex?.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 my-2 hover:text-gray-400'/></Link >
+    <Link href={`/news/${ex?.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 my-2 hover:text-gray-400'/></Link >
 </div>
  
 <div className='xs:flex text-base text-gray-400 justify-between items-center text-xs'> 
@@ -943,8 +943,8 @@ useEffect(() => {
   height={675} 
   alt={ex?.featuredImage?.node.sourceUrl }/>  
   </div>
-  <Link href={`/news/highlight/${ex.slug}/`}><h2 className='leading-9 my-2 overflow-hidden text-ellipsis text-2xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex?.title}</h2></Link >
-   <Link href={`/news/highlight/${ex.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 hover:text-gray-400 overflow-hidden text-ellipsis'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/></Link >
+  <Link href={`/news/${ex.slug}/`}><h2 className='leading-9 my-2 overflow-hidden text-ellipsis text-2xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex?.title}</h2></Link >
+   <Link href={`/news/${ex.slug}/`}><div dangerouslySetInnerHTML={{__html:ex?.excerpt}} className='leading-8 hover:text-gray-400 overflow-hidden text-ellipsis'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/></Link >
 <div className='flex text-gray-400 justify-between items-center py-2 leading-8'> 
 <Link href={`/creator/${ ex.author.node.slug}/`}><p className='hover:text-gray-700'>{ ex?.author.node.name }</p> </Link>
   <p>{ dateFormatter?.format(Date.parse(ex.date)) }</p>

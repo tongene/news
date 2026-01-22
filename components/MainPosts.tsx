@@ -146,11 +146,11 @@ const MainPosts = () => {
       <div>
  { postsXnewsPosts?.length>0&&postsXnewsPosts.slice(0,1).map((xy, i)=> 
 <div key={i + ' ' + Math.random()} className='border max-w-sm min-[500px]:max-w-md sm:max-w-lg m-auto md:m-0 px-3 py-6 ' > 
-<Link href={`/news/highlight/${xy.node.slug}/`}>
+<Link href={`/news/${xy.node.slug}/`}>
  
 <h2 className='py-4 my-4 text-4xl lg:text-5xl font-bold hover:text-gray-400 px-1' style={{lineHeight:'55px'}} >{xy?.node.title}</h2></Link >
   <div className='text-ellipsis overflow-hidden' style={{display: '-webkit-box', WebkitLineClamp:4, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/highlight/${xy.node.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 xl:px-4 hover:text-gray-400 text-xl' /></Link ></div>  
+  <Link href={`/news/${xy.node.slug}/`}><div dangerouslySetInnerHTML={{__html:xy?.node.excerpt}}className='leading-8 xl:px-4 hover:text-gray-400 text-xl' /></Link ></div>  
  <div>
 <hr className='h-3 bg-black my-1'/> 
 <hr className='h-1 bg-black my-1'/> 
