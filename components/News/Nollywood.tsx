@@ -41,7 +41,7 @@ type PostProps={
     }[]
     }
 }
-const Nollywood = ({nollywood_news, sidebarItems, news_outline }:{nollywood_news:PostProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => {
+const Nollywood = ({nollywood_news, sidebarItems }:{nollywood_news:PostProps[], sidebarItems:Cursors[] }) => {
    
   return (
  <div className=''>  
@@ -105,8 +105,7 @@ const Nollywood = ({nollywood_news, sidebarItems, news_outline }:{nollywood_news
 <div className="md:flex justify-between max-w-max"> 
 <Paginate content={nollywood_news?.slice(4)} pathString='nollywood'/>
 <SideBar
- sideBarPlus={sidebarItems}
-outlinePlus={news_outline} />
+ sideBarPlus={sidebarItems}/>
  </div>  
  </div>
  )
