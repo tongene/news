@@ -40,6 +40,12 @@ setBarState(prev=> !prev)
   b:"/news/economy/"
 
 }
+,
+{
+  a:"Netflix Naija",
+  b:"/news/nollywood/"
+
+}
 ]
  const [addStyle, setAddStyle]=useState('')  
 const handleClick = (id:string)=> { 
