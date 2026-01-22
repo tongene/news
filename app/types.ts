@@ -1526,7 +1526,30 @@ parent_id: string
       
     }
   }
-
+ export type LiveProps={
+    name:string
+    slug:string
+    title:string 
+    excerpt:string 
+    date:string
+    featuredImage:{
+      node:{
+        sourceUrl:string
+        altText:string 
+      }
+    }
+    node:{
+       title:string
+        slug:string
+        modified:Date
+         featuredImage:{
+      node:{
+        sourceUrl:string
+        altText:string 
+      }
+    }
+      }
+  }
   export type PostsCategoryProps={   
     node:{
       name:string

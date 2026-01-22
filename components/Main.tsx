@@ -1,12 +1,10 @@
 "use client" 
-import React, { startTransition, useEffect, useMemo, useState } from 'react' 
-import Image from 'next/image'
-import { dateFormatter } from '@/utils/dateformat'
-import Link from 'next/link'  
+import { startTransition, useEffect, useMemo, useState } from 'react' 
 import { Cursors, InnerEdges, PostXNode, SideNode } from '@/app/types'  
 import MainBottom from './MainBottom'
 import SideBar from './Side' 
 import MainPosts from './MainPosts';
+import Next from './Home/Next' 
 
   const newsViews=async()=>{ 
            const res= fetch('https://content.culturays.com/graphql',{ 
@@ -14,6 +12,7 @@ import MainPosts from './MainPosts';
                headers: {
                    'Content-Type':'application/json'
                   },
+                  next: { revalidate: 60 }, 
               body: JSON.stringify({
                 query:`
                 query WPPOSTS { 
@@ -78,6 +77,7 @@ if(!postX)return
         headers:{
             'Content-Type':'application/json'
         },
+       next: { revalidate: 60 }, 
         body: JSON.stringify({
           query:`
           query WPPOSTS {                  
@@ -146,6 +146,7 @@ if(!postX)return
         headers:{
             'Content-Type':'application/json'
         },
+       next: { revalidate: 60 }, 
         body: JSON.stringify({
           query:`
           query WPPOSTS { 
@@ -231,20 +232,18 @@ if(!postX)return
        // const response = wprest?.data
         return wprest ??[]
   } 
-const Main = ({top_PostsData, news_outline, posts_notIn_newsPosts }:{ top_PostsData:InnerEdges[], news_outline:SideNode[], posts_notIn_newsPosts:PostXNode[] }) => { 
+const Main = () => { 
 const [activeSet, setActiveSet]=useState(true)
 const [actIdx, setActIdx]=useState(-1)
 const [categoryPost,setCategoryPost]=useState<InnerEdges[]>([])
 const [categoryName,setCategoryName]=useState('') 
 const [top_PostsCa, setTopPostsCa]=useState<PostXNode[]>([]) 
 const [sidebarItems, setSidebarxItems]=useState<Cursors[]>([])
-// const [top_Last_categories, setLast_categories]=useState([])   
-const rmMain =top_PostsData.map((xy)=> xy.cursor)
+// const [top_Last_categories, setLast_categories]=useState([])
 
 useEffect(() => {
   const x_wiki = async () => {
     const post_data = await postCategories();
-
     const postCategory_Children =
       (post_data?.categories?.edges as InnerEdges[])
         ?.map(xy => xy?.node?.children?.edges)
@@ -284,14 +283,11 @@ const changeSet = (i:number, name:string) => {
   });
 };
 
-
  
   const changeView = async(i:number,name:string) =>{
      setActiveSet(prev => !prev)
     setActIdx(i);
-    setCategoryName(name) 
-
- 
+    setCategoryName(name)  
     };
     
   
@@ -299,10 +295,11 @@ const changeSet = (i:number, name:string) => {
 <section className='clear-left'> 
 <div className="lg:flex justify-center sm:px-11 px-4 m-auto" style={{maxWidth:'1700px'}}> 
 <div className='max-w-7xl mx-auto'> 
+  
 <div className='lg:flex xl:px-4'> 
 <div className='py-20 md:px-1 m-auto'> 
 <div className='py-5'>
-<div className='flex border-b shadow-sm justify-around items-center '> 
+<div className='flex border-b shadow-sm justify-around items-center sm:w-[580px] md:w-[710px] lg:w-[600px] xl:w-[800px] 2xl:w-[1000px] mx-auto'> 
 <h3 data-test="header-1" className='text-xl font-bold w-60'>Don&#39;t Miss</h3>  
 <hr className='bg-black h-1 w-3/4 my-4'/>
 <div className='w-2/3' >
@@ -335,121 +332,19 @@ const changeSet = (i:number, name:string) => {
  
 </div>
 
-  <div className='xl:flex justify-center max-w-4xl md:w-10/12 xl:w-auto xl:max-w-7xl m-auto'> 
-<div> 
- {!categoryName&&top_PostsData.length>0?top_PostsData?.slice(0,1).map((ex, i)=>
-<div className='shadow-2xl h-3/4 max-w-[700px] mx-auto lg:max-w-[1200px]' key={ex.node.title + ' ' + ex.node.slug}>
-
-<div className="my-3"> 
-  <Image 
-  src={ex?.node.featuredImage?.node.sourceUrl } 
-className='object-cover'
- width={700}
- height={600}
-  alt={ex?.node.featuredImage?.node.sourceUrl } />  
-
- </div>
-  <Link href={`/news/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-2xl sm:text-4xl xl:text-5xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link>
-  <hr className='my-2'/>
-  <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-lg' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link>
- 
-<div className='flex text-xs text-gray-400 justify-between items-center py-3 leading-8 '> 
-<Link href={`/creator/${ex.node?.author.node.slug}/`}><p>{ ex.node?.author.node.name }</p></Link>  
- <p >{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p> 
-</div>  
-</div>
-):<> 
-{categoryPost?.slice(0,1).map((ex, i)=>
-  <div className='shadow-2xl h-3/4 max-w-[700px] mx-auto lg:max-w-[1200px]' key={ex.node.title + ' ' + ex.node.slug}>   
-<div className="my-3">
-  <Image 
-  src={ex?.node.featuredImage?.node.sourceUrl } 
- className='object-cover'
- width={700}
- height={600}
-  alt={ex?.node.featuredImage?.node.sourceUrl } />  
-
- </div>
-   
-    <Link href={`/news/${ex.node.slug}/`}><h2 className='overflow-hidden text-ellipsis text-xl sm:text-2xl xl:text-3xl font-bold hover:text-gray-400'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{ex.node?.title}</h2></Link >
-    <hr className='my-2'/>
-    <Link href={`/news/${ex.node.slug}/`}><div className='overflow-hidden text-ellipsis leading-8 hover:text-gray-400 text-xl' dangerouslySetInnerHTML={{__html:ex.node?.excerpt}}style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/> </Link >
-   
-  <div className='flex text-xs text-gray-400 justify-between items-center py-3 leading-8 my-3'> 
-  <Link href={`/creator/${ex.node?.author.node.slug}/`}><p>{ ex.node?.author.node.name }</p></Link>  
-   <p >{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p> 
-  </div>  
-  </div>
-  )}
- </>}  
-
-</div>
-
-  <div className='my-2 m-auto px-2 xl:px-1'>
-  {!categoryName?top_PostsData?.slice(1).map((ex)=>
-<div className='shadow flex gap-4 first:md:pt-0 md:pt-4' key={ex.node.title + ' ' + ex.node.slug}>
-  <div className="m-auto xl:h-[100px] my-2">
-
-  <Image 
-  src={ex?.node.featuredImage?.node.sourceUrl} 
- className='object-cover'
- width={300}
- height={200}
-  alt={ex?.node.featuredImage?.node.altText}/> 
-
-  </div>
-
-  <div className='w-4/5 xl:w-full'> 
-  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/${ex.node.slug}/`}prefetch={false}><h2 className='font-bold text-2xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
- </div>
-<div className='xs:flex text-xs text-gray-400 justify-between items-center leading-8 my-2'> 
-{/* <Link href={`/creator/${ ex?.node.author.node.slug}/`}prefetch={false}><p >{ ex?.node.author.node.name }</p></Link>  */}
-  <p>{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p>
-</div>
-</div>
-</div>
-):categoryPost?.slice(1).map((ex)=>
-  <div className='shadow flex gap-4 first:md:my-0 first:md:py-0 md:pb-4' key={ex.node.title}>
-<div className="relative w-44 h-24 m-auto xl:h-[100px] my-2">
-<Image 
-src={ex?.node.featuredImage?.node.sourceUrl} 
-fill
-sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-alt={ex?.node.featuredImage?.node.altText}/> 
-
-</div>
-
-<div className='w-4/5 xl:w-full'>  
-  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
-  <Link href={`/news/${ex.node.slug}/`}><h2 className='font-bold text-xl hover:text-gray-500' >{ex?.node.title}</h2></Link>
-  </div>
-<div className='sm:flex text-base text-gray-400 justify-between items-center leading-8 '> 
-<Link href={`/creator/${ ex?.node.author.node.slug}/`}><p >{ ex?.node.author.node.name }</p></Link> 
-  <p>{ dateFormatter?.format(Date.parse(ex.node?.date)) }</p>
-</div>
-</div>
-</div>
-)}  
-</div> 
- 
-</div>  
+<Next categoryName={categoryName} categoryPost={categoryPost} />
 
  <hr/> 
 </div>   
 
 </div>   
  <hr className='h-1 w-4/5 m-auto my-4'/>
-   <MainPosts
-   posts_notIn_newsPosts={posts_notIn_newsPosts}
- /> 
+   <MainPosts /> 
  
 </div>  
 <div > 
      <SideBar 
-     sideBarPlus={sidebarItems}
-     outlinePlus={news_outline}
-     />  
+     sideBarPlus={sidebarItems}/>  
   </div> </div>
      <MainBottom />   
    </section>

@@ -1,19 +1,684 @@
+"use client"
 import moment from 'moment';
 import Image from "next/image";
 import ShareButtons from "../ShareButtons";
 import Link from 'next/link';
-import { NextTypeProps, TopNews } from '@/app/types'; 
-const ArticleDetail = ({postXPlus, nextContent }:{postXPlus:TopNews, nextContent:NextTypeProps[] }) => {
+import { Cursors, InnerEdges, NextTypeProps, TopNews } from '@/app/types';
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import SideBar from '../Side';
+//{postXPlus, nextContent }:{postXPlus:TopNews, nextContent:NextTypeProps[] }
+export async function news_details_all(uri:string){
+
+const wprest = fetch('https://content.culturays.com/graphql',{
+method: 'POST', 
+headers:{
+'Content-Type':'application/json'
+},
+next: { revalidate: 3600 } ,
+body: JSON.stringify({
+query:`
+query NODE($id: ID!, $idType: ContentNodeIdTypeEnum!) {
+contentNode(id: $id, idType: $idType){  
+    id
+    uri
+    slug
+    newsGroup {
+      related {
+      edges{
+        node {
+          date
+          id
+          slug
+          ... on Article {
+            id
+            title
+            excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Business {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Society {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Nollywood {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Health {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+             ... on Award {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+             ... on Technology {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Environment {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+          ... on Economy {
+            id
+            title
+              excerpt
+            content
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
+        }
+      }
+}}
+    contentTypeName
+    __typename
+    ... on Article {
+        id
+      content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+    
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+    ... on Technology {
+        id
+      content 
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+    ... on Society {
+       id
+      content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+    ... on Nollywood {
+      id
+      content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+    ... on Health {
+      id
+       content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+    ... on Environment {
+   id
+       content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+    ... on Economy {
+     id
+      content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+    ... on Business {
+     id
+     content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+         
+          }
+        }
+      }
+    }
+    ... on Award {
+      id
+      content
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    } 
+  }
+
+ }   
+` ,
+variables:{
+id: uri,
+idType: 'URI' 
+}
  
- const related_content =postXPlus?.newsGroup.related?.edges??[]
-// const news_related = postXPlus?.newsGroup?.related?.edges.map((tx:{node:{id:string}}  )=> tx.node.id)  
-  return (  
- <article className='bg-white max-w-6xl lg:max-w-2xl min-[1100px]:max-w-3xl sm:p-6 xl:max-w-4xl 2xl:max-w-5xl xl:p-8 dark:text-gray-900' > 
+})
+
+}).then(response => response.json())    
+.then(data => data.data.contentNode)
+       .catch(error => console.error('Error:', error)); 
+      //const response = wprest?.data.contentNode
+      return wprest
+ 
+}
+
+export async function sidePlusViews(slug:string){ 
+    const res= fetch('https://content.culturays.com/graphql',{ 
+              method: "POST",
+               headers: {
+                   'Content-Type':'application/json'
+                  },
+                  cache: 'force-cache', 
+              body: JSON.stringify({
+                query:`
+                query WPPOSTS { 
+             posts(first: 10, where: {categoryName: "Latest"}) { 
+           pageInfo {
+        endCursor
+      }
+         edges{ 
+            node{
+             
+            categories {
+                  nodes {
+                    name
+                    slug
+                  }
+                } 
+       }
+          } }} 
+               ` 
+              
+              }) 
+            }).then((res) => res.json() )
+            .then((data) => data.data ) 
+           .catch((err) => console.log("err", err)) 
+           const dataView= await res
+    const postX = dataView.posts?.pageInfo?.endCursor 
+if(!postX)return
+      const wpx = fetch('https://content.culturays.com/graphql',{     
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS($after: String) {                  
+             posts(first:4 ,after:$after, where: {categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+           } 
+        } 
+         `, variables:{
+          after:postX 
+         }
+        
+        })
+        })
+        .then(response => response.json() )  
+        .then(data => data.data.posts ) 
+        .catch(error => console.error('Error:', error));  
+
+    const latestPosts= await wpx  
+  const latestStr=latestPosts?.pageInfo?.endCursor  
+     const wprest = fetch('https://content.culturays.com/graphql', { 
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS {                  
+             posts(first:4 ,after:"${latestStr}" , where: {notIn:["${slug}"],categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+                edges{
+               cursor
+              node{
+               id
+                title
+                  slug
+                  tags {
+                    nodes {
+                    id
+                      name
+                      slug
+                    }
+                  }
+                  
+                   categories {
+                    nodes {
+                      name
+                      slug
+                    }
+                  }
+                excerpt
+                  date
+                   author {
+                 node {
+                firstName
+                lastName
+                name
+                slug
+                description
+              }
+            }
+                  featuredImage {
+                    node {
+                      altText
+                      sourceUrl
+                    }
+                  }
+       
+         }
+           }  } 
+        } 
+         ` 
+        
+        })
+        
+        }).then(response => response.json()) 
+        .then(data => data.data) 
+        .catch(error => console.error('Error:', error)); 
+      // const response = wprest?.data?.posts?.edges
+   
+    return wprest
+  } 
+
+  export const readNextContent = async(notIn:string[])=>{ 
+    const wprest = fetch('https://content.culturays.com/graphql',{
+      method: 'POST',
+      headers:{ 
+      'Content-Type':'application/json'
+      },
+      cache:'force-cache', 
+      body: JSON.stringify({
+        query: 
+        `query NEXTCONTENT($notIn:[ID]){
+    articles (first:5, where: {notIn:$notIn}){
+   nodes {
+        id
+        title
+        slug
+        date
+        contentTypeName
+        contentTags {
+          nodes {
+            name
+            slug
+          }
+        }
+        author {
+          node {
+            name
+            slug
+          }
+        }
+      }
+      
+    }
+  }`, variables:{notIn:notIn}
+    })
+      
+      }).then(response => response.json())   
+      .then(data => data.data.articles.nodes )
+      .catch(error => console.error('Error:', error));
+   //  const response = wprest?.data.contentNodes.nodes 
+    return wprest
+  } 
+const ArticleDetail = () => { 
+// const news_related = postXPlus?.newsGroup?.related?.edges.map((tx:{node:{id:string}}  )=> tx.node.id)   
+  const {slug} = useParams()
+      const slugParam = slug??[]  
+            const [postXPlus, setPostXPlus]=useState <TopNews>()          
+                     const [sideBarPlus, setSideBarPlus]=useState <Cursors[]>([])           
+                      const [nextContent, setNextContent]=useState <NextTypeProps[]>([])
+                     const [loading,setLoading]=useState(false) 
+                     
+         const news_related = postXPlus?.newsGroup?.related?.edges.map((tx)=> tx.node.id) 
+         const related_content =postXPlus?.newsGroup.related?.edges??[]
+
+          const fullContent=async ()=> {
+         setLoading(true) 
+            for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment"]) { 
+           const res = await news_details_all(`https://content.culturays.com/${type}/${slugParam[0]}/`)
+            if( res?.id){
+         setPostXPlus(res)
+         }
+         } 
+           setLoading(false)
+          const sidebarItems=await sidePlusViews(postXPlus?.id as string)
+         const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node) 
+         setSideBarPlus(txPlus)
+          const next_top_news = await readNextContent([postXPlus?.id, news_related].flat()as string[])
+          setNextContent(next_top_news) 
+         }
+         useEffect(()=>{
+          fullContent()
+         
+         },[loading])
+      
+  return postXPlus ? (  
+ <div className="bg-gray-50"> 
+          <div className="lg:flex justify-center m-auto px-4 bg-white" style={{maxWidth:'1450px' }}>
+             <div className='bg-white max-w-6xl lg:max-w-2xl min-[1100px]:max-w-3xl sm:p-6 xl:max-w-4xl 2xl:max-w-5xl xl:p-8 dark:text-gray-900' > 
   <h1 className="text-4xl font-bold md:text-5xl py-8"style={{lineHeight:'50px'}}>{postXPlus?.title}</h1>
 <hr/>
-  <div dangerouslySetInnerHTML={{__html:postXPlus?.excerpt}}className='py-4 text-lg italic'/>  
+  <div dangerouslySetInnerHTML={{__html:postXPlus.excerpt}}className='py-4 text-lg italic'/>  
 <div className="bg-gray-600 relative text-gray-200">
-  <div dangerouslySetInnerHTML={{__html:postXPlus?.featuredImage?.node?.caption}} className="absolute top-0 left-6 p-4 leading-6 shadow-xl font-mono max-w-xl"/>  
+  <div dangerouslySetInnerHTML={{__html:postXPlus.featuredImage?.node?.caption}} className="absolute top-0 left-6 p-4 leading-6 shadow-xl font-mono max-w-xl"/>  
  
  </div>
   <Image  
@@ -102,10 +767,10 @@ priority={true}
 </div> 
 
 </div>
-<div className="text-xl text-center border py-5 my-11 mx-2 bg-red-700 hover:bg-red-900 font-mono font-bold text-white dark:text-auto">
+ <div className="text-xl text-center border py-5 my-11 mx-2 bg-red-700 hover:bg-red-900 font-mono font-bold text-white dark:text-auto">
   
  <Link href={`/forum?topic=${postXPlus.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
-</div>
+</div> 
 <div className='px-3 max-w-7xl' > 
 <div className='max-w-5xl'>
    <h2 className='text-2xl font-bold py-4'>Next</h2>
@@ -130,10 +795,16 @@ priority={true}
     </div> 
     </div>  
   </div>
-</article> 
-
+</div> 
+ <div className="[&_h2]:dark:text-gray-900 dark:text-gray-900 h-max">
+         <SideBar 
+          sideBarPlus={sideBarPlus}  
+            />    
+          </div> 
+          </div>
+          </div>
  
- )
+ ) : loading && <span className="loader"></span> 
 }
 
 export default ArticleDetail

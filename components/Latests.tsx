@@ -125,6 +125,7 @@ if(!postX)return
         headers:{
             'Content-Type':'application/json'
         },
+        cache: 'force-cache',
         body: JSON.stringify({
           query:`
           query WPPOSTS {                  
@@ -198,14 +199,16 @@ if(!postX)return
 const Latests = () => {   
   const [bottom_news_data, set_bottom_News_data]=useState<Node[]>([])
   const [alt_news_data, set_alt_News_data]=useState<Node[]>([])
- 
+    const[loading, setLoading]=useState(false)
 useEffect(()=>{ 
+  setLoading(true)
   const newsContent=async()=>{ 
   const bottom_latest = await newsViews(); 
   const xLatest = bottom_latest.edges.map((xy:{node:[]})=> xy?.node).flat() 
   set_bottom_News_data(xLatest) 
   const altNews = await altPageNewsItems() 
  set_alt_News_data(altNews.posts.edges)
+ setLoading(false)
 }
   newsContent() 
 },[])
@@ -217,10 +220,11 @@ useEffect(()=>{
       <div className="flex border-b border-t border-t-4 border-t-black border-b-4 m-auto" style={{width:'1500px'}}> 
       {alt_news_data?.slice(0,3).map((ex, index)=>
          <div className="first:border-r [&:nth-child(2)]:border-r px-8 m-auto" key={ex.node.slug}> 
- <Link href={`/news/${ex.node.slug}/`}><h2 className="max-w-96 hover:text-gray-400 py-8 text-2xl font-mono leading-10 font-thin my-8">{ex.node.title} </h2></Link>
+ <Link href={`/news/highlight/${ex.node.slug}/`}><h2 className="max-w-96 hover:text-gray-400 py-8 text-2xl font-mono leading-10 font-thin my-8">{ex.node.title} </h2></Link>
   </div>)}
 </div>
 </div>
+{loading && <span className="loader"></span>} 
 <div className="py-4 my-5 border-t-4 border-yellow-600 bg-black" >
   <h2 className="text-3xl text-gray-300 font-bold text-center p-4 border-b border-yellow-600 my-2">News</h2>
   <div className="md:grid grid-cols-2 gap-2 xl:max-w-6xl max-w-xl xl:grid-cols-4 m-auto">
@@ -236,7 +240,7 @@ alt={ex.title}
 priority={true}
 /> </div>
 <div className="absolute bg-gray-800 flex items-center justify-center top-0 bg-opacity-40 mx-2 w-full h-full"> 
-<small className="text-yellow-400 text-2xl font-bold h-4">&#124;</small> <Link href={`/news/${ex.slug}/`}><h2 className="text-white cursor-pointer underline hover:text-gray-400 text-xl py-20 px-2">{ex.title} </h2></Link>
+<small className="text-yellow-400 text-2xl font-bold h-4">&#124;</small> <Link href={`/news/highlight/${ex.slug}/`}><h2 className="text-white cursor-pointer underline hover:text-gray-400 text-xl py-20 px-2">{ex.title} </h2></Link>
 </div> 
 </div>
   

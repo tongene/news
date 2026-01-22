@@ -7,8 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SideBar from '../Side'
 import { Cursors, SideNode, VidProps } from '@/app/types' 
 import Paginate from '../Paginate'
-const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:VidProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => { 
-  
+const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:VidProps[], sidebarItems:Cursors[], news_outline:SideNode[] }) => {   
    
   return (
     <div className='bg-gray-50'>  
@@ -80,8 +79,7 @@ const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:Vi
 <Paginate content={content_videos.slice(4)} pathString='video'/>
 <div className="[&_.summary-side]:dark:text-gray-900 h-max dark:text-gray-900 [&_div]:lg:m-auto">
   <SideBar 
-  sideBarPlus={sidebarItems}
-  outlinePlus={news_outline} />  
+  sideBarPlus={sidebarItems}/>  
  </div> </div> 
  </div>
  )

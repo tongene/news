@@ -24,6 +24,7 @@ export const metadata = {
                headers: {
                    'Content-Type':'application/json'
                   },
+                  cache: 'force-cache',
               body: JSON.stringify({
                 query:`
                 query WPPOSTS { 

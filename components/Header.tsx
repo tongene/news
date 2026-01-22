@@ -26,18 +26,18 @@ setBarState(prev=> !prev)
  
 {
   a:"Business",
-  b:"/nigeria/"
+  b:"/nigeria/business/"
 
 }
 ,
 {
   a:"Trade",
-  b:"/news/articles/"
+  b:"/nigeria/"
 
 },
 {
   a:"Economy",
-  b:"/nigeria/"
+  b:"/news/economy/"
 
 }
 ]

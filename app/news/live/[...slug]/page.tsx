@@ -19,6 +19,7 @@ type Props = {
                headers: {
                    'Content-Type':'application/json'
                   },
+                  cache: 'force-cache',
               body: JSON.stringify({
                 query:`
                 query WPPOSTS { 
@@ -287,8 +288,7 @@ const slug =(await params).slug
       /></Suspense> 
        <div className="[&_.summary-side]:dark:text-gray-900 h-max dark:text-gray-900">
       <SideBar 
-      sideBarPlus={txPlus}
-      outlinePlus={news_outline} /> 
+      sideBarPlus={txPlus} /> 
       </div>
       </div>
  </div>}

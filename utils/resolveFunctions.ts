@@ -7,6 +7,7 @@ method: 'POST',
 headers:{
 'Content-Type':'application/json'
 },
+next: { revalidate: 60 }, 
 body: JSON.stringify({
 query:` query NODE($id: ID!, $idType: PostIdType!) {
   post(id: $id, idType: $idType){
@@ -119,6 +120,7 @@ method: 'POST',
 headers:{
 'Content-Type':'application/json'
 },
+
 body: JSON.stringify({
 query:`
 query NODE($id: ID!, $idType: ContentNodeIdTypeEnum!) {
@@ -629,6 +631,7 @@ export async function sidePlusViews(slug:string){
                headers: {
                    'Content-Type':'application/json'
                   },
+                  cache: 'force-cache', 
               body: JSON.stringify({
                 query:`
                 query WPPOSTS { 
@@ -758,6 +761,7 @@ export const readNextContent = async(notIn:string[])=>{
     headers:{ 
     'Content-Type':'application/json'
     },
+    cache:'force-cache', 
     body: JSON.stringify({
       query: 
       `query NEXTCONTENT($notIn:[ID]){

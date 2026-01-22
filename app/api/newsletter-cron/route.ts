@@ -52,19 +52,13 @@ const resend = new Resend(process.env.RESEND_API_KEY);
            
            <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
            
-         <img src='https://culturays.com/opengraph-image.png' alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" /> 
+         ${p.image ?`<img src=${p.image} alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" /> `:`<img src='https://culturays.com/opengraph-image.png' alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />` }
 
         <h2 style="font-size: 22px; color: #2c3e50; margin: 10px 0;">${p.title}</h2>
      ${p.url ? `<p><a href="${p.url}/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Read Full Post</a></p>` : ""}
         <p style="font-size: 16px; color: #444444; line-height: 1.6;">
           ${p.excerpt}
-        </p>
-    
-        <p style="margin-top: 30px; font-size: 15px; color: #333333;">
-          Warm regards,<br>
-          <strong>Urban Naija</strong>
-        </p>
-       
+        </p> 
       </div> 
       `
         )
@@ -79,11 +73,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
        <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />    
          <p style="font-size: 16px; color: #333333; text-transform: capitalize;">Hi ${sub.name},</p>
       ${postsHtml}
-    
+    <p style="margin-top: 30px; font-size: 15px; color: #333333;">
+          Warm regards,<br>
+          <strong>Urban Naija</strong>
+        </p>
        <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />        
        <h2 style="font-size: 22px; color: #2c3e50; margin: 10px 0;">News Made for You</h2>
 
-        <img src="https://culturays.com/tinitasks-poster.JPG/" alt="Tini Tasks Poster" style="width: 50%; border-radius: 6px; margin-bottom: 20px;" />
+        <img src="https://culturays.com/tinitasks-poster.JPG/" alt="Tini Tasks Poster" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />
 
         <p><a href="https://gowork.africareinvented.com/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Connect. Collaborate. Conquer on Tini Tasks</a></p>
 

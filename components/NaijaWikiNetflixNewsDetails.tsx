@@ -106,7 +106,7 @@ alt={ex.node.featuredImage.node.altText}
     </div>  
     <div className="text-xl text-center border py-5 my-11 mx-2 bg-red-700 hover:bg-red-900 font-mono font-bold text-white dark:text-auto ">
   
- <Link href={`/forum?topic=${news_details.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
+ <Link href={`/forum?topic=${news_details.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link>  
 </div>
 
     <div className='bg-white px-3'> 

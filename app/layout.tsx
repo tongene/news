@@ -1,10 +1,8 @@
 import { Geist } from "next/font/google";
-import { ThemeProvider } from "next-themes";
-import Link from "next/link";
+import { ThemeProvider } from "next-themes"; 
 import "./globals.css";
 import HeaderAuth from "@/components/header-auth";  
 import Script from "next/script";  
-import "./globals.css";
 // import GoogleAnalytics from "@/components/Analytics";
 import Footer from "@/components/Footer";
 import Latests from "@/components/Latests";

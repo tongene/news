@@ -219,6 +219,12 @@ const nextConfig: NextConfig ={
         destination: '/',
         permanent: true,
       },
+      {
+  source: '/news/highlight/:path*',
+  destination: '/news/:path*?variant=highlight',
+  permanent: true,
+}
+
     ]
   },
  images: {

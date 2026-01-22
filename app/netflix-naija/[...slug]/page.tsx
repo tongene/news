@@ -13,6 +13,7 @@ import NaijaWikiNetflixNewsDetails from "../../../components/NaijaWikiNetflixNew
                headers: {
                    'Content-Type':'application/json'
                   },
+                  cache: 'force-cache',
               body: JSON.stringify({
                 query:`
                 query WPPOSTS { 
@@ -135,48 +136,7 @@ if(!postX)return
    
     return wprest
   } 
-     const postsOutline =async()=>{
-    
-    const wprest = fetch('https://content.culturays.com/graphql',{
-           method: 'POST',
-           headers:{
-               'Content-Type':'application/json'
-           },
-           body: JSON.stringify({
-             query:`
-             query OUTLINEPOST{
-         outlines(first: 1) {
-       nodes {
-         content
-         featuredImage{
-         node{
-         sourceUrl
-         altText
-         }
-         }
-         outlineGroup {
-           outlineVideos {
-             node {
-               altText
-               caption
-               date
-               title
-                mediaItemUrl
-               slug
-             }
-           }
-         }
-       }
-           } } ` 
-           
-           })
-           
-           }).then(response => response.json())
-           .then(data => data.data?.outlines?.nodes)        
-           .catch(error => console.error('Error:', error));
-           //const response = wprest?.data?.outlines?.nodes 
-           return wprest
-  }
+ 
 
 const vids = async()=>{  
  
@@ -305,8 +265,7 @@ const content_videos = await vids();
  const exitinginrelated= netflix_related?.map((fx:{cursor:string})=>fx.cursor)
  const next_on_netflix_naija = await nextNetflixNews([news_details.id, exitinginrelated].flat())
   const sidebarItems=await sidePlusViews()  
-   const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)    
-      const news_outline=await postsOutline()
+   const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)   
 
   //   const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))  
     const tags= news_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
@@ -363,8 +322,7 @@ const content_videos = await vids();
     
         <div className="[&_.summary-side]:dark:text-gray-900 h-max dark:text-gray-900 [&_div]:lg:m-auto">
       <SideBar  
-      sideBarPlus={txPlus}
-      outlinePlus={news_outline} /> 
+      sideBarPlus={txPlus} /> 
       </div>
     </div>
  </>  )

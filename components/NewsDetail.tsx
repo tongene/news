@@ -3,13 +3,327 @@ import Image from "next/image";
 import Link from "next/link";
 import ShareButtons from "./ShareButtons";
 import SideBar from "./Side";
-import { PostTypeProps, NextTypeProps, Cursors, SideNode} from "@/app/types";
+import { PostTypeProps, NextTypeProps, Cursors, SideNode, InnerEdges} from "@/app/types";
 import moment from "moment";
 import { useEffect, useRef, useState } from "react"; 
-   
-const NewsDetail = ({postPlus, nextPlus, outlinePlus, sideBarPlus}:{postPlus:PostTypeProps, nextPlus:NextTypeProps[], outlinePlus:SideNode[], sideBarPlus:Cursors[]}) => { 
+import { useParams } from "next/navigation";
 
-const post_related = postPlus?.postnewsgroup.relatedPosts?.edges
+    export async function postQuery(slug:string){
+  const wprest = fetch('https://content.culturays.com/graphql',{
+method: 'POST', 
+headers:{
+'Content-Type':'application/json'
+},
+next: { revalidate: 60 }, 
+body: JSON.stringify({
+query:` query NODE($id: ID!, $idType: PostIdType!) {
+  post(id: $id, idType: $idType){
+   id
+      title
+      slug
+      excerpt
+      content
+      postnewsgroup {
+        heroImage {
+          node {
+            altText
+            caption
+            sourceUrl
+          }
+        }
+        relatedPosts {
+          edges {
+            cursor
+            node {
+              ... on Post {
+                id
+                content
+                title
+                slug
+                date
+                content
+                excerpt
+                author {
+                  node {
+                    firstName
+                    lastName
+                    name
+                    slug
+                    description
+                  }
+                }
+                featuredImage {
+                  node {
+                    sourceUrl
+                    altText
+                  }
+                }
+                tags {
+                  nodes {
+                    id
+                    name
+                    slug
+                  }
+                }
+                categories {
+                  nodes {
+                    name
+                    slug
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
+      tags {
+        nodes {
+          name
+          slug
+        }
+      }
+      featuredImage {
+        node {
+          altText
+          caption
+          sourceUrl
+        }
+      }
+      date
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+}}`,
+variables:{
+id: slug,
+idType: 'SLUG' 
+}
+})
+
+  }).then(response => response.json())    
+.then(data =>data.data.post) 
+  .catch(error => console.error('Error:', error)); 
+      //const response = wprest?.data.contentNode
+      return wprest
+
+}
+
+export async function sidePlusViews(slug:string){ 
+    const res= fetch('https://content.culturays.com/graphql',{ 
+              method: "POST",
+               headers: {
+                   'Content-Type':'application/json'
+                  },
+                  cache: 'force-cache', 
+              body: JSON.stringify({
+                query:`
+                query WPPOSTS { 
+             posts(first: 10, where: {categoryName: "Latest"}) { 
+           pageInfo {
+        endCursor
+      }
+         edges{ 
+            node{
+             
+            categories {
+                  nodes {
+                    name
+                    slug
+                  }
+                } 
+       }
+          } }} 
+               ` 
+              
+              }) 
+            }).then((res) => res.json() )
+            .then((data) => data.data ) 
+           .catch((err) => console.log("err", err)) 
+           const dataView= await res
+    const postX = dataView.posts?.pageInfo?.endCursor 
+if(!postX)return
+      const wpx = fetch('https://content.culturays.com/graphql',{     
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+         cache: 'force-cache', 
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS($after: String) {                  
+             posts(first:4 ,after:$after, where: {categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+           } 
+        } 
+         `, variables:{
+          after:postX 
+         }
+        
+        })
+        })
+        .then(response => response.json() )  
+        .then(data => data.data.posts ) 
+        .catch(error => console.error('Error:', error));  
+
+    const latestPosts= await wpx  
+  const latestStr=latestPosts?.pageInfo?.endCursor  
+     const wprest = fetch('https://content.culturays.com/graphql', { 
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          query:`
+          query WPPOSTS {                  
+             posts(first:4 ,after:"${latestStr}" , where: {notIn:["${slug}"],categoryName: "Latest"}) {
+                pageInfo {
+              startCursor
+              endCursor
+              hasNextPage
+            } 
+                edges{
+               cursor
+              node{
+               id
+                title
+                  slug
+                  tags {
+                    nodes {
+                    id
+                      name
+                      slug
+                    }
+                  }
+                  
+                   categories {
+                    nodes {
+                      name
+                      slug
+                    }
+                  }
+                excerpt
+                  date
+                   author {
+                 node {
+                firstName
+                lastName
+                name
+                slug
+                description
+              }
+            }
+                  featuredImage {
+                    node {
+                      altText
+                      sourceUrl
+                    }
+                  }
+       
+         }
+           }  } 
+        } 
+         ` 
+        
+        })
+        
+        }).then(response => response.json()) 
+        .then(data => data.data) 
+        .catch(error => console.error('Error:', error)); 
+      // const response = wprest?.data?.posts?.edges
+   
+    return wprest
+  } 
+
+  
+export const readNextPosts = async(notIn:string[])=>{  
+  const wprest = fetch('https://content.culturays.com/graphql',{
+    method: 'POST',
+    headers:{ 
+    'Content-Type':'application/json'
+    },
+    body: JSON.stringify({
+      query: `query NEXTCONTENT($notIn:[ID]) {
+     contentNodes(first:20, where: {notIn:$notIn}){
+ nodes {  
+      ... on Post {
+        id
+        title
+        slug
+        date
+        tags {
+          nodes {
+            name
+            slug
+          }
+        }
+        author {
+          node {
+            name
+            slug
+          }
+        }
+      }
+    
+  }
+}
+  }`, variables:{
+    notIn:notIn
+  }
+ })
+    
+    }).then(response => response.json())   
+    .then(data => data.data.contentNodes.nodes )
+    .catch(error => console.error('Error:', error));
+ //  const response = wprest?.data.contentNodes.nodes 
+  return wprest
+}
+const NewsDetail = () => { 
+    const [postPlus, setNewsDe] = useState<PostTypeProps>();
+     const[loading, setLoading]=useState(false) 
+     const [sideBarPlus, setSideBarPlus]=useState <Cursors[]>([])
+ const [nextPlus, setNextPlus]=useState <NextTypeProps[]>([])
+ const {slug} = useParams()
+ //postPlus: PostTypeProps, nextPlus:NextTypeProps[], sideBarPlus:Cursors[]}
+      const slugParam = slug??[] 
+      const news2related = postPlus?.postnewsgroup?.relatedPosts?.edges.map((tx:{node:{id:string}})=> tx.node.id)     
+      const post_related= postPlus?.postnewsgroup.relatedPosts?.edges 
+      const exitingPosts= post_related?.map((fx)=>(fx?.cursor) )??[]  
+       const getDetails1=async()=>{
+       const nextxnews =await postQuery(slugParam[0]) 
+       setNewsDe(nextxnews) ?? []
+       setLoading(false)
+      
+       const next_x_news = await readNextPosts([postPlus?.id, news2related].flat() as string[])       
+       setNextPlus(next_x_news)
+        const sidebarItems=await sidePlusViews(postPlus?.id as string)
+       const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node) 
+       setSideBarPlus(txPlus)
+
+     }
+  
+        useEffect(() => {
+          setLoading(true)
+        getDetails1()
+          }, []);
+ 
+//   const news_details = await resolveContent(slug, newsXdetail); 
+
  const nextPosts = nextPlus.filter((tx)=> tx.contentTypeName !== "added-netflix-naija").filter((tx)=> tx.contentTypeName !== "outline").filter((xy)=> xy.contentTypeName!== 'live')?.filter((xy)=> xy.contentTypeName !== 'anticpated-nollywood')?.filter((xy)=> xy.contentTypeName !== 'anticpated-african')?.filter((xy)=> xy.contentTypeName !== 'anticpated-foreign')?.filter((xy)=> xy.contentTypeName !== 'netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'what-to-watch').filter((xy)=> xy.contentTypeName !== 'list-netflix-naija')?.filter((xy)=> xy.contentTypeName !== 'char')?.filter((xy)=> xy.contentTypeName !== 'naija-wiki')?.filter((xy)=> xy.contentTypeName !== 'latest')?.filter((xy)=> xy.contentTypeName !== 'outline')?.filter((xy)=> xy.contentTypeName!== 'page').filter((xy)=> xy.contentTypeName!== 'live')  
 
   const html2pdfRef = useRef<any>(null);
@@ -41,13 +355,14 @@ return ()=> clearTimeout(hideItem)
 return html2pdfRef.current().set(opt).from(element).save();
   };
 
-
-  return ( 
-    <article> 
+ 
+  return  ( 
+    <div> 
       <div>  
 <div className="">
 <div className="px-4 lg:px-16 py-8 m-auto max-w-7xl" > 
 <div className="flex justify-between text-ld py-4 px-2"> 
+   {loading && <span className="loader"></span>} 
 {postPlus?.date &&<p>{new Date(postPlus?.date as string ).toLocaleDateString()}</p>}
 <p>{(postPlus?.categories.nodes??[][0])?.name}</p>
 </div>
@@ -143,7 +458,7 @@ return html2pdfRef.current().set(opt).from(element).save();
        <div key={ex.node.title + ' ' + Math.random()} className=" py-4 first:border-b border px-3 lg:px-0"> 
        <div className="md:flex lg:block justify-center"> 
        <div className="px-1 md:w-4/5 m-auto">
-       <Link href={`/news/${ex.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-2xl py-1 font-bold">{ex.node.title} </h2></Link>
+       <Link href={`/news/${ex.node.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}className="overflow-hidden text-ellipsis text-orange-600 hover:text-red-300 text-xl py-1 font-bold">{ex.node.title} </h2></Link>
        </div>
        
      <div className="px-2 md:w-2/3 lg:w-4/5 md:px-0 md:m-0 lg:m-auto m-auto"> 
@@ -218,7 +533,7 @@ return html2pdfRef.current().set(opt).from(element).save();
 
 <div className="text-xl text-center border p-5 my-11 mx-2 bg-red-700 hover:bg-red-900 font-mono font-bold text-white dark:text-auto">
  
- <Link href={`/forum/post/?topic=${postPlus?.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
+ <Link href={`/forum?topic=${postPlus?.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
 </div>
  
 <div className='bg-white dark:bg-transparent px-3'> 
@@ -249,12 +564,12 @@ return html2pdfRef.current().set(opt).from(element).save();
     </div>
   </div>
  </div>
- <SideBar sideBarPlus={sideBarPlus}outlinePlus={outlinePlus} />  
+ <SideBar sideBarPlus={sideBarPlus}/>  
   </div>
  </div> 
   
-</article>
- )
+</div>
+ ) 
 }
 
 export default NewsDetail

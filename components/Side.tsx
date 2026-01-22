@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { dateFormatter } from "@/utils/dateformat"
 import { Cursors } from "@/app/types"
+import PostOutline from "./Home/PostOutline"
 
 type SideNode ={
   node:{
@@ -25,7 +26,7 @@ type SideNode ={
    }
 }
 
-const SideBar = ({outlinePlus, sideBarPlus}:{sideBarPlus:Cursors[], outlinePlus:SideNode[]}) => { 
+const SideBar = ({sideBarPlus}:{sideBarPlus:Cursors[]}) => { 
 
   return (
  <div className='side_view_lg py-3 px-3 m-auto lg:m-0 border-l-4 max-w-lg h-max'>  
@@ -35,27 +36,7 @@ const SideBar = ({outlinePlus, sideBarPlus}:{sideBarPlus:Cursors[], outlinePlus:
 <p className='text-gray-600 font-bold text-sm text-center lg:text-left  dark:text-gray-300 summary-side'>{new Date().toDateString()}</p>
 </div>
 <hr className='h-1 w-4/5 m-auto my-4'/>
-<div className='m-auto lg:m-0 max-w-md md:max-w-sm'>
-  {outlinePlus[0]?.content.split('\n').length>0?outlinePlus[0]?.content.split('\n').map((line)=>
-  <div dangerouslySetInnerHTML={{__html: line }}className='text-lg leading-8 py-1 [&_p>a]:text-green-600 [&_p>a]:hover:bg-green-900'key={line + ' ' + Math.random()} />) :<p>Loading...</p>}
-{outlinePlus[0]?.outlineGroup?.outlineVideos?.node.mediaItemUrl&&
-  <video
-  className='xs:h-64 lg:h-56'
-  src={outlinePlus[0]?.outlineGroup?.outlineVideos?.node.mediaItemUrl} 
-  width={1200} 
-  height={675} 
-   />
-
-  }
-  {!outlinePlus[0]?.outlineGroup?.outlineVideos?.node.mediaItemUrl&&outlinePlus?.length>0&& outlinePlus[0]?.featuredImage?.node.sourceUrl&&
- <Image
-className='xs:h-64 lg:h-56'
-src={outlinePlus[0]?.featuredImage?.node.sourceUrl} 
-width={1200} 
-height={675} 
-alt={outlinePlus[0]?.featuredImage?.node.altText}/>
-  }
-</div> 
+<PostOutline/>
  </div>
  <div className='[&_.news-letter-unflexed>form]:lg:flex-wrap [&_.news-letter-unflexed]:w-80 [&_.news-letter-unflexed]:max-w-auto [&_.news-letter-unflexed]:md:m-0 [&_.news-letter-unflexed]:my-2 [&_.news-letter-buttonwidth]:md:w-auto [&_.news-letter-nowidth]:w-auto'>
 <NewsLetter/>
@@ -75,7 +56,7 @@ alt={outlinePlus[0]?.featuredImage?.node.altText}/>
  </div> 
  <div className='w-4/5 mx-2 py-3'> 
  <div className='text-ellipsis overflow-hidden' style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
- <Link href={`/news/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex?.title}</h2></Link>
+ <Link href={`/news/highlight/${ex.slug}/`}><h2 className='font-bold text-xl hover:text-gray-400' >{ex?.title}</h2></Link>
 </div>
 <div className='flex text-gray-400 justify-between items-center leading-8 '> 
 <Link href={`/creator/${ex?.author.node.slug}/`}><p >{ ex?.author.node.name }</p> </Link>
@@ -99,7 +80,7 @@ alt={outlinePlus[0]?.featuredImage?.node.altText}/>
  alt={ex?.featuredImage?.node.altText}/> 
  
  </div> 
-<Link href={`/news/${ex.slug}/`}><h2 className='text-2xl font-bold py-4 hover:text-gray-400 border-t my-2'>{ex.title}</h2></Link>
+<Link href={`/news/highlight/${ex.slug}/`}><h2 className='text-2xl font-bold py-4 hover:text-gray-400 border-t my-2'>{ex.title}</h2></Link>
 </div>
 )}
 
