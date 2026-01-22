@@ -26,7 +26,7 @@ setBarState(prev=> !prev)
  
 {
   a:"Business",
-  b:"/nigeria/business/"
+  b:"/news/business/"
 
 }
 ,
