@@ -11,7 +11,6 @@ import { scrapeSilverBird } from "@/app/filmsdata";
 import { processSbImages } from "@/utils/processImages";
 import { CineType, PostTypeProps } from "@/app/types";
 import NewsDetail from "@/components/NewsDetail";
-import { headers } from "next/headers";
 import { CronJob } from "cron";  
  const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
 export type Props = {
@@ -57,12 +56,12 @@ export type Props = {
    await supabase.from('cinema_titles').delete().lte('created_at', since);
        // return () => clearTimeout(fxnTimeout);
         }  
-        CronJob.from({
-          cronTime: '10 8 * * *',  
-          onTick:dailyWiki(),
-          start: true,
-          timeZone: 'Africa/Lagos'
-         }); 
+        // CronJob.from({
+        //   cronTime: '10 8 * * *',  
+        //   onTick:dailyWiki(),
+        //   start: true,
+        //   timeZone: 'Africa/Lagos'
+        //  }); 
    
 async function news_details_all(uri:string){ 
 const wprest = fetch('https://content.culturays.com/graphql',{
@@ -616,7 +615,7 @@ idType: 'URI'
 })
 
 }).then(response => response.json())    
-.then(data => data.data.contentNode)
+.then(data =>data.data.contentNode)
        .catch(error => console.error('Error:', error)); 
       //const response = wprest?.data.contentNode
       return wprest
@@ -624,7 +623,8 @@ idType: 'URI'
 }
 const resolveContent = async (slug: string)=>{ 
    const rex = await news_details_all(`/${slug}/`); 
-   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment", "post"]) {   
+   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment", "post"]) {
+    
  const res = await news_details_all(`/${type}/${slug}/`); 
     if (res?.title) {
       return { ...res, __typename: type };    
@@ -696,10 +696,10 @@ const ArticleDetailPage = async({params, searchParams}: {
  const repPathname = repPath.replace(/\//g,' ').toUpperCase() 
    //const news_details = await news_details_all(`/${slug}/`); 
 const news_details = await resolveContent(slug);
- 
- const keyTags= news_details?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
+
+const keyTags= news_details?.contentTags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
 const tags= news_details?.tags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
-  const jsonLd:WithContext<NewsArticle> = {
+const jsonLd:WithContext<NewsArticle> = {
    '@context': 'https://schema.org',
    '@type': 'NewsArticle',
      name: news_details?.title,

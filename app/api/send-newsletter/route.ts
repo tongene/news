@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ message: '✅ Post queued for newsletter' }, { status: 200 });
   } catch (err) {
-    console.error('❌ Error in /newsletter-queue:', err);
+    console.error('❌ Error in newsletter-queue:', err);
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
   }
 }

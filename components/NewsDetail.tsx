@@ -198,7 +198,7 @@ const NewsDetail = ({post}:{post:PostTypeProps}) => {
        setSideBarPlus(txPlus)
 
      }
-  console.log(post)
+ 
         useEffect(() => {
           setLoading(true)
          getDetails1()

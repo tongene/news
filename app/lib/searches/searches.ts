@@ -119,6 +119,7 @@ export const searchValues = async (name:string) => {
         id
         title
         contentTypeName
+        slug
         featuredImage{node{sourceUrl altText}}
         contentTags{nodes{name slug}}
       }

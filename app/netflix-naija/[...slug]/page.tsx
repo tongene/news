@@ -39,7 +39,8 @@ import NaijaWikiNetflixNewsDetails from "../../../components/NaijaWikiNetflixNew
             .then((data) => data.data ) 
            .catch((err) => console.log("err", err)) 
            const dataView= await res
-    const postX = dataView.posts?.pageInfo?.endCursor 
+         
+    const postX = dataView?.posts?.pageInfo?.endCursor 
 if(!postX)return
       const wpx = fetch('https://content.culturays.com/graphql',{     
         method: 'POST',
