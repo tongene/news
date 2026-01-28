@@ -482,11 +482,12 @@ className='rounded-xl object-cover'
  )}
 
 </div>
+
  <div className='max-w-sm mx-auto border-r '>
  { sortedNews.slice(35,38).map((it, index)=> 
  <div key={index} className="px-4">
  { index === 0 &&
-<div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3 '>
+<div className='overflow-hidden border-b first:md:border-r-0 first:md:border-b md:w-auto mx-2 px-1 pt-3'>
   <Image
 className='rounded-xl object-cover'
   width={1200}
@@ -495,7 +496,7 @@ className='rounded-xl object-cover'
   alt={it?.featuredImage?.node.altText }
   />
 <div className='my-3 sm:my-0 md:px-1 py-4'>
-<Link href={`/news/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
+<Link href={`/news/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold text-xl'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <div className="flex flex-wrap py-2">
 <Link href={`/topic/${it?.contentTags.nodes[0].slug}/`}><h4 className='md:text-end underline hover:text-gray-700 text-red-600'>{it?.contentTags.nodes[0].name } | </h4></Link>
 {/* <span className='text-sm italic text-red-600 px-1'>{moment(it.date).subtract(1, 'hour').fromNow()}</span> */}
@@ -527,7 +528,7 @@ className='rounded-xl object-cover'
   alt={it?.featuredImage?.node.altText }
   />
 <div className='my-3 sm:my-0 md:px-1 py-4'>
-<Link href={`/news/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold 'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
+<Link href={`/news/${it.slug}/`}><h3 className='overflow-hidden text-ellipsis hover:text-gray-700 md:my-0 md:py-0 font-bold text-xl'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it.title}</h3></Link>
 <div className="flex flex-wrap py-2">
 <Link href={`/topic/${it?.contentTags.nodes[0].slug}/`}><h4 className='md:text-end underline hover:text-gray-500 text-red-600'>{it?.contentTags.nodes[0].name } | </h4></Link>
 {/* <span className='text-sm italic text-red-600 px-1'>{moment(it.date).subtract(1, 'hour').fromNow()}</span> */}

@@ -114,6 +114,12 @@ xposts?.map((it, index)=> it?.contentTypeName ==='naija-wiki' ?
 <Link href={`/character/${it?.slug }/`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.title}</p></Link> 
 
 </div>
+</div> :it?.contentTypeName ==='trending' ?           
+<div key={it?.id} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 
+<div className="m-6"> 
+<Link href={`/news/trending/${it?.slug }/`} prefetch={false}><p className="text-xl text-center text-ellipsis overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>{it?.title}</p></Link> 
+
+</div>
 </div>
  :it?.contentTypeName ==='post' ?           
 <div key={it?.id} className="items_search min-h-32 w-11/12 m-0 m-auto py-4 min-[481px]:w-3/4 sm:w-full dark:border"> 

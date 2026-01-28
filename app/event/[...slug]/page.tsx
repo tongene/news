@@ -38,6 +38,47 @@ type Props = {
       .catch(error => console.error('Error:', error));
        return wprest
  }
+
+
+async function similarTrending(){
+  const wprest = fetch('https://content.culturays.com/graphql',{
+ method: 'POST', 
+ headers:{
+ 'Content-Type':'application/json'
+ },
+ body: JSON.stringify({
+ query:`
+ query TREND { 
+         trends(first: 6) {
+           nodes {
+           id
+             slug
+             title
+             content 
+             excerpt
+             date
+              featuredImage {
+               node {
+                 altText
+                 sourceUrl
+                 slug
+                 title
+                 caption
+               }
+             }         
+         }
+       }
+     } `  
+ 
+ })
+ 
+ }).then(response => response.json()) 
+ .then(data => data.data.trends.nodes )
+        .catch(error => console.error('Error:', error));
+       // const response = wprest?.data.trendingCategories.nodes 
+        return wprest  
+ }
+
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata 
@@ -93,6 +134,8 @@ export async function generateMetadata(
 const EventPage = async({ params }: Props) => { 
   const slug =(await params).slug
   const tag_response = await content_TAGS()
+  const readTrends = await similarTrending()
+  console.log(readTrends)
 const eventView = async () => { 
 const supabase =await createClient();
 const { data, error} = await supabase
