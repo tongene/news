@@ -56,12 +56,7 @@ export type Props = {
    await supabase.from('cinema_titles').delete().lte('created_at', since);
        // return () => clearTimeout(fxnTimeout);
         }  
-        CronJob.from({
-          cronTime: '10 8 * * *',  
-          onTick:dailyWiki(),
-          start: true,
-          timeZone: 'Africa/Lagos'
-         }); 
+       
    
 async function news_details_all(uri:string){ 
 const wprest = fetch('https://content.culturays.com/graphql',{
@@ -739,7 +734,12 @@ const jsonLd:WithContext<NewsArticle> = {
 
  const highlight =await searchParams;
   const isHighlight= highlight.variant === 'highlight'
-
+ CronJob.from({
+          cronTime: '10 8 * * *',  
+          onTick:dailyWiki(),
+          start: true,
+          timeZone: 'Africa/Lagos'
+         }); 
   return (
      <article> 
      <StructuredData schema={jsonLd} /> 
