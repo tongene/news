@@ -262,6 +262,39 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=> it?.content
 </div>
  </div>
     </div>
+</div>:it.contentTypeName ==='trendiing' ?              
+<div key={it.id + Math.random()} className="shadow bg-white dark:bg-transparent max-w-xl px-4 m-auto py-5 my-2"> 
+<div className="flex justify-center xs:items-center">        
+     <div className="max-w-32 xs:max-w-44"> 
+     <Image
+     className="h-28 xs:h-40 object-cover"
+     src={it?.featuredImage?.node.sourceUrl}
+     width={1200}
+     height={675}
+     alt={it?.featuredImage?.node.altText}
+     />
+     </div>
+     <div className="mx-4 xs:py-5">            
+ <Link href={`/news/trending/${it?.slug}/`}><h3 className="hover:opacity-50 text-xl cursor-pointer font-medium leading-tight">{it?.title }</h3></Link> 
+ <div className="flex flex-wrap pt-4" >
+   {it?.contentTags?.nodes?.slice(0,5)?.map((ex, i)=>
+ <div  key={i + Math.random()}>
+  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
+</span>}</Link>  
+
+</div>)}</div>
+<div className="flex flex-wrap pt-4" >
+   {it?.tags?.nodes?.slice(0,5)?.map((ex, i)=>
+ <div  key={i + Math.random()}>
+  <Link href={`/topic/${ex?.slug}/`}>{ex&&<span className="cursor-pointer hover:opacity-50 mx-2">#{ex.name }  
+</span>}</Link>  
+
+</div>)}</div>
+<div className="gotoforum cursor-pointer py-3 hover:opacity-50 "> 
+<Link href="/forum/"><FontAwesomeIcon icon= {faComments} /></Link>
+</div>
+ </div>
+    </div>
 </div>:<div key={it.id + Math.random()} className="shadow bg-white dark:bg-transparent max-w-xl px-4 m-auto my-2"> 
 <div className="flex justify-center xs:items-center"> 
      <div className="max-w-32 xs:max-w-44"> 
