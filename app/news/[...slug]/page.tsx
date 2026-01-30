@@ -616,14 +616,14 @@ idType: 'URI'
       return wprest
  
 }
-const resolveContent = async (slug: string)=>{ 
-   const rex = await news_details_all(`/${slug}/`); 
+const resolveContent = async (slug: string)=>{  
    for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment", "post"]) {
-    
+    console.log(type)
  const res = await news_details_all(`/${type}/${slug}/`); 
+
     if (res?.title) {
       return { ...res, __typename: type };    
-    }else return { ...rex, __typename: type };
+    }
   }
 
   return null; 
@@ -634,6 +634,7 @@ const replaceHTMLTags=(string:string)=>{
   const newString = string?.replace(regex, "");
   return newString
    }
+
 export async function generateMetadata(
   { params , searchParams}: Props,  
   parent: ResolvingMetadata 
@@ -642,6 +643,7 @@ export async function generateMetadata(
   //  const news_details = await news_details_all(`/${slug}/`); 
   // const news_details= await returnPost(slug[0])  
 const news_details = await resolveContent(slug);
+
 const variant = await searchParams;
 const isVariant= !!variant.variant 
 const previousImages = (await parent).openGraph?.images || [] 
@@ -681,9 +683,8 @@ news_details?.featuredImage?.node?.sourceUrl ||
  
 } 
 
-const ArticleDetailPage = async({params, searchParams}: {
+const ArticleDetailPage = async({params}: {
   params: Promise<{ slug: string }>,
-   searchParams: { variant?: string };
 } ) => { 
 
   const {slug} =await params 
@@ -732,14 +733,16 @@ const jsonLd:WithContext<NewsArticle> = {
   //   headersList.get('x-original-url') ||
   //   '';
 
- const highlight =await searchParams;
-  const isHighlight= highlight.variant === 'highlight'
+//  const highlight =await searchParams;
+//   const isHighlight= highlight.variant === 'highlight'
+
  CronJob.from({
           cronTime: '10 8 * * *',  
           onTick:dailyWiki(),
           start: true,
           timeZone: 'Africa/Lagos'
          }); 
+
   return (
      <article> 
      <StructuredData schema={jsonLd} /> 

@@ -198,7 +198,7 @@ if(!postX)return
       body: JSON.stringify({
         query:`
         query WPPOSTS {
-        nollywoods(last:100 ) {
+        nollywoods(last:50 ) {
         nodes {
            contentTypeName
           title

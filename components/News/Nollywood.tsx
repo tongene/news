@@ -1,5 +1,5 @@
 
-import Link from "next/link"
+import Link from "next/link" 
 import moment from "moment/moment"
 import Image from "next/image"  
 import SideBar from "../Side" 
@@ -42,6 +42,8 @@ type PostProps={
     }
 }
 const Nollywood = ({nollywood_news, sidebarItems }:{nollywood_news:PostProps[], sidebarItems:Cursors[] }) => {
+
+ 
    
   return (
  <div className=''>  

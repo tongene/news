@@ -102,7 +102,7 @@ const nextConfig: NextConfig ={
       }, 
       {
         source: '/news/nollywood/:path+',
-        destination: '/news/:path*',
+        destination: '/news/:path+',
         permanent: true,
       }
          , 
