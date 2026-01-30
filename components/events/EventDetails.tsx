@@ -150,7 +150,7 @@ return (
       <div className="flex-shrink-0 max-w-2xl mx-auto">
         <div className="py-2 border border-yellow-700 flex items-center">
            <>  <Link href={`/news/trending/${xy.slug}/`}>
-                <h2 className="overflow-hidden leading-9 text-gray-600 text-2xl font-bold hover:text-gray-500 cursor-pointer dark:text-gray-200 mx-2 dark:hover:text-gray-500" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
+                <h2 className="overflow-hidden leading-10 text-gray-600 text-2xl font-bold hover:text-gray-500 cursor-pointer dark:text-gray-200 mx-2 dark:hover:text-gray-500" style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}>
                   {xy.title}
                 </h2>
               </Link>
