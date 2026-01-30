@@ -30,7 +30,7 @@ icon={faWhatsapp}/></p>
    height={20}
   icon={faXTwitter}/></p>
   </a>
- <a target="_blank"rel="noreferrer" href= "https://news.google.com/publications/CAAqBwgKMO_gzgswnvzlAw/sections/CAQqEAgAKgcICjDv4M4LMJ785QMwpZvoCA?ceid=US:en&oc=3"aria-label="Visit our Google News page"> 
+ <a target="_blank"rel="noreferrer" href= "https://news.google.com/publications/CAAqBwgKMO_gzgswnvzlAw/sections/CAQqEAgAKgcICjDv4M4LMJ785QMwpZvoCA?ceid=US:en&oc=3"aria-label="Visit our Google News Page"> 
   <p className="m-1 p-2 shadow-1xl"> <FontAwesomeIcon
    width={20}
    height={20}

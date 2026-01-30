@@ -29,7 +29,7 @@ const Layout = ({children}: {
 
     <div> 
 {children} 
-<Top10 />  
+{/* <Top10 />   */}
 <div className="flex p-8 lg:px-32"> 
 <NewsLetter/>  
 </div> 

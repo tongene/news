@@ -170,6 +170,7 @@ content:string
 }
 
 export type TrendsProps={
+  id:string|number
 title:string
 excerpt:string
 content:string

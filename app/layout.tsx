@@ -46,7 +46,7 @@ metadataBase: new URL('https://culturays.com'),
  generator: 'Urban Naija',
   applicationName: 'Urban Naija | News, Nigeria',
   referrer: 'origin-when-cross-origin',
-  keywords:"News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Money, Lifestyle, People, Culture, Finance, Industry, Production, Conflict, GDP, Investment, Dollar, Naira, Binance, Bitcoin, Crude Oil, Gold, Mining, Stocks",
+  keywords:"News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Lifestyle, People, Culture, Finance, Industry, Production, Conflict, GDP, Investment, Dollar, Naira, Binance, Bitcoin, Crude Oil, Gold, Mining, Stocks, Tax Reform, Tinubu, Cryptocurrency 2027 Election, NELFUND, Fund, Investment, Poverty, Hunger, Science, Nigerian Universities, World Bank, IMF, Budget, Housing, Protest, Finance, Payment, Banks, WHO, Companies",
   authors: [{ name: 'Christina Ngene', url: 'https://culturays.com/creator/christina-ngene/' }],
   creator: 'Christina Ngene',
   publisher: 'Christina Ngene',
@@ -120,6 +120,8 @@ metadataBase: new URL('https://culturays.com'),
       google: 'google',  
     },
 };
+
+
 export default function RootLayout({
   children,
 }: Readonly<{

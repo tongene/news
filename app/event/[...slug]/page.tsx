@@ -40,45 +40,6 @@ type Props = {
  }
 
 
-async function similarTrending(){
-  const wprest = fetch('https://content.culturays.com/graphql',{
- method: 'POST', 
- headers:{
- 'Content-Type':'application/json'
- },
- body: JSON.stringify({
- query:`
- query TREND { 
-         trends(first: 6) {
-           nodes {
-           id
-             slug
-             title
-             content 
-             excerpt
-             date
-              featuredImage {
-               node {
-                 altText
-                 sourceUrl
-                 slug
-                 title
-                 caption
-               }
-             }         
-         }
-       }
-     } `  
- 
- })
- 
- }).then(response => response.json()) 
- .then(data => data.data.trends.nodes )
-        .catch(error => console.error('Error:', error));
-       // const response = wprest?.data.trendingCategories.nodes 
-        return wprest  
- }
-
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata 
@@ -134,8 +95,7 @@ export async function generateMetadata(
 const EventPage = async({ params }: Props) => { 
   const slug =(await params).slug
   const tag_response = await content_TAGS()
-  const readTrends = await similarTrending()
-  console.log(readTrends)
+ 
 const eventView = async () => { 
 const supabase =await createClient();
 const { data, error} = await supabase
@@ -155,6 +115,7 @@ return data
 }
  
 const eventTitle = await eventView()
+
   if(!eventTitle || !eventTitle.day)return redirect ('/naija-events')
     function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
@@ -221,22 +182,17 @@ const jsonLd: WithContext<Event> = {
    return data??[];
     } 
    const similarEvents=await simValues() 
-
+   if (!eventTitle?.img_url) return null
 return (
-<div>
+<div >
   <StructuredData schema={jsonLd} /> 
   <div className='max-w-lg mx-auto py-4 px-6 rounded-xl shadow-md space-y-4 bg-yellow-50 my-2 h-max dark:text-black'>
-    <AISuggestions tag_response={tag_response}  />
-      {/* <h2 className="text-xl font-semibold ">Join the list of our loyal readers.<FontAwesomeIcon icon={faCoins} className="text-yellow-400"/></h2>
-      <p className='text-lg font-bold'> What you can get <FontAwesomeIcon icon={faHandPointDown} className=" text-yellow-800"/> </p>
-      <ul className='list-disc mx-4'>
-        
-        <li>A paid event for free</li> 
-         <li>A Cowry Card Top up</li>
-      </ul> */}
+
+    <AISuggestions tag_response={tag_response}/>      
    </div>
-<EventDetail eventTitle={eventTitle} similarEvents={similarEvents}/> 
-<Top10 />  
+   <div className="relative"> 
+<EventDetail eventTitle={eventTitle} similarEvents={similarEvents} /> </div>
+{/* <Top10 />   */}
 <div className="flex p-8 lg:px-32"> 
 <NewsLetter/>  
 </div> 
