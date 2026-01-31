@@ -34,9 +34,9 @@ const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:Vi
     <Link href={`/news/video/${nt.slug}/`}><span className="absolute text-gray-300 hover:text-gray-50 hover:animate-in z-30 bottom-11 right-5 text-center text-4xl cursor-pointer"><FontAwesomeIcon icon={faPlay}/></span></Link>  
         </button>
    </div>
-      <div className='absolute z-20 top-0 sm:top-28 xs:mx-8 py-5 font-bold text-white mx-2 xs:w-3/4'>   
-    <Link href={`/news/video/${nt.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}  className='hover:text-gray-500 overflow-hidden text-ellipsis text-xl xs:text-3xl md:text-4xl md:py-2'> {nt.title}</h2></Link>
-    <Link href={`/news/video/${nt.slug}/`}><p className='overflow-hidden text-ellipsis xs:text-lg text-sm xs:block xs:leading-6 hover:text-gray-500'style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}dangerouslySetInnerHTML={{__html:nt?.excerpt}} /></Link> 
+      <div className='absolute z-20 top-0 sm:top-24 xs:mx-8 py-5 font-bold text-white mx-2 xs:w-3/4'>   
+    <Link href={`/news/video/${nt.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}  className='hover:text-gray-500 overflow-hidden text-ellipsis text-xl xs:text-3xl md:text-4xl h-24'> {nt.title}</h2></Link>
+    <Link href={`/news/video/${nt.slug}/`}><p className='overflow-hidden text-ellipsis xs:text-lg text-sm xs:block xs:leading-6 hover:text-gray-500'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}dangerouslySetInnerHTML={{__html:nt?.excerpt}} /></Link> 
     <span className='text-end text-sm mt-11 italic py-2'>{moment(nt.date).subtract(1, 'hour').fromNow()} </span>
     </div>
     </div> 
@@ -46,8 +46,8 @@ const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:Vi
 <div className='relative overflow-hidden overflow-x-auto sm:overflow-x-hidden h-max'>
   <div className='home_grid_alt_vid xs:flex lg:flex-col'>
   {content_videos.slice(1,4).map((nt)=>(
-  <div key={nt.slug} className='[&:nth-child(3)]:lg:mt-1 [&:nth-child(2)]:lg:mt-1 [&:nth-child(3)]:xl:mt-3 [&:nth-child(2)]:xl:mt-3 border lg:text-white '>
- <div className='vidx2 xs:max-w-xs lg:max-w-sm 2xl:max-w-xs' >  
+  <div key={nt.slug} className='[&:nth-child(3)]:lg:mt-1 [&:nth-child(2)]:lg:mt-1 [&:nth-child(3)]:xl:mt-3 [&:nth-child(2)]:xl:mt-3 border lg:text-white'>
+ <div className='vidx2 xs:max-w-80 lg:max-w-sm 2xl:max-w-xs' >  
  <Image 
     src={nt.featuredImage.node.sourceUrl }
  width={1200}

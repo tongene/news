@@ -67,7 +67,7 @@ const Nollywood = ({nollywood_news, sidebarItems }:{nollywood_news:PostProps[], 
       <div className='absolute z-20 top-0 sm:top-28 xs:mx-8 py-5 font-bold text-white mx-2 w-3/4'>  
       <div className="py-2"> 
     <Link href={`/news/nollywood/${nt.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:3, WebkitBoxOrient: 'vertical' }}  className='overflow-hidden text-ellipsis text-xl xs:text-3xl md:text-4xl leading-8 hover:text-gray-600'> {nt.title}</h2></Link></div>
-    <Link href={`/news/nollywood/${nt.slug}/`}><div dangerouslySetInnerHTML={{__html:nt.excerpt}} className='overflow-hidden text-ellipsis xs:text-lg text-sm xs:block leading-6 w-3/4 hover:text-gray-600'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/></Link> 
+    <Link href={`/news/nollywood/${nt.slug}/`}><div dangerouslySetInnerHTML={{__html:nt.excerpt}} className='overflow-hidden text-ellipsis xs:text-lg xs:block leading-6 w-3/4 hover:text-gray-600'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}/></Link> 
     <span className='text-end text-sm mt-11 italic py-2'>{moment(nt.date).subtract(1, 'hour').fromNow()} </span>
     </div>
     </div> 

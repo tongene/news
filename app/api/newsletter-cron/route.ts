@@ -46,6 +46,33 @@ const resend3 = new Resend(process.env.RESEND_API_);
       );
     }
 
+
+     const { data: subscribers2, error: subError2 } = await supabase
+      .from("newsletter_js")
+      .select("email, name", { count: 'exact' })
+      .eq("unsubscribed", false);
+
+    if (subError2 || !subscribers2 || subscribers2.length === 0) {
+      console.log("⚠️ No subscribers2 to send newsletter to.");
+      return NextResponse.json(
+        { message: "No subscribers2 found" },
+        { status: 200 }
+      );
+    }
+
+const { data: subscribers3, error: subError3 } = await supabase
+      .from("newsletter_js_2")
+      .select("email, name", { count: 'exact' })
+      .eq("unsubscribed", false);
+
+    if (subError3 || !subscribers3 || subscribers3.length === 0) {
+      console.log("⚠️ No subscribers3 to send newsletter to.");
+      return NextResponse.json(
+        { message: "No subscribers3 found" },
+        { status: 200 }
+      );
+    }
+
     for (const sub of subscribers) {
       const postsHtml = posts
         .filter((p) => p.title)
@@ -104,25 +131,10 @@ const resend3 = new Resend(process.env.RESEND_API_);
         subject: `Today's Top Stories - ${new Date().toLocaleDateString()}`,
         html: htmlContent,
       });
-    }
-
-
+    } 
 
 // ---Start 2----
-
- const { data: subscribers2, error: subError2 } = await supabase
-      .from("newsletter_js")
-      .select("email, name", { count: 'exact' })
-      .eq("unsubscribed", false);
-
-    if (subError2 || !subscribers2 || subscribers2.length === 0) {
-      console.log("⚠️ No subscribers to send newsletter to.");
-      return NextResponse.json(
-        { message: "No subscribers found" },
-        { status: 200 }
-      );
-    }
-
+ 
     for (const sub2 of subscribers2) {
       const postsHtml = posts
         .filter((p) => p.title)
@@ -184,20 +196,7 @@ const resend3 = new Resend(process.env.RESEND_API_);
     }
     // ---End 2---
 
-// ---Start 3----
-
- const { data: subscribers3, error: subError3 } = await supabase
-      .from("newsletter_js_2")
-      .select("email, name", { count: 'exact' })
-      .eq("unsubscribed", false);
-
-    if (subError3 || !subscribers3 || subscribers3.length === 0) {
-      console.log("⚠️ No subscribers to send newsletter to.");
-      return NextResponse.json(
-        { message: "No subscribers found" },
-        { status: 200 }
-      );
-    }
+// ---Start 3---- 
 
     for (const sub3 of subscribers3) {
       const postsHtml = posts
@@ -258,9 +257,7 @@ const resend3 = new Resend(process.env.RESEND_API_);
         html: htmlContent,
       });
     }
-    // ---End 3---
-
-    console.log(`📨 Sent newsletter to ${subscribers.length} subscribers.`);
+    // ---End 3--- 
 
     await supabase
       .from("queued_posts")
@@ -270,11 +267,10 @@ const resend3 = new Resend(process.env.RESEND_API_);
         posts.map((p) => p.id)
       );
 
-    return NextResponse.json({ message: "Newsletter sent" }, { status: 200 });
+    return NextResponse.json({ message: `Newsletter sent. Sent newsletter to ${subscribers.length}, ${subscribers2.length}, ${subscribers3.length} subscribers.` }, { status: 200 });
   } catch (err) {
     console.error('❌ Error in /newsletter-cron:', err);
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
   }
-
   
 }

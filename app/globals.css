@@ -376,14 +376,7 @@ position: relative;
   flex-shrink: 0;
   width: 300px; /* mobile */
 }
-  @media (min-width: 481px){
-    .vidx2 {
-      height:18.5vw;    
-      
-    }
-  
-  }
-  
+ 
  
 @media (min-width: 768px) {
 .home_grid:after {

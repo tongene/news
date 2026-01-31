@@ -146,48 +146,7 @@ if(!postX)return
    
     return wprest
   } 
-     const postsOutline =async()=>{
-    
-    const wprest = fetch('https://content.culturays.com/graphql',{
-           method: 'POST',
-           headers:{
-               'Content-Type':'application/json'
-           },
-           body: JSON.stringify({
-             query:`
-             query OUTLINEPOST{
-         outlines(first: 1) {
-       nodes {
-         content
-         featuredImage{
-         node{
-         sourceUrl
-         altText
-         }
-         }
-         outlineGroup {
-           outlineVideos {
-             node {
-               altText
-               caption
-               date
-               title
-                mediaItemUrl
-               slug
-             }
-           }
-         }
-       }
-           } } ` 
-           
-           })
-           
-           }).then(response => response.json())
-           .then(data => data.data?.outlines?.nodes)        
-           .catch(error => console.error('Error:', error));
-           //const response = wprest?.data?.outlines?.nodes 
-           return wprest
-  }
+ 
   async function nollywoodBlog(){ 
     const wprest = fetch('https://content.culturays.com/graphql',{
       method: 'POST', 

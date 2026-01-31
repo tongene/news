@@ -15,7 +15,14 @@ const email = rawEmail.normalize('NFKC').toLowerCase();
     .from('newsletter')
     .update({ unsubscribed: true })
     .eq('email', email.toLowerCase());
-
+  const { error:er2 } = await supabase
+    .from('newsletter_js')
+    .update({ unsubscribed: true })
+    .eq('email', email.toLowerCase());
+      const { error:er3 } = await supabase
+    .from('newsletter_js_2')
+    .update({ unsubscribed: true })
+    .eq('email', email.toLowerCase());
   if (error) {
     return new NextResponse('Failed to unsubscribe.', { status: 500 });
   }
