@@ -298,10 +298,10 @@ priority={true}
 </div> 
 
 </div>
- <div className="text-xl text-center border py-5 my-11 mx-2 bg-red-700 hover:bg-red-900 font-mono font-bold text-white dark:text-auto">
+ {/* <div className="text-xl text-center border py-5 my-11 mx-2 bg-red-700 hover:bg-red-900 font-mono font-bold text-white dark:text-auto">
   
  <Link href={`/forum?topic=${postXPlus.slug}/`}><button>Join or Start a conversation on the topic - Go to Forum</button></Link> 
-</div> 
+</div>  */}
 <div className='px-3 max-w-7xl' > 
 <div className='max-w-5xl'>
    <h2 className='text-2xl font-bold py-4'>Next</h2>
