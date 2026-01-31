@@ -111,14 +111,14 @@ const checkBiased = (e: React.ChangeEvent<HTMLInputElement>) => {
  
 <div className="p-6 text-gray-200 flex justify-between hover:scale-105"> 
 <hr className="w-1/4 my-3"/>
-<Link href='/news/nollywood/'><h3 className="cursor-pointer" >Nollywood </h3></Link> 
+<Link href='/news/nollywood'><h3 className="cursor-pointer" >Nollywood </h3></Link> 
 <hr className="w-1/4 my-3"/> 
  
 </div> 
 
 <div className="p-6 text-gray-200 flex justify-between hover:scale-105"> 
 <hr className="w-1/4 my-3"/> 
-<Link href='/news/videos/'><h3 className="cursor-pointer">Videos</h3></Link>  
+<Link href='/news/videos'><h3 className="cursor-pointer">Videos</h3></Link>  
 <hr className="w-1/4 my-3"/>  
 </div>
  

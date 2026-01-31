@@ -2,7 +2,6 @@
 import { InnerEdges } from "@/app/types";
 import Nollywood from "@/components/News/Nollywood";
 import StructuredData from "@/components/StructuredData";
-import { createClient } from "@/utils/supabase/server";
 import { BlogPosting, WithContext } from "schema-dts";
 
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
@@ -250,19 +249,8 @@ if(!postX)return
 const NollywoodPage =async () => {
  const nollywood_news = await nollywoodBlog()
  const sidebarItems=await sidePlusViews() 
- const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node)          
-       const news_outline=await postsOutline()
-       const naija_wiki =async ()=>{  
-        const supabase =await createClient() 
-        const { data:cinema_titles , error } = await supabase 
-        .from('cinema_titles') 
-        .select('*')
-        if(error)throw new Error('An Error has occured!')
-  return cinema_titles
-            
-        }   
-   const xTitltes= await naija_wiki()
-     const coming_titles= xTitltes?.filter((ex)=> ex.genre?.includes('Coming Soon'))
+ const txPlus=sidebarItems.posts?.edges.map((dy:InnerEdges)=>dy.node) 
+     
       const jsonLd:WithContext<BlogPosting>={
         "@context": "https://schema.org",
         "@type": "BlogPosting",

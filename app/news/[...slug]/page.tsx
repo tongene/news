@@ -618,7 +618,6 @@ idType: 'URI'
 }
 const resolveContent = async (slug: string)=>{  
    for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment", "post"]) {
-    console.log(type)
  const res = await news_details_all(`/${type}/${slug}/`); 
 
     if (res?.title) {
@@ -736,12 +735,12 @@ const jsonLd:WithContext<NewsArticle> = {
 //  const highlight =await searchParams;
 //   const isHighlight= highlight.variant === 'highlight'
 
- CronJob.from({
-          cronTime: '10 8 * * *',  
-          onTick:dailyWiki(),
-          start: true,
-          timeZone: 'Africa/Lagos'
-         }); 
+//  CronJob.from({
+//           cronTime: '10 8 * * *',  
+//           onTick:dailyWiki(),
+//           start: true,
+//           timeZone: 'Africa/Lagos'
+//          }); 
 
   return (
      <article> 
