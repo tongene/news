@@ -25,7 +25,7 @@ const newsViews=async()=>{
               body: JSON.stringify({
                 query:`
                 query WPPOSTS { 
-             posts(first: 10, where: {categoryName: "Latest"})  { 
+             posts( where: {categoryName: "Latest"})  { 
                      pageInfo {
         endCursor
       }

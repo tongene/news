@@ -616,16 +616,18 @@ idType: 'URI'
       return wprest
  
 }
-const resolveContent = async (slug: string)=>{  
+const resolveContent = async (slug: string)=>{ 
+   const rex = await news_details_all(`/${slug}/`); 
+ 
    for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment", "post"]) {
  const res = await news_details_all(`/${type}/${slug}/`); 
-
+ 
     if (res?.title) {
       return { ...res, __typename: type };    
     }
   }
 
-  return null; 
+  return rex; 
 }
 
 const replaceHTMLTags=(string:string)=>{
@@ -642,7 +644,7 @@ export async function generateMetadata(
   //  const news_details = await news_details_all(`/${slug}/`); 
   // const news_details= await returnPost(slug[0])  
 const news_details = await resolveContent(slug);
-
+ 
 const variant = await searchParams;
 const isVariant= !!variant.variant 
 const previousImages = (await parent).openGraph?.images || [] 
@@ -735,12 +737,12 @@ const jsonLd:WithContext<NewsArticle> = {
 //  const highlight =await searchParams;
 //   const isHighlight= highlight.variant === 'highlight'
 
-//  CronJob.from({
-//           cronTime: '10 8 * * *',  
-//           onTick:dailyWiki(),
-//           start: true,
-//           timeZone: 'Africa/Lagos'
-//          }); 
+ CronJob.from({
+          cronTime: '10 8 * * *',  
+          onTick:dailyWiki(),
+          start: true,
+          timeZone: 'Africa/Lagos'
+         }); 
 
   return (
      <article> 
