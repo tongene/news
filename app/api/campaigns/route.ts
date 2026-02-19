@@ -3,13 +3,12 @@ import { createClient } from "@/utils/supabase/server";
 
 export async function POST(
 req: NextRequest,
-{ params }: { params: { id: string } }
 ) {
 const supabase =await createClient();
 const {
   data: { user },
 } = await supabase.auth.getUser();
-const {id} = await params
+const id = await req.json()
    const { data: { session } } = await supabase.auth.getSession();
 
   if (!session) {
