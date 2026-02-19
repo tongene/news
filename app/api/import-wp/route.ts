@@ -2,10 +2,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import crypto from "crypto";
-const supabase = createClient(
-process.env.SUPABASE_URL!,
-process.env.SUPABASE_SERVICE_ROLE_SECRET! 
-);
 
 export async function POST(req: Request) {
   const rawBody = await req.text();
@@ -75,6 +71,11 @@ const html = `
 `;
 
 // 3️⃣ Insert into Supabase
+const supabase =await createClient(
+process.env.SUPABASE_URL!,
+process.env.SUPABASE_SERVICE_ROLE_SECRET! 
+);
+
 const { data, error } = await supabase
   .from("campaigns")
   .insert({
