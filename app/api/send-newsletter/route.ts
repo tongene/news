@@ -11,7 +11,7 @@ import { createClient } from '@/utils/supabase/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, excerpt, image, url } = body;
+    const { title, excerpt, image, url, content } = body;
     if (!title || !excerpt) {
       return NextResponse.json({ message: 'Missing title or excerpt' }, { status: 400 });
     }
@@ -33,12 +33,25 @@ export async function POST(request: NextRequest) {
         created_at: new Date().toISOString(),
       },
     ]);
-
+const { error: campaignsErr} = await supabase.from('campaigns').insert([
+      {
+        subject:"Daily Email Letter",
+        status:"draft",
+        image,
+        from_email:"contact@culturays.com",
+        html_content:content,
+        sent_at: new Date().toISOString(),
+        created_at: new Date().toISOString(),
+      },
+    ]);
     if (error) {
       console.error('❌ Failed to queue post:', error);
       return NextResponse.json({ message: 'Failed to queue post' }, { status: 500 });
     }
-
+ if (campaignsErr) {
+      console.error('❌ Failed to queue campaigns:', campaignsErr);
+      return NextResponse.json({ message: 'Failed to queue campaigns' }, { status: 500 });
+    }
     return NextResponse.json({ message: '✅ Post queued for newsletter' }, { status: 200 });
   } catch (err) {
     console.error('❌ Error in newsletter-queue:', err);

@@ -1,8 +1,9 @@
+
 import Main from "@/components/Main";    
 import MainSlider from "@/components/MainSlider";   
 import StructuredData from "@/components/StructuredData";   
 import { Suspense } from "react"; 
-import { WebSite, WithContext } from "schema-dts";   
+import { WebSite, WithContext } from "schema-dts";
 const Home=async() =>{ 
 
 function toIsoDate(dateStr: string): string {
@@ -51,11 +52,10 @@ function toIsoDate(dateStr: string): string {
 return (
   <div>
      <StructuredData schema={jsonLd} />  
-    
    {/* <Suspense fallback={<div>Loading ...</div>}> */}
    <MainSlider/> 
   <Main />{" "} 
-    {/* </Suspense>   */}
+    {/* </Suspense> */}
   </div>
 ); 
 }

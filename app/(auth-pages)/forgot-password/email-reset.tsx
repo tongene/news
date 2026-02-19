@@ -19,6 +19,7 @@ const validateForm = (data: {name:string, value:string}) => {
     const newErrors = validateForm(e.currentTarget)
     setErrors(newErrors);  
     }
+    
   return (
     <>
     <div>
@@ -26,7 +27,7 @@ const validateForm = (data: {name:string, value:string}) => {
 Email
 </label>
 <input
-className='login_input border-0 focus:outline-none rounded-b-sm border-solid p-3 bg-gray-300 bg-opacity-60 border-gray-300 text-white tracking-wider'
+className='login_input border-0 focus:outline-none rounded-b-sm border-solid p-3 bg-gray-300 bg-opacity-60 border-gray-300 dark:text-white tracking-wider'
 name="email"
 type="text"
 placeholder="you@email.com"

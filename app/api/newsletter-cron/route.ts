@@ -3,8 +3,6 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const resend2 = new Resend(process.env.RESEND_API);
-const resend3 = new Resend(process.env.RESEND_API_);
  export async function GET() {
   try {
     const supabase = await createClient();
@@ -31,7 +29,6 @@ const resend3 = new Resend(process.env.RESEND_API_);
         { status: 200 }
       );
     }
-
   
     const { data: subscribers, error: subError } = await supabase
       .from("newsletter")
@@ -47,32 +44,6 @@ const resend3 = new Resend(process.env.RESEND_API_);
     }
 
 
-     const { data: subscribers2, error: subError2 } = await supabase
-      .from("newsletter_js")
-      .select("email, name", { count: 'exact' })
-      .eq("unsubscribed", false);
-
-    if (subError2 || !subscribers2 || subscribers2.length === 0) {
-      console.log("⚠️ No subscribers2 to send newsletter to.");
-      return NextResponse.json(
-        { message: "No subscribers2 found" },
-        { status: 200 }
-      );
-    }
-
-const { data: subscribers3, error: subError3 } = await supabase
-      .from("newsletter_js_2")
-      .select("email, name", { count: 'exact' })
-      .eq("unsubscribed", false);
-
-    if (subError3 || !subscribers3 || subscribers3.length === 0) {
-      console.log("⚠️ No subscribers3 to send newsletter to.");
-      return NextResponse.json(
-        { message: "No subscribers3 found" },
-        { status: 200 }
-      );
-    }
-
     for (const sub of subscribers) {
       const postsHtml = posts
         .filter((p) => p.title)
@@ -84,7 +55,7 @@ const { data: subscribers3, error: subError3 } = await supabase
         ${p.image? `<img src=${p.image} alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />`: `<img src='https://culturays.com/opengraph-image.png' alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />`}
 
         <h2 style="font-size: 22px; color: #2c3e50; margin: 10px 0;">${p.title}</h2>
-     ${p.url ? `<p><a href="${p.url}/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Read Full Post</a></p>` : ""}
+     ${p.url ? `<p><a href="${p.url}" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Read Full Post</a></p>` : ""}
         <p style="font-size: 16px; color: #444444; line-height: 1.6;">
           ${p.excerpt}
         </p> 
@@ -133,132 +104,6 @@ const { data: subscribers3, error: subError3 } = await supabase
       });
     } 
 
-// ---Start 2----
- 
-    for (const sub2 of subscribers2) {
-      const postsHtml = posts
-        .filter((p) => p.title)
-        .map(
-          (p) => `
-           
-           <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-           
-        ${p.image? `<img src=${p.image} alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />`: `<img src='https://culturays.com/opengraph-image.png' alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />`}
-
-        <h2 style="font-size: 22px; color: #2c3e50; margin: 10px 0;">${p.title}</h2>
-     ${p.url ? `<p><a href="${p.url}/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Read Full Post</a></p>` : ""}
-        <p style="font-size: 16px; color: #444444; line-height: 1.6;">
-          ${p.excerpt}
-        </p> 
-      </div> 
-      `
-        )
-        .join("");
- 
-      const htmlContent = `
-       <h2 style="color:#2c3e50;">Today's Top Stories</h2> 
-    <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-        
-       <p style="font-size: 35px; color: #2c3e50; margin: 10px 0; font-weight: bold;">Have you seen our AI Aid?<a href="https://culturays.com/naija-events/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Try it!</a></p>
-       
-       <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />    
-         <p style="font-size: 16px; color: #333333; text-transform: capitalize;">Hi ${sub2.name},</p>
-      ${postsHtml}
-    <p style="margin-top: 30px; font-size: 15px; color: #333333;">
-          Warm regards,<br>
-          <strong>Urban Naija</strong>
-        </p>
-       <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />        
-       <h2 style="font-size: 22px; color: #2c3e50; margin: 10px 0;">News Made for You</h2>
-
-        <img src="https://culturays.com/tinitasks-poster.JPG/" alt="Tini Tasks Poster" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />
-
-        <p><a href="https://gowork.africareinvented.com/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Connect. Collaborate. Conquer on Tini Tasks</a></p>
-
-        <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />
-      
-       <footer style="font-size: 13px; color: #999999; text-align: center;">
-         <p style="font-size:14px; color:#777;">You're receiving this email because you subscribed to Urban Naija News. <br/>If you'd like to unsubscribe, click <a href="https://culturays.com/api/unsubscribe?email=${encodeURIComponent(
-           sub2.email
-         )}" style="color:#00796b;">here</a>.</p>
-
-    </footer>
-    </div>
-  `;
-  // Send the email
-      await resend2.emails.send({
-        from: "Urban Naija News — <contact@culturays.com>",
-        to: sub2.email,
-        replyTo: "contact@culturays.com",
-        subject: `Today's Top Stories - ${new Date().toLocaleDateString()}`,
-        html: htmlContent,
-      });
-    }
-    // ---End 2---
-
-// ---Start 3---- 
-
-    for (const sub3 of subscribers3) {
-      const postsHtml = posts
-        .filter((p) => p.title)
-        .map(
-          (p) => `
-           
-           <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-           
-        ${p.image? `<img src=${p.image} alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />`: `<img src='https://culturays.com/opengraph-image.png' alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />`}
-
-        <h2 style="font-size: 22px; color: #2c3e50; margin: 10px 0;">${p.title}</h2>
-     ${p.url ? `<p><a href="${p.url}/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Read Full Post</a></p>` : ""}
-        <p style="font-size: 16px; color: #444444; line-height: 1.6;">
-          ${p.excerpt}
-        </p> 
-      </div> 
-      `
-        )
-        .join("");
- 
-      const htmlContent = `
-       <h2 style="color:#2c3e50;">Today's Top Stories</h2> 
-    <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-        
-       <p style="font-size: 35px; color: #2c3e50; margin: 10px 0; font-weight: bold;">Have you seen our AI Aid?<a href="https://culturays.com/naija-events/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Try it!</a></p>
-       
-       <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />    
-         <p style="font-size: 16px; color: #333333; text-transform: capitalize;">Hi ${sub3.name},</p>
-      ${postsHtml}
-    <p style="margin-top: 30px; font-size: 15px; color: #333333;">
-          Warm regards,<br>
-          <strong>Urban Naija</strong>
-        </p>
-       <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />        
-       <h2 style="font-size: 22px; color: #2c3e50; margin: 10px 0;">News Made for You</h2>
-
-        <img src="https://culturays.com/tinitasks-poster.JPG/" alt="Tini Tasks Poster" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />
-
-        <p><a href="https://gowork.africareinvented.com/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Connect. Collaborate. Conquer on Tini Tasks</a></p>
-
-        <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />
-      
-       <footer style="font-size: 13px; color: #999999; text-align: center;">
-         <p style="font-size:14px; color:#777;">You're receiving this email because you subscribed to Urban Naija News. <br/>If you'd like to unsubscribe, click <a href="https://culturays.com/api/unsubscribe?email=${encodeURIComponent(
-           sub3.email
-         )}" style="color:#00796b;">here</a>.</p>
-
-    </footer>
-    </div>
-  `;
-  // Send the email
-      await resend3.emails.send({
-        from: "Urban Naija News — <contact@culturays.com>",
-        to: sub3.email,
-        replyTo: "contact@culturays.com",
-        subject: `Today's Top Stories - ${new Date().toLocaleDateString()}`,
-        html: htmlContent,
-      });
-    }
-    // ---End 3--- 
-
     await supabase
       .from("queued_posts")
       .delete()
@@ -267,7 +112,7 @@ const { data: subscribers3, error: subError3 } = await supabase
         posts.map((p) => p.id)
       );
 
-    return NextResponse.json({ message: `Newsletter sent. Sent newsletter to ${subscribers.length}, ${subscribers2.length}, ${subscribers3.length} subscribers.` }, { status: 200 });
+    return NextResponse.json({ message: `Newsletter sent. Sent newsletter to ${subscribers.length}, ${subError} subscribers.` }, { status: 200 });
   } catch (err) {
     console.error('❌ Error in /newsletter-cron:', err);
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 });

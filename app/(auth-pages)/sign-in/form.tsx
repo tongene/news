@@ -59,21 +59,6 @@ if (data.name === 'password'&&!password_pattern.test(data.value.trim())) {
  
 return (  
    <>
-<label className="text-md block text-white text-xl" htmlFor="full_name">
-Username
-</label>
-<input
-className='login_input border-0 focus:outline-none rounded-b-sm border-solid p-3 bg-gray-300 bg-opacity-60 border-gray-300 text-white tracking-wider'
-name="full_name"
-placeholder="Username"
-type="text"
-pattern={name_pattern} 
-required={!!errors.full_name}
-onBlur={(e) =>handleFocus(e)}  
-/>
-{errors.full_name &&
-  <span className='text-red-600'>{errors.full_name}</span>
- }
 
  <label className="text-md block text-white text-xl" htmlFor="email">
 Email

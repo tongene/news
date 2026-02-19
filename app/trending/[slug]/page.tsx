@@ -227,7 +227,7 @@ export async function generateMetadata({ params }: {
       images: [{url:trending_details?.featuredImage.node.sourceUrl, width: 800,
       height: 600,}],
         type: "article",
-        publishedTime:trending_details?.date
+         publishedTime:new Date(trending_details?.date)?.toISOString() ,
       },
        alternates: {
     canonical:  `https://culturays.com/news/trending/${slug}/`,
