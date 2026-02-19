@@ -6,7 +6,7 @@ export default function SendCampaign({ campaignId }: { campaignId: string }) {
   
   const campaignSend = async () => {
     setLoading(true); 
-    const res = await fetch(`/api/campaigns/${campaignId}/send`, {
+    const res = await fetch(`/api/campaigns/`, {
       method: "POST",
     })  
     setLoading(false);

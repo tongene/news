@@ -21,28 +21,28 @@ const {id} = await params
     return NextResponse.json({ error: "No access token" }, { status: 401 });
   }
 
-const res = await fetch(
-`http://localhost:4000/campaigns/${id}/send`,
-{
-method: "POST",
-headers: {
-Authorization: `Bearer ${accessToken}`, 
-"x-forwarded-user":user?.id as string,
-"x-forwarded-email":user?.email as string
-},
-} 
-);
+// const res = await fetch(
+// `http://localhost:4000/campaigns/${id}/send`,
+// {
+// method: "POST",
+// headers: {
+// Authorization: `Bearer ${accessToken}`, 
+// "x-forwarded-user":user?.id as string,
+// "x-forwarded-email":user?.email as string
+// },
+// } 
+// );
 
-const text = await res.text();
+// const text = await res.text();
 let data;
-try {
-  data = JSON.parse(text); 
-} catch {
-  return NextResponse.json(
-    { error: "Fastify did not return JSON", raw: text },
-    { status: 500 }
-  );
-}
+// try {
+//   data = JSON.parse(text); 
+// } catch {
+//   return NextResponse.json(
+//     { error: "Fastify did not return JSON", raw: text },
+//     { status: 500 }
+//   );
+// }, { status: res.status}
 
-return NextResponse.json(data, { status: res.status});
+return NextResponse.json(data);
 }
