@@ -4,9 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "type": "module",
-    "dev:web": "npm run dev --workspace=app",
-    "dev:mailer": "npm run dev --workspace=mailer"
+    "type": "module"
   },
   "workspaces": [
     "app",
