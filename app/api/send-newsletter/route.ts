@@ -35,8 +35,6 @@ export async function POST(request: NextRequest) {
     ]);
 const { error: campaignsErr} = await supabase.from('campaigns').insert([
       {
-        subject:"Daily Email Letter",
-        status:"draft",
         image,
         from_email:"contact@culturays.com",
         html_content:content,

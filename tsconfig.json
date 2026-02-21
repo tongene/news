@@ -36,8 +36,9 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "build/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
-, "postcss.config.js", "mailer/utils/server.js"  ],
+    ".next/dev/types/**/*.ts", 
+    "postcss.config.js"
+   ],
   "exclude": [
     "node_modules"
   ]
