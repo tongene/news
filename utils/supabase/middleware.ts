@@ -24,11 +24,11 @@ const supabase = await createClient()
     return NextResponse.redirect(url);
   }
 
-  if (path.startsWith("/protected")) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/";
-    return NextResponse.redirect(url);
-  }
+  // if (user && path.startsWith("/protected")) {
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/";
+  //   return NextResponse.redirect(url);
+  // }
 
 //   const isPublic = publicRoutes.some((route) =>
 //     pathname.startsWith(route)

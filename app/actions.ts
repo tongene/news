@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import {createClient as deleteClient} from "@/utils/supabase/accountDelete" 
+import { revalidatePath } from "next/cache";
 
 export const signUpAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
@@ -145,6 +146,8 @@ export const signOutAction = async () => {
   const supabase = await createClient();
   await supabase.auth.signOut();
   //return redirect("/sign-in");
+    revalidatePath("/", "layout");
+ 
 };
 export const handleOauthLogin = async () => {
   const origin = (await headers()).get("origin");
