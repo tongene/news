@@ -63,7 +63,7 @@ const handleClick = (id:string)=> {
 <div className="md:m-3 flex mt-6 z-20"> 
 <h1 className="head-forum font-bold text-7xl sm:mb-4 mt-4 my-4 md:mt-11 lg:mt-6 mb-4 mx-4 font-mono">
 <Link href='/' className="no-underline">
-<span className='px-2 head-forum-span-dark dark:head-forum-span-light'>U</span><span className="tightest text-center">rban News</span>
+<span className='px-2 head-forum-span-dark dark:head-forum-span-light'>C</span><span className="tightest text-center">ulturays</span>
 </Link>
 </h1>
 {pathname.split('/')[1] ? 
