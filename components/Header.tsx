@@ -66,6 +66,9 @@ const handleClick = (id:string)=> {
 <span className='px-2 head-forum-span-dark dark:head-forum-span-light'>C</span><span className="tightest text-center">ulturays</span>
 </Link>
 </h1>
+<p className="text-sm mt-20 mb-2">
+Naija News & Events Collected from Around the World.
+</p>
 {pathname.split('/')[1] ? 
 <Link href={`/${pathname.split('/')[1]}/`}>
 <p className="text-sm mt-20 mb-2">
