@@ -15,9 +15,9 @@ const New = async () => {
 
 if (error) throw error;
 const campaign = campaigns[0] as CampaignProps
-
+ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://34.116.251.165:4000';
 async function sendNewsletter() {
-const res=await fetch('http://localhost:4000/admin/send-newsletter', {
+const res=await fetch(`${API_URL}/admin/send-newsletter`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({campaigns})
