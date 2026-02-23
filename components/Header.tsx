@@ -66,8 +66,8 @@ const handleClick = (id:string)=> {
 <span className='px-2 head-forum-span-dark dark:head-forum-span-light'>C</span><span className="tightest text-center">ulturays</span>
 </Link>
 </h1>
-<p className="text-sm mt-20 mb-2">
-Culturays is a news and media platform that allows readers to create an account, follow topics, comment on articles, and subscribe to email updates.
+
+{/*<p className="text-sm mt-20 mb-2"> Culturays is a news and media platform that allows readers to create an account, follow topics, comment on articles, and subscribe to email updates.
 
 Users can sign in with Google to securely create an account without a password. This helps us verify real users, reduce spam comments, and manage subscriptions.
 
@@ -79,9 +79,9 @@ We only use Google Sign-In to:
 
 Culturays does not read personal Gmail messages, access inbox content, or send emails without the user’s request. The Google account information is used only for authentication and subscription services.
 
-Users may disconnect their Google account at any time from their profile settings.
+Users may disconnect their Google account at any time from their profile settings. </p>*/}
 
-</p>
+
 <br></br>
 {pathname.split('/')[1] ? 
 <Link href={`/${pathname.split('/')[1]}/`}>

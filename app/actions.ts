@@ -152,9 +152,9 @@ export const signOutAction = async () => {
 export const handleOauthLogin = async () => {
   const origin = (await headers()).get("origin");
   const supabase = await createClient(); 
-  const redirectTo = origin
-    ? `${origin}/auth/callback?redirect_to=${encodeURIComponent('/forum/')}`
-    : undefined;
+  // const redirectTo = origin
+  //   ? `${origin}/auth/callback?redirect_to=${encodeURIComponent('/forum/')}`
+  //   : undefined;
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
