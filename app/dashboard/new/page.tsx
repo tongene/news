@@ -1,5 +1,6 @@
 import Link from "next/link"; 
 import { createClient } from "@/utils/supabase/server";
+import Start from "@/components/Start";
 export type CampaignProps={
 id?:number |string
 slug?:string
@@ -15,16 +16,7 @@ const New = async () => {
 
 if (error) throw error;
 const campaign = campaigns[0] as CampaignProps
- const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://34.116.251.165:4000';
-async function sendNewsletter() {
-const res=await fetch(`${API_URL}/admin/send-newsletter`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({campaigns})
-})
-const data = await res.json()
- console.log (`Scheduled ${data.scheduled} emails`)
-}
+
 
 return (
 <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'sans-serif' }}> <h1>Newsletters</h1>
@@ -32,9 +24,7 @@ return (
    <Link href={`/dashboard/${campaign.id}`}><h1>${campaign.subject}</h1></Link> 
   </div> 
 
-  <button onClick={sendNewsletter} style={{ marginTop: 20, padding: 12 }}>
-    Send Newsletter
-  </button>
+<Start campaigns={campaigns}/>
 
 </div>
  
