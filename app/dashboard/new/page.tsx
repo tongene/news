@@ -19,13 +19,8 @@ const campaign = campaigns[0] as CampaignProps
 
 
 return (
-<div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'sans-serif' }}> <h1>Newsletters</h1>
- <div style={{fontFamily:"Arial,sans-serif", maxWidth:"600px", margin:"auto"}}>
-   <Link href={`/dashboard/${campaign.id}`}><h1>${campaign.subject}</h1></Link> 
-  </div> 
-
+<div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'sans-serif' }}> 
 <Start campaigns={campaigns}/>
-
 </div>
  
 
