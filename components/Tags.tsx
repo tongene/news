@@ -138,10 +138,10 @@ ex.contentTypeName ==='video'?
  <div >  
  <Image
  className="max-w-28 md:max-w-44"
- src={ex.featuredImage.node.sourceUrl}
+ src={ex.featuredImage?.node.sourceUrl}
  width={1200}
  height={675}
- alt={ex.featuredImage.node.altText}
+ alt={ex.featuredImage?.node.altText}
  priority={true}
  />
    <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
@@ -172,10 +172,10 @@ ex.contentTypeName ==='video'?
  <div> 
  <Image
 className="max-w-28 sm:max-w-32 md:max-w-44"
- src={ex.featuredImage.node.sourceUrl}
+ src={ex.featuredImage?.node.sourceUrl}
  width={1200}
  height={675}
- alt={ex.featuredImage.node.altText}
+ alt={ex.featuredImage?.node.altText}
  priority={true}
  />
  {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki'  ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>}
@@ -250,10 +250,10 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
       <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
@@ -271,10 +271,10 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
    <div className="max-w-72 xl:max-w-60 m-auto my-3 shadow  capitalize">
   <Image
    className="max-h-40 md:max-h-36 xl:max-h-36 lg:max-h-40"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
       {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&&ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki' ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>} 
@@ -316,10 +316,10 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
      <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
@@ -463,10 +463,10 @@ ex.contentTypeName ==='video'?
 <div key={ex.id + Math.random()}className="m-auto my-3 shadow max-w-xs  md:max-w-5xl">   
   <Image
   className="max-h-36 sm:max-h-28 md:max-h-40 lg:max-h-48 xl:max-h-52"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
      <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
@@ -483,10 +483,10 @@ ex.contentTypeName ==='video'?
    
   <Image
    className="max-h-36 sm:max-h-28 md:max-h-40 lg:max-h-48 xl:max-h-52"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
       {ex.contentTypeName !=='post' && ex.contentTypeName !=='video' && ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki'? <Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>}
@@ -514,10 +514,10 @@ ex.contentTypeName ==='video'?
   <div key={index + Math.random()}className="m-auto my-3 shadow max-w-xs md:max-w-md">   
     <Image
  className="max-h-44 sm:max-h-48 md:max-h-56 lg:max-h-40"
-     src={ex.featuredImage.node.sourceUrl}
+     src={ex.featuredImage?.node.sourceUrl}
      width={1200}
      height={675}
-     alt={ex.featuredImage.node.altText}
+     alt={ex.featuredImage?.node.altText}
      priority={true}
      />
        <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
@@ -534,10 +534,10 @@ ex.contentTypeName ==='video'?
 
 <Image
     className="max-h-44 sm:max-h-48 md:max-h-56 lg:max-h-40"
-     src={ex.featuredImage.node.sourceUrl}
+     src={ex.featuredImage?.node.sourceUrl}
      width={1200}
      height={675}
-     alt={ex.featuredImage.node.altText}
+     alt={ex.featuredImage?.node.altText}
      priority={true}
      />
   {ex.contentTypeName !=='post' && ex.contentTypeName !=='video' && ex.contentTypeName !=='netflix-naija'  && ex.contentTypeName !=='naija-wiki'?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>}   
@@ -566,10 +566,10 @@ ex.contentTypeName ==='video'?
 <div key={index}className="m-auto my-3 shadow max-w-xs  md:max-w-5xl">   
   <Image
   className="max-h-44 sm:max-h-28 md:max-h-40 lg:max-h-48 xl:max-h-52"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
       <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
@@ -586,10 +586,10 @@ ex.contentTypeName ==='video'?
    
   <Image
    className="max-h-36 sm:max-h-28 md:max-h-40 lg:max-h-48 xl:max-h-52"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
       {ex.contentTypeName !=='post' && ex.contentTypeName !=='video'&& ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki'? <Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize"></p>}
@@ -617,10 +617,10 @@ ex.contentTypeName ==='video'?
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
      <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> 
@@ -666,10 +666,10 @@ ex.contentTypeName ==='video'?
 <div key={index}className="m-auto my-3 shadow max-w-xs  md:max-w-5xl">   
   <Image
   className="max-h-36 sm:max-h-28 md:max-h-40 lg:max-h-48 xl:max-h-52"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
      <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> 
@@ -694,10 +694,10 @@ ex.contentTypeName ==='video'?
 <div className="max-w-72 xl:max-w-60 m-auto my-3 shadow ">
   <Image
    className="max-h-40 md:max-h-36 xl:max-h-36 lg:max-h-40"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
       {ex.contentTypeName !=='post' && ex.contentTypeName !=='video' && ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki' ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>}
@@ -740,10 +740,10 @@ ex.contentTypeName ==='video'?
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
      <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center capitalize">{ex.contentTypeName}</p></Link> 
@@ -790,10 +790,10 @@ ex.contentTypeName ==='video'?
   <div key={index + Math.random()}className="m-auto my-3 shadow max-w-xs md:max-w-md">   
     <Image
  className="max-h-44 sm:max-h-48 md:max-h-56 lg:max-h-40"
-     src={ex.featuredImage.node.sourceUrl}
+     src={ex.featuredImage?.node.sourceUrl}
      width={1200}
      height={675}
-     alt={ex.featuredImage.node.altText}
+     alt={ex.featuredImage?.node.altText}
      priority={true}
      />
        <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
@@ -816,10 +816,10 @@ ex.contentTypeName ==='video'?
 <div key={index + Math.random()}className="m-auto my-3 shadow max-w-xs md:max-w-md">  
 <Image
     className="max-h-44 sm:max-h-48 md:max-h-56 lg:max-h-40"
-     src={ex.featuredImage.node.sourceUrl}
+     src={ex.featuredImage?.node.sourceUrl}
      width={1200}
      height={675}
-     alt={ex.featuredImage.node.altText}
+     alt={ex.featuredImage?.node.altText}
      priority={true}
      />
   {ex.contentTypeName !=='post' && ex.contentTypeName !=='video' && ex.contentTypeName !=='netflix-naija' && ex.contentTypeName !=='naija-wiki' ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link>: <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>}
@@ -846,10 +846,10 @@ ex.contentTypeName ==='video'?
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
      <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
@@ -992,10 +992,10 @@ ex.contentTypeName ==='video'?
   
  <Image
  className="max-w-28 sm:max-w-32 md:max-w-44 "
- src={ex.featuredImage.node.sourceUrl}
+ src={ex.featuredImage?.node.sourceUrl}
  width={1200}
  height={675}
- alt={ex.featuredImage.node.altText}
+ alt={ex.featuredImage?.node.altText}
  priority={true}
  />
    <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
@@ -1033,10 +1033,10 @@ ex.contentTypeName ==='video'?
  <div> 
  <Image
 className="max-w-28 sm:max-w-32 md:max-w-44"
- src={ex.featuredImage.node.sourceUrl}
+ src={ex.featuredImage?.node.sourceUrl}
  width={1200}
  height={675}
- alt={ex.featuredImage.node.altText}
+ alt={ex.featuredImage?.node.altText}
  priority={true}
  />
  {ex.contentTypeName !=='post' && ex.contentTypeName !=='video' && ex.contentTypeName !=='netflix-naija'&& ex.contentTypeName !=='naija-wiki' ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>} 
@@ -1088,10 +1088,10 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
      <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 
@@ -1109,10 +1109,10 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
    <div className="max-w-72 xl:max-w-60 m-auto my-3 shadow ">
   <Image
    className="max-h-40 md:max-h-36 xl:max-h-36 lg:max-h-40"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
       {ex.contentTypeName !=='post' && ex.contentTypeName !=='video' && ex.contentTypeName !=='netflix-naija'&& ex.contentTypeName !=='naija-wiki' ?<Link href={`/news/${ex.contentTypeName}/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> : <p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize"></p>} 
@@ -1155,10 +1155,10 @@ className="max-w-28 sm:max-w-32 md:max-w-44"
 <div key={index + Math.random()} className="max-w-72 xl:max-w-60 m-auto my-3 shadow">   
   <Image
   className="max-h-40 md:max-h-36 lg:max-h-40 xl:max-h-36"
-   src={ex.featuredImage.node.sourceUrl}
+   src={ex.featuredImage?.node.sourceUrl}
    width={1200}
    height={675}
-   alt={ex.featuredImage.node.altText}
+   alt={ex.featuredImage?.node.altText}
    priority={true}
    />
      <Link href={`/news/video/${ex.slug}/`}><p className="bg-black py-1 bg-opacity-80 text-gray-100 text-lg font-bold text-center  capitalize">{ex.contentTypeName}</p></Link> 

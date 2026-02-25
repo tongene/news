@@ -5,9 +5,10 @@ import crypto from "crypto";
 
 export async function POST(req: Request) {
   const signature = req.headers.get("x-wp-signature");
+ 
     const body = await req.json();
-    const { title, excerpt, image, url } = body;
-    console.log(title, excerpt, image, url )
+    const { title, excerpt, image, url, date } = body;
+  
     if (!title || !excerpt) {
       return NextResponse.json({ message: 'Missing title or excerpt' }, { status: 400 });
     }
@@ -74,7 +75,11 @@ const { data, error } = await supabase
     title,
     html_content: html,
     status: "draft",
-    subject:"Naija News Today"
+    subject:"Naija News Today",
+    image,
+    created_at:date,
+    sent_at:new Date().toDateString(),
+    url,
   })
   .select()
   .single();
