@@ -7,6 +7,7 @@ export async function POST(req: Request) {
   const signature = req.headers.get("x-wp-signature");
     const body = await req.json();
     const { title, excerpt, image, url } = body;
+    console.log(title, excerpt, image, url )
     if (!title || !excerpt) {
       return NextResponse.json({ message: 'Missing title or excerpt' }, { status: 400 });
     }

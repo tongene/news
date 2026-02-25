@@ -16,8 +16,7 @@ const Start = ({campaigns}:{campaigns: CampaignProps[]}) => {
      console.log (`Scheduled ${data.scheduled} emails`)
     }
   return (
-    <div>
-      
+    <div>      
         <table className="table-auto">
   <thead>
     <tr>
