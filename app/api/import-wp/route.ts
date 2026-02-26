@@ -5,6 +5,7 @@ import crypto from "crypto";
 export async function POST(req: Request) {    
     const raw = await req.text();
     const body = JSON.parse(raw);
+    console.log(body)
     const signature = req.headers.get("x-wp-signature");
     const { title, excerpt, image, url, date } = body;  
    
