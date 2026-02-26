@@ -1,8 +1,5 @@
 import NewsLetter from "@/components/NewsLetter";
-import Top10 from "@/components/Top10El"; 
  
-// import '@styles/globals.css'
-// import '@styles/events.css'
 const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? `${process.env.NEXT_PUBLIC_BASE_URL}/naija-events/` 
   : "http://localhost:3000/naija-events/";
@@ -29,7 +26,7 @@ const Layout = ({children}: {
 
     <div> 
 {children} 
-{/* <Top10 />   */}
+
 <div className="flex p-8 lg:px-32"> 
 <NewsLetter/>  
 </div> 

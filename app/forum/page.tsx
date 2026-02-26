@@ -20,25 +20,25 @@ data: { user },
     const now = new Date();
       const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
        const startOfNextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1).toISOString();
-  const { data, error } = await supabase
-  .from('fact_check')
-  .select('*')
-  .gte('created_at', startOfMonth)
-  .lt('created_at', startOfNextMonth)
-  .order('id', { ascending: false })
-  .range(0, 10);
-if(error){
-  console.log(error?.message)
-}
+//   const { data, error } = await supabase
+//   .from('fact_check')
+//   .select('*')
+//   .gte('created_at', startOfMonth)
+//   .lt('created_at', startOfNextMonth)
+//   .order('id', { ascending: false })
+//   .range(0, 10);
+// if(error){
+//   console.log(error?.message)
+// }
 
-return data ??[]
+return []
 }
  
   const fakeTrend = await getFacts()  
   const today = new Date();
   const todayMonth = today.getMonth() 
 
- const filteredTrends = fakeTrend?.filter((item, index, self) =>  index === self.findIndex((t) => t.claimant === item.claimant)) 
+//  const filteredTrends = fakeTrend?.filter((item, index, self) =>  index === self.findIndex((t) => t.claimant === item.claimant)) 
 //  .filter((dateStr:FakeObj) => { 
  
 //   const date = new Date(dateStr.claimDate); 
@@ -105,7 +105,7 @@ return (
  user={user}
  trendX={trending}
  initialPosts={initialPostsD}
- filteredTrends={filteredTrends}
+//  filteredTrends={filteredTrends}
  /> 
  </div> 
 

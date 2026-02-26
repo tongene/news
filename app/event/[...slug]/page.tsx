@@ -3,7 +3,6 @@ import AISuggestions from "@/components/AISuggestions";
 import EventDetail from "@/components/events/EventDetails";  
 import NewsLetter from "@/components/NewsLetter";
 import StructuredData from "@/components/StructuredData";
-import Top10 from "@/components/Top10El";
 import { createClient } from "@/utils/supabase/server";
 import type { Metadata, ResolvingMetadata } from 'next'
 import { redirect } from "next/navigation";
@@ -192,7 +191,7 @@ return (
    </div>
    <div className="relative"> 
 <EventDetail eventTitle={eventTitle} similarEvents={similarEvents} /> </div>
-{/* <Top10 />   */}
+
 <div className="flex p-8 lg:px-32"> 
 <NewsLetter/>  
 </div> 

@@ -29,7 +29,7 @@ function sortAscending(pb:PostProps, pa:PostProps){
  type TrendyProp={
   title:string
   }
-const Main = ({topic, val, user, trendX, initialPosts, filteredTrends }:{ user: User | null, trendX: TrendyProp[], initialPosts: InitialPosts[], filteredTrends: FakeObj[], topic: string, val: string } ) => {   
+const Main = ({topic, val, user, trendX, initialPosts }:{ user: User | null, trendX: TrendyProp[], initialPosts: InitialPosts[], topic: string, val: string } ) => {   
  const [events,setEvents]=useState<Event[]>([]) 
 // const [initialPostsData,setInitialPostsData]=useState<InitialPosts[] >([])
 const forumEvents =async ()=>{  
@@ -424,7 +424,8 @@ setEditId={setEditId}
     </div> 
   </div> 
   <div className="lg:w-96">
-    {trendX?.length>0 ? <Trends trendX={trendX}/>:<FakeTrends filteredTrends={filteredTrends}/> } 
+    {trendX?.length>0 ? <Trends trendX={trendX}/>:<></> } 
+    {/* //:<FakeTrends filteredTrends={filteredTrends}/> */}
 </div> 
 
 </div>

@@ -30,7 +30,7 @@ type TrendyProp={
 function sortAscending(pb:InitialComments, pa:InitialComments){ 
   return (pb?.id ??0)-( pa?.id ??0);
  } 
- const CommentX = ({ trendX, post_comments, postData, user, comment, related, filteredTrends}:{trendX:TrendyProp[], post_comments:InitialComments[], postData:PostProps,user:User , comment:CommentProps, related:InitialPosts[], filteredTrends:FakeObj[]} )=>{ 
+ const CommentX = ({ trendX, post_comments, postData, user, comment, related }:{trendX:TrendyProp[], post_comments:InitialComments[], postData:PostProps,user:User , comment:CommentProps, related:InitialPosts[] } )=>{ 
 const [userActions,setUserActions]=useState(false)
 const [locateItem, setLocateItem]=useState(false)
 const [notify,setNotify]=useState('')
@@ -432,7 +432,7 @@ null}
 <div className='lg:flex justify-center px-4 flex-row-reverse'> 
  <div>
 <div className='lg:w-96'>
-{trendX?.length>0 ? <Trends trendX={trendX}/>:<FakeTrends filteredTrends={filteredTrends}/> } 
+{trendX?.length>0 ? <Trends trendX={trendX}/>:<></> } 
 </div>
 <div className='hidden lg:block overflow-hidden lg:w-96'>
  

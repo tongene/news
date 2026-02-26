@@ -32,8 +32,7 @@ function Post ({
   trendX,
   comments, 
   user,
-  related , 
-  filteredTrends
+  related 
 }:
 {
 user: User,
@@ -41,8 +40,7 @@ postData:PostProps,
 initiaComms:InitialComments[],
 comments:InitialComments[],
 trendX:TrendyProp[],
-related:InitialPosts[],
-filteredTrends:FakeObj[]
+related:InitialPosts[], 
 }) {
 
 const router = useRouter()    
@@ -473,7 +471,8 @@ null}
 <div className='lg:flex justify-center px-4 flex-row-reverse'> 
   <div>
 <div className='lg:w-96'>
-{trendX?.length>0 ? <Trends trendX={trendX}/>:<FakeTrends filteredTrends={filteredTrends}/> } 
+{trendX?.length>0 ? <Trends trendX={trendX}/>:<></>} 
+{/* // :<FakeTrends filteredTrends={filteredTrends}/>  */}
 </div>
 <div className='hidden lg:block overflow-hidden lg:w-96'> 
 <Relevant 

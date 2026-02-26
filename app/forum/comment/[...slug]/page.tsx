@@ -125,29 +125,29 @@ const CommentPage =async ({params}: Props) => {
   const trends =await getNaijaTrends1()
   await getNaijaFake1()
   const getFacts=async()=>{
-    const { data, error } = await supabase
-  .from('fact_check') 
-  .select('*') 
-  .range(0, 10)
-if(error){
-  console.log(error?.message)
-}
+//     const { data, error } = await supabase
+//   .from('fact_check') 
+//   .select('*') 
+//   .range(0, 10)
+// if(error){
+//   console.log(error?.message)
+// }
 
-return data ??[]
+return []
 }
  
  const fakeTrend = await getFacts()  
   const today = new Date();
   const todayMonth = today.getMonth() 
  
- const filteredTrends = fakeTrend?.filter((item, index, self) =>  index === self.findIndex((t) => t.claimant === item.claimant)) 
- .filter((dateStr:FakeObj) => { 
+//  const filteredTrends = fakeTrend?.filter((item, index, self) =>  index === self.findIndex((t) => t.claimant === item.claimant)) 
+//  .filter((dateStr:FakeObj) => { 
  
-  const date = new Date(dateStr.claimDate); 
-  const dateDay = date.getDate();  
-  const dateMonth= date.getMonth() ;
-  return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMonth||todayMonth-3===dateMonth; 
-});
+//   const date = new Date(dateStr.claimDate); 
+//   const dateDay = date.getDate();  
+//   const dateMonth= date.getMonth() ;
+//   return dateMonth=== todayMonth||todayMonth-1===dateMonth||todayMonth-2===dateMonth||todayMonth-3===dateMonth; 
+// });
  function toIsoDate(dateStr: string): string {
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) {
@@ -179,7 +179,7 @@ const jsonLd:WithContext<DiscussionForumPosting> = {
   post_comments={post_comments} 
   related={related}
   trendX={trends}
-  filteredTrends={filteredTrends}
+  // filteredTrends={filteredTrends}
   />  </Suspense> 
 </div>
   )

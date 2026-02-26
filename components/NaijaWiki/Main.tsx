@@ -8,8 +8,7 @@ import { useEffect, useState } from 'react'
 import NewsLetter from '../NewsLetter'
 import NaijaContent from './NaijaContent' 
 import InterContent from './InterContent'
-import { vids } from '@/app/newCharHandle' 
-import { getTop10 } from '@/app/filmsdata'
+import { vids } from '@/app/newCharHandle'  
 import { AllObj, CharacterProps, NAPINewsProps, VidProps } from '@/app/types'
 import { createClient } from '@/utils/supabase/client' 
 import { netflixAfrica, netflixInter, netflixNigNaija, netflixPopular } from '@/app/netflix-news'
@@ -45,7 +44,7 @@ const [netflix_popular,setNetflix__Popular]=useState<NAPINewsProps[]>([])
 const [netflix_inter,setNetflix__Inter]=useState<NAPINewsProps[]>([])
 const [netflix__NG_naija,setNetflix_NG_naija]=useState<NAPINewsProps[]>([]) 
 const [naijaWikiVideos,setNaijaWikiVideos]=useState<VidProps[]>([])
-const [netFlixTop10,setNetFlixTop10]=useState<any[]>([])
+// const [netFlixTop10,setNetFlixTop10]=useState<any[]>([])
 const [loading, setLoading]=useState(false)
  
 const wikiNetflixNews=async()=>{
@@ -54,22 +53,22 @@ const wikiNetflixNews=async()=>{
   const netflix_inter = await netflixInter()
   const netflix__NG_naija = await netflixNigNaija() 
  const naijaWikiVideos =await vids()
-  const netFlixTopItems = await getTop10()  
+  // const netFlixTopItems = await getTop10()  
   setNetflix__Africa(netflix_Africa)
   setNetflix__Popular(netflix_Popular)
   setNetflix__Inter(netflix_inter)
   setNetflix_NG_naija(netflix__NG_naija) 
   setNaijaWikiVideos(naijaWikiVideos)
-  setNetFlixTop10(netFlixTopItems)
+  // setNetFlixTop10(netFlixTopItems)
  
   }
   useEffect(()=>{
      setLoading(true)
     wikiNetflixNews()  
-    if(netFlixTop10.length>0){
-      setLoading(false)
-    }
-      },[netFlixTop10]) 
+    // if(netFlixTop10.length>0){
+    //   setLoading(false)
+    // }netFlixTop10
+      },[]) 
           
 const news_blog =netflix_News?.map((ex)=> ex?.node.naijaOnNetflix).map((xy)=> (xy?.nodes??{})).flat()
 const africa_blog =netflix_africa?.map((ex)=>ex?.node.naijaOnNetflix).map((xy)=> xy?.nodes).flat()
@@ -223,7 +222,7 @@ const [end_inter_cursor, setEnd_inter_cursor] = useState('');
  <div onClick={nextSlide} className='text-5xl text-white opacity-70 bg-gray-400 cursor-pointer'> 
  <FontAwesomeIcon icon={faAngleRight}/> </div> 
  </div>
-  <div className='border-b mx-11 dark:from-white dark:to-green-400 bg-gradient-to-r to-sky-500 from-red-600 bg-clip-text text-transparent py-4 lg:py-0'>
+  {/* <div className='border-b mx-11 dark:from-white dark:to-green-400 bg-gradient-to-r to-sky-500 from-red-600 bg-clip-text text-transparent py-4 lg:py-0'>
  { netFlixTop10.map((item, index)=>  
  index===activeSlide&&
  <div className='sm:flex justify-center max-w-xs sm:max-w-md md:max-w-2xl xl:max-w-5xl m-auto' key={item.title + ' ' + index}> 
@@ -231,7 +230,7 @@ const [end_inter_cursor, setEnd_inter_cursor] = useState('');
  <p className=' text-6xl h-max md:text-8xl text-center sm:text-left py-4 sm:py-8 font-bold'>{index + 1} </p> 
   </div > 
 ) }  
- </div>
+ </div> */}
  
  </div>
  </section>}

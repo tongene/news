@@ -737,12 +737,12 @@ const jsonLd:WithContext<NewsArticle> = {
 //  const highlight =await searchParams;
 //   const isHighlight= highlight.variant === 'highlight'
 
- CronJob.from({
-          cronTime: '10 8 * * *',  
-          onTick:dailyWiki(),
-          start: true,
-          timeZone: 'Africa/Lagos'
-         }); 
+//  CronJob.from({
+//           cronTime: '10 8 * * *',  
+//           onTick:dailyWiki(),
+//           start: true,
+//           timeZone: 'Africa/Lagos'
+//          }); 
 
   return (
      <article> 
