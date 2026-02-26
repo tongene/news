@@ -7,35 +7,36 @@ export async function POST(req: Request) {
     const body = JSON.parse(raw);   
     const signature = req.headers.get("x-wp-signature");
     const { title, excerpt, image, url, date,  postId} = body;  
-    console.log(title, excerpt, image, url, date ,  postId)
-// if (!signature) {
-// return NextResponse.json({ error: "Missing signature" }, { status: 401 });
-// }
+     
+if (!signature) {
+return NextResponse.json({ error: "Missing signature" }, { status: 401 });
+}
+ 
+ 
+// recreate signature
+const expected = crypto
+  .createHmac("sha256", process.env.WP_WEBHOOK_SECRET!)
+  .update(raw)
+  .digest("hex");
 
-// // recreate signature
-// const expected = crypto
-//   .createHmac("sha256", process.env.WP_WEBHOOK_SECRET!)
-//   .update(raw)
-//   .digest("hex");
+if (signature.length !== expected.length) {
+  return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+}
 
-// if (signature.length !== expected.length) {
-//   return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
-// }
+const valid = crypto.timingSafeEqual(
+  Buffer.from(signature),
+  Buffer.from(expected)
+);
 
-// const valid = crypto.timingSafeEqual(
-//   Buffer.from(signature),
-//   Buffer.from(expected)
-// );
+if (!valid) {
+return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+} 
 
-// if (!valid) {
-// return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
-// } 
-
-// if (!postId) {
-// return NextResponse.json({ error: "Missing postId" }, { status: 400 });
-// }
+if (!postId) {
+return NextResponse.json({ error: "Missing postId" }, { status: 400 });
+}
 try {
- console.log(title, postId, signature)
+ 
 if (!title) {
   return NextResponse.json({ error: "No post found", title, postId, signature }, { status: 404 });
 }  
