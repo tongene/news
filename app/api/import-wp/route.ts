@@ -35,12 +35,11 @@ export async function POST(req: Request) {
 // return NextResponse.json({ error: "Missing postId" }, { status: 400 });
 // }
 try {
-
+ console.log(title, postId, signature)
 if (!title) {
-  return NextResponse.json({ error: "No post found" }, { status: 404 });
-}
-   console.log(title, postId)
-   
+  return NextResponse.json({ error: "No post found", title, postId, signature }, { status: 404 });
+}  
+
 // 2️⃣ Build email-safe HTML
 const html = `
   <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto">
