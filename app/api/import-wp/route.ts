@@ -1,30 +1,30 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import crypto from "crypto";
-console.log('this')
-export async function POST(req: Request) {
-   console.log('req',req)
-  const signature = req.headers.get("x-wp-signature");
- console.log(signature)
-    const body = await req.json();
-    const { title, excerpt, image, url, date } = body;
-  
-    if (!title || !excerpt) {
-      return NextResponse.json({ message: 'Missing title or excerpt' }, { status: 400 });
-    }
+
+export async function POST(req: Request) {    
+    const raw = await req.text();
+    const body = JSON.parse(raw);
+    const signature = req.headers.get("x-wp-signature");
+    const { title, excerpt, image, url, date } = body;  
+   
 if (!signature) {
 return NextResponse.json({ error: "Missing signature" }, { status: 401 });
 }
 
 // recreate signature
 const expected = crypto
-.createHmac("sha256", process.env.WP_WEBHOOK_SECRET!)
-.update(body)
-.digest("hex");
+  .createHmac("sha256", process.env.WP_WEBHOOK_SECRET!)
+  .update(raw)
+  .digest("hex");
+
+if (signature.length !== expected.length) {
+  return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+}
 
 const valid = crypto.timingSafeEqual(
-Buffer.from(signature),
-Buffer.from(expected)
+  Buffer.from(signature),
+  Buffer.from(expected)
 );
 
 if (!valid) {
