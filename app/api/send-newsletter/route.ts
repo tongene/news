@@ -47,7 +47,7 @@ const html = `
     <div>${excerpt}</div>
 
     <p style="margin-top:20px">
-      <a href="https://culturays.com/${url}" 
+      <a href=${url} 
          style="background:#000;color:#fff;padding:12px 18px;text-decoration:none;border-radius:6px;">
          Read Full Story
       </a>
@@ -60,6 +60,9 @@ const supabaseRole =await serverRole(
 process.env.SUPABASE_URL!,
 process.env.SUPABASE_SERVICE_ROLE_SECRET! 
 );
+  const {
+    data:  {user} ,
+  } = await supabase.auth.getUser();
 
 const { data, error:err } = await supabaseRole
   .from("campaigns")
@@ -73,6 +76,8 @@ const { data, error:err } = await supabaseRole
     created_at:date,
     sent_at:new Date().toDateString(),
     url,
+    excerpt,
+    user_email:user?.email
   })
   .select()
   .single();

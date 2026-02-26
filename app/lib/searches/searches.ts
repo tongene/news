@@ -139,6 +139,14 @@ export const searchValues = async (name:string) => {
         featuredImage{node{sourceUrl altText}}
         tags{nodes{name slug}}
       }
+         ... on Conversation {
+        id
+        title
+        slug
+        contentTypeName
+        featuredImage{node{sourceUrl altText}}
+        contentTags{nodes{name slug}}
+      }
          ... on Business {
         id
         title

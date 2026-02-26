@@ -619,7 +619,7 @@ idType: 'URI'
 const resolveContent = async (slug: string)=>{ 
    const rex = await news_details_all(`/${slug}/`); 
  
-   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment", "post"]) {
+   for (const type of ["article", "business", "economy", "nollywood", "award", "technology", "health", "society","environment", "post", "conversation"]) {
  const res = await news_details_all(`/${type}/${slug}/`); 
  
     if (res?.title) {
@@ -671,9 +671,9 @@ news_details?.featuredImage?.node?.sourceUrl ||
       url:`https://culturays.com/news/${news_details?.slug}/`,
       siteName: 'Urban Naija',
       images: [{url:news_details?.featuredImage?.node?.sourceUrl, width: 800,
- height: 600, ...previousImages} ],
+      height: 600, ...previousImages} ],
       type: "article",
-    publishedTime:new Date(news_details?.date)?.toISOString() ,
+    publishedTime:new Date(news_details?.date)?.toISOString() || new Date().toDateString() ,
     },
      alternates: {
     canonical:`https://culturays.com/news/${news_details?.slug}/`,
