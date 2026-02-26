@@ -2,10 +2,10 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import crypto from "crypto";
-
+console.log('this')
 export async function POST(req: Request) {
   const signature = req.headers.get("x-wp-signature");
- 
+ console.log(signature)
     const body = await req.json();
     const { title, excerpt, image, url, date } = body;
   
