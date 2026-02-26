@@ -39,7 +39,7 @@ try {
 if (!title) {
   return NextResponse.json({ error: "No post found" }, { status: 404 });
 }
-
+ 
 // 2️⃣ Build email-safe HTML
 const html = `
   <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto">
