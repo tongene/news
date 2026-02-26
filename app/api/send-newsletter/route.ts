@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'; 
 import { createClient } from '@/utils/supabase/server'; 
+import { createClient as serverRole } from "@supabase/supabase-js";
 /**
  * Send bulk newsletter emails in batches.
  * @param {string} title - The title of the newsletter.
@@ -11,7 +12,7 @@ import { createClient } from '@/utils/supabase/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, excerpt, image, url, content } = body;
+    const { title, excerpt, image, url, content, postId, date } = body;
     if (!title || !excerpt) {
       return NextResponse.json({ message: 'Missing title or excerpt' }, { status: 400 });
     }
@@ -33,13 +34,57 @@ export async function POST(request: NextRequest) {
         created_at: new Date().toISOString(),
       },
     ]);
+const html = `
+  <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto">
+    <h1>${title}</h1>
 
+    ${
+      image
+        ? `<img src="${image}" style="width:100%;border-radius:8px"/>`
+        : ""
+    }
+
+    <div>${excerpt}</div>
+
+    <p style="margin-top:20px">
+      <a href="https://culturays.com/${url}" 
+         style="background:#000;color:#fff;padding:12px 18px;text-decoration:none;border-radius:6px;">
+         Read Full Story
+      </a>
+    </p>
+  </div>
+`;
+
+// 3️⃣ Insert into Supabase
+const supabaseRole =await serverRole(
+process.env.SUPABASE_URL!,
+process.env.SUPABASE_SERVICE_ROLE_SECRET! 
+);
+
+const { data, error:err } = await supabaseRole
+  .from("campaigns")
+  .insert({
+    wp_post_id: postId,
+    title,
+    html_content: html,
+    status: "draft",
+    subject:"Naija News Today",
+    image,
+    created_at:date,
+    sent_at:new Date().toDateString(),
+    url,
+  })
+  .select()
+  .single();
     if (error) {
       console.error('❌ Failed to queue post:', error);
       return NextResponse.json({ message: 'Failed to queue post' }, { status: 500 });
     }
-
-    return NextResponse.json({ message: '✅ Post queued for newsletter' }, { status: 200 });
+ if (err) {
+      console.error('❌ Failed to queue campaign:', err);
+      return NextResponse.json({ message: 'Failed to queue campaign' }, { status: 500 });
+    }
+    return NextResponse.json({ message: '✅ Post queued for newsletter', success: true, campaign: data }, { status: 200 });
   } catch (err) {
     console.error('❌ Error in newsletter-queue:', err);
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
