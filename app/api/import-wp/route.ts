@@ -4,11 +4,10 @@ import crypto from "crypto";
 
 export async function POST(req: Request) {    
     const raw = await req.text();
-    const body = JSON.parse(raw);
-    console.log(body)
+    const body = JSON.parse(raw);   
     const signature = req.headers.get("x-wp-signature");
-    const { title, excerpt, image, url, date } = body;  
-   
+    const { title, excerpt, image, url, date,  postId} = body;  
+    console.log(title, excerpt, image, url, date ,  postId)
 // if (!signature) {
 // return NextResponse.json({ error: "Missing signature" }, { status: 401 });
 // }
@@ -30,17 +29,18 @@ export async function POST(req: Request) {
 
 // if (!valid) {
 // return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+// } 
+
+// if (!postId) {
+// return NextResponse.json({ error: "Missing postId" }, { status: 400 });
 // }
-const { postId } =body;
-if (!postId) {
-return NextResponse.json({ error: "Missing postId" }, { status: 400 });
-}
 try {
 
 if (!title) {
   return NextResponse.json({ error: "No post found" }, { status: 404 });
 }
- 
+   console.log(title, postId)
+   
 // 2️⃣ Build email-safe HTML
 const html = `
   <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto">
