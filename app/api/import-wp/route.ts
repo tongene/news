@@ -5,32 +5,11 @@ import crypto from "crypto";
 export async function POST(req: Request) {    
     const raw = await req.text();
     const body = JSON.parse(raw);   
-    const signature = req.headers.get("x-wp-signature");
-    const { title, excerpt, image, url, date,  postId} = body;  
-     
-if (!signature) {
-return NextResponse.json({ error: "Missing signature" }, { status: 401 });
-}
- 
- 
-// recreate signature
-const expected = crypto
-  .createHmac("sha256", process.env.WP_WEBHOOK_SECRET!)
-  .update(raw)
-  .digest("hex");
-
-if (signature.length !== expected.length) {
-  return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
-}
-
-const valid = crypto.timingSafeEqual(
-  Buffer.from(signature),
-  Buffer.from(expected)
-);
-
-if (!valid) {
-return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
-} 
+    const secret = req.headers.get("x-wp-secret");
+    const { title, excerpt, image, url, date,  postId} = body; 
+  if (secret !== process.env.WP_SECRET) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
 
 if (!postId) {
 return NextResponse.json({ error: "Missing postId" }, { status: 400 });
@@ -38,7 +17,7 @@ return NextResponse.json({ error: "Missing postId" }, { status: 400 });
 try {
  
 if (!title) {
-  return NextResponse.json({ error: "No post found", title, postId, signature }, { status: 404 });
+  return NextResponse.json({ error: "No post found", title, postId  }, { status: 404 });
 }  
 
 // 2️⃣ Build email-safe HTML
