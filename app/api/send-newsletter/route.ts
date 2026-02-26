@@ -11,34 +11,19 @@ import crypto from "crypto";
   
  
 export async function POST(request: NextRequest) {
-  const raw = await request.text();
-    const body = JSON.parse(raw);
-    const signature = request.headers.get("x-wp-signature");
+   const body = await request.json(); 
+   console.log(body)
+    const wpSecret = request.headers.get('x-wp-secret');
+    if (wpSecret !== process.env.WP_SECRET) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
     const { title, excerpt, image, url, date } = body;  
    
-if (!signature) {
-return NextResponse.json({ error: "Missing signature" }, { status: 401 });
-}
+    if (wpSecret !== process.env.WP_SECRET) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
 
-// recreate signature
-const expected = crypto
-  .createHmac("sha256", process.env.WP_WEBHOOK_SECRET!)
-  .update(raw)
-  .digest("hex");
-
-if (signature.length !== expected.length) {
-  return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
-}
-
-const valid = crypto.timingSafeEqual(
-  Buffer.from(signature),
-  Buffer.from(expected)
-);
-
-if (!valid) {
-return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
-}
-const { postId } =body;
+ const { postId } =body;
 if (!postId) {
 return NextResponse.json({ error: "Missing postId" }, { status: 400 });
 }
