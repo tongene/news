@@ -6,10 +6,8 @@ import { BlogPosting, WithContext } from 'schema-dts'
  import { replaceSpecialCharacters } from "@/utils/replacechars";
 import { events3Details, getNaijaEvents3 } from './eventData/eventContent';
 import { CronJob } from 'cron';
-import { faCoins, faHandPointDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
  import AISuggestions from "@/components/AISuggestions";
-//export const revalidate = 10
+ 
 
  interface ObjType { 
   title: string[];

@@ -1,6 +1,4 @@
 import googleTrends from 'google-trends-api'
-import { CronJob } from 'cron'; 
-import axios from 'axios';
 import { createClient } from '@/utils/supabase/server';
  
 const ourPassword = process.env.WP_SECRET
@@ -44,46 +42,7 @@ await googleTrends.dailyTrends({
           console.error("Error parsing JSON:", error); 
     }  
    }
-})
-
-
-  //   const submitForm = async () => { 
-  //     const data = new FormData()
-  //      for (const xy of titleObj) {  
-  //       Object.entries({title:xy.title }).forEach(([key, value]) => {
-  //       data.append(key, value);
-  //     })
-       
-  //       try {
-  //         const response = await fetch('https://content.culturays.com/wp-json/wp/v2/trending', { 
-  //           method: "POST",  
-  //           body:data,  
-  //           headers: {
-  //             'Accept': 'application/json', 
-  //           'Authorization': 'Basic ' + Buffer.from(`${ourUsername}:${ourPassword}`).toString('base64')
-  //           },
-  //         });
-      
-  //         if (!response.ok) { 
-  //           throw new Error(`HTTP error! status: ${response.statusText}`);
-  //         }  
-  //         const result = await response.json(); 
-       
-  //       } catch (error) {
-  //         console.error('Error submitting form:', error);
-  //       }
-  //  } 
-  // return () => clearTimeout(fxnTimeout);
-  // }
-
-  // const fxnTimeout = setTimeout(() => {
-  //   CronJob.from({
-  //   cronTime: '10 8 * * *', 
-  //   onTick: submitForm(),
-  //   start: true,
-  //   timeZone: 'Africa/Lagos'
-  //   });
-  // }, 5000);  
+}) 
  
   return titleObj 
    }

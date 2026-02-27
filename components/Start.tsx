@@ -50,7 +50,7 @@ const ids = campaigns.map(c => c.id);
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-gray-200 text-sm">
+            <tbody className="divide-y divide-gray-200 text-sm"onClick={sendNewsletter}>
               {campaigns.map((item) => (
                 <tr
                 
@@ -61,7 +61,7 @@ const ids = campaigns.map(c => c.id);
                     {item.title}
                   </td>
 
-                  <td className="px-6 py-4"title="send newsletter" onClick={sendNewsletter}>
+                  <td className="px-6 py-4"title="send newsletter" >
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold ${
                         item.status === "Sent"
