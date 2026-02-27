@@ -11,7 +11,7 @@ const Start = ({campaigns}:{campaigns: CampaignProps[]}) => {
      //https://culturays.com/mailer/admin/send-send-newsletter
       
     async function sendNewsletter() {
-    const res=await fetch(`http://localhost:4000/admin/send-newsletter`, {
+    const res=await fetch(`https://culturays.com/mailer/admin/send-send-newsletter`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({campaigns})
