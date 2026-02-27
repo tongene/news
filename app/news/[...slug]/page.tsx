@@ -290,6 +290,21 @@ contentNode(id: $id, idType: $idType){
               }
             }
           }
+              ... on Conversation {
+            id
+            title
+              excerpt
+            content
+            slug
+             date
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+                caption
+              }
+            }
+          }
           ... on Economy {
             id
             title
@@ -331,6 +346,38 @@ contentNode(id: $id, idType: $idType){
         }
       }
     
+      author {
+        node {
+          name
+          slug
+          avatar {
+            url
+          }
+        }
+      }
+    }
+       ... on Conversation {
+        id
+      content 
+      slug
+      title
+     excerpt
+      date
+      contentTags {
+        nodes {
+          slug
+          name
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+          caption
+        }
+      }
+      excerpt
+      date
       author {
         node {
           name
@@ -653,7 +700,7 @@ const tags= news_details?.tags?.nodes.map((ex:{name:string})=>ex.name).join(', '
 const twitterImage =
 news_details?.featuredImage?.node?.sourceUrl ||
 'https://culturays.com/opengraph-image.png';
-
+ 
    return {
     metadataBase: new URL('https://culturays.com'),
     title: `Urban Naija | ${news_details?.title }`,
@@ -673,7 +720,7 @@ news_details?.featuredImage?.node?.sourceUrl ||
       images: [{url:news_details?.featuredImage?.node?.sourceUrl, width: 800,
       height: 600, ...previousImages} ],
       type: "article",
-    publishedTime:new Date(news_details?.date)?.toISOString() || new Date().toDateString() ,
+      publishedTime:new Date(news_details?.date)?.toDateString() ,
     },
      alternates: {
     canonical:`https://culturays.com/news/${news_details?.slug}/`,
@@ -708,8 +755,8 @@ const jsonLd:WithContext<NewsArticle> = {
       name: "Christina Ngene",
       url:'https://culturays.com/creator/christina-ngene/',
     }, 
-    datePublished: new Date(news_details?.date).toISOString() , 
-    dateModified:new Date(news_details?.date).toISOString() , 
+    datePublished: new Date(news_details?.date).toDateString() , 
+    dateModified:new Date(news_details?.date).toDateString() , 
      mainEntityOfPage: {
       "@type": "WebPage",
     },

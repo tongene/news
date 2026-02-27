@@ -12,7 +12,7 @@ sent_at?:string
 }
 const New = async () => {
   const supabase = await createClient()
-   const millisecondsInOneDay = 1000 * 60 * 180;
+   const millisecondsInOneDay = 1000 * 60 * 300;
     const millisecondsInTwoDays = millisecondsInOneDay * 30;
     const since = new Date(Date.now() - millisecondsInOneDay).toISOString();
     const { data: campaigns, error  } = await supabase

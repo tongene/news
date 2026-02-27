@@ -2,22 +2,28 @@
 
 import { CampaignProps } from "@/app/dashboard/new/page";
 import { createClient } from "@/utils/supabase/client";
-
+import { useRouter } from "next/navigation";
+const supabase = createClient()
 const Start = ({campaigns}:{campaigns: CampaignProps[]}) => {
+  const router = useRouter()
      const API_URL = process.env.BACKEND_URL || 'http://34.116.251.165:4000';
      //${API_URL}
-     //
-      const supabase = createClient()
+     //https://culturays.com/mailer/admin/send-send-newsletter
+      
     async function sendNewsletter() {
-    const res=await fetch(`https://culturays.com/mailer/admin/send-newsletter`, {
+    const res=await fetch(`http://localhost:4000/admin/send-newsletter`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({campaigns})
     })
-         const { data, error } = await supabase
+const ids = campaigns.map(c => c.id);
+     const { data, error } = await supabase
       .from("campaigns") 
       .update({ status: "sent" })
-      .in("id", campaigns.map(c => c.id));
+      .in("id", ids)
+      .select()
+     router.refresh()
+      
      //console.log (`Scheduled ${data.scheduled} emails`)
     }
   return (
@@ -55,7 +61,7 @@ const Start = ({campaigns}:{campaigns: CampaignProps[]}) => {
                     {item.title}
                   </td>
 
-                  <td className="px-6 py-4"title="send newsletter">
+                  <td className="px-6 py-4"title="send newsletter" onClick={sendNewsletter}>
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold ${
                         item.status === "Sent"
