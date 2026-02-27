@@ -8,10 +8,10 @@ const Start = ({campaigns}:{campaigns: CampaignProps[]}) => {
   const router = useRouter()
      const API_URL = process.env.BACKEND_URL || 'http://34.116.251.165:4000';
      //${API_URL}
-     //https://culturays.com/mailer/admin/send-send-newsletter
+     //https://culturays.com/mailer/admin/send-newsletter
       
     async function sendNewsletter() {
-    const res=await fetch(`https://culturays.com/mailer/admin/send-send-newsletter`, {
+    const res=await fetch(`https://culturays.com/mailer/admin/send-newsletter`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({campaigns})
