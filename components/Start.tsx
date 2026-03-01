@@ -40,8 +40,8 @@ const ids = campaigns.map(c => c.id);
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead className="bg-gray-50 text-gray-600 text-sm uppercase tracking-wider">
+          <table className="w-full text-left border-collapse cursor-pointer" onClick={sendNewsletter}>
+            <thead className="bg-gray-50 text-gray-600 text-sm uppercase tracking-wider" >
               <tr>
                 <th className="px-6 py-3">Title</th>
                 <th className="px-6 py-3">Status</th>
@@ -50,12 +50,12 @@ const ids = campaigns.map(c => c.id);
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-gray-200 text-sm"onClick={sendNewsletter}>
+            <tbody className="divide-y divide-gray-200 text-sm">
               {campaigns.map((item) => (
                 <tr
                 
                   key={item.id}
-                  className="hover:bg-gray-50 transition cursor-pointer"
+                  className="hover:bg-gray-50 transition"
                    onClick={sendNewsletter} >
                   <td className="px-6 py-4 font-medium text-gray-800">
                     {item.title}

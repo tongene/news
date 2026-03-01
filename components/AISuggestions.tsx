@@ -31,7 +31,7 @@ export default function AISuggestions({tag_response}:{
         value={topic}
         onChange={(e) => setTopic(e.target.value)}
         placeholder="Enter topic (e.g. asuu strike, world bank)"
-        className="w-full p-2 border-none focus:outline-none focus:ring rounded-md"
+        className="w-full p-2 border-none focus:outline-none focus:ring rounded-md dark:text-gray-300"
       /> 
 
       <button
