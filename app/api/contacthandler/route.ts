@@ -32,7 +32,7 @@ const response =await sheets.spreadsheets.values.append({
     valueInputOption: 'USER_ENTERED',
     requestBody:{
         values:  [
-            [resp.name, resp.email, resp.message]
+            [resp.name, resp.email, resp.message, new Date().toLocaleDateString()]
         ],
     }
 })
