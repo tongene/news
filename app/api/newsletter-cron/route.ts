@@ -105,6 +105,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
         <p><a href="https://gowork.africareinvented.com/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Connect. Collaborate. Conquer on Tini Tasks</a></p>
 
+       <footer style="font-size: 13px; color: #999999; text-align: center; height: 300px">
+
         <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />
        <br/>
     <a href="https://culturays.com" style="color:#f97316;">
@@ -123,7 +125,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
       Youtube
     </a> <br/>
      <img src="https://culturays.com/qrcode_culturays.com.png" alt="Scan to Visit Culturays Poster" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />
-       <footer style="font-size: 13px; color: #999999; text-align: center; height: 300px">
+
          <p style="font-size:14px; color:#777;">You're receiving this email because you subscribed to Urban Naija News. <br/>If you'd like to unsubscribe, click <a href="https://culturays.com/api/unsubscribe?email=${encodeURIComponent(
            sub.email
          )}" style="color:#00796b;">here</a>.</p>
