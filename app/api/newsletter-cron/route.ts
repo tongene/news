@@ -67,13 +67,28 @@ const resend = new Resend(process.env.RESEND_API_KEY);
       const htmlContent = `
        <h2 style="color:#2c3e50;">Today's Top Stories</h2> 
     <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+      <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />  
          <p style="font-size:18px;color: #6677; text-align:center">
-    Avoid AI Misinformation — Read Only Verified News here.
+    Avoid AI Misinformation — Read Only Verified News here. Follow us
     <br/>
     <a href="https://culturays.com" style="color:#f97316;">
       Culturays — The Urban Naija News
-    </a>
+    </a> <br/>
+    <a href="https://www.instagram.com/culturays_/" style="color:#f97316;">
+      Instagram
+    </a> <br/>
+     <a href="https://www.facebook.com/CulturaysSpot/" style="color:#f97316;">
+     Facebook
+    </a> <br/>
+     <a href="https://x.com/culturays" style="color:#f97316;">
+      X
+    </a> <br/>
+     <a href="https://www.youtube.com/@Culturays" style="color:#f97316;">
+      Youtube
+    </a> <br/>
+     <img src="https://culturays.com/qrcode_culturays.com.png" alt="Scan to Visit Culturays Poster" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />
   </p>
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />  
        <p style="font-size: 35px; color: #2c3e50; margin: 10px 0; font-weight: bold;">Have you seen our AI Aid?<a href="https://culturays.com/naija-events/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Try it!</a></p>
        
        <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />    
@@ -91,8 +106,24 @@ const resend = new Resend(process.env.RESEND_API_KEY);
         <p><a href="https://gowork.africareinvented.com/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Connect. Collaborate. Conquer on Tini Tasks</a></p>
 
         <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />
-      
-       <footer style="font-size: 13px; color: #999999; text-align: center;">
+       <br/>
+    <a href="https://culturays.com" style="color:#f97316;">
+      Culturays — The Urban Naija News
+    </a> <br/>
+    <a href="https://www.instagram.com/culturays_/" style="color:#f97316;">
+      Instagram
+    </a> <br/>
+     <a href="https://www.facebook.com/CulturaysSpot/" style="color:#f97316;">
+     Facebook
+    </a> <br/>
+     <a href="https://x.com/culturays" style="color:#f97316;">
+      X
+    </a> <br/>
+     <a href="https://www.youtube.com/@Culturays" style="color:#f97316;">
+      Youtube
+    </a> <br/>
+     <img src="https://culturays.com/qrcode_culturays.com.png" alt="Scan to Visit Culturays Poster" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />
+       <footer style="font-size: 13px; color: #999999; text-align: center; height: 300px">
          <p style="font-size:14px; color:#777;">You're receiving this email because you subscribed to Urban Naija News. <br/>If you'd like to unsubscribe, click <a href="https://culturays.com/api/unsubscribe?email=${encodeURIComponent(
            sub.email
          )}" style="color:#00796b;">here</a>.</p>
