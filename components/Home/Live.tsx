@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
  const SLIDE_INTERVAL = 5000; 
 
-  const liveResp=()=>{
+  const liveResp= ()=>{
   const wprestLive = fetch('https://content.culturays.com/graphql',{ 
       method: 'POST',
       headers:{ 
