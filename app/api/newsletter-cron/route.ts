@@ -86,7 +86,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
      <a href="https://www.youtube.com/@Culturays" style="color:#f97316;">
       Youtube
     </a> <br/>
-     <img src="https://culturays.com/qrcode_culturays.com.png" alt="Scan to Visit Culturays Poster" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />
+     <img src="https://culturays.com/qrcode_culturays.com.png" alt="Scan to Visit Culturays Poster" style="width: 15%; border-radius: 6px; margin-bottom: 20px;" />
   </p>
     <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />  
        <p style="font-size: 35px; color: #2c3e50; margin: 10px 0; font-weight: bold;">Have you seen our AI Aid?<a href="https://culturays.com/naija-events/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Try it!</a></p>
@@ -98,10 +98,11 @@ const resend = new Resend(process.env.RESEND_API_KEY);
           Warm regards,<br>
           <strong>Urban Naija</strong>
         </p>
+          <img src="https://culturays.com/qrcode_culturays.com.png" alt="Scan to Visit Culturays Poster" style="width: 15%; border-radius: 6px; margin-bottom: 20px;" />
        <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />        
        <h2 style="font-size: 22px; color: #2c3e50; margin: 10px 0;">News Made for You</h2>
 
-        <img src="https://culturays.com/tinitasks-poster.JPG/" alt="Tini Tasks Poster" style="width: 15%; border-radius: 6px; margin-bottom: 20px;" />
+        <img src="https://culturays.com/tinitasks.jpg/" alt="Tini Tasks Poster" style="width: 75%; border-radius: 6px; margin-bottom: 20px;" />
 
         <p><a href="https://gowork.africareinvented.com/" style="display:inline-block;margin-top:1em;padding:0.5em 1em;background:#0070f3;color:white;text-decoration:none;border-radius:5px;">Connect. Collaborate. Conquer on Tini Tasks</a></p>
 
@@ -123,8 +124,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
     </a> <br/>
      <a href="https://www.youtube.com/@Culturays" style="color:#f97316;">
       Youtube
-    </a> <br/>
-     <img src="https://culturays.com/qrcode_culturays.com.png" alt="Scan to Visit Culturays Poster" style="width: 15%; border-radius: 6px; margin-bottom: 20px;" />
+    </a> <br/>  
 
          <p style="font-size:14px; color:#777;">You're receiving this email because you subscribed to Urban Naija News. <br/>If you'd like to unsubscribe, click <a href="https://culturays.com/api/unsubscribe?email=${encodeURIComponent(
            sub.email
