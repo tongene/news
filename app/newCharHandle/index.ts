@@ -701,7 +701,7 @@ export const contentFeed = async()=>{
              featuredImage {
          node {
            altText
-           sourceUrl
+           sourceUrl 
          }
        }
        }    ... on Society {

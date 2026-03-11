@@ -548,7 +548,7 @@ ${xmlContent}
    }));
  
    const tr_posts: Post[] = trend_news.map((post) => ({
-     url: `https://culturays.com/news/${post.slug}/`,
+     url: `https://culturays.com/news/trending/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
