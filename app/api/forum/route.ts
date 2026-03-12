@@ -79,7 +79,7 @@ export async function GET() {
     news: [
       {
           publication: {
-          name: 'Urban Naija News',
+          name: 'Culturays — The Urban Naija News',
           language: 'en',
         },
         publication_date: new Date(post.created_at  as string).toISOString(),

@@ -24,7 +24,7 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || [] 
 
   return {
-    title: `Urban Naija | ${page?.title}`,
+    title: `Culturays — The Urban Naija News | ${page?.title}`,
     description: replaceHTMLTags(page?.excerpt) ,
     keywords:["Nigeria", "Industry", "China", "Aba", "Nnewi", "News", "Manufacturing", "Production", "Trade", "Tariffs", "Farming", "Products", "Market", "Balogun", "Lagos", "Food", "Export", "Import", "Mining", "Factory", "Ajaokuta", "Steel", "Fabric", "Transport", "Tax", "Africa", "ECOWAS"],
     twitter: {
@@ -34,10 +34,10 @@ export async function generateMetadata(
       images:[page?.featuredImage.node.sourceUrl, ...previousImages],  
     },
      openGraph: {
-      title: `Urban Naija | ${page?.title}`,
+      title: `Culturays — The Urban Naija News| ${page?.title}`,
       description: replaceHTMLTags(page?.excerpt), 
       url: `https://culturays.com/nigeria/${page.slug}/`,
-      siteName: 'Urban Naija',
+      siteName: 'Culturays — The Urban Naija News',
       images: [{url:page?.featuredImage.node.sourceUrl, width: 800,
           height: 600, ...previousImages}],
       type: "article",

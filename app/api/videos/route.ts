@@ -118,7 +118,7 @@
         news: [
             {
               publication: {
-                name: 'Urban Naija News | Videos',
+                name: 'Culturays — The Urban Naija News | Videos',
                 language: 'en',
               },
               publication_date: new Date(post.date).toISOString(),

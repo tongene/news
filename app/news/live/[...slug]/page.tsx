@@ -201,7 +201,7 @@ export async function generateMetadata(
  const tags= news_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ') 
 
   return {
-    title: `Urban Naija | Live News ${news_details?.title||'' } `,
+    title: `Culturays — The Urban Naija News | Live News ${news_details?.title||'' } `,
     description:replaceHTMLTags(news_details?.excerpt) ,
     keywords: tags,
      twitter: {
@@ -211,9 +211,9 @@ export async function generateMetadata(
       images:[news_details?.featuredImage.node.sourceUrl, ...previousImages],  
     },
     openGraph: {
-      title: `Urban Naija | Live News ${news_details?.title||'' } `, 
+      title: `Culturays — The Urban Naija News | Live News ${news_details?.title||'' } `, 
        url: `https://culturays.com/news/live/${slug[0]}/`,
-      siteName: 'Urban Naija',
+      siteName: 'Culturays — The Urban Naija News',
       images: [{url:news_details?.featuredImage.node.sourceUrl, width: 800,
        height: 600, ...previousImages}],
       description:replaceHTMLTags(news_details?.excerpt) ,

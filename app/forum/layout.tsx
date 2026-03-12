@@ -15,7 +15,28 @@ export const metadata = {
  
   },
   openGraph: { 
-    title: 'Urban Naija | Forum, People, Nigeria'   
+    title: 'Culturays — The Urban Naija News | Forum, People, Nigeria',
+     url: 'https://culturays.com/forum/', 
+  images: [
+  {
+  url: '/opengraph-image.png',  
+  width: 800,
+  height: 600,
+  alt: 'Culturays — The Urban Naija News Image & Logo',
+  },
+    {
+          url: '/culturays.png', 
+          width: 800,
+          height: 600,
+          alt: 'Culturays — The Urban Naija News Image & Logo',
+        },
+        {
+          url: '/culturays-no-bg.png', 
+          width: 800,
+          height: 600,
+          alt: 'Culturays — The Urban Naija News Image & Logo',
+        },
+      ],
 },
 
 };  

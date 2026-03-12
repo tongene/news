@@ -11,8 +11,28 @@ export const metadata = {
  
   },
   openGraph: {
-    title: 'Urban Naija | News in Nigeria, Business, Economy, Nollywood, Netflix Naija', 
-      
+    title: 'Culturays — The Urban Naija News | News in Nigeria, Business, Economy, Nollywood, Netflix Naija', 
+    url: 'https://culturays.com/nigeria/', 
+  images: [
+  {
+  url: '/opengraph-image.png',  
+  width: 800,
+  height: 600,
+  alt: 'Culturays — The Urban Naija News Image & Logo',
+  },
+    {
+          url: '/culturays.png', 
+          width: 800,
+          height: 600,
+          alt: 'Culturays — The Urban Naija News Image & Logo',
+        },
+        {
+          url: '/culturays-no-bg.png', 
+          width: 800,
+          height: 600,
+          alt: 'Culturays — The Urban Naija News Image & Logo',
+        },
+      ],
   }
 };
  

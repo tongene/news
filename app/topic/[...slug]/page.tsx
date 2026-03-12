@@ -18,7 +18,7 @@ export async function generateMetadata(
      const previousImages = (await parent).openGraph?.images || []
  
 return {
-title:`Urban Naija | All News About ${tag_details.nodes[0]?.name }`,  
+title:`Culturays — The Urban Naija News | All News About ${tag_details.nodes[0]?.name }`,  
 description: tag_details.nodes[0]?.name,  
 keywords: tag_details.nodes[0]?.name , 
 twitter: {
@@ -28,10 +28,10 @@ description: tag_details.nodes[0]?.name,
 images:['/culturays.png', ...previousImages],  
 },
        openGraph: { 
-        title:`Urban Naija | All News About ${slug[0].toUpperCase()}`,  
+        title:`Culturays — The Urban Naija News | All News About ${slug[0].toUpperCase()}`,  
          description: tag_details.nodes[0]?.name,  
            url: `https://culturays.com/topic/${slug[0]}/`,
-          siteName: 'Urban Naija',
+          siteName: 'Culturays — The Urban Naija News',
          images: [{url:'https://culturays.com/culturays.png' ,
           width: 800,
           height: 600,...previousImages}], 

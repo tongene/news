@@ -29,7 +29,7 @@ import { charsFilms, relatedChars } from "@/app/newCharHandle";
     const previousImages = (await parent).openGraph?.images || []
     
     return {
-      title: `Urban Naija | ${charactertitles?.charactertitles.filmname ||''} Characters`,
+      title: `Culturays — The Urban Naija News | ${charactertitles?.charactertitles.filmname ||''} Characters`,
       description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname} `,
       keywords:[charactertitles?.title, charactertitles?.charactertitles.portrayedby, charactertitles?.charactertitles.filmname].join(', '),
       twitter: {
@@ -41,7 +41,7 @@ import { charsFilms, relatedChars } from "@/app/newCharHandle";
       openGraph: {
       title: `Naija Wiki | ${charactertitles?.charactertitles.filmname} Characters`,
        url: `https://culturays.com/characters/${slug.toLowerCase().trim().replace(/ /g,'-')}/`,
-      siteName: 'Urban Naija',
+      siteName: 'Culturays — The Urban Naija News',
       description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname} `,
         images:[{url:charactertitles?.charactertitles.filmImg1.node.sourceUrl,
           width: 800,
@@ -71,7 +71,7 @@ const charsList = await charsFilms(slug.toLowerCase().replace(/-/g, ' '))
 const jsonLd:WithContext<Article> = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-   headline: `Urban Naija - ${charactertitles?.charactertitles.filmname} | Characters `, 
+   headline: `Culturays — The Urban Naija News | ${charactertitles?.charactertitles.filmname} | Characters `, 
    description:`${charactertitles?.title}, ${charactertitles?.charactertitles.portrayedby}, ${charactertitles?.charactertitles.filmname}`, 
    url:`https://culturays.com/characters/${slug.toLowerCase().trim().replace(/ /g,'-')}/`,
    datePublished:toIsoDate(charsList.data||new Date().toDateString()),

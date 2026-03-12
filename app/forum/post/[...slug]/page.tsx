@@ -39,7 +39,7 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || []
     
   return {
-    title:`Urban Naija | Forum - ${post?.title || post?.article_title?.toUpperCase().replace(/-/g," ")}`,
+    title:`Culturays — The Urban Naija News | Forum - ${post?.title || post?.article_title?.toUpperCase().replace(/-/g," ")}`,
     keywords: post.genre.join(', '),
     twitter: {
       card: 'summary_large_image',
@@ -49,7 +49,7 @@ export async function generateMetadata(
     }, 
  openGraph: { 
  url: `https://culturays.com/forum/post/${slug[0]}/${post.id}/`,
-      siteName: 'Urban Naija',
+      siteName: 'Culturays — The Urban Naija News ',
       images: [{
       url:`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/posts_imgs/${post?.files[0]}`,
       width: 800,

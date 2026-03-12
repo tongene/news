@@ -8,7 +8,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
 
 export const metadata = {
  metadataBase: new URL('https://culturays.com'), 
-   title:"Urban News | Articles",
+   title:"Culturays — The Urban Naija News | Articles",
     alternates: {
     canonical:  `https://culturays.com/news/articles/`,
  
@@ -497,7 +497,7 @@ const netflix_News = await netflixNews()
    const jsonLd:WithContext<BlogPosting>={
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "Urban News - Covering News in Nigeria, Africa, and Beyond",
+    "headline": "Culturays — The Urban Naija News | Covering News in Nigeria, Africa, and Beyond",
     "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
     "url": "https://culturays.com/news/articles/",
     "mainEntityOfPage": {

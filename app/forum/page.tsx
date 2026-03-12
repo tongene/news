@@ -66,7 +66,7 @@ return []
 const jsonLd:WithContext<DiscussionForumPosting>={
   "@context": "https://schema.org",
   "@type": "DiscussionForumPosting",
-  "headline": "Urban - Covering News in Nigeria, Africa, and Beyond",
+  "headline": "Culturays — The Urban Naija News | Covering News in Nigeria, Africa, and Beyond",
   "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
   "url": "https://culturays.com/forum/",
   "mainEntityOfPage": {

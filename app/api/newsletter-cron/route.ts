@@ -96,7 +96,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
       ${postsHtml}
     <p style="margin-top: 30px; font-size: 15px; color: #333333;">
           Warm regards,<br>
-          <strong>Urban Naija</strong>
+          <strong>Culturays — The Urban Naija News</strong>
         </p>
           <img src="https://culturays.com/qrcode_culturays.com.png" alt="Scan to Visit Culturays Poster" style="width: 15%; border-radius: 6px; margin-bottom: 20px;" />
        <hr style="margin: 40px 0; border: none; border-top: 1px solid #eaeaea;" />        
@@ -126,7 +126,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
       Youtube
     </a> <br/>  
 
-         <p style="font-size:14px; color:#777;">You're receiving this email because you subscribed to Urban Naija News. <br/>If you'd like to unsubscribe, click <a href="https://culturays.com/api/unsubscribe?email=${encodeURIComponent(
+         <p style="font-size:14px; color:#777;">You're receiving this email because you subscribed to Culturays — The Urban Naija News. <br/>If you'd like to unsubscribe, click <a href="https://culturays.com/api/unsubscribe?email=${encodeURIComponent(
            sub.email
          )}" style="color:#00796b;">here</a>.</p>
 
@@ -135,7 +135,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
   `;
   // Send the email
       await resend.emails.send({
-        from: "Urban Naija News — <contact@culturays.com>",
+        from: "Culturays — The Urban Naija News — <contact@culturays.com>",
         to: sub.email,
         replyTo: "contact@culturays.com",
         subject: `Today's Top Stories - ${new Date().toLocaleDateString()}`,

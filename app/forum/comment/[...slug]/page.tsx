@@ -36,15 +36,15 @@ export async function generateMetadata(  { params }: Props,
   const previousImages = (await parent).openGraph?.images || []
 
   return {
-    title:`Urban Naija |Forum - ${comment?.title}`,
+    title:`Culturays — The Urban Naija News |Forum - ${comment?.title}`,
      description: comment?.title,
       openGraph: {     
-      title:`Urban Naija News | Creator`,
+      title:`Culturays — The Urban Naija News | Creator`,
       description: comment?.title,
       url:`https://culturays.com/forum/comment/${comment.id}/`,
       type: "article",
       publishedTime:comment?.created_at, 
-      siteName: 'Urban Naija News', 
+      siteName: 'Culturays — The Urban Naija News', 
       images: [{url:`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/posts_imgs/${comment?.files[0]}`,
         ...previousImages,
           width: 800,

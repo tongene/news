@@ -46,8 +46,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     return [
       {
-        title:'Urban Naija',
-        name:'Urban Naija',
+        title:'Culturays — The Urban Naija News',
+        name:'Culturays — The Urban Naija News',
         url: `https://culturays.com/`,
         lastModified: new Date(),
         changeFrequency: 'hourly',

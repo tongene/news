@@ -22,7 +22,7 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || []
  
   return {
-    title:`Urban Naija | Movie Character - ${char_details?.title}`,
+    title:`Culturays — The Urban Naija News | Movie Character - ${char_details?.title}`,
     description: replaceHTMLTags(char_details?.excerpt) , 
     keywords:[char_details?.title, char_details?.charactertitles.portrayedby, char_details?.charactertitles.filmname].join(', '),
     twitter: {
@@ -35,7 +35,7 @@ export async function generateMetadata(
       title:`Naija Wiki | Movie Character - ${char_details?.title}`,
       description:replaceHTMLTags(char_details?.excerpt), 
        url: `https://culturays.com/character/${slug}/`,
-      siteName: 'Urban Naija',
+      siteName: 'Culturays — The Urban Naija News',
       images: [{url:char_details?.featuredImage.node.sourceUrl, 
           width: 800,
           height: 600,
@@ -65,7 +65,7 @@ const related_chars = await relatedChars()
 const jsonLd:WithContext<ProfilePage> = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-   headline: `Urban Naija - ${character_data?.title}`, 
+   headline: `Culturays — The Urban Naija News | ${character_data?.title}`, 
    description:replaceHTMLTags(character_data?.excerpt) , 
    datePublished:toIsoDate(character_data?.date),
    dateModified:toIsoDate(character_data?.date),

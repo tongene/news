@@ -40,11 +40,11 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
  
 export const metadata: Metadata = {
 metadataBase: new URL('https://culturays.com'),
-  title: "Urban Naija | News, Nigeria",
+  title: "Culturays — The Urban Naija News",
   description: "This is an upcoming news outlet that gives coverage to legitimate news and events in Nigeria, Africa and the rest of the world.",
 
- generator: 'Urban Naija',
-  applicationName: 'Urban Naija | News, Nigeria',
+  generator: 'Culturays',
+  applicationName: 'Culturays',
   referrer: 'origin-when-cross-origin',
   keywords:"News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Market, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Lifestyle, People, Culture, Finance, Industry, Production, Conflict, GDP, Investment, Dollar, Naira, Binance, Bitcoin, Crude Oil, Gold, Mining, Stocks, Tax Reform, Tinubu, Cryptocurrency, 2027 Election, NELFUND, Fund, Investment, Poverty, Hunger, Science, Nigerian Universities, World Bank, IMF, Budget, Housing, Protest, Finance, Payment, Banks, WHO, Companies, Prices, Cost, Living, Supply, Tax, Goods, Services",
   authors: [{ name: 'Christina Ngene', url: 'https://culturays.com/creator/christina-ngene/' }],
@@ -52,28 +52,28 @@ metadataBase: new URL('https://culturays.com'),
   publisher: 'Christina Ngene',
  
   openGraph: {
-  title: 'Urban Naija | News, Nigeria',
+  title: 'Culturays — The Urban Naija News',
   description: 'This is an upcoming news outlet that gives coverage to legitimate news and events in Nigeria, Africa and the rest of the world.',
   url: 'https://culturays.com/', 
-  siteName: 'Urban Naija', 
+  siteName: 'Culturays — The Urban Naija News', 
   images: [
   {
   url: '/opengraph-image.png',  
   width: 800,
   height: 600,
-  alt: 'Urban Naija Image & Logo',
+  alt: 'Culturays — The Urban Naija News Image & Logo',
   },
     {
           url: '/culturays.png', 
           width: 800,
           height: 600,
-          alt: 'Urban Naija Image & Logo',
+          alt: 'Culturays — The Urban Naija News Image & Logo',
         },
         {
           url: '/culturays-no-bg.png', 
           width: 800,
           height: 600,
-          alt: 'Urban Naija Image & Logo',
+          alt: 'Culturays — The Urban Naija News Image & Logo',
         },
       ], 
       locale: 'en_NG',
@@ -111,7 +111,7 @@ metadataBase: new URL('https://culturays.com'),
    manifest: '/site.webmanifest',
     twitter: {
       card: 'summary_large_image',
-      title: 'Urban Naija | News, Nigeria',
+      title: 'Culturays — The Urban Naija News',
       description: 'This is an upcoming news outlet that gives coverage to legitimate news and events in Nigeria, Africa and the rest of the world.',    
       images: ['/twitter-image.png'],  
     },    

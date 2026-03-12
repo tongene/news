@@ -123,7 +123,7 @@ export async function generateMetadata(
      const tags= vid_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
   
      return {
-       title:`Urban Naija | Video - ${vid_details?.title}`,
+       title:`Culturays — The Urban Naija News | Video - ${vid_details?.title}`,
        description:  replaceHTMLTags(vid_details?.excerpt),
      keywords:tags,
      twitter: {
@@ -133,10 +133,10 @@ export async function generateMetadata(
       images:[vid_details?.featuredImage.node.sourceUrl, ...previousImages],  
     },
        openGraph: {  
-        title:`Urban Naija | Video - ${vid_details?.title}`,
+        title:`Culturays — The Urban Naija News | Video - ${vid_details?.title}`,
          description: replaceHTMLTags(vid_details?.excerpt ),
          url: `https://culturays.com/news/video/${slug}/`,
-          siteName: 'Urban Naija',
+          siteName: 'Culturays — The Urban Naija News',
          images: [{url:vid_details?.featuredImage.node.sourceUrl, width: 800,
        height: 600,...previousImages}],
          type: "article",

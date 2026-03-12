@@ -8,14 +8,14 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
 
 export const metadata = {
 metadataBase: new URL('https://culturays.com'), 
- title:"Urban News | Naija Wiki",  
+ title:"Culturays — The Urban Naija News | Naija Wiki",  
 description: "Find all the favourite Nollywood movie characters here. This page is dedicated to talking about their personalities, the actors that portrayed them and what makes them special and exciting to fan.",
 alternates: {
   canonical: 'https://culturays.com/naija-wiki/',
 
 },
  openGraph: {
-  title: 'Urban News | Naija Wiki',    
+  title: 'Culturays — The Urban Naija News | Naija Wiki',    
     
 }
 }; 

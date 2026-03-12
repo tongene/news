@@ -227,7 +227,7 @@ export async function generateMetadata({ params  }: {
   const tags= news_details?.contentTags.nodes.map((ex:{name:string})=>ex.name).join(', ')
    
   return {
-    title:`Urban Naija | Naija Wiki News- ${news_details?.title}`,
+    title:`Culturays — The Urban Naija News | Naija Wiki News- ${news_details?.title}`,
     description: news_details?.title,
     keywords:tags,
     twitter: {
@@ -238,10 +238,10 @@ export async function generateMetadata({ params  }: {
     },    
     
     openGraph: {
-      title:`Urban Naija | Naija Wiki News- ${news_details?.title}`,
+      title:`Culturays — The Urban Naija News | Naija Wiki News- ${news_details?.title}`,
       description: news_details?.title,
       url: `https://culturays.com/netflix-naija/${slug}/`,
-      siteName: 'Urban Naija',
+      siteName: 'Culturays — The Urban Naija News',
       images: [{url:news_details?.featuredImage.node.sourceUrl,
         width: 800,
           height: 600, ...previousImages}],

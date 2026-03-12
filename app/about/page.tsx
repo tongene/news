@@ -6,7 +6,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
 
 export const metadata = {
   metadataBase: new URL('https://culturays.com'), 
-   title:"Urban Naija News | About",  
+   title:"Culturays — The Urban Naija News | About",  
     alternates: {
   canonical: 'https://culturays.com/about/',
 

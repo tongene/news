@@ -27,7 +27,7 @@ import { charsFilms, relatedChars } from '@/app/newCharHandle';
    const previousImages = (await parent).openGraph?.images || []
  
     return {
-      title: `Urban Naija | Movies - ${charactertitles[0]?.charactertitles.portrayedby ||''} `,
+      title: `Culturays — The Urban Naija News | Movies - ${charactertitles[0]?.charactertitles.portrayedby ||''} `,
       description:`${charactertitles[0]?.title}, ${charactertitles[0]?.charactertitles.portrayedby}, ${charactertitles[0]?.charactertitles.filmname}`, 
       keywords:[charactertitles[0]?.title, charactertitles[0]?.charactertitles.portrayedby, charactertitles[0]?.charactertitles.filmname].join(', '),
      twitter: {
@@ -39,7 +39,7 @@ import { charsFilms, relatedChars } from '@/app/newCharHandle';
       openGraph: {
       title: `Naija Wiki | Movies - ${charactertitles[0]?.charactertitles.portrayedby} `,
       url: `https://culturays.com/movies/${slug.toLowerCase().trim().replace(/ /g,'-')}/`,
-      siteName: 'Urban Naija',
+      siteName: 'Culturays — The Urban Naija News',
       description:`${charactertitles[0]?.title}, ${charactertitles[0]?.charactertitles.portrayedby}, ${charactertitles[0]?.charactertitles.filmname}`, 
         images: [{url: charactertitles[0]?.charactertitles.actorImgs.node.sourceUrl, width: 800,
           height: 600, ...previousImages}]       
@@ -69,7 +69,7 @@ const listOtherChars =await relatedChars()
 const jsonLd:WithContext<ProfilePage> = {
    '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-  headline: `Urban Naija - ${charactertitles[0]?.charactertitles.portrayedby} | Movies `, 
+  headline: `Culturays — The Urban Naija News | ${charactertitles[0]?.charactertitles.portrayedby} | Movies `, 
    description: `${charactertitles[0]?.title}, ${charactertitles[0]?.charactertitles.portrayedby}, ${charactertitles[0]?.charactertitles.filmname}`, 
    url:`https://culturays.com/movies/${slug.toLowerCase().trim().replace(/ /g,'-')}/`,
    datePublished:toIsoDate(charsList.data||new Date().toDateString()),

@@ -19,13 +19,13 @@ import type { Metadata, ResolvingMetadata } from 'next'
     const user_details = await user_detailsPromise;
     const previousImages = (await parent).openGraph?.images || []
     return {
-      title:`Urban Naija News | Creator`,
+      title:`Culturays — The Urban Naija News | Creator`,
       description: user_details?.description,
       openGraph: {     
-      title:`Urban Naija News | Creator`,
+      title:`Culturays — The Urban Naija News | Creator`,
       description: user_details?.description,
       url: `https://culturays.com/creator/${slug}`,
-      siteName: 'Urban Naija News', 
+      siteName: 'Culturays — The Urban Naija News', 
       type: 'article', 
         images: [{url:user_details?.avatar.url,...previousImages,
           width: 800,

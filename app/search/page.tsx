@@ -5,7 +5,7 @@ const defaultUrl = process.env.NEXT_PUBLIC_BASE_URL
 : "http://localhost:3000/search/";
 export const metadata = {
 metadataBase: new URL('https://culturays.com'), 
- title:"Urban News | Search",
+ title:"Culturays — The Urban Naija News | Search",
  alternates: {
   canonical: 'https://culturays.com/search/',
 

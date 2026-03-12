@@ -503,7 +503,7 @@ ${xmlContent}
      news: [
        {
           publication: {
-          name: 'Urban Naija News',
+          name: 'Culturays — The Urban Naija News',
           language: 'en',
         },
          publication_date: new Date(post.date).toISOString(),
@@ -520,7 +520,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Urban Naija News',
+           name: 'Culturays — The Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -538,7 +538,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Urban Naija News',
+           name: 'Culturays — The Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -556,7 +556,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Urban Naija News',
+           name: 'Culturays — The Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -574,7 +574,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Urban Naija News',
+           name: 'Culturays — The Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -591,7 +591,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Urban Naija News',
+           name: 'Culturays — The Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -600,7 +600,7 @@ ${xmlContent}
      ],
    }));
       const nol_posts: Post[] = nol_news.map((post) => ({
-     url: `https://culturays.com/news/${post.slug}/`,
+     url: `https://culturays.com/news/nollywood/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
@@ -608,7 +608,7 @@ ${xmlContent}
      news: [
        {
          publication: {
-           name: 'Urban Naija News',
+           name: 'Culturays — The Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -625,7 +625,7 @@ const he_posts: Post[] = he_news.map((post) => ({
      news: [
        {
          publication: {
-           name: 'Urban Naija News',
+           name: 'Culturays — The Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -643,7 +643,7 @@ const env_posts: Post[] = env_news.map((post) => ({
      news: [
        {
          publication: {
-           name: 'Urban Naija News',
+           name: 'Culturays — The Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -660,7 +660,7 @@ const env_posts: Post[] = env_news.map((post) => ({
      news: [
        {
          publication: {
-           name: 'Urban Naija News',
+           name: 'Culturays — The Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),
@@ -677,7 +677,7 @@ const env_posts: Post[] = env_news.map((post) => ({
      news: [
        {
          publication: {
-           name: 'Urban Naija News',
+           name: 'Culturays — The Urban Naija News',
            language: 'en',
          },
          publication_date: new Date(post.date).toISOString(),

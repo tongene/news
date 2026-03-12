@@ -703,7 +703,7 @@ news_details?.featuredImage?.node?.sourceUrl ||
  
    return {
     metadataBase: new URL('https://culturays.com'),
-    title: `Urban Naija | ${news_details?.title }`,
+    title: `Culturays — The Urban Naija News | ${news_details?.title }`,
     description: replaceHTMLTags(news_details?.excerpt) ,
     keywords:(tags||keyTags),
     twitter: {
@@ -713,10 +713,10 @@ news_details?.featuredImage?.node?.sourceUrl ||
       images: twitterImage,
     },
      openGraph: {
-      title: `Urban Naija | ${news_details?.title}`,
+      title: `Culturays — The Urban Naija News | ${news_details?.title}`,
       description: replaceHTMLTags(news_details?.excerpt)  , 
       url:`https://culturays.com/news/${news_details?.slug}/`,
-      siteName: 'Urban Naija',
+      siteName: 'Culturays — The Urban Naija News',
       images: [{url:news_details?.featuredImage?.node?.sourceUrl, width: 800,
       height: 600, ...previousImages} ],
       type: "article",
@@ -748,7 +748,7 @@ const jsonLd:WithContext<NewsArticle> = {
    '@type': 'NewsArticle',
      name: news_details?.title,
     headline: replaceHTMLTags(news_details?.excerpt), 
-    description: `Daily news trends on Urban News — Find out what everyone is talking about and what's trending in every region across Nigeria." | ${replaceHTMLTags(news_details?.excerpt)}`,
+    description: `Daily trends on Culturays — The Urban Naija News — Find out what everyone is talking about and what's trending in every region across Nigeria." | ${replaceHTMLTags(news_details?.excerpt)}`,
    
     author: {
       "@type": "Person",

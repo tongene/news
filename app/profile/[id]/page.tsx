@@ -27,7 +27,7 @@ export async function generateMetadata(
       const previousImages = (await parent).openGraph?.images || [] 
 
   return {
-    title:`Urban Naija | ${userDetails.fullname || userDetails?.full_name}`,
+    title:`Culturays — The Urban Naija News | ${userDetails.fullname || userDetails?.full_name}`,
      description:userDetails?.about,
      keywords:[`${userDetails.fullname || userDetails?.full_name}`],
       twitter: {
@@ -37,10 +37,10 @@ export async function generateMetadata(
       images:[userDetails.avatar_url, ...previousImages],  
     },
     openGraph: {
-     title:`Urban Naija | ${userDetails.fullname || userDetails?.full_name}`,
+     title:`Culturays — The Urban Naija News | ${userDetails.fullname || userDetails?.full_name}`,
      description:userDetails?.about,
        url: `https://culturays.com/profile/${id}/`,
-     siteName: 'Urban Naija',
+     siteName: 'Culturays — The Urban Naija News',
      publishedTime:new Date().toISOString(),
     images: [{url:userDetails.avatar_url,width: 800,
        height: 600, ...previousImages}],
@@ -87,7 +87,7 @@ const UserPage =async({params}: Props) => {
    dateModified:new Date().toISOString() ,
      mainEntity: {
       "@type": "Person",
-      name:`Urban Naija | ${currentProfile.fullname || currentProfile?.full_name} - Profile`,     
+      name:`Culturays — The Urban Naija News | ${currentProfile.fullname || currentProfile?.full_name} - Profile`,     
       image: currentProfile.avatar_url,
       ////  //use later
       // jobTitle: "Editor-in-Chief",      

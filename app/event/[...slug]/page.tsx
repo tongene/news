@@ -62,7 +62,7 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || []   
 
   return {
-    title:`Urban Naija | Event - ${eventTitle?.title}`,
+    title:`Culturays — The Urban Naija News | Event - ${eventTitle?.title}`,
     description:eventTitle?.title,
     keywords:[eventTitle?.genre].join(', '),
     twitter: {
@@ -72,10 +72,10 @@ export async function generateMetadata(
      images:[`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle?.img_url}`, ...previousImages],  
     }, 
     openGraph: { 
-      title:`Urban Naija | Event - ${eventTitle?.title}`,
+      title:`Culturays — The Urban Naija News | Event - ${eventTitle?.title}`,
       description:eventTitle?.title,
       url: `https://culturays.com/event/${slug}/`,
-      siteName: 'Urban Naija',
+      siteName: 'Culturays — The Urban Naija News',
       images: [{url:`https://peezrwllibppqkolgsto.supabase.co/storage/v1/object/public/event_avatars/${eventTitle?.img_url}`,
       width: 800,
       height: 600,

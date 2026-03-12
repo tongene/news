@@ -14,9 +14,9 @@ className="rounded-full cursor-pointer bg-white"
 width={50}
 height={50}
 src={'/culturays-no-bg.png'}  
-alt='Urban Naija Logo Image'/> 
+alt='Culturays — The Urban Naija News Logo Image'/> 
 <h2 className="cursor-pointer text-4xl my-1 font-bold hover:text-gray-500">  
-Urban Naija News</h2></Link>
+Culturays — The Urban Naija News</h2></Link>
 <ul> 
 <li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/news/'aria-label="News">News</Link></li>
 <li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/forum/'>Forum</Link></li>  

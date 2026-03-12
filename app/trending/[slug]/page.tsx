@@ -210,8 +210,8 @@ export async function generateMetadata({ params }: {
     const previousImages = (await parent).openGraph?.images || []
      
     return { 
-    title:`Urban Naija | Trending - ${trending_details?.title}` ,
-        description: `Daily news trends on Urban News — Find out what everyone is talking about and what's trending in every region across Nigeria." | ${replaceHTMLTags(trending_details?.excerpt)}`,
+    title:`Culturays — The Urban Naija News | Trending - ${trending_details?.title}` ,
+        description: `Daily news trends on Culturays — The Urban Naija News. Find out what everyone is talking about and what's trending in every region across Nigeria." | ${replaceHTMLTags(trending_details?.excerpt)}`,
         keywords:tags,
         twitter: {
     card: 'summary_large_image',
@@ -220,10 +220,10 @@ export async function generateMetadata({ params }: {
     images:[trending_details?.featuredImage.node.sourceUrl, ...previousImages],  
   },
     openGraph: { 
-        title:`Urban Naija | Trending - ${trending_details?.title}` ,
+        title:`Culturays — The Urban Naija News | Trending - ${trending_details?.title}` ,
         description:replaceHTMLTags(trending_details?.excerpt),
         url: `https://culturays.com/news/trending/${slug}/`,
-        siteName: 'Urban Naija',
+        siteName: 'Culturays — The Urban Naija News',
       images: [{url:trending_details?.featuredImage.node.sourceUrl, width: 800,
       height: 600,}],
         type: "article",
@@ -260,7 +260,7 @@ const TrendingDetails =async ({params}: {
   '@type': 'NewsArticle',
     name: trends_detail?.title,
    headline: trends_detail?.title, 
-   description: `Daily news trends on Urban News — Find out what everyone is talking about and what's trending in every region across Nigeria." | ${replaceHTMLTags(trends_detail?.excerpt)}`,
+   description: `Daily news trends on Culturays — The Urban Naija News — Find out what everyone is talking about and what's trending in every region across Nigeria." | ${replaceHTMLTags(trends_detail?.excerpt)}`,
    author: {
      "@type": "Person",
      name: "Christina Ngene",
