@@ -12,7 +12,7 @@ import { createClient as serverRole } from "@supabase/supabase-js";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, excerpt, image, url, content, postId, date } = body;
+    const { title, excerpt, image, url, video, postId, date } = body;
     if (!title || !excerpt) {
       return NextResponse.json({ message: 'Missing title or excerpt' }, { status: 400 });
     }
@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
         image,
         url,
         created_at: new Date().toISOString(),
+        video,
       },
     ]);
 const html = `

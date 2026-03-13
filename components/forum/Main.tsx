@@ -95,8 +95,7 @@ const { ref, inView } = useInView()
            setScrolledPosts(title_X )
       } 
     
-      }, [topic]);  
-
+      }, [topic]);
 
     const loadMorePosts = async () => {
      const apiP =await postsItems(startScroll, count)??[]
@@ -385,7 +384,13 @@ router.push(pathname+'?message=Like Updated', {scroll:false})
     }) 
   }
   }
- 
+
+const [videoId, setVideoId] = useState("");
+
+  const extractId = (url: string) => {
+    const match = url.match(/v=([^&]+)/);
+    return match ? match[1] : "";
+  };
   return (  
 <div>    
 <div className="w-24 m-auto "> 
@@ -432,7 +437,7 @@ setEditId={setEditId}
  <hr />
      {!topic&& 
     <main className="bg-mainBg py-6">  
-<div className={opTitles.length===0?'hidden':"block relative top-20 z-30 w-max"}style={arrowOpens}onClick={rotateArrow}>  
+<div className={opTitles.length===0?'hidden':"block relative top-20 z-30 w-max"} style={arrowOpens}onClick={rotateArrow}>  
 
   <div className="flex hover:bg-gray-900 dark:bg-gray-800 w-80 bg-white justify-end" > 
     {gnrItx.length>0 && <h2 className="text-2xl font-bold dark:bg-gray-800 bg-white text-center text-2xl font-bold dark:bg-gray-800 px-5 py-3 bg-white w-full">Articles</h2>} 
@@ -464,6 +469,7 @@ setEditId={setEditId}
    
   <div ref={createRef}> 
 {xx?.title&&!xx?.article_title&& <Link href={`/forum/post/${xx.slug}/${xx.id}/`}><h3 className="text-white opacity-70 text-2xl cursor-pointer px-4 text-center underline">{xx?.title}</h3></Link>} 
+
    <p className="text-white font-bold text-center text-lg my-1">Genres:</p>
    {xx?.genre?.slice(0,3)?.map((xy, vi)=>
    <div className="text-white text-center" key={vi}>
@@ -511,8 +517,10 @@ setEditId={setEditId}
     <div className="flex overflow-auto w-auto scroll-smooth">  
      {xx?.files?.flat().filter((vx)=>!(vx as string)?.includes('undefined')).map((itx,ix)=> itx &&
      <div key={itx} className="mx-1 min-w-fit relative scroll-smooth" ref={imgIndex===itx?imgRef:null} title="double click to view"> 
-
-    <Image 
+  {(itx as string).endsWith('mp4')? <video controls autoPlay className="vertical-video, height:60%, aspect-ratio:9/16">
+           <source src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${itx}`}/>
+        </video>:
+           <Image 
    onClick={()=>enlargeImgs(i, ix)}  
    className={imgIndex===itx?'animate-in cursor-pointer mx-1 w-full h-40 my-4':'cursor-pointer mx-1 w-full h-40 my-4'} 
    src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${itx}`} 
@@ -521,9 +529,25 @@ setEditId={setEditId}
    style={imgIndex===itx?imgZoom:{} }
    alt={xx.title as string}
    />
+        
+        }
+         <div>
+      <input
+        placeholder="Paste YouTube URL"
+        onChange={(e) => setVideoId(extractId(e.target.value))}
+      />
 
+      {videoId && (
+        <iframe
+          width="250"
+          height="315"
+          src={`https://www.youtube.com/embed/${videoId}`}
+          allowFullScreen
+        />
+      )}
+    </div>
     {show&&
-     <> 
+     <>
      {!deleteBtn && <span onClick={()=>openDelete(ix)} className={imgIndex===itx?'absolute top-4 text-gray-700 text-xl text-center rounded-full border bg-opacity-60 w-16 p-4 m-2 font-bold hover:scale-105 cursor-pointer':'hidden'}>X</span> }
     {deleteBtn&&activeIdx=== ix && <span className={imgIndex===itx?'absolute left-4 top-4 text-white text-center py-3 m-2 text-md rounded-none shadow-4xl p-3 border w-1/4 z-10 bg-slate-900':'hidden'}onClick={()=>resetImg( xx , itx)} >Delete Photo</span>} </> }
  
@@ -661,6 +685,9 @@ onChange={handleImageUpload}
    </main>  
    }
  
+
+
+
 {topic&& 
     <main className="bg-mainBg py-6">  
 <div className={opTitles.length===0?'hidden':"block relative top-20 z-30 w-max "} style={arrowOpens}onClick={rotateArrow}> 
@@ -746,7 +773,9 @@ onChange={handleImageUpload}
      {xx?.files?.flat().filter((vx)=>!(vx as string)?.includes('undefined')).map((itx,ix)=> itx &&
      <div key={itx} className="mx-1 min-w-fit relative scroll-smooth" ref={imgIndex===itx?imgRef:null} title="double click to view"> 
 
-    <Image 
+   { (itx as string).endsWith('mp4')? <video controls autoPlay className="vertical-video, height:60%, aspect-ratio:9/16">
+           <source src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${itx}`}/>
+        </video>:<Image 
    onClick={()=>enlargeImgs(i, ix)}  
    className={imgIndex===itx?'animate-in cursor-pointer mx-1 w-full h-40 my-4':'cursor-pointer mx-1 w-full h-40 my-4'} 
    src={`${process.env.SUPABASE_PUBLIC_POST_IMAGE_URL}${itx}`} 
@@ -754,8 +783,22 @@ onChange={handleImageUpload}
    height={150}
    style={imgIndex===itx?imgZoom:{} }
    alt={xx.article_title as string}
-   />
+   />}
+ <div>
+      <input
+        placeholder="Paste YouTube URL"
+        onChange={(e) => setVideoId(extractId(e.target.value))}
+      />
 
+      {videoId && (
+        <iframe
+          width="250"
+          height="315"
+          src={`https://www.youtube.com/embed/${videoId}`}
+          allowFullScreen
+        />
+      )}
+    </div>
     {show&&
      <> 
      {!deleteBtn && <span onClick={()=>openDelete(ix)} className={imgIndex===itx?'absolute top-4 text-gray-700 text-xl text-center rounded-full border bg-opacity-60 w-16 p-4 m-2 font-bold hover:scale-105 cursor-pointer':'hidden'}>X</span> }
