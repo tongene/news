@@ -29,7 +29,10 @@ function sortAscending(pb:PostProps, pa:PostProps){
  type TrendyProp={
   title:string
   }
-const Main = ({topic, val, user, trendX, initialPosts }:{ user: User | null, trendX: TrendyProp[], initialPosts: InitialPosts[], topic: string, val: string } ) => {   
+  type VidLn={
+    videoId:string
+  }
+const Main = ({topic, val, user, trendX, initialPosts, videosYT }:{ user: User | null, trendX: TrendyProp[], initialPosts: InitialPosts[], topic: string, val: string, videosYT: VidLn[] } ) => {   
  const [events,setEvents]=useState<Event[]>([]) 
 // const [initialPostsData,setInitialPostsData]=useState<InitialPosts[] >([])
 const forumEvents =async ()=>{  
@@ -388,9 +391,28 @@ router.push(pathname+'?message=Like Updated', {scroll:false})
 const [videoId, setVideoId] = useState("");
 
   const extractId = (url: string) => {
-    const match = url.match(/v=([^&]+)/);
+       const regExp =
+      /(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&?/]+)/;
+    const match = url.match(regExp); 
     return match ? match[1] : "";
   };
+ const insertExtracted=async ()=>{
+    const supabase = createClient()
+const { data, error } = await supabase
+  .from('videoIDs')
+  .insert([
+    { videoId, user_id: user?.id },
+  ])
+  .select()
+  if(!error) setVideoId("")
+    
+ }
+
+ useEffect(()=>{
+insertExtracted()
+ 
+ },[videoId])
+
   return (  
 <div>    
 <div className="w-24 m-auto "> 
@@ -435,6 +457,25 @@ setEditId={setEditId}
 
 </div>
  <hr />
+   <div>
+      <input 
+        placeholder="Paste YouTube URL"
+        className="focus:outline-none resize-none inherit border-none mt-1 p-3 leading-normal text-gray-300 text-lg rounded"
+        onChange={(e) => setVideoId(extractId(e.target.value))}
+      />
+    <div className="flex">
+      {videosYT.map((vid)=>(
+       
+     <iframe
+        key={vid?.videoId}
+          width="250"
+          height="315"
+          src={`https://www.youtube.com/embed/${vid?.videoId}`}
+          allowFullScreen
+        />
+      ))}
+     </div>
+    </div>
      {!topic&& 
     <main className="bg-mainBg py-6">  
 <div className={opTitles.length===0?'hidden':"block relative top-20 z-30 w-max"} style={arrowOpens}onClick={rotateArrow}>  
@@ -531,21 +572,7 @@ setEditId={setEditId}
    />
         
         }
-         <div>
-      <input
-        placeholder="Paste YouTube URL"
-        onChange={(e) => setVideoId(extractId(e.target.value))}
-      />
-
-      {videoId && (
-        <iframe
-          width="250"
-          height="315"
-          src={`https://www.youtube.com/embed/${videoId}`}
-          allowFullScreen
-        />
-      )}
-    </div>
+       
     {show&&
      <>
      {!deleteBtn && <span onClick={()=>openDelete(ix)} className={imgIndex===itx?'absolute top-4 text-gray-700 text-xl text-center rounded-full border bg-opacity-60 w-16 p-4 m-2 font-bold hover:scale-105 cursor-pointer':'hidden'}>X</span> }
@@ -784,21 +811,7 @@ onChange={handleImageUpload}
    style={imgIndex===itx?imgZoom:{} }
    alt={xx.article_title as string}
    />}
- <div>
-      <input
-        placeholder="Paste YouTube URL"
-        onChange={(e) => setVideoId(extractId(e.target.value))}
-      />
 
-      {videoId && (
-        <iframe
-          width="250"
-          height="315"
-          src={`https://www.youtube.com/embed/${videoId}`}
-          allowFullScreen
-        />
-      )}
-    </div>
     {show&&
      <> 
      {!deleteBtn && <span onClick={()=>openDelete(ix)} className={imgIndex===itx?'absolute top-4 text-gray-700 text-xl text-center rounded-full border bg-opacity-60 w-16 p-4 m-2 font-bold hover:scale-105 cursor-pointer':'hidden'}>X</span> }

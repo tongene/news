@@ -94,7 +94,16 @@ const jsonLd:WithContext<DiscussionForumPosting>={
     }
   }
 }
+ 
+const getVideos=async ()=>{
+  const { data, error } = await supabase
+  .from('videoIDs')
+  .select("*")
 
+  return data ??[]
+}
+
+  const videos = await getVideos()
  
 return ( 
 <div> 
@@ -105,6 +114,7 @@ return (
  user={user}
  trendX={trending}
  initialPosts={initialPostsD}
+ videosYT={videos}
 //  filteredTrends={filteredTrends}
  /> 
  </div> 

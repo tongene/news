@@ -78,7 +78,8 @@ const { data, error:err } = await supabaseRole
     sent_at:new Date().toDateString(),
     url,
     excerpt,
-    user_email:user?.email
+    user_email:user?.email,
+     video,
   })
   .select()
   .single();
