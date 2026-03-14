@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
         image,
         url,
         created_at: new Date().toISOString(),
-        video,
+        video
       },
     ]);
 const html = `
@@ -79,7 +79,7 @@ const { data, error:err } = await supabaseRole
     url,
     excerpt,
     user_email:user?.email,
-     video,
+    video
   })
   .select()
   .single();
