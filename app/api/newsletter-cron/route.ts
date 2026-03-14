@@ -51,9 +51,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
           (p) => `
            
            <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-               <video controls autoplay class="vertical-video"; height="60%"; aspect-ratio:9/16;>
-           <source src="${p.video}">
-        </video>
+           ${ p.video!==''&&p.video!==""? `<video controls autoplay class="vertical-video"; height="60%"; aspect-ratio:9/16;>
+           <source src="${p.video}"/>
+        </video>`:""}
         ${p.image? `<img src=${p.image} alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />`: `<img src='https://culturays.com/opengraph-image.png' alt="Newsletter Banner" style="width: 100%; border-radius: 6px; margin-bottom: 20px;" />`}
 
         <h2 style="font-size: 22px; color: #2c3e50; margin: 10px 0;">${p.title}</h2>
