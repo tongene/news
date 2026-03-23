@@ -76,7 +76,7 @@ if(duration===currentTime && duration !==0)setIsPlaying(false)
         </button>
       
       </div>
-      <div className="mt-4 text-gray-300 w-full flex justify-between px-4">
+      <div className="mt-20 text-gray-300 w-full flex justify-between px-4">
       <input
         type="range"
         value={progress}

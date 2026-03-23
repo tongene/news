@@ -1,61 +1,15 @@
  
-import SideBar from "@/components/Side" 
 import ArticleDetail from "@/components/News/ArticleDetail" 
 import type { Metadata, ResolvingMetadata } from 'next' 
 import { NewsArticle, WithContext } from "schema-dts";
-import StructuredData from "@/components/StructuredData"; 
-import { returnPost } from "@/utils/resolveFunctions"; 
-import Link from "next/link";
-import { createClient } from "@/utils/supabase/server";
-import { scrapeSilverBird } from "@/app/filmsdata";
-import { processSbImages } from "@/utils/processImages";
-import { CineType, PostTypeProps } from "@/app/types";
+import StructuredData from "@/components/StructuredData";
 import NewsDetail from "@/components/NewsDetail";
-import { CronJob } from "cron";  
- const CULTURAYS_CONTENT_WP = process.env.CULTURAYS_WP
+
 export type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string ]: string | string[] | undefined, variant: string }>
 }
 
- const dailyWiki =async()=>{
-        const silverBTitles= await scrapeSilverBird()
-        const silverB_titles = silverBTitles.filter((xy)=> xy.title !==undefined).map((ex)=> ex.title)  
-        const silverB_urls = silverBTitles.filter((xy)=> xy.titleUrl !==undefined).map((ex)=> ex.titleUrl)
-        const silverB_imgs = silverBTitles.filter((xy)=> xy.img_url !==undefined).map((ex)=> ex.img_url)
-         const silverB_dur = silverBTitles.filter((xy)=> xy.dur !==undefined).map((ex)=> ex.dur)
-        const silverB_gnr = silverBTitles.filter((xy)=> xy.genre !==undefined).map((ex)=> ex.genre)
-        const silverB_released = silverBTitles.filter((xy)=> xy.release_date !==undefined).map((ex)=> ex.release_date)
-       const minLength = Math.max(silverB_titles.length,silverB_urls.length, silverB_imgs.length, silverB_dur.length, silverB_gnr.length, silverB_released.length);   
-      
-       const grouped:CineType[] =[]     
-       for (let i = 0; i < minLength; i++) {     
-         const imgMime = await processSbImages(silverB_imgs[i] as string); 
-      
-              if(imgMime!== undefined) {
-               grouped.push({
-                 title: silverB_titles[i]as string,
-                 url: silverB_urls[i]as string,
-                 img_url: imgMime as string,
-                 release_date: silverB_released[i]as string,
-                 genre: silverB_gnr[i]as string,
-                 dur: silverB_dur[i]as string,
-               });
-              } 
-       } 
-        const supabase =await createClient() 
-       const { data, error } = await supabase
-         .from('cinema_titles')
-         .upsert(grouped, { onConflict: 'title' })
-         .select();
-        
-       if (error) {
-         console.error('Error inserting items:', error);
-       }
-      const since = new Date(Date.now() - 24 * 60 * 60 * 5000).toISOString();
-      await supabase.from('cinema_titles').delete().lte('created_at', since);
-       // return () => clearTimeout(fxnTimeout);
-        }  
        
    
 async function news_details_all(uri:string){ 
