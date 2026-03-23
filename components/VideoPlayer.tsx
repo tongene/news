@@ -23,9 +23,9 @@ const VideoPlayer = ({ videoSrc, posterSrc}:{videoSrc:string, posterSrc:string})
   };
   useEffect(() => {
     const updateTime = () => {
-      const current = ( videoRef.current as HTMLVideoElement).currentTime;
-      const duration =( videoRef.current as HTMLVideoElement).duration;
-      setCurrentTime((videoRef.current  as HTMLVideoElement).currentTime);
+      const current = ( videoRef.current as HTMLVideoElement)?.currentTime;
+      const duration =( videoRef.current as HTMLVideoElement)?.duration;
+      setCurrentTime((videoRef.current  as HTMLVideoElement)?.currentTime);
       setProgress((current / duration) * 100);     
 
     };
@@ -58,8 +58,9 @@ if(duration===currentTime && duration !==0)setIsPlaying(false)
 
   return (
  
-   <div className='relative w-full flex-col flex justify-center items-center'>
-      <video className='inline ' width='1150px' onClick={handlePlay} poster={posterSrc} ref={videoRef}>
+   <div className='relative w-full flex-col flex justify-center items-center w-[1150px]'>
+     <div className='h-[700px] '>
+ <video className='inline h-[800px]' width='1000px' onClick={handlePlay} poster={posterSrc} ref={videoRef}>
     <source src={videoSrc} type="video/mp4"/>
     <source src={videoSrc} type="video/ogg"/>
     <source src={videoSrc} type="video/webm"/>
@@ -67,6 +68,8 @@ if(duration===currentTime && duration !==0)setIsPlaying(false)
     <embed src={videoSrc}/>
     </object> 
 </video> 
+
+     </div>
 <div className='top-auto bottom-auto absolute text-center'>
         <button onClick={handlePlay}className="w-20 h-20 ">
         {isPlaying ?<span className='px-4 rounded-full text-gray-300 hover:text-white z-30 text-5xl cursor-pointer opacity-20 hover:opacity-50 border hover:border-4'><FontAwesomeIcon icon={faPause}/></span> :<span className='text-gray-300 hover:text-gray-50  z-30 text-5xl cursor-pointer'><FontAwesomeIcon icon={faPlay}/></span> }

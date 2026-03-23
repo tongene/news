@@ -22,9 +22,9 @@ const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:Vi
   <div className='relative border'> 
   {content_videos.slice(0,1).map((nt, index)=>(
   <div key={nt.slug} className='home_grid_alt_vid '>
-    <div className='max-w-5xl' >  
+    <div className='max-w-5xl'>  
    <Image
-    className='inline'
+    className='inline h-64 w-[550px] sm:w-[750px] sm:h-[400px] md:w-[960px] sm:h-[530px] md:min-h-[540px] lg:min-h-[540px] xl:min-h-[650px]'
     src={nt.featuredImage.node.sourceUrl }
  width={1200}
  height={675}
@@ -35,8 +35,8 @@ const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:Vi
         </button>
    </div>
       <div className='absolute z-20 top-0 sm:top-24 xs:mx-8 py-5 font-bold text-white mx-2 xs:w-3/4'>   
-    <Link href={`/news/video/${nt.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}  className='hover:text-gray-500 overflow-hidden text-ellipsis text-xl xs:text-3xl md:text-4xl h-24'> {nt.title}</h2></Link>
-    <Link href={`/news/video/${nt.slug}/`}><p className='overflow-hidden text-ellipsis xs:text-lg text-sm xs:block xs:leading-6 hover:text-gray-500'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}dangerouslySetInnerHTML={{__html:nt?.excerpt}} /></Link> 
+    <Link href={`/news/video/${nt.slug}/`}><h2 style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}  className='hover:text-gray-500 overflow-hidden text-ellipsis text-xl xs:text-3xl md:text-4xl'> {nt.title}</h2></Link>
+    <Link href={`/news/video/${nt.slug}/`}><div className='overflow-hidden text-ellipsis xs:text-lg text-sm xs:block xs:leading-6 hover:text-gray-500'style={{ display: '-webkit-box', WebkitLineClamp:2, WebkitBoxOrient: 'vertical' }}dangerouslySetInnerHTML={{__html:nt?.excerpt}} /></Link> 
     <span className='text-end text-sm mt-11 italic py-2'>{moment(nt.date).subtract(1, 'hour').fromNow()} </span>
     </div>
     </div> 
@@ -47,8 +47,9 @@ const Videos = ({content_videos, sidebarItems, news_outline }:{content_videos:Vi
   <div className='home_grid_alt_vid xs:flex lg:flex-col'>
   {content_videos.slice(1,4).map((nt)=>(
   <div key={nt.slug} className='[&:nth-child(3)]:lg:mt-1 [&:nth-child(2)]:lg:mt-1 [&:nth-child(3)]:xl:mt-3 [&:nth-child(2)]:xl:mt-3 border lg:text-white'>
- <div className='vidx2 xs:max-w-80 lg:max-w-sm 2xl:max-w-xs' >  
- <Image 
+ <div className='vidx2 xs:max-w-80 lg:max-w-sm 2xl:max-w-xs sm:min-h-44 xl:min-h-52' >  
+ <Image
+ className='sm:h-44 xs:h-32 xl:h-52'
     src={nt.featuredImage.node.sourceUrl }
  width={1200}
  height={675}
