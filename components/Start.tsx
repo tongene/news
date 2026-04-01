@@ -16,6 +16,7 @@ const Start = ({campaigns}:{campaigns: CampaignProps[]}) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({campaigns})
     })
+    if(!res.ok) return console.log({res})
 const ids = campaigns.map(c => c.id);
      const { data, error } = await supabase
       .from("campaigns") 
