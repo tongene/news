@@ -69,7 +69,7 @@ const taggedPosts = tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map(
        "@id":slug[0] ,
      },
      url:slug,
-     image: "https://culturays.com/assets/images/opengraph-image.png" ,
+     image: "https://culturays.com/assets/images/opengraph-image.jpg" ,
      publisher: {
        "@type": "Organization",
        name: "Christina Ngene",

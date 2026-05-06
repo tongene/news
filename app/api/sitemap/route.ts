@@ -156,13 +156,16 @@ ${xmlContent}
 export async function GET() {  
   const postsData:FeedProps[]=await contentFeed() 
   const liveData:FeedProps[]=await livesFeed() 
- 
+  const fallback =  "https://culturays.com/twitter-image.jpg";
+
   const content_posts: Post[] = postsData.map((post) => ({
     url: `https://culturays.com/news/${post.slug}/`,
     lastModified: new Date(post.date),
     changeFrequency: 'always',
     priority: 0.8,
-    images: [post?.featuredImage?.node?.sourceUrl],
+    images: post?.featuredImage?.node?.sourceUrl 
+    ? [post.featuredImage.node.sourceUrl]
+    : [fallback], 
     news: [
       {
         publication: {
@@ -181,7 +184,9 @@ export async function GET() {
    lastModified:new Date(post.date),
   changeFrequency:'always', 
   priority:0.8,
-   images: [post?.featuredImage?.node?.sourceUrl],
+   images: post?.featuredImage?.node?.sourceUrl
+     ?[post.featuredImage.node.sourceUrl]
+     :[fallback], 
    news: [
     {
       publication: {

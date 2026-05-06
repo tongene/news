@@ -87,7 +87,7 @@ const jsonLd:WithContext<BlogPosting>={
   "inLanguage": "en",
   "image": {
     "@type": "ImageObject",
-    "url": "https://culturays.com/opengraph-image.png"
+    "url": "https://culturays.com/opengraph-image.jpg"
   },
    "datePublished":toIsoDate(new Date().toDateString()) ,
  "dateModified": toIsoDate(new Date().toDateString()),

@@ -29,7 +29,7 @@ function toIsoDate(dateStr: string): string {
     "inLanguage": "en",
     "image": {
       "@type": "ImageObject",
-      "url": "https://culturays.com/opengraph-image.png"
+      "url": "https://culturays.com/opengraph-image.jpg"
     },
     "datePublished":toIsoDate(new Date().toDateString()) ,
     "dateModified": toIsoDate(new Date().toDateString()),
@@ -43,7 +43,7 @@ function toIsoDate(dateStr: string): string {
       "url": "https://www.culturays.com/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://culturays.com/culturays-no-bg.png"
+        "url": "https://culturays.com/opengraph-image.jpg"
       }
     }
   }

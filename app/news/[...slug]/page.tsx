@@ -653,7 +653,7 @@ const previousImages = (await parent).openGraph?.images || []
 const tags= news_details?.tags?.nodes.map((ex:{name:string})=>ex.name).join(', ')
 const twitterImage =
 news_details?.featuredImage?.node?.sourceUrl ||
-'https://culturays.com/opengraph-image.png';
+'https://culturays.com/opengraph-image.jpg';
  
    return {
     metadataBase: new URL('https://culturays.com'),

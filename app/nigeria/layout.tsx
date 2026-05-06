@@ -15,7 +15,7 @@ export const metadata = {
     url: 'https://culturays.com/nigeria/', 
   images: [
   {
-  url: '/opengraph-image.png',  
+  url: '/opengraph-image.jpg',  
   width: 800,
   height: 600,
   alt: 'Culturays — The Urban Naija News Image & Logo',

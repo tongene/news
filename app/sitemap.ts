@@ -52,21 +52,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'hourly',
         priority:1,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       },
       {
         url:`https://culturays.com/about/`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       },
       {
         url:`https://culturays.com/forum/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       },
     
       {
@@ -74,7 +74,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'hourly',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       },
      
      
@@ -83,7 +83,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       },
       
       {
@@ -91,21 +91,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       },
       {
         url:`https://culturays.com/news/videos/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       },
       {
         url:`https://culturays.com/news/business/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       },
        
       {
@@ -113,14 +113,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'hourly',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       },
       {
         url:`https://culturays.com/news/economy/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       },
       
       {
@@ -128,21 +128,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       }, 
       {
         url:`https://culturays.com/naija-birthdays/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       } 
       , { 
         url:`https://culturays.com/daily/`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       } 
       , 
       {
@@ -150,7 +150,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 0.8,
-        images: ['https://culturays.com/culturays.png']
+        images: ['https://culturays.com/opengraph-image.jpg']
       }, 
  
     ] as SitemapFile 

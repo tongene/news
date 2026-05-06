@@ -223,7 +223,7 @@ const NollywoodPage =async () => {
         "inLanguage": "en",
         "image": {
           "@type": "ImageObject",
-          "url": "https://culturays.com/opengraph-image.png"
+          "url": "https://culturays.com/opengraph-image.jpg"
         },
         "datePublished": new Date().toISOString()  ,
          "dateModified":new Date().toISOString() ,

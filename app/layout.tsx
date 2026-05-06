@@ -1,7 +1,6 @@
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes"; 
-import "./globals.css";
-import HeaderAuth from "@/components/header-auth";  
+import "./globals.css";  
 import Script from "next/script";  
 // import GoogleAnalytics from "@/components/Analytics";
 import Footer from "@/components/Footer";
@@ -58,7 +57,7 @@ metadataBase: new URL('https://culturays.com'),
   siteName: 'Culturays — The Urban Naija News', 
   images: [
   {
-  url: '/opengraph-image.png',  
+  url: '/opengraph-image.jpg',  
   width: 800,
   height: 600,
   alt: 'Culturays — The Urban Naija News Image & Logo',
@@ -113,7 +112,7 @@ metadataBase: new URL('https://culturays.com'),
       card: 'summary_large_image',
       title: 'Culturays — The Urban Naija News',
       description: 'This is an upcoming news outlet that gives coverage to legitimate news and events in Nigeria, Africa and the rest of the world.',    
-      images: ['/twitter-image.png'],  
+      images: ['/twitter-image.jpg'],  
     },    
     
     verification: {

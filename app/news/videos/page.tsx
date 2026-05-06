@@ -272,7 +272,7 @@ const content_videos = await vids();
         "headline": "Culturays — The Urban Naija News | Event Video Report",
         "description": "Watch this video report on major African events from Culturays — The Urban Naija News.",
         "url": `https://culturays.com/news/video/${content_videos[0]?.slug}/`,
-        "image": "https://culturays.com/opengraph-image.png",
+        "image": "https://culturays.com/opengraph-image.jpg",
           "datePublished": new Date().toISOString()  ,
          "dateModified":new Date().toISOString() ,
         "author": {
@@ -291,7 +291,7 @@ const content_videos = await vids();
           "@type": "VideoObject",
           "name": "Culturays — The Urban Naija News | Coverage of Events in Nigeria, Africa and Beyond",
           "description": "This video features Culturays — The Urban Naija News' coverage of major events in Nigeria, Africa, and across the globe.",
-          "thumbnailUrl": "https://culturays.com/opengraph-image.png",
+          "thumbnailUrl": "https://culturays.com/opengraph-image.jpg",
           "uploadDate": "2025-04-15T08:00:00Z",
           "contentUrl": `https://culturays.com/news/video/${content_videos[0]?.videosGroup.videoUrl.node.mediaItemUrl}/`,
           "embedUrl": `https://culturays.com/news/video/${content_videos[0]?.slug}/`,

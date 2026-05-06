@@ -494,12 +494,16 @@ ${xmlContent}
   const vid_news:FeedProps[] = await vidFeed()  
   const he_news:FeedProps[] = await heFeed()
     const articles_news:FeedProps[] = await articlesFeed()
+    const fallback =  "https://culturays.com/twitter-image.jpg";
+
    const bix_posts: Post[] = business_news.map((post) => ({
      url: `https://culturays.com/news/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage?.node.sourceUrl],
+     images: post.featuredImage?.node.sourceUrl 
+     ?[post.featuredImage.node.sourceUrl]
+     :[fallback], 
      news: [
        {
           publication: {
@@ -516,7 +520,9 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage?.node.sourceUrl],
+     images: post.featuredImage?.node.sourceUrl 
+     ?[post.featuredImage.node.sourceUrl]
+     :[fallback], 
      news: [
        {
          publication: {
@@ -534,7 +540,9 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage?.node.sourceUrl],
+     images: post.featuredImage?.node.sourceUrl 
+     ?[post.featuredImage.node.sourceUrl]
+     :[fallback], 
      news: [
        {
          publication: {
@@ -552,7 +560,9 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage?.node.sourceUrl],
+     images: post?.featuredImage?.node?.sourceUrl 
+     ?[post.featuredImage.node.sourceUrl]
+     :[fallback],    
      news: [
        {
          publication: {
@@ -570,7 +580,9 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage?.node.sourceUrl],
+     images: post.featuredImage?.node?.sourceUrl
+  ? [post.featuredImage.node.sourceUrl]
+  : [fallback],    
      news: [
        {
          publication: {
@@ -587,7 +599,9 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage?.node.sourceUrl],
+     images: post.featuredImage?.node.sourceUrl
+      ?[post.featuredImage.node.sourceUrl]
+     :[fallback], 
      news: [
        {
          publication: {
@@ -604,7 +618,9 @@ ${xmlContent}
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage?.node.sourceUrl],
+     images: post.featuredImage?.node.sourceUrl
+      ?[post.featuredImage.node.sourceUrl]
+     :[fallback], 
      news: [
        {
          publication: {
@@ -621,7 +637,9 @@ const he_posts: Post[] = he_news.map((post) => ({
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage?.node.sourceUrl],
+     images: post.featuredImage?.node.sourceUrl
+      ?[post.featuredImage.node.sourceUrl]
+     :[fallback], 
      news: [
        {
          publication: {
@@ -639,7 +657,9 @@ const env_posts: Post[] = env_news.map((post) => ({
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post.featuredImage?.node.sourceUrl],
+     images: post.featuredImage?.node.sourceUrl
+      ?[post.featuredImage.node.sourceUrl]
+     :[fallback], 
      news: [
        {
          publication: {
@@ -656,7 +676,9 @@ const env_posts: Post[] = env_news.map((post) => ({
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post?.featuredImage?.node?.sourceUrl],
+     images: post?.featuredImage?.node?.sourceUrl
+      ?[post.featuredImage.node.sourceUrl]
+     :[fallback], 
      news: [
        {
          publication: {
@@ -673,7 +695,9 @@ const env_posts: Post[] = env_news.map((post) => ({
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,
-     images: [post?.featuredImage?.node?.sourceUrl],
+     images: post?.featuredImage?.node?.sourceUrl
+      ?[post.featuredImage.node.sourceUrl]
+     :[fallback], 
      news: [
        {
          publication: {
