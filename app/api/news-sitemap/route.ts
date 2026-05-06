@@ -566,7 +566,7 @@ ${xmlContent}
    }));
 
       const vid_posts: Post[] = vid_news.map((post) => ({
-     url: `https://culturays.com/news/${post.slug}/`,
+     url: `https://culturays.com/news/video/${post.slug}/`,
      lastModified: new Date(post.date),
      changeFrequency: 'always',
      priority: 0.8,

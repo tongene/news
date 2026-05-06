@@ -7,9 +7,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import Live from './Home/Live';
- const newsByLatest =()=>{  
+ const newsByLatest =async()=>{  
 
-const wprest= fetch('https://content.culturays.com/graphql',{ 
+const wprest= await fetch('https://content.culturays.com/graphql',{ 
 method: "POST",
   headers: {
       'Content-Type':'application/json'

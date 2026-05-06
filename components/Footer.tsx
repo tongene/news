@@ -8,7 +8,7 @@ const Footer = async() => {
 
   return (
     <footer className="bg-culturaysBg p-4 text-white flex flex-col justify-between w-full border-t border-t-foreground/10 dark:bg-gray-300 dark:text-gray-900">
-   <div className="font-bold"> 
+   <div className="font-bold" id="footer"> 
  <Link href='/' prefetch={false}><Image
 className="rounded-full cursor-pointer bg-white"
 width={50}

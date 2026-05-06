@@ -77,6 +77,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
     <a href="https://culturays.com" style="color:#f97316;">
       Culturays — The Urban Naija News
     </a> <br/>
+     <a href="https://muckrack.com/culturays" style="color:#f97316;">
+     Muck Rack, Culturays — The Urban Naija News
+    </a> <br/>
     <a href="https://www.instagram.com/culturays_/" style="color:#f97316;">
       Instagram
     </a> <br/>

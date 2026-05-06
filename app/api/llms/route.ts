@@ -110,7 +110,7 @@ export async function GET(req: NextRequest) {
     '',
     '> Short summary: This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.',
     '',
-    `Primary contact: ${baseUrl}/contact/`,
+    `Primary contact: ${baseUrl}/#footer/`,
     '',
     '## Core Documentation',
     `- [Home](${baseUrl}/)`,
