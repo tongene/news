@@ -51,7 +51,7 @@ alt={xx.title}
 
 </div>
 </div>
-<Link href='/naija-events/'> 
+<Link href='/naija-events'> 
 <small className="text-center flex justify-center py-4 text-white hover:text-green-400 hover:ml-2 hover:opacity-70">all event <FontAwesomeIcon icon={faAngleRight} className="opacity-70 mx-3 p-1 cursor-pointer hover:mr-2"/>  </small></Link> 
 </div> )}
 

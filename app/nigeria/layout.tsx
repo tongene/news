@@ -7,12 +7,12 @@ export const metadata = {
   title: "Nigeria’s Manufacturing Industry | Full Resource Hub",
   description:'Explore Nigeria’s industrial base with deep-dives on Aba, outsourcing to China, trade policies, and local manufacturing solutions.',
   alternates: {
-    canonical: 'https://culturays.com/nigeria/',
+    canonical: 'https://culturays.com/nigeria',
  
   },
   openGraph: {
     title: 'Culturays — The Urban Naija News | News in Nigeria, Business, Economy, Nollywood, Netflix Naija', 
-    url: 'https://culturays.com/nigeria/', 
+    url: 'https://culturays.com/nigeria', 
   images: [
   {
   url: '/opengraph-image.jpg',  

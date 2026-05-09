@@ -287,7 +287,7 @@ const content_videos = await vids();
     author: {
       "@type": "Person",
       name: "Christina Ngene",
-      url:'https://culturays.com/creator/christina-ngene/',
+      url:'https://culturays.com/creator/christina-ngene',
 
     }, 
     datePublished:toIsoDate(news_details?.date), 

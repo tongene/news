@@ -254,7 +254,7 @@ const slug =(await params).slug
       author: {
         "@type": "Person",
         name: "Christina Ngene",
-        url:'https://culturays.com/creator/christina-ngene/',
+        url:'https://culturays.com/creator/christina-ngene',
       }, 
       datePublished:toIsoDate(news?.date) , 
       dateModified: toIsoDate(news?.date) , 
@@ -262,7 +262,7 @@ const slug =(await params).slug
         "@type": "WebPage",
         "@id": news?.slug,
       },
-      url:`https://culturays.com/news/live/${news.slug}/`,
+      url:`https://culturays.com/news/live/${news.slug}`,
       image: news?.featuredImage.node.sourceUrl ,
       publisher: {
         "@type": "Organization",

@@ -46,14 +46,14 @@ metadataBase: new URL('https://culturays.com'),
   applicationName: 'Culturays',
   referrer: 'origin-when-cross-origin',
   keywords:"News, Nigeria, Trade, Inflation, Money, CBN, Dangote, Sports, Market, AI, Tech, Nollywood, Netflix Naija, Business, Movies, Naija Birthdays, Economy, Naija Wiki, Naija Events, Africa, Trade, Growth, Entertainment, Politics, Sports, Government, Africa, Tech, Food, Lifestyle, People, Culture, Finance, Industry, Production, Conflict, GDP, Investment, Dollar, Naira, Binance, Bitcoin, Crude Oil, Gold, Mining, Stocks, Tax Reform, Tinubu, Cryptocurrency, 2027 Election, NELFUND, Fund, Investment, Poverty, Hunger, Science, Nigerian Universities, World Bank, IMF, Budget, Housing, Protest, Finance, Payment, Banks, WHO, Companies, Prices, Cost, Living, Supply, Tax, Goods, Services",
-  authors: [{ name: 'Christina Ngene', url: 'https://culturays.com/creator/christina-ngene/' }],
+  authors: [{ name: 'Christina Ngene', url: 'https://culturays.com/creator/christina-ngene' }],
   creator: 'Christina Ngene',
   publisher: 'Christina Ngene',
  
   openGraph: {
   title: 'Culturays — The Urban Naija News',
   description: 'This is an upcoming news outlet that gives coverage to legitimate news and events in Nigeria, Africa and the rest of the world.',
-  url: 'https://culturays.com/', 
+  url: 'https://culturays.com', 
   siteName: 'Culturays — The Urban Naija News', 
   images: [
   {
@@ -103,7 +103,7 @@ metadataBase: new URL('https://culturays.com'),
     alternates: {
       canonical: 'https://culturays.com/', 
       languages: { 
-          'en-US': 'https://culturays.com/',          
+          'en-US': 'https://culturays.com',          
       },
     },
    

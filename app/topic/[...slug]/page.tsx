@@ -60,7 +60,7 @@ const taggedPosts = tag_response.nodes.map((xy:TagProps)=> xy.contentNodes).map(
      author: {
        "@type": "Person",
        name: "Christina Ngene",
-       url:'https://culturays.com/creator/christina-ngene/',
+       url:'https://culturays.com/creator/christina-ngene',
      }, 
      datePublished: new Date().toISOString()  ,
          dateModified:new Date().toISOString() ,

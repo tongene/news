@@ -11,12 +11,12 @@ export const metadata = {
   //title:{absolute:"Forum"},
   description: "Start or join great conversations!!! This platform also allows you to create topics and have discussions on trending societal issues.",
   alternates: {
-    canonical: 'https://culturays.com/forum/',
+    canonical: 'https://culturays.com/forum',
  
   },
   openGraph: { 
     title: 'Culturays — The Urban Naija News | Forum, People, Nigeria',
-     url: 'https://culturays.com/forum/', 
+     url: 'https://culturays.com/forum', 
   images: [
   {
   url: '/opengraph-image.jpg',  

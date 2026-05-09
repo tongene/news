@@ -409,7 +409,7 @@ export const netFlixData =async () => {
 export const scrapeSilverBird = async ():Promise<AllSilver[]> => {
   const silverbirdsCinemas:AllSilver[]=[]
 try{
-  await axios.get('https://silverbirdcinemas.com/')
+  await axios.get('https://silverbirdcinemas.com')
   .then(async(response)=>{
     if(response.status !== 200) throw new Error(`${response.status}`)
     const html = response.data

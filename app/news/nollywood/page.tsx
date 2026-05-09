@@ -215,10 +215,10 @@ const NollywoodPage =async () => {
         "@type": "BlogPosting",
         "headline": "Culturays — The Urban Naija News | Covering News in Nigeria, Africa, and Beyond",
         "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-        "url": "https://culturays.com/news/nollywood/",
+        "url": "https://culturays.com/news/nollywood",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://culturays.com/news/nollywood/"
+          "@id": "https://culturays.com/news/nollywood"
         },
         "inLanguage": "en",
         "image": {
@@ -234,7 +234,7 @@ const NollywoodPage =async () => {
         "publisher": {
           "@type": "Organization",
           "name": "Ngenet Studio",
-          "url": "https://culturays.com/news/nollywood/",
+          "url": "https://culturays.com/news/nollywood",
           "logo": {
             "@type": "ImageObject",
             "url": "https://culturays.com/culturays-no-bg.png"

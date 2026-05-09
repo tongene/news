@@ -82,7 +82,7 @@ const jsonLd:WithContext<BlogPosting>={
   "url": "https://culturays.com/naija-events",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://culturays.com/naija-events/"
+    "@id": "https://culturays.com/naija-events"
   },
   "inLanguage": "en",
   "image": {
@@ -98,7 +98,7 @@ const jsonLd:WithContext<BlogPosting>={
   "publisher": {
     "@type": "Organization",
     "name": "Ngenet Studio",
-    "url": "https://www.culturays.com/naija-events/",
+    "url": "https://www.culturays.com/naija-events",
     "logo": {
       "@type": "ImageObject",
       "url": "https://culturays.com/culturays-no-bg.png"

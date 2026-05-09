@@ -27,9 +27,9 @@ export default async function robots(): Promise<MetadataRoute.Robots>  {
       rules: {
         userAgent: '*', 
         allow: '/',
-        disallow:["/not-found/", "/forum/", "/topic/*", "/naija-events/", "/naija-birthdays/", "/naija-wiki/", "/search/", "/characters/", "/character/*", "/profile/*", "/videos/"]
+        disallow:["/not-found", "/forum", "/topic/*", "/naija-events/", "/naija-birthdays", "/naija-wiki", "/search", "/characters", "/character/*", "/profile/*", "/videos"]
       },
-      sitemap:['https://culturays.com/sitemap.xml/','https://culturays.com/api/naija-events/', 'https://culturays.com/api/news-sitemap/','https://culturays.com/api/sitemap/', 'https://culturays.com/naija-wiki/sitemap.xml/']
+      sitemap:['https://culturays.com/sitemap.xml','https://culturays.com/api/naija-events', 'https://culturays.com/api/news-sitemap','https://culturays.com/api/sitemap', 'https://culturays.com/naija-wiki/sitemap.xml']
       
     }
   } 

@@ -68,15 +68,15 @@ const jsonLd:WithContext<DiscussionForumPosting>={
   "@type": "DiscussionForumPosting",
   "headline": "Culturays — The Urban Naija News | Covering News in Nigeria, Africa, and Beyond",
   "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-  "url": "https://culturays.com/forum/",
+  "url": "https://culturays.com/forum",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://culturays.com/forum/"
+    "@id": "https://culturays.com/forum"
   },
   "inLanguage": "en",
   "image": {
     "@type": "ImageObject",
-    "url": "https://culturays.com/opengraph-image.jpg/"
+    "url": "https://culturays.com/opengraph-image.jpg"
   },
  "datePublished":toIsoDate(new Date().toDateString()) ,
  "dateModified": toIsoDate(new Date().toDateString()),
@@ -87,10 +87,10 @@ const jsonLd:WithContext<DiscussionForumPosting>={
   "publisher": {
     "@type": "Organization",
     "name": "Ngenet Studio",
-    "url": "https://www.culturays.com/forum/",
+    "url": "https://www.culturays.com/forum",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://culturays.com/culturays-no-bg.png/"
+      "url": "https://culturays.com/culturays-no-bg.png"
     }
   }
 }

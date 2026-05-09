@@ -6,7 +6,7 @@ metadataBase: new URL('https://culturays.com'),
  title:"Culturays — The Urban Naija News | Sign In",  
 description: "Sign in to Explore Topics",
 alternates: {
-  canonical: 'https://culturays.com/sign-in/',
+  canonical: 'https://culturays.com/sign-in',
 
 }, 
  openGraph: {

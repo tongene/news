@@ -7,7 +7,7 @@ export const metadata = {
 metadataBase: new URL('https://culturays.com'), 
  title:"Culturays — The Urban Naija News | Search",
  alternates: {
-  canonical: 'https://culturays.com/search/',
+  canonical: 'https://culturays.com/search',
 
 }, 
 };

@@ -51,7 +51,7 @@ export default async function AuthButton() {
   <>
 <div className="flex flex-col items-center pb-2 leading-none text-xs my-6">
 <Link
-href="/sign-in/"
+href="/sign-in"
 className="flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover text-xs"
 >
   <button className="text-lg rounded-md no-underline bg-btn-background hover:bg-btn-background-hover border border-4 py-3 px-6">

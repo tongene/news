@@ -15,35 +15,35 @@ setBarState(prev=> !prev)
  const navAddress=[ 
 {
   a:"News",
-  b:"/news/"
+  b:"/news"
 
 },{
   a:"Daily",
-  b:"/news/articles/"
+  b:"/news/articles"
 
 },  
 
  
 {
   a:"Business",
-  b:"/news/business/"
+  b:"/news/business"
 
 }
 ,
 {
   a:"Trade",
-  b:"/nigeria/"
+  b:"/nigeria"
 
 },
 {
   a:"Economy",
-  b:"/news/economy/"
+  b:"/news/economy"
 
 }
 ,
 {
   a:"Netflix Naija",
-  b:"/news/nollywood/"
+  b:"/news/nollywood"
 
 }
 ]

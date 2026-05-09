@@ -264,7 +264,7 @@ const TrendingDetails =async ({params}: {
    author: {
      "@type": "Person",
      name: "Christina Ngene",
-     url:'https://culturays.com/creator/christina-ngene/',
+     url:'https://culturays.com/creator/christina-ngene',
    }, 
    datePublished:toIsoDate( trends_detail?.date) , 
    dateModified:toIsoDate( trends_detail?.date) , 
@@ -272,7 +272,7 @@ const TrendingDetails =async ({params}: {
      "@type": "WebPage",
      "@id": trends_detail?.slug,
    },
-   url:`https://culturays.com/news/trending/${slug}/`,
+   url:`https://culturays.com/news/trending/${slug}`,
    image: trends_detail?.featuredImage.node.sourceUrl ,
    publisher: {
      "@type": "Organization",

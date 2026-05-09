@@ -98,7 +98,7 @@ onChange={handleSearch}
 value={nameX1.toLowerCase()}
 /> 
 <div className="absolute z-40 top-3 right-20">
-<FontAwesomeIcon icon={faAngleDoubleRight}width={20} className="cursor-pointer opacity-70 text-xl hover:scale-150" onClick={()=>!nameX1?replace('/search/')
+<FontAwesomeIcon icon={faAngleDoubleRight}width={20} className="cursor-pointer opacity-70 text-xl hover:scale-150" onClick={()=>!nameX1?replace('/search')
 :replace(`/search?name=${nameX1}`)}/> 
  
 </div> 

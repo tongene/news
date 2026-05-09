@@ -707,14 +707,14 @@ const jsonLd:WithContext<NewsArticle> = {
     author: {
       "@type": "Person",
       name: "Christina Ngene",
-      url:'https://culturays.com/creator/christina-ngene/',
+      url:'https://culturays.com/creator/christina-ngene',
     }, 
     datePublished: new Date(news_details?.date).toDateString() , 
     dateModified:new Date(news_details?.date).toDateString() , 
      mainEntityOfPage: {
       "@type": "WebPage",
     },
-    url: `https://culturays.com/${news_details?.slug}/`,
+    url: `https://culturays.com/${news_details?.slug}`,
     image: "https://culturays.com/culturays-no-bg.png",
     publisher: {
       "@type": "Organization",

@@ -171,7 +171,7 @@ const VideoDetailsPage=async ({params}: Props) => {
      author: {
        "@type": "Person",
        name: "Christina Ngene",
-       url:'https://culturays.com/creator/christina-ngene/',
+       url:'https://culturays.com/creator/christina-ngene',
      }, 
      datePublished:toIsoDate(vid_details?.date) , 
      dateModified:toIsoDate(vid_details?.date) , 
@@ -179,7 +179,7 @@ const VideoDetailsPage=async ({params}: Props) => {
        "@type": "WebPage",
        "@id": vid_details?.slug,
      },
-     url: `https://culturays.com/news/video/${slug}/`,
+     url: `https://culturays.com/news/video/${slug}`,
      image: vid_details?.featuredImage.node.sourceUrl ,
      publisher: {
        "@type": "Organization",

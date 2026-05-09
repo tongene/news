@@ -34,7 +34,7 @@ const Privacy = () => {
 
 </p>
 
-<ul className="list-disc px-11 text-blue-800"><li><a href="https://www.google.com/policies/privacy/"target="_blank"rel="noopener noreferrer" >Google Play Services</a></li> 
+<ul className="list-disc px-11 text-blue-800"><li><a href="https://www.google.com/policies/privacy"target="_blank"rel="noopener noreferrer" >Google Play Services</a></li> 
 
 <li><a href="https://www.facebook.com/about/privacy/update/printable"target="_blank"rel="noopener noreferrer">Facebook</a></li> </ul></div>
 

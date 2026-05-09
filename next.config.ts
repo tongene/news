@@ -25,7 +25,7 @@ const nextConfig: NextConfig ={
       },
        {
         source: '/news/tech/:path*',
-        destination: '/news/',
+        destination: '/news',
         permanent: true,
       },    
        {
@@ -69,7 +69,7 @@ const nextConfig: NextConfig ={
       ,
       {
         source: '/news/economy/',
-        destination: '/news/articles/', 
+        destination: '/news/articles', 
         permanent: true,
       }
         ,
@@ -81,7 +81,7 @@ const nextConfig: NextConfig ={
         
       {
         source: '/news/business/',
-        destination: '/news/articles/', 
+        destination: '/news/articles', 
         permanent: true,
       }, 
       {
@@ -91,7 +91,7 @@ const nextConfig: NextConfig ={
       }  ,
       {
         source: '/news/environment/',
-        destination: '/news/articles/', 
+        destination: '/news/articles', 
         permanent: true,
       }
         , 
@@ -99,16 +99,17 @@ const nextConfig: NextConfig ={
         source: '/news/environment/:path*',
         destination: '/news/:path*',
         permanent: true,
-      }, 
-      {
-        source: '/news/nollywood/:path+',
-        destination: '/news/:path+',
-        permanent: true,
       }
-         , 
+      // , 
+      // {
+      //   source: '/news/nollywood/:path+',
+      //   destination: '/news/nollywood/:path+',
+      //   permanent: true,
+      // }
+       , 
       {
         source: '/news/award/',
-        destination: '/news/nollywood/',
+        destination: '/news/nollywood',
         permanent: true,
       },  
        
@@ -131,7 +132,7 @@ const nextConfig: NextConfig ={
       },
       {
         source: '/naija-wiki/',
-        destination: '/news/nollywood/',
+        destination: '/news/nollywood',
         permanent: true,
       },
       {
@@ -141,22 +142,22 @@ const nextConfig: NextConfig ={
       },
       {
         source: '/netflix-naija/coming-to-netflix/:path+',
-        destination: '/news/nollywood/',
+        destination: '/news/nollywood',
         permanent: true,
       },
       {
         source: '/netflix-naija/coming-to-netflix/',
-        destination: '/news/nollywood/',
+        destination: '/news/nollywood',
         permanent: true,
       },
       {
         source: '/netflix-naija/new-on-netflix/:path+',
-        destination: '/news/nollywood/',
+        destination: '/news/nollywood',
         permanent: true,
       },
       {
         source: '/netflix-naija/new-on-netflix/',
-        destination: '/news/nollywood/',
+        destination: '/news/nollywood',
         permanent: true,
       },
       {
@@ -171,51 +172,51 @@ const nextConfig: NextConfig ={
       }, 
       {
         source: '/moviewikiafrica/video/:path*',
-        destination: '/news/videos/',
+        destination: '/news/videos',
         permanent: true,
       },
          {
         source: '/nollywood/news/:path*',
-        destination: '/news/nollywood/',
+        destination: '/news/nollywood',
         permanent: true,
       }, 
        {
         source: '/comingtonetflix/naija/:path*',
-        destination: '/news/nollywood/',
+        destination: '/news/nollywood',
         permanent: true,
       },
         {
         source: '/newonnetflix/naija/:path*',
-        destination: '/news/nollywood/',
+        destination: '/news/nollywood',
         permanent: true,
       },  
        {
         source: '/comingtonetflix',
-        destination: '/news/nollywood/',
+        destination: '/news/nollywood',
         permanent: true,
       },
       {
         source: '/newonnetflix',
-        destination: '/naija-wiki/',
+        destination: '/naija-wiki',
         permanent: true,
       },
        {
         source: '/news/local',
-        destination: '/news/',
+        destination: '/news',
         permanent: true,
       },
        {
         source: '/news/foreign',
-        destination: '/news/',
+        destination: '/news',
         permanent: true,
       },
        {
         source: '/search-page',
-        destination: '/search/',
+        destination: '/search',
         permanent: true,
       },
        {
-        source: '/innews/newspost/',
+        source: '/innews/newspost',
         destination: '/',
         permanent: true,
       },
@@ -267,8 +268,8 @@ const nextConfig: NextConfig ={
     ];
   },
  
-//trailingSlash: true,
- skipTrailingSlashRedirect: true,
+trailingSlash: true,
+ //skipTrailingSlashRedirect: true,
 // experimental: {
 //   taint: true, 
 

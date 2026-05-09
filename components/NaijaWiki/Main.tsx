@@ -291,7 +291,7 @@ icon={faTags}/>{xy?.contentTags.nodes[0].name}</h4></Link>
   <div className='bg-black py-4 my-3' > 
 <div className='flex flex-col sm:flex-row font-bold sm:justify-between items-center my-6 text-slate-800 text-white border-b px-8'>
     <h2 className='text-center text-3xl m-3'>Reels </h2> 
-    <Link href='/news/videos/'><button className='border mr-1 rounded-lg p-4 m-2 text-white'>View All <span><FontAwesomeIcon
+    <Link href='/news/videos'><button className='border mr-1 rounded-lg p-4 m-2 text-white'>View All <span><FontAwesomeIcon
     className=''
    icon={faArrowRight}
    width={18}/></span></button></Link>

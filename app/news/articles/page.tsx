@@ -499,10 +499,10 @@ const netflix_News = await netflixNews()
     "@type": "BlogPosting",
     "headline": "Culturays — The Urban Naija News | Covering News in Nigeria, Africa, and Beyond",
     "description": "This is an upcoming news outlet that gives coverage to events in Nigeria, Africa and the rest of the world.",
-    "url": "https://culturays.com/news/articles/",
+    "url": "https://culturays.com/news/articles",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://culturays.com/news/articles/"
+      "@id": "https://culturays.com/news/articles"
     },
     "inLanguage": "en",
     "image": {
@@ -518,7 +518,7 @@ const netflix_News = await netflixNews()
     "publisher": {
       "@type": "Organization",
       "name": "Ngenet Studio",
-      "url": "https://culturays.com/news/articles/",
+      "url": "https://culturays.com/news/articles",
       "logo": {
         "@type": "ImageObject",
         "url": "https://culturays.com/culturays-no-bg.png"

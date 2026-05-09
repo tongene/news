@@ -733,7 +733,7 @@ size={150}
   <div className="absolute right-5 bg-transparent z-50" ref={dropperRef}>
    {openNav?
  (  <nav className='bg-gray-800'> 
-    <Link href="/forum/"><div className='flex justify-between text-lg p-3 text-white'><FontAwesomeIcon icon={faHouse} width={25} /><p className="mx-2">Home</p></div></Link>
+    <Link href="/forum"><div className='flex justify-between text-lg p-3 text-white'><FontAwesomeIcon icon={faHouse} width={25} /><p className="mx-2">Home</p></div></Link>
   <div className='flex justify-between text-lg p-3 mx-2 text-white cursor-pointer' onClick={()=> setShowInput(prev => !prev)}><FontAwesomeIcon icon={faImage}width={20} /><p className="mx-2">Change Photo</p></div> 
   <div className='flex justify-between text-lg p-3 mx-2 text-white cursor-pointer' onClick={accountDelete}><FontAwesomeIcon icon={faTrash}width={20} /><p className="mx-2">Delete Profile</p>
   </div>

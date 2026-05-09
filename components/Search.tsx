@@ -152,7 +152,7 @@ searchPageContent?.map((it, index)=>
 </div>)}</div>
 
 <div className="gotoforum cursor-pointer py-3 hover:opacity-50"> 
-<Link href="/forum/"><FontAwesomeIcon icon= {faComments} /></Link>
+<Link href="/forum"><FontAwesomeIcon icon= {faComments} /></Link>
 </div>
  </div>
     </div>
@@ -190,7 +190,7 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=>
 
 </div>)}</div>
 <div className="gotoforum cursor-pointer py-3 hover:opacity-50"> 
-<Link href="/forum/"><FontAwesomeIcon icon= {faComments} /></Link>
+<Link href="/forum"><FontAwesomeIcon icon= {faComments} /></Link>
 </div>
  </div>
     </div>
@@ -226,7 +226,7 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=>
 </div>)}</div>
  
 <div className="gotoforum cursor-pointer py-3 hover:opacity-50 "> 
-<Link href="/forum/"><FontAwesomeIcon icon={faComments} /></Link>
+<Link href="/forum"><FontAwesomeIcon icon={faComments} /></Link>
 </div>
  </div>
     </div>
@@ -259,7 +259,7 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=>
 
 </div>)}</div>
 <div className="gotoforum cursor-pointer py-3 hover:opacity-50 "> 
-<Link href="/forum/"><FontAwesomeIcon icon= {faComments} /></Link>
+<Link href="/forum"><FontAwesomeIcon icon= {faComments} /></Link>
 </div>
  </div>
     </div>
@@ -292,7 +292,7 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=>
 
 </div>)}</div>
 <div className="gotoforum cursor-pointer py-3 hover:opacity-50 "> 
-<Link href="/forum/"><FontAwesomeIcon icon= {faComments} /></Link>
+<Link href="/forum"><FontAwesomeIcon icon= {faComments} /></Link>
 </div>
  </div>
     </div>
@@ -325,7 +325,7 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=>
 
 </div>)}</div>
 <div className="gotoforum cursor-pointer py-3 hover:opacity-50 "> 
-<Link href="/forum/"><FontAwesomeIcon icon= {faComments} /></Link>
+<Link href="/forum"><FontAwesomeIcon icon= {faComments} /></Link>
 </div>
  </div>
     </div>
@@ -358,7 +358,7 @@ xtcontent?.filter((vx)=> vx !==undefined)?.flat()?.map((it, index)=>
 </div>)}</div>
 
 <div className="gotoforum cursor-pointer py-3 hover:opacity-50 "> 
-<Link href="/forum/"><FontAwesomeIcon icon= {faComments} /></Link>
+<Link href="/forum"><FontAwesomeIcon icon= {faComments} /></Link>
 </div>
  </div>
     </div> 
@@ -377,7 +377,7 @@ searchItem?.length>0&&searchItem?.map((it, index)=>
 </div> )}
 
 <div className="gotoforum cursor-pointer"> 
-<Link href="/forum/"><FontAwesomeIcon icon= {faComments} /></Link>
+<Link href="/forum"><FontAwesomeIcon icon= {faComments} /></Link>
 </div>
  </div>
 

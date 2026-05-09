@@ -9,7 +9,7 @@ export const metadata = {
   title: "Culturays — The Urban Naija News | Naija Events",
   description: "Find details of all relevant events, conferences and summits happening throughout Nigeria yearly. From tech to entertainment and everything necessary to forward that career.",
   alternates: {
-    canonical: 'https://culturays.com/naija-events/',
+    canonical: 'https://culturays.com/naija-events',
   
   },
   openGraph: {

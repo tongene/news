@@ -7,7 +7,7 @@ export const metadata = {
   title: "Culturays — The Urban Naija News | News",
   description:'This is the medium that caters to the daily needs of legitimate global news. We cover on technology, economics, trade, entertainment, Nollywood, health and society as well as business and environment.',
   alternates: {
-    canonical: 'https://culturays.com/news/',
+    canonical: 'https://culturays.com/news',
  
   },
   openGraph: {

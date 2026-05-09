@@ -18,19 +18,19 @@ alt='Culturays — The Urban Naija News Logo Image'/>
 <h2 className="cursor-pointer text-4xl my-1 font-bold hover:text-gray-500">  
 Culturays — The Urban Naija News</h2></Link>
 <ul> 
-<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/news/'aria-label="News">News</Link></li>
-<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/forum/'>Forum</Link></li>  
-<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/naija-events/'>Naija Events</Link></li> 
- <li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/news/articles/'>Daily</Link> </li> 
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/news'aria-label="News">News</Link></li>
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/forum'>Forum</Link></li>  
+<li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/naija-events'>Naija Events</Link></li> 
+ <li className="text list-disc p-3 mx-11 hover:text-gray-500 text-lg"><Link href='/news/articles'>Daily</Link> </li> 
 </ul> 
   <ContactUs />  
 
 </div>  
  <div className="m-auto font-bold"> 
-<Link href= "/privacy-policy/" >
+<Link href= "/privacy-policy" >
 <p className="p-1 hover:opacity-70 text-center">Privacy Policy </p>
 </Link> 
-<Link href="/about/">
+<Link href="/about">
 <p className="p-1 hover:opacity-70 text-center ">About</p></Link> 
  
 <Link href="/">
@@ -40,7 +40,7 @@ Copyright{" "}
 </p>
 </Link>
    <p className="mt-8 text-sm text-gray-500">
-  Learn more about <Link href="/nigeria/" className="text-blue-600 underline">Topics we cover</Link>.
+  Learn more about <Link href="/nigeria" className="text-blue-600 underline">Topics we cover</Link>.
 </p>
 </div>  
 <ThemeSwitcher /> 
